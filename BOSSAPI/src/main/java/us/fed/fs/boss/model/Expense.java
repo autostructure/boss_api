@@ -12,6 +12,8 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Expense {
+    
+    // budget items
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "expense_Sequence")
