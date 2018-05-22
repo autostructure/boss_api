@@ -1,7 +1,6 @@
 package us.fed.fs.boss.http;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Override
     public Expense getExpense(long id) {
-        return expenseRepository.findOne(id);
+        return expenseRepository.findById(id).get();
     }
 
     @Override
@@ -38,7 +37,7 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Override
     public void deleteExpense(long id) {
-        expenseRepository.delete(id);    
+        expenseRepository.deleteById(id);    
     }
 
 }
