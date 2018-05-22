@@ -6,6 +6,7 @@ import static org.aspectj.weaver.Shadow.ExceptionHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import us.fed.fs.boss.exception.BadRequestException;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 
@@ -17,18 +18,6 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Autowired
     private ExpenseRepository expenseRepository;
-    
-    @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleResourceNotFoundException() {
-        return "meters/notfound";
-    }
-    
-    @ExceptionHandler(BadRequest Exception.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleResouFoundException() {
-        return "meters/notfound";
-    }
 
     public void addExpense(Expense expense) {
         expenseRepository.save(expense);
