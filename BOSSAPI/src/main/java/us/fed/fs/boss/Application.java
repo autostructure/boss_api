@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import us.fed.fs.boss.http.BudgetService;
+import us.fed.fs.boss.service.BudgetService;
 import us.fed.fs.boss.model.Expense;
 
 @SpringBootApplication
