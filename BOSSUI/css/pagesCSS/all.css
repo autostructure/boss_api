@@ -1,0 +1,227 @@
+/* GENERAL STYLES */
+@font-face {
+    font-family: mainFont;
+    src: url("../../fonts/Roboto-Regular.ttf");
+}
+*{
+    font-family: mainFont;
+}
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------------------START OF HEADER STYLES------------------------------------------------------------ */
+.usa-nav-primary a:hover{
+    color: rgb(56, 56, 56);
+}
+a:visited{
+    color: #004121;
+}
+.usa-nav-link:hover span {
+    border-bottom: 0.7rem solid #006633;
+    padding-bottom: 1rem
+}
+.fa.fa-bars{
+    margin-right: 10px;
+}
+
+#smallPageTitle{
+    font-size: .5em;
+    font-style: italic;
+    font-weight: 400;
+}
+#menuOpen{
+    color: #006633;
+}
+.fa.fa-bars{
+    margin-right: 10px;
+}
+#pageTitle{
+    color: rgb(56, 56, 56);
+    font-size: 1.1em;
+}
+#pageTitle a {
+    text-decoration: none;
+}
+#gov-banner p{
+    color: white !important;
+}
+/* ---------------------------------------------------------------------END OF HEADER STYLES------------------------------------------------------------ */
+
+
+
+
+/* ---------------------------------------------------------------------START OF FOOTER STYLES------------------------------------------------------------ */
+.usa-footer-primary-section{
+    padding: 0px !important;
+}
+
+.usdafooter{
+    text-align: right;
+    color: rgb(5, 65, 23);
+}
+.usa-footer .usa-footer-primary-link{
+    font-size: 1.5em;
+}
+.usdaaddress{
+    text-align: right;
+}
+.usa-footer-secondary_section{
+    background-color: white;
+}
+.usa-footer-primary-section{
+    background-color: #777777;
+}
+.usa-footer-primary-link{
+    color: white !important;
+}
+.usa-footer-primary-content{
+    float: left;
+    position: relative;
+    text-align: center;
+}
+.usa-unstyled-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.usa-footer-medium .usa-footer-primary-section .usa-footer-primary-content {
+    margin: auto !important;
+    width: 20% !important;
+}
+.usdafooter{
+    text-align: right;
+    color: rgb(5, 65, 23);
+}
+.usdaaddress{
+    text-align: right;
+    font-size: 1.5em;
+    margin: 1rem 0rem;
+}
+.usa-footer-secondary_section{
+    background-color: white;
+}
+.usa-footer-primary-section{
+    background-color: #777777;
+}
+.usa-footer-primary-link{
+    color: white !important;
+}
+.usa-footer-primary-content{
+    float: left;
+    position: relative;
+    text-align: center;
+}
+.usa-unstyled-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.usa-footer-medium .usa-footer-primary-section .usa-footer-primary-content {
+    margin: auto !important;
+    width: 20% !important;
+}
+@media screen and (min-width: 600px){
+.usa-footer-primary-section .usa-grid-full {
+    padding-left: 15rem;
+    padding-right: 15rem;
+}
+}
+/* ---------------------------------------------------------------------END OF FOOTER STYLES------------------------------------------------------------ */
+
+
+
+
+/* ---------------------------------------------------------------------START OF SIDENAV STYLES------------------------------------------------------------ */
+ .wrapper {
+    display: flex;
+}
+
+#sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    color: rgb(43, 43, 43);
+    transition: all 0.5s;
+    box-shadow: 2px 0px 15px -2px rgba(73, 73, 73, 0.5); 
+}
+
+#sidebar.active {
+    margin-left: -300px;
+}
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\f067';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'FontAwesome';
+    font-size: 0.8em;
+}
+
+a[aria-expanded="true"]::before {
+    content: '\f068';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'FontAwesome';
+    font-size: 0.8em;
+}
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -300px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+#sidebar .sidebar-header {
+    padding: 15px 20px 15px 55px;
+    background: #ededed;
+    font-size: 1.6em;
+    font-weight: 600;
+    border-bottom: .5px solid #096d3b8f;
+}
+#sidebar ul.components {
+    padding: 0px;
+    margin-left: 40px;
+    text-decoration: none;
+    list-style-type: none;
+    outline: none !important;
+}
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+#sidebar ul li a {
+    padding: 5px;
+    margin-left: 12px;
+    font-size: 1.5em;
+    font-weight: 600;
+    display: block;
+    text-decoration: none;
+    color: rgb(121, 121, 121);
+    outline: none !important;
+}
+#sidebar ul li a:hover {
+    color: rgb(56, 56, 56);
+    background: #fff;
+}
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: rgb(92, 92, 92);
+    background: #ffffff;
+}
+ul ul a {
+    font-size: 1.2em !important;
+    padding-left: 30px !important;
+    background: #ffffff;
+    list-style-type: none !important;
+}
+/* ---------------------------------------------------------------------END OF SIDENAV STYLES------------------------------------------------------------ */
+
