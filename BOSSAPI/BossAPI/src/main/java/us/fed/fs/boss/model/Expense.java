@@ -46,8 +46,8 @@ public class Expense implements Serializable {
     @Column(name = "SECCode")
     private String secCode;
     
-    @Column(name = "NameCode")
-    private String nameCode;
+    @Column(name = "ActivityCode")
+    private String activityCode;
     
     @Column(name = "PayPeriod")
     private int payPeriod;
@@ -68,8 +68,18 @@ public class Expense implements Serializable {
     @Column(name = "Description")
     private String description;
     
+    @Column(name = "OverrideCode")
+    private String overrideCode;
+    
+    @Column(name = "PaymentCode")
+    private String paymentCode;
+    
     @ManyToOne
     @JoinColumn(name = "CategoryFK")
     private Category category;
+    
+    @ManyToOne
+    @JoinColumn(name = "EmployeeProfileFK")
+    private EmployeeProfile employeeProfile;
 
 }
