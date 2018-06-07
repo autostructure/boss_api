@@ -55,9 +55,6 @@ public class Expense implements Serializable {
     @Column(name = "PayPeriod")
     private int payPeriod;
     
-    @Column(name = "JobCode")
-    private int jobCode;
-    
     @Column(name = "ExpenseCode")
     private int expenseCode;
     
@@ -83,6 +80,10 @@ public class Expense implements Serializable {
     @ManyToOne
     @JoinColumn(name = "CategoryFK")
     private Category category;
+    
+    @ManyToOne
+    @JoinColumn(name = "JobCodeF")
+    private JobCode jobCode;
     
     @ManyToOne
     @JoinColumn(name = "EmployeeProfileFK")
