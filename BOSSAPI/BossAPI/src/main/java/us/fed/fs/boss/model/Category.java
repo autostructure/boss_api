@@ -24,5 +24,5 @@ public class Category implements Serializable {
     private Long id;
     
     @Column(name = "CategoryDescription")
-    private long description;
+    private String description;
 }
