@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.Expense;
+import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.repository.ExpenseRepository;
+import us.fed.fs.boss.repository.JobCodeRepository;
 
 @RestController
 public class BudgetController {
 
     @Autowired
     ExpenseRepository expenseRepository;
+    
+    @Autowired
+    JobCodeRepository jobCodeRepository;
     
     // Get All Expenses
     @GetMapping("/test")
@@ -62,6 +67,44 @@ public class BudgetController {
         Expense expense = expenseRepository.findById(expenseId)
                 .orElseThrow(() -> new ResourceNotFoundException("Expense", "id", expenseId));
         expenseRepository.delete(expense);
+        return ResponseEntity.ok().build();
+        
+    }
+
+    // Get All JobCodes
+    @GetMapping("/jobCode")
+    public List<JobCode> getAllJobCodes() {
+        return jobCodeRepository.findAll();
+    }
+
+    @GetMapping("/jobCode/{id}")
+    public JobCode getJobCodeById(@PathVariable(value = "id") Long jobCodeId) {
+        return jobCodeRepository.findById(jobCodeId)
+                .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
+    }
+    
+    @PostMapping("/jobCode")
+    public void createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
+        jobCodeRepository.save(jobCodeDetails);
+    }
+
+    @PutMapping("/jobCode/{id}")
+    public JobCode updateJobCode(@PathVariable(value = "id") Long jobCodeId,
+            @Valid @RequestBody JobCode jobCodeDetails) {
+
+        jobCodeRepository.findById(jobCodeId)
+                .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
+
+        JobCode updatedJobCode = jobCodeRepository.save(jobCodeDetails);
+        return updatedJobCode;
+    }
+
+    @DeleteMapping("/jobCode/{id}")
+    public ResponseEntity<?> deleteJobCode(@PathVariable(value = "id") Long jobCodeId) {
+        
+        JobCode jobCode = jobCodeRepository.findById(jobCodeId)
+                .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
+        jobCodeRepository.delete(jobCode);
         return ResponseEntity.ok().build();
         
     }
