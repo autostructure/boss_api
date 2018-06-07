@@ -25,10 +25,10 @@ import lombok.NoArgsConstructor;
 @EntityListeners(AuditingEntityListener.class)
 @Getter @Setter @NoArgsConstructor
 public class Expense implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
