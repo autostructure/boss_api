@@ -77,6 +77,9 @@ public class Expense implements Serializable {
     @Column(name = "PaymentCode")
     private String paymentCode;
     
+    @Column(name = "State")
+    private String state;
+    
     @ManyToOne
     @JoinColumn(name = "CategoryFK")
     private Category category;
@@ -90,5 +93,11 @@ public class Expense implements Serializable {
         orphanRemoval = true
     )
     private List<ExpenseDetail> expenseDetails;
+    
+    @OneToMany(
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true
+    )
+    private List<TravelDetail> travelDetails;
 
 }
