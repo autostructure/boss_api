@@ -1,0 +1,25 @@
+package us.fed.fs.boss.repository;
+
+import java.util.List;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import us.fed.fs.boss.model.JobCode;
+
+@Repository
+public interface JobCodeRepository extends JpaRepository<JobCode, Long> {
+
+    @Override
+    @CachePut("jobCodes")
+    <S extends JobCode> S save(S entity);
+
+    @Override
+    @Cacheable("jobCodes")
+    List<JobCode> findAll();
+
+    @Override
+    @CacheEvict("jobCodes")
+    void delete(JobCode jobCode);
+}
