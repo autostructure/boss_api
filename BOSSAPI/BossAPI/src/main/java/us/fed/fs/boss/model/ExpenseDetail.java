@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,6 +32,14 @@ public class ExpenseDetail implements Serializable {
     
     @Column(name = "Amount", nullable = false)
     private Double amount;
+    
+    @ManyToOne
+    @JoinColumn(name = "ExpenseCodeFK")
+    private ExpenseCode expenseCode;
+    
+    @ManyToOne
+    @JoinColumn(name = "JobCodeFK")
+    private JobCode jobCode;
     
     @Column(name = "DateVerified", nullable = false)
     @Temporal(TemporalType.DATE)

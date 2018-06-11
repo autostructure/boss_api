@@ -5,9 +5,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +33,12 @@ public class TravelDetail implements Serializable {
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
     private Date fromDate;
+    
+    @Column(name = "VoucherNumber")
+    private Long voucherNumber;
+    
+    @Column(name = "State")
+    private String state;
     
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
