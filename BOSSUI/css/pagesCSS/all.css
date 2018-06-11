@@ -3,6 +3,10 @@
     font-family: mainFont;
     src: url("../../fonts/Roboto-Regular.ttf");
 }
+@font-face {
+    font-family: lightFont;
+    src: url("../../fonts/Roboto-Light.ttf");
+}
 *{
     font-family: mainFont;
 }
