@@ -61,6 +61,9 @@ public class Expense implements Serializable {
     @Column(name = "Total")
     private long total;
     
+    @Column(name = "FinancialYear")
+    private long financialYear;
+    
     @Temporal(TemporalType.DATE)
     @Column(name = "DateObl")
     private Date obligatedDate;
