@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.Expense;
@@ -23,10 +24,10 @@ public class BudgetController {
 
     @Autowired
     ExpenseRepository expenseRepository;
-    
+
     @Autowired
     JobCodeRepository jobCodeRepository;
-    
+
     // Get All Expenses
     @GetMapping("/test")
     public String test() {
@@ -35,8 +36,12 @@ public class BudgetController {
 
     // Get All Expenses
     @GetMapping("/expense")
-    public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
+    public List<Expense> getAllExpenses(@RequestParam(value = "financialYear", required = false) Long financialYear) {
+        if (financialYear == null) {
+            return expenseRepository.findAll();
+        } else {
+            return expenseRepository.findByFinancialYear(financialYear);
+        }
     }
 
     @GetMapping("/expense/{id}")
@@ -44,7 +49,7 @@ public class BudgetController {
         return expenseRepository.findById(expenseId)
                 .orElseThrow(() -> new ResourceNotFoundException("Expense", "id", expenseId));
     }
-    
+
     @PostMapping("/expense")
     public void createExpense(@Valid @RequestBody Expense expenseDetails) {
         expenseRepository.save(expenseDetails);
@@ -63,12 +68,12 @@ public class BudgetController {
 
     @DeleteMapping("/expense/{id}")
     public ResponseEntity<?> deleteExpense(@PathVariable(value = "id") Long expenseId) {
-        
+
         Expense expense = expenseRepository.findById(expenseId)
                 .orElseThrow(() -> new ResourceNotFoundException("Expense", "id", expenseId));
         expenseRepository.delete(expense);
         return ResponseEntity.ok().build();
-        
+
     }
 
     // Get All JobCodes
@@ -82,7 +87,7 @@ public class BudgetController {
         return jobCodeRepository.findById(jobCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
     }
-    
+
     @PostMapping("/jobCode")
     public void createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
         jobCodeRepository.save(jobCodeDetails);
@@ -101,11 +106,11 @@ public class BudgetController {
 
     @DeleteMapping("/jobCode/{id}")
     public ResponseEntity<?> deleteJobCode(@PathVariable(value = "id") Long jobCodeId) {
-        
+
         JobCode jobCode = jobCodeRepository.findById(jobCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
         jobCodeRepository.delete(jobCode);
         return ResponseEntity.ok().build();
-        
+
     }
 }

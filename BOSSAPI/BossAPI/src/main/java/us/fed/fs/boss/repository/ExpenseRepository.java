@@ -18,6 +18,9 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     @Override
     @Cacheable("expenses")
     List<Expense> findAll();
+    
+    @Cacheable("expenses")
+    List<Expense> findByFinancialYear(long year);
 
     @Override
     @CacheEvict("expenses")
