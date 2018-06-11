@@ -55,9 +55,6 @@ public class Expense implements Serializable {
     @Column(name = "PayPeriod")
     private int payPeriod;
     
-    @Column(name = "ExpenseCode")
-    private int expenseCode;
-    
     @Column(name = "Total")
     private long total;
     
@@ -94,13 +91,15 @@ public class Expense implements Serializable {
     
     @OneToMany(
         cascade = CascadeType.ALL, 
-        orphanRemoval = true
+        orphanRemoval = true,
+        mappedBy = "expense"
     )
     private List<ExpenseDetail> expenseDetails;
     
     @OneToMany(
         cascade = CascadeType.ALL, 
-        orphanRemoval = true
+        orphanRemoval = true,
+        mappedBy = "expense"
     )
     private List<TravelDetail> travelDetails;
 
