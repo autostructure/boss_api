@@ -46,9 +46,5 @@ public class ExpenseDetail implements Serializable {
     @CreatedDate
     private Date dateVerified;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ExpenseFK")
-    private Expense expense;
-    
 }
 

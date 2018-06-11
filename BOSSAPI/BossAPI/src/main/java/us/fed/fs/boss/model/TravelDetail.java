@@ -47,8 +47,4 @@ public class TravelDetail implements Serializable {
     @Column(name = "Remarks")
     private String remarks;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ExpenseFK")
-    private Expense expense;
-    
 }
