@@ -14,10 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
+import us.fed.fs.boss.model.ActivityCode;
+import us.fed.fs.boss.model.BudgetObjectCode;
 import us.fed.fs.boss.model.Expense;
+import us.fed.fs.boss.model.ExpenseCode;
 import us.fed.fs.boss.model.JobCode;
+import us.fed.fs.boss.model.PaymentCode;
+import us.fed.fs.boss.repository.ActivityCodeRepository;
+import us.fed.fs.boss.repository.BudgetObjectCodeRepository;
+import us.fed.fs.boss.repository.ExpenseCodeRepository;
 import us.fed.fs.boss.repository.ExpenseRepository;
 import us.fed.fs.boss.repository.JobCodeRepository;
+import us.fed.fs.boss.repository.PaymentCodeRepository;
 
 @RestController
 public class BudgetController {
@@ -27,6 +35,19 @@ public class BudgetController {
 
     @Autowired
     JobCodeRepository jobCodeRepository;
+            
+    @Autowired
+    ExpenseCodeRepository expenseCodeRepository;
+
+    @Autowired
+    PaymentCodeRepository paymentCodeRepository;
+    
+    @Autowired
+    ActivityCodeRepository activityCodeRepository;
+    
+    @Autowired
+    BudgetObjectCodeRepository budgetObjectCodeRepository;
+
 
     // Get All Expenses
     @GetMapping("/test")
@@ -112,5 +133,29 @@ public class BudgetController {
         jobCodeRepository.delete(jobCode);
         return ResponseEntity.ok().build();
 
+    }
+    
+    // Get All Activity Codes
+    @GetMapping("/activityCode")
+    public List<ActivityCode> getAllActivityCodes() {
+        return activityCodeRepository.findAll();
+    }
+    
+    // Get All Budget Object Codes
+    @GetMapping("/budgetObjectCode")
+    public List<BudgetObjectCode> getAllBudgetObjectCodes() {
+        return budgetObjectCodeRepository.findAll();
+    }
+    
+    // Get All Expense Codes
+    @GetMapping("/expenseCode")
+    public List<ExpenseCode> getAllExpenseCodes() {
+        return expenseCodeRepository.findAll();
+    }
+    
+    // Get All Payment Codes
+    @GetMapping("/paymentCode")
+    public List<PaymentCode> getAllPaymentCodes() {
+        return paymentCodeRepository.findAll();
     }
 }
