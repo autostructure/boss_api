@@ -21,7 +21,7 @@ public class ExpenseCode implements Serializable {
     @Id
     private Long id;
     
-    @Column(name = "Name", nullable = false)
-    private String name;
+    @Column(name = "Type", nullable = false)
+    private String type;
     
 }

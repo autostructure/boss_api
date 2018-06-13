@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.ActivityCode;
 import us.fed.fs.boss.model.BudgetObjectCode;
+import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Expense;
 import us.fed.fs.boss.model.ExpenseCode;
 import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.repository.ActivityCodeRepository;
 import us.fed.fs.boss.repository.BudgetObjectCodeRepository;
+import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.ExpenseCodeRepository;
 import us.fed.fs.boss.repository.ExpenseRepository;
 import us.fed.fs.boss.repository.JobCodeRepository;
@@ -46,6 +48,9 @@ public class BudgetController {
     
     @Autowired
     BudgetObjectCodeRepository budgetObjectCodeRepository;
+    
+    @Autowired
+    EmployeeProfileRepository employeeProfileRepository;
 
     // Get All Expenses
     @GetMapping("/expense")
@@ -119,12 +124,10 @@ public class BudgetController {
 
     @DeleteMapping("/jobCode/{id}")
     public ResponseEntity<?> deleteJobCode(@PathVariable(value = "id") Long jobCodeId) {
-
         JobCode jobCode = jobCodeRepository.findById(jobCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
         jobCodeRepository.delete(jobCode);
         return ResponseEntity.ok().build();
-
     }
     
     // Get All Activity Codes
@@ -149,5 +152,11 @@ public class BudgetController {
     @GetMapping("/paymentCode")
     public List<PaymentCode> getAllPaymentCodes() {
         return paymentCodeRepository.findAll();
+    }
+    
+    // Get All Employee Profiles
+    @GetMapping("/employeeProfile")
+    public List<EmployeeProfile> getAllEmployeeProfiles() {
+        return employeeProfileRepository.findAll();
     }
 }
