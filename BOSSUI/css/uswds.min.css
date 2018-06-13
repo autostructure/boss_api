@@ -1325,7 +1325,7 @@ img {
     line-height: 0
 }
 
-input,
+/* input,
 textarea,
 select {
     -webkit-appearance: none;
@@ -1344,7 +1344,7 @@ select {
     outline: none;
     padding: 1rem 0.7em;
     width: 100%
-}
+} */
 
 input:focus,
 input.usa-input-focus,

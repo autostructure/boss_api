@@ -3,7 +3,7 @@
     padding-top: 5rem;
     padding-bottom: 5rem;
     width: 100%;
-    margin: 0px 50px;
+    padding: 0px 50px 0px 50px;
 }
 .usa-grid{
     padding: 0px;
@@ -14,4 +14,68 @@
     border-bottom: 2px solid #006633;
     font-family: lightFont;
     padding-bottom: 10px;
+}
+/* #expense_length{
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+}
+#expense_filter{
+    display: inline-block;
+    right: 30px;
+    position: absolute;
+    top: -30px;
+} */
+input[type=search] {
+    padding: 0px 10px;
+    font-size: 1.5em;
+}
+/* #expense_length > label{
+    width: 60px;
+    font-size: 1.3em;
+} */
+
+.content-div{
+    border: 1px solid rgba(33, 33, 33, .2);
+    border-radius: 8px;
+    position: relative;
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+}
+.title-div{
+    margin-top: 50px !important;
+}
+td, th{
+    text-align: center;
+}
+#expense_info, #expense_paginate, #expense_filter, #expense_length{
+    padding: 3px 20px;
+}
+#expense_filter{
+    position: absolute;
+    top: -60px;
+    right: 10px;
+}
+.title2{
+    padding: 20px;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.5rem;
+    border-bottom: 8px solid #006633;
+}
+.odd{
+    background-color: #e0e0e0 !important;
+}
+
+.usa-section1{
+    padding-top: 0px !important;
+    width: 100%;
+}
+#expense{
+    margin-top: 30px;
+}
+#expense_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -80px;
+    right: 30px;
 }
