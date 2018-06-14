@@ -63,7 +63,7 @@ public class Expense implements Serializable {
     private long total;
     
     @Column(name = "FinancialYear")
-    private long financialYear;
+    private Short financialYear;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "DateObl")
@@ -91,7 +91,7 @@ public class Expense implements Serializable {
     private Category category;
     
     @ManyToOne
-    @JoinColumn(name = "JobCodeF")
+    @JoinColumn(name = "JobCodeFK")
     private JobCode jobCode;
     
     @ManyToOne
