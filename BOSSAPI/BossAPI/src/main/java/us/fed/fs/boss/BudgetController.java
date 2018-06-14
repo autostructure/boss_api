@@ -54,7 +54,7 @@ public class BudgetController {
 
     // Get All Expenses
     @GetMapping("/expense")
-    public List<Expense> getAllExpenses(@RequestParam(value = "financialYear", required = false) Long financialYear) {
+    public List<Expense> getAllExpenses(@RequestParam(value = "financialYear", required = false) Short financialYear) {
         if (financialYear == null) {
             return expenseRepository.findAll();
         } else {
