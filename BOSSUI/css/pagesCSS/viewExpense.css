@@ -4,6 +4,7 @@
     padding-bottom: 5rem;
     width: 100%;
     padding: 0px 50px 0px 50px;
+    min-height: 80vh;
 }
 .usa-grid{
     padding: 0px;
@@ -15,26 +16,11 @@
     font-family: lightFont;
     padding-bottom: 10px;
 }
-/* #expense_length{
-    display: inline-block;
-    position: absolute;
-    right: 30px;
-}
-#expense_filter{
-    display: inline-block;
-    right: 30px;
-    position: absolute;
-    top: -30px;
-} */
+
 input[type=search] {
     padding: 0px 10px;
     font-size: 1.5em;
 }
-/* #expense_length > label{
-    width: 60px;
-    font-size: 1.3em;
-} */
-
 .content-div{
     border: 1px solid rgba(33, 33, 33, .2);
     border-radius: 8px;
@@ -49,11 +35,11 @@ td, th{
     text-align: center;
 }
 #expense_info, #expense_paginate, #expense_filter, #expense_length{
-    padding: 3px 20px;
+    padding: 20px 20px;
 }
 #expense_filter{
     position: absolute;
-    top: -60px;
+    top: -85px;
     right: 10px;
 }
 .title2{
@@ -72,10 +58,84 @@ td, th{
     width: 100%;
 }
 #expense{
-    margin-top: 30px;
+    margin-top: 40px;
 }
 #expense_wrapper > div.dt-buttons{
     position: absolute;
-    top: -80px;
-    right: 30px;
+    top: -95px;
+    right: 10px;
 }
+.table-btns{
+    background-color: white !important;
+    border: none !important;
+    margin: 0px 10px;
+    font-size: 1.2em !important;
+    background-image: none !important;
+}
+.fa.fa-lg{
+    margin-left: 5px;
+}
+.fa-print{
+    color: rgb(0, 175, 29);
+}
+.fa-plus{
+    color: rgb(0, 152, 198);
+}
+.fa-repeat{
+    color: rgb(254, 146, 5);
+}
+#expense_filter > label{
+    font-size: 1.5em;
+}
+
+
+.dropbtn1 {
+    background-color: rgba(255, 255, 255, 0) !important;
+    color: rgb(58, 58, 58);
+    padding: 5px !important;
+    font-size: 16px;
+    border: none;
+    z-index: 0;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown1 {
+    position: relative;
+    display: inline-block;
+    margin-top: 0px !important;
+    z-index: 0 !important;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content1 {
+    display: none;
+    position: absolute;
+    left: -195px;
+    background-color: #505050;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10000 !important;
+}
+
+/* Links inside the dropdown */
+.dropdown-content1 a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content1 a:hover {
+    background-color: rgb(255, 255, 255);
+    color: #505050;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown1:hover .dropdown-content1 {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown1:hover .dropbtn1 {background-color: #3e8e41;}
+
+
+

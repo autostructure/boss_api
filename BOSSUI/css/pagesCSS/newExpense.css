@@ -1,0 +1,77 @@
+
+.usa-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    width: 100%;
+    padding: 0px 50px 0px 50px;
+    min-height: 80vh;
+}
+.usa-grid{
+    padding: 0px;
+}
+#title{
+    font-size: 4.0em;
+    font-weight: 100;
+    border-bottom: 2px solid #006633;
+    font-family: lightFont;
+    padding-bottom: 10px;
+}
+
+.content-div{
+    border: 1px solid rgba(33, 33, 33, .2);
+    border-radius: 8px;
+    position: relative;
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+}
+.title-div{
+    margin-top: 50px !important;
+}
+
+.title2{
+    padding: 20px 0px;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.3rem;
+    display: inline-block;
+}
+
+.usa-section1{
+    padding-top: 0px !important;
+    width: 100%;
+}
+.border{
+    border: .5px solid rgb(202, 202, 202);
+    border-radius: 15px;
+    padding: 20px;
+}
+.sequence{
+    float: right;
+    padding-top: 20px;
+    font-size: 1.5em;
+}
+.nav-item a{
+    font-size: 1.5em;
+    color: rgb(36, 36, 36);
+}
+.nav-tabs .nav-link.active{
+    border-color: #ddd #ddd #fff;
+    border-top-color: #006633;
+    border-right-color: rgb(221, 221, 221);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-color: rgb(221, 221, 221);
+    color: #006633 !important;
+}
+.nav-tabs .nav-link{
+    border: 3px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+#contact-tab a[aria-expanded="false"]::before, #contact-tab a[aria-expanded="true"]::before,
+#time-tab a[aria-expanded="false"]::before, #time-tab a[aria-expanded="true"]::before,
+#visa-tab a[aria-expanded="false"]::before, #visa-tab a[aria-expanded="true"]::before,
+#other-tab a[aria-expanded="false"]::before, #other-tab a[aria-expanded="true"]::before
+
+{
+    display: none !important;
+}

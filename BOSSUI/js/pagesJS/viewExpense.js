@@ -1,7 +1,7 @@
 var api = "http://localhost:8090/expense";
 // var api2 = "http://fsxrnsx0128.wrk.fs.usda.gov/aar/services/api/getApprovalReview?requestid=2" 
 
-// NEED TO CHANGE BACK WHEN DONE TESTING
+// ONCE WE LOAD SOME DATA, NEED TO TURN AJAX URL AND REMOVE VAR
 
 var dataSet = [
     [ "S", "AD", "LaneyM", "UPS", "05", "2019", "FRF13818", "26", "12,000,000", "2011/04/25" ],
@@ -15,20 +15,38 @@ var dataSet = [
 ];
 
 $(document).ready(function() {
+    $('#expenseSub').addClass('show');
+    $('#expenseSub > li:nth-child(2) > a').addClass('highlight');
 
-    $('#expense').DataTable({  
+    var dt = $('#expense').DataTable({  
         dom: 'Bfrtip',
         bProcessing: true,
         // ajax: {
         //     url : "http://localhost:8090/expense", "dataSrc": dataSet
         // },
         buttons: [
-            'print'
+            {
+                text: 'Print <i class="fa fa-lg fa-print"></i>',
+                extend: 'print',
+                className: 'table-btns print-btn'
+            },
+            {
+                text: 'Add <i class="fa fa-lg fa-plus"></i>',
+                action: function(){
+                    window.location.href = '../budget/newExpense.html';
+                },
+                className: 'table-btns add-btn'
+            },
+            {
+                text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
+                action: function(){
+                    window.location.reload();
+                },
+                className: 'table-btns refresh-btn'
+            }
+          
         ],
         data: dataSet,
-        "columnDefs": 
-        {"width": "40%", "targets": "3"},
-
         // columns:[
         //     {data: "actCode"},       
         //     {data: "activityCode"},
@@ -67,33 +85,36 @@ $(document).ready(function() {
             { title: "Date Obl" },
             {data: null,
                 "render": function(){
-                    return '<i class="fa fa-ellipsis-v"></i>'
+                    return `
+                    <div class="dropdown1">
+                    <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                    <div class="dropdown-content1">
+                      <a href="#">View expense details</a>
+                      <a href="#">Edit expense</a>
+                      <a href="#">Delete expense</a>
+                    </div>
+                  </div>
+                    
+                    `
                 }
             },
             {data: null,
                 "render": function(){
-                    return '<i class="fa fa-clipboard" style="color:#006633"></i>'
+                    return '<i class="fa fa-sticky-note" style="color:#006633"></i>'
                 }
             }],
         
         })
     });
 
-    // <th scope="col">Act Code</th>
-    // <th scope="col">Sec Code</th>
-    // <th scope="col">Name Code</th>
-    // <th scope="col">Description</th>
-    // <th scope="col">Pay Period</th>
-    // <th scope="col">Seq. #</th>
-    // <th scope="col">Job Code</th>
-    // <th scope="col">Exp Code</th>
-    // <th scope="col">Total</th>
-    // <th scope="col">Date Obl</th>
-    // <th scope="col">Elipsis</th>
-    // <th scope="col">Select</th>  
 
 
-
+   // Configure Export Buttons
+//    new $.fn.dataTable.Buttons( dt, {
+//        buttons: [
+          
+//        ]
+//    } );
     // [
     //     {
     //       "actCode": "string",

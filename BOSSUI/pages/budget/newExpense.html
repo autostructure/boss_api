@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../css/uswds.min.css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/pagesCSS/all.css">
-    <link rel="stylesheet" href="../../css/pagesCSS/budgetDash.css">
+    <link rel="stylesheet" href="../../css/pagesCSS/newExpense.css">
 </head>
 
 <body class="layout-demo">
@@ -19,27 +19,171 @@
         <div class="usa-overlay"></div>
         <main id="main-content">
                 <div class="wrapper">
-                
-                        <nav id="sidebar">
-                         </nav><!-- end of sidenav -->
                         
-                        
+                <nav id="sidebar"></nav>    
+                    
 
-                        <!-- ALL NEW CODE FOR PAGES GOES HERE -->
-                            <div class="usa-grid-full">
-                                <h1>New Expense</h1>
-
+                <section class="usa-section1">
+                    <header class="main-header" role="banner">
+                        <img src="../../img/mountain.jpg" alt="Banner Image"/>
+                    </header>
+                    <div class="usa-grid">
+                            <div class="usa-width-one-whole">
+                                <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
+                                    <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
+                                    <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
+                                    <a class="breadcrumbLinkMain"href="../budget/newExpense.html">New Expense</a>
+                                </p>
                             </div>
-                        <!-- END OF ALL NEW CODE FOR PAGES -->
+                    </div><!-- end of breadcrumbs _-->
+
+                    <section class="usa-section">
+                        <div class="usa-grid usa-buffer-top">
+                            <div class="use-width-one-whole title-div">
+                                <h1 id="title">Expenses</h1>
+                            </div>
+                        </div>
                         
-                </div><!-- end of sidenav wrapper div -->
-                
+                        <div class="usa-grid usa-buffer-top">
+                            <div class="usa-width-one-whole">
+                                    <h2 class="title2">New Expenses</h2>
+                                    <p class="sequence">Sequence Number: #XXXX</p>
+                                <div class="border">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist"> <!-- start of tabs list -->
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="time-tab" data-toggle="tab" href="#time" role="tab" aria-controls="timesheets" >Time Sheets</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="travel-tab" data-toggle="tab" href="#travel" role="tab" aria-controls="travelvouchers" >Travel Vouchers</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visapurchases" >Visa Purchases</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="othermisc" >Other Misc</a>
+                                    </li>
+                                    </ul> <!-- end of tabs list -->
 
+                                    <div class="tab-content" id="myTabContent"><!-- start of tab content -->
 
+                                    <div class="tab-pane fade show active" id="time" role="tabpanel" aria-labelledby="timesheets">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="namecode">Namecode</label>
+                                                                <select class="form-control" id="namecode">
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                    <option>4</option>
+                                                                    <option>5</option>
+                                                                </select>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="desc">Description</label>
+                                                        <input type="text" disabled id="decs" class="form-control"  aria-label="description" value="Salary" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="boc">Budget Object Code (BOC)</label>
+                                                        <input type="text" disabled id="boc" class="form-control"  aria-label="budget object code" value="11" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="pc">Payment Code</label>
+                                                        <input type="text" disabled id="pc" class="form-control" aria-label="payment code" value="SAL" aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="fy">Fiscal Year</label>
+                                                                <select class="form-control" id="fy">
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                    <option>4</option>
+                                                                    <option>5</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label for="dateendered">Date Entered</label>
+                                                            <input type="text" id="dateendered" class="form-control" placeholder="Pick a Date" aria-label="Pick a Date" aria-describedby="basic-addon1">
+                                                        </div>
+                                                        <div class="col">
+                                                            <label for="dateendered">Date Modified</label>
+                                                            <input type="text" id="dateendered" class="form-control" placeholder="Pick a Date" aria-label="Pick a Date" aria-describedby="basic-addon1">
+                                                        </div>
+                                                        <div class="col">
+                                                            <label for="dateendered">Date Obligated</label>
+                                                            <input type="text" id="dateendered" class="form-control" placeholder="Pick a Date" aria-label="Pick a Date" aria-describedby="basic-addon1">
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Example select</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Example select</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Example select</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="unitcode">Unit Code</label>
+                                                        <input type="text" disabled id="unitcode" class="form-control"  aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
+                                                    </div>     
+                                                                                                                                                     
+                                                </div>
+                                            </form>
+                                    </div>
 
-
-
-
+                                    <div class="tab-pane fade" id="travel" role="tabpanel" aria-labelledby="travelvouchers">
+                                        Testing stuff for travel vouchers
+                                    </div>
+                                    <div class="tab-pane fade" id="visa" role="tabpanel" aria-labelledby="visapurchases">
+                                        Testing stuff for Visa Purchases
+                                    </div>
+                                    <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="othermisc">
+                                        Testing stuff for Other / Misc
+                                    </div>
+                                    </div><!-- end of all tab content -->
+                                </div><!-- end of border div -->
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                                
+                </div>
+                        <!-- end of sidenav wrapper div -->
         </main>
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
@@ -49,6 +193,7 @@
         <script src="../../js/uswds.min.js"></script>
         <script src="../../js/moment.js"></script>
         <script src="../../js/pagesJS/mainPages.js"></script>
+        <script src="../../js/pagesJS/newExpense.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
 </body>
 

@@ -234,3 +234,18 @@ ul ul a {
 }
 /* ---------------------------------------------------------------------END OF SIDENAV STYLES------------------------------------------------------------ */
 
+
+/* ---------------------------------------------------------------------START OF BREADCRUMB STYLES------------------------------------------------------------ */
+.breadcrumb{
+    background-color: white;
+}
+.breadcrumbLink{
+    color: rgb(33, 33, 33) !important;
+}
+.breadcrumbLinkMain{
+    color: #006633 !important;
+}
+.highlight{
+    color: black !important;
+    font-size: 1.1em;
+}
