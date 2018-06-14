@@ -99,12 +99,16 @@ public class Expense implements Serializable {
     private EmployeeProfile employeeProfile;
     
     @OneToMany(
-        cascade = CascadeType.ALL
+        mappedBy = "expense", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true
     )
     private List<ExpenseDetail> expenseDetails;
     
     @OneToMany(
-        cascade = CascadeType.ALL
+        mappedBy = "expense", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true
     )
     private List<TravelDetail> travelDetails;
 
