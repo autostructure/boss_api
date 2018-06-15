@@ -26,8 +26,8 @@ public class JobCode implements Serializable  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(name = "UnitCode")
-    private int unitCode;
+    @Column(name = "OverrideCode")
+    private int overrideCode;
     
     @Column(name = "JobCode", nullable = false)
     private String jobCode;
