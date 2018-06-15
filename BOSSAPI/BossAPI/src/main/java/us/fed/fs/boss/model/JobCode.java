@@ -35,10 +35,7 @@ public class JobCode implements Serializable  {
     @Column(name = "Description", nullable = false)
     private String description;
     
-    @Column(name = "Operating")
-    private Double operating;
-    
-    @Column(name = "Obligated")
-    private Double obligated;
+    @Column(name = "Amount")
+    private Double amount;
     
 }
