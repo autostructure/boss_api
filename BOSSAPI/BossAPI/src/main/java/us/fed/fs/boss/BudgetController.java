@@ -93,11 +93,15 @@ public class BudgetController {
         return ResponseEntity.ok().build();
 
     }
-
+    
     // Get All JobCodes
     @GetMapping("/jobCode")
-    public List<JobCode> getAllJobCodes() {
-        return jobCodeRepository.findAll();
+    public List<JobCode> getAllJobCodes(@RequestParam(value = "financialYear", required = false) Short financialYear) {
+        if (financialYear == null) {
+            return jobCodeRepository.findAll();
+        } else {
+            return jobCodeRepository.findByFinancialYear(financialYear);
+        }
     }
 
     @GetMapping("/jobCode/{id}")
@@ -159,4 +163,5 @@ public class BudgetController {
     public List<EmployeeProfile> getAllEmployeeProfiles() {
         return employeeProfileRepository.findAll();
     }
+    
 }

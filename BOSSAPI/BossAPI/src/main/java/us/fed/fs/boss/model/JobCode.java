@@ -1,6 +1,7 @@
 package us.fed.fs.boss.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,11 +24,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class JobCode implements Serializable  {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "OverrideCode")
-    private int overrideCode;
+    @Column(name = "OverrideCode", nullable = true)
+    private Integer overrideCode;
+    
+    @Column(name = "FinancialYear", nullable = false)
+    private Short financialYear;
     
     @Column(name = "JobCode", nullable = false)
     private String jobCode;
@@ -35,7 +40,7 @@ public class JobCode implements Serializable  {
     @Column(name = "Description", nullable = false)
     private String description;
     
-    @Column(name = "Amount")
-    private Double amount;
+    @Column(name = "Amount", precision=10, scale=2)
+    private BigDecimal amount;
     
 }

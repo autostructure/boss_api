@@ -30,7 +30,8 @@ import lombok.NoArgsConstructor;
 public class Expense implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, updatable = false)
