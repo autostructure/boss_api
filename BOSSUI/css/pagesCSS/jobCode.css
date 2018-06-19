@@ -34,10 +34,10 @@ input[type=search] {
 td, th{
     text-align: center;
 }
-#expense_info, #expense_paginate, #expense_filter, #expense_length{
+#jobCodes_info, #jobCodes_paginate, #jobCodes_filter, #jobCodes_length{
     padding: 20px 20px;
 }
-#expense_filter{
+#jobCodes_filter{
     position: absolute;
     top: -85px;
     right: 10px;
@@ -54,10 +54,10 @@ td, th{
     padding-top: 0px !important;
     width: 100%;
 }
-#expense{
+#jobCodes{
     margin-top: 40px;
 }
-#expense_wrapper > div.dt-buttons{
+#jobCodes_wrapper > div.dt-buttons{
     position: absolute;
     top: -95px;
     right: 10px;
@@ -81,7 +81,7 @@ td, th{
 .fa-repeat{
     color: rgb(254, 146, 5);
 }
-#expense_filter > label{
+#jobCodes_filter > label{
     font-size: 1.5em;
 }
 
@@ -134,5 +134,34 @@ td, th{
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown1:hover .dropbtn1 {background-color: #3e8e41;}
 
-
+.my-input-class{
+    text-align: center;
+    border-radius: 3px;
+}
+.my-confirm-class{
+    color: white;
+    background-color: #006633;
+    border-radius: 3px;
+    font-size: .7em;
+    padding: 3px;
+}
+.my-confirm-class:hover{
+    color: white;
+    background-color: #1c8551;
+}
+.my-cancel-class{
+    color: white;
+    background-color: red;
+    border-radius: 3px;
+    font-size: .7em;
+    padding: 3px;
+}
+.my-cancel-class:hover{
+    color: white;
+    background-color: rgb(254, 60, 60);
+}
+.inputCell{
+    border: .5px solid rgba(33, 33, 33, .2);
+    border-radius: 3px;
+}
 

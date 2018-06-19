@@ -15,3 +15,7 @@ $(document).ready(function () {
         });
     
     });
+
+if ($(window).width() < 514) {
+    $('#sidebar, .main-header, .breadcrumbdiv').addClass('hidden');
+};

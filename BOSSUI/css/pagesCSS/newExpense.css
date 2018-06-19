@@ -35,6 +35,27 @@
     font-size: 2.3rem;
     display: inline-block;
 }
+.title3{
+    padding: 0px;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.0rem;
+    display: inline-block;
+}
+.title4{
+    padding: 0px 20px 20px 20px;
+    margin: 0px auto !important;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.0rem;
+    display: inline-block;
+}
+#travelDetails{
+    border: .5px solid rgb(202, 202, 202);
+    border-radius: 15px;
+    box-shadow: 5px 10px 10px rgba(111, 111, 111, 0.4);
+    padding: 20px;
+}
 
 .usa-section1{
     padding-top: 0px !important;
@@ -74,4 +95,70 @@
 
 {
     display: none !important;
+}
+.bottomBL{
+    border-top: 1px solid rgba(111, 111, 111, 0.4);
+    border-bottom: 1px solid rgba(111, 111, 111, 0.4);
+    border-right: 1px solid rgba(111, 111, 111, 0.4);
+}
+.bottomBR{
+    border-top: 1px solid rgba(111, 111, 111, 0.4);
+    border-bottom: 1px solid rgba(111, 111, 111, 0.4);
+    border-left: 1px solid rgba(111, 111, 111, 0.4);
+}
+#detailsTable{
+    padding: 20px;
+}
+select {
+    background-image: url('../../img/arrow-down.png') !important;
+    background-position: right 1.3rem center;
+    background-repeat: no-repeat;
+    background-size: 0.8rem !important;
+}
+input, select{
+    font-size: 1.2em;
+}
+.remarks{
+    padding: 0px 20px;
+}
+.submitbtn{
+    width: 100%;
+    margin: 20px auto;
+    font-size: 2.3em;
+}
+.submitrow{
+    margin-top: 20px;
+    background-color: rgb(225, 225, 225);
+}
+.form-control{
+    font-size: 1.2em !important;
+}
+th, td{
+    border: none !important;
+    font-size: 1.1em;
+    text-align: center;
+    vertical-align: middle !important;
+}
+th{
+    color: #006633;
+}
+thead{
+    border-bottom: 2px solid #006633;
+}
+.btn-success{
+    background-color: #006633;
+    border-color: #006633;
+}
+#leftdetailcol{
+    border-right: 1px solid rgba(111, 111, 111, 0.4);
+}
+.remarks{
+    margin-bottom: 24px;
+    font-size: 1.4em;
+}
+.addbtn{
+    margin-right: 5px;
+    box-sizing: inherit;
+    vertical-align: text-bottom;
+    font-size: 1.3em;
 }

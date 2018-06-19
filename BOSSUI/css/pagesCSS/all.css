@@ -232,6 +232,9 @@ ul ul a {
     background: #ffffff;
     list-style-type: none !important;
 }
+.hidden{
+    display: none !important;
+}
 /* ---------------------------------------------------------------------END OF SIDENAV STYLES------------------------------------------------------------ */
 
 
