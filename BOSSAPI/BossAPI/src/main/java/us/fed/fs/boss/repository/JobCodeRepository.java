@@ -18,6 +18,9 @@ public interface JobCodeRepository extends JpaRepository<JobCode, Long> {
     @Override
     @Cacheable("jobCodes")
     List<JobCode> findAll();
+    
+    @Cacheable("jobCodes")
+    List<JobCode> findByFinancialYear(Short year);
 
     @Override
     @CacheEvict("jobCodes")
