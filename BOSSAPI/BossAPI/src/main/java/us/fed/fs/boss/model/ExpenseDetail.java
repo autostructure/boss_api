@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,8 +32,8 @@ public class ExpenseDetail implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "Amount", nullable = false)
-    private Double amount;
+    @Column(name = "Amount", nullable = false, precision=10, scale=2)
+    private BigDecimal amount;
     
     @Column(name = "Hours")
     private int hours;

@@ -1,6 +1,7 @@
 package us.fed.fs.boss.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class JobCode implements Serializable  {
     @Column(name = "Description", nullable = false)
     private String description;
     
-    @Column(name = "Amount")
-    private Double amount;
+    @Column(name = "Amount", precision=10, scale=2)
+    private BigDecimal amount;
     
 }

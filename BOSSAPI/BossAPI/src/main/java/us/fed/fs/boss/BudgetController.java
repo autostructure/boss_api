@@ -163,4 +163,5 @@ public class BudgetController {
     public List<EmployeeProfile> getAllEmployeeProfiles() {
         return employeeProfileRepository.findAll();
     }
+    
 }
