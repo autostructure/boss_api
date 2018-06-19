@@ -26,8 +26,8 @@ public class JobCode implements Serializable  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(name = "UnitCode")
-    private int unitCode;
+    @Column(name = "OverrideCode")
+    private int overrideCode;
     
     @Column(name = "JobCode", nullable = false)
     private String jobCode;
@@ -35,10 +35,7 @@ public class JobCode implements Serializable  {
     @Column(name = "Description", nullable = false)
     private String description;
     
-    @Column(name = "Operating")
-    private Double operating;
-    
-    @Column(name = "Obligated")
-    private Double obligated;
+    @Column(name = "Amount")
+    private Double amount;
     
 }
