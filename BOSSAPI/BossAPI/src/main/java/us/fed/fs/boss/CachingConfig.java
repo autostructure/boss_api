@@ -12,6 +12,7 @@ public class CachingConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager();
+         return new ConcurrentMapCacheManager("expenses", "jobCodes", "activityCodes",
+         "budgetObjectCodes", "expenseCodes", "paymentCodes", "employeeProfiles");
     }
 }
