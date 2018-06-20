@@ -53,4 +53,8 @@ public class TravelDetail implements Serializable {
     @JoinColumn(name="ExpenseId", nullable=false)
     private Expense expense;
     
+    @ManyToOne
+    @JoinColumn(name = "JobCodeFK")
+    private JobCode jobCode;
+    
 }
