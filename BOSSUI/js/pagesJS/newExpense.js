@@ -1,16 +1,48 @@
 $(document).ready(function() {
     // $(".datepicker").datepicker('setDate', new Date());
-    $("#dateentered").datepicker('setDate', new Date());
-    $("#datemod").datepicker('setDate', new Date());
-    $("#dateob").datepicker('setDate', new Date());
+    $("#dateentered, #tvdateentered").datepicker('setDate', new Date());
+    $("#datemod, #tvdatemod").datepicker('setDate', new Date());
+    $("#dateob, #tvdateob").datepicker('setDate', new Date());
     $('#expenseSub').addClass('show');
     $('#expenseSub > li:nth-child(1) > a').addClass('highlight');
-
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:8090/jobCode?financialYear=2017',
+      success: function(json){
+        $.each(json, function(value, key) {
+          $('#jobcode, #jobcode1').append(json.map(function(sObj){
+            return '<option id="'+sObj.jobCode+'">'+sObj.jobCode +'</option>'
+          })) ;
+          });
+        }
+      }); //end of get jobcode ajax call
+      $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8090/activityCode',
+        success: function(json){
+          $.each(json, function(value, key) {
+            $('#actcode, #actcode1').append(json.map(function(sObj){
+              return '<option id="'+sObj.name+'">'+sObj.name +'</option>'
+            })) ;
+            });
+          }
+        }); //end of get jobcode ajax call
+        $.ajax({
+          type: 'GET',
+          url: 'http://localhost:8090/expenseCode',
+          success: function(json){
+            $.each(json, function(value, key) {
+              $('#expcode, #expcode1').append(json.map(function(sObj){
+                return '<option id="'+sObj.id+'">'+sObj.id + '   ' + sObj.type + '</option>'
+              })) ;
+              });
+            }
+          }); //end of get jobcode ajax call
 });
 
 
 
-$('#dropdownYear').each(function() {
+$('#dropdownYear, #tvdropdownYear').each(function() {
     
       var year = (new Date()).getFullYear();
       var current = year;

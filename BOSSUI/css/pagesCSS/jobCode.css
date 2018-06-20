@@ -19,7 +19,7 @@
 
 input[type=search] {
     padding: 0px 10px;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 .content-div{
     border: 1px solid rgba(33, 33, 33, .2);
@@ -83,6 +83,12 @@ td, th{
 }
 #jobCodes_filter > label{
     font-size: 1.5em;
+}
+.hide {
+    display: none;
+}
+#jobCodes_filter{
+    padding: 20px 20px 0px 20px;
 }
 
 
@@ -165,3 +171,39 @@ td, th{
     border-radius: 3px;
 }
 
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 3.0em;
+    color: white;
+}
+#myModal > div > div > div.modal-header > button{
+    display: none;
+}
+.modal-header{
+    background-color: #006633;
+    padding: 20px;
+}
+.modal-body{
+    padding: 0px 25px 25px 25px;
+}
+.modall{
+    font-size: 1.3em;
+}
+.modal-footer{
+    justify-content: center;
+}
+.btn-info{
+    color: #006633;
+    background-color: transparent;
+    border: none;
+}
+.modal-content{
+    padding: 0px !important;
+}
+#myModal > div > div > div.modal-footer > button.btn.btn-default {
+    float: left;
+    color: #006633;
+    background-color: white;
+    border-color: #006633;
+}

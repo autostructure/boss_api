@@ -34,10 +34,10 @@ input[type=search] {
 td, th{
     text-align: center;
 }
-#expense_info, #expense_paginate, #expense_filter, #expense_length{
+#budget_info, #budget_paginate, #budget_filter, #budget_length{
     padding: 20px 20px;
 }
-#expense_filter{
+#budget_filter{
     position: absolute;
     top: -85px;
     right: 10px;
@@ -54,10 +54,10 @@ td, th{
     padding-top: 0px !important;
     width: 100%;
 }
-#expense{
+#budget{
     margin-top: 40px;
 }
-#expense_wrapper > div.dt-buttons{
+#budget_wrapper > div.dt-buttons{
     position: absolute;
     top: -95px;
     right: 10px;
@@ -81,7 +81,7 @@ td, th{
 .fa-repeat{
     color: rgb(254, 146, 5);
 }
-#expense_filter > label{
+#budget_filter > label{
     font-size: 1.5em;
 }
 
@@ -92,7 +92,7 @@ td, th{
     padding: 5px !important;
     font-size: 16px;
     border: none;
-    z-index: 0 !important;
+    z-index: 0;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -107,7 +107,7 @@ td, th{
 .dropdown-content1 {
     display: none;
     position: absolute;
-    left: -95px;
+    left: -195px;
     background-color: #505050;
     min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
