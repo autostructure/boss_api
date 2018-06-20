@@ -46,10 +46,13 @@ public class ExpenseDetail implements Serializable {
     @JoinColumn(name = "JobCodeFK")
     private JobCode jobCode;
     
-    @Column(name = "DateVerified", nullable = false)
+    @Column(name = "DateVerified", nullable = true)
     @Temporal(TemporalType.DATE)
     @CreatedDate
     private Date dateVerified;
+    
+    @Column(name = "Verified", nullable = false)
+    private boolean verified;
     
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
