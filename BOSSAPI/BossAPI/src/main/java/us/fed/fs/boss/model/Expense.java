@@ -92,10 +92,6 @@ public class Expense implements Serializable {
     private Category category;
     
     @ManyToOne
-    @JoinColumn(name = "JobCodeFK")
-    private JobCode jobCode;
-    
-    @ManyToOne
     @JoinColumn(name = "EmployeeProfileFK")
     private EmployeeProfile employeeProfile;
     
