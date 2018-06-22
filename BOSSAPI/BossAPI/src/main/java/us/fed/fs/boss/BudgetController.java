@@ -111,8 +111,8 @@ public class BudgetController {
     }
 
     @PostMapping("/jobCode")
-    public void createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
-        jobCodeRepository.save(jobCodeDetails);
+    public JobCode createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
+        return jobCodeRepository.save(jobCodeDetails);
     }
 
     @PutMapping("/jobCode/{id}")

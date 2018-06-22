@@ -54,7 +54,9 @@ public class CacheScheduler {
 
     public void update() {
         
-        System.out.println("********************************** LOADING LOCAL CACHES ***************************************");
+        System.out.println("********************************** "
+                + "LOADING LOCAL CACHES"
+                + " ***************************************");
 
         for (Expense expense : expenseRepository.findAll()) {
             cacheManager.getCache("expenses").put(expense.getId(), expense);
