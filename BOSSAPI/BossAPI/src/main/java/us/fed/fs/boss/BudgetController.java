@@ -121,7 +121,7 @@ public class BudgetController {
 
         jobCodeRepository.findById(jobCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
-
+    
         JobCode updatedJobCode = jobCodeRepository.save(jobCodeDetails);
         return updatedJobCode;
     }

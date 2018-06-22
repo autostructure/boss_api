@@ -24,14 +24,19 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
+import us.fed.fs.boss.model.ActivityCode;
+import us.fed.fs.boss.model.BudgetObjectCode;
+import us.fed.fs.boss.model.EmployeeProfile;
+import us.fed.fs.boss.model.ExpenseCode;
 import us.fed.fs.boss.model.JobCode;
+import us.fed.fs.boss.model.PaymentCode;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class BossApiApplicationTests {
-    
+
     private static String baseUrl;
-    
+
     static {
         baseUrl = "http://localhost:8090";
     }
@@ -40,13 +45,11 @@ public class BossApiApplicationTests {
     public void jobCodes() {
 
         try {
-            
+
             ObjectMapper objectMapper = new ObjectMapper();
             CloseableHttpClient client = HttpClients.createDefault();
-            
-            
+
             // READ
-            
             HttpGet httpGet = new HttpGet(baseUrl + "/jobCode");
             httpGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getRes = client.execute(httpGet);
@@ -58,13 +61,12 @@ public class BossApiApplicationTests {
             System.out.println("****************************************************************************");
             Assert.assertEquals(getstatus.intValue(), 200);
             List<JobCode> jobCodes = objectMapper.readValue(responseStringGET, List.class);
-            
+
             Assert.assertTrue(jobCodes.size() > 0);
-            
+
             // CREATE
-            
             HttpPost httpPost = new HttpPost(baseUrl + "/jobCode");
-            
+
             JobCode jobCode = new JobCode();
             jobCode.setJobCode("TESST123");
             jobCode.setAmount(BigDecimal.ONE);
@@ -72,7 +74,7 @@ public class BossApiApplicationTests {
             Short yr = 2018;
             jobCode.setFinancialYear(yr);
             jobCode.setOverrideCode(0);
-            
+
             String postBody = objectMapper.writeValueAsString(jobCode);
             StringEntity entity = new StringEntity(postBody);
             httpPost.setEntity(entity);
@@ -86,12 +88,12 @@ public class BossApiApplicationTests {
             System.out.println(saved.getId());
             System.out.println("****************************************************************************");
             Assert.assertEquals(response.getStatusLine().getStatusCode(), 200);
-            
+
             // UPDATE
             HttpPut httpPut = new HttpPut(baseUrl + "/jobCode/" + saved.getId());
-            
+
             saved.setDescription("PutTested");
-            
+
             String putBody = objectMapper.writeValueAsString(saved);
             StringEntity putEntity = new StringEntity(putBody);
             httpPut.setEntity(putEntity);
@@ -105,9 +107,8 @@ public class BossApiApplicationTests {
             System.out.println("****************************************************************************");
             System.out.println();
             Assert.assertEquals(putStatus.intValue(), 200);
-            
+
             // READ SINGLE AND ASSERT UPDATE WORKED
-            
             HttpGet singleHttpGet = new HttpGet(baseUrl + "/jobCode/" + saved.getId());
             singleHttpGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse singleRes = client.execute(singleHttpGet);
@@ -115,27 +116,26 @@ public class BossApiApplicationTests {
             String singleResponseStringGET = EntityUtils.toString(singleGetResEnt, "UTF-8");
             Integer singlegetstatus = singleRes.getStatusLine().getStatusCode();
             System.out.println();
-            System.out.println("*****************************GET /jobCode/"+saved.getId()+" *********************************");
+            System.out.println("*****************************GET /jobCode/" + saved.getId() + " *********************************");
             System.out.println(singleResponseStringGET);
             System.out.println("****************************************************************************");
             System.out.println();
             Assert.assertEquals(singlegetstatus.intValue(), 200);
             JobCode updated = objectMapper.readValue(singleResponseStringGET, JobCode.class);
-            
+
             Assert.assertTrue(updated.getDescription().equals("PutTested"));
-            
+
             // DELETE
-            
             HttpDelete httpDelete = new HttpDelete(baseUrl + "/jobCode/" + saved.getId());
             CloseableHttpResponse delRes = client.execute(httpDelete);
             System.out.println();
-            System.out.println("*****************************DELETE /jobCode/"+saved.getId()+" *****************************");
+            System.out.println("*****************************DELETE /jobCode/" + saved.getId() + " *****************************");
             Integer statusdel = delRes.getStatusLine().getStatusCode();
             System.out.println("delete returns https status: " + statusdel);
             System.out.println("****************************************************************************");
             System.out.println();
             Assert.assertEquals(response.getStatusLine().getStatusCode(), 200);
-            
+
             client.close();
         } catch (IOException ex) {
             Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,32 +146,154 @@ public class BossApiApplicationTests {
 
     @Test
     public void activityCodes() {
+        try {
 
+            ObjectMapper objectMapper = new ObjectMapper();
+            CloseableHttpClient client = HttpClients.createDefault();
+
+            // READ
+            HttpGet httpGet = new HttpGet(baseUrl + "/activityCode");
+            httpGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getRes = client.execute(httpGet);
+            HttpEntity getResEnt = getRes.getEntity();
+            String responseStringGET = EntityUtils.toString(getResEnt, "UTF-8");
+            Integer getstatus = getRes.getStatusLine().getStatusCode();
+            System.out.println("*****************************GET /activityCode *********************************");
+            System.out.println(getstatus);
+            System.out.println("****************************************************************************");
+            Assert.assertEquals(getstatus.intValue(), 200);
+            List<ActivityCode> activityCodes = objectMapper.readValue(responseStringGET, List.class);
+
+            Assert.assertTrue(activityCodes.size() > 0);
+
+            client.close();
+        } catch (IOException ex) {
+            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.assertEquals(1, 0);
+        }
     }
 
     @Test
     public void budgetObjectCodes() {
 
+        try {
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            CloseableHttpClient client = HttpClients.createDefault();
+
+            // READ
+            HttpGet httpGet = new HttpGet(baseUrl + "/budgetObjectCode");
+            httpGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getRes = client.execute(httpGet);
+            HttpEntity getResEnt = getRes.getEntity();
+            String responseStringGET = EntityUtils.toString(getResEnt, "UTF-8");
+            Integer getstatus = getRes.getStatusLine().getStatusCode();
+            System.out.println("*****************************GET /budgetObjectCode *********************************");
+            System.out.println(getstatus);
+            System.out.println("****************************************************************************");
+            Assert.assertEquals(getstatus.intValue(), 200);
+            List<BudgetObjectCode> budgetObjectCodes = objectMapper.readValue(responseStringGET, List.class);
+
+            Assert.assertTrue(budgetObjectCodes.size() > 0);
+            client.close();
+        } catch (IOException ex) {
+            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.assertEquals(1, 0);
+        }
     }
 
     @Test
     public void paymentCodes() {
 
+        try {
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            CloseableHttpClient client = HttpClients.createDefault();
+
+            // READ
+            HttpGet httpGet = new HttpGet(baseUrl + "/paymentCode");
+            httpGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getRes = client.execute(httpGet);
+            HttpEntity getResEnt = getRes.getEntity();
+            String responseStringGET = EntityUtils.toString(getResEnt, "UTF-8");
+            Integer getstatus = getRes.getStatusLine().getStatusCode();
+            System.out.println("*****************************GET /paymentCode *********************************");
+            System.out.println(getstatus);
+            System.out.println("****************************************************************************");
+            Assert.assertEquals(getstatus.intValue(), 200);
+            List<PaymentCode> paymentCodes = objectMapper.readValue(responseStringGET, List.class);
+
+            Assert.assertTrue(paymentCodes.size() > 0);
+            client.close();
+        } catch (IOException ex) {
+            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.assertEquals(1, 0);
+        }
     }
 
     @Test
     public void expenseCodes() {
 
+        try {
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            CloseableHttpClient client = HttpClients.createDefault();
+
+            // READ
+            HttpGet httpGet = new HttpGet(baseUrl + "/expenseCode");
+            httpGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getRes = client.execute(httpGet);
+            HttpEntity getResEnt = getRes.getEntity();
+            String responseStringGET = EntityUtils.toString(getResEnt, "UTF-8");
+            Integer getstatus = getRes.getStatusLine().getStatusCode();
+            System.out.println("*****************************GET /expenseCode *********************************");
+            System.out.println(getstatus);
+            System.out.println("****************************************************************************");
+            Assert.assertEquals(getstatus.intValue(), 200);
+            List<ExpenseCode> expenseCodes = objectMapper.readValue(responseStringGET, List.class);
+
+            Assert.assertTrue(expenseCodes.size() > 0);
+            client.close();
+        } catch (IOException ex) {
+            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.assertEquals(1, 0);
+        }
     }
 
     @Test
     public void employeeProfiles() {
 
+        try {
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            CloseableHttpClient client = HttpClients.createDefault();
+
+            // READ
+            HttpGet httpGet = new HttpGet(baseUrl + "/employeeProfile");
+            httpGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getRes = client.execute(httpGet);
+            HttpEntity getResEnt = getRes.getEntity();
+            String responseStringGET = EntityUtils.toString(getResEnt, "UTF-8");
+            Integer getstatus = getRes.getStatusLine().getStatusCode();
+            System.out.println("*****************************GET /employeeProfile *********************************");
+            System.out.println(getstatus);
+            System.out.println("****************************************************************************");
+            Assert.assertEquals(getstatus.intValue(), 200);
+            List<EmployeeProfile> employeeProfiles = objectMapper.readValue(responseStringGET, List.class);
+
+            Assert.assertTrue(employeeProfiles.size() > 0);
+            client.close();
+        } catch (IOException ex) {
+            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.assertEquals(1, 0);
+        }
     }
 
     @Test
     public void expenses() {
-
+        System.out.println("*****************************TEST /expense *********************************");
+        System.out.println("not yet implemented");
+        System.out.println("****************************************************************************");
     }
 
 }
