@@ -138,8 +138,8 @@ public class BossApiApplicationTests {
                 Assert.assertEquals(200, response.getStatusLine().getStatusCode());
             }
         } catch (IOException ex) {
-            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.assertEquals(1, 0);
+            System.out.println(ex.getLocalizedMessage());
+            Assert.assertTrue(false);
         }
 
     }
@@ -167,8 +167,8 @@ public class BossApiApplicationTests {
                 Assert.assertTrue(activityCodes.size() > 0);
             }
         } catch (IOException ex) {
-            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.assertEquals(1, 0);
+            System.out.println(ex.getLocalizedMessage());
+            Assert.assertTrue(false);
         }
     }
 
@@ -196,8 +196,8 @@ public class BossApiApplicationTests {
                 Assert.assertTrue(budgetObjectCodes.size() > 0);
             }
         } catch (IOException ex) {
-            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.assertEquals(1, 0);
+            System.out.println(ex.getLocalizedMessage());
+            Assert.assertTrue(false);
         }
     }
 
@@ -225,8 +225,8 @@ public class BossApiApplicationTests {
                 Assert.assertTrue(paymentCodes.size() > 0);
             }
         } catch (IOException ex) {
-            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.assertEquals(1, 0);
+            System.out.println(ex.getLocalizedMessage());
+            Assert.assertTrue(false);
         }
     }
 
@@ -254,8 +254,8 @@ public class BossApiApplicationTests {
                 Assert.assertTrue(expenseCodes.size() > 0);
             }
         } catch (IOException ex) {
-            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.assertEquals(1, 0);
+            System.out.println(ex.getLocalizedMessage());
+            Assert.assertTrue(false);
         }
     }
 
@@ -283,14 +283,14 @@ public class BossApiApplicationTests {
                 Assert.assertTrue(employeeProfiles.size() > 0);
             }
         } catch (IOException ex) {
-            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.assertEquals(1, 0);
+            System.out.println(ex.getLocalizedMessage());
+            Assert.assertTrue(false);
         }
     }
 
     @Test
     public void expenses() {
-        
+
         try {
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -312,8 +312,8 @@ public class BossApiApplicationTests {
                 // Assert.assertTrue(expenses.size() > 0);
             }
         } catch (IOException ex) {
-            Logger.getLogger(BossApiApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.assertEquals(1, 0);
+            System.out.println(ex.getLocalizedMessage());
+            Assert.assertTrue(false);
         }
     }
 
