@@ -1,6 +1,8 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -48,9 +50,9 @@ public class TravelDetail implements Serializable {
     @Column(name = "Remarks")
     private String remarks;
     
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ExpenseId", nullable=false)
+    @JsonBackReference(value="travelDetails")
     private Expense expense;
     
     @ManyToOne

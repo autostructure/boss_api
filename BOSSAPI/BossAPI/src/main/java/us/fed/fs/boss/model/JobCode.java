@@ -1,5 +1,7 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -21,6 +23,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "JobCodes")
 @EntityListeners(AuditingEntityListener.class)
 @Getter @Setter @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JobCode implements Serializable  {
     
     @Id
