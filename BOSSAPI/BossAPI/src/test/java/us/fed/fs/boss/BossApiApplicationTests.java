@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,7 +58,6 @@ public class BossApiApplicationTests {
             ObjectMapper objectMapper = new ObjectMapper();
             // READ
             try (CloseableHttpClient client = HttpClients.createDefault()) {
-                
 
                 // CREATE
                 HttpPost httpPost = new HttpPost(baseUrl + "/jobCode");
@@ -153,9 +154,8 @@ public class BossApiApplicationTests {
                 x budget object code (11, 'Salaries')
                 x employee profile any integer (0,50]
              */
-            
             ObjectMapper objectMapper = new ObjectMapper();
-            
+
             // READ
             try (CloseableHttpClient client = HttpClients.createDefault()) {
                 // READ
@@ -170,8 +170,7 @@ public class BossApiApplicationTests {
 
                 // CREATE
                 Expense expense = new Expense();
-                
-                
+
                 expense.setDescription("expense_test_1");
                 Short yr = 2017;
                 expense.setFinancialYear(yr);
@@ -185,8 +184,9 @@ public class BossApiApplicationTests {
                 String responseRCStringGET = EntityUtils.toString(getRCResEnt, "UTF-8");
                 Integer getRCstatus = getACRes.getStatusLine().getStatusCode();
                 Assert.assertEquals(200, getRCstatus.intValue());
-                List<ActivityCode> activityCodes = objectMapper.readValue(responseRCStringGET, new TypeReference<List<ActivityCode>>(){});
-                
+                List<ActivityCode> activityCodes = objectMapper.readValue(responseRCStringGET, new TypeReference<List<ActivityCode>>() {
+                });
+
                 System.out.println("*****************************GET /activityCode *********************************");
                 System.out.println(getRCstatus);
                 System.out.println("****************************************************************************");
@@ -197,7 +197,7 @@ public class BossApiApplicationTests {
 
                 // set expense code
                 expense.setActivityCode(ac.get());
-                
+
                 // READ PAYMENT CODES
                 HttpGet httpPAYGet = new HttpGet(baseUrl + "/paymentCode");
                 httpGet.setHeader("Content-type", "application/json");
@@ -206,19 +206,20 @@ public class BossApiApplicationTests {
                 String responsePAYStringGET = EntityUtils.toString(getPAYResEnt, "UTF-8");
                 Integer getPAYstatus = getPAYRes.getStatusLine().getStatusCode();
                 Assert.assertEquals(200, getPAYstatus.intValue());
-                List<PaymentCode> paymentCodes = objectMapper.readValue(responsePAYStringGET, new TypeReference<List<PaymentCode>>(){});
+                List<PaymentCode> paymentCodes = objectMapper.readValue(responsePAYStringGET, new TypeReference<List<PaymentCode>>() {
+                });
                 PaymentCode pc = paymentCodes.stream()
                         .filter(x -> "SAL".equals(x.getCode()))
                         .findFirst().get();
-                
+
                 System.out.println("*****************************GET /paymentCode *********************************");
                 System.out.println(getPAYstatus);
                 System.out.println("****************************************************************************");
                 Assert.assertEquals(200, getstatus.intValue());
-                
+
                 // set payment code
                 expense.setPaymentCode(pc);
-                
+
                 // READ /expenseCode
                 HttpGet httpEXCGet = new HttpGet(baseUrl + "/expenseCode");
                 httpEXCGet.setHeader("Content-type", "application/json");
@@ -230,16 +231,17 @@ public class BossApiApplicationTests {
                 System.out.println(getEXCstatus);
                 System.out.println("****************************************************************************");
                 Assert.assertEquals(200, getEXCstatus.intValue());
-                List<ExpenseCode> expenseCodes = objectMapper.readValue(responseEXCStringGET, new TypeReference<List<ExpenseCode>>(){});
+                List<ExpenseCode> expenseCodes = objectMapper.readValue(responseEXCStringGET, new TypeReference<List<ExpenseCode>>() {
+                });
 
                 Assert.assertTrue(expenseCodes.size() > 0);
-                
+
                 // expense code for expense details;
                 List<ExpenseCode> expc = expenseCodes.stream()
                         .filter(x -> Long.valueOf(8).equals(x.getId()) || Long.valueOf(9).equals(x.getId()))
-                                .collect(Collectors.toList());
-                
-                 // READ /budgetObjectCode
+                        .collect(Collectors.toList());
+
+                // READ /budgetObjectCode
                 HttpGet httpBOCGet = new HttpGet(baseUrl + "/budgetObjectCode");
                 httpBOCGet.setHeader("Content-type", "application/json");
                 CloseableHttpResponse getBOCRes = client.execute(httpBOCGet);
@@ -250,17 +252,18 @@ public class BossApiApplicationTests {
                 System.out.println(getBOCstatus);
                 System.out.println("****************************************************************************");
                 Assert.assertEquals(200, getBOCstatus.intValue());
-                List<BudgetObjectCode> budgetObjectCodes = objectMapper.readValue(responseBOCStringGET, new TypeReference<List<BudgetObjectCode>>(){});
+                List<BudgetObjectCode> budgetObjectCodes = objectMapper.readValue(responseBOCStringGET, new TypeReference<List<BudgetObjectCode>>() {
+                });
 
                 Assert.assertTrue(budgetObjectCodes.size() > 0);
-                
+
                 BudgetObjectCode boj = budgetObjectCodes.stream()
                         .filter(x -> Long.valueOf(11).equals(x.getId()))
                         .findFirst().get();
-                
+
                 expense.setBudgetObjectCode(boj);
-                
-                 // READ /employeeProfile
+
+                // READ /employeeProfile
                 HttpGet httpEMPGet = new HttpGet(baseUrl + "/employeeProfile");
                 httpEMPGet.setHeader("Content-type", "application/json");
                 CloseableHttpResponse getEMPRes = client.execute(httpEMPGet);
@@ -271,26 +274,27 @@ public class BossApiApplicationTests {
                 System.out.println(getEMPstatus);
                 System.out.println("****************************************************************************");
                 Assert.assertEquals(200, getEMPstatus.intValue());
-                List<EmployeeProfile> employeeProfiles = objectMapper.readValue(responseEMPStringGET, new TypeReference<List<EmployeeProfile>>(){});
+                List<EmployeeProfile> employeeProfiles = objectMapper.readValue(responseEMPStringGET, new TypeReference<List<EmployeeProfile>>() {
+                });
 
                 Assert.assertTrue(employeeProfiles.size() > 0);
-                
+
                 expense.setEmployeeProfile(employeeProfiles.get(14));
-                
+
                 expense.setPayPeriod(2); // ? does pay period go here??
-                
+
                 ExpenseCode regularTime = null;
                 ExpenseCode overTime = null;
-                
-                for(ExpenseCode code : expc) {
-                    if(code.getId()==8) {
-                        regularTime=code;
+
+                for (ExpenseCode code : expc) {
+                    if (code.getId() == 8) {
+                        regularTime = code;
                     }
-                    if(code.getId()==9) {
-                        overTime=code;
+                    if (code.getId() == 9) {
+                        overTime = code;
                     }
                 }
-                
+
                 // READ /jobCode
                 HttpGet httpJCGet = new HttpGet(baseUrl + "/jobCode");
                 httpJCGet.setHeader("Content-type", "application/json");
@@ -302,15 +306,16 @@ public class BossApiApplicationTests {
                 System.out.println(getJCstatus);
                 System.out.println("****************************************************************************");
                 Assert.assertEquals(200, getJCstatus.intValue());
-                List<JobCode> jobCodes = objectMapper.readValue(responseJCStringGET, new TypeReference<List<JobCode>>(){});
-                
+                List<JobCode> jobCodes = objectMapper.readValue(responseJCStringGET, new TypeReference<List<JobCode>>() {
+                });
+
                 // create salary off jcode (2017, 'FRFI4717', 'LAB (FRRE4717)', 508341)
                 JobCode jc = jobCodes.stream()
                         .filter(x -> "FRFI4717".equals(x.getJobCode()))
                         .findFirst().get();
 
                 Assert.assertTrue(jobCodes.size() > 0);
-                
+
                 // put in expense details and sum up the total.
                 ExpenseDetail detail1 = new ExpenseDetail();
                 detail1.setExpenseCode(regularTime);
@@ -319,7 +324,7 @@ public class BossApiApplicationTests {
                 detail1.setAmount(new BigDecimal(1000.00f));
                 // detail1.setDateVerified(new Date());
                 detail1.setJobCode(jc);
-                
+
                 // put in expense details and sum up the total.
                 ExpenseDetail detail2 = new ExpenseDetail();
                 detail2.setExpenseCode(regularTime);
@@ -328,7 +333,7 @@ public class BossApiApplicationTests {
                 detail2.setAmount(new BigDecimal(1000.00f));
                 // detail2.setDateVerified(new Date());
                 detail2.setJobCode(jc);
-                
+
                 // put in expense details and sum up the total.
                 ExpenseDetail detail3 = new ExpenseDetail();
                 detail3.setExpenseCode(overTime);
@@ -342,16 +347,15 @@ public class BossApiApplicationTests {
                 dts.add(detail1);
                 dts.add(detail2);
                 dts.add(detail3);
-                
+
                 expense.setExpenseDetails(dts);
                 String postEXPBody = objectMapper.writeValueAsString(expense);
-                
-                
+
                 System.out.println(postEXPBody);
-                
+
                 System.out.println("*****************************POST /expense *********************************");
                 HttpPost httpEXPPost = new HttpPost(baseUrl + "/expense");
-                
+
                 StringEntity entityEXP = new StringEntity(postEXPBody);
                 httpEXPPost.setEntity(entityEXP);
                 httpEXPPost.setHeader("Accept", "application/json");
@@ -359,18 +363,27 @@ public class BossApiApplicationTests {
                 CloseableHttpResponse responseEXP = client.execute(httpEXPPost);
                 HttpEntity httpres = responseEXP.getEntity();
                 String responseEXPString = EntityUtils.toString(httpres, "UTF-8");
-                JobCode savedEXP = objectMapper.readValue(responseEXPString, JobCode.class);
+                Expense savedEXP = objectMapper.readValue(responseEXPString, Expense.class);
                 System.out.println(savedEXP.getId());
                 System.out.println("****************************************************************************");
                 Assert.assertEquals(200, responseEXP.getStatusLine().getStatusCode());
 
             }
-            
+
         } catch (IOException ex) {
-            System.out.println(ex.getLocalizedMessage());
+            System.out.println("********************************ERROR********************************************");
+            System.out.println(getStackTrace(ex));
+            System.out.println("********************************/ERROR********************************************");
             Assert.assertTrue(false);
         }
-        
+
+    }
+
+    String getStackTrace(final Throwable throwable) {
+        final StringWriter sw = new StringWriter();
+        final PrintWriter pw = new PrintWriter(sw, true);
+        throwable.printStackTrace(pw);
+        return sw.getBuffer().toString();
     }
 
 }

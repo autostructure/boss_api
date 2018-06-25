@@ -69,8 +69,8 @@ public class BudgetController {
     }
 
     @PostMapping("/expense")
-    public void createExpense(@Valid @RequestBody Expense expenseDetails) {
-        expenseRepository.save(expenseDetails);
+    public Expense createExpense(@Valid @RequestBody Expense expenseDetails) {
+        return expenseRepository.save(expenseDetails);
     }
 
     @PutMapping("/expense/{id}")
