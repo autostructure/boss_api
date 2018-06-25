@@ -12,7 +12,7 @@ import us.fed.fs.boss.model.Expense;
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     @Override
-    @CachePut("expenses")
+    @CacheEvict("expenses")
     <S extends Expense> S save(S entity);
 
     @Override

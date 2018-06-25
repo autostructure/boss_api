@@ -12,7 +12,7 @@ import us.fed.fs.boss.model.JobCode;
 public interface JobCodeRepository extends JpaRepository<JobCode, Long> {
 
     @Override
-    @CachePut("jobCodes")
+    @CacheEvict("jobCodes")
     <S extends JobCode> S save(S entity);
 
     @Override

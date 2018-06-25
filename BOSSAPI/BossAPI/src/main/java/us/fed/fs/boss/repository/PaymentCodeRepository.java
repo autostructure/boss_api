@@ -12,7 +12,7 @@ import us.fed.fs.boss.model.PaymentCode;
 public interface PaymentCodeRepository extends JpaRepository<PaymentCode, Long> {
 
     @Override
-    @CachePut("paymentCodes")
+    @CacheEvict("paymentCodes")
     <S extends PaymentCode> S save(S entity);
 
     @Override
