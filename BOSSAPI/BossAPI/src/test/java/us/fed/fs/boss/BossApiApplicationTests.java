@@ -8,11 +8,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.apache.http.HttpEntity;
@@ -79,7 +76,7 @@ public class BossApiApplicationTests {
                 printBox("POST /jobCode" + " connecting...");
                 System.out.println();
 
-                String postBody = objectMapper.writeValueAsString(jobCode);
+                String postBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jobCode);
                 StringEntity entity = new StringEntity(postBody);
                 httpPost.setEntity(entity);
                 httpPost.setHeader("Accept", "application/json");
@@ -102,7 +99,7 @@ public class BossApiApplicationTests {
 
                 saved.setDescription("PutTested");
 
-                String putBody = objectMapper.writeValueAsString(saved);
+                String putBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(saved);
                 StringEntity putEntity = new StringEntity(putBody);
                 httpPut.setEntity(putEntity);
                 httpPut.setHeader("Accept", "application/json");
@@ -400,7 +397,7 @@ public class BossApiApplicationTests {
 
                 expense.setExpenseDetails(dts);
                 expense.setTravelDetails(new ArrayList<TravelDetail>());
-                String postEXPBody = objectMapper.writeValueAsString(expense);
+                String postEXPBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expense);
 
                 HttpPost httpEXPPost = new HttpPost(baseUrl + "/expense");
                 System.out.println();
@@ -428,7 +425,7 @@ public class BossApiApplicationTests {
                 System.out.println();
                 HttpPut httpPut = new HttpPut(baseUrl + "/expense/" + savedEXP.getId());
                 savedEXP.setDescription("PutTested");
-                String putBody = objectMapper.writeValueAsString(savedEXP);
+                String putBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(savedEXP);
                 StringEntity putEntity = new StringEntity(putBody);
                 httpPut.setEntity(putEntity);
                 httpPut.setHeader("Accept", "application/json");

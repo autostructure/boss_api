@@ -5,8 +5,11 @@ Restful services for use with FIA-BOSS
 ### Prerequisites
 
 java 8 SDK (https://docs.oracle.com/javase/8/docs/technotes/guides/install/windows_jdk_install.html), 
+
 maven (https://www.mkyong.com/maven/how-to-install-maven-in-windows/),
+
 git (https://git-scm.com/download/win)
+
 SQL Server 2012 or 2017
 
 
