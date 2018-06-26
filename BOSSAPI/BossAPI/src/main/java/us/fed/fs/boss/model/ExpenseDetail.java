@@ -1,6 +1,7 @@
 package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -56,9 +57,9 @@ public class ExpenseDetail implements Serializable {
     @Column(name = "Verified", nullable = false)
     private boolean verified;
     
-    @ManyToOne(cascade=CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="ExpenseId", nullable=false)
     @JsonBackReference(value="expenseDetails")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="expense")
     private Expense expense;
 
 }

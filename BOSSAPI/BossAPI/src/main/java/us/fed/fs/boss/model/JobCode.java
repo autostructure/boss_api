@@ -23,7 +23,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "JobCodes")
 @EntityListeners(AuditingEntityListener.class)
 @Getter @Setter @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class JobCode implements Serializable  {
     
     @Id

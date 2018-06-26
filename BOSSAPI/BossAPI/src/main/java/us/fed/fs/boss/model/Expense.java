@@ -1,18 +1,16 @@
 package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,9 +20,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Fetch;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "Expenses")
@@ -84,7 +83,7 @@ public class Expense extends Auditable<String> implements Serializable {
     private EmployeeProfile employeeProfile;
     
     @OneToMany(
-        mappedBy = "expense", 
+        mappedBy = "expense",
         cascade = CascadeType.ALL, 
         orphanRemoval = true
     )
@@ -92,8 +91,8 @@ public class Expense extends Auditable<String> implements Serializable {
     private List<ExpenseDetail> expenseDetails;
     
     @OneToMany(
-        mappedBy = "expense", 
-        cascade = CascadeType.ALL,
+        mappedBy = "expense",
+        cascade = CascadeType.ALL, 
         orphanRemoval = true
     )
     @JsonManagedReference(value="travelDetails")
@@ -321,11 +320,6 @@ public class Expense extends Auditable<String> implements Serializable {
      */
     public void setExpenseDetails(List<ExpenseDetail> expenseDetails) {
         this.expenseDetails = expenseDetails;
-        for(ExpenseDetail detail : this.expenseDetails) {
-            if(detail.getExpense() != this) {
-                detail.setExpense(this);
-            }
-        }
     }
 
     /**

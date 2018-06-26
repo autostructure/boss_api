@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -51,7 +52,7 @@ public class TravelDetail implements Serializable {
     private String remarks;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="ExpenseId", nullable=false)
+    @JoinColumn(name="expense")
     @JsonBackReference(value="travelDetails")
     private Expense expense;
     
