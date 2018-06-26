@@ -34,3 +34,10 @@ this will compile and run on localhost:8090.
 Navigate to http://localhost:8090/swagger-ui.html
 to view a list of available endpoints.
 
+### Testing
+
+To manually run unit tests go to the API install directory and run
+```mvn test```
+or
+```mvn clean install```
+
