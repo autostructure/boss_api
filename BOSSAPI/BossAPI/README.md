@@ -10,7 +10,7 @@ maven (https://www.mkyong.com/maven/how-to-install-maven-in-windows/),
 
 git (https://git-scm.com/download/win)
 
-SQL Server 2012 or 2017
+Microsoft SQL Server 2012 or 2017
 
 
 ### Installing
@@ -40,7 +40,11 @@ to view a list of available endpoints.
 ### Testing
 
 To manually run unit tests go to the API install directory and run
+
 ```mvn test```
+
 or
+
 ```mvn clean install```
+
 
