@@ -6,12 +6,9 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Transactional;
 import us.fed.fs.boss.model.Expense;
 
 @Repository
-@Transactional(isolation=Isolation.SERIALIZABLE)
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     @Override
