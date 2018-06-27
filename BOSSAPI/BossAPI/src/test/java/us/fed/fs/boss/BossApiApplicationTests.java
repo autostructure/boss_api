@@ -38,7 +38,6 @@ import us.fed.fs.boss.model.ExpenseCode;
 import us.fed.fs.boss.model.ExpenseDetail;
 import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
-import us.fed.fs.boss.model.TravelDetail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
@@ -53,16 +52,24 @@ public class BossApiApplicationTests {
     @Test
     public void budgetReports() {
         
-        
-        
         /*
+        
         TODO:
         goes by fiscalYeat
         generate 
         csv, excel, pdf
         
         1) budget summary
+        Jobcode, Total, FiscalYear, Description, Operating, Obligated, Balance
+        goes by jobcode.
+        
         2) salaries by fiscal year
+        
+        Jobcode Name, Seq No, Total, 
+        Date Obligated, Pay period, Description, 
+        Regular, OT, State, 
+        Pymt code, Exp Code Amount, Date Verified
+        
         3) salary projection
         4) salary by single pay period
         5) single items
@@ -421,7 +428,6 @@ public class BossApiApplicationTests {
                 dts.add(detail3);
 
                 expense.setExpenseDetails(dts);
-                expense.setTravelDetails(new ArrayList<TravelDetail>());
                 String postEXPBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expense);
 
                 HttpPost httpEXPPost = new HttpPost(baseUrl + "/expense");

@@ -1,6 +1,5 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 
@@ -79,6 +78,20 @@ public class Expense extends Auditable<String> implements Serializable {
     @JoinColumn(name = "CategoryFK")
     private Category category;
     
+    @Column(name = "FromDate")
+    @Temporal(TemporalType.DATE)
+    private Date fromDate;
+    
+    @Column(name = "TravelVoucherNumber")
+    private Long travelVoucherNumber;
+    
+    @Column(name = "ToDate")
+    @Temporal(TemporalType.DATE)
+    private Date toDate;
+    
+    @Column(name = "TravelRemarks")
+    private String travelRemarks;
+    
     @ManyToOne
     @JoinColumn(name = "EmployeeProfileFK")
     private EmployeeProfile employeeProfile;
@@ -90,13 +103,5 @@ public class Expense extends Auditable<String> implements Serializable {
     )
     @JsonManagedReference(value="expenseDetails")
     private List<ExpenseDetail> expenseDetails;
-    
-    @OneToMany(
-        mappedBy = "expense",
-        cascade = CascadeType.ALL, 
-        orphanRemoval = true
-    )
-    @JsonManagedReference(value="travelDetails")
-    private List<TravelDetail> travelDetails;
 
 }

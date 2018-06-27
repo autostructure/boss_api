@@ -38,6 +38,9 @@ public class ExpenseDetail implements Serializable {
     @Column(name = "Hours")
     private int hours;
     
+    @Column(name = "Type")
+    private String type;
+    
     @ManyToOne
     @JoinColumn(name = "ExpenseCodeFK")
     private ExpenseCode expenseCode;
