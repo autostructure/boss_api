@@ -3,6 +3,7 @@ package us.fed.fs.boss;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.FileOutputStream;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,6 +28,16 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.AreaReference;
+import org.apache.poi.ss.util.CellReference;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFTable;
+import org.apache.poi.xssf.usermodel.XSSFTableStyleInfo;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -143,7 +154,7 @@ public class BossApiApplicationTests {
         try {
             String reportJSON = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(reportList);
             printBox("JSON");
-            printBox(reportJSON);
+            System.out.println(reportJSON);
         } catch (JsonProcessingException ex) {
             System.out.println("********************************ERROR********************************************");
             System.out.println(getStackTrace(ex));
@@ -167,18 +178,74 @@ public class BossApiApplicationTests {
 
         for (BudgetSummary summaryRow : reportList) {
             String csvrow = String.join(",", Arrays.asList(
-                summaryRow.getJobCode(),
-                summaryRow.getFiscalYear(),
-                summaryRow.getDescription(),
-                summaryRow.getOperating(),
-                summaryRow.getObligated(),
-                summaryRow.getBalance()
-        ));
+                    summaryRow.getJobCode(),
+                    summaryRow.getFiscalYear(),
+                    summaryRow.getDescription(),
+                    summaryRow.getOperating(),
+                    summaryRow.getObligated(),
+                    summaryRow.getBalance()
+            ));
             csvsb.append(csvrow).append(newline);
         }
-        
+
         printBox("CSV");
-        printBox(csvsb.toString());
+        System.out.println(csvsb.toString());
+        System.out.println();
+
+        printBox("Excel File Test");
+        try (Workbook wb = new XSSFWorkbook()) {
+            XSSFSheet sheet = (XSSFSheet) wb.createSheet();
+
+            // Set the values for the table
+            XSSFRow row;
+            XSSFCell cell;
+            List<String> headersXLSX = Arrays.asList(
+                    "Job Code",
+                    "Fiscal Year",
+                    "Description",
+                    "Operating",
+                    "Obligated",
+                    "Balance"
+            );
+            for (int i = 0; i < reportList.size(); i++) {
+                // Create row
+                row = sheet.createRow(i);
+                for (int j = 0; j < 6; j++) {
+                    cell = row.createCell(j);
+                    switch (j) {
+                        case 0:
+                            cell.setCellValue(reportList.get(i).getJobCode());
+                            break;
+                        case 1:
+                            cell.setCellValue(reportList.get(i).getFiscalYear());
+                            break;
+                        case 2:
+                            cell.setCellValue(reportList.get(i).getDescription());
+                            break;
+                        case 3:
+                            cell.setCellValue(reportList.get(i).getOperating());
+                            break;
+                        case 4:
+                            cell.setCellValue(reportList.get(i).getObligated());
+                            break;
+                        case 5:
+                            cell.setCellValue(reportList.get(i).getBalance());
+                            break;
+                    }
+                }
+            }
+
+            // Save
+            try (FileOutputStream fileOut = new FileOutputStream("ooxml-table.xlsx")) {
+                wb.write(fileOut);
+            }
+
+        } catch (IOException ex) {
+            System.out.println("********************************ERROR********************************************");
+            System.out.println(getStackTrace(ex));
+            System.out.println("********************************/ERROR********************************************");
+            Assert.assertTrue(false);
+        }
 
         System.out.println("************************************************************************************");
 
@@ -221,6 +288,7 @@ public class BossApiApplicationTests {
                 JobCode savedJC = objectMapper.readValue(responseStringJC, JobCode.class);
                 System.out.println();
                 printBox("POST /jobCode", savedJC.getId().toString());
+                printBox(responseStringJC);
                 System.out.println();
                 Assert.assertEquals(200, responseJC.getStatusLine().getStatusCode());
 
@@ -542,7 +610,8 @@ public class BossApiApplicationTests {
                 httpEXPPost.releaseConnection();
 
                 System.out.println();
-                printBox("POST /expense", savedEXP.getId().toString(), postEXPBody);
+                printBox("POST /expense", savedEXP.getId().toString());
+                System.out.println(postEXPBody);
                 System.out.println();
 
                 Assert.assertEquals(200, responseEXP.getStatusLine().getStatusCode());
@@ -561,7 +630,8 @@ public class BossApiApplicationTests {
                 CloseableHttpResponse putEXPResponse = client.execute(httphttpEXPresPut);
                 Integer putEXPStatus = putEXPResponse.getStatusLine().getStatusCode();
                 System.out.println();
-                printBox("PUT /expense", putEXPStatus.toString(), httpEXPGres);
+                printBox("PUT /expense", putEXPStatus.toString());
+                System.out.println(httpEXPGres);
                 System.out.println();
                 Assert.assertEquals(200, putEXPStatus.intValue());
 
