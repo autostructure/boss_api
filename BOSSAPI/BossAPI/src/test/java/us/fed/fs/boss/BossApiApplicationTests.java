@@ -50,6 +50,36 @@ public class BossApiApplicationTests {
         baseUrl = "http://localhost:8090";
     }
 
+    @Test
+    public void budgetReports() {
+        
+        
+        
+        /*
+        TODO:
+        goes by fiscalYeat
+        generate 
+        csv, excel, pdf
+        
+        1) budget summary
+        2) salaries by fiscal year
+        3) salary projection
+        4) salary by single pay period
+        5) single items
+        6) single jobcode
+        7) all (Operating Minus Obligated)
+        8) unverified (Operating Minus Obligated)
+        
+         */
+
+        System.out.println("****************************@Test***budgetReports()*********************************");
+        
+        
+        
+        
+        System.out.println("************************************************************************************");
+        
+    }
 
     @Test
     public void budget() {
@@ -150,7 +180,7 @@ public class BossApiApplicationTests {
                 Assert.assertEquals(200, statusdelJC.intValue());
 
 
-            /*
+                /*
                 Expenditure test #1
                 create salary off jcode (2017, 'FRFI4717', 'LAB (FRRE4717)', 508341)
                 
@@ -160,10 +190,8 @@ public class BossApiApplicationTests {
                 (in expense details) expense code (8, 'Base Salaries') or (9, 'Overtime')
                 x budget object code (11, 'Salaries')
                 x employee profile any integer (0,50]
-             */
-            
-            //Expense savedEXP = null;
-
+                 */
+                //Expense savedEXP = null;
                 // READ
                 System.out.println();
                 printBox("GET /expense connecting...");
@@ -201,7 +229,7 @@ public class BossApiApplicationTests {
                 Assert.assertEquals(200, getRCstatus.intValue());
                 List<ActivityCode> activityCodes = objectMapper.readValue(responseRCStringGET, new TypeReference<List<ActivityCode>>() {
                 });
-                
+
                 httpACGet.releaseConnection();
 
                 System.out.println();
@@ -232,7 +260,7 @@ public class BossApiApplicationTests {
                 PaymentCode pc = paymentCodes.stream()
                         .filter(x -> "SAL".equals(x.getCode()))
                         .findFirst().get();
-                
+
                 httpPAYGet.releaseConnection();
 
                 System.out.println(getPAYstatus);
@@ -350,7 +378,7 @@ public class BossApiApplicationTests {
                 Assert.assertEquals(200, getJCstatus.intValue());
                 List<JobCode> jobCodes = objectMapper.readValue(responseJCStringGET, new TypeReference<List<JobCode>>() {
                 });
-                
+
                 httpJCGet.releaseConnection();
 
                 // create salary off jcode (2017, 'FRFI4717', 'LAB (FRRE4717)', 508341)
@@ -408,7 +436,7 @@ public class BossApiApplicationTests {
                 HttpEntity httpEXPres = responseEXP.getEntity();
                 String responseEXPString = EntityUtils.toString(httpEXPres, "UTF-8");
                 Expense savedEXP = objectMapper.readValue(responseEXPString, Expense.class);
-                
+
                 httpEXPPost.releaseConnection();
 
                 System.out.println();
@@ -436,11 +464,9 @@ public class BossApiApplicationTests {
                 Assert.assertEquals(200, putEXPStatus.intValue());
 
                 httphttpEXPresPut.releaseConnection();
-            
 
-            // READ SINGLE AND ASSERT UPDATE WORKED
-            // client 1 is failing here ridiculously.
-
+                // READ SINGLE AND ASSERT UPDATE WORKED
+                // client 1 is failing here ridiculously.
                 HttpGet singleEXPHttpGet = new HttpGet(baseUrl + "/expense/" + savedEXP.getId());
                 System.out.println();
                 printBox("/expense/" + savedEXP.getId() + " connecting../");
@@ -457,9 +483,9 @@ public class BossApiApplicationTests {
                 Assert.assertEquals(200, singleEXPgetstatus.intValue());
                 Expense updatedEXP = objectMapper.readValue(singleEXPResponseStringGET, Expense.class);
                 Assert.assertTrue(updatedEXP.getDescription().equals("PutTested"));
-                
+
                 singleEXPHttpGet.releaseConnection();
-                
+
                 // DELETE
                 System.out.println();
                 printBox("DELETE /expense/" + updated.getId() + " connecting...");
@@ -473,13 +499,11 @@ public class BossApiApplicationTests {
                 printBox("DELETE /expense/" + updatedEXP.getId(), statusEXPdel.toString());
                 System.out.println();
                 Assert.assertEquals(200, delEXPRes.getStatusLine().getStatusCode());
-                
+
                 httpEXPDelete.releaseConnection();
-                
+
                 System.out.println("**************************************************************************************");
-                
-                
-                
+
             }
 
         } catch (IOException ex) {
