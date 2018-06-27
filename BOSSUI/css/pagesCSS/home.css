@@ -33,11 +33,11 @@
     margin-top: 75px;
     padding-bottom: 75px;
 }
-.card-text{
-    font-size: 1.3em;
-    text-decoration: underline;
+.card-text {
+    font-size: 1.2em;
+    text-decoration: none;
     font-weight: 600;
-    margin-left: 25%;
+    padding: 5px;
 }
 a{
     text-decoration: none;
@@ -54,18 +54,49 @@ a:visited{
     text-decoration: none;
 }
 .card-body{
-    position: relative;
-    min-height: 400px;
+    min-height: 230px;
 }
-.card-title{
-    position: relative;
-    top: -130px;
-    left: 15px;
+.card-block{
+    padding: 0px;
+}
+.card-title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
     color: white;
-    font-size: 3.5em;
+    font-size: 4.5em;
     text-align: left;
 }
 .card-footer{
     background-color: rgb(230, 230, 230);
     padding: 15px;
+}
+.card-image-top{
+    height: 200px;
+    width: 100%;
+}
+.card-header{
+    padding: 0px !important;
+    position: relative;
+}
+.card-tbody{
+    display: none;
+}
+.card-tbody.show{
+    display: block;
+    height: 260px;
+}
+.card{
+    margin-top: 25px;
+}
+
+@media screen and (min-width: 990px) and (max-width: 1400px){
+.card-title {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    color: white;
+    font-size: 2.5em;
+    text-align: left;
+}
 }

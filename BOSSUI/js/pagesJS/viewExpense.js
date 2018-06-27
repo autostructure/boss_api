@@ -1,25 +1,33 @@
 var api = "http://localhost:8090/expense";
-// var api2 = "http://fsxrnsx0128.wrk.fs.usda.gov/aar/services/api/getApprovalReview?requestid=2" 
 
 // ONCE WE LOAD SOME DATA, NEED TO TURN AJAX URL AND REMOVE VAR
 
-var dataSet = [
-    [ "S", "AD", "HowdenB", "UPS", "05", "2019", "FRF13818", "26", "12,000,000", "2011/04/25" ],
-    [ "FS", "HD", "LaneyM", "FEDEX", "05","2019", "FRF13818", "26", "12,000,000", "2011/07/25" ],
-    [ "SF", "TD", "LazerasS", "UPS", "05", "2019","FRF13818", "26", "1,877", "2011/07/25" ],
-    [ "DS", "GD", "RussellM", "AZ", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
-    [ "RS", "AD", "BlancD", "UPS", "05", "2019","FRF13818", "26", "100", "2011/07/25" ],
-    [ "R", "DD", "ThomH", "DISCOUNT STORAGE", "05", "2016","FRF13818", "26", "12,000", "2011/07/25" ],
-    [ "K", "D", "CharioniD", "UPS", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
+// var dataSet = [
+    // [ "FS", "HD", "LaneyM", "FEDEX", "05","2019", "FRF13818", "26", "12,000,000", "2011/07/25" ],
+    // [ "SF", "TD", "LazerasS", "UPS", "05", "2019","FRF13818", "26", "1,877", "2011/07/25" ],
+    // [ "DS", "GD", "RussellM", "AZ", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
+    // [ "RS", "AD", "BlancD", "UPS", "05", "2019","FRF13818", "26", "100", "2011/07/25" ],
+    // [ "R", "DD", "ThomH", "DISCOUNT STORAGE", "05", "2016","FRF13818", "26", "12,000", "2011/07/25" ],
+    // [ "K", "D", "CharioniD", "UPS", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
 
-];
+// ];
 
 $(document).ready(function() {
     $('#expenseSub').addClass('show');
     $('#expenseSub > li:nth-child(2) > a').addClass('highlight');
 
+    $('#expense thead th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" class="headSearch" placeholder= '+title+' />' );
+        if ($(this).is("#stop")){
+            return false;
+        }
+    } );
+
+
+
     var dt = $('#expense').DataTable({  
-        dom: 'Bfrtip',
+        dom: 'Brtip',
         bProcessing: true,
         buttons: [
             {
@@ -46,18 +54,18 @@ $(document).ready(function() {
             }
           
         ],
-        data: dataSet,
-        columns: [
-            { title: "Act Code" },
-            { title: "Sec Code" },
-            { title: "Name Code" },
-            { title: "Description" },
-            { title: "Pay Period" },
-            { title: "Seq #." },
-            { title: "Job Code" },
-            { title: "Exp Code" },
-            { title: "Total" },
-            { title: "Date Obl" },
+        ajax: api,
+        aoColumns: [
+            { mData: "actCode" },
+            { mData: "secCode" },
+            { mData: "employeeProfile.nameCode" },
+            { mData: "description" },
+            { mData: "payPeriod" },
+            { mData: "seq" },
+            { mData: "jobCode" },
+            { mData: "expCode" },
+            { mData: "total" },
+            { mData: "obligatedDate" },
             {data: null,
                 "render": function(){
                     return `
@@ -75,6 +83,19 @@ $(document).ready(function() {
                     `
                 }
             }],
-        })
+        });
+
+        dt.columns().every( function () {
+            var that = this;
+     
+            $( 'input', this.header() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+
     });
 

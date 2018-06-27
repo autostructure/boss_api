@@ -134,5 +134,10 @@ td, th{
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown1:hover .dropbtn1 {background-color: #3e8e41;}
 
+.headSearch{
+    width: 100%;
+    text-align: center;
+    font-size: .9em;
+}
 
 

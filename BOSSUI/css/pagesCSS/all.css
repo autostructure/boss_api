@@ -252,3 +252,35 @@ ul ul a {
     color: black !important;
     font-size: 1.1em;
 }
+
+/* start of media queries */
+@media screen and (max-width: 600px){
+    #mainHeading > div.usa-banner > div > header > div > button{
+        display: none !important;
+    }
+    #mainHeading > div.usa-banner > div > header > div > button > span{
+        display: none !important;
+    }
+    #smallPageTitle{
+        display: none !important;
+    }
+    .title{
+        font-size: 3.0em !important;
+        padding-top: 15px;
+    }
+    .usa-footer-primary-section .usa-footer-primary-content {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+    .footerLinks{
+        font-size: .5em !important;
+    }
+    #mainFooter > div.usa-footer-secondary_section > div > div:nth-child(2){
+        display: inline-block;
+        font-size: 0.8em;
+    }
+    .card{
+        margin-top: 30px;
+    }
+
+}

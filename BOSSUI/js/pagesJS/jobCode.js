@@ -81,14 +81,23 @@ var dataSet = [
       $(document).ready(function() {
         $('#budgetSub').addClass('show');
         $('#budgetSub > li:nth-child(2) > a').addClass('highlight');
+        $('#jobCodes thead th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" class="headSearch" placeholder= '+title+' />' );
+            if ($(this).is("#stop")){
+                return false;
+            }
+        } );
        
         var table = $('#jobCodes').DataTable( {
-           dom: "Bfrtip",
+
+           dom: "Brtip",
            ajax:{"url":tempAPI,"dataSrc":""},
            columnDefs: [ {
             "targets": [4, 5],
             "orderable": false
             }],
+
            columns:[
             { data: "financialYear"},
             { data:"jobCode" },
@@ -134,21 +143,21 @@ var dataSet = [
                 className:'table-btns refresh-btn'
             }
         ],
+        
        });
 
-       $('tbody tr').click(
-        function(){
-          var year = $(this).find("td:nth-child(0)").html();
-          var jcode = $(this).find("td:nth-child(1)").html();
-          var desc = $(this).find("td:nth-child(2)").html();
-          var amt = $(this).find("td:nth-child(3)").html();
-        $('#mfyear').val(year);
-          $('#mjcode').val(jcode);
-          $('#mdesc').val(desc);
-          $('#mamount').val(amt);
-        });
    
-
+        table.columns().every( function () {
+            var that = this;
+     
+            $( 'input', this.header() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
 
        //making table cells editable, will likely change to edit module in the future
        $('#jobCodes tbody').on( 'click', 'i.fa-minus-circle', function () {
@@ -159,24 +168,21 @@ var dataSet = [
             .draw();
         });
         
-        function  myCallbackFunction(updatedCell, updatedRow, oldValue) {
-                console.log("The new value for the cell is: " + updatedCell.data());
-                console.log("The values for each cell in that row are: " + updatedRow.data());
-            }
+        // function  myCallbackFunction(updatedCell, updatedRow, oldValue) {
+        //         console.log("The new value for the cell is: " + updatedCell.data());
+        //         console.log("The values for each cell in that row are: " + updatedRow.data());
+        //     }
         
-        table.MakeCellsEditable({
-            "onUpdate": myCallbackFunction,
-            "inputCss":'my-input-class',
-            "columns": [0,1,2],
-            "confirmationButton": { 
-                "confirmCss": 'my-confirm-class',
-                "cancelCss": 'my-cancel-class'
-            }
-        });
+        // table.MakeCellsEditable({
+        //     "onUpdate": myCallbackFunction,
+        //     "inputCss":'my-input-class',
+        //     "columns": [0,1,2],
+        //     "confirmationButton": { 
+        //         "confirmCss": 'my-confirm-class',
+        //         "cancelCss": 'my-cancel-class'
+        //     }
+        // });
 
-        $('#year-filter').on('change', function(){
-            table.search(this.value).draw();   
-         });
    });
 
     
