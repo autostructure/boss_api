@@ -1,8 +1,11 @@
 package us.fed.fs.boss;
 
+import be.quodlibet.boxable.BaseTable;
+import be.quodlibet.boxable.datatable.DataTable;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
 import java.io.FileOutputStream;
 
 import java.io.IOException;
@@ -11,6 +14,7 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +63,8 @@ import us.fed.fs.boss.reports.BudgetSummary;
 import us.fed.fs.boss.reports.BudgetSummaryRow;
 import us.fed.fs.boss.reports.ReportService;
 import java.util.concurrent.CompletableFuture;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
@@ -70,10 +75,10 @@ public class BossApiApplicationTests {
     static {
         baseUrl = "http://localhost:8090";
     }
-    
+
     @Autowired
     ReportService reportService;
-    
+
     @Test
     public void budgetReports() throws InterruptedException {
 
@@ -111,105 +116,166 @@ public class BossApiApplicationTests {
         System.out.println("****************************@Test***budgetReports()*********************************");
 
         printBox("Budget Summary 2017");
-        
+
         Short fy = Short.parseShort("2017");
         
+        String time = Long.toString(new Date().getTime());
+
         try {
-        
-        CompletableFuture<BudgetSummary> summaryFuture = reportService.getBudgetSummary(fy, "verified");
 
-        BudgetSummary report = summaryFuture.get();
-        List<BudgetSummaryRow> reportList = report.getRows();
+            CompletableFuture<BudgetSummary> summaryFuture = reportService.getBudgetSummary(fy, "verified");
 
-        // JSON Report
-        ObjectMapper objectMapper = new ObjectMapper();
-            String reportJSON = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(reportList);
+            BudgetSummary report = summaryFuture.get();
+            List<BudgetSummaryRow> reportList = report.getRows();
+
+            // JSON Report
+            ObjectMapper objectMapper = new ObjectMapper();
+            String reportJSON = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(report);
             printBox("JSON");
             System.out.println(reportJSON);
-     
 
-        StringBuilder csvsb = new StringBuilder();
-        String newline = "\r\n";
+            StringBuilder csvsb = new StringBuilder();
+            String newline = "\r\n";
 
-        // CSV Report
-        String headers = String.join(",", Arrays.asList(
-                "Job Code",
-                "Fiscal Year",
-                "Description",
-                "Operating",
-                "Obligated",
-                "Balance"
-        ));
-        csvsb.append(headers).append(newline);
-
-        for (BudgetSummaryRow summaryRow : reportList) {
-            String csvrow = String.join(",", Arrays.asList(
-                    summaryRow.getJobCode(),
-                    summaryRow.getFiscalYear(),
-                    summaryRow.getDescription(),
-                    summaryRow.getOperating(),
-                    summaryRow.getObligated(),
-                    summaryRow.getBalance()
-            ));
-            csvsb.append(csvrow).append(newline);
-        }
-
-        printBox("CSV");
-        System.out.println(csvsb.toString());
-        System.out.println();
-
-        printBox("Excel File Test");
-        try (Workbook wb = new XSSFWorkbook()) {
-            XSSFSheet sheet = (XSSFSheet) wb.createSheet();
-
-            // Set the values for the table
-            XSSFRow row;
-            XSSFCell cell;
-            List<String> headersXLSX = Arrays.asList(
+            // CSV Report
+            String headers = String.join(",", Arrays.asList(
                     "Job Code",
                     "Fiscal Year",
                     "Description",
                     "Operating",
                     "Obligated",
                     "Balance"
-            );
-            for (int i = 0; i < reportList.size(); i++) {
-                // Create row
-                row = sheet.createRow(i);
+            ));
+            csvsb.append(headers).append(newline);
+
+            for (BudgetSummaryRow summaryRow : reportList) {
+                String csvrow = String.join(",", Arrays.asList(
+                        summaryRow.getJobCode(),
+                        summaryRow.getFiscalYear(),
+                        summaryRow.getDescription(),
+                        summaryRow.getOperating(),
+                        summaryRow.getObligated(),
+                        summaryRow.getBalance()
+                ));
+                csvsb.append(csvrow).append(newline);
+            }
+
+            String csvrow = String.join(",", Arrays.asList(
+                    "Totals",
+                    "",
+                    "",
+                    report.getTotalOperating(),
+                    report.getTotalObligated(),
+                    report.getTotalBalance()
+            ));
+            csvsb.append(csvrow).append(newline);
+
+            printBox("CSV");
+            System.out.println(csvsb.toString());
+            System.out.println();
+
+            printBox("Excel File Test");
+            try (Workbook wb = new XSSFWorkbook()) {
+                XSSFSheet sheet = (XSSFSheet) wb.createSheet();
+
+                // Set the values for the table
+                XSSFRow row;
+                XSSFCell cell;
+                List<String> headersXLSX = Arrays.asList(
+                        "Job Code",
+                        "Fiscal Year",
+                        "Description",
+                        "Operating",
+                        "Obligated",
+                        "Balance"
+                );
+                for (int i = 0; i < reportList.size(); i++) {
+                    // Create row
+                    row = sheet.createRow(i);
+                    for (int j = 0; j < 6; j++) {
+                        cell = row.createCell(j);
+                        switch (j) {
+                            case 0:
+                                cell.setCellValue(reportList.get(i).getJobCode());
+                                break;
+                            case 1:
+                                cell.setCellValue(reportList.get(i).getFiscalYear());
+                                break;
+                            case 2:
+                                cell.setCellValue(reportList.get(i).getDescription());
+                                break;
+                            case 3:
+                                cell.setCellValue(reportList.get(i).getOperating());
+                                break;
+                            case 4:
+                                cell.setCellValue(reportList.get(i).getObligated());
+                                break;
+                            case 5:
+                                cell.setCellValue(reportList.get(i).getBalance());
+                                break;
+                        }
+                    }
+                }
+
+                XSSFCell totalsCell;
+                XSSFRow totalsRow = sheet.createRow(reportList.size());
+
                 for (int j = 0; j < 6; j++) {
-                    cell = row.createCell(j);
+                    totalsCell = totalsRow.createCell(j);
                     switch (j) {
                         case 0:
-                            cell.setCellValue(reportList.get(i).getJobCode());
+                            totalsCell.setCellValue("Totals");
                             break;
                         case 1:
-                            cell.setCellValue(reportList.get(i).getFiscalYear());
+                            totalsCell.setCellValue("");
                             break;
                         case 2:
-                            cell.setCellValue(reportList.get(i).getDescription());
+                            totalsCell.setCellValue("");
                             break;
                         case 3:
-                            cell.setCellValue(reportList.get(i).getOperating());
+                            totalsCell.setCellValue(report.getTotalOperating());
                             break;
                         case 4:
-                            cell.setCellValue(reportList.get(i).getObligated());
+                            totalsCell.setCellValue(report.getTotalObligated());
                             break;
                         case 5:
-                            cell.setCellValue(reportList.get(i).getBalance());
+                            totalsCell.setCellValue(report.getTotalBalance());
                             break;
                     }
                 }
+
+                // Save
+                try (FileOutputStream fileOut = new FileOutputStream("budgetsummary" + time + ".xlsx")) {
+                    wb.write(fileOut);
+                }
+
+                printBox("PDF");
+
+                //Initialize Document
+                PDDocument doc = new PDDocument();
+                PDPage page = new PDPage();
+                doc.addPage(page);
+                //Initialize table
+                float margin = 10;
+                float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
+                float yStartNewPage = page.getMediaBox().getHeight() - (2 * margin);
+                float yStart = yStartNewPage;
+                float bottomMargin = 0;
+
+                BaseTable dataTable = new BaseTable(yStart, yStartNewPage, bottomMargin, tableWidth, margin, doc, page, true,
+                        true);
+                DataTable t = new DataTable(dataTable, page);
+                t.addCsvToTable(csvsb.toString(), DataTable.HASHEADER, ';');
+                dataTable.draw();
+                File file = new File("budgetsummary" + time + ".pdf");
+                System.out.println("Sample file saved at : " + file.getAbsolutePath());
+                // Files.createParentDirs(file);
+                doc.save(file);
+                doc.close();
+
             }
 
-            // Save
-            try (FileOutputStream fileOut = new FileOutputStream("ooxml-table.xlsx")) {
-                wb.write(fileOut);
-            }
-
-        } 
-        
-        
-           } catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println("********************************ERROR********************************************");
             System.out.println(getStackTrace(ex));
             System.out.println("********************************/ERROR********************************************");
