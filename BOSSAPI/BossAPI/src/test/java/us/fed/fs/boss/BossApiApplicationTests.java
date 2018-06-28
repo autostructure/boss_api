@@ -2,7 +2,6 @@ package us.fed.fs.boss;
 
 import be.quodlibet.boxable.BaseTable;
 import be.quodlibet.boxable.datatable.DataTable;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -15,11 +14,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.apache.http.HttpEntity;
@@ -34,13 +30,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.AreaReference;
-import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFTable;
-import org.apache.poi.xssf.usermodel.XSSFTableStyleInfo;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.junit.Assert;
@@ -118,7 +110,7 @@ public class BossApiApplicationTests {
         printBox("Budget Summary 2017");
 
         Short fy = Short.parseShort("2017");
-        
+
         String time = Long.toString(new Date().getTime());
 
         try {
@@ -245,7 +237,7 @@ public class BossApiApplicationTests {
                 }
 
                 // Save
-                try (FileOutputStream fileOut = new FileOutputStream("budgetsummary" + time + ".xlsx")) {
+                try (FileOutputStream fileOut = new FileOutputStream("budgetsummary.xlsx")) {
                     wb.write(fileOut);
                 }
 
@@ -255,6 +247,7 @@ public class BossApiApplicationTests {
                 PDDocument doc = new PDDocument();
                 PDPage page = new PDPage();
                 doc.addPage(page);
+
                 //Initialize table
                 float margin = 10;
                 float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
@@ -265,9 +258,38 @@ public class BossApiApplicationTests {
                 BaseTable dataTable = new BaseTable(yStart, yStartNewPage, bottomMargin, tableWidth, margin, doc, page, true,
                         true);
                 DataTable t = new DataTable(dataTable, page);
-                t.addCsvToTable(csvsb.toString(), DataTable.HASHEADER, ';');
+
+                List<List> pdfdata = new ArrayList<>();
+                pdfdata.add(headersXLSX);
+
+                report.getRows().forEach(r -> {
+                    List<String> rl = new ArrayList<>();
+
+                    rl.add(r.getJobCode());
+                    rl.add(r.getFiscalYear());
+                    rl.add(r.getDescription());
+                    rl.add(r.getOperating());
+                    rl.add(r.getObligated());
+                    rl.add(r.getBalance());
+
+                    pdfdata.add(rl);
+                });
+
+                List<String> totals = new ArrayList<>();
+
+                totals.add("Totals");
+                totals.add("");
+                totals.add("");
+                totals.add(report.getTotalOperating());
+                totals.add(report.getTotalObligated());
+                totals.add(report.getTotalBalance());
+
+                pdfdata.add(totals);
+
+                t.addListToTable(pdfdata, true);
+
                 dataTable.draw();
-                File file = new File("budgetsummary" + time + ".pdf");
+                File file = new File("budgetsummary.pdf");
                 System.out.println("Sample file saved at : " + file.getAbsolutePath());
                 // Files.createParentDirs(file);
                 doc.save(file);
