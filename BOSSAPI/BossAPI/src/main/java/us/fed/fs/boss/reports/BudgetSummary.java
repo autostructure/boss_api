@@ -1,15 +1,16 @@
 package us.fed.fs.boss.reports;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor
 public class BudgetSummary {
-    private String jobCode;
-    private String fiscalYear;
-    private String description;
-    private String operating;
-    private String obligated;
-    private String balance;
+    
+    private List<BudgetSummaryRow> rows;
+    private String totalOperating;
+    private String totalObligated;
+    private String totalBalance;
+    
 }

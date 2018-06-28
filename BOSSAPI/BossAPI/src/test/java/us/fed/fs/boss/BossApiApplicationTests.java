@@ -56,8 +56,10 @@ import us.fed.fs.boss.model.ExpenseDetail;
 import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.reports.BudgetSummary;
-import us.fed.fs.boss.repository.ExpenseRepository;
-import us.fed.fs.boss.repository.JobCodeRepository;
+import us.fed.fs.boss.reports.BudgetSummaryRow;
+import us.fed.fs.boss.reports.ReportService;
+import java.util.concurrent.CompletableFuture;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
@@ -68,15 +70,12 @@ public class BossApiApplicationTests {
     static {
         baseUrl = "http://localhost:8090";
     }
-
+    
     @Autowired
-    ExpenseRepository expenseRepository;
-
-    @Autowired
-    JobCodeRepository jobCodeRepository;
-
+    ReportService reportService;
+    
     @Test
-    public void budgetReports() {
+    public void budgetReports() throws InterruptedException {
 
         /*
         
@@ -105,62 +104,29 @@ public class BossApiApplicationTests {
         7) all (Operating Minus Obligated)
         8) unverified (Operating Minus Obligated)
         
+        
+        /budgetSummary/{financialYear}/{verified/unverified/all}
+        
          */
         System.out.println("****************************@Test***budgetReports()*********************************");
 
         printBox("Budget Summary 2017");
+        
         Short fy = Short.parseShort("2017");
+        
+        try {
+        
+        CompletableFuture<BudgetSummary> summaryFuture = reportService.getBudgetSummary(fy, "verified");
 
-        List<Expense> expenses = expenseRepository.findByFinancialYear(fy);
-        List<JobCode> jobCodes = jobCodeRepository.findByFinancialYear(fy);
-
-        List<ExpenseDetail> details = new ArrayList<>();
-        List<BudgetSummary> reportList = new ArrayList<>();
-
-        for (Expense exp : expenses) {
-            details.addAll(exp.getExpenseDetails());
-        }
-
-        HashMap<JobCode, ExpenseDetail[]> codemap = new HashMap<>();
-
-        /*
-        Operating = the budgeted amount we can spend this fiscal year
-        Obligated = YTD spending against each job code. This totals up all spending in Oracle for this current fiscal year by job code.
-        Balance =  What’s left to spend. Hopefully it’s not a negative.
-
-         */
-        for (JobCode jc : jobCodes) {
-            ExpenseDetail[] jcdeets = details.stream()
-                    .filter(detail -> detail.getJobCode().getJobCode().equals(jc.getJobCode()))
-                    .toArray(ExpenseDetail[]::new);
-            BudgetSummary summaryRow = new BudgetSummary();
-            summaryRow.setDescription(jc.getDescription());
-            summaryRow.setFiscalYear(jc.getFinancialYear().toString());
-            summaryRow.setJobCode(jc.getJobCode());
-            BigDecimal operating = jc.getAmount();
-            BigDecimal obligated = BigDecimal.ZERO;
-            for (ExpenseDetail dt : jcdeets) {
-                obligated = obligated.add(dt.getAmount());
-            }
-            summaryRow.setOperating(operating.toString());
-            summaryRow.setObligated(obligated.toString());
-            BigDecimal balance = operating.subtract(obligated);
-            summaryRow.setBalance(balance.toString());
-            reportList.add(summaryRow);
-        }
+        BudgetSummary report = summaryFuture.get();
+        List<BudgetSummaryRow> reportList = report.getRows();
 
         // JSON Report
         ObjectMapper objectMapper = new ObjectMapper();
-        try {
             String reportJSON = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(reportList);
             printBox("JSON");
             System.out.println(reportJSON);
-        } catch (JsonProcessingException ex) {
-            System.out.println("********************************ERROR********************************************");
-            System.out.println(getStackTrace(ex));
-            System.out.println("********************************/ERROR********************************************");
-            Assert.assertTrue(false);
-        }
+     
 
         StringBuilder csvsb = new StringBuilder();
         String newline = "\r\n";
@@ -176,7 +142,7 @@ public class BossApiApplicationTests {
         ));
         csvsb.append(headers).append(newline);
 
-        for (BudgetSummary summaryRow : reportList) {
+        for (BudgetSummaryRow summaryRow : reportList) {
             String csvrow = String.join(",", Arrays.asList(
                     summaryRow.getJobCode(),
                     summaryRow.getFiscalYear(),
@@ -240,7 +206,10 @@ public class BossApiApplicationTests {
                 wb.write(fileOut);
             }
 
-        } catch (IOException ex) {
+        } 
+        
+        
+           } catch (Exception ex) {
             System.out.println("********************************ERROR********************************************");
             System.out.println(getStackTrace(ex));
             System.out.println("********************************/ERROR********************************************");
