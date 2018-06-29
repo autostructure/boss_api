@@ -68,9 +68,6 @@ public class BossApiApplicationTests {
         baseUrl = "http://localhost:8090";
     }
 
-    @Autowired
-    ReportService reportService;
-
     @Test
     public void budgetReports() throws InterruptedException {
 
@@ -102,7 +99,7 @@ public class BossApiApplicationTests {
         8) unverified (Operating Minus Obligated)
         
         
-        /budgetSummary/{financialYear}/{verified/unverified/all}
+        /budgetSummary/json/{financialYear}/{verified}
         
          */
         System.out.println("****************************@Test***budgetReports()*********************************");
@@ -111,17 +108,23 @@ public class BossApiApplicationTests {
 
         Short fy = Short.parseShort("2017");
 
-        String time = Long.toString(new Date().getTime());
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        try {
+        try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            CompletableFuture<BudgetSummary> summaryFuture = reportService.getBudgetSummary(fy, "verified");
+            HttpGet httpACGet = new HttpGet(baseUrl + "/budgetSummary/json/" + fy.toString() + "/all");
+            httpACGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getACRes = client.execute(httpACGet);
+            HttpEntity getRCResEnt = getACRes.getEntity();
+            String responseRCStringGET = EntityUtils.toString(getRCResEnt, "UTF-8");
+            Integer getRCstatus = getACRes.getStatusLine().getStatusCode();
+            Assert.assertEquals(200, getRCstatus.intValue());
+            BudgetSummary report = objectMapper.readValue(responseRCStringGET, new TypeReference<BudgetSummary>() {
+            });
 
-            BudgetSummary report = summaryFuture.get();
             List<BudgetSummaryRow> reportList = report.getRows();
 
             // JSON Report
-            ObjectMapper objectMapper = new ObjectMapper();
             String reportJSON = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(report);
             printBox("JSON");
             System.out.println(reportJSON);
@@ -257,6 +260,7 @@ public class BossApiApplicationTests {
 
                 BaseTable dataTable = new BaseTable(yStart, yStartNewPage, bottomMargin, tableWidth, margin, doc, page, true,
                         true);
+
                 DataTable t = new DataTable(dataTable, page);
 
                 List<List> pdfdata = new ArrayList<>();
@@ -291,6 +295,7 @@ public class BossApiApplicationTests {
                 dataTable.draw();
                 File file = new File("budgetsummary.pdf");
                 System.out.println("Sample file saved at : " + file.getAbsolutePath());
+
                 // Files.createParentDirs(file);
                 doc.save(file);
                 doc.close();
