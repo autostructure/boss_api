@@ -51,6 +51,8 @@ import us.fed.fs.boss.reports.BudgetSummary;
 import us.fed.fs.boss.reports.BudgetSummaryRow;
 import us.fed.fs.boss.reports.FileTypeDetector;
 import us.fed.fs.boss.reports.ReportService;
+import us.fed.fs.boss.reports.ReportsFileBuilder;
+import us.fed.fs.boss.reports.ReportsFileBuilder.FileType;
 import us.fed.fs.boss.repository.ActivityCodeRepository;
 import us.fed.fs.boss.repository.BudgetObjectCodeRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
@@ -203,7 +205,7 @@ public class BudgetController {
 
     // Get Budget Summary JSON
     @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
-    public ResponseEntity getBudgetSummaryJSON(
+    public ResponseEntity getBudgetSummary(
             @PathVariable("type") String type,
             @PathVariable("financialYear") Short financialYear,
             @PathVariable("verified") String verified
@@ -212,254 +214,68 @@ public class BudgetController {
         if (!verified.equals("verified") && !verified.equals("unverfied") && !verified.equals("all")) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-        CompletableFuture<BudgetSummary> summaryFuture = null;
-        BudgetSummary report = null;
-        List<BudgetSummaryRow> reportList = null;
+
         type = type.toLowerCase();
 
-        List<String> headersXLSX = Arrays.asList(
-                "Job Code",
-                "Fiscal Year",
-                "Description",
-                "Operating",
-                "Obligated",
-                "Balance"
-        );
         try {
             switch (type) {
                 case "json":
-                    summaryFuture = reportService.getBudgetSummary(financialYear, verified);
-                    report = summaryFuture.get();
+                    CompletableFuture<BudgetSummary> summaryFutureJSON
+                            = reportService.getBudgetSummaryJSON(financialYear, verified);
+                    BudgetSummary report = summaryFutureJSON.get();
                     return new ResponseEntity<BudgetSummary>(report, HttpStatus.OK);
 
                 case "csv":
-                    summaryFuture = reportService.getBudgetSummary(financialYear, verified);
-                    report = summaryFuture.get();
-                    reportList = report.getRows();
+                    CompletableFuture<File> summaryFutureCSV
+                            = reportService.getBudgetSummaryFile(financialYear, verified, FileType.CSV);
+                    File csv = summaryFutureCSV.get();
 
-                    StringBuilder csvsb = new StringBuilder();
-                    String newline = "\r\n";
+                    MediaType mediaTypeCSV = FileTypeDetector.getMediaTypeForFileName(this.servletContext, csv.getName());
 
-                    // CSV Report
-                    String headers = String.join(",", Arrays.asList(
-                            "Job Code",
-                            "Fiscal Year",
-                            "Description",
-                            "Operating",
-                            "Obligated",
-                            "Balance"
-                    ));
-                    csvsb.append(headers).append(newline);
-
-                    for (BudgetSummaryRow summaryRow : reportList) {
-                        String csvrow = String.join(",", Arrays.asList(
-                                summaryRow.getJobCode(),
-                                summaryRow.getFiscalYear(),
-                                summaryRow.getDescription(),
-                                summaryRow.getOperating(),
-                                summaryRow.getObligated(),
-                                summaryRow.getBalance()
-                        ));
-                        csvsb.append(csvrow).append(newline);
-                    }
-
-                    String csvrow = String.join(",", Arrays.asList(
-                            "Totals",
-                            "",
-                            "",
-                            report.getTotalOperating(),
-                            report.getTotalObligated(),
-                            report.getTotalBalance()
-                    ));
-                    csvsb.append(csvrow).append(newline);
-
-                    String fileNameCSV = "budgetsummary.csv";
-
-                    try (PrintWriter out = new PrintWriter(fileNameCSV)) {
-                        out.println(csvsb.toString());
-                    }
-
-                    File fileCSV = new File(fileNameCSV);
-
-                    MediaType mediaTypeCSV = FileTypeDetector.getMediaTypeForFileName(this.servletContext, fileNameCSV);
-
-                    InputStreamResource resourceCSV = new InputStreamResource(new FileInputStream(fileCSV));
+                    InputStreamResource resourceCSV = new InputStreamResource(new FileInputStream(csv));
 
                     return ResponseEntity.ok()
                             // Content-Disposition
-                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileCSV.getName())
+                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + csv.getName())
                             // Content-Type
                             .contentType(mediaTypeCSV)
                             // Contet-Length
-                            .contentLength(fileCSV.length()) //
+                            .contentLength(csv.length()) //
                             .body(resourceCSV);
                 case "pdf":
-                    summaryFuture = reportService.getBudgetSummary(financialYear, verified);
-                    report = summaryFuture.get();
+                    CompletableFuture<File> summaryFuturePDF
+                            = reportService.getBudgetSummaryFile(financialYear, verified, FileType.PDF);
+                    File pdf = summaryFuturePDF.get();
 
-                    //Initialize Document
-                    PDDocument doc = new PDDocument();
-                    PDPage page = new PDPage();
-                    doc.addPage(page);
+                    MediaType mediaTypePDF = FileTypeDetector.getMediaTypeForFileName(this.servletContext, pdf.getName());
 
-                    //Initialize table
-                    float margin = 10;
-                    float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
-                    float yStartNewPage = page.getMediaBox().getHeight() - (2 * margin);
-                    float yStart = yStartNewPage;
-                    float bottomMargin = 0;
-
-                    BaseTable dataTable = new BaseTable(yStart, yStartNewPage, bottomMargin, tableWidth, margin, doc, page, true,
-                            true);
-
-                    DataTable t = new DataTable(dataTable, page);
-
-                    List<List> pdfdata = new ArrayList<>();
-                    pdfdata.add(headersXLSX);
-
-                    report.getRows().forEach(r -> {
-                        List<String> rl = new ArrayList<>();
-
-                        rl.add(r.getJobCode());
-                        rl.add(r.getFiscalYear());
-                        rl.add(r.getDescription());
-                        rl.add(r.getOperating());
-                        rl.add(r.getObligated());
-                        rl.add(r.getBalance());
-
-                        pdfdata.add(rl);
-                    });
-
-                    List<String> totals = new ArrayList<>();
-
-                    totals.add("Totals");
-                    totals.add("");
-                    totals.add("");
-                    totals.add(report.getTotalOperating());
-                    totals.add(report.getTotalObligated());
-                    totals.add(report.getTotalBalance());
-
-                    pdfdata.add(totals);
-
-                    t.addListToTable(pdfdata, true);
-
-                    dataTable.draw();
-                    File pdf = new File("budgetsummary.pdf");
-                    System.out.println("Sample file saved at : " + pdf.getAbsolutePath());
-
-                    // Files.createParentDirs(file);
-                    doc.save(pdf);
-                    doc.close();
-
-                    MediaType mediaType = FileTypeDetector.getMediaTypeForFileName(this.servletContext, "budgetsummary.pdf");
-
-                    InputStreamResource resource = new InputStreamResource(new FileInputStream(pdf));
+                    InputStreamResource resourcePDF = new InputStreamResource(new FileInputStream(pdf));
 
                     return ResponseEntity.ok()
                             // Content-Disposition
                             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + pdf.getName())
                             // Content-Type
-                            .contentType(mediaType)
+                            .contentType(mediaTypePDF)
                             // Contet-Length
                             .contentLength(pdf.length()) //
-                            .body(resource);
+                            .body(resourcePDF);
                 case "xlsx":
-                    summaryFuture = reportService.getBudgetSummary(financialYear, verified);
-                    report = summaryFuture.get();
+                    CompletableFuture<File> summaryFutureXLSX
+                            = reportService.getBudgetSummaryFile(financialYear, verified, FileType.XLSX);
+                    File xlsx = summaryFutureXLSX.get();
 
-                    reportList = report.getRows();
+                    MediaType mediaTypeXLSX = FileTypeDetector.getMediaTypeForFileName(this.servletContext, xlsx.getName());
 
-                    try (Workbook wb = new XSSFWorkbook()) {
-                        XSSFSheet sheet = (XSSFSheet) wb.createSheet();
-
-                        // Set the values for the table
-                        XSSFRow row;
-                        XSSFCell cell;
-
-                        row = sheet.createRow(0);
-                        for (int j = 0; j < 6; j++) {
-                            cell = row.createCell(j);
-                            cell.setCellValue(headersXLSX.get(j));
-
-                        }
-
-                        for (int i = 0; i < reportList.size(); i++) {
-                            // Create row
-                            row = sheet.createRow(i + 1);
-                            for (int j = 0; j < 6; j++) {
-                                cell = row.createCell(j);
-                                switch (j) {
-                                    case 0:
-                                        cell.setCellValue(reportList.get(i).getJobCode());
-                                        break;
-                                    case 1:
-                                        cell.setCellValue(reportList.get(i).getFiscalYear());
-                                        break;
-                                    case 2:
-                                        cell.setCellValue(reportList.get(i).getDescription());
-                                        break;
-                                    case 3:
-                                        cell.setCellValue(reportList.get(i).getOperating());
-                                        break;
-                                    case 4:
-                                        cell.setCellValue(reportList.get(i).getObligated());
-                                        break;
-                                    case 5:
-                                        cell.setCellValue(reportList.get(i).getBalance());
-                                        break;
-                                }
-                            }
-                        }
-
-                        XSSFCell totalsCell;
-                        XSSFRow totalsRow = sheet.createRow(reportList.size() + 1);
-
-                        for (int j = 0; j < 6; j++) {
-                            totalsCell = totalsRow.createCell(j);
-                            switch (j) {
-                                case 0:
-                                    totalsCell.setCellValue("Totals");
-                                    break;
-                                case 1:
-                                    totalsCell.setCellValue("");
-                                    break;
-                                case 2:
-                                    totalsCell.setCellValue("");
-                                    break;
-                                case 3:
-                                    totalsCell.setCellValue(report.getTotalOperating());
-                                    break;
-                                case 4:
-                                    totalsCell.setCellValue(report.getTotalObligated());
-                                    break;
-                                case 5:
-                                    totalsCell.setCellValue(report.getTotalBalance());
-                                    break;
-                            }
-                        }
-
-                        // Save
-                        try (FileOutputStream fileOut = new FileOutputStream("budgetsummary.xlsx")) {
-                            wb.write(fileOut);
-                        }
-                    }
-
-                    String fileName = "budgetsummary.xlsx";
-
-                    File file = new File(fileName);
-
-                    MediaType mediaTypeXLS = FileTypeDetector.getMediaTypeForFileName(this.servletContext, fileName);
-
-                    InputStreamResource resourceXLS = new InputStreamResource(new FileInputStream(file));
+                    InputStreamResource resourceXLSX = new InputStreamResource(new FileInputStream(xlsx));
 
                     return ResponseEntity.ok()
                             // Content-Disposition
-                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + xlsx.getName())
                             // Content-Type
-                            .contentType(mediaTypeXLS)
+                            .contentType(mediaTypeXLSX)
                             // Contet-Length
-                            .contentLength(file.length()) //
-                            .body(resourceXLS);
+                            .contentLength(xlsx.length()) //
+                            .body(resourceXLSX);
 
                 default:
                     return new ResponseEntity(HttpStatus.BAD_REQUEST);
