@@ -1,28 +1,17 @@
 package us.fed.fs.boss;
 
-import be.quodlibet.boxable.BaseTable;
-import be.quodlibet.boxable.datatable.DataTable;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -48,10 +37,8 @@ import us.fed.fs.boss.model.ExpenseCode;
 import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.reports.BudgetSummary;
-import us.fed.fs.boss.reports.BudgetSummaryRow;
 import us.fed.fs.boss.reports.FileTypeDetector;
 import us.fed.fs.boss.reports.ReportService;
-import us.fed.fs.boss.reports.ReportsFileBuilder;
 import us.fed.fs.boss.reports.ReportsFileBuilder.FileType;
 import us.fed.fs.boss.repository.ActivityCodeRepository;
 import us.fed.fs.boss.repository.BudgetObjectCodeRepository;
@@ -210,12 +197,17 @@ public class BudgetController {
             @PathVariable("financialYear") Short financialYear,
             @PathVariable("verified") String verified
     ) throws InterruptedException, IOException, ExecutionException {
+        
         verified = verified.toLowerCase();
         if (!verified.equals("verified") && !verified.equals("unverfied") && !verified.equals("all")) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
         type = type.toLowerCase();
+        Map<String, FileType> types = new HashMap<>();
+        types.put("csv", FileType.CSV);
+        types.put("pdf", FileType.PDF);
+        types.put("xlsx", FileType.XLSX);
 
         try {
             switch (type) {
@@ -224,59 +216,19 @@ public class BudgetController {
                             = reportService.getBudgetSummaryJSON(financialYear, verified);
                     BudgetSummary report = summaryFutureJSON.get();
                     return new ResponseEntity<BudgetSummary>(report, HttpStatus.OK);
-
                 case "csv":
-                    CompletableFuture<File> summaryFutureCSV
-                            = reportService.getBudgetSummaryFile(financialYear, verified, FileType.CSV);
-                    File csv = summaryFutureCSV.get();
-
-                    MediaType mediaTypeCSV = FileTypeDetector.getMediaTypeForFileName(this.servletContext, csv.getName());
-
-                    InputStreamResource resourceCSV = new InputStreamResource(new FileInputStream(csv));
-
-                    return ResponseEntity.ok()
-                            // Content-Disposition
-                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + csv.getName())
-                            // Content-Type
-                            .contentType(mediaTypeCSV)
-                            // Contet-Length
-                            .contentLength(csv.length()) //
-                            .body(resourceCSV);
                 case "pdf":
-                    CompletableFuture<File> summaryFuturePDF
-                            = reportService.getBudgetSummaryFile(financialYear, verified, FileType.PDF);
-                    File pdf = summaryFuturePDF.get();
-
-                    MediaType mediaTypePDF = FileTypeDetector.getMediaTypeForFileName(this.servletContext, pdf.getName());
-
-                    InputStreamResource resourcePDF = new InputStreamResource(new FileInputStream(pdf));
-
-                    return ResponseEntity.ok()
-                            // Content-Disposition
-                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + pdf.getName())
-                            // Content-Type
-                            .contentType(mediaTypePDF)
-                            // Contet-Length
-                            .contentLength(pdf.length()) //
-                            .body(resourcePDF);
                 case "xlsx":
                     CompletableFuture<File> summaryFutureXLSX
-                            = reportService.getBudgetSummaryFile(financialYear, verified, FileType.XLSX);
-                    File xlsx = summaryFutureXLSX.get();
-
-                    MediaType mediaTypeXLSX = FileTypeDetector.getMediaTypeForFileName(this.servletContext, xlsx.getName());
-
-                    InputStreamResource resourceXLSX = new InputStreamResource(new FileInputStream(xlsx));
-
+                            = reportService.getBudgetSummaryFile(financialYear, verified, types.get(type));
+                    File file = summaryFutureXLSX.get();
+                    MediaType mediaType = FileTypeDetector.getMediaTypeForFileName(this.servletContext, file.getName());
+                    InputStreamResource resourceXLSX = new InputStreamResource(new FileInputStream(file));
                     return ResponseEntity.ok()
-                            // Content-Disposition
-                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + xlsx.getName())
-                            // Content-Type
-                            .contentType(mediaTypeXLSX)
-                            // Contet-Length
-                            .contentLength(xlsx.length()) //
+                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+                            .contentType(mediaType)
+                            .contentLength(file.length())
                             .body(resourceXLSX);
-
                 default:
                     return new ResponseEntity(HttpStatus.BAD_REQUEST);
             }
