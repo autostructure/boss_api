@@ -1,19 +1,17 @@
 package us.fed.fs.boss;
 
-import be.quodlibet.boxable.BaseTable;
-import be.quodlibet.boxable.datatable.DataTable;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileOutputStream;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,16 +27,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -53,10 +45,6 @@ import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.reports.BudgetSummary;
 import us.fed.fs.boss.reports.BudgetSummaryRow;
-import us.fed.fs.boss.reports.ReportService;
-import java.util.concurrent.CompletableFuture;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
@@ -170,137 +158,91 @@ public class BossApiApplicationTests {
             System.out.println();
 
             printBox("Excel File Test");
-            try (Workbook wb = new XSSFWorkbook()) {
-                XSSFSheet sheet = (XSSFSheet) wb.createSheet();
+            
+            HttpGet httpXLSGet = new HttpGet(baseUrl + "/budgetSummary/xlsx/" + fy.toString() + "/all");
+            httpXLSGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getXLSRes = client.execute(httpXLSGet);
+            HttpEntity getXLSResEnt = getXLSRes.getEntity();
 
-                // Set the values for the table
-                XSSFRow row;
-                XSSFCell cell;
-                List<String> headersXLSX = Arrays.asList(
-                        "Job Code",
-                        "Fiscal Year",
-                        "Description",
-                        "Operating",
-                        "Obligated",
-                        "Balance"
-                );
-                for (int i = 0; i < reportList.size(); i++) {
-                    // Create row
-                    row = sheet.createRow(i);
-                    for (int j = 0; j < 6; j++) {
-                        cell = row.createCell(j);
-                        switch (j) {
-                            case 0:
-                                cell.setCellValue(reportList.get(i).getJobCode());
-                                break;
-                            case 1:
-                                cell.setCellValue(reportList.get(i).getFiscalYear());
-                                break;
-                            case 2:
-                                cell.setCellValue(reportList.get(i).getDescription());
-                                break;
-                            case 3:
-                                cell.setCellValue(reportList.get(i).getOperating());
-                                break;
-                            case 4:
-                                cell.setCellValue(reportList.get(i).getObligated());
-                                break;
-                            case 5:
-                                cell.setCellValue(reportList.get(i).getBalance());
-                                break;
-                        }
-                    }
-                }
+            
+            Integer getXLSstatus = getXLSRes.getStatusLine().getStatusCode();
+                        
+            printBox(baseUrl + "/budgetSummary/xlsx/" + fy.toString() + "/all", getXLSstatus.toString());
+            Assert.assertEquals(200, getXLSstatus.intValue());
+            
+            InputStream is = getXLSResEnt.getContent();
+            String filePath = "sampledownloaded.xlsx";
+            FileOutputStream fos = new FileOutputStream(new File(filePath));
+            int inByte;
+            while((inByte = is.read()) != -1)
+                 fos.write(inByte);
+            is.close();
+            fos.close();
+            
+            File downloaded = new File(filePath);
+            
+            Assert.assertTrue(downloaded.exists());
+            
+            
+            
+            // PDF
+            
+            printBox("Test PDF BudgetReport");
+            
+            
+            HttpGet httpPDFGet = new HttpGet(baseUrl + "/budgetSummary/pdf/" + fy.toString() + "/all");
+            httpPDFGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getPDFRes = client.execute(httpPDFGet);
+            HttpEntity getPDFResEnt = getPDFRes.getEntity();
 
-                XSSFCell totalsCell;
-                XSSFRow totalsRow = sheet.createRow(reportList.size());
+            
+            Integer getPDFstatus = getPDFRes.getStatusLine().getStatusCode();
+                        
+            printBox(baseUrl + "/budgetSummary/pdf/" + fy.toString() + "/all", getPDFstatus.toString());
+            Assert.assertEquals(200, getPDFstatus.intValue());
+            
+            InputStream isPDF = getPDFResEnt.getContent();
+            String filePathPDF = "sampledownloaded.pdf";
+            FileOutputStream fosPDF = new FileOutputStream(new File(filePathPDF));
+            int inBytePDF;
+            while((inBytePDF = isPDF.read()) != -1)
+                 fosPDF.write(inBytePDF);
+            is.close();
+            fosPDF.close();
+            
+            File downloadedPDF = new File(filePathPDF);
+            
+            Assert.assertTrue(downloadedPDF.exists());
+            
+            
+            
+             printBox("Test CSV BudgetReport");
+            
+            
+            HttpGet httpCSVGet = new HttpGet(baseUrl + "/budgetSummary/csv/" + fy.toString() + "/all");
+            httpCSVGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getCSVRes = client.execute(httpCSVGet);
+            HttpEntity getCSVResEnt = getCSVRes.getEntity();
 
-                for (int j = 0; j < 6; j++) {
-                    totalsCell = totalsRow.createCell(j);
-                    switch (j) {
-                        case 0:
-                            totalsCell.setCellValue("Totals");
-                            break;
-                        case 1:
-                            totalsCell.setCellValue("");
-                            break;
-                        case 2:
-                            totalsCell.setCellValue("");
-                            break;
-                        case 3:
-                            totalsCell.setCellValue(report.getTotalOperating());
-                            break;
-                        case 4:
-                            totalsCell.setCellValue(report.getTotalObligated());
-                            break;
-                        case 5:
-                            totalsCell.setCellValue(report.getTotalBalance());
-                            break;
-                    }
-                }
-
-                // Save
-                try (FileOutputStream fileOut = new FileOutputStream("budgetsummary.xlsx")) {
-                    wb.write(fileOut);
-                }
-
-                printBox("PDF");
-
-                //Initialize Document
-                PDDocument doc = new PDDocument();
-                PDPage page = new PDPage();
-                doc.addPage(page);
-
-                //Initialize table
-                float margin = 10;
-                float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
-                float yStartNewPage = page.getMediaBox().getHeight() - (2 * margin);
-                float yStart = yStartNewPage;
-                float bottomMargin = 0;
-
-                BaseTable dataTable = new BaseTable(yStart, yStartNewPage, bottomMargin, tableWidth, margin, doc, page, true,
-                        true);
-
-                DataTable t = new DataTable(dataTable, page);
-
-                List<List> pdfdata = new ArrayList<>();
-                pdfdata.add(headersXLSX);
-
-                report.getRows().forEach(r -> {
-                    List<String> rl = new ArrayList<>();
-
-                    rl.add(r.getJobCode());
-                    rl.add(r.getFiscalYear());
-                    rl.add(r.getDescription());
-                    rl.add(r.getOperating());
-                    rl.add(r.getObligated());
-                    rl.add(r.getBalance());
-
-                    pdfdata.add(rl);
-                });
-
-                List<String> totals = new ArrayList<>();
-
-                totals.add("Totals");
-                totals.add("");
-                totals.add("");
-                totals.add(report.getTotalOperating());
-                totals.add(report.getTotalObligated());
-                totals.add(report.getTotalBalance());
-
-                pdfdata.add(totals);
-
-                t.addListToTable(pdfdata, true);
-
-                dataTable.draw();
-                File file = new File("budgetsummary.pdf");
-                System.out.println("Sample file saved at : " + file.getAbsolutePath());
-
-                // Files.createParentDirs(file);
-                doc.save(file);
-                doc.close();
-
-            }
+            
+            Integer getCSVstatus = getCSVRes.getStatusLine().getStatusCode();
+                        
+            printBox(baseUrl + "/budgetSummary/csv/" + fy.toString() + "/all", getCSVstatus.toString());
+            Assert.assertEquals(200, getCSVstatus.intValue());
+            
+            InputStream isCSV = getCSVResEnt.getContent();
+            String filePathCSV = "sampledownloaded.csv";
+            FileOutputStream fosCSV = new FileOutputStream(new File(filePathCSV));
+            int inByteCSV;
+            while((inByteCSV = isCSV.read()) != -1)
+                 fosCSV.write(inByteCSV);
+            is.close();
+            fosCSV.close();
+            
+            File downloadedCSV = new File(filePathCSV);
+            
+            Assert.assertTrue(downloadedCSV.exists());
+            
 
         } catch (Exception ex) {
             System.out.println("********************************ERROR********************************************");
