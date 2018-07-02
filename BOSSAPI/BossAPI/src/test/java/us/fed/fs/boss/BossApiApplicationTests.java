@@ -100,7 +100,7 @@ public class BossApiApplicationTests {
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpGet httpACGet = new HttpGet(baseUrl + "/budgetSummary/json/" + fy.toString() + "/all");
+            HttpGet httpACGet = new HttpGet(baseUrl + "/budgetSummaryReport/json/" + fy.toString() + "/all");
             httpACGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getACRes = client.execute(httpACGet);
             HttpEntity getRCResEnt = getACRes.getEntity();

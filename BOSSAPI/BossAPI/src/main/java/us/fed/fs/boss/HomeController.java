@@ -5,8 +5,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {	
-	@RequestMapping("/home")
+	@RequestMapping("/")
 	public String home(){
 		return "home";
+	}
+        @RequestMapping("/home")
+	public String home2(){
+		return "home";
+	}
+        @RequestMapping("/budgetDash")
+	public String budgetDash(){
+		return "home";
+	}
+        @RequestMapping("/budgetSummary")
+	public String budgetSummary(){
+		return "home";
+	}
+        @RequestMapping("/jobCodes")
+	public String jobCodes(){
+		return "jobCodes";
+	}
+        @RequestMapping("/newExpense")
+	public String newExpense(){
+		return "newExpense";
+	}
+        @RequestMapping("/viewExpense")
+	public String viewExpense(){
+		return "viewExpense";
+	}
+        @RequestMapping("/payrollDetails")
+	public String payrollDetails(){
+		return "payrollDetails";
 	}
 }

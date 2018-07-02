@@ -8,7 +8,7 @@
     <title>FIA-BOSS</title>
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/budgetSummary.css">
+    <link rel="stylesheet" href="css/pagesCSS/viewExpense.css">
 </head>
 
 <body class="layout-demo">
@@ -25,39 +25,42 @@
 
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img src="img/fire.jpg" alt="Banner Image"/>
+                                    <img src="img/horseBanner.jpg" alt="Banner Image"/>
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="/budgetDash">Budget |</a>
-                                                <a class="breadcrumbLinkMain"href="/budgetSummary">Budget Summary</a>
+                                                <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
+                                                <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
+                                                <a class="breadcrumbLinkMain"href="../viewExpense.html">View Expenses</a>
                                             </p>
                                         </div>
                                     </div>
                                 <section class="usa-section">
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole title-div">
-                                            <h1 id="title">Budget</h1>
+                                            <h1 id="title">Expenses</h1>
                                         </div>
                                     </div>
 
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
-                                            <h2 class="title2">Budget Summary</h2>
-                                        <table id="budget" class="usa-table-borderless display" style="width:100%">
+                                            <h2 class="title2">View Expenses</h2>
+                                        <table id="expense" class="usa-table-borderless display" style="width:100%">
                                             
                                             <thead>
                                                 <tr>
-                                                    <th style="width:11%">Job Code</th>
-                                                    <th style="width:20%">Description</th>
-                                                    <th style="width:13%">Operating</th>
-                                                    <th style="width:13%">Obligated</th>
-                                                    <th style="width:13%">Balance</th>
-                                                    <th style="width:13%">FMMI Operating</th>
-                                                    <th style="width:13%">FMMI Balance</th>
-                                                    <th style="width:6%">Select</th>
+                                                    <th scope="col">Act Code</th>
+                                                    <th scope="col">Sec Code</th>
+                                                    <th scope="col">Name Code</th>
+                                                    <th scope="col">Description</th>
+                                                    <th scope="col">Pay Period</th>
+                                                    <th scope="col">Seq. #</th>
+                                                    <th scope="col">Job Code</th>
+                                                    <th scope="col">Exp Code</th>
+                                                    <th scope="col">Total</th>
+                                                    <th scope="col" id="stop">Date Obl</th>
+                                                    <th scope="col">Select</th>
                                                 </tr>
                                             </thead>
                                             <tbody  id="investmentTable">
@@ -78,9 +81,10 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
          </footer>
+
         <script src="js/ead.min.js"></script>
         <script src="js/pagesJS/mainPages.js"></script>
-        <script src="js/pagesJS/budgetSummary.js"></script>
+        <script src="js/pagesJS/viewExpense.js"></script>
 </body>
 
 </html>

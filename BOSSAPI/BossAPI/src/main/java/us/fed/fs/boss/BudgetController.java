@@ -191,7 +191,7 @@ public class BudgetController {
     }
 
     // Get Budget Summary JSON
-    @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
+    @GetMapping("/budgetSummaryReport/{type}/{financialYear}/{verified}")
     public ResponseEntity getBudgetSummary(
             @PathVariable("type") String type,
             @PathVariable("financialYear") Short financialYear,
