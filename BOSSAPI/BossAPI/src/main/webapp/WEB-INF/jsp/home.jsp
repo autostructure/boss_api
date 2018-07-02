@@ -8,79 +8,150 @@
     <title>FIA-BOSS</title>
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/budgetSummary.css">
+    <link rel="stylesheet" href="css/pagesCSS/home.css">
 </head>
 
 <body class="layout-demo">
     <header class="usa-header usa-header-extended" role="banner" id="mainHeader">
     </header>
-        <div class="usa-overlay"></div>
-        <main id="main-content">
-                <div class="wrapper">
-                
-                        <nav id="sidebar">
-                         </nav>
+
+    <main id="background">
+    <div class="container mainTitleDiv">
+        <div class="row justify-content-center">
+        <img src="img/fslogoBig.png" id="bigFSLOGO" alt="">
+        <h1 class="title">BOSS Dashboard</h1>
+        </div>
+    </div>
+    <div class="container-fluid cardsDiv">
+            <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 offset-lg-1">
+                        <div class="card">
+                            <div class="card-block">
+                                <img src="img/budgetBG.jpg" alt="budget mountain picture" class="img-fluid">
+                                <div class="card-title">
+                                    <!-- <h4 class="hTitle">Budget</h4> -->
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            <h5 class="card-title">Budget</h5>
+                                          </button>
+                                </div>
+                                <div class="card-tbody show" id="collapseOne">
+                                        <p class="card-text"><a href="../budget/newExpense.html">Create New Expense</a></p>
+                                        <p class="card-text"><a href="../budget/viewExpense.html">View Expenses</a></p>
+                                        <p class="card-text"><a href="../budget/jobCodes.html">Job Codes</a></p>
+                                        <p class="card-text"><a href="../budget/budgetSummary.html">Budget Summary</a></p>
+                                        <p class="card-text"><a href="#">Budget vs FMMI</a></p>
+                                        <p class="card-text"><a href="#">Payroll</a></p>
+                                        <p class="card-text"><a href="#">Reports</a></p>
+                                </div>
+                                <div class="card-footer text-right">
+                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <img src="img/propBG.jpg" alt="budget mountain picture" class="img-fluid">
+                                <div class="card-title">
+                                    <!-- <h4 class="hTitle">Budget</h4> -->
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <h5 class="card-title">Property<br>Mgmt</h5>
+                                          </button>
+                                </div>
+                                <div class="card-tbody show" id="collapseTwo">
+                                        <p class="card-text"><a href="#">Fleet Management</a></p>
+                                        <p class="card-text"><a href="#">Field Equip General</a></p>
+                                        <p class="card-text"><a href="#">Field Equip Electronic</a></p>
+                                        <p class="card-text"><a href="#">ID Cards/Keys</a></p>
+                                        <p class="card-text"><a href="#">Reports</a></p>
+                                </div>
+                                <div class="card-footer text-right">
+                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <img src="img/hrBG.jpg" alt="budget mountain picture" class="img-fluid">
+                                <div class="card-title">
+                                    <!-- <h4 class="hTitle">Budget</h4> -->
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <h5 class="card-title">Human<br>Resources</h5>
+                                          </button>
+                                </div>
+                                <div class="card-tbody show" id="collapseThree">
+                                        <p class="card-text"><a href="#">View Employees</a></p>
+                                        <p class="card-text"><a href="#">Add New Employees</a></p>
+                                        <p class="card-text"><a href="#">Training</a></p>
+                                        <p class="card-text"><a href="#">Checkin-Out</a></p>
+                                        <p class="card-text"><a href="#">Reports</a></p>
+                                </div>
+                                <div class="card-footer text-right">
+                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <img src="img/crewBG.jpg" alt="budget mountain picture" class="img-fluid">
+                                <div class="card-title">
+                                    <!-- <h4 class="hTitle">Budget</h4> -->
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <h5 class="card-title">Crew</h5>
+                                          </button>
+                                </div>
+                                <div class="card-tbody show" id="collapseFour">
+                                        <p class="card-text"><a href="#">Checkin-Out</a></p>
+                                        <p class="card-text"><a href="#">Skills</a></p>
+                                        <p class="card-text"><a href="#">DRA's</a></p>
+                                        <p class="card-text"><a href="#">Payroll</a></p>
+                                        <p class="card-text"><a href="#">Reports</a></p>
+                                </div>
+                                <div class="card-footer text-right">
+                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <img src="img/empBG.jpg" alt="budget mountain picture" class="img-fluid">
+                                <div class="card-title">
+                                    <!-- <h4 class="hTitle">Budget</h4> -->
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            <h5 class="card-title">Employee<br>Portal</h5>
+                                          </button>
+                                </div>
+                                <div class="card-tbody show" id="collapseFive">
+                                        <p class="card-text"><a href="#">Checkin-Out</a></p>
+                                        <p class="card-text"><a href="#">Vehicles</a></p>
+                                        <p class="card-text"><a href="#">My Profile</a></p>
+                                        <p class="card-text"><a href="#">Training/Certs</a></p>
+                                        <p class="card-text"><a href="#">Reports</a></p>
+                                </div>
+                                <div class="card-footer text-right">
+                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                                                            
+            </div>
+    </div>
+    </main>
 
 
+    <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
+        </footer>
 
-                         <section class="usa-section1">
-                                <header class="main-header" role="banner">
-                                    <img src="img/fire.jpg" alt="Banner Image"/>
-                                </header>
-                                <div class="usa-grid">
-                                        <div class="usa-width-one-whole">
-                                            <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink" href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink" href="/budgetDash">Budget |</a>
-                                                <a class="breadcrumbLinkMain" href="/budgetSummary">Budget Summary</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                <section class="usa-section">
-                                    <div class="usa-grid usa-buffer-top">
-                                        <div class="use-width-one-whole title-div">
-                                            <h1 id="title">Budget</h1>
-                                        </div>
-                                    </div>
+    <script src="js/ead.min.js"></script>
+    <script src="js/pagesJS/home.js"></script>
 
-                                    <div class="usa-grid usa-buffer-top">
-                                        <div class="use-width-one-whole content-div">
-                                            <h2 class="title2">Budget Summary</h2>
-                                        <table id="budget" class="usa-table-borderless display" style="width:100%">
-                                            
-                                            <thead>
-                                                <tr>
-                                                    <th style="width:11%">Job Code</th>
-                                                    <th style="width:20%">Description</th>
-                                                    <th style="width:13%">Operating</th>
-                                                    <th style="width:13%">Obligated</th>
-                                                    <th style="width:13%">Balance</th>
-                                                    <th style="width:13%">FMMI Operating</th>
-                                                    <th style="width:13%">FMMI Balance</th>
-                                                    <th style="width:6%">Select</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody  id="investmentTable">
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>  
-                                </section>
-                         </section>
-                        
-                        
-                </div>
-                <!-- end of sidenav wrapper div -->
-
-                
-        </main>
-
-        <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
-         </footer>
-        <script src="js/ead.min.js"></script>
-        <script src="js/pagesJS/mainPages.js"></script>
-        <script src="js/pagesJS/budgetSummary.js"></script>
 </body>
 
 </html>
