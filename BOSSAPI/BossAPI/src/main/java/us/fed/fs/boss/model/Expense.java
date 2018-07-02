@@ -34,6 +34,14 @@ public class Expense extends Auditable<String> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    // ORACLE IDENTITY
+    /*
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "expense_Sequence")
+    @SequenceGenerator(name = "expense_Sequence", sequenceName = "EXPENSE_SEQ")   
+    private Long id;
+    */
+    
     @Column(name = "SECCode")
     private String secCode;
     
