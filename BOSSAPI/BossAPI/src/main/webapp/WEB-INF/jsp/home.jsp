@@ -35,16 +35,16 @@
                                           </button>
                                 </div>
                                 <div class="card-tbody show" id="collapseOne">
-                                        <p class="card-text"><a href="../budget/newExpense.html">Create New Expense</a></p>
-                                        <p class="card-text"><a href="../budget/viewExpense.html">View Expenses</a></p>
-                                        <p class="card-text"><a href="../budget/jobCodes.html">Job Codes</a></p>
-                                        <p class="card-text"><a href="../budget/budgetSummary.html">Budget Summary</a></p>
+                                        <p class="card-text"><a href="/newExpense">Create New Expense</a></p>
+                                        <p class="card-text"><a href="/viewExpense">View Expenses</a></p>
+                                        <p class="card-text"><a href="/jobCodes">Job Codes</a></p>
+                                        <p class="card-text"><a href="/budgetSummary">Budget Summary</a></p>
                                         <p class="card-text"><a href="#">Budget vs FMMI</a></p>
                                         <p class="card-text"><a href="#">Payroll</a></p>
                                         <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                        <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                                         <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                        <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                         <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                        <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                         <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                        <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                                         <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                        <p class="card-text dashboard"><a href="../budget/budgetDash.html">Visit Dashboard</a></p>
+                                        <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
