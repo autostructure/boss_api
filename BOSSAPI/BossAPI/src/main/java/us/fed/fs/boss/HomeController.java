@@ -15,7 +15,7 @@ public class HomeController {
 	}
         @RequestMapping("/budgetDash")
 	public String budgetDash(){
-		return "home";
+		return "budgetDash";
 	}
         @RequestMapping("/budgetSummary")
 	public String budgetSummary(){
