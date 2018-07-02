@@ -30,9 +30,9 @@
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="/budgetDash">Budget |</a>
-                                                <a class="breadcrumbLinkMain"href="/budgetSummary">Budget Summary</a>
+                                                <a class="breadcrumbLink" href="/home">Dashboard |</a>
+                                                <a class="breadcrumbLink" href="/budgetDash">Budget |</a>
+                                                <a class="breadcrumbLinkMain" href="/budgetSummary">Budget Summary</a>
                                             </p>
                                         </div>
                                     </div>
