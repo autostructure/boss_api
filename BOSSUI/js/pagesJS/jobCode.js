@@ -13,7 +13,7 @@ var tempAPI = 'http://localhost:8090/jobCode';
         } );
        
         var table = $('#jobCodes').DataTable( {
-
+           serverSide: true,
            dom: "Brtip",
            ajax:{"url":tempAPI,"dataSrc":""},
            columnDefs: [ {
@@ -27,13 +27,13 @@ var tempAPI = 'http://localhost:8090/jobCode';
             { data:"description" },
             { data:"amount", render: $.fn.dataTable.render.number( ',', '.', 2, '$' )},
             {data: null,
-                "render": function(){
+                "render": function(data, type, row){
                     return `
                     <div class="dropdown1">
                     <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                         <div class="dropdown-content1">
-                            <a data-target="#myModal" data-toggle="modal" class="editModal" id="editModal" href="#myModal">Edit Job Code</a>
-                            <a href="#">Delete Job Code</a> 
+                            <a data-target="#myModal" data-toggle="modal" class="editModal" href="#myModal">Edit Job Code</a>
+                            <a data-target="#deleteModal" id="' + row.id + '" data-toggle="modal" href="#deleteModal" onclick="deleteRecordModal('+ row.id +')">Delete Job Code</a>
                         </div>
                     </div>
                     
@@ -75,7 +75,8 @@ var tempAPI = 'http://localhost:8090/jobCode';
         
        });
 
-   
+
+       
         table.columns().every( function () {
             var that = this;
      
@@ -88,11 +89,13 @@ var tempAPI = 'http://localhost:8090/jobCode';
             } );
         } );
 
+
+
        //making table cells editable, will likely change to edit module in the future
-       $('#jobCodes tbody').on( 'click', 'i.fa-minus-circle', function () {
+       $('#jobCodes tbody').on( 'click', '#deleteRecord', function () {
            confirm('Are you sure you want to delete this job code?')
         table
-            .row( $(this).parents('tr') )
+            .row( $(this).closest('tr') )
             .remove()
             .draw();
         });
@@ -113,5 +116,16 @@ var tempAPI = 'http://localhost:8090/jobCode';
         // });
 
    });
+
+   function deleteRecordModal(id) {
+    $("#deleteModal").attr("data-id",id);
+    console.log("data-id", id);
+    }
+    
+    $("#delete").click(function(){
+        var getid = $("#deleteModal").attr("data-id");
+        $("#rowid" + getid).closest("tr").remove();
+
+    });
 
     

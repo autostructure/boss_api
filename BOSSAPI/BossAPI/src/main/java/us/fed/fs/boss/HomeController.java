@@ -19,7 +19,7 @@ public class HomeController {
 	}
         @RequestMapping("/budgetSummary")
 	public String budgetSummary(){
-		return "home";
+		return "budgetSummary";
 	}
         @RequestMapping("/jobCodes")
 	public String jobCodes(){
