@@ -22,6 +22,9 @@
 a:visited{
     color: #004121;
 }
+.usa-nav{
+    z-index: 1000 !important;
+}
 .usa-nav-link:hover span {
     border-bottom: 0.7rem solid #006633;
     padding-bottom: 1rem

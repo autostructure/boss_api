@@ -1,89 +1,12 @@
-// ONCE WE LOAD SOME DATA, NEED TO TURN AJAX URL AND REMOVE VAR
+
 var tempAPI = 'http://localhost:8090/jobCode';
-var dataSet = [
-    
-    {"unitCode":"1254", "jobCode":"FRF13818", "description":"PROGRAM", "operating":"$12,000", "obligated":"$4,130", "balance":"$2,342"},
-    {"unitCode":"3222", "jobCode":"FRF14818", "description":"LAB", "operating":"$1,000", "obligated":"$2,130", "balance":"$2,342"},
-    {"unitCode":"4112", "jobCode":"FRF23818", "description":"FOREST CHNG", "operating":"$376", "obligated":"$1,000", "balance":"$631"},
-    {"unitCode":"1254", "jobCode":"FRF18818", "description":"PROGRAM", "operating":"$12,000", "obligated":"$4,130", "balance":"$2,342"},
-    
-];
-
-// $(document).ready(function() {
-//     $('#budgetSub').addClass('show');
-//     $('#budgetSub > li:nth-child(2) > a').addClass('highlight');
-//     var dt = $('#jobCodes').DataTable({  
-//         dom:'Bfrtip',
-//         bProcessing:true,
-//         "aoColumnDefs": [
-//             { "sClass": "inputCell", "aTargets": [ 0,1,2,3 ] }
-//             ],
-//         buttons:[
-//             {
-//                 text:'Print <i class="fa fa-lg fa-print"></i>',
-//                 extend:'print',
-//                 className:'table-btns print-btn'
-//             },
-//             {
-//                 text:'Add <i class="fa fa-lg fa-plus"></i>',
-//                 action:function(){
-//                     window.location.href = '../budget/jobCodes.html';
-//                 },
-//                 className:'table-btns add-btn'
-//             },
-//             {
-//                 text:'Refresh <i class="fa fa-lg fa-repeat"></i>',
-//                 action:function(){
-//                     window.location.reload();
-//                 },
-//                 className:'table-btns refresh-btn'
-//             }
-//         ],
-//         data:dataSet,
-//         columns:[
-//             { data:"unitCode" },
-//             { data:"jobCode" },
-//             { data:"description" },
-//             { data:"operating" },
-//             { data:"obligated" },
-//             { data:"balance" },
-//             {data:null,
-//                 "render":function(){
-//                     return `
-//                     <button class="dropbtn1"><i class="fa fa-minus-circle" style="color:red"></i></button>
-//                     `
-//                 }
-//             }],
-        
-//         });
-
-        
-//             function  myCallbackFunction(updatedCell, updatedRow, oldValue) {
-//                 console.log("The new value for the cell is: " + updatedCell.data());
-//                 console.log("The values for each cell in that row are: " + updatedRow.data());
-//             }
-        
-//             dt.MakeCellsEditable({
-//                 "onUpdate": myCallbackFunction,
-//                 "inputCss":'my-input-class',
-//                 "columns": [0,1,2,3],
-//                 "confirmationButton": { 
-//                     "confirmCss": 'my-confirm-class',
-//                     "cancelCss": 'my-cancel-class'
-//                 }
-//             });
-
-//     });
-
-
-
        
       $(document).ready(function() {
         $('#budgetSub').addClass('show');
         $('#budgetSub > li:nth-child(2) > a').addClass('highlight');
-        $('#jobCodes thead th').each( function () {
+        $('#jobCodes thead tr:nth-child(2) th').each( function () {
             var title = $(this).text();
-            $(this).html( '<input type="text" class="headSearch" placeholder= '+title+' />' );
+            $(this).html( '<input type="text" class="headSearch" placeholder="Search" />' );
             if ($(this).is("#stop")){
                 return false;
             }
@@ -94,7 +17,7 @@ var dataSet = [
            dom: "Brtip",
            ajax:{"url":tempAPI,"dataSrc":""},
            columnDefs: [ {
-            "targets": [4, 5],
+            "targets": [4],
             "orderable": false
             }],
 
@@ -103,22 +26,20 @@ var dataSet = [
             { data:"jobCode" },
             { data:"description" },
             { data:"amount", render: $.fn.dataTable.render.number( ',', '.', 2, '$' )},
-            {data:null,
-                "render":function(){
+            {data: null,
+                "render": function(){
                     return `
-                    <button type="button" class="btn btn-info" data-toggle="modal" id="editModal" data-target="#myModal"><i class="fa fa-2x fa-pencil-square-o"></i></button>
+                    <div class="dropdown1">
+                    <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                        <div class="dropdown-content1">
+                            <a data-target="#myModal" data-toggle="modal" class="editModal" id="editModal" href="#myModal">Edit Job Code</a>
+                            <a href="#">Delete Job Code</a> 
+                        </div>
+                    </div>
+                    
                     `
                 }
-            },
-            {data:null,
-                "render":function(){
-                    return `
-                    <button class="dropbtn1"><i class="fa fa-minus-circle" style="color:red"></i></button>
-                    `
-                }
-            },
-
-            ],
+            }],  
              buttons:[
             {
                 text:'Print <i class="fa fa-lg fa-print"></i>',
@@ -127,6 +48,14 @@ var dataSet = [
                     columns: [0,1,2,3]
                 },
                 className:'table-btns print-btn'
+            },
+            {
+                text: 'Export to Excel <i class="fa fa-lg fa-plus"></i>',
+                extend: 'excel',
+                exportOptions:{
+                    columns: [0,1,2,3,4,5,6]
+                },
+                className: 'table-btns excel-btn'
             },
             {
                 text:'Add <i class="fa fa-lg fa-plus"></i>',

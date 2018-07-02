@@ -35,6 +35,14 @@ $(document).ready(function() {
                 className: 'table-btns print-btn'
             },
             {
+                text: 'Export to Excel <i class="fa fa-lg fa-plus"></i>',
+                extend: 'excel',
+                exportOptions:{
+                    columns: [0,1,2,3,4,5,6]
+                },
+                className: 'table-btns excel-btn'
+            },
+            {
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
                 action: function(){
                     window.location.href = '../budget/newExpense.html';
@@ -65,9 +73,9 @@ $(document).ready(function() {
                     <div class="dropdown1">
                     <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                     <div class="dropdown-content1">
-                      <a href="#">View Record</a>
-                      <a href="#">Edit Record</a>
-                      <a href="#">Delete Record</a>
+                      <a href="#">View Expense</a>
+                      <a href="#">Edit Expense</a>
+                      <a href="#">Delete Expense</a>
                     </div>
                   </div>
                     
