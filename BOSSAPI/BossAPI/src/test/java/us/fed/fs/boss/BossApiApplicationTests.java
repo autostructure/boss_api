@@ -45,6 +45,8 @@ import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.reports.BudgetSummary;
 import us.fed.fs.boss.reports.BudgetSummaryRow;
+import us.fed.fs.boss.reports.PayrollForecast;
+import us.fed.fs.boss.reports.PayrollForecastRow;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
@@ -76,6 +78,11 @@ public class BossApiApplicationTests {
             String responseRCStringGET = EntityUtils.toString(getRCResEnt, "UTF-8");
             Integer getRCstatus = getACRes.getStatusLine().getStatusCode();
             Assert.assertEquals(200, getRCstatus.intValue());
+            PayrollForecast report = objectMapper.readValue(responseRCStringGET, new TypeReference<PayrollForecast>() {
+            });
+
+            List<PayrollForecastRow> reportList = report.getRows();
+            Assert.assertTrue(reportList.size() > 0);
         } catch (Exception ex) {
             System.out.println("********************************ERROR********************************************");
             System.out.println(getStackTrace(ex));
