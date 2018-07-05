@@ -54,12 +54,10 @@ td, th{
     padding-top: 0px !important;
     width: 100%;
 }
-#payroll{
-    margin-top: 40px;
-}
+
 #payroll_wrapper > div.dt-buttons{
     position: absolute;
-    top: -95px;
+    top: -65px;
     right: 10px;
 }
 .table-btns{

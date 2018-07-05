@@ -54,12 +54,10 @@ td, th{
     padding-top: 0px !important;
     width: 100%;
 }
-#jobCodes{
-    margin-top: 40px;
-}
+
 #jobCodes_wrapper > div.dt-buttons{
     position: absolute;
-    top: -95px;
+    top: -65px;
     right: 10px;
 }
 .table-btns{
@@ -74,6 +72,9 @@ td, th{
 }
 .fa-print{
     color: rgb(0, 175, 29);
+}
+.fa-file-excel-o{
+    color: rgb(102, 0, 175);
 }
 .fa-plus{
     color: rgb(0, 152, 198);
@@ -90,40 +91,12 @@ td, th{
 #jobCodes_filter{
     padding: 20px 20px 0px 20px;
 }
+.alert{
+    font-size: 1.8em;
+}
 
 
 
-
-.my-input-class{
-    text-align: center;
-    border-radius: 3px;
-}
-.my-confirm-class{
-    color: white;
-    background-color: #006633;
-    border-radius: 3px;
-    font-size: .7em;
-    padding: 3px;
-}
-.my-confirm-class:hover{
-    color: white;
-    background-color: #1c8551;
-}
-.my-cancel-class{
-    color: white;
-    background-color: red;
-    border-radius: 3px;
-    font-size: .7em;
-    padding: 3px;
-}
-.my-cancel-class:hover{
-    color: white;
-    background-color: rgb(254, 60, 60);
-}
-.inputCell{
-    border: .5px solid rgba(33, 33, 33, .2);
-    border-radius: 3px;
-}
 
 .modal-title {
     margin-bottom: 0;
@@ -139,7 +112,7 @@ td, th{
     padding: 20px;
 }
 .modal-body{
-    padding: 0px 25px 25px 25px;
+    padding: 25px 25px 25px 25px;
 }
 .modall{
     font-size: 1.3em;
@@ -165,4 +138,21 @@ td, th{
     width: 100%;
     text-align: center;
     font-size: .9em;
+}
+
+
+button.close{
+    display: none;
+}
+.modal-title{
+    margin: auto;
+}
+.deleteCon {
+    font-size: 2.0em;
+    text-align: center;
+}
+.btn-default{
+    color: #006633;
+    background-color: white;
+    border-color: #006633;
 }

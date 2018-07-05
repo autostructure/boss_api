@@ -556,15 +556,315 @@
 
 
                                     <!--                                                   START OF VISA TAB                                                     -->
-                                    <div class="tab-pane fade" id="visa" role="tabpanel" aria-labelledby="visapurchases">
-                                        Testing stuff for Visa Purchases
+                                    <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="namecode">Namecode</label>
+                                                                <select class="form-control" id="namecode">
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                    <option>4</option>
+                                                                    <option>5</option>
+                                                                </select>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="desc">Description</label>
+                                                        <input type="text"  id="decs" class="form-control"  aria-label="description" placeholder="Enter Description" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="boc">Budget Object Code (BOC)</label>
+                                                        <input type="text" disabled id="boc" class="form-control"  aria-label="budget object code" value="26" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="pc">Payment Code</label>
+                                                        <input type="text" disabled id="pc" class="form-control" aria-label="payment code" value="VI" aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col">
+                                                            <label for="fy">Fiscal Year</label>
+                                                            <select class="form-control" name="select" id="dropdownYear"></select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="dateentered">Date Entered</label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" id="dateentered" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="datemod">Date Modified</label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" id="datemod" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="dateob">Date Obligated</label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" id="dateob" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="payperiod">Pay Period</label>
+                                                            <select class="form-control" id="payperiod">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
+                                                                <option>11</option>
+                                                                <option>12</option>
+                                                                <option>13</option>
+                                                                <option>14</option>
+                                                                <option>15</option>
+                                                                <option>16</option>
+                                                                <option>17</option>
+                                                                <option>18</option>
+                                                                <option>19</option>
+                                                                <option>20</option>
+                                                                <option>21</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                                <option>24</option>
+                                                                <option>25</option>
+                                                                <option>26</option>
+                                                                <option>27</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="unitcode">Unit Code</label>
+                                                        <input type="text" disabled id="unitcode" class="form-control"  aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
+                                                    </div>     
+                                                                                                                                                     
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="vexpcode">Expense Code</label>
+                                                            <select class="form-control" id="vexpcode">
+                                                            </select>
+                                                        </div>                                                        
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="vjobcode">Job Code</label>
+                                                            <select class="form-control" id="vjobcode">
+                                                            </select>
+                                                        </div>                                                        
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="vactcode">Activity Code</label>
+                                                            <select class="form-control" id="vactcode">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <h2 class="title3 remarks">Remarks</h2>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <textarea class="form-control" id="remarks" rows="1"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row submitrow">
+                                                    <div class="col-4 offset-4">
+                                                        <button type="button" class="btn btn-lg submitbtn btn-success">
+                                                            <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
+                                                            Submit Expense 
+                                                        </button> 
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
                                     </div>
                                     <!--                                                   END OF VISA TAB                                                     -->
 
 
                                     <!--                                                   START OF OTHER/MISC TAB                                                    -->
-                                    <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="othermisc">
-                                        Testing stuff for Other / Misc
+                                    <div class="tab-pane fade show active" id="other" role="tabpanel" aria-labelledby="othermisc">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="onamecode">Namecode</label>
+                                                                <select class="form-control" id="onamecode">
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                    <option>4</option>
+                                                                    <option>5</option>
+                                                                </select>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="odesc">Description</label>
+                                                        <input type="text"  id="odesc" class="form-control"  aria-label="description" placeholder="Enter Description" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="oboc">Budget Object Code (BOC)</label>
+                                                        <select class="form-control" name="select" id="oboc"></select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="opc">Payment Code</label>
+                                                        <input type="text" id="opc" class="form-control" aria-label="payment code" placeholder="Enter Payment Code" aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col">
+                                                            <label for="odropdownyear">Fiscal Year</label>
+                                                            <select class="form-control" name="select" id="odropdownYear"></select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="odateentered">Date Entered</label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" id="odateentered" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="odatemod">Date Modified</label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" id="odatemod" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="odateob">Date Obligated</label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" id="odateob" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="opayperiod">Pay Period</label>
+                                                            <select class="form-control" id="opayperiod">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
+                                                                <option>11</option>
+                                                                <option>12</option>
+                                                                <option>13</option>
+                                                                <option>14</option>
+                                                                <option>15</option>
+                                                                <option>16</option>
+                                                                <option>17</option>
+                                                                <option>18</option>
+                                                                <option>19</option>
+                                                                <option>20</option>
+                                                                <option>21</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                                <option>24</option>
+                                                                <option>25</option>
+                                                                <option>26</option>
+                                                                <option>27</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="ounitcode">Unit Code</label>
+                                                        <input type="text" disabled id="ounitcode" class="form-control"  aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
+                                                    </div>     
+                                                                                                                                                     
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="oexpcode">Expense Code</label>
+                                                            <select class="form-control" id="vexpcode">
+                                                            </select>
+                                                        </div>                                                        
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="ojobcode">Job Code</label>
+                                                            <select class="form-control" id="vjobcode">
+                                                            </select>
+                                                        </div>                                                        
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="oactcode">Activity Code</label>
+                                                            <select class="form-control" id="vactcode">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <h2 class="title3 remarks">Remarks</h2>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <textarea class="form-control" id="remarks" rows="1"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row submitrow">
+                                                    <div class="col-4 offset-4">
+                                                        <button type="button" class="btn btn-lg submitbtn btn-success">
+                                                            <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
+                                                            Submit Expense 
+                                                        </button> 
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
                                     </div>
                                     <!--                                                   END OF OTHER/MISC TAB                                                     -->
                                     </div><!-- end of all tab content -->

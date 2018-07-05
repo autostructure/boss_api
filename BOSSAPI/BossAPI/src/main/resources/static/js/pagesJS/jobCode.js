@@ -32,7 +32,7 @@ var tempAPI = 'http://localhost:8090/jobCode';
                     <div class="dropdown1">
                     <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                         <div class="dropdown-content1">
-                            <a data-target="#myModal" data-toggle="modal" class="editModal" id="editModal" href="#myModal">Edit Job Code</a>
+                            <button type='button' class='btn btn-info btn-md editBtn' data-toggle='modal' data-id=\"" + full[1] + "\" data-target='#myModal'> Edit </button>
                             <a href="#">Delete Job Code</a> 
                         </div>
                     </div>
@@ -40,6 +40,7 @@ var tempAPI = 'http://localhost:8090/jobCode';
                     `
                 }
             }],  
+            // <a data-target="#myModal" data-toggle="modal" class="editModal" id="editModal" href="#myModal">Edit Job Code</a>
              buttons:[
             {
                 text:'Print <i class="fa fa-lg fa-print"></i>',
@@ -74,6 +75,7 @@ var tempAPI = 'http://localhost:8090/jobCode';
         ],
         
        });
+
 
    
         table.columns().every( function () {
@@ -114,4 +116,27 @@ var tempAPI = 'http://localhost:8090/jobCode';
 
    });
 
-    
+
+   $('#jobCodes tbody').on('click', '.editBtn', function(){
+       alert("I'm Working Here");
+          var fYear = $(this).data('financialYear');
+
+   var jcode = $(this).data('jobCode');
+   var desc = $(this).data('description');
+   var amt = $(this).data('amount');
+   $(".modal-body #mfYear").val("it's time");
+   $(".modal-body #mjcode").val(jcode);
+   $(".modal-body #mdesc").val(desc);
+   $(".modal-body #mamount").val(amt);
+   });
+//    $('.editBtn').click( function(){
+//     alert("I'm working");
+//    var fYear = $(this).data('financialYear');
+
+//    var jcode = $(this).data('jobCode');
+//    var desc = $(this).data('description');
+//    var amt = $(this).data('amount');
+//    $(".modal-body #mfYear").val("it's time");
+//    $(".modal-body #mjcode").val(jcode);
+//    $(".modal-body #mdesc").val(desc);
+//    $(".modal-body #mamount").val(amt);
