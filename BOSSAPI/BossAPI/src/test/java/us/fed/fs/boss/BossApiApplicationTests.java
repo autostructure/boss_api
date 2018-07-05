@@ -55,9 +55,38 @@ public class BossApiApplicationTests {
     static {
         baseUrl = "http://localhost:8090";
     }
+    
+     @Test
+    public void summaryForecast() {
+        
+         System.out.println("****************************@Test***budgetReports()*********************************");
+
+        printBox("Budget Summary 2017");
+
+        Short fy = Short.parseShort("2017");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try (CloseableHttpClient client = HttpClients.createDefault()) {
+
+            HttpGet httpACGet = new HttpGet(baseUrl + "/payrollForecastReport/json/" + fy.toString() + "/all");
+            httpACGet.setHeader("Content-type", "application/json");
+            CloseableHttpResponse getACRes = client.execute(httpACGet);
+            HttpEntity getRCResEnt = getACRes.getEntity();
+            String responseRCStringGET = EntityUtils.toString(getRCResEnt, "UTF-8");
+            Integer getRCstatus = getACRes.getStatusLine().getStatusCode();
+            Assert.assertEquals(200, getRCstatus.intValue());
+        } catch (Exception ex) {
+            System.out.println("********************************ERROR********************************************");
+            System.out.println(getStackTrace(ex));
+            System.out.println("********************************/ERROR********************************************");
+            Assert.assertTrue(false);
+        }
+        
+    }
 
     @Test
-    public void budgetReports() throws InterruptedException {
+    public void budgetReports() {
 
         /*
         

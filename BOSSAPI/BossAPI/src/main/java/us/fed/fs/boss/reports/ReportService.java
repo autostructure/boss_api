@@ -24,6 +24,11 @@ public class ReportService {
     
     @Autowired
     JobCodeRepository jobCodeRepository;
+    
+     @Async
+    public CompletableFuture<BudgetSummary> getSalaryForecastJSON(Short financialYear, String verified) throws InterruptedException {
+      return null;
+    }
 
     // /budgetSummary/{financialYear}/{verified/unverified/all}
     @Async
