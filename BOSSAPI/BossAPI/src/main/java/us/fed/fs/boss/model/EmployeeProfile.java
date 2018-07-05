@@ -1,6 +1,7 @@
 package us.fed.fs.boss.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -34,5 +35,11 @@ public class EmployeeProfile implements Serializable {
     
     @Column(name = "Title")
     private String title;
+    
+    @Column(name = "PayPeriodsLeft")
+    private Short payPeriodsLeft;
+    
+    @Column(name = "RegPayPerPayPeriod")
+    private BigDecimal regPayPerPayPeriod;
     
 }
