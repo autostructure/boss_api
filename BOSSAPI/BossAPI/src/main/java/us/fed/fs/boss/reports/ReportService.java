@@ -59,7 +59,7 @@ public class ReportService {
             BigDecimal regPayToDate = BigDecimal.ZERO;
             BigDecimal totalFYForecast = BigDecimal.ZERO;
 
-            // do some muffukin maths here!!!!!!!!!!!! ~~~~~~~~~~~~~~~~~~~~~~~~~
+            // do some maths here!!!!!!!!!!!! ~~~~~~~~~~~~~~~~~~~~~~~~~
             
             rows.add(row);
             
