@@ -38,6 +38,7 @@ import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.reports.BudgetSummary;
 import us.fed.fs.boss.reports.FileTypeDetector;
+import us.fed.fs.boss.reports.PayrollForecast;
 import us.fed.fs.boss.reports.ReportService;
 import us.fed.fs.boss.reports.ReportsFileBuilder.FileType;
 import us.fed.fs.boss.repository.ActivityCodeRepository;
@@ -191,13 +192,22 @@ public class BudgetController {
     }
 
     // Get Budget Summary JSON
+    @GetMapping("/payrollForecastReport")
+    public ResponseEntity getPayrollForecast() throws InterruptedException, IOException, ExecutionException {
+        CompletableFuture<PayrollForecast> summaryFutureJSON
+                = reportService.getSalaryForecastJSON();
+        PayrollForecast report = summaryFutureJSON.get();
+        return new ResponseEntity<PayrollForecast>(report, HttpStatus.OK);
+    }
+
+    // Get Budget Summary JSON
     @GetMapping("/budgetSummaryReport/{type}/{financialYear}/{verified}")
     public ResponseEntity getBudgetSummary(
             @PathVariable("type") String type,
             @PathVariable("financialYear") Short financialYear,
             @PathVariable("verified") String verified
     ) throws InterruptedException, IOException, ExecutionException {
-        
+
         verified = verified.toLowerCase();
         if (!verified.equals("verified") && !verified.equals("unverfied") && !verified.equals("all")) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

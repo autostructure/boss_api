@@ -27,7 +27,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,11 +56,11 @@ public class BossApiApplicationTests {
     static {
         baseUrl = "http://localhost:8090";
     }
-    
-     @Test
+
+    @Test
     public void summaryForecast() {
-        
-         System.out.println("****************************@Test***budgetReports()*********************************");
+
+        System.out.println("****************************@Test***payrollForecstReport()*********************************");
 
         printBox("Budget Summary 2017");
 
@@ -71,7 +70,7 @@ public class BossApiApplicationTests {
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpGet httpACGet = new HttpGet(baseUrl + "/payrollForecastReport/json/" + fy.toString() + "/all");
+            HttpGet httpACGet = new HttpGet(baseUrl + "/payrollForecastReport");
             httpACGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getACRes = client.execute(httpACGet);
             HttpEntity getRCResEnt = getACRes.getEntity();
@@ -89,7 +88,9 @@ public class BossApiApplicationTests {
             System.out.println("********************************/ERROR********************************************");
             Assert.assertTrue(false);
         }
-        
+
+        System.out.println("************************************************************************************");
+
     }
 
     @Test
@@ -194,91 +195,83 @@ public class BossApiApplicationTests {
             System.out.println();
 
             printBox("Excel File Test");
-            
+
             HttpGet httpXLSGet = new HttpGet(baseUrl + "/budgetSummaryReport/xlsx/" + fy.toString() + "/all");
             httpXLSGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getXLSRes = client.execute(httpXLSGet);
             HttpEntity getXLSResEnt = getXLSRes.getEntity();
 
-            
             Integer getXLSstatus = getXLSRes.getStatusLine().getStatusCode();
-                        
+
             printBox(baseUrl + "/budgetSummaryReport/xlsx/" + fy.toString() + "/all", getXLSstatus.toString());
             Assert.assertEquals(200, getXLSstatus.intValue());
-            
+
             InputStream is = getXLSResEnt.getContent();
             String filePath = "sampledownloaded.xlsx";
             FileOutputStream fos = new FileOutputStream(new File(filePath));
             int inByte;
-            while((inByte = is.read()) != -1)
-                 fos.write(inByte);
+            while ((inByte = is.read()) != -1) {
+                fos.write(inByte);
+            }
             is.close();
             fos.close();
-            
+
             File downloaded = new File(filePath);
-            
+
             Assert.assertTrue(downloaded.exists());
-            
-            
-            
+
             // PDF
-            
             printBox("Test PDF BudgetReport");
-            
-            
+
             HttpGet httpPDFGet = new HttpGet(baseUrl + "/budgetSummaryReport/pdf/" + fy.toString() + "/all");
             httpPDFGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getPDFRes = client.execute(httpPDFGet);
             HttpEntity getPDFResEnt = getPDFRes.getEntity();
 
-            
             Integer getPDFstatus = getPDFRes.getStatusLine().getStatusCode();
-                        
+
             printBox(baseUrl + "/budgetSummaryReport/pdf/" + fy.toString() + "/all", getPDFstatus.toString());
             Assert.assertEquals(200, getPDFstatus.intValue());
-            
+
             InputStream isPDF = getPDFResEnt.getContent();
             String filePathPDF = "sampledownloaded.pdf";
             FileOutputStream fosPDF = new FileOutputStream(new File(filePathPDF));
             int inBytePDF;
-            while((inBytePDF = isPDF.read()) != -1)
-                 fosPDF.write(inBytePDF);
+            while ((inBytePDF = isPDF.read()) != -1) {
+                fosPDF.write(inBytePDF);
+            }
             is.close();
             fosPDF.close();
-            
+
             File downloadedPDF = new File(filePathPDF);
-            
+
             Assert.assertTrue(downloadedPDF.exists());
-            
-            
-            
-             printBox("Test CSV BudgetReport");
-            
-            
+
+            printBox("Test CSV BudgetReport");
+
             HttpGet httpCSVGet = new HttpGet(baseUrl + "/budgetSummaryReport/csv/" + fy.toString() + "/all");
             httpCSVGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getCSVRes = client.execute(httpCSVGet);
             HttpEntity getCSVResEnt = getCSVRes.getEntity();
 
-            
             Integer getCSVstatus = getCSVRes.getStatusLine().getStatusCode();
-                        
+
             printBox(baseUrl + "/budgetSummaryReport/csv/" + fy.toString() + "/all", getCSVstatus.toString());
             Assert.assertEquals(200, getCSVstatus.intValue());
-            
+
             InputStream isCSV = getCSVResEnt.getContent();
             String filePathCSV = "sampledownloaded.csv";
             FileOutputStream fosCSV = new FileOutputStream(new File(filePathCSV));
             int inByteCSV;
-            while((inByteCSV = isCSV.read()) != -1)
-                 fosCSV.write(inByteCSV);
+            while ((inByteCSV = isCSV.read()) != -1) {
+                fosCSV.write(inByteCSV);
+            }
             is.close();
             fosCSV.close();
-            
+
             File downloadedCSV = new File(filePathCSV);
-            
+
             Assert.assertTrue(downloadedCSV.exists());
-            
 
         } catch (Exception ex) {
             System.out.println("********************************ERROR********************************************");
