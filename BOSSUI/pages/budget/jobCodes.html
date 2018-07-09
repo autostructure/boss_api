@@ -55,14 +55,11 @@
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
                                             <h2 class="title2">Job Code Mgmt</h2>
-                                            <div class="row">
-                                                    <div class="col">
-                                                        <label for="oboc">Choose FY</label>
-                                                        <select class="form-control" name="select" id="fy">
-                                                            <option value="2017">2017</option>
-                                                            <option value="2016">2016</option>
-                                                        </select>
-                                                    </div>                                                    
+                                            <div class="row topRow">
+                                                <div class="col-3 fiscalyearDiv">
+                                                    <label for="fySelect" class="fyLabel">Choose Financial Year</label>
+                                                    <div class="fyDiv" id="fySearch"></div>
+                                                </div>                                                  
                                             </div>
                                             <!-- <div id="yearFilter">
                                                 <div class="form-group">
@@ -77,15 +74,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Fiscal Year</th>
-                                                    <th scope="col">Job Code</th>
-                                                    <th scope="col">Description</th>
-                                                    <th scope="col" id="stop">Amount</th>
-                                                    <th></th>
-
-
-                                                </tr>
-                                                <tr>
-                                                    <th scope="col">Financial Year</th>
+                                                    <th scope="col">Unit Code</th>
                                                     <th scope="col">Job Code</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col" id="stop">Amount</th>
@@ -125,13 +114,19 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <label for="mdesc" class="modall">Description</label>
-                                                <input type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Financial Year">
+                                                <label for="munit" class="modall">Unit Code</label>
+                                                <input type="text" class="form-control modall" id="munitcode" name="munitcode" placeholder="Enter Unit / Override Code">
                                             </div>
                                             <div class="col">
                                                 <label for="mamount" class="modall">Amount</label>
                                                 <input type="number" step="1" class="form-control modall" id="mamount" name="mamount" placeholder="Enter Financial Year">
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="mdesc" class="modall">Description</label>
+                                                <input type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Financial Year">
+                                            </div>                                            
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -166,12 +161,18 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label for="mdesc" class="modall">Description</label>
-                                                        <input type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Financial Year">
-                                                    </div>
+                                                        <label for="munit" class="modall">Unit Code</label>
+                                                        <input type="text" class="form-control modall" id="munitcode" name="munitcode" placeholder="Enter Unit / Override Code">
+                                                    </div>                                                    
                                                     <div class="col">
                                                         <label for="mamount" class="modall">Amount</label>
                                                         <input type="number" step="1" class="form-control modall" id="mamount" name="mamount" placeholder="Enter Financial Year">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="mdesc" class="modall">Description</label>
+                                                        <input type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Financial Year">
                                                     </div>
                                                 </div>
                                             </div>

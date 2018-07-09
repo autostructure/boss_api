@@ -90,6 +90,14 @@ $(document).ready(function() {
                 className: 'table-btns print-btn'
             },
             {
+                text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
+                extend: 'excel',
+                exportOptions:{
+                    columns: [0,1,2,3,4,5,6,7,8,9]
+                },
+                className: 'table-btns excel-btn'
+            },
+            {
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
                 action: function(){
                     window.location.href = '../budget/newExpense.html';

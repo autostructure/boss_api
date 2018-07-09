@@ -1,8 +1,8 @@
 $(document).ready(function() {
     // $(".datepicker").datepicker('setDate', new Date());
-    $("#dateentered, #tvdateentered").datepicker('setDate', new Date());
-    $("#datemod, #tvdatemod").datepicker('setDate', new Date());
-    $("#dateob, #tvdateob").datepicker('setDate', new Date());
+    $("#dateentered, #tvdateentered, #vdateentered, #odateentered").datepicker('setDate', new Date());
+    $("#datemod, #tvdatemod, #vdatemod, #odatemod").datepicker('setDate', new Date());
+    $("#dateob, #tvdateob, #vdateob, #odateob").datepicker('setDate', new Date());
     $('#expenseSub').addClass('show');
     $('#expenseSub > li:nth-child(1) > a').addClass('highlight');
     $.ajax({
@@ -10,7 +10,7 @@ $(document).ready(function() {
       url: 'http://localhost:8090/jobCode?financialYear=2017',
       success: function(json){
         $.each(json, function(value, key) {
-          $('#jobcode, #jobcode1').append(json.map(function(sObj){
+          $('#jobcode, #jobcode1, #vjobcode, #ojobcode').append(json.map(function(sObj){
             return '<option id="'+sObj.jobCode+'">'+sObj.jobCode +'</option>'
           })) ;
           });
@@ -21,7 +21,7 @@ $(document).ready(function() {
         url: 'http://localhost:8090/activityCode',
         success: function(json){
           $.each(json, function(value, key) {
-            $('#actcode, #actcode1').append(json.map(function(sObj){
+            $('#actcode, #actcode1, #vactcode, #oactcode').append(json.map(function(sObj){
               return '<option id="'+sObj.name+'">'+sObj.name +'</option>'
             })) ;
             });
@@ -32,17 +32,28 @@ $(document).ready(function() {
           url: 'http://localhost:8090/expenseCode',
           success: function(json){
             $.each(json, function(value, key) {
-              $('#expcode, #expcode1').append(json.map(function(sObj){
+              $('#expcode, #expcode1, #vexpcode, #oexpcode').append(json.map(function(sObj){
                 return '<option id="'+sObj.id+'">'+sObj.id + '   ' + sObj.type + '</option>'
               })) ;
               });
             }
           }); //end of get jobcode ajax call
+          $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8090/budgetObjectCode',
+            success: function(json){
+              $.each(json, function(value, key) {
+                $('#oboc').append(json.map(function(sObj){
+                  return '<option id="'+sObj.id+'">'+sObj.name +'</option>'
+                })) ;
+                });
+              }
+            }); //end of get jobcode ajax call
 });
 
 
 
-$('#dropdownYear, #tvdropdownYear').each(function() {
+$('#dropdownYear, #tvdropdownYear, #vdropdownYear, #odropdownYear').each(function() {
     
       var year = (new Date()).getFullYear();
       var current = year;
