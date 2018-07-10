@@ -16,7 +16,9 @@
     font-family: lightFont;
     padding-bottom: 10px;
 }
-
+textarea{
+    height: 8rem;
+}
 .content-div{
     border: 1px solid rgba(33, 33, 33, .2);
     border-radius: 8px;
@@ -161,4 +163,7 @@ thead{
     box-sizing: inherit;
     vertical-align: text-bottom;
     font-size: 1.3em;
+}
+.topLabel{
+    margin-top: 0px !important;
 }

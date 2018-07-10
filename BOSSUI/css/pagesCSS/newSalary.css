@@ -50,12 +50,6 @@
     font-size: 2.0rem;
     display: inline-block;
 }
-#travelDetails{
-    border: .5px solid rgb(202, 202, 202);
-    border-radius: 15px;
-    box-shadow: 5px 10px 10px rgba(111, 111, 111, 0.4);
-    padding: 20px;
-}
 
 .usa-section1{
     padding-top: 0px !important;
@@ -66,49 +60,7 @@
     border-radius: 15px;
     padding: 20px;
 }
-.sequence{
-    float: right;
-    padding-top: 20px;
-    font-size: 1.5em;
-}
-.nav-item a{
-    font-size: 1.5em;
-    color: rgb(36, 36, 36);
-}
-.nav-tabs .nav-link.active{
-    border-color: #ddd #ddd #fff;
-    border-top-color: #006633;
-    border-right-color: rgb(221, 221, 221);
-    border-bottom-color: rgb(255, 255, 255);
-    border-left-color: rgb(221, 221, 221);
-    color: #006633 !important;
-}
-.nav-tabs .nav-link{
-    border: 3px solid transparent;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-}
-#contact-tab a[aria-expanded="false"]::before, #contact-tab a[aria-expanded="true"]::before,
-#time-tab a[aria-expanded="false"]::before, #time-tab a[aria-expanded="true"]::before,
-#visa-tab a[aria-expanded="false"]::before, #visa-tab a[aria-expanded="true"]::before,
-#other-tab a[aria-expanded="false"]::before, #other-tab a[aria-expanded="true"]::before
 
-{
-    display: none !important;
-}
-.bottomBL{
-    border-top: 1px solid rgba(111, 111, 111, 0.4);
-    border-bottom: 1px solid rgba(111, 111, 111, 0.4);
-    border-right: 1px solid rgba(111, 111, 111, 0.4);
-}
-.bottomBR{
-    border-top: 1px solid rgba(111, 111, 111, 0.4);
-    border-bottom: 1px solid rgba(111, 111, 111, 0.4);
-    border-left: 1px solid rgba(111, 111, 111, 0.4);
-}
-#detailsTable{
-    padding: 20px;
-}
 select {
     background-image: url('../../img/arrow-down.png') !important;
     background-position: right 1.3rem center;
@@ -116,11 +68,9 @@ select {
     background-size: 0.8rem !important;
 }
 input, select{
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
-.remarks{
-    padding: 0px 20px;
-}
+
 .submitbtn{
     width: 100%;
     margin: 20px auto;
@@ -131,37 +81,17 @@ input, select{
     background-color: rgb(225, 225, 225);
 }
 .form-control{
-    font-size: 1.2em !important;
+    font-size: 1.4em !important;
 }
-th, td{
-    border: none !important;
-    font-size: 1.1em;
-    text-align: center;
-    vertical-align: middle !important;
+label{
+    font-size: 1.4em !important;
 }
-th{
-    color: #006633;
-}
-thead{
-    border-bottom: 2px solid #006633;
-}
+
 .btn-success{
     background-color: #006633;
     border-color: #006633;
 }
-#leftdetailcol{
-    border-right: 1px solid rgba(111, 111, 111, 0.4);
-}
-.remarks{
-    margin-bottom: 24px;
-    font-size: 1.4em;
-}
-.addbtn{
-    margin-right: 5px;
-    box-sizing: inherit;
-    vertical-align: text-bottom;
-    font-size: 1.3em;
-}
+
 .submitrow{
     margin-top: 40px;
 }

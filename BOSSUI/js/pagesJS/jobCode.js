@@ -26,10 +26,6 @@ console.log(optionDate);
                     var column = this;
                     var select = $('<select id="fySelect" class="fySelect form-control"><option value="2017"></option></select>')
                         .appendTo( $('#fySearch').empty() )
-                        .on('load', function(){
-                            $(this).val('2017')
-                        
-                        
                         .on( 'change', function () {
                             var val = $.fn.dataTable.util.escapeRegex(
                                 $(this).val()
@@ -42,23 +38,16 @@ console.log(optionDate);
      
                     column.data().unique().sort().each( function ( d, j ) {
                         select.append( '<option value="'+d+'">'+d+'</option>' )
-                    } );
+                    } );               
+                    })},            
 
-
-                    
-                    
-                
-            },            
-        //    bSortCellsTop: true,
            dom: "Brtip",
            "paging": false,
            ajax:{"url":tempAPI,"dataSrc":""},
            columnDefs: [ {
             "targets": [4],
             "orderable": false
-            },
-
-            ],
+            }],
 
             
            columns:[
@@ -159,6 +148,32 @@ console.log(optionDate);
 
 });
 
+
+
+$("#addForm").submit(function() {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8090/jobCode",
+        crossDomain: true,
+        dataType: 'jsonp',
+        contentType: "application/json",
+        headers:{Accept : "application/json", "Access-Control-Allow-Origin": "*"},        
+        data: {
+            "amount":100,
+            "description":"test", 
+            "financialYear":2017, 
+            "jobCode":"stuff", 
+            "overrideCode":123, 
+            "id":333},
+
+        success: function (msg) {
+           alert(msg);
+        },
+        failure: function (response) {
+           alert(response);
+        }
+     });
+});
 
 
 
