@@ -149,23 +149,24 @@ console.log(optionDate);
 });
 
 
-
+var data = [
+    { "amount":100,
+    "description":"test", 
+    "financialYear":2017, 
+    "jobCode":"stuff", 
+    "overrideCode":123, 
+    "id":333 }
+];
 $("#addForm").submit(function() {
     $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         type: "POST",
         url: "http://localhost:8090/jobCode",
-        crossDomain: true,
-        dataType: 'jsonp',
-        contentType: "application/json",
-        headers:{Accept : "application/json", "Access-Control-Allow-Origin": "*"},        
-        data: {
-            "amount":100,
-            "description":"test", 
-            "financialYear":2017, 
-            "jobCode":"stuff", 
-            "overrideCode":123, 
-            "id":333},
-
+        dataType: 'json',        
+        data: JSON.stringify(data),
         success: function (msg) {
            alert(msg);
         },

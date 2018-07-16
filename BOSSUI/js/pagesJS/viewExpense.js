@@ -2,27 +2,27 @@ var api = "http://localhost:8090/expense";
 
 // ONCE WE LOAD SOME DATA, NEED TO TURN AJAX URL AND REMOVE VAR
 
-// var dataSet = [
-    // [ "FS", "HD", "LaneyM", "FEDEX", "05","2019", "FRF13818", "26", "12,000,000", "2011/07/25" ],
-    // [ "SF", "TD", "LazerasS", "UPS", "05", "2019","FRF13818", "26", "1,877", "2011/07/25" ],
-    // [ "DS", "GD", "RussellM", "AZ", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
-    // [ "RS", "AD", "BlancD", "UPS", "05", "2019","FRF13818", "26", "100", "2011/07/25" ],
-    // [ "R", "DD", "ThomH", "DISCOUNT STORAGE", "05", "2016","FRF13818", "26", "12,000", "2011/07/25" ],
-    // [ "K", "D", "CharioniD", "UPS", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
+var dataSet = [
+     {"actCode":"FS", "secCode":"HD", "nameCode":"LaneyM", "description":"FEDEX", "payperiod":"05","seq":"2019",  "jobCode":"FRF13818", "expCode":"26", "total":"12,000,000", "obligatedDate":"2011/07/25"} ,
+     {"actCode":"SF", "secCode":"TD", "nameCode":"LazerasS", "description":"UPS", "payperiod":"21", "seq":"2019", "jobCode":"FRF13818", "expCode":"26", "total":"1,877", "obligatedDate":"2011/07/25" },
+     {"actCode":"DS", "secCode":"GD", "nameCode":"RussellM", "description":"AZ", "payperiod":"11", "seq":"2019", "jobCode":"FRF13818", "expCode":"26", "total":"12,000,000", "obligatedDate":"2011/07/25"} ,
+     {"actCode":"RS", "secCode":"AD", "nameCode":"BlancD", "description":"UPS", "payperiod":"2", "seq":"2019", "jobCode":"FRF13818", "expCode":"26", "total":"100", "obligatedDate":"2011/07/25" },
+     {"actCode":"R", "secCode":"DD", "nameCode":"ThomH", "description":"DISCOUNT STORAGE", "payperiod":"05", "seq":"2016", "jobCode":"FRF13818", "expCode":"26", "total":"12,000", "obligatedDate":"2011/07/25"} ,
+    { "actCode":"K", "secCode":"D", "nameCode":"CharioniD", "description":"UPS", "payperiod":"05", "seq":"2019", "jobCode":"FRF13818", "expCode":"26", "total":"12,000,000", "obligatedDate":"2011/07/25" }
 
-// ];
+];
 
 $(document).ready(function() {
     $('#expenseSub').addClass('show');
     $('#expenseSub > li:nth-child(2) > a').addClass('highlight');
 
-    $('#expense thead th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" class="headSearch" placeholder= '+title+' />' );
-        if ($(this).is("#stop")){
-            return false;
-        }
-    } );
+    // $('#expense thead th').each( function () {
+    //     var title = $(this).text();
+    //     $(this).html( '<input type="text" class="headSearch" placeholder= '+title+' />' );
+    //     if ($(this).is("#stop")){
+    //         return false;
+    //     }
+    // } );
 
 
 
@@ -37,6 +37,14 @@ $(document).ready(function() {
                     columns: [0,1,2,3,4,5,6,7,8,9]
                 },
                 className: 'table-btns print-btn'
+            },
+            {
+                text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
+                extend: 'excel',
+                exportOptions:{
+                    columns: [0,1,2,3,4,5,6,7,8,9]
+                },
+                className: 'table-btns excel-btn'
             },
             {
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
@@ -54,18 +62,18 @@ $(document).ready(function() {
             }
           
         ],
-        ajax: api,
+        data: dataSet,
         aoColumns: [
-            { mData: "actCode" },
-            { mData: "secCode" },
-            { mData: "employeeProfile.nameCode" },
-            { mData: "description" },
-            { mData: "payPeriod" },
-            { mData: "seq" },
-            { mData: "jobCode" },
-            { mData: "expCode" },
-            { mData: "total" },
-            { mData: "obligatedDate" },
+            { data: "actCode" },
+            { data: "secCode" },
+            { data: "nameCode" },
+            { data: "description" },
+            { data: "payperiod" },
+            { data: "seq" },
+            { data: "jobCode" },
+            { data: "expCode" },
+            { data: "total" },
+            { data: "obligatedDate" },
             {data: null,
                 "render": function(){
                     return `
@@ -73,8 +81,7 @@ $(document).ready(function() {
                         <div class="dropdown1">
                         <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                         <div class="dropdown-content1">
-                        <a href="#">View expense details</a>
-                        <a href="#">Edit expense</a>
+                        <a href="#">View / Edit Expense</a>
                         <a href="#">Delete expense</a>
                         </div>
                     </div>

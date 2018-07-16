@@ -19,18 +19,21 @@ var jsonData = [
     {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
     {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"}
 ];
+
+$('#payrollSub').addClass('show');
+$('#payrollSub > li:nth-child(2) > a').addClass('highlight');
  
 $(document).ready(function() {
     $('#payrollSub').addClass('show');
     $('#payrollSub > li:nth-child(2) > a').addClass('highlight');
- 
-    $('#payroll thead tr:nth-child(2) th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" class="headSearch" placeholder="Search" />' );
-        if ($(this).is("#stop")){
-            return false;
-        }
+
+    $('#payroll thead tr:nth-child(1) th:nth-child(1)').each( function () {
+        $(this).html( '<label class="headLabel" for="sec">Section</label><input type="text" id="sec" class="headSearch" placeholder="Search Section" />' );
     } );
+    $('#payroll thead tr:nth-child(1) th:nth-child(2)').each( function () {
+        $(this).html( '<label class="headLabel" for="name">Name Code</label><input type="text" id="name" class="headSearch" placeholder="Search Name Code" />' );
+    } );   
+
  
     var dt = $('#payroll').DataTable({ 
         dom: 'Brtip',
@@ -85,7 +88,7 @@ $(document).ready(function() {
                 text: 'Print <i class="fa fa-lg fa-print"></i>',
                 extend: 'print',
                 exportOptions:{
-                    columns: [0,1,2,3,4,5,6,7,8,9]
+                    columns: [0,1,2,3,4,5,6,7]
                 },
                 className: 'table-btns print-btn'
             },
@@ -93,14 +96,14 @@ $(document).ready(function() {
                 text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                 extend: 'excel',
                 exportOptions:{
-                    columns: [0,1,2,3,4,5,6,7,8,9]
+                    columns: [0,1,2,3,4,5,6,7]
                 },
                 className: 'table-btns excel-btn'
             },
             {
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
                 action: function(){
-                    window.location.href = '../budget/newExpense.html';
+                    window.location.href = './newSalary.html';
                 },
                 className: 'table-btns add-btn'
             },

@@ -167,3 +167,20 @@ thead{
 .topLabel{
     margin-top: 0px !important;
 }
+.reqClass{
+    color: red;
+}
+label{
+    font-size: 1.6em;
+}
+.reqText{
+    padding: 10px 20px 0px 20px;
+    font-size: 1.3em;
+}
+.shaded{
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: 3px;
+    background-color: rgb(230, 230, 230);
+    color: black;
+    padding: 5px;
+}

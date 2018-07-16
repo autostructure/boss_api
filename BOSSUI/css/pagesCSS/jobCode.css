@@ -177,14 +177,7 @@ button.close{
     margin-top: 4px !important;
 }
 
-table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
-    position: absolute;
-    color: #ababab;
-    top: 40px;
-    right: 0px;
-    display: block;
-    font-family: FontAwesome;
-}
+
 #fySelect {
     font-size: 1.5em;
     line-height: 1.5;
@@ -200,4 +193,12 @@ table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:aft
 }
 thead{
     background-color: #d5ffd5;
+}
+table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+    position: absolute;
+    color: #ababab;
+    top: 40px;
+    right: 0px;
+    display: block;
+    font-family: FontAwesome;
 }

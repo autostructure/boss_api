@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.ActivityCode;
@@ -138,9 +139,11 @@ public class BudgetController {
     }
 
     @PostMapping("/jobCode")
-    public JobCode createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
+    @ResponseBody
+    public JobCode createJobCode(@Valid @Requestbody JobCode jobCodeDetails) {
         return jobCodeRepository.save(jobCodeDetails);
     }
+    
 
     @PutMapping("/jobCode/{id}")
     public JobCode updateJobCode(@PathVariable(value = "id") Long jobCodeId,
