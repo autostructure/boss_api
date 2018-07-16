@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.ActivityCode;
@@ -39,7 +38,6 @@ import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.reports.BudgetSummary;
 import us.fed.fs.boss.reports.FileTypeDetector;
-import us.fed.fs.boss.reports.PayrollForecast;
 import us.fed.fs.boss.reports.ReportService;
 import us.fed.fs.boss.reports.ReportsFileBuilder.FileType;
 import us.fed.fs.boss.repository.ActivityCodeRepository;
@@ -139,11 +137,9 @@ public class BudgetController {
     }
 
     @PostMapping("/jobCode")
-    @ResponseBody
-    public JobCode createJobCode(@Valid @Requestbody JobCode jobCodeDetails) {
+    public JobCode createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
         return jobCodeRepository.save(jobCodeDetails);
     }
-    
 
     @PutMapping("/jobCode/{id}")
     public JobCode updateJobCode(@PathVariable(value = "id") Long jobCodeId,
@@ -195,22 +191,13 @@ public class BudgetController {
     }
 
     // Get Budget Summary JSON
-    @GetMapping("/payrollForecastReport")
-    public ResponseEntity getPayrollForecast() throws InterruptedException, IOException, ExecutionException {
-        CompletableFuture<PayrollForecast> summaryFutureJSON
-                = reportService.getSalaryForecastJSON();
-        PayrollForecast report = summaryFutureJSON.get();
-        return new ResponseEntity<PayrollForecast>(report, HttpStatus.OK);
-    }
-
-    // Get Budget Summary JSON
-    @GetMapping("/budgetSummaryReport/{type}/{financialYear}/{verified}")
+    @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
     public ResponseEntity getBudgetSummary(
             @PathVariable("type") String type,
             @PathVariable("financialYear") Short financialYear,
             @PathVariable("verified") String verified
     ) throws InterruptedException, IOException, ExecutionException {
-
+        
         verified = verified.toLowerCase();
         if (!verified.equals("verified") && !verified.equals("unverfied") && !verified.equals("all")) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
