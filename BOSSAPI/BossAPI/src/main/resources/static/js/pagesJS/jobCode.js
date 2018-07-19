@@ -20,6 +20,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 console.log(data);
+                $('#myModal').modal('hide');
             },
             error: function(e) {
                 console.log(e.responseText);
