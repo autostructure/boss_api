@@ -104,17 +104,17 @@
                                             </div>
                                             <div class="col">
                                                 <label for="mjcode" class="modall">Job Code</label>
-                                                <input type="text" class="form-control modall" id="mjcode" name="mjcode" placeholder="Enter Financial Year">
+                                                <input type="text" class="form-control modall" id="mjcode" name="mjcode" placeholder="Enter Job Code">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <label for="mdesc" class="modall">Description</label>
-                                                <input type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Financial Year">
+                                                <input type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Description">
                                             </div>
                                             <div class="col">
                                                 <label for="mamount" class="modall">Amount</label>
-                                                <input type="text" class="form-control modall" id="mamount" name="mamount" placeholder="Enter Financial Year">
+                                                <input type="text" class="form-control modall" id="mamount" name="mamount" placeholder="Enter Amount">
                                             </div>
                                         </div>
                                     </div>
