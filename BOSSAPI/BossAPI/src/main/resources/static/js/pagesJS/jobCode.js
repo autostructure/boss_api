@@ -2,31 +2,7 @@ var tempAPI = 'http://localhost:8090/jobCode';
 
 $(document).ready(function() {
     // mamount, mdesc, mjcode, mfyear
-    $("#saveJC").click(function() {
-        var jc = {
-                "amount": parseInt($('#mamount').val()),
-                "description": $('#mdesc').val(),
-                "financialYear": parseInt($('#mfyear').val()),
-                "jobCode": $('#mjcode').val()
-              };
-              
-        console.log(jc);
-
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/jobCode",
-            data: JSON.stringify(jc),
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-                $('#myModal').modal('hide');
-            },
-            error: function(e) {
-                console.log(e.responseText);
-            }
-        });
-    });
+    
 
     $('#budgetSub').addClass('show');
     $('#budgetSub > li:nth-child(2) > a').addClass('highlight');
@@ -75,7 +51,7 @@ $(document).ready(function() {
                         </div>
                     </div>
                     
-                    `
+                    `;
                 }
             }
         ],
@@ -111,10 +87,34 @@ $(document).ready(function() {
                 className: 'table-btns refresh-btn'
             }
         ],
-
     });
 
+    $("#saveJC").click(function() {
+        var jc = {
+                "amount": parseInt($('#mamount').val()),
+                "description": $('#mdesc').val(),
+                "financialYear": parseInt($('#mfyear').val()),
+                "jobCode": $('#mjcode').val()
+              };
+              
+        console.log(jc);
 
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/jobCode",
+            data: JSON.stringify(jc),
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                table.ajax.reload();
+                $('#myModal').modal('hide');
+            },
+            error: function(e) {
+                console.log(e.responseText);
+            }
+        });
+    });
 
     table.columns().every(function() {
         var that = this;
