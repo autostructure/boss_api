@@ -67,7 +67,7 @@ console.log(optionDate);
                         </div>
                     </div>
                     
-                    `
+                    `;
                 }
             }],  
              buttons:[
@@ -77,7 +77,7 @@ console.log(optionDate);
                 exportOptions:{
                     columns: [0,1,2,3]
                 },
-                className:'table-btns print-btn'
+                className: 'table-btns print-btn'
             },
             {
                 text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
@@ -92,14 +92,14 @@ console.log(optionDate);
                 action:function(){
                     $('#addModal').modal('show');
                 },
-                className:'table-btns add-btn'
+                className: 'table-btns add-btn'
             },
             {
-                text:'Refresh <i class="fa fa-lg fa-repeat"></i>',
-                action:function(){
+                text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
+                action: function() {
                     window.location.reload();
                 },
-                className:'table-btns refresh-btn'
+                className: 'table-btns refresh-btn'
             }
         ],
         
@@ -165,6 +165,7 @@ $("#saveJC").click(function() {
         timeout: 600000,
         success: function(data) {
             console.log(data);
+            table.ajax.reload();
             $('#addModal').modal('hide');
             $('#success').show()
             $('#success').delay(5000).fadeOut();
@@ -202,6 +203,7 @@ $("#editJC").click(function() {
         timeout: 600000,
         success: function(data) {
             console.log(data);
+            table.ajax.reload();
             $('#myModal').modal('hide');
             $('#success').show();
             $('#success').delay(5000).fadeOut();
@@ -238,6 +240,7 @@ $("#deleteJC").click(function() {
         timeout: 600000,
         success: function(data) {
             console.log(data);
+            table.ajax.reload();
             $('#deleteModal').modal('hide');
             $('#success').show();
             $('#success').delay(5000).fadeOut();
@@ -250,7 +253,6 @@ $("#deleteJC").click(function() {
         }
     });
 });
-
 
 
 
