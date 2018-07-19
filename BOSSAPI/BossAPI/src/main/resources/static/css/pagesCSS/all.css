@@ -337,3 +337,38 @@ ul ul a {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown1:hover .dropbtn1 {background-color: #3e8e41;}
+
+table.dataTable thead th {
+    position: relative;
+    background-image: none !important;
+}
+ 
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
+    position: absolute;
+    top: 12px;
+    right: 0px;
+    display: block;
+    font-family: FontAwesome;
+}
+
+table.dataTable thead th.sorting:after {
+    content: "\f0dc";
+    color: #ddd;
+    font-size: 0.8em;
+    padding-top: 0.12em;
+}
+table.dataTable thead th.sorting_asc:after {
+    content: "\f0de";
+}
+table.dataTable thead th.sorting_desc:after {
+    content: "\f0dd";
+}
+
+.dt-button{
+    color: black;
+}
+.dt-button:hover{
+    color: rgb(80, 80, 80) !important;
+}

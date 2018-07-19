@@ -923,14 +923,14 @@
                                                 <div class="row">
                                                         <div class="col">
                                                             <div class="form-group">
-                                                                <label class="control-label" for="ofy">Fiscal Year</label>
+                                                                <label class="control-label" for="ofy">Fiscal Year<span class="reqClass"> *</span></label>
                                                                 <select required class="form-control" name="select" id="ofy"></select>
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group">
-                                                                <label class="control-label" for="odateentered">Date Entered</label>
+                                                                <label class="control-label" for="odateentered">Date Entered<span class="reqClass"> *</span></label>
                                                                 <div class="input-group date" data-provide="datepicker">
                                                                     <input required type="text" id="odateentered" class="form-control">
                                                                     <div class="input-group-addon">
@@ -942,7 +942,7 @@
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group">
-                                                                <label class="control-label" for="odatemod">Date Modified</label>
+                                                                <label class="control-label" for="odatemod">Date Modified<span class="reqClass"> *</span></label>
                                                                 <div class="input-group date" data-provide="datepicker">
                                                                     <input required type="text" id="odatemod" class="form-control">
                                                                     <div class="input-group-addon">
@@ -954,7 +954,7 @@
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group">
-                                                                <label class="control-label" for="odateob">Date Obligated</label>
+                                                                <label class="control-label" for="odateob">Date Obligated<span class="reqClass"> *</span></label>
                                                                 <div class="input-group date" data-provide="datepicker">
                                                                     <input required type="text" id="odateob" class="form-control">
                                                                     <div class="input-group-addon">
@@ -968,43 +968,56 @@
                                                 <div class="row">
                                                         <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="onamecode">Namecode</label>
-                                                                    <select class="form-control" id="onamecode">
+                                                                    <label class="control-label" for="onamecode">Namecode<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="onamecode">
                                                                         <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
                                                                         <option>4</option>
                                                                         <option>5</option>
                                                                     </select>
+                                                                    
                                                                 </div>
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group">
-                                                                <label for="oactcode">Activity Code</label>
+                                                                <label for="oactcode">Activity Code<span class="reqClass"> *</span></label>
                                                                 <select class="form-control" id="oactcode">
                                                                 </select>
+                                                                <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div> 
                                                         <div class="col">
-                                                            <label for="oboc">Budget Object Code (BOC)</label>
-                                                            <select name="oboc" id="oboc" class="form-control" value=""></select>
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="oboc">Budget Object Code (BOC)<span class="reqClass"> *</span></label>
+                                                                <select name="oboc" required id="oboc" class="form-control" value=""></select>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
                                                         </div> 
                                                         <div class="col">
-                                                            <label for="opc">Payment Code</label>
-                                                            <input type="text"  id="opc" class="form-control" aria-label="payment code"  aria-describedby="basic-addon1">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="opc">Payment Code<span class="reqClass"> *</span></label>
+                                                                <input type="text"  id="opc" class="form-control" aria-label="payment code" required aria-describedby="basic-addon1">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
                                                         </div>                                                                                                                                                                      
                                                         <div class="col">
-                                                            <label for="ostate">State Assigned</label>
-                                                            <input type="text" disabled id="ostate" class="form-control"  aria-label="description" placeholder="State" aria-describedby="basic-addon1">
-                                                        </div>                                                        
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="ostate">State Assigned<span class="reqClass"> *</span></label>
+                                                                <input type="text" disabled id="ostate" class="form-control"  aria-label="description" placeholder="State" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>                                                  
 
 
                                                 </div>                                                
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label for="odesc">Description - Vendor Name</label>
-                                                        <input type="text"  id="odesc" class="form-control"  aria-label="description" placeholder="Enter Description" aria-describedby="basic-addon1">
-                                                    </div>                                                                                                                                                                
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="odesc">Description - Vendor Name<span class="reqClass"> *</span></label>
+                                                            <input type="text" required id="odesc" class="form-control"  aria-label="description" placeholder="Enter Description" aria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>  
+                                                    </div>                                                                                                                                                              
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
@@ -1022,23 +1035,26 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="ounit">Unit</label>
-                                                                    <select class="form-control" id="ounit">
+                                                                    <label class="control-label" for="ounit">Unit<span class="reqClass"> *</span></label>
+                                                                    <select required disabled class="form-control" id="ounit">
                                                                     </select>
+                                                                    <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>                                                             
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="ojobcode">Job Code</label>
-                                                                    <select class="form-control" id="ojobcode">
+                                                                    <label class="control-label" for="ojobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="ojobcode">
                                                                     </select>
+                                                                    <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div> 
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="ojobcodedesc">Job Code Description</label>
-                                                                    <select class="form-control" id="ojobcodedesc">
+                                                                    <label class="control-label" for="ojobcodedesc">Description<span class="reqClass"> *</span></label>
+                                                                    <select required disabled class="form-control" id="ojobcodedesc">
                                                                     </select>
+                                                                    <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>                                                               
 
@@ -1046,14 +1062,18 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="oexpcode">Expense Code</label>
-                                                                    <select class="form-control" id="oexpcode">
+                                                                    <label class="control-label" for="oexpcode">Expense Code<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="oexpcode">
                                                                     </select>
+                                                                    <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>
                                                             <div class="col">
-                                                                    <label for="oamount">Amount</label>
-                                                                    <input type="text" id="oamount" class="form-control" placeholder="Enter Amount" aria-label="job code amount">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="oamount">Amount<span class="reqClass"> *</span></label>
+                                                                    <input type="number" max="99999" min="1" required id="oamount" class="form-control" placeholder="Enter Amount" aria-label="job code amount">
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
                                                             </div>                                                            
 
 

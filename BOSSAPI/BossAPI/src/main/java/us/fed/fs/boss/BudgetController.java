@@ -136,10 +136,16 @@ public class BudgetController {
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
     }
 
+    // @PostMapping("/jobCode")
+    // public JobCode createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
+    //     return jobCodeRepository.save(jobCodeDetails);
+    // }
     @PostMapping("/jobCode")
-    public JobCode createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
-        return jobCodeRepository.save(jobCodeDetails);
-    }
+    public ResponseEntity createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
+         jobCodeDetails = jobCodeRepository.save(jobCodeDetails);
+         return new ResponseEntity<JobCode >(jobCodeDetails , HttpStatus.OK);
+
+     }
 
     @PutMapping("/jobCode/{id}")
     public JobCode updateJobCode(@PathVariable(value = "id") Long jobCodeId,

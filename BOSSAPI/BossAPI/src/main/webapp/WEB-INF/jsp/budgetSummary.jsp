@@ -17,22 +17,21 @@
         <div class="usa-overlay"></div>
         <main id="main-content">
                 <div class="wrapper">
-                
+               
                         <nav id="sidebar">
                          </nav>
 
 
-
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img src="img/fire.jpg" alt="Banner Image"/>
+                                    <img src="../../img/fire.jpg" alt="Banner Image"/>
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink" href="/">Dashboard |</a>
-                                                <a class="breadcrumbLink" href="/budgetDash">Budget |</a>
-                                                <a class="breadcrumbLinkMain" href="/budgetSummary">Budget Summary</a>
+                                                <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
+                                                <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
+                                                <a class="breadcrumbLinkMain"href="../budgetSummary.html">Budget Summary</a>
                                             </p>
                                         </div>
                                     </div>
@@ -42,38 +41,48 @@
                                             <h1 id="title">Budget</h1>
                                         </div>
                                     </div>
-
+ 
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
                                             <h2 class="title2">Budget Summary</h2>
                                         <table id="budget" class="usa-table-borderless display" style="width:100%">
                                             
                                             <thead>
+                                                <!-- <tr>
+                                                    <th>Job Code</th>
+                                                    <th>Description</th>
+                                                    <th>Operating</th>
+                                                    <th>Obligated</th>
+                                                    <th>Balance</th>
+                                                    <th>FMMI Operating</th>
+                                                    <th>FMMI Balance</th>
+                                                    <th>Select</th>
+                                                </tr> -->
                                                 <tr>
-                                                    <th style="width:11%">Job Code</th>
-                                                    <th style="width:20%">Description</th>
-                                                    <th style="width:13%">Operating</th>
-                                                    <th style="width:13%">Obligated</th>
-                                                    <th style="width:13%">Balance</th>
-                                                    <th style="width:13%">FMMI Operating</th>
-                                                    <th style="width:13%">FMMI Balance</th>
-                                                    <th style="width:6%">Select</th>
-                                                </tr>
+                                                    <th>Job Code</th>
+                                                    <th>Description</th>
+                                                    <th>Operating</th>
+                                                    <th>Obligated</th>
+                                                    <th>Balance</th>
+                                                    <th>FMMI Operating</th>
+                                                    <th>FMMI Balance</th>
+                                                    <th class="no-sort"></th>
+                                                </tr>                                               
                                             </thead>
-                                            <tbody  id="investmentTable">
-                                                
+                                            <tbody>
+                                               
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>  
+                                </div> 
                                 </section>
                          </section>
-                        
+                       
                         
                 </div>
                 <!-- end of sidenav wrapper div -->
-
-                
+ 
+               
         </main>
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">

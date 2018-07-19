@@ -45,4 +45,8 @@ public class HomeController {
     public String payrollDetails() {
         return "payrollDetails";
     }
+    @RequestMapping("/newSalary")
+    public String newSalary() {
+        return "newSalary";
+    }    
 }

@@ -17,22 +17,21 @@
         <div class="usa-overlay"></div>
         <main id="main-content">
                 <div class="wrapper">
-                
+               
                         <nav id="sidebar">
                          </nav>
 
 
-
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img src="img/horseBanner.jpg" alt="Banner Image"/>
+                                    <img src="../../img/mountain.jpg" alt="Banner Image"/>
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="/budgetDash">Budget |</a>
-                                                <a class="breadcrumbLinkMain"href="/payrollDetails">Payroll Details</a>
+                                                <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
+                                                <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
+                                                <a class="breadcrumbLinkMain"href="../payrollDetails.html">Employee Payroll Forecast</a>
                                             </p>
                                         </div>
                                     </div>
@@ -42,27 +41,27 @@
                                             <h1 id="title">Payroll</h1>
                                         </div>
                                     </div>
-
+ 
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
-                                            <h2 class="title2">Payroll Details</h2>
+                                            <h2 class="title2">Employee Payroll Forecast</h2>
                                         <table id="payroll" class="usa-table-borderless display" style="width:100%">
-                                            
+                                           
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Sec</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">PP Left</th>
-                                                    <th scope="col">Reg Pay Per PP</th>
-                                                    <th scope="col">RegPayToDate</th>
+                                                    <th scope="col">Section</th>
+                                                    <th scope="col">Name Code</th>
+                                                    <th scope="col">Pay Periods Left</th>
+                                                    <th scope="col">Regular Pay Per Pay Period</th>
+                                                    <th scope="col">Regular Pay To Date</th>
                                                     <th scope="col">Overtime To Date</th>
-                                                    <th scope="col">RegPayForeCast</th>
+                                                    <th scope="col">Regular Pay ForeCast</th>
                                                     <th scope="col" id="stop">Total FY Forecast</th>
                                                     <th scope="col">Select</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                               
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -76,17 +75,16 @@
                                             </tfoot>
                                         </table>
                                     </div>
-                                </div>  
+                                </div> 
                                 </section>
                          </section>
-                        
+                       
                         
                 </div>
                 <!-- end of sidenav wrapper div -->
-
-                
+ 
+               
         </main>
-
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
          </footer>
 

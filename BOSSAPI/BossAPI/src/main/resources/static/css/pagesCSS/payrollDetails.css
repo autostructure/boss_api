@@ -54,12 +54,10 @@ td, th{
     padding-top: 0px !important;
     width: 100%;
 }
-#payroll{
-    margin-top: 40px;
-}
+
 #payroll_wrapper > div.dt-buttons{
     position: absolute;
-    top: -95px;
+    top: -65px;
     right: 10px;
 }
 .table-btns{
@@ -101,5 +99,21 @@ td, th{
     text-align: center;
     font-size: .9em;
 }
-
+.topRow{
+    padding-bottom: 15px;
+}
+thead{
+    background-color: #d5ffd5;
+}
+table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+    position: absolute;
+    color: #ababab;
+    top: 40px;
+    right: 0px;
+    display: block;
+    font-family: FontAwesome;
+}
+.headLabel{
+    margin-top: 0px !important
+}
 

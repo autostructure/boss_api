@@ -1,0 +1,97 @@
+
+.usa-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    width: 100%;
+    padding: 0px 50px 0px 50px;
+    min-height: 80vh;
+}
+.usa-grid{
+    padding: 0px;
+}
+#title{
+    font-size: 4.0em;
+    font-weight: 100;
+    border-bottom: 2px solid #006633;
+    font-family: lightFont;
+    padding-bottom: 10px;
+}
+
+.content-div{
+    border: 1px solid rgba(33, 33, 33, .2);
+    border-radius: 8px;
+    position: relative;
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+}
+.title-div{
+    margin-top: 50px !important;
+}
+
+.title2{
+    padding: 20px 0px;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.3rem;
+    display: inline-block;
+}
+.title3{
+    padding: 0px;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.0rem;
+    display: inline-block;
+}
+.title4{
+    padding: 0px 20px 20px 20px;
+    margin: 0px auto !important;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.0rem;
+    display: inline-block;
+}
+
+.usa-section1{
+    padding-top: 0px !important;
+    width: 100%;
+}
+.border{
+    border: .5px solid rgb(202, 202, 202);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+select {
+    background-image: url('../../img/arrow-down.png') !important;
+    background-position: right 1.3rem center;
+    background-repeat: no-repeat;
+    background-size: 0.8rem !important;
+}
+input, select{
+    font-size: 1.4em;
+}
+
+.submitbtn{
+    width: 100%;
+    margin: 20px auto;
+    font-size: 2.3em;
+}
+.submitrow{
+    margin-top: 20px;
+    background-color: rgb(225, 225, 225);
+}
+.form-control{
+    font-size: 1.4em !important;
+}
+label{
+    font-size: 1.4em !important;
+}
+
+.btn-success{
+    background-color: #006633;
+    border-color: #006633;
+}
+
+.submitrow{
+    margin-top: 40px;
+}

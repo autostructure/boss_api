@@ -1,46 +1,75 @@
 
+var fy = $('#fy').val();
 var tempAPI = 'http://localhost:8090/jobCode';
-       
+
+
+var dt = new Date();
+var optionDate = dt.getFullYear();
+console.log(optionDate);
       $(document).ready(function() {
         $('#budgetSub').addClass('show');
         $('#budgetSub > li:nth-child(2) > a').addClass('highlight');
-        $('#jobCodes thead tr:nth-child(2) th').each( function () {
-            var title = $(this).text();
-            $(this).html( '<input type="text" class="headSearch" placeholder="Search" />' );
-            if ($(this).is("#stop")){
-                return false;
-            }
+        $('#jobCodes thead tr:nth-child(1) th:nth-child(2)').each( function () {
+            $(this).html( '<label class="headLabel" for="unitCode">Unit Code</label><input type="text" id="unitCode" class="headSearch" placeholder="Search Unit Code" />' );
         } );
+        $('#jobCodes thead tr:nth-child(1) th:nth-child(3)').each( function () {
+            $(this).html( '<label class="headLabel" for="jcode">Job Code</label><input type="text" id="jcode" class="headSearch" placeholder="Search Job Code" />' );
+        } );   
+        $('#jobCodes thead tr:nth-child(1) th:nth-child(4)').each( function () {
+            $(this).html( '<label class="headLabel" for="desc">Description</label><input type="text" id="desc" class="headSearch" placeholder="Search Description" />' );
+        } );      
+
        
         var table = $('#jobCodes').DataTable( {
+            initComplete: function () {
+                this.api().columns([0]).every( function () {
+                    var column = this;
+                    var select = $('<select id="fySelect" class="fySelect form-control"><option value="2017"></option></select>')
+                        .appendTo( $('#fySearch').empty() )
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+     
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+     
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    } );               
+                    })},            
 
            dom: "Brtip",
+           "paging": false,
            ajax:{"url":tempAPI,"dataSrc":""},
            columnDefs: [ {
             "targets": [4],
             "orderable": false
             }],
 
+            
            columns:[
             { data: "financialYear"},
+            { data: "overrideCode"},
             { data:"jobCode" },
             { data:"description" },
             { data:"amount", render: $.fn.dataTable.render.number( ',', '.', 2, '$' )},
             {data: null,
-                "render": function(){
+                "render": function(data, type, row){
                     return `
                     <div class="dropdown1">
                     <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                         <div class="dropdown-content1">
-                            <button type='button' class='btn btn-info btn-md editBtn' data-toggle='modal' data-id=\"" + full[1] + "\" data-target='#myModal'> Edit </button>
-                            <a href="#">Delete Job Code</a> 
+                            <a data-target="#myModal" href="#myModal" class="editBtn" id="' + row.id + '"  data-id=\"" + full[1] + "\" >Edit Job Code</a>
+                            <a data-target="#deleteModal" href="#deleteModal" class="deleteBtn" id="' + row.id + '" data-id=\"" + full[1] + "\" >Delete Job Code</a>
                         </div>
                     </div>
                     
                     `
                 }
             }],  
-            // <a data-target="#myModal" data-toggle="modal" class="editModal" id="editModal" href="#myModal">Edit Job Code</a>
              buttons:[
             {
                 text:'Print <i class="fa fa-lg fa-print"></i>',
@@ -51,17 +80,17 @@ var tempAPI = 'http://localhost:8090/jobCode';
                 className:'table-btns print-btn'
             },
             {
-                text: 'Export to Excel <i class="fa fa-lg fa-plus"></i>',
+                text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                 extend: 'excel',
                 exportOptions:{
-                    columns: [0,1,2,3,4,5,6]
+                    columns: [0,1,2,3]
                 },
                 className: 'table-btns excel-btn'
             },
             {
                 text:'Add <i class="fa fa-lg fa-plus"></i>',
                 action:function(){
-                    $('#myModal').modal('show');
+                    $('#addModal').modal('show');
                 },
                 className:'table-btns add-btn'
             },
@@ -74,10 +103,10 @@ var tempAPI = 'http://localhost:8090/jobCode';
             }
         ],
         
+        
        });
 
-
-   
+      
         table.columns().every( function () {
             var that = this;
      
@@ -90,53 +119,138 @@ var tempAPI = 'http://localhost:8090/jobCode';
             } );
         } );
 
-       //making table cells editable, will likely change to edit module in the future
-       $('#jobCodes tbody').on( 'click', 'i.fa-minus-circle', function () {
-           confirm('Are you sure you want to delete this job code?')
-        table
-            .row( $(this).parents('tr') )
-            .remove()
-            .draw();
-        });
-        
-        // function  myCallbackFunction(updatedCell, updatedRow, oldValue) {
-        //         console.log("The new value for the cell is: " + updatedCell.data());
-        //         console.log("The values for each cell in that row are: " + updatedRow.data());
-        //     }
-        
-        // table.MakeCellsEditable({
-        //     "onUpdate": myCallbackFunction,
-        //     "inputCss":'my-input-class',
-        //     "columns": [0,1,2],
-        //     "confirmationButton": { 
-        //         "confirmCss": 'my-confirm-class',
-        //         "cancelCss": 'my-cancel-class'
-        //     }
-        // });
+        $('#jobCodes tbody').on( 'click', '.editBtn', function () {
+            var data = table.row( $(this).parents('tr') ).data();
+            var id = (data.id);
+            console.log(id)
+            $('#myModal #emfyear').val(data.financialYear);
+            $('#myModal #emjcode').val(data.jobCode);
+            $('#myModal #emdesc').val(data.description);
+            $('#myModal #emamount').val(data.amount);
+            $('#myModal #emunitcode').val(data.overrideCode);
+            $('#myModal #emid').val(data.id);
+            $('#myModal').modal('show');
+        } );
+        $('#jobCodes tbody').on( 'click', '.deleteBtn', function () {
+            var data = table.row( $(this).parents('tr') ).data();
+            var id = (data.id);
+            $('#deleteModal #dmfyear').val(data.financialYear);
+            $('#deleteModal #dmjcode').val(data.jobCode);
+            $('#deleteModal #dmdesc').val(data.description);
+            $('#deleteModal #dmunitcode').val(data.overrideCode);
+            $('#deleteModal #dmid').val(data.id);
+            $('#deleteModal').modal('show');
+        } );
 
-   });
+});
 
 
-   $('#jobCodes tbody').on('click', '.editBtn', function(){
-       alert("I'm Working Here");
-          var fYear = $(this).data('financialYear');
+$("#saveJC").click(function() {
+    var jc = {
+            "amount": parseInt($('#mamount').val()),
+            "description": $('#mdesc').val(),
+            "financialYear": parseInt($('#mfyear').val()),
+            "jobCode": $('#mjcode').val()
+          };
+          
+    console.log(jc);
 
-   var jcode = $(this).data('jobCode');
-   var desc = $(this).data('description');
-   var amt = $(this).data('amount');
-   $(".modal-body #mfYear").val("it's time");
-   $(".modal-body #mjcode").val(jcode);
-   $(".modal-body #mdesc").val(desc);
-   $(".modal-body #mamount").val(amt);
-   });
-//    $('.editBtn').click( function(){
-//     alert("I'm working");
-//    var fYear = $(this).data('financialYear');
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/jobCode",
+        data: JSON.stringify(jc),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function(data) {
+            console.log(data);
+            $('#addModal').modal('hide');
+            $('#success').show()
+            $('#success').delay(5000).fadeOut();
+        },
+        error: function(e) {
+            console.log(e.responseText);
+            $('#addModal').modal('hide');
+            $('#error').show()
+            $('#error').delay(5000).fadeOut();
+        }
+    });
+});
 
-//    var jcode = $(this).data('jobCode');
-//    var desc = $(this).data('description');
-//    var amt = $(this).data('amount');
-//    $(".modal-body #mfYear").val("it's time");
-//    $(".modal-body #mjcode").val(jcode);
-//    $(".modal-body #mdesc").val(desc);
-//    $(".modal-body #mamount").val(amt);
+$("#editJC").click(function() {
+    var jc = {
+            "amount": parseInt($('#emamount').val()),
+            "description": $('#emdesc').val(),
+            "financialYear": parseInt($('#emfyear').val()),
+            "jobCode": $('#emjcode').val(),
+            "overrideCode": $('#emunitcode').val(),
+            "id": parseInt($('#emid').val())
+          };
+    var id = parseInt($('#emid').val());
+          
+    console.log(jc);
+    console.log("/jobcode/"+id);
+
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        url: "/jobCode/"+id,
+        data: JSON.stringify(jc),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function(data) {
+            console.log(data);
+            $('#myModal').modal('hide');
+            $('#success').show();
+            $('#success').delay(5000).fadeOut();
+        },
+        error: function(e) {
+            console.log(e.responseText);
+            $('#myModal').modal('hide');
+            $('#error').show()
+            $('#error').delay(5000).fadeOut();
+        }
+    });
+});
+
+$("#deleteJC").click(function() {
+    var jc = {
+        "amount": parseInt($('#dmamount').val()),
+        "description": $('#dmdesc').val(),
+        "financialYear": parseInt($('#dmfyear').val()),
+        "jobCode": $('#dmjcode').val(),
+        "overrideCode": $('#dmunitcode').val(),
+        "id": parseInt($('#dmid').val())
+      };
+    var id = parseInt($('#dmid').val());
+
+
+    console.log("/jobcode/"+id);
+    $.ajax({
+        type: "DELETE",
+        contentType: "application/json",
+        url: "/jobCode/"+id,
+        data: JSON.stringify(jc),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function(data) {
+            console.log(data);
+            $('#deleteModal').modal('hide');
+            $('#success').show();
+            $('#success').delay(5000).fadeOut();
+        },
+        error: function(e) {
+            console.log(e.responseText);
+            $('#deleteModal').modal('hide');
+            $('#error').show()
+            $('#error').delay(5000).fadeOut();
+        }
+    });
+});
+
+
+
+

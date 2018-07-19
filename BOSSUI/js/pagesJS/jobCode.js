@@ -149,33 +149,59 @@ console.log(optionDate);
 });
 
 
-var data = [
-    { "amount":100,
-    "description":"test", 
-    "financialYear":2017, 
-    "jobCode":"stuff", 
-    "overrideCode":123, 
-    "id":333 }
-];
-$("#addForm").submit(function() {
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        type: "POST",
-        url: "http://localhost:8090/jobCode",
-        dataType: 'json',        
-        data: JSON.stringify(data),
-        success: function (msg) {
-           alert(msg);
-        },
-        failure: function (response) {
-           alert(response);
-        }
-     });
-});
+// var data = [
+//     { "amount":100,
+//     "description":"test", 
+//     "financialYear":2017, 
+//     "jobCode":"stuff", 
+//     "overrideCode":123, 
+//     "id":333 }
+// ];
 
+// $("#saveJC").submit(function() {
+//     $.ajax({
+//         headers: { 
+//             Accept : "text/plain; charset=utf-8",
+//             "Content-Type": "text/plain; charset=utf-8"
+//         },
+//         type: "POST",
+//         url: "http://localhost:8090/jobCode",        
+//         data: data,
+//         success: function (msg) {
+//            alert(msg);
+//         },
+//         failure: function (response) {
+//            alert(response);
+//         }
+//      });
+// });
+
+$("#saveJC").click(function() {
+    var jc = {
+            "amount": parseInt($('#mamount').val()),
+            "description": $('#mdesc').val(),
+            "financialYear": parseInt($('#mfyear').val()),
+            "jobCode": $('#mjcode').val()
+          };
+          
+    console.log(jc);
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/jobCode",
+        data: JSON.stringify(jc),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(e) {
+            console.log(e.responseText);
+        }
+    });
+});
 
 
 

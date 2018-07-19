@@ -24,14 +24,14 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img src="img/mountain.jpg" alt="Banner Image"/>
+                        <img src="../../img/mountain.jpg" alt="Banner Image"/>
                     </header>
                     <div class="usa-grid">
                             <div class="usa-width-one-whole">
                                 <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                    <a class="breadcrumbLink" href="/home">Dashboard |</a>
-                                    <a class="breadcrumbLink" href="/budgetDash">Budget |</a>
-                                    <a class="breadcrumbLinkMain" href="/newExpense">New Expense</a>
+                                    <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
+                                    <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
+                                    <a class="breadcrumbLinkMain"href="../budget/newExpense.html">New Expense</a>
                                 </p>
                             </div>
                     </div><!-- end of breadcrumbs _-->
@@ -68,76 +68,106 @@
 
                                     <!--                                                   START OF TIMESHEETS TAB                                                     -->
                                     <div class="tab-pane fade show active" id="time" role="tabpanel" aria-labelledby="timesheets">
-                                            <form>
+                                            <form role="form" data-toggle="validator" id="timeForm">
+                                                <div class="row">
+                                                    <p class="reqText"><span class="reqClass">* </span> Indicates a required field</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="reqText"><span class="shaded">Shaded</span>  fields are auto populated based on your selections</p>
+                                                </div>                                                
+                                                <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="fy">Fiscal Year<span class="reqClass"> *</span></label>
+                                                                <select class="form-control" name="select" required id="fy"></select>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="dateentered">Date Entered<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" required id="dateentered" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="datemod">Date Modified<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" required id="datemod" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="dateob">Date Obligated<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input type="text" required id="dateob" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col">
                                                             <div class="form-group">
-                                                                <label for="namecode">Namecode</label>
-                                                                <select class="form-control" id="namecode">
+                                                                <label for="namecode">Namecode<span class="reqClass"> *</span></label>
+                                                                <select class="form-control" required id="namecode">
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
                                                                     <option>4</option>
                                                                     <option>5</option>
                                                                 </select>
+                                                                <div class="help-block with-errors"></div>
                                                             </div>
                                                     </div>
                                                     <div class="col">
-                                                        <label for="desc">Description</label>
-                                                        <input type="text" disabled id="decs" class="form-control"  aria-label="description" value="Salary" aria-describedby="basic-addon1">
-                                                    </div>
+                                                        <div class="form-group">
+                                                            <label for="desc">Description<span class="reqClass"> *</span></label>
+                                                            <input type="text" disabled id="desc" class="form-control"  aria-label="description" value="Salary" aria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>  
                                                     <div class="col">
-                                                        <label for="boc">Budget Object Code (BOC)</label>
-                                                        <input type="text" disabled id="boc" class="form-control"  aria-label="budget object code" value="11" aria-describedby="basic-addon1">
-                                                    </div>
+                                                        <div class="form-group">
+                                                            <label for="actcode">Activity Code<span class="reqClass"> *</span></label>
+                                                            <select class="form-control" required id="actcode">
+                                                            </select>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>                                                    
                                                     <div class="col">
-                                                        <label for="pc">Payment Code</label>
-                                                        <input type="text" disabled id="pc" class="form-control" aria-label="payment code" value="SAL" aria-describedby="basic-addon1">
+                                                        <div class="form-group">
+                                                            <label for="boc">Budget Object Code (BOC)<span class="reqClass"> *</span></label>
+                                                            <input type="text" disabled id="boc" class="form-control"  aria-label="budget object code" required value="11" aria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                        <div class="col">
-                                                            <label for="fy">Fiscal Year</label>
-                                                            <select class="form-control" name="select" id="dropdownYear"></select>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div class="form-group">
-                                                                <label for="dateentered">Date Entered</label>
-                                                                <div class="input-group date" data-provide="datepicker">
-                                                                    <input type="text" id="dateentered" class="form-control">
-                                                                    <div class="input-group-addon">
-                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div class="form-group">
-                                                                <label for="datemod">Date Modified</label>
-                                                                <div class="input-group date" data-provide="datepicker">
-                                                                    <input type="text" id="datemod" class="form-control">
-                                                                    <div class="input-group-addon">
-                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div class="form-group">
-                                                                <label for="dateob">Date Obligated</label>
-                                                                <div class="input-group date" data-provide="datepicker">
-                                                                    <input type="text" id="dateob" class="form-control">
-                                                                    <div class="input-group-addon">
-                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                </div>
+                                                </div>                                                
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
-                                                            <label for="payperiod">Pay Period</label>
+                                                            <label for="pc">Payment Code<span class="reqClass"> *</span></label>
+                                                            <input type="text" disabled id="pc" class="form-control" aria-label="payment code" required value="SAL" minlength="1" maxlength="3" maxaria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>  
+                                                    </div>                                                    
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="payperiod">Pay Period<span class="reqClass"> *</span></label>
                                                             <select class="form-control" id="payperiod">
                                                                 <option>1</option>
                                                                 <option>2</option>
@@ -167,15 +197,36 @@
                                                                 <option>26</option>
                                                                 <option>27</option>
                                                             </select>
+                                                            <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
-
                                                     <div class="col">
-                                                        <label for="unitcode">Unit Code</label>
-                                                        <input type="text" disabled id="unitcode" class="form-control"  aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
-                                                    </div>     
+                                                        <div class="form-group">
+                                                            <label for="comphours" class="control-label">Comp Hours<span class="reqClass"> *</span></label>
+                                                            <input type="number" id="comphours" required class="form-control" aria-label="Comp Hours"  min="1" max="99" aria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col"> 
+                                                        <div class="form-group">
+                                                            <label for="state">State<span class="reqClass"> *</span></label>
+                                                            <select class="form-control" required id="state">
+                                                                <option>MI</option>
+                                                                <option>WA</option>
+                                                                <option>CA</option>
+                                                            </select>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>   
+                                                    </div>                                                                                                   
                                                                                                                                                      
                                                 </div>
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="remarks">Remarks</label>
+                                                        <textarea class="form-control" id="remarks" rows="1"></textarea>
+                                                    </div>
+                                                </div>                                                
 
                                                 <div id="detailsTable">
                                                 <div class="row">
@@ -185,47 +236,59 @@
                                                     <div class="row bottomRow">
                                                         <div class="col-4 bottomBL">
                                                             <div class="row">
-                                                                <div class="col-7">
+                                                                <div class="col">
                                                                     <div class="form-group">
-                                                                        <label for="expcode">Expense Code</label>
-                                                                        <select class="form-control" id="expcode">
+                                                                    <label for="unitcode">Unit Code<span class="reqClass"> *</span></label>
+                                                                    <input type="text" disabled id="unitcode" class="form-control"  required aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
+                                                                    <div class="help-block with-errors"></div>
+                                                                    </div>
+                                                                </div>                                                                  
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="jobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                        <select class="form-control" required id="jobcode">                                                                        
                                                                         </select>
+                                                                        <div class="help-block with-errors"></div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-5">
-                                                                    <label for="hours">Enter Hours</label>
-                                                                    <input type="text" id="hours" class="form-control"  aria-label="Hours" placeholder="Enter Hours" aria-describedby="basic-addon1">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row bottomRow">
-                                                                <div class="col-7">
+                                                                <div class="col">
                                                                     <div class="form-group">
-                                                                        <label for="jobcode">Job Code</label>
-                                                                        <select class="form-control" id="jobcode">
-                                                                        </select>
+                                                                        <label for="jobcodedesc" class="control-label">Description<span class="reqClass"> *</span></label>
+                                                                        <input type="text" disabled id="jobcodedesc" required class="form-control" required aria-label="job code description" placeholder="Description">
+                                                                        <div class="help-block with-errors"></div>
                                                                     </div>
                                                                 </div> 
-                                                                <div class="col-5">
+                                                            </div>
+                                                            <div class="row bottomRow">
+                                                                <div class="col">
                                                                     <div class="form-group">
-                                                                        <label for="actcode">Activity Code</label>
-                                                                        <select class="form-control" id="actcode">
+                                                                        <label for="expcode">Expense Code<span class="reqClass"> *</span></label>
+                                                                        <select class="form-control" required id="expcode">
                                                                         </select>
+                                                                        <div class="help-block with-errors"></div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="hours" class="control-label">Enter Hours<span class="reqClass"> *</span></label>
+                                                                        <input type="text" id="hours" class="form-control"  required aria-label="Hours" placeholder="Enter Hours" aria-describedby="basic-addon1">
+                                                                        <div class="help-block with-errors"></div>
+                                                                    </div>
+                                                                </div>                                                                
                                                             </div>
                                                             
                                                         <div class="row">
                                                             <div class="col-4 offset-7">
                                                                 <button type="button" class="btn btn-lg btn-success">
                                                                     <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
-                                                                    <span class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                    <span id="addbtn" class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
                                                                 </button>                                                                     
                                                             </div>
                                                         </div>
                                                             
                                                         </div>
                                                         <div class="col-8 bottomBR">
-                                                                <table class="table">
+                                                                <table id="timeTable" class="table">
                                                                         <thead>
                                                                           <tr>
                                                                             <th style="width: 10%">Exp#</th>
@@ -248,14 +311,14 @@
                                                                                 <input type="text" id="tableHours" class="form-control" aria-label="description" value="20" aria-describedby="basic-addon1">
                                                                             </td>
                                                                             <td>
-                                                                                <span class="tableType">Base Hours</span>
+                                                                                <span id="tableJobCodeDesc" class="tableType">Base Hours</span>
                                                                             </td>
                                                                             <td>
                                                                                 <input type="text" id="tableAmount" class="form-control"  aria-label="description" value="$11,234" aria-describedby="basic-addon1">
                                                                             </td>
                                                                             <td>
                                                                                 <div class="input-group date" data-provide="datepicker">
-                                                                                    <input type="text" placeholder="Pick a date" id="dateob" class="form-control">
+                                                                                    <input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">
                                                                                     <div class="input-group-addon">
                                                                                         <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
                                                                                     </div>
@@ -268,18 +331,9 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-                                                    <h2 class="title3 remarks">Remarks</h2>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <textarea class="form-control" id="remarks" rows="1"></textarea>
-                                                    </div>
-                                                </div>
-
                                                 <div class="row submitrow">
                                                     <div class="col-4 offset-4">
-                                                        <button type="button" class="btn btn-lg submitbtn btn-success">
+                                                        <button id="timeSubmit" type="button" class="btn btn-lg submitbtn btn-success">
                                                             <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
                                                             Submit Expense 
                                                         </button> 
@@ -293,73 +347,115 @@
 
                                     <!--                                                   START OF TRAVEL TAB                                                     -->
                                     <div class="tab-pane fade" id="travel" role="tabpanel" aria-labelledby="travelvouchers">
-                                        <form>
+                                        <form role="form" data-toggle="validator" id="travelForm">
+                                                <div class="row">
+                                                    <p class="reqText"><span class="reqClass">* </span> Indicates a required field</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="reqText"><span class="shaded">Shaded</span>  fields are auto populated based on your selections</p>
+                                                </div>                                            
+                                            <div class="row">
+                                                
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="tfy" class="control-label">Fiscal Year<span class="reqClass"> *</span></label>
+                                                        <select class="form-control" required min="2012" max="2018" name="select" id="tfy"></select>                                                    
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="tdateentered">Date Entered<span class="reqClass"> *</span></label>
+                                                            <div class="input-group date" data-provide="datepicker">
+                                                                <input type="text" required required id="tdateentered" class="form-control">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                </div>                                                                
+                                                            </div>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="tdatemod">Date Modified<span class="reqClass"> *</span></label>
+                                                            <div class="input-group date" data-provide="datepicker">
+                                                                <input type="text" required id="tdatemod" class="form-control">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                </div>                                                                
+                                                            </div>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="tdateob">Date Obligated<span class="reqClass"> *</span></label>
+                                                            <div class="input-group date" data-provide="datepicker">
+                                                                <input type="text" required id="tdateob" class="form-control">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col">
                                                         <div class="form-group">
-                                                            <label for="namecode">Namecode</label>
-                                                            <select class="form-control" id="namecode">
+                                                            <label class="control-label" for="tnamecode">Namecode<span class="reqClass"> *</span></label>
+                                                            <select class="form-control" required id="tnamecode">
                                                                 <option>1</option>
                                                                 <option>2</option>
                                                                 <option>3</option>
                                                                 <option>4</option>
                                                                 <option>5</option>
                                                             </select>
+                                                            <div class="help-block with-errors"></div>
                                                         </div>
                                                 </div>
                                                 <div class="col">
-                                                    <label for="desc">Description</label>
-                                                    <input type="text" disabled id="decs" class="form-control"  aria-label="description" value="Travel" aria-describedby="basic-addon1">
+                                                    <div class="form-group">
+                                                    <label class="control-label" for="tpov">POV Miles<span class="reqClass"> *</span></label>
+                                                    <input type="text"  required id="tpov" class="form-control"  aria-label="POV Miles" placeholder="POV Miles"  aria-describedby="basic-addon1">
+                                                    <div class="help-block with-errors"></div>    
+                                                    </div>
+                                                </div>                                                
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="tactcode">Activity Code<span class="reqClass"> *</span></label>
+                                                        <select class="form-control" required id="tactcode">
+                                                        </select>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
                                                 </div>
                                                 <div class="col">
-                                                    <label for="boc">Budget Object Code (BOC)</label>
-                                                    <input type="text" disabled id="boc" class="form-control"  aria-label="budget object code" value="21" aria-describedby="basic-addon1">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="tboc">Budget Object (BOC)<span class="reqClass"> *</span></label>
+                                                        <input type="text" disabled required id="tboc" class="form-control"  aria-label="budget object code" value="21" aria-describedby="basic-addon1">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
                                                 </div>
                                                 <div class="col">
-                                                    <label for="pc">Payment Code</label>
-                                                    <input type="text" disabled id="pc" class="form-control" aria-label="payment code" value="TV" aria-describedby="basic-addon1">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="tpc">Payment Code<span class="reqClass"> *</span></label>
+                                                        <input type="text" disabled required id="tpc" class="form-control" aria-label="payment code" value="TV" aria-describedby="basic-addon1">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                    <div class="col">
-                                                        <label for="fy">Fiscal Year</label>
-                                                        <select class="form-control" name="select" id="tvdropdownYear"></select>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="tstateassigned">State Assigned<span class="reqClass"> *</span></label>
+                                                        <select class="form-control" required disabled id="tstateassigned">
+                                                            <option>MI</option>
+                                                            <option>WA</option>
+                                                            <option>CA</option>
+                                                        </select>
+                                                        <div class="help-block with-errors"></div>
                                                     </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="tvdateentered">Date Entered</label>
-                                                            <div class="input-group date" data-provide="datepicker">
-                                                                <input type="text" id="tvdateentered" class="form-control">
-                                                                <div class="input-group-addon">
-                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="tvdatemod">Date Modified</label>
-                                                            <div class="input-group date" data-provide="datepicker">
-                                                                <input type="text" id="tvdatemod" class="form-control">
-                                                                <div class="input-group-addon">
-                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="tvdateob">Date Obligated</label>
-                                                            <div class="input-group date" data-provide="datepicker">
-                                                                <input type="text" id="tvdateob" class="form-control">
-                                                                <div class="input-group-addon">
-                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                            <div class="row">
+                                                </div>                                                     
+                                            </div>                                            
+                                            <!-- <div class="row">
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label for="payperiod">Pay Period</label>
@@ -399,7 +495,7 @@
                                                     <input type="text" disabled id="unitcode" class="form-control"  aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
                                                 </div>     
                                                                                                                                                  
-                                            </div>
+                                            </div> -->
 
                                             <div id="travelDetails">
                                                 <div class="row">
@@ -409,49 +505,61 @@
                                                 <div class="col-6" id="leftdetailcol">
                                                     <div class="row">
                                                         <div class="col">
+                                                            <label for="tdesc" class="topLabel">Description</label>
+                                                            <input type="text" disabled id="tdesc" class="form-control"  required aria-label="description" value="Travel" aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
                                                         <div class="form-group">
-                                                            <label for="dateob">From</label>
+                                                            <label for="tfromdate">From<span class="reqClass"> *</span></label>
                                                             <div class="input-group date" data-provide="datepicker">
-                                                                <input type="text" id="fromdate" class="form-control">
+                                                                <input type="text" id="tfromdate" required class="form-control">
                                                                 <div class="input-group-addon">
                                                                     <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
                                                                 </div>
                                                             </div>
+                                                            <div class="help-block with-errors"></div>
                                                         </div> 
                                                         </div>
                                                         <div class="col">
                                                         <div class="form-group">
-                                                            <label for="dateob">To</label>
+                                                            <label for="ttodate">To<span class="reqClass"> *</span></label>
                                                             <div class="input-group date" data-provide="datepicker">
-                                                                <input type="text" id="todate" class="form-control">
+                                                                <input type="text" id="ttodate" required class="form-control">
                                                                 <div class="input-group-addon">
                                                                     <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
                                                                 </div>
                                                             </div>
+                                                            <div class="help-block with-errors"></div>
                                                         </div> 
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <label for="boc">Voucher Number</label>
-                                                            <input type="text" id="vocnumber" class="form-control"  aria-label="voucher number"  aria-describedby="basic-addon1">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="tvocnumber">Voucher Number<span class="reqClass"> *</span></label>
+                                                                <input type="text" id="tvocnumber" required class="form-control"  maxlength="10" minlength="5" aria-label="voucher number"  aria-describedby="basic-addon1">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>  
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group">
-                                                                <label for="state">State</label>
-                                                                <select class="form-control" id="state">
+                                                                <label for="tstate">State<span class="reqClass"> *</span></label>
+                                                                <select class="form-control" required id="tstate">
                                                                     <option>MI</option>
                                                                     <option>WA</option>
                                                                     <option>CA</option>
                                                                 </select>
+                                                                <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div> 
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="col">
-                                                        <h3 class="remarks">Remarks</h3>
-                                                        <textarea class="form-control" id="remarks" rows="1"></textarea>
+                                                        <label for="tremarks">Remarks</label>
+                                                        <textarea class="form-control" id="tremarks" rows="1"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -467,27 +575,46 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="jobcode1">Job Code</label>
-                                                                    <select class="form-control" id="jobcode1">
+                                                                    <label class="control-label" for="tunitcode">Unit<span class="reqClass"> *</span></label>
+                                                                    <select class="form-control" disabled required id="tunitcode">
                                                                     </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                             
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="tjobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                    <select class="form-control" required id="tjobcode">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div> 
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="actcode1">Activity Code</label>
-                                                                    <select class="form-control" id="actcode1">
+                                                                    <label class="control-label" for="tjobcodedesc">Description<span class="reqClass"> *</span></label>
+                                                                    <select class="form-control" disabled required id="tjobcodedesc">
                                                                     </select>
+                                                                    <div class="help-block with-errors"></div>
                                                                 </div>
-                                                            </div>
+                                                            </div>                                                               
+
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label for="expcode1">Choose Code</label>
-                                                                    <select class="form-control" id="expcode1">
+                                                                    <label class="control-label" for="texpcode">Expense Code<span class="reqClass"> *</span></label>
+                                                                    <select class="form-control" required id="texpcode">
                                                                     </select>
+                                                                    <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="tamount">Amount<span class="reqClass"> *</span></label>
+                                                                    <input type="text" id="tamount" required class="form-control" placeholder="Enter Amount" aria-label="job code amount">
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                            
 
 
                                                         </div>
@@ -495,13 +622,13 @@
                                                             <div class="col-4 offset-7">
                                                                 <button type="button" class="btn btn-lg btn-success">
                                                                     <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
-                                                                    <span class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                    <span id="taddbtn" class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
                                                                 </button>                                                                     
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-8 bottomBR">
-                                                            <table class="table">
+                                                            <table id="travelTable" class="table">
                                                                     <thead>
                                                                       <tr>
                                                                         <th style="width: 10%">Exp#</th>
@@ -514,20 +641,21 @@
                                                                     <tbody>
                                                                       <tr>
                                                                         <td>
-                                                                            <input type="text" id="tableExp" class="form-control" aria-label="description" value="02" aria-describedby="basic-addon1">
+                                                                            <input type="text" id="ttableExp" class="form-control" aria-label="description" value="02" aria-describedby="basic-addon1">
                                                                         </td>
                                                                         <td>
-                                                                            <input type="text" id="tableJobCode" class="form-control" aria-label="description" value="FRF13818" aria-describedby="basic-addon1">
+                                                                            <input type="text" id="ttableJobCode" class="form-control" aria-label="description" value="FRF13818" aria-describedby="basic-addon1">
                                                                         </td>
                                                                         <td>
-                                                                            <span class="tableType">Mileage & Parking</span>
-                                                                        </td>
+                                                                            <input type="text" id="ttableAmount" class="form-control"  aria-label="description" value="$234" aria-describedby="basic-addon1">
+                                                                        </td>                                                                        
                                                                         <td>
-                                                                            <input type="text" id="tableAmount" class="form-control"  aria-label="description" value="$234" aria-describedby="basic-addon1">
+                                                                            <span class="ttableJobCodeDesc">Mileage & Parking</span>
                                                                         </td>
+
                                                                         <td>
                                                                             <div class="input-group date" data-provide="datepicker">
-                                                                                <input type="text" placeholder="Pick a date" id="dateob" class="form-control">
+                                                                                <input type="text" placeholder="Pick a date" id="ttableDateVerified" class="form-control">
                                                                                 <div class="input-group-addon">
                                                                                     <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
                                                                                 </div>
@@ -543,7 +671,7 @@
 
                                             <div class="row submitrow">
                                                 <div class="col-4 offset-4">
-                                                    <button type="button" class="btn btn-lg submitbtn btn-success">
+                                                    <button id="travelSubmit" type="button" class="btn btn-lg submitbtn btn-success">
                                                         <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
                                                         Submit Expense 
                                                     </button> 
@@ -555,18 +683,464 @@
                                     <!--                                                   END OF TRAVEL TAB                                                     -->
 
 
+
                                     <!--                                                   START OF VISA TAB                                                     -->
-                                    <div class="tab-pane fade" id="visa" role="tabpanel" aria-labelledby="visapurchases">
-                                        Testing stuff for Visa Purchases
+                                    <div class="tab-pane fade" id="visa" role="tabpanel" aria-labelledby="visa">
+                                            <form role="form" data-toggle="validator" id="visaForm">
+                                                <div class="row">
+                                                    <p class="reqText"><span class="reqClass">* </span> Indicates a required field</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="reqText"><span class="shaded">Shaded</span>  fields are auto populated based on your selections</p>
+                                                </div>                                                
+                                                <div class="row">
+                                                        <div class="col">
+                                                            <label for="vfy">Fiscal Year<span class="reqClass"> *</span></label>
+                                                            <select required class="form-control" name="select" id="vfy"></select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="vdateentered">Date Entered<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input required type="text" id="vdateentered" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="vdatemod">Date Modified<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input required type="text" id="vdatemod" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="vdateob">Date Obligated<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input required type="text" requried id="vdateob" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="vnamecode">Namecode<span class="reqClass"> *</span></label>
+                                                                    <select class="form-control" required id="vnamecode">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                        <option>4</option>
+                                                                        <option>5</option>
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="vactcode">Activity Code<span class="reqClass"> *</span></label>
+                                                                <select class="form-control" required id="vactcode">
+                                                                </select>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="vboc">Budget Object (BOC)<span class="reqClass"> *</span></label>
+                                                                <input type="text" required disabled id="vboc" class="form-control"  aria-label="budget object code" value="26" aria-describedby="basic-addon1">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="vpc">Payment Code<span class="reqClass"> *</span></label>
+                                                                <input type="text" required disabled id="vpc" class="form-control" aria-label="payment code" value="VI" aria-describedby="basic-addon1">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>                                                                                                                                                                      
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="vstateassigned">State Assigned<span class="reqClass"> *</span></label>
+                                                                <input type="text" required disabled id="vstateassigned" class="form-control"  aria-label="description" placeholder="State" aria-describedby="basic-addon1">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>                                                        
+
+
+                                                    </div>                                                
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="vdesc">Description - Vendor Name<span class="reqClass"> *</span></label>
+                                                            <input type="text" required id="vdesc" class="form-control"  aria-label="description" placeholder="Enter Description" aria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>                                                                                                                                                                
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="vremarks">Remarks</label>
+                                                        <textarea class="form-control" id="vremarks" rows="1"></textarea>
+                                                    </div>
+                                                </div>
+                                            <div id="detailsTable">
+                                            <div class="row">
+                                                <h2 class="title3">Details Table</h2>
+                                            </div>
+
+                                                <div class="row bottomRow">
+                                                    <div class="col-4 bottomBL">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="vunitcode">Unit<span class="reqClass"> *</span></label>
+                                                                    <select required disabled class="form-control" id="vunitcode">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                             
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="vjobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="vjobcode">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="vjobcodedesc">Description<span class="reqClass"> *</span></label>
+                                                                    <select disabled required class="form-control" id="vjobcodedesc">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                               
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="vexpcode">Expense Code<span class="reqClass"> *</span></label>
+                                                                    <select class="form-control" required id="vexpcode">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label{" for="vamount">Amount<span class="reqClass"> *</span></label>
+                                                                    <input required min="1" max="999999" type="number" id="vamount" class="form-control" placeholder="Enter Amount" aria-label="job code amount">
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                            
+
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4 offset-7">
+                                                                <button type="button" class="btn btn-lg btn-success">
+                                                                    <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
+                                                                    <span id="vaddbtn" class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                </button>                                                                     
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8 bottomBR">
+                                                            <table id="visaTable" class="vtable">
+                                                                    <thead>
+                                                                      <tr>
+                                                                        <th style="width: 10%">Exp#</th>
+                                                                        <th style="width: 25%">Job Code</th>
+                                                                        <th style="width: 20%">Type</th>
+                                                                        <th style="width: 20%">Amount</th>
+                                                                        <th style="width: 25%">Date Verified</th>
+                                                                      </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td>
+                                                                            <input type="text" id="vtableExp" class="form-control" aria-label="description" value="02" aria-describedby="basic-addon1">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="vtableJobCode" class="form-control" aria-label="description" value="FRF13818" aria-describedby="basic-addon1">
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="vtableJobCodeDesc">Mileage & Parking</span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="vtableAmount" class="form-control"  aria-label="description" value="$234" aria-describedby="basic-addon1">
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="input-group date" data-provide="datepicker">
+                                                                                <input type="text" placeholder="Pick a date" id="vtableDateVerified" class="form-control">
+                                                                                <div class="input-group-addon">
+                                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                                </div>
+                                                                            </div>                                                                                
+                                                                        </td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
+                                                    </div>
+                                                </div>
+                                            </div>                                                                                                                                                
+
+                                            <div class="row submitrow">
+                                                <div class="col-4 offset-4">
+                                                    <button id="visaSubmit" type="button" class="btn btn-lg submitbtn btn-success">
+                                                        <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
+                                                        Submit Expense 
+                                                    </button> 
+                                                </div>
+                                            </div> 
+                                            </form>
                                     </div>
                                     <!--                                                   END OF VISA TAB                                                     -->
 
 
                                     <!--                                                   START OF OTHER/MISC TAB                                                    -->
-                                    <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="othermisc">
-                                        Testing stuff for Other / Misc
+                                    <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other">
+                                            <form role="form" data-toggle="validator" id="otherForm">
+                                                <div class="row">
+                                                    <p class="reqText"><span class="reqClass">* </span> Indicates a required field</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="reqText"><span class="shaded">Shaded</span>  fields are auto populated based on your selections</p>
+                                                </div>                                                
+                                                <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="ofy">Fiscal Year<span class="reqClass"> *</span></label>
+                                                                <select required class="form-control" name="select" id="ofy"></select>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="odateentered">Date Entered<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input required type="text" id="odateentered" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="odatemod">Date Modified<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input required type="text" id="odatemod" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="odateob">Date Obligated<span class="reqClass"> *</span></label>
+                                                                <div class="input-group date" data-provide="datepicker">
+                                                                    <input required type="text" id="odateob" class="form-control">
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="onamecode">Namecode<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="onamecode">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                        <option>4</option>
+                                                                        <option>5</option>
+                                                                    </select>
+                                                                    
+                                                                </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="oactcode">Activity Code<span class="reqClass"> *</span></label>
+                                                                <select class="form-control" id="oactcode">
+                                                                </select>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="oboc">Budget Object Code (BOC)<span class="reqClass"> *</span></label>
+                                                                <select name="oboc" required id="oboc" class="form-control" value=""></select>
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="opc">Payment Code<span class="reqClass"> *</span></label>
+                                                                <input type="text"  id="opc" class="form-control" aria-label="payment code" required aria-describedby="basic-addon1">
+                                                                <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>                                                                                                                                                                      
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="ostate">State Assigned<span class="reqClass"> *</span></label>
+                                                                <input type="text" disabled id="ostate" class="form-control"  aria-label="description" placeholder="State" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>                                                  
+
+
+                                                </div>                                                
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="odesc">Description - Vendor Name<span class="reqClass"> *</span></label>
+                                                            <input type="text" required id="odesc" class="form-control"  aria-label="description" placeholder="Enter Description" aria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>  
+                                                    </div>                                                                                                                                                              
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="oremarks">Remarks</label>
+                                                        <textarea class="form-control" id="oremarks" rows="1"></textarea>
+                                                    </div>
+                                                </div>
+                                            <div id="detailsTable">
+                                            <div class="row">
+                                                <h2 class="title3">Details Table</h2>
+                                            </div>
+
+                                                <div class="row bottomRow">
+                                                    <div class="col-4 bottomBL">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="ounit">Unit<span class="reqClass"> *</span></label>
+                                                                    <select required disabled class="form-control" id="ounit">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                             
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="ojobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="ojobcode">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="ojobcodedesc">Description<span class="reqClass"> *</span></label>
+                                                                    <select required disabled class="form-control" id="ojobcodedesc">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                               
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="oexpcode">Expense Code<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="oexpcode">
+                                                                    </select>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="oamount">Amount<span class="reqClass"> *</span></label>
+                                                                    <input type="number" max="99999" min="1" required id="oamount" class="form-control" placeholder="Enter Amount" aria-label="job code amount">
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>                                                            
+
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4 offset-7">
+                                                                <button type="button" class="btn btn-lg btn-success">
+                                                                    <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
+                                                                    <span id="oaddbtn" class="oaddbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                </button>                                                                     
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8 bottomBR">
+                                                            <table class="otherTable">
+                                                                    <thead>
+                                                                      <tr>
+                                                                        <th style="width: 10%">Exp#</th>
+                                                                        <th style="width: 25%">Job Code</th>
+                                                                        <th style="width: 20%">Type</th>
+                                                                        <th style="width: 20%">Amount</th>
+                                                                        <th style="width: 25%">Date Verified</th>
+                                                                      </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td>
+                                                                            <input type="text" id="otableExp" class="form-control" aria-label="description" value="02" aria-describedby="basic-addon1">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="otableJobCode" class="form-control" aria-label="description" value="FRF13818" aria-describedby="basic-addon1">
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="otableJobCodeDesc">Mileage & Parking</span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="otableAmount" class="form-control"  aria-label="description" value="$234" aria-describedby="basic-addon1">
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="input-group date" data-provide="datepicker">
+                                                                                <input type="text" placeholder="Pick a date" id="otableDateVerified" class="form-control">
+                                                                                <div class="input-group-addon">
+                                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                                                </div>
+                                                                            </div>                                                                                
+                                                                        </td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
+                                                    </div>
+                                                </div>
+                                            </div>                                                                                                                                                
+
+                                            <div class="row submitrow">
+                                                <div class="col-4 offset-4">
+                                                    <button type="button" id="otherSubmit" class="btn btn-lg submitbtn btn-success">
+                                                        <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
+                                                        Submit Expense 
+                                                    </button> 
+                                                </div>
+                                            </div> 
+                                        </form>
                                     </div>
                                     <!--                                                   END OF OTHER/MISC TAB                                                     -->
+
+
+
                                     </div><!-- end of all tab content -->
                                 </div><!-- end of border div -->
                             </div>
@@ -577,7 +1151,6 @@
                 </div>
                         <!-- end of sidenav wrapper div -->
         </main>
-
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
          </footer>
 
