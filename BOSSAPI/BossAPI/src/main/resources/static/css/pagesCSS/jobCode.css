@@ -205,3 +205,18 @@ table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:aft
 #deleteModal > div > div > div.modal-header{
     background-color: red;
 }
+.reqClass{
+    color: red;
+}
+.reqText{
+    padding: 10px 20px 0px 20px;
+    font-size: 1.3em;
+}
+.modall{
+    font-size: 1.5em;
+}
+form [type=submit] {
+    display: block;
+    margin-bottom: 0;
+    margin-top: 0;
+}

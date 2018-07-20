@@ -94,7 +94,7 @@
                                 <!-- Modal -->
                                 <div id="myModal" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
-
+                                    <form id="editForm" role="form" data-toggle="validator">
                                     <!-- Modal content-->
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -102,80 +102,110 @@
                                         <h4 class="modal-title">Edit Job Code</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="emfyear" class="modall">Financial Year</label>
-                                                <input type="text" class="form-control modall" id="emfyear" name="emfyear" placeholder="Enter Financial Year">
-                                            </div>
-                                            <div class="col">
-                                                <label for="emjcode" class="modall">Job Code</label>
-                                                <input type="text" class="form-control modall" id="emjcode" name="emjcode" placeholder="Enter Financial Year">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="emunit" class="modall">Unit Code</label>
-                                                <input type="text" class="form-control modall" id="emunitcode" name="emunitcode" placeholder="Enter Unit / Override Code">
-                                            </div>
-                                            <div class="col">
-                                                <label for="emamount" class="modall">Amount</label>
-                                                <input type="number" step="1" class="form-control modall" id="emamount" name="emamount" placeholder="Enter Financial Year">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="emdesc" class="modall">Description</label>
-                                                <input type="text" class="form-control modall" id="emdesc" name="emdesc" placeholder="Enter Financial Year">
-                                            </div>
-                                            <div class="col" style="display:none">
-                                                <input type="text" id="emid" name="emid">
-                                            </div>                                            
-                                        </div>
+                                            <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="emfyear" class="modall control-label">Financial Year<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="emfyear" name="emfyear" placeholder="Enter Financial Year">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="emjcode" class="modall control-label">Job Code<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="emjcode" name="emjcode" placeholder="Enter Job Code">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="emunitcode" class="modall control-label">Unit Code</label>
+                                                        <input type="text" class="form-control modall" id="emunitcode" name="emunitcode" placeholder="Enter Unit Code">
+                                                    </div>                                                    
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                        <label for="emamount" class="modall control-label">Amount<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="emamount" name="emamount" placeholder="Enter Amount">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">                                                        
+                                                        <label for="emdesc" class="modall control-label">Description<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="emdesc" name="emdesc" placeholder="Enter Description">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col" style="display: none">
+                                                        <input type="text" id="emid">
+                                                    </div>
+                                                </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
-                                        <button id="editJC" type="button" class="btn btn-lg btn-success">Save Changes</button>
+                                        <input id="editJC" type="submit" class="btn btn-lg btn-success">
                                     </div>
                                     </div>
-
+                                </form>
                                 </div>
                                 </div>
 
                                 <!-- add modal -->
                                 <div id="addModal" class="modal fade" role="dialog">
                                         <div class="modal-dialog">
-                                            <form id="addForm" action="/jobCode" method="post">
+                                            <form id="addForm" role="form" data-toggle="validator">
                                             <!-- Modal content-->
                                             <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Job Codes</h4>
+                                                <h4 class="modal-title">New Job Code</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label for="mfyear" class="modall">Financial Year</label>
-                                                        <input type="text" class="form-control modall" id="mfyear" name="mfyear" placeholder="Enter Financial Year">
+                                                        <div class="form-group">
+                                                        <label for="mfyear" class="modall control-label">Financial Year<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="mfyear" name="mfyear" placeholder="Enter Financial Year">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
                                                     </div>
                                                     <div class="col">
-                                                        <label for="mjcode" class="modall">Job Code</label>
-                                                        <input type="text" class="form-control modall" id="mjcode" name="mjcode" placeholder="Enter Financial Year">
+                                                        <div class="form-group">
+                                                        <label for="mjcode" class="modall control-label">Job Code<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="mjcode" name="mjcode" placeholder="Enter Job Code">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label for="mdesc" class="modall">Description</label>
-                                                        <input type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Financial Year">
-                                                    </div>
+                                                        <label for="munitcode" class="modall control-label">Unit Code</label>
+                                                        <input type="text" class="form-control modall" id="munitcode" name="munitcode" placeholder="Enter Unit Code">
+                                                    </div>                                                    
                                                     <div class="col">
-                                                        <label for="mamount" class="modall">Amount</label>
-                                                        <input type="text" class="form-control modall" id="mamount" name="mamount" placeholder="Enter Financial Year">
+                                                        <div class="form-group">
+                                                        <label for="mamount" class="modall control-label">Amount<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="mamount" name="mamount" placeholder="Enter Amount">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">                                                        
+                                                        <label for="mdesc" class="modall control-label">Description<span class="reqClass"> *</span></label>
+                                                        <input required type="text" class="form-control modall" id="mdesc" name="mdesc" placeholder="Enter Description">
+                                                        <div class="help-block with-errors"></div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button id="saveJC" type="button" class="btn btn-success">Confirm</button>
+                                                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+                                                <button id="saveJC" type="submit" class="btn btn-success btn-lg">Confirm</button>
                                             </div>
                                             </div>
                                         </form>        

@@ -75,7 +75,7 @@ console.log(optionDate);
                 text:'Print <i class="fa fa-lg fa-print"></i>',
                 extend:'print',
                 exportOptions:{
-                    columns: [0,1,2,3]
+                    columns: [0,1,2,3,4]
                 },
                 className: 'table-btns print-btn'
             },
@@ -83,7 +83,7 @@ console.log(optionDate);
                 text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                 extend: 'excel',
                 exportOptions:{
-                    columns: [0,1,2,3]
+                    columns: [0,1,2,3,4]
                 },
                 className: 'table-btns excel-btn'
             },
@@ -136,13 +136,14 @@ console.log(optionDate);
             var id = (data.id);
             $('#deleteModal #dmfyear').val(data.financialYear);
             $('#deleteModal #dmjcode').val(data.jobCode);
+            $('#deleteModal #dmamount').val(data.amount);
             $('#deleteModal #dmdesc').val(data.description);
             $('#deleteModal #dmunitcode').val(data.overrideCode);
             $('#deleteModal #dmid').val(data.id);
             $('#deleteModal').modal('show');
         } );
 
-});
+
 
 
 $("#saveJC").click(function() {
@@ -179,7 +180,8 @@ $("#saveJC").click(function() {
     });
 });
 
-$("#editJC").click(function() {
+
+$("#editForm").submit(function() {
     var jc = {
             "amount": parseInt($('#emamount').val()),
             "description": $('#emdesc').val(),
@@ -187,9 +189,9 @@ $("#editJC").click(function() {
             "jobCode": $('#emjcode').val(),
             "overrideCode": $('#emunitcode').val(),
             "id": parseInt($('#emid').val())
-          };
+        };
     var id = parseInt($('#emid').val());
-          
+        
     console.log(jc);
     console.log("/jobcode/"+id);
 
@@ -203,12 +205,13 @@ $("#editJC").click(function() {
         timeout: 600000,
         success: function(data) {
             console.log(data);
-            table.ajax.reload();
             $('#myModal').modal('hide');
             $('#success').show();
             $('#success').delay(5000).fadeOut();
+            table.ajax.reload();
         },
         error: function(e) {
+            e.preventDefault();
             console.log(e.responseText);
             $('#myModal').modal('hide');
             $('#error').show()
@@ -216,6 +219,7 @@ $("#editJC").click(function() {
         }
     });
 });
+
 
 $("#deleteJC").click(function() {
     var jc = {
@@ -239,7 +243,6 @@ $("#deleteJC").click(function() {
         cache: false,
         timeout: 600000,
         success: function(data) {
-            console.log(data);
             table.ajax.reload();
             $('#deleteModal').modal('hide');
             $('#success').show();
@@ -254,5 +257,5 @@ $("#deleteJC").click(function() {
     });
 });
 
-
+});
 
