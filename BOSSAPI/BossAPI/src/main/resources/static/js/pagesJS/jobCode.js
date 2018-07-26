@@ -151,6 +151,7 @@ $("#saveJC").click(function() {
             "amount": parseInt($('#mamount').val()),
             "description": $('#mdesc').val(),
             "financialYear": parseInt($('#mfyear').val()),
+            "overrideCode": $('#munitcode').val(),
             "jobCode": $('#mjcode').val()
           };
           

@@ -125,11 +125,7 @@
                                                             <div class="form-group">
                                                                 <label for="namecode">Namecode<span class="reqClass"> *</span></label>
                                                                 <select class="form-control" required id="namecode">
-                                                                    <option>1</option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
+                                                                    <option value="">Please Select a Namecode</option>
                                                                 </select>
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
@@ -145,6 +141,7 @@
                                                         <div class="form-group">
                                                             <label for="actcode">Activity Code<span class="reqClass"> *</span></label>
                                                             <select class="form-control" required id="actcode">
+                                                                <option value="">Please Select an Activity Code</option>
                                                             </select>
                                                             <div class="help-block with-errors"></div>
                                                         </div>
@@ -211,9 +208,10 @@
                                                         <div class="form-group">
                                                             <label for="state">State<span class="reqClass"> *</span></label>
                                                             <select class="form-control" required id="state">
-                                                                <option>MI</option>
-                                                                <option>WA</option>
-                                                                <option>CA</option>
+                                                                <option value="">Please Choose State</option>
+                                                                <option value="MI">MI</option>
+                                                                <option value="WA">WA</option>
+                                                                <option value="CA">CA</option>
                                                             </select>
                                                             <div class="help-block with-errors"></div>
                                                         </div>   
@@ -238,32 +236,36 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="form-group">
-                                                                    <label for="unitcode">Unit Code<span class="reqClass"> *</span></label>
-                                                                    <input type="text" disabled id="unitcode" class="form-control"  required aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
-                                                                    <div class="help-block with-errors"></div>
-                                                                    </div>
-                                                                </div>                                                                  
-                                                                <div class="col">
-                                                                    <div class="form-group">
                                                                         <label for="jobcode">Job Code<span class="reqClass"> *</span></label>
-                                                                        <select class="form-control" required id="jobcode">                                                                        
+                                                                        <select class="form-control" required id="jobcode">        
+                                                                            <option value="">Choose Code</option>                                                                
                                                                         </select>
                                                                         <div class="help-block with-errors"></div>
                                                                     </div>
-                                                                </div>
+                                                                </div>                                                                
                                                                 <div class="col">
                                                                     <div class="form-group">
-                                                                        <label for="jobcodedesc" class="control-label">Description<span class="reqClass"> *</span></label>
-                                                                        <input type="text" disabled id="jobcodedesc" required class="form-control" required aria-label="job code description" placeholder="Description">
-                                                                        <div class="help-block with-errors"></div>
+                                                                    <label for="unitcode">Unit Code<span class="reqClass"> *</span></label>
+                                                                    <input type="text" readonly="readonly" id="unitcode" class="form-control"  required aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
+                                                                    <div class="help-block with-errors"></div>
                                                                     </div>
                                                                 </div> 
-                                                            </div>
+                                                            </div>      
+                                                            <div class="row">                                                        
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="jobcodedesc" class="control-label">Desc<span class="reqClass"> *</span></label>
+                                                                        <input readonly="readonly" type="text" id="jobcodedesc" required class="form-control" required aria-label="job code description" placeholder="Description">
+                                                                        <div class="help-block with-errors"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>    
                                                             <div class="row bottomRow">
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label for="expcode">Expense Code<span class="reqClass"> *</span></label>
                                                                         <select class="form-control" required id="expcode">
+                                                                            <option value="">Choose Code</option>
                                                                         </select>
                                                                         <div class="help-block with-errors"></div>
                                                                     </div>
@@ -279,9 +281,9 @@
                                                             
                                                         <div class="row">
                                                             <div class="col-4 offset-7">
-                                                                <button type="button" class="btn btn-lg btn-success">
+                                                                <button id="addbtn" type="button" class="btn btn-lg btn-success">
                                                                     <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
-                                                                    <span id="addbtn" class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                    <span class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
                                                                 </button>                                                                     
                                                             </div>
                                                         </div>
@@ -300,31 +302,6 @@
                                                                           </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                          <tr>
-                                                                            <td>
-                                                                                <input type="text" id="tableExp" class="form-control" aria-label="description" value="01" aria-describedby="basic-addon1">
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" id="tableJobCode" class="form-control" aria-label="description" value="FRF13818" aria-describedby="basic-addon1">
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" id="tableHours" class="form-control" aria-label="description" value="20" aria-describedby="basic-addon1">
-                                                                            </td>
-                                                                            <td>
-                                                                                <span id="tableJobCodeDesc" class="tableType">Base Hours</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" id="tableAmount" class="form-control"  aria-label="description" value="$11,234" aria-describedby="basic-addon1">
-                                                                            </td>
-                                                                            <td>
-                                                                                <div class="input-group date" data-provide="datepicker">
-                                                                                    <input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">
-                                                                                    <div class="input-group-addon">
-                                                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                                    </div>
-                                                                                </div>                                                                                
-                                                                            </td>
-                                                                          </tr>
                                                                         </tbody>
                                                                       </table>
                                                         </div>
@@ -333,10 +310,7 @@
 
                                                 <div class="row submitrow">
                                                     <div class="col-4 offset-4">
-                                                        <button id="timeSubmit" type="button" class="btn btn-lg submitbtn btn-success">
-                                                            <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
-                                                            Submit Expense 
-                                                        </button> 
+                                                        <input id="timeSubmit" type="submit" class="btn btn-lg submitbtn btn-success">
                                                     </div>
                                                 </div>
                                                 
@@ -431,7 +405,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <label class="control-label" for="tboc">Budget Object (BOC)<span class="reqClass"> *</span></label>
+                                                        <label class="control-label" for="tboc">BOC<span class="reqClass"> *</span></label>
                                                         <input type="text" disabled required id="tboc" class="form-control"  aria-label="budget object code" value="21" aria-describedby="basic-addon1">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -455,47 +429,7 @@
                                                     </div>
                                                 </div>                                                     
                                             </div>                                            
-                                            <!-- <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="payperiod">Pay Period</label>
-                                                        <select class="form-control" id="payperiod">
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                                <option>6</option>
-                                                                <option>7</option>
-                                                                <option>8</option>
-                                                                <option>9</option>
-                                                                <option>10</option>
-                                                                <option>11</option>
-                                                                <option>12</option>
-                                                                <option>13</option>
-                                                                <option>14</option>
-                                                                <option>15</option>
-                                                                <option>16</option>
-                                                                <option>17</option>
-                                                                <option>18</option>
-                                                                <option>19</option>
-                                                                <option>20</option>
-                                                                <option>21</option>
-                                                                <option>22</option>
-                                                                <option>23</option>
-                                                                <option>24</option>
-                                                                <option>25</option>
-                                                                <option>26</option>
-                                                                <option>27</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="unitcode">Unit Code</label>
-                                                    <input type="text" disabled id="unitcode" class="form-control"  aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
-                                                </div>     
-                                                                                                                                                 
-                                            </div> -->
+
 
                                             <div id="travelDetails">
                                                 <div class="row">
@@ -575,30 +509,30 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="tunitcode">Unit<span class="reqClass"> *</span></label>
-                                                                    <select class="form-control" disabled required id="tunitcode">
+                                                                    <label class="control-label" for="tjobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                    <select class="form-control" required id="tjobcode">
                                                                     </select>
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>                                                             
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="tjobcode">Job Code<span class="reqClass"> *</span></label>
-                                                                    <select class="form-control" required id="tjobcode">
-                                                                    </select>
+                                                                    <label class="control-label" for="tunitcode">Unit<span class="reqClass"> *</span></label>
+                                                                    <input type="text" readonly="readonly" id="tunitcode" class="form-control"  required aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div> 
+                                                        </div>                                                            
+                                                        <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="tjobcodedesc">Description<span class="reqClass"> *</span></label>
-                                                                    <select class="form-control" disabled required id="tjobcodedesc">
-                                                                    </select>
+                                                                    <label class="control-label" for="tjobcodedesc">Desc<span class="reqClass"> *</span></label>
+                                                                    <input type="text" readonly="readonly" id="tjobcodedesc" class="form-control"  required aria-label="Job Code Description" value="Default" aria-describedby="basic-addon1">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
-                                                            </div>                                                               
+                                                            </div> 
+                                                        </div>                                                              
 
-                                                        </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
@@ -615,9 +549,8 @@
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>                                                            
-
-
                                                         </div>
+
                                                         <div class="row">
                                                             <div class="col-4 offset-7">
                                                                 <button type="button" class="btn btn-lg btn-success">
@@ -806,30 +739,29 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="vunitcode">Unit<span class="reqClass"> *</span></label>
-                                                                    <select required disabled class="form-control" id="vunitcode">
+                                                                    <label class="control-label" for="vjobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="vjobcode">
                                                                     </select>
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>                                                             
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="vjobcode">Job Code<span class="reqClass"> *</span></label>
-                                                                    <select required class="form-control" id="vjobcode">
-                                                                    </select>
+                                                                    <label class="control-label" for="vunitcode">Unit<span class="reqClass"> *</span></label>
+                                                                    <input type="text" readonly="readonly" id="vunitcode" class="form-control"  required aria-label="Unit Code" value="Default">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
-                                                            </div> 
+                                                            </div>
+                                                        </div>  
+                                                        <div class="row">                                                        
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="vjobcodedesc">Description<span class="reqClass"> *</span></label>
-                                                                    <select disabled required class="form-control" id="vjobcodedesc">
-                                                                    </select>
+                                                                    <label class="control-label" for="vjobcodedesc">Desc<span class="reqClass"> *</span></label>
+                                                                    <input type="text" readonly="readonly" id="vjobcodedesc" class="form-control"  required aria-label="Job Code Desc" value="Default">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
-                                                            </div>                                                               
-
-                                                        </div>
+                                                            </div>
+                                                        </div>                                                                  
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
@@ -989,7 +921,7 @@
                                                         </div> 
                                                         <div class="col">
                                                             <div class="form-group">
-                                                                <label class="control-label" for="oboc">Budget Object Code (BOC)<span class="reqClass"> *</span></label>
+                                                                <label class="control-label" for="oboc">Budget Object Code<span class="reqClass"> *</span></label>
                                                                 <select name="oboc" required id="oboc" class="form-control" value=""></select>
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
@@ -1035,30 +967,30 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="ounit">Unit<span class="reqClass"> *</span></label>
-                                                                    <select required disabled class="form-control" id="ounit">
+                                                                    <label class="control-label" for="ojobcode">Job Code<span class="reqClass"> *</span></label>
+                                                                    <select required class="form-control" id="ojobcode">
                                                                     </select>
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div>                                                             
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="ojobcode">Job Code<span class="reqClass"> *</span></label>
-                                                                    <select required class="form-control" id="ojobcode">
-                                                                    </select>
+                                                                    <label class="control-label" for="ounitcode">Unit<span class="reqClass"> *</span></label>
+                                                                    <input type="text" readonly="readonly" id="ounitcode" class="form-control"  required aria-label="Unit Code" value="Default">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div> 
+                                                        </div>      
+                                                        <div class="row">                                                      
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="ojobcodedesc">Description<span class="reqClass"> *</span></label>
-                                                                    <select required disabled class="form-control" id="ojobcodedesc">
-                                                                    </select>
+                                                                    <label class="control-label" for="ojobcodedesc">Desc<span class="reqClass"> *</span></label>
+                                                                    <input type="text" readonly="readonly" id="ojobcodedesc" class="form-control"  required aria-label="Unit Code" value="Default">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
-                                                            </div>                                                               
+                                                            </div>  
+                                                        </div>                                                             
 
-                                                        </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
