@@ -61,7 +61,7 @@ $(document).ready(function() {
             url: api+'/employeeProfile',
             success: function(json){
               $.each(json, function(value, key) {
-                $('#namecode').append(json.map(function(sObj){
+                $('#namecode, #tnamecode, #vnamecode, #onamecode').append(json.map(function(sObj){
                   return '<option id="'+sObj.id+'">'+sObj.nameCode +'</option>'
                 })) ;
                 });
@@ -97,7 +97,7 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
     })
   })
   $('#tjobcode').on('change', function(){
-    var key = (this.id);
+    var key = (this.value);
     $.get(api+'/jobCode/'+key, function(data,status){
       JSON.stringify(data);
       $('#tjobcodedesc').val(data.description.replace(/\"/g, ""));
@@ -107,7 +107,7 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
     })
   })
   $('#vjobcode').on('change', function(){
-    var key = (this.id);
+    var key = (this.value);
     $.get(api+'/jobCode/'+key, function(data,status){
       JSON.stringify(data);
       $('#vjobcodedesc').val(data.description.replace(/\"/g, ""));
@@ -117,7 +117,7 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
     })
   })
   $('#ojobcode').on('change', function(){
-    var key = (this.id);
+    var key = (this.value);
     $.get(api+'/jobCode/'+key, function(data,status){
       JSON.stringify(data);
       $('#ojobcodedesc').val(data.description.replace(/\"/g, ""));
@@ -128,14 +128,13 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
   })
 
 
-
+// setting up adding to table for time
     $("#addbtn").click(function(){
-        // var absoluteunit = $("#unitcode").val();
         var jobcode = $("#jobcode").val();
         var desc = $("#jobcodedesc").val();
         var expcode = $("#expcode").val();
-        var expfront = expcode.substring(0, 3);
-        var expback = expcode.substr(3);
+        var expfront = expcode.substring(0, 2);
+        var expback = expcode.substr(2);
         var amount = $('#amount').val();
         var hours = $("#hours").val();
         var markup = "<tr><td id='tableExp'>" + expfront +"</td><td id='tableJobCode'>" + jobcode + 
@@ -146,9 +145,29 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
                             '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>'+
                           '</div>'+
                         '</div></td></tr>';
-        $("table tbody").append(markup);
+        $("#timeTable tbody").append(markup);
         console.log($('#tableJobCode').text());
     });
+// setting up adding to table for travel
+    $("#taddbtn").click(function(){
+      var jobcode = $("#tjobcode").val();
+      var desc = $("#tjobcodedesc").val();
+      var expcode = $("#texpcode").val();
+      var expfront = expcode.substring(0, 2);
+      var expback = expcode.substr(2);
+      var amount = $('#tamount').val();
+      // var hours = $("#hours").val();
+      var markup = "<tr><td id='tableExp'>" + expfront +"</td><td id='tableJobCode'>" + jobcode + 
+                   "</td><td id='tableType'>" + expback + "</td><td id='amount'>" + amount + "</td>" +
+                      '<td> <div class="input-group date" data-provide="datepicker">'+
+                        '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">'+
+                        '<div class="input-group-addon">'+
+                          '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>'+
+                        '</div>'+
+                      '</div></td></tr>';
+      $("#travelTable tbody").append(markup);
+      console.log($('#ttableJobCode').text());
+  });
 
   // $('#addbtn').on('click', function(){
   //   var 

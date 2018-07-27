@@ -379,19 +379,15 @@
                                                         <div class="form-group">
                                                             <label class="control-label" for="tnamecode">Namecode<span class="reqClass"> *</span></label>
                                                             <select class="form-control" required id="tnamecode">
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
+                                                                <option value="">Please Choose Name Code</option>
                                                             </select>
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group">
-                                                    <label class="control-label" for="tpov">POV Miles<span class="reqClass"> *</span></label>
-                                                    <input type="text"  required id="tpov" class="form-control"  aria-label="POV Miles" placeholder="POV Miles"  aria-describedby="basic-addon1">
+                                                    <label class="control-label" for="tpov">POV Miles</label>
+                                                    <input type="text"  id="tpov" class="form-control"  aria-label="POV Miles" placeholder="POV Miles"  aria-describedby="basic-addon1">
                                                     <div class="help-block with-errors"></div>    
                                                     </div>
                                                 </div>                                                
@@ -399,6 +395,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label" for="tactcode">Activity Code<span class="reqClass"> *</span></label>
                                                         <select class="form-control" required id="tactcode">
+                                                            <option value="">Please Choose Activity Code</option>
                                                         </select>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -421,10 +418,8 @@
                                                     <div class="form-group">
                                                         <label class="control-label" for="tstateassigned">State Assigned<span class="reqClass"> *</span></label>
                                                         <select class="form-control" required disabled id="tstateassigned">
-                                                            <option>MI</option>
-                                                            <option>WA</option>
-                                                            <option>CA</option>
                                                         </select>
+                                                        <option value="">Choose State</option>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>                                                     
@@ -480,11 +475,7 @@
                                                         <div class="col">
                                                             <div class="form-group">
                                                                 <label for="tstate">State<span class="reqClass"> *</span></label>
-                                                                <select class="form-control" required id="tstate">
-                                                                    <option>MI</option>
-                                                                    <option>WA</option>
-                                                                    <option>CA</option>
-                                                                </select>
+                                                                <input type="text" id="tstate" required class="form-control"  maxlength="3" minlength="2" aria-label="travel state">
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div> 
@@ -518,7 +509,7 @@
                                                             <div class="col">
                                                                 <div class="form-group">
                                                                     <label class="control-label" for="tunitcode">Unit<span class="reqClass"> *</span></label>
-                                                                    <input type="text" readonly="readonly" id="tunitcode" class="form-control"  required aria-label="Unit Code" value="Default" aria-describedby="basic-addon1">
+                                                                    <input type="text" readonly="readonly" id="tunitcode" class="form-control"  required aria-label="Unit Code" placeholder="Unit Code">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div> 
@@ -527,7 +518,7 @@
                                                             <div class="col">
                                                                 <div class="form-group">
                                                                     <label class="control-label" for="tjobcodedesc">Desc<span class="reqClass"> *</span></label>
-                                                                    <input type="text" readonly="readonly" id="tjobcodedesc" class="form-control"  required aria-label="Job Code Description" value="Default" aria-describedby="basic-addon1">
+                                                                    <input type="text" readonly="readonly" id="tjobcodedesc" class="form-control"  required aria-label="Job Code Description" placeholder="Description">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
                                                             </div> 
