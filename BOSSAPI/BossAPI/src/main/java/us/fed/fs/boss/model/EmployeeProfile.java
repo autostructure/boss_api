@@ -39,6 +39,9 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "NameCode", unique=true)
     private String nameCode;
     
+    @Column(name = "StateAssigned")
+    private String stateAssigned;
+    
     @Column(name = "Title")
     private String title;
     
