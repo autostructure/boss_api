@@ -28,8 +28,9 @@ $(document).ready(function() {
       success: function(json){
         $.each(json, function(value, key) {
           $('#actcode, #tactcode, #vactcode, #oactcode').append(json.map(function(sObj){
-            return '<option id="'+sObj.name+'">'+sObj.name +'</option>'
+            return '<option value="'+sObj.name+'">'+sObj.name +'</option>'
           })) ;
+
           });
         }
       }); //end of get jobcode ajax call
@@ -39,7 +40,7 @@ $(document).ready(function() {
         success: function(json){
           $.each(json, function(value, key) {
             $('#expcode, #texpcode, #vexpcode, #oexpcode').append(json.map(function(sObj){
-              return '<option id="'+sObj.id+'">'+sObj.id + '   ' + sObj.type + '</option>'
+              return '<option value="'+sObj.id+'">'+sObj.id + '   ' + sObj.type + '</option>'
             })) ;
             });
           }
@@ -50,7 +51,7 @@ $(document).ready(function() {
           success: function(json){
             $.each(json, function(value, key) {
               $('#oboc').append(json.map(function(sObj){
-                return '<option id="'+sObj.id+'">'+sObj.name +'</option>'
+                return '<option value="'+sObj.id+'">'+sObj.name +'</option>'
               })) ;
               });
             }
@@ -63,7 +64,10 @@ $(document).ready(function() {
               $.each(json, function(value, key) {
                 $('#namecode, #tnamecode, #vnamecode, #onamecode').append(json.map(function(sObj){
                   return '<option id="'+sObj.id+'">'+sObj.nameCode +'</option>'
-                })) ;
+                }));
+                $('#namecode').on('change', function(){
+
+                })
                 });
               }
             }); //end of get namecode ajax call          
@@ -137,8 +141,8 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
         var expback = expcode.substr(2);
         var amount = $('#amount').val();
         var hours = $("#hours").val();
-        var markup = "<tr><td id='tableExp'>" + expfront +"</td><td id='tableJobCode'>" + jobcode + 
-                     "</td><td id='tableHours'>" + hours + "</td><td id='tableType'>" + expback + "</td><td id='amount'>Amount to be Calc</td>" +
+        var markup = "<tr><td><input type='hidden' id='tableExp' value='" + expfront +"'>" + expfront + "</td><td><input type='hidden' id='tableJobCode' value='" + jobcode +"'>" + jobcode + "</td>" +
+                     "<td><input type='hidden' id='tableHours' value='" + hours + "'>" + hours + "</td><td><input type='hidden' id='tableType' value='" + expback + "'>" + expback + "</td><td id='amount'>Amount to be Calc</td>" +
                         '<td> <div class="input-group date" data-provide="datepicker">'+
                           '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">'+
                           '<div class="input-group-addon">'+
@@ -146,7 +150,10 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
                           '</div>'+
                         '</div></td></tr>';
         $("#timeTable tbody").append(markup);
-        console.log($('#tableJobCode').text());
+        console.log($('#tableExp').val());
+        console.log($('#tableJobCode').val());
+        console.log($('#tableHours').val());
+        console.log($('#tableType').val());
     });
 // setting up adding to table for travel
     $("#taddbtn").click(function(){
@@ -203,121 +210,63 @@ $('#fy, #tfy, #vfy, #ofy').each(function() {
 
 
 // SETTING UP THE TIME DATA
-var timeData = 
+var timeData = JSON.stringify(
 {
-    "actCode": "string",
     "activityCode": {
-      "code": "string",
-      "name": "string"
+      "name": $('#actcode').val(),
     },
     "budgetObjectCode": {
-      "id": 0,
-      "name": "string"
+      "name": $('#boc').val(),
     },
-    "category": {
-      "description": "string",
-      "id": 0
-    },
-    "createdAt": "2018-06-14T20:28:15.769Z",
-    "description": "string",
+    "createdAt": $('#dateentered').val(),
+    "description": $('#desc').val(),
     "employeeProfile": {
-      "firstName": "string",
-      "id": 0,
-      "lastName": "string",
-      "nameCode": "string",
-      "title": "string"
-    },
+      "nameCode": $('#namecode').val(),
+    },  
     "expenseDetails": [
       {
-        "amount": 0,
-        "dateVerified": "2018-06-14T20:28:15.769Z",
+        "amount": $('#tableAmount').val(),
+        "dateVerified": $('#tableDateVerified').val(),
         "expenseCode": {
-          "id": 0,
-          "type": "string"
+          "id": $('#tableExp').val(),
+          "type": $('#tableType').val(),
         },
-        "hours": 0,
-        "id": 0,
+        "hours": $('#tableHours').val(),
         "jobCode": {
-          "description": "string",
-          "id": 0,
-          "jobCode": "string",
-          "obligated": 0,
-          "operating": 0,
-          "unitCode": 0
+          "description": $('jobcodedesc').val(),
+          "id": $('#tableJobCode').val(),
+          "jobCode": $('#tableJobCode').val(),
         }
       }
     ],
-    "financialYear": 0,
-    "id": 0,
-    "jobCode": {
-      "description": "string",
-      "id": 0,
-      "jobCode": "string",
-      "obligated": 0,
-      "operating": 0,
-      "unitCode": 0
-    },
-    "obligatedDate": "2018-06-14T20:28:15.769Z",
-    "overrideCode": "string",
-    "payPeriod": 0,
+    "financialYear": $('#fy').val(),
+    "id": 1,
+    "obligatedDate": $('#dateob').val(),
+    "payPeriod": $('#payperiod').val(),
     "paymentCode": {
-      "code": "string",
-      "name": "string"
+      "name": $('#pc').val(),
     },
-    "secCode": "string",
-    "state": "string",
-    "total": 0,
-    "travelDetails": [
-      {
-        "fromDate": "2018-06-14T20:28:15.769Z",
-        "id": 0,
-        "remarks": "string",
-        "state": "string",
-        "toDate": "2018-06-14T20:28:15.769Z",
-        "voucherNumber": 0
-      }
-    ],
-    "unitCode": "string",
-    "updatedAt": "2018-06-14T20:28:15.769Z"
-  }
+    "state": $('#state').val(),
+    "updatedAt": $('#datemod').val()
+  })
 
-
-    $("#add").click(function() {
-    		var lastField = $("#buildyourform div:last");
-        var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
-        var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
-        fieldWrapper.data("idx", intId);
-        var fName = $("<input type=\"text\" class=\"fieldname\" />");
-        var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
-        removeButton.click(function() {
-            $(this).parent().remove();
-        });
-        fieldWrapper.append(fName);
-        fieldWrapper.append(fType);
-        fieldWrapper.append(removeButton);
-        $("#buildyourform").append(fieldWrapper);
-    });
-    $("#preview").click(function() {
-        $("#yourform").remove();
-        var fieldSet = $("<fieldset id=\"yourform\"><legend>Your Form</legend></fieldset>");
-        $("#buildyourform div").each(function() {
-            var id = "input" + $(this).attr("id").replace("field","");
-            var label = $("<label for=\"" + id + "\">" + $(this).find("input.fieldname").first().val() + "</label>");
-            var input;
-            switch ($(this).find("select.fieldtype").first().val()) {
-                case "checkbox":
-                    input = $("<input type=\"checkbox\" id=\"" + id + "\" name=\"" + id + "\" />");
-                    break;
-                case "textbox":
-                    input = $("<input type=\"text\" id=\"" + id + "\" name=\"" + id + "\" />");
-                    break;
-                case "textarea":
-                    input = $("<textarea id=\"" + id + "\" name=\"" + id + "\" ></textarea>");
-                    break;    
-            }
-            fieldSet.append(label);
-            fieldSet.append(input);
-        });
-        $("body").append(fieldSet);
-
+$('#timeForm').submit(function(e){
+  console.log(timeData);
+  $.ajax({
+    type: "POST",
+    contentType: "application/json",
+    url: api+'/expense',
+    data: timeData,
+    dataType: 'json',
+    success: function(data)
+    {
+      alert(data);
+    },
+    error: function(e){
+      console.log(e.responseText);
+    }
+  });
+  e.preventDefault();
 });
+
+

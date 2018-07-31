@@ -77,8 +77,8 @@
                                                     <th scope="col">Unit Code</th>
                                                     <th scope="col">Job Code</th>
                                                     <th scope="col">Description</th>
-                                                    <th scope="col" id="stop">Amount</th>
-                                                    <th></th>
+                                                    <th scope="col">Amount</th>
+                                                    <th id="stop"></th>
 
 
                                                 </tr>

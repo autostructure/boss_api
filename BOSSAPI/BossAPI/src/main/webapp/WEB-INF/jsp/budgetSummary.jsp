@@ -39,39 +39,72 @@
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole title-div">
                                             <h1 id="title">Budget</h1>
+                                            <form role="form" data-toggle="validator" id="selectForm">
+                                                <div class="row">                                            
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="serLabel" for="year">Fiscal Year<span class="reqClass"> *</span></label>
+                                                            <select required class="form-control" name="year" id="year">
+                                                                <option value="">Choose Year</option>
+                                                                <option value="2016">2016</option>
+                                                                <option value="2017">2017</option>
+                                                                <option value="2018">2018</option>
+                                                            </select>                                                                        
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="serLabel" for="verif">Choose Verification Type Year<span class="reqClass"> *</span></label>
+                                                            <select required class="form-control" name="verif" id="verif">
+                                                                <option value="">Choose Verification Type</option>
+                                                                <option value="all">All</option>
+                                                                <option value="verified">Verified</option>
+                                                                <option value="unverified">Un-Verified</option>
+                                                            </select>                                                                        
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                                
+                                                <div class="row">
+                                                    <div class="col-md-4 offset-md-4">
+                                                        <input type="submit" id="refresh" class="btn btn-lg submitbtn btn-success">
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+
                                         </div>
                                     </div>
  
-                                    <div class="usa-grid usa-buffer-top">
+                                    <div class="usa-grid usa-buffer-top" id="showHide">
                                         <div class="use-width-one-whole content-div">
                                             <h2 class="title2">Budget Summary</h2>
                                         <table id="budget" class="usa-table-borderless display" style="width:100%">
                                             
-                                            <thead>
-                                                <!-- <tr>
-                                                    <th>Job Code</th>
-                                                    <th>Description</th>
-                                                    <th>Operating</th>
-                                                    <th>Obligated</th>
-                                                    <th>Balance</th>
-                                                    <th>FMMI Operating</th>
-                                                    <th>FMMI Balance</th>
-                                                    <th>Select</th>
-                                                </tr> -->
+                                            <thead class="header">
                                                 <tr>
                                                     <th>Job Code</th>
                                                     <th>Description</th>
                                                     <th>Operating</th>
                                                     <th>Obligated</th>
                                                     <th>Balance</th>
-                                                    <th>FMMI Operating</th>
-                                                    <th>FMMI Balance</th>
-                                                    <th class="no-sort"></th>
+                                                    <th></th>
                                                 </tr>                                               
                                             </thead>
                                             <tbody>
                                                
                                             </tbody>
+                                            <tfoot>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
                                         </table>
                                     </div>
                                 </div> 
