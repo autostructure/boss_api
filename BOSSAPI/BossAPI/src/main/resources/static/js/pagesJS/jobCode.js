@@ -1,11 +1,21 @@
 
+
+
+var yr = "";
+setYear();
+
+function setYear(){
+    $("#year").on('change', function() {
+        if ($(this).val() > 0){
+            yr = $(this).val();
+            console.log(yr);
+        }
+    })
+};
+
 var fy = $('#fy').val();
-var tempAPI = 'http://localhost:8090/jobCode';
+var tempAPI = 'http://localhost:8090/jobCode?financialYear=';
 
-
-var dt = new Date();
-var optionDate = dt.getFullYear();
-console.log(optionDate);
       $(document).ready(function() {
         $('#budgetSub').addClass('show');
         $('#budgetSub > li:nth-child(2) > a').addClass('highlight');
@@ -19,31 +29,35 @@ console.log(optionDate);
             $(this).html( '<label class="headLabel" for="desc">Description</label><input type="text" id="desc" class="headSearch" placeholder="Search Description" />' );
         } );      
 
-       
+    $('#selectForm').submit(function(e){
+        $('#showHide').css('visibility', 'visible');
+        e.preventDefault();
+        console.log(yr);
         var table = $('#jobCodes').DataTable( {
-            initComplete: function () {
-                this.api().columns([0]).every( function () {
-                    var column = this;
-                    var select = $('<select id="fySelect" class="fySelect form-control"><option value="2017"></option></select>')
-                        .appendTo( $('#fySearch').empty() )
-                        .on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                            );
+            // initComplete: function () {
+            //     this.api().columns([0]).every( function () {
+            //         var column = this;
+            //         var select = $('<select id="fySelect" class="fySelect form-control"><option value="2017"></option></select>')
+            //             .appendTo( $('#fySearch').empty() )
+            //             .on( 'change', function () {
+            //                 var val = $.fn.dataTable.util.escapeRegex(
+            //                     $(this).val()
+            //                 );
      
-                            column
-                                .search( val ? '^'+val+'$' : '', true, false )
-                                .draw();
-                        } );
+            //                 column
+            //                     .search( val ? '^'+val+'$' : '', true, false )
+            //                     .draw();
+            //             } );
      
-                    column.data().unique().sort().each( function ( d, j ) {
-                        select.append( '<option value="'+d+'">'+d+'</option>' )
-                    } );               
-                    })},            
+            //         column.data().unique().sort().each( function ( d, j ) {
+            //             select.append( '<option value="'+d+'">'+d+'</option>' )
+            //         } );               
+            //         })},            
 
            dom: "Brtip",
+           destroy: true,
            "paging": false,
-           ajax:{"url":tempAPI,"dataSrc":""},
+           ajax:{"url":tempAPI + yr,"dataSrc":""},
            columnDefs: [ {
             "targets": [5],
             "orderable": false
@@ -104,8 +118,9 @@ console.log(optionDate);
         ],
         
         
+        
        });
-
+       $.fn.dataTable.ext.errMode = 'throw';
       
         table.columns().every( function () {
             var that = this;
@@ -146,117 +161,120 @@ console.log(optionDate);
 
 
 
-$("#saveJC").click(function() {
-    var jc = {
-            "amount": parseInt($('#mamount').val()),
-            "description": $('#mdesc').val(),
-            "financialYear": parseInt($('#mfyear').val()),
-            "overrideCode": $('#munitcode').val(),
-            "jobCode": $('#mjcode').val()
-          };
-          
-    console.log(jc);
+    $("#saveJC").click(function() {
+        var jc = {
+                "amount": parseInt($('#mamount').val()),
+                "description": $('#mdesc').val(),
+                "financialYear": parseInt($('#mfyear').val()),
+                "overrideCode": $('#munitcode').val(),
+                "jobCode": $('#mjcode').val()
+            };
+            
+        console.log(jc);
 
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "/jobCode",
-        data: JSON.stringify(jc),
-        dataType: 'json',
-        cache: false,
-        timeout: 600000,
-        success: function(data) {
-            console.log(data);
-            table.ajax.reload();
-            $('#addModal').modal('hide');
-            $('#success').show()
-            $('#success').delay(5000).fadeOut();
-        },
-        error: function(e) {
-            console.log(e.responseText);
-            $('#addModal').modal('hide');
-            $('#error').show()
-            $('#error').delay(5000).fadeOut();
-        }
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/jobCode",
+            data: JSON.stringify(jc),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function(data) {
+                console.log(data);
+                table.ajax.reload();
+                $('#addModal').modal('hide');
+                $('#success').show()
+                $('#success').delay(5000).fadeOut();
+                (data).preventDefault();
+            },
+            error: function(e) {
+                console.log(e.responseText);
+                $('#addModal').modal('hide');
+                $('#error').show()
+                $('#error').delay(5000).fadeOut();
+            }
+        });
     });
-});
 
 
-$("#editForm").submit(function() {
-    var jc = {
-            "amount": parseInt($('#emamount').val()),
-            "description": $('#emdesc').val(),
-            "financialYear": parseInt($('#emfyear').val()),
-            "jobCode": $('#emjcode').val(),
-            "overrideCode": $('#emunitcode').val(),
-            "id": parseInt($('#emid').val())
+    $("#editForm").submit(function() {
+        var jc = {
+                "amount": parseInt($('#emamount').val()),
+                "description": $('#emdesc').val(),
+                "financialYear": parseInt($('#emfyear').val()),
+                "jobCode": $('#emjcode').val(),
+                "overrideCode": $('#emunitcode').val(),
+                "id": parseInt($('#emid').val())
+            };
+        var id = parseInt($('#emid').val());
+            
+        console.log(jc);
+        console.log("/jobcode/"+id);
+
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json",
+            url: "/jobCode/"+id,
+            data: JSON.stringify(jc),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function(data) {
+                $('#myModal').modal('hide');
+                $('#success').show();
+                $('#success').delay(5000).fadeOut();
+                window.location.href = tempAPI + jc.financialYear;
+                // table.ajax.reload();
+            },
+            error: function(request, status, error) {
+                console.log(e.responseText);
+                $('#myModal').modal('hide');
+                $('#error').show()
+                $('#error').delay(5000).fadeOut();
+                window.location.href = tempAPI + jc.financialYear;
+            }
+        });
+    });
+
+
+    $("#deleteJC").click(function() {
+        var jc = {
+            "amount": parseInt($('#dmamount').val()),
+            "description": $('#dmdesc').val(),
+            "financialYear": parseInt($('#dmfyear').val()),
+            "jobCode": $('#dmjcode').val(),
+            "overrideCode": $('#dmunitcode').val(),
+            "id": parseInt($('#dmid').val())
         };
-    var id = parseInt($('#emid').val());
-        
-    console.log(jc);
-    console.log("/jobcode/"+id);
+        var id = parseInt($('#dmid').val());
 
-    $.ajax({
-        type: "PUT",
-        contentType: "application/json",
-        url: "/jobCode/"+id,
-        data: JSON.stringify(jc),
-        dataType: 'json',
-        cache: false,
-        timeout: 600000,
-        success: function(data) {
-            console.log(data);
-            $('#myModal').modal('hide');
-            $('#success').show();
-            $('#success').delay(5000).fadeOut();
-            table.ajax.reload();
-        },
-        error: function(e) {
-            e.preventDefault();
-            console.log(e.responseText);
-            $('#myModal').modal('hide');
-            $('#error').show()
-            $('#error').delay(5000).fadeOut();
-        }
+
+        console.log("/jobcode/"+id);
+        $.ajax({
+            type: "DELETE",
+            contentType: "application/json",
+            url: "/jobCode/"+id,
+            data: JSON.stringify(jc),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function(data) {
+                $('#deleteModal').modal('hide');
+                $('#success').show();
+                $('#success').delay(5000).fadeOut();
+                table.ajax.reload();
+            },
+            error: function(e) {
+                console.log(e.responseText);
+                $('#deleteModal').modal('hide');
+                $('#success').show()
+                $('#success').delay(5000).fadeOut();
+                table.ajax.reload();
+            }
+        });
+    });
     });
 });
-
-
-$("#deleteJC").click(function() {
-    var jc = {
-        "amount": parseInt($('#dmamount').val()),
-        "description": $('#dmdesc').val(),
-        "financialYear": parseInt($('#dmfyear').val()),
-        "jobCode": $('#dmjcode').val(),
-        "overrideCode": $('#dmunitcode').val(),
-        "id": parseInt($('#dmid').val())
-      };
-    var id = parseInt($('#dmid').val());
-
-
-    console.log("/jobcode/"+id);
-    $.ajax({
-        type: "DELETE",
-        contentType: "application/json",
-        url: "/jobCode/"+id,
-        data: JSON.stringify(jc),
-        dataType: 'json',
-        cache: false,
-        timeout: 600000,
-        success: function(data) {
-            table.ajax.reload();
-            $('#deleteModal').modal('hide');
-            $('#success').show();
-            $('#success').delay(5000).fadeOut();
-        },
-        error: function(e) {
-            console.log(e.responseText);
-            $('#deleteModal').modal('hide');
-            $('#error').show()
-            $('#error').delay(5000).fadeOut();
-        }
-    });
-});
-
-});
+      
 

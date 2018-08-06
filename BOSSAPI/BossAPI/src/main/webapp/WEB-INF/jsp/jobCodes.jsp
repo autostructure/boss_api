@@ -50,43 +50,69 @@
                                         <div id="error" class="alert alert-danger" role="alert">
                                             Error Adding Changes
                                         </div>
+                                        <form role="form" data-toggle="validator" id="selectForm">
+                                                <div class="row">                                            
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label class="serLabel" for="year">Fiscal Year<span class="reqClass"> *</span></label>
+                                                            <select required class="form-control" name="year" id="year">
+                                                                <option value="">Choose Year</option>
+                                                                <option value="2018">2018</option>
+                                                                <option value="2017">2017</option>
+                                                                <option value="2016">2016</option>
+                                                                <option value="2015">2015</option>
+                                                                <option value="2014">2014</option>
+                                                                <option value="2013">2013</option>
+                                                                <option value="2012">2012</option>
+                                                                <option value="2011">2011</option>
+                                                                <option value="2010">2010</option>
+                                                                <option value="2009">2009</option>
+                                                                <option value="2008">2008</option>
+                                                                <option value="2007">2007</option>
+                                                                <option value="2006">2006</option>
+                                                                <option value="2005">2005</option>
+                                                                <option value="2004">2004</option>
+                                                                <option value="2003">2003</option>
+                                                                <option value="2002">2002</option>
+                                                                <option value="2001">2001</option>
+                                                                <option value="2000">2000</option>
+                                                            </select>                                                                        
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                                
+                                                <div class="row">
+                                                    <div class="col-md-4 offset-md-4">
+                                                        <input type="submit" id="refresh" class="btn btn-lg submitbtn btn-success">
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
                                     </div>
 
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
                                             <h2 class="title2">Job Code Mgmt</h2>
-                                            <div class="row topRow">
-                                                <div class="col-3 fiscalyearDiv">
-                                                    <label for="fySelect" class="fyLabel">Choose Financial Year</label>
-                                                    <div class="fyDiv" id="fySearch"></div>
-                                                </div>                                                  
-                                            </div>
-                                            <!-- <div id="yearFilter">
-                                                <div class="form-group">
-                                                    
-                                                    <select class="form-control" id="year-filter">
-                                                        <option value="">All</option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
-                                        <table id="jobCodes" class="usa-table-borderless display" style="width:100%">
-                                            
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Fiscal Year</th>
-                                                    <th scope="col">Unit Code</th>
-                                                    <th scope="col">Job Code</th>
-                                                    <th scope="col">Description</th>
-                                                    <th scope="col">Amount</th>
-                                                    <th id="stop"></th>
-
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                        <div id="showHide">
+                                            <table id="jobCodes" class="usa-table-borderless display" style="width:100%">
                                                 
-                                            </tbody>
-                                        </table>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Fiscal Year</th>
+                                                        <th scope="col">Unit Code</th>
+                                                        <th scope="col">Job Code</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Amount</th>
+                                                        <th id="stop"></th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div> 
 

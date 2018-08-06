@@ -26,10 +26,10 @@ function setTyp(){
 $(document).ready(function() {
     $('#budgetSub').addClass('show');
     $('#budgetSub > li:nth-child(1) > a').addClass('highlight');
-    $('#budget thead tr:nth-child(1) th:nth-child(1)').each( function () {
+    $('#budget thead tr:nth-child(1) th:nth-child(2)').each( function () {
         $(this).html( '<label class="headLabel" for="unitCode">Unit Code</label><input type="text" id="unitCode" class="headSearch" placeholder="Search Unit Code" />' );
     } );
-    $('#budget thead tr:nth-child(1) th:nth-child(2)').each( function () {
+    $('#budget thead tr:nth-child(1) th:nth-child(1)').each( function () {
         $(this).html( '<label class="headLabel" for="jcode">Job Code</label><input type="text" id="jcode" class="headSearch" placeholder="Search Job Code" />' );
     } );   
     var api = "http://localhost:8090/budgetSummary/json/";
@@ -39,7 +39,9 @@ $(document).ready(function() {
     e.preventDefault();
     console.log(yr);
     console.log(typ);
-         var table = $('#budget').DataTable({ 
+         var table = $('#budget').on( 'error.dt', function ( e, settings, techNote, message ) {
+            $('#myModal').modal('show');
+        } ).DataTable({ 
            dom: 'Brtip',
            destroy: true,
            columnDefs: [ {
@@ -51,6 +53,9 @@ $(document).ready(function() {
                dataSrc: "rows",
            },
            bProcessing: true,
+           "language": {
+            "infoEmpty": "No entries to show"
+          },
            paging: false,
            error: function(xhr, error, thrown){
                alert('unable to retrieve data');

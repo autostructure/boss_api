@@ -128,3 +128,26 @@ table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:aft
     font-size: 1.3em;
 }
 
+#myModal > div > div{
+    padding: 0px !important;
+}
+#myModal > div > div > div.modal-header{
+    background-color: #006633;
+    min-height: 50px;
+}
+.close{
+    display: none;
+}
+#myModal > div > div > div.modal-body{
+    min-height: 180px;
+}
+#myModal > div > div > div.modal-body > div > h4{
+    margin: auto;
+    font-size: 2.0em;
+    padding-top: 80px;
+}
+.modal-title{
+    margin: auto;
+    color: white;
+    font-size: 2.5em;
+}

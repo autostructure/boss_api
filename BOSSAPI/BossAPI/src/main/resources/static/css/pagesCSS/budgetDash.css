@@ -1,4 +1,3 @@
-
 .usa-section {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -37,11 +36,28 @@
 }
 
 .chartHolder{
-    width: 80%;
+    width: 100%;
     margin: auto;
     margin-top: 40px;
 }
 
+.qlinks{
+    border: 1px solid rgba(33, 33, 33, .2);
+    border-radius: 5px;
+    height: 366px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 3px 5px 15px rgba(33, 33, 33, .2);
+}
 
+.quickLinks{
+    padding: 10px;
+    font-size: 1.3em;
+}
+.titleq {
+    font-size: 1.8em;
+    border-bottom: 2px solid #ff6200;
+    padding: 15px;
+}
 
 

@@ -48,5 +48,9 @@ public class HomeController {
     @RequestMapping("/newSalary")
     public String newSalary() {
         return "newSalary";
-    }    
+    }
+    @RequestMapping("/empPortal")
+    public String empPortal() {
+        return "empPortal";
+    }         
 }

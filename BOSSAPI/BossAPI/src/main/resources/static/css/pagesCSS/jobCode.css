@@ -48,6 +48,7 @@ td, th{
     text-shadow: none;
     font-size: 2.5rem;
     border-bottom: 8px solid #006633;
+    margin-bottom: 0px;
 }
 
 .usa-section1{
@@ -57,7 +58,7 @@ td, th{
 
 #jobCodes_wrapper > div.dt-buttons{
     position: absolute;
-    top: -75px;
+    top: -55px;
     right: 10px;
 }
 .table-btns{
@@ -219,4 +220,13 @@ form [type=submit] {
     display: block;
     margin-bottom: 0;
     margin-top: 0;
+}
+#showHide{
+    visibility: hidden;
+}
+#selectForm > div:nth-child(1) > div > div > label{
+    font-size: 1.4em;
+}
+#year{
+    font-size: 1.4em;
 }

@@ -100,3 +100,8 @@ a:visited{
     text-align: left;
 }
 }
+.fa-superpowers{
+    color: red;
+    font-size: 3.0em;
+    text-shadow: 3px 5px 10px black;
+}

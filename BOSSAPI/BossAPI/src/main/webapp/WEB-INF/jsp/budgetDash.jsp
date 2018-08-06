@@ -42,14 +42,52 @@
                                                                             <!-- Trigger the modal with a button -->
                                         </div>
                                         <div class="row chartHolder">
+                                            <!-- rendering pie charts -->
                                             <div class="col col-md-5">
                                                     <canvas id="pie-chart" width="300" height="300"></canvas>
                                             </div>
                                             <div class="col col-md-5">
                                                     <canvas id="pie-chart2" width="300" height="300"></canvas>
                                             </div>
-                                            <div class="col col-md-2">
-                                                And then there were things here
+
+                                            <!-- quick links col -->
+                                            <div class="col col-md-2 qlinks">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4 class="titleq">Quick Links</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col quickLinks">
+                                                        <a href="./newExpense">New Expense</a>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col quickLinks">
+                                                        <a href="./viewExpense">View Expenses</a>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col quickLinks">
+                                                        <a href="./newSalary">New Salary</a>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col quickLinks">
+                                                        <a href="./jobCodes">Job Code Management</a>
+                                                    </div>
+                                                </div>   
+                                                <div class="row">
+                                                    <div class="col quickLinks">
+                                                        <a href="./budgetSummary">Budget Summary</a>
+                                                    </div>
+                                                </div> 
+                                                <div class="row">
+                                                    <div class="col quickLinks">
+                                                        <a href="./payrollDetails">Employee Payroll Forecast</a>
+                                                    </div>
+                                                </div> 
+                                                                                                                                                                                                                                                                                            
                                             </div>
                                         </div>                                        
 

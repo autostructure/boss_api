@@ -76,6 +76,27 @@
 
                                         </div>
                                     </div>
+
+                                    <!-- modal for error -->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog text-center">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title text-center">Error</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <div class="row">
+                                                        <h4 class="text-center">No Data for Search Provided</h4>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
  
                                     <div class="usa-grid usa-buffer-top" id="showHide">
                                         <div class="use-width-one-whole content-div">
@@ -109,6 +130,7 @@
                                     </div>
                                 </div> 
                                 </section>
+
                          </section>
                        
                         
