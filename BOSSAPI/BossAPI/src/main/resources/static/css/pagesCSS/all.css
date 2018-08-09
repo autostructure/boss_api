@@ -251,6 +251,7 @@ ul ul a {
 /* ---------------------------------------------------------------------START OF BREADCRUMB STYLES------------------------------------------------------------ */
 .breadcrumb{
     background-color: white;
+    padding-right: 20px;
 }
 .breadcrumbLink{
     color: rgb(33, 33, 33) !important;

@@ -121,6 +121,15 @@ input, select{
     margin: 50px auto;
 
 }
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\f067';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'FontAwesome';
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.00)
+}
 
   @media screen and (max-width: 1024px) { /* Specific to this particular image */
     img.bg {

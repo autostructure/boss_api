@@ -84,12 +84,12 @@
                                 <div class="card-tbody show" id="collapseThree">
                                         <p class="card-text"><a href="#">View Employees</a></p>
                                         <p class="card-text"><a href="#">Add New Employees</a></p>
-                                        <p class="card-text"><a href="#">Training</a></p>
-                                        <p class="card-text"><a href="#">Checkin-Out</a></p>
-                                        <p class="card-text"><a href="#">Reports</a></p>
+                                        <p class="card-text"><a href="#">Assign Training</a></p>
+                                        <p class="card-text"><a href="#">Add Training by Class</a></p>
+                                        <p class="card-text"><a href="#">Add DRA's</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                        <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
+                                        <p class="card-text dashboard"><a href="/hrDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -128,11 +128,11 @@
                                           </button>
                                 </div>
                                 <div class="card-tbody show" id="collapseFive">
-                                        <p class="card-text"><a href="#">Checkin-Out</a></p>
-                                        <p class="card-text"><a href="#">Vehicles</a></p>
-                                        <p class="card-text"><a href="#">My Profile</a></p>
-                                        <p class="card-text"><a href="#">Training/Certs</a></p>
-                                        <p class="card-text"><a href="#">Reports</a></p>
+                                        <p class="card-text"><a href="/empPortal">My Profile</a></p>
+                                        <p class="card-text"><a href="/empPortal">Emergency Contact</a></p>
+                                        <p class="card-text"><a href="/empPortal">Check In / Check Out</a></p>
+                                        <p class="card-text"><a href="/empPortal">Vehicle</a></p>
+                                        <p class="card-text"><a href="/empPortal">Training / Certs</a></p>
                                 </div>
                                 <div class="card-footer text-right">
                                         <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>

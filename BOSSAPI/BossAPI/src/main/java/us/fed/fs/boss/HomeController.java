@@ -53,4 +53,8 @@ public class HomeController {
     public String empPortal() {
         return "empPortal";
     }         
+    @RequestMapping("/hrDash")
+    public String hrDash() {
+        return "hrDash";
+    }       
 }

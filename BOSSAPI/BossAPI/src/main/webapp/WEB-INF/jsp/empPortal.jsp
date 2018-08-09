@@ -19,7 +19,6 @@
         <main id="main-content">
                 <div class="wrapper">
                         
-                <nav id="sidebar"></nav>    
                     
 
                     <section class="usa-section bgImg">
@@ -180,7 +179,7 @@
                                                 </div>
                                                 <div class="col col-md-3">
                                                     <div class="form-group">
-                                                        <label for="zip"><span class="reqClass"> *</span></label>
+                                                        <label for="zip">Zip Code<span class="reqClass"> *</span></label>
                                                         <input type="text" class="form-control" id="zip" required placeholder="Zip Code" aria-label="Zip">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -227,7 +226,7 @@
                                                 </div>
                                                 <h4 class="title3">Emergency Contact Information</h4>
 
-                                                <h4 class="title4">Second Contact</h4>
+                                                <h4 class="title4">First Contact</h4>
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
@@ -308,7 +307,7 @@
                                                         </div>  
                                                     </div>                                                                                                      
                                                 </div>
-                                                <h4 class="title4">First Contact</h4>
+                                                <h4 class="title4">Second Contact</h4>
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
@@ -459,8 +458,8 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <label class="" for="vTotalOil">Total Gallons of Gas Used<span class="reqClass"> *</span></label>
-                                                        <input type="text" class="form-control" id="vTotalOil" required placeholder="Enter Total Gallons of Gas Used" aria-label="Total Gallons of Gas Used">
+                                                        <label class="" for="vTotalOil">Total Quarts of Oil Used<span class="reqClass"> *</span></label>
+                                                        <input type="text" class="form-control" id="vTotalOil" required placeholder="Enter Quarts of Oil Used" aria-label="Total Quarts of Oil Used">
                                                         <div class="help-block with-errors"></div>
                                                     </div>                                                     
                                                 </div>
