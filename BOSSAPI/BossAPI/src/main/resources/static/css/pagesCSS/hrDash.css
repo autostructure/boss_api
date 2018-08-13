@@ -12,7 +12,7 @@
 #title{
     font-size: 4.0em;
     font-weight: 100;
-    border-bottom: 2px solid #006633;
+    border-bottom: 2px solid #39679b;
     font-family: lightFont;
     padding-bottom: 10px;
 }
@@ -87,6 +87,6 @@
     font-size: 1.4em;
 }
 .list-group-item > a{
-    color: #006633;
+    color: #39679b;
 }
 

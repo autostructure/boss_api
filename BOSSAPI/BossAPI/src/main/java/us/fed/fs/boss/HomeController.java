@@ -57,4 +57,12 @@ public class HomeController {
     public String hrDash() {
         return "hrDash";
     }       
+    @RequestMapping("/viewAllEmployees")
+    public String viewAllEmployees() {
+        return "viewAllEmployees";
+    }         
+    @RequestMapping("/addNewEmployee")
+    public String addNewEmployee() {
+        return "addNewEmployee";
+    }        
 }
