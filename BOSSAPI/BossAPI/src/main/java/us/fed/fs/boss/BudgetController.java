@@ -101,7 +101,7 @@ public class BudgetController {
 
     @PutMapping("/expense/{id}")
     public Expense updateExpense(@PathVariable(value = "id") Long expenseId,
-            @Valid @RequestBody Expense expenseDetails) {
+                                 @Valid @RequestBody Expense expenseDetails) {
 
         expenseRepository.findById(expenseId)
                 .orElseThrow(() -> new ResourceNotFoundException("Expense", "id", expenseId));
@@ -142,14 +142,14 @@ public class BudgetController {
     // }
     @PostMapping("/jobCode")
     public ResponseEntity createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
-         jobCodeDetails = jobCodeRepository.save(jobCodeDetails);
-         return new ResponseEntity<JobCode >(jobCodeDetails , HttpStatus.OK);
+        jobCodeDetails = jobCodeRepository.save(jobCodeDetails);
+        return new ResponseEntity<JobCode>(jobCodeDetails, HttpStatus.OK);
 
-     }
+    }
 
     @PutMapping("/jobCode/{id}")
     public JobCode updateJobCode(@PathVariable(value = "id") Long jobCodeId,
-            @Valid @RequestBody JobCode jobCodeDetails) {
+                                 @Valid @RequestBody JobCode jobCodeDetails) {
 
         jobCodeRepository.findById(jobCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
@@ -203,7 +203,7 @@ public class BudgetController {
             @PathVariable("financialYear") Short financialYear,
             @PathVariable("verified") String verified
     ) throws InterruptedException, IOException, ExecutionException {
-        
+
         verified = verified.toLowerCase();
         if (!verified.equals("verified") && !verified.equals("unverfied") && !verified.equals("all")) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
