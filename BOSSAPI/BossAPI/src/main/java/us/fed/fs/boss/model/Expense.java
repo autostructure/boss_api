@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import java.util.Date;
 import java.util.List;
@@ -62,7 +63,7 @@ public class Expense extends Auditable<String> implements Serializable {
     private int payPeriod;
     
     @Column(name = "Total")
-    private long total;
+    private BigDecimal total;
     
     @Column(name = "FinancialYear")
     private Short financialYear;
