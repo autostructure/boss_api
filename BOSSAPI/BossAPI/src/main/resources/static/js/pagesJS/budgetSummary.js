@@ -1,8 +1,8 @@
 
-var typ = "";
+// var typ = "";
 var yr = "";
 setYear();
-setTyp();
+// setTyp();
 
 function setYear(){
     $("#year").on('change', function() {
@@ -13,14 +13,14 @@ function setYear(){
     })
 };
 
-function setTyp(){
-    $("#verif").on('change', function() {
-        if ($(this).val() != "0"){
-            typ = $(this).val();
-            console.log(typ); 
-        } 
-    })
-};
+// function setTyp(){
+//     $("#verif").on('change', function() {
+//         if ($(this).val() != "0"){
+//             typ = $(this).val();
+//             console.log(typ); 
+//         } 
+//     })
+// };
 
 
 $(document).ready(function() {
@@ -38,7 +38,7 @@ $(document).ready(function() {
     $('#showHide').css('visibility', 'visible');
     e.preventDefault();
     console.log(yr);
-    console.log(typ);
+    // console.log(typ);
          var table = $('#budget').on( 'error.dt', function ( e, settings, techNote, message ) {
             $('#myModal').modal('show');
         } ).DataTable({ 
@@ -49,7 +49,7 @@ $(document).ready(function() {
             "orderable": false
             }],
            ajax: {
-               "url":api + yr + slash + typ,
+               "url":api + yr + slash + "all",
                dataSrc: "rows",
            },
            bProcessing: true,

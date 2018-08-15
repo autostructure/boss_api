@@ -24,7 +24,7 @@
 
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img src="../../img/snow.jpg" alt="Banner Image"/>
+                                    <img class="bannerImg" src="../../img/employees.jpg" alt="Banner Image"/>
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
@@ -55,11 +55,8 @@
                                                               <a href="/viewAllEmployees">View All Employees</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="#">Add New Employee</a>
+                                                              <a href="/addNewEmployee">Add New Employee</a>
                                                           </li>
-                                                          <li class="list-group-item">
-                                                            <a href="#">Employee Contact List</a>
-                                                        </li>
                                                       </ul>
                                                     </div>
                                                   </div>
@@ -73,7 +70,7 @@
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="#">Add Training by Employee</a>                                
+                                                              <a href="/addTrainingEmployee">Add Training by Employee</a>                                
                                                           </li>
                                                           <li class="list-group-item">
                                                               <a href="#">Add Training by Class</a>

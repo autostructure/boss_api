@@ -29,7 +29,9 @@ a:visited{
     border-bottom: 3px solid #006633;
     padding-bottom: 1rem
 }
-
+.bannerImg{
+    min-width: 100%;
+}
 a.active span{
     border-bottom: 2px solid #006633;
     padding-bottom: 1rem

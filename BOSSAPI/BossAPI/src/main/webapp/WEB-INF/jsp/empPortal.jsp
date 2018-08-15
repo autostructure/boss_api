@@ -476,7 +476,7 @@
                                                     <div class="col col-md-6">
                                                         <input type="submit" id="submitV" class="btn btn-success">    
                                                     </div>   
-                                                    <div class="col col-md-6">
+                                                    <div class="col col-md-6 text-center">
                                                         <button id="viewReports" class="btn btn-info">View My Vehicle Reports</button> 
                                                     </div>                                                                                                          
 

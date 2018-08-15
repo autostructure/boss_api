@@ -24,7 +24,7 @@
 
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img src="../../img/fire.jpg" alt="Banner Image"/>
+                                    <img src="../../img/wildflower.jpg" alt="Banner Image"/>
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
@@ -49,18 +49,6 @@
                                                                 <option value="2016">2016</option>
                                                                 <option value="2017">2017</option>
                                                                 <option value="2018">2018</option>
-                                                            </select>                                                                        
-                                                            <div class="help-block with-errors"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label class="serLabel" for="verif">Choose Verification Type Year<span class="reqClass"> *</span></label>
-                                                            <select required class="form-control" name="verif" id="verif">
-                                                                <option value="">Choose Verification Type</option>
-                                                                <option value="all">All</option>
-                                                                <option value="verified">Verified</option>
-                                                                <option value="unverified">Un-Verified</option>
                                                             </select>                                                                        
                                                             <div class="help-block with-errors"></div>
                                                         </div>

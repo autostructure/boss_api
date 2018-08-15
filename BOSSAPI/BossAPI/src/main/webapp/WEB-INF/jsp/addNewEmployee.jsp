@@ -25,7 +25,7 @@
 
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img class="bannerImg" src="../../img/river.jpg" alt="Banner Image"/>
+                                    <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image"/>                                 
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
