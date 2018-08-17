@@ -53,6 +53,8 @@ public class ReportService {
 
         BigDecimal totalRegPayToDate = BigDecimal.ZERO;
         BigDecimal totalOvertimeToDate = BigDecimal.ZERO;
+        BigDecimal totalRegPayForecast = BigDecimal.ZERO;
+        BigDecimal grandTotalFYForecast = BigDecimal.ZERO;
 
         // O(n^3)
        for(EmployeeProfile profile : profiles) {
@@ -92,46 +94,28 @@ public class ReportService {
 
            BigDecimal regPayForecast = profile.getRegPayPerPayPeriod().multiply(new BigDecimal(profile.getPayPeriodsLeft().intValue()));
 
-           /*
-                @Column(name = "PayPeriodsLeft")
-                private Short payPeriodsLeft;
-
-                @Column(name = "RegPayPerPayPeriod")
-                private BigDecimal regPayPerPayPeriod;
-            */
-
            totalRegPayToDate = totalRegPayToDate.add(regPayToDate);
            totalOvertimeToDate = totalOvertimeToDate.add(overtimeToDate);
+           
+           BigDecimal totalFYForecast = regPayForecast
+                   .add(regPayToDate)
+                   .add(overtimeToDate);
 
            row.setRegPayToDate(regPayToDate);
            row.setOvertimeToDate(overtimeToDate);
            row.setRegPayForecast(regPayForecast);
-
-
-           /*
-               private BigDecimal regPayForecast;
-               private BigDecimal totalFYForecast;
-           }
-           */
-
-
+           row.setTotalFYForecast(totalFYForecast);
+           
+           totalRegPayForecast = totalRegPayForecast.add(regPayForecast);
+           grandTotalFYForecast = grandTotalFYForecast.add(totalFYForecast);
+           
        }
 
         report.setRows(rows);
         report.setTotalRegPayToDate(totalRegPayToDate);
         report.setTotalOvertimeToDate(totalOvertimeToDate);
-        
-        /*
-            @Getter @Setter @NoArgsConstructor
-            public class PayrollDetails {
-                private List<PayrollDetailsRow> rows;
-                private BigDecimal totalRegPayToDate;
-                private BigDecimal totalOvertimeToDate;
-                private BigDecimal totalRegPayForecast;
-                private BigDecimal grandTotalFYForecast;
-            }
-
-        */
+        report.setTotalRegPayForecast(totalRegPayForecast);
+        report.setGrandTotalFYForecast(grandTotalFYForecast);
         
         return CompletableFuture.completedFuture(report);
         
@@ -140,57 +124,24 @@ public class ReportService {
     @Async
     public CompletableFuture<PayrollForecast> getSalaryForecastJSON() throws InterruptedException {
 
-        PayrollForecast report = new PayrollForecast();
-        List<Expense> expenses = expenseRepository.findAll();
+       PayrollForecast report = new PayrollForecast();
+       List<PayrollForecastRow> rows = new ArrayList<>();
+       
+      // CompletableFuture<File> summaryFutureXLSX
+      //                      = reportService.getBudgetSummaryFile(financialYear, verified, types.get(type));
+       
+       /*
+                 private BigDecimal grandTotalPayToDate;
+                 private BigDecimal grandTotalPayForecast;
+                 private BigDecimal grandTotalFYForecast;
+                 private List<PayrollForecastRow> rows;
 
-        // boc 11 is salary expenses
-        Expense[] expensesFiltered = expenses.stream()
-                .filter(expense -> expense.getBudgetObjectCode().getId().equals(Long.valueOf(11L)))
-                .toArray(Expense[]::new);
-
-        // expenseRepository.findAll()
-        List<ActivityCode> codes = activityCodeRepository.findAll();
-        
-        List<PayrollForecastRow> rows = new ArrayList<>();
-
-        BigDecimal regPayForecastTotal = BigDecimal.ZERO;
-        BigDecimal regPayToDateTotal = BigDecimal.ZERO;
-        BigDecimal totalFYForecastTotal = BigDecimal.ZERO;
-
-        for (ActivityCode code : codes) {
-
-            PayrollForecastRow row = new PayrollForecastRow();
-            row.setActivityCode(code.getCode());
-            row.setActivityCodeDescription(code.getName());
-
-            // row.s
-            BigDecimal regPayForecast = BigDecimal.ZERO;
-            BigDecimal regPayToDate = BigDecimal.ZERO;
-            BigDecimal totalFYForecast = BigDecimal.ZERO;
-
-            for(Expense expense : expensesFiltered) {
-                if(expense.getActivityCode().getCode().equals(code.getCode())) {
-
-                }
-            }
-
-
-            row.setRegPayForecast(regPayForecast);
-            row.setRegPayToDate(regPayToDate);
-            row.setTotalFYForecast(totalFYForecast);
-            
-            rows.add(row);
-            
-            regPayForecastTotal = regPayForecastTotal.add(regPayForecast);
-            regPayToDateTotal = regPayForecastTotal.add(regPayToDate);
-            totalFYForecastTotal = regPayForecastTotal.add(totalFYForecast);
-
-        }
-        
-        report.setGrandTotalPayForecast(regPayForecastTotal);
-        report.setGrandTotalFYForecast(totalFYForecastTotal);
-        report.setGrandTotalPayToDate(regPayToDateTotal);
-        report.setRows(rows);
+                 private String activityCode;
+                 private String activityCodeDescription;
+                 private BigDecimal regPayToDate;
+                 private BigDecimal regPayForecast;
+                 private BigDecimal totalFYForecast;
+       */
 
         return CompletableFuture.completedFuture(report);
 
