@@ -42,13 +42,13 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "NameCode", unique = true)
     private String nameCode;
 
-    @Column(name = "HomePhone", unique = true)
+    @Column(name = "HomePhone")
     private String homePhone;
 
-    @Column(name = "CellPhone", unique = true)
+    @Column(name = "CellPhone")
     private String cellPhone;
 
-    @Column(name = "PersonalEmail", unique = true)
+    @Column(name = "PersonalEmail")
     private String personalEmail;
 
     @Column(name = "StateAssigned")
