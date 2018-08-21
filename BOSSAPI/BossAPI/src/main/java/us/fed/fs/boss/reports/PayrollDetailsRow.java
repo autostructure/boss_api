@@ -13,6 +13,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class PayrollDetailsRow {
     private String section;
+    private String sectionDescription;
     private String name;
     private int ppLeft;
     private BigDecimal regPayPerPP;

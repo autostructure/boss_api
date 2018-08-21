@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +41,8 @@ import us.fed.fs.boss.model.JobCode;
 import us.fed.fs.boss.model.PaymentCode;
 import us.fed.fs.boss.reports.BudgetSummary;
 import us.fed.fs.boss.reports.FileTypeDetector;
+import us.fed.fs.boss.reports.PayrollDetails;
+import us.fed.fs.boss.reports.PayrollForecast;
 import us.fed.fs.boss.reports.ReportService;
 import us.fed.fs.boss.reports.ReportsFileBuilder.FileType;
 import us.fed.fs.boss.repository.ActivityCodeRepository;
@@ -101,7 +106,7 @@ public class BudgetController {
 
     @PutMapping("/expense/{id}")
     public Expense updateExpense(@PathVariable(value = "id") Long expenseId,
-                                 @Valid @RequestBody Expense expenseDetails) {
+            @Valid @RequestBody Expense expenseDetails) {
 
         expenseRepository.findById(expenseId)
                 .orElseThrow(() -> new ResourceNotFoundException("Expense", "id", expenseId));
@@ -149,7 +154,7 @@ public class BudgetController {
 
     @PutMapping("/jobCode/{id}")
     public JobCode updateJobCode(@PathVariable(value = "id") Long jobCodeId,
-                                 @Valid @RequestBody JobCode jobCodeDetails) {
+            @Valid @RequestBody JobCode jobCodeDetails) {
 
         jobCodeRepository.findById(jobCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
@@ -244,4 +249,81 @@ public class BudgetController {
         }
 
     }
+
+    @RequestMapping(value = {"/payrollDetails/{type}/{jobCodeId}", "/payrollDetails/{type}"}, method = RequestMethod.GET)
+    public ResponseEntity getPayrollDetails(
+            @PathVariable("type") String type,
+            @PathVariable("jobCodeId") Optional<Long> jobCodeId
+    ) throws InterruptedException, IOException, ExecutionException {
+
+        type = type.toLowerCase();
+        Map<String, FileType> types = new HashMap<>();
+        types.put("csv", FileType.CSV);
+        types.put("pdf", FileType.PDF);
+        types.put("xlsx", FileType.XLSX);
+
+        try {
+            switch (type) {
+                case "json":
+                    CompletableFuture<PayrollDetails> summaryFutureJSON = null;
+                    if (jobCodeId.get() != null) {
+                        JobCode jc = jobCodeRepository.getOne(jobCodeId.get());
+                        summaryFutureJSON = reportService.getPayrollDetailsJSONByJobCode(jc);
+                    } else {
+                        summaryFutureJSON = reportService.getPayrollDetailsJSON();
+                    }
+
+                    PayrollDetails report = summaryFutureJSON.get();
+                    return new ResponseEntity<>(report, HttpStatus.OK);
+                case "csv":
+                case "pdf":
+                case "xlsx":
+                default:
+                    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
+        } catch (ExecutionException | InterruptedException ex) {
+            Logger.getLogger(BudgetController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    @RequestMapping(value = {"/payrollForecast/{type}/{jobCodeId}", "/payrollForecast/{type}"}, method = RequestMethod.GET)
+    public ResponseEntity getPayrollForecast(
+            @PathVariable("type") String type,
+            @PathVariable("jobCodeId") Optional<Long> jobCodeId
+    ) throws InterruptedException, IOException, ExecutionException {
+
+        type = type.toLowerCase();
+        Map<String, FileType> types = new HashMap<>();
+        types.put("csv", FileType.CSV);
+        types.put("pdf", FileType.PDF);
+        types.put("xlsx", FileType.XLSX);
+
+        try {
+            switch (type) {
+                case "json":
+                    CompletableFuture<PayrollForecast> summaryFutureJSON = null;
+                    if (jobCodeId.get() != null) {
+                        JobCode jc = jobCodeRepository.getOne(jobCodeId.get());
+                        summaryFutureJSON = reportService.getPayrollForecastJSONByJobCode(jc);
+                    } else {
+                        summaryFutureJSON = reportService.getPayrollForecastJSON();
+                    }
+
+                    PayrollForecast report = summaryFutureJSON.get();
+                    return new ResponseEntity<>(report, HttpStatus.OK);
+                case "csv":
+                case "pdf":
+                case "xlsx":
+                default:
+                    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
+        } catch (ExecutionException | InterruptedException ex) {
+            Logger.getLogger(BudgetController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
 }

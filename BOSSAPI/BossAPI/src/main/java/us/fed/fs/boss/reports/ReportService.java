@@ -6,11 +6,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import us.fed.fs.boss.model.ActivityCode;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Expense;
 import us.fed.fs.boss.model.ExpenseDetail;
@@ -32,24 +36,23 @@ public class ReportService {
 
     @Autowired
     ActivityCodeRepository activityCodeRepository;
-    
+
     @Autowired
     EmployeeProfileRepository employeeProfileRepository;
-    
+
     @Async
-    public CompletableFuture<PayrollDetails> getPayrollDetailsJSON(Short financialYear) throws InterruptedException {
-        
+    public CompletableFuture<PayrollDetails> getPayrollDetailsJSON() throws InterruptedException {
+
         PayrollDetails report = new PayrollDetails();
 
-       List<EmployeeProfile> profiles = employeeProfileRepository.findAll();
+        List<EmployeeProfile> profiles = employeeProfileRepository.findAll();
 
-
-       // Ω(n) O(n^2)
-       Expense[] salaryExpenses = expenseRepository.findAll().stream()
+        // Ω(n) O(n^2
+        Expense[] salaryExpenses = expenseRepository.findAll().stream()
                 .filter(expense -> expense.getBudgetObjectCode().getId().equals(Long.valueOf(11L)))
                 .toArray(Expense[]::new);
 
-       List<PayrollDetailsRow> rows = new ArrayList<>();
+        List<PayrollDetailsRow> rows = new ArrayList<>();
 
         BigDecimal totalRegPayToDate = BigDecimal.ZERO;
         BigDecimal totalOvertimeToDate = BigDecimal.ZERO;
@@ -57,97 +60,266 @@ public class ReportService {
         BigDecimal grandTotalFYForecast = BigDecimal.ZERO;
 
         // O(n^3)
-       for(EmployeeProfile profile : profiles) {
-           PayrollDetailsRow row = new PayrollDetailsRow();
+        for (EmployeeProfile profile : profiles) {
+            PayrollDetailsRow row = new PayrollDetailsRow();
 
+            BigDecimal regPayToDate = BigDecimal.ZERO;
+            BigDecimal overtimeToDate = BigDecimal.ZERO;
 
-           BigDecimal regPayToDate = BigDecimal.ZERO;
-           BigDecimal overtimeToDate = BigDecimal.ZERO;
+            row.setSection(profile.getActivityCode().getCode());
+            row.setSectionDescription(profile.getActivityCode().getName());
+            row.setName(profile.getLastName() + ", " + profile.getFirstName());
+            row.setPpLeft(profile.getPayPeriodsLeft());
 
-           row.setSection(profile.getActivityCode().getCode());
-           row.setName(profile.getLastName() + ", " + profile.getFirstName());
-           row.setPpLeft(profile.getPayPeriodsLeft());
+            row.setRegPayPerPP(profile.getRegPayPerPayPeriod());
 
-           row.setRegPayPerPP(profile.getRegPayPerPayPeriod());
+            Expense[] userSalaries = Arrays.stream(salaryExpenses)
+                    .filter(expense -> expense.getEmployeeProfile()
+                            .getId().equals(profile.getId()))
+                    .toArray(Expense[]::new);
 
-           Expense[] userSalaries = Arrays.stream(salaryExpenses)
-                   .filter(
-                           expense -> expense.getEmployeeProfile()
-                                   .getId().equals(profile.getId()) && expense.getFinancialYear().equals(financialYear)
+            for (Expense salary : userSalaries) {
+                for (ExpenseDetail detail : salary.getExpenseDetails()) {
+                    /*
+                     (8, 'Base Salaries')
+                     (9, 'Overtime'),
+                     */
+                    if (detail.getExpenseCode().getId() == 8L) {
+                        regPayToDate = regPayToDate.add(detail.getAmount());
+                    } else if (detail.getExpenseCode().getId() == 9L) {
+                        overtimeToDate = overtimeToDate.add(detail.getAmount());
+                    }
+                }
+            }
 
-                   )
-                   .toArray(Expense[]::new);
+            BigDecimal regPayForecast = profile.getRegPayPerPayPeriod().multiply(new BigDecimal(profile.getPayPeriodsLeft().intValue()));
 
-           for(Expense salary : userSalaries) {
-               for(ExpenseDetail detail : salary.getExpenseDetails()) {
-                   /*
-                   (8, 'Base Salaries'),
-                    (9, 'Overtime'),
-                    */
-                   if(detail.getExpenseCode().getId() == 8L) {
-                       regPayToDate = regPayToDate.add(detail.getAmount());
-                   } else if(detail.getExpenseCode().getId() == 9L) {
-                       overtimeToDate = overtimeToDate.add(detail.getAmount());
-                   }
-               }
-           }
+            totalRegPayToDate = totalRegPayToDate.add(regPayToDate);
+            totalOvertimeToDate = totalOvertimeToDate.add(overtimeToDate);
 
-           BigDecimal regPayForecast = profile.getRegPayPerPayPeriod().multiply(new BigDecimal(profile.getPayPeriodsLeft().intValue()));
+            BigDecimal totalFYForecast = regPayForecast
+                    .add(regPayToDate)
+                    .add(overtimeToDate);
 
-           totalRegPayToDate = totalRegPayToDate.add(regPayToDate);
-           totalOvertimeToDate = totalOvertimeToDate.add(overtimeToDate);
-           
-           BigDecimal totalFYForecast = regPayForecast
-                   .add(regPayToDate)
-                   .add(overtimeToDate);
+            row.setRegPayToDate(regPayToDate);
+            row.setOvertimeToDate(overtimeToDate);
+            row.setRegPayForecast(regPayForecast);
+            row.setTotalFYForecast(totalFYForecast);
 
-           row.setRegPayToDate(regPayToDate);
-           row.setOvertimeToDate(overtimeToDate);
-           row.setRegPayForecast(regPayForecast);
-           row.setTotalFYForecast(totalFYForecast);
-           
-           totalRegPayForecast = totalRegPayForecast.add(regPayForecast);
-           grandTotalFYForecast = grandTotalFYForecast.add(totalFYForecast);
-           
-       }
+            totalRegPayForecast = totalRegPayForecast.add(regPayForecast);
+            grandTotalFYForecast = grandTotalFYForecast.add(totalFYForecast);
+
+        }
 
         report.setRows(rows);
         report.setTotalRegPayToDate(totalRegPayToDate);
         report.setTotalOvertimeToDate(totalOvertimeToDate);
         report.setTotalRegPayForecast(totalRegPayForecast);
         report.setGrandTotalFYForecast(grandTotalFYForecast);
-        
+
         return CompletableFuture.completedFuture(report);
-        
+
     }
 
     @Async
-    public CompletableFuture<PayrollForecast> getSalaryForecastJSON() throws InterruptedException {
+    public CompletableFuture<PayrollDetails> getPayrollDetailsJSONByJobCode(JobCode jobCode) throws InterruptedException {
 
-       PayrollForecast report = new PayrollForecast();
-       List<PayrollForecastRow> rows = new ArrayList<>();
-       
-      // CompletableFuture<File> summaryFutureXLSX
-      //                      = reportService.getBudgetSummaryFile(financialYear, verified, types.get(type));
-       
-       /*
-                 private BigDecimal grandTotalPayToDate;
-                 private BigDecimal grandTotalPayForecast;
-                 private BigDecimal grandTotalFYForecast;
-                 private List<PayrollForecastRow> rows;
+        PayrollDetails report = new PayrollDetails();
 
-                 private String activityCode;
-                 private String activityCodeDescription;
-                 private BigDecimal regPayToDate;
-                 private BigDecimal regPayForecast;
-                 private BigDecimal totalFYForecast;
-       */
+        List<EmployeeProfile> profiles = employeeProfileRepository.findAll();
+
+        // Ω(n) O(n^2)
+        Expense[] salaryExpenses = expenseRepository.findAll().stream()
+                .filter(expense -> expense.getBudgetObjectCode().getId().equals(Long.valueOf(11L)))
+                .toArray(Expense[]::new);
+
+        List<PayrollDetailsRow> rows = new ArrayList<>();
+
+        BigDecimal totalRegPayToDate = BigDecimal.ZERO;
+        BigDecimal totalOvertimeToDate = BigDecimal.ZERO;
+        BigDecimal totalRegPayForecast = BigDecimal.ZERO;
+        BigDecimal grandTotalFYForecast = BigDecimal.ZERO;
+
+        // O(n^3)
+        for (EmployeeProfile profile : profiles) {
+            PayrollDetailsRow row = new PayrollDetailsRow();
+
+            BigDecimal regPayToDate = BigDecimal.ZERO;
+            BigDecimal overtimeToDate = BigDecimal.ZERO;
+
+            row.setSection(profile.getActivityCode().getCode());
+            row.setSectionDescription(profile.getActivityCode().getName());
+            row.setName(profile.getLastName() + ", " + profile.getFirstName());
+            row.setPpLeft(profile.getPayPeriodsLeft());
+
+            row.setRegPayPerPP(profile.getRegPayPerPayPeriod());
+
+            Expense[] userSalaries = Arrays.stream(salaryExpenses)
+                    .filter(expense -> expense.getEmployeeProfile()
+                            .getId().equals(profile.getId()))
+                    .toArray(Expense[]::new);
+
+            for (Expense salary : userSalaries) {
+                for (ExpenseDetail detail : salary.getExpenseDetails().stream()
+                        .filter(expenseDetail -> expenseDetail.getJobCode().getId().equals(jobCode.getId()))
+                        .toArray(ExpenseDetail[]::new)) {
+                    /*
+                     (8, 'Base Salaries')
+                     (9, 'Overtime'),
+                     */
+                    if (detail.getExpenseCode().getId() == 8L) {
+                        regPayToDate = regPayToDate.add(detail.getAmount());
+                    } else if (detail.getExpenseCode().getId() == 9L) {
+                        overtimeToDate = overtimeToDate.add(detail.getAmount());
+                    }
+                }
+            }
+
+            BigDecimal regPayForecast = profile.getRegPayPerPayPeriod().multiply(new BigDecimal(profile.getPayPeriodsLeft().intValue()));
+
+            totalRegPayToDate = totalRegPayToDate.add(regPayToDate);
+            totalOvertimeToDate = totalOvertimeToDate.add(overtimeToDate);
+
+            BigDecimal totalFYForecast = regPayForecast
+                    .add(regPayToDate)
+                    .add(overtimeToDate);
+
+            row.setRegPayToDate(regPayToDate);
+            row.setOvertimeToDate(overtimeToDate);
+            row.setRegPayForecast(regPayForecast);
+            row.setTotalFYForecast(totalFYForecast);
+
+            totalRegPayForecast = totalRegPayForecast.add(regPayForecast);
+            grandTotalFYForecast = grandTotalFYForecast.add(totalFYForecast);
+
+        }
+
+        report.setRows(rows);
+        report.setTotalRegPayToDate(totalRegPayToDate);
+        report.setTotalOvertimeToDate(totalOvertimeToDate);
+        report.setTotalRegPayForecast(totalRegPayForecast);
+        report.setGrandTotalFYForecast(grandTotalFYForecast);
 
         return CompletableFuture.completedFuture(report);
 
     }
 
-    // /budgetSummary/{financialYear}/{verified/unverified/all}
+    @Async
+    public CompletableFuture<PayrollForecast> getPayrollForecastJSON() throws InterruptedException {
+
+        try {
+
+            PayrollForecast report = new PayrollForecast();
+
+            CompletableFuture<PayrollDetails> summaryFutureXLSX
+                    = this.getPayrollDetailsJSON();
+
+            Map<String, PayrollForecastRow> map = new HashMap<>();
+            
+            BigDecimal grandTotalPayToDate = BigDecimal.ZERO;
+            BigDecimal grandTotalPayForecast = BigDecimal.ZERO;
+            BigDecimal grandTotalFYForecast = BigDecimal.ZERO;
+
+            for (PayrollDetailsRow i : summaryFutureXLSX.get().getRows()) {
+
+                PayrollForecast payrollForecast = new PayrollForecast();
+                PayrollForecastRow row;
+
+                if (map.containsKey(i.getSection())) {
+                    row = map.get(i.getSection());
+                    row.setRegPayToDate(row.getRegPayToDate().add(i.getRegPayToDate()));
+                    row.setRegPayForecast(row.getRegPayForecast().add(i.getRegPayToDate()));
+                    row.setTotalFYForecast(row.getTotalFYForecast().add(i.getRegPayToDate()));
+                } else {
+                    row = new PayrollForecastRow();
+                    row.setActivityCode(i.getSection());
+                    row.setActivityCodeDescription(i.getSectionDescription());
+                    row.setRegPayToDate(i.getRegPayToDate());
+                    row.setRegPayForecast(i.getRegPayForecast());
+                    row.setTotalFYForecast(i.getTotalFYForecast());
+                }
+                
+                grandTotalPayToDate = grandTotalPayToDate.add(row.getRegPayToDate());
+                grandTotalPayForecast = grandTotalPayForecast.add(row.getRegPayForecast());
+                grandTotalFYForecast = grandTotalFYForecast.add(row.getTotalFYForecast());
+                
+                map.put(i.getSection(), row);
+
+            }
+            
+            report.setGrandTotalPayToDate(grandTotalPayToDate);
+            report.setGrandTotalPayForecast(grandTotalPayForecast);
+            report.setGrandTotalFYForecast(grandTotalFYForecast);
+            List<PayrollForecastRow> rows = new ArrayList<>(map.values());
+            report.setRows(rows);
+
+            return CompletableFuture.completedFuture(report);
+
+        } catch (ExecutionException ex) {
+            Logger.getLogger(ReportService.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
+    @Async
+    public CompletableFuture<PayrollForecast> getPayrollForecastJSONByJobCode(JobCode jobCode) throws InterruptedException {
+
+        try {
+
+            PayrollForecast report = new PayrollForecast();
+            
+            CompletableFuture<PayrollDetails> summaryFutureXLSX
+                    = this.getPayrollDetailsJSONByJobCode(jobCode);
+
+            Map<String, PayrollForecastRow> map = new HashMap<>();
+            
+            BigDecimal grandTotalPayToDate = BigDecimal.ZERO;
+            BigDecimal grandTotalPayForecast = BigDecimal.ZERO;
+            BigDecimal grandTotalFYForecast = BigDecimal.ZERO;
+
+            for (PayrollDetailsRow i : summaryFutureXLSX.get().getRows()) {
+
+                PayrollForecast payrollForecast = new PayrollForecast();
+                PayrollForecastRow row;
+
+                if (map.containsKey(i.getSection())) {
+                    row = map.get(i.getSection());
+                    row.setRegPayToDate(row.getRegPayToDate().add(i.getRegPayToDate()));
+                    row.setRegPayForecast(row.getRegPayForecast().add(i.getRegPayToDate()));
+                    row.setTotalFYForecast(row.getTotalFYForecast().add(i.getRegPayToDate()));
+                } else {
+                    row = new PayrollForecastRow();
+                    row.setActivityCode(i.getSection());
+                    row.setActivityCodeDescription(i.getSectionDescription());
+                    row.setRegPayToDate(i.getRegPayToDate());
+                    row.setRegPayForecast(i.getRegPayForecast());
+                    row.setTotalFYForecast(i.getTotalFYForecast());
+                }
+                
+                grandTotalPayToDate = grandTotalPayToDate.add(row.getRegPayToDate());
+                grandTotalPayForecast = grandTotalPayForecast.add(row.getRegPayForecast());
+                grandTotalFYForecast = grandTotalFYForecast.add(row.getTotalFYForecast());
+                
+                map.put(i.getSection(), row);
+
+            }
+            
+            report.setGrandTotalPayToDate(grandTotalPayToDate);
+            report.setGrandTotalPayForecast(grandTotalPayForecast);
+            report.setGrandTotalFYForecast(grandTotalFYForecast);
+            List<PayrollForecastRow> rows = new ArrayList<>(map.values());
+            report.setRows(rows);
+
+            return CompletableFuture.completedFuture(report);
+
+        } catch (ExecutionException ex) {
+            Logger.getLogger(ReportService.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
     @Async
     public CompletableFuture<BudgetSummary> getBudgetSummaryJSON(Short financialYear, String verified) throws InterruptedException {
 

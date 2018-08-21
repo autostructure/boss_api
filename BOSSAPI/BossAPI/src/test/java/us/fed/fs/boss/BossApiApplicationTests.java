@@ -70,7 +70,7 @@ public class BossApiApplicationTests {
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpGet httpACGet = new HttpGet(baseUrl + "/payrollForecastReport");
+            HttpGet httpACGet = new HttpGet(baseUrl + "/payrollForecast/json/2");
             httpACGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getACRes = client.execute(httpACGet);
             HttpEntity getRCResEnt = getACRes.getEntity();
@@ -124,7 +124,7 @@ public class BossApiApplicationTests {
         8) unverified (Operating Minus Obligated)
         
         
-        /budgetSummaryReport/json/{financialYear}/{verified}
+        /budgetSummary/json/{financialYear}/{verified}
         
          */
         System.out.println("****************************@Test***budgetReports()*********************************");
@@ -137,7 +137,7 @@ public class BossApiApplicationTests {
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpGet httpACGet = new HttpGet(baseUrl + "/budgetSummaryReport/json/" + fy.toString() + "/all");
+            HttpGet httpACGet = new HttpGet(baseUrl + "/budgetSummary/json/" + fy.toString() + "/all");
             httpACGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getACRes = client.execute(httpACGet);
             HttpEntity getRCResEnt = getACRes.getEntity();
@@ -196,14 +196,14 @@ public class BossApiApplicationTests {
 
             printBox("Excel File Test");
 
-            HttpGet httpXLSGet = new HttpGet(baseUrl + "/budgetSummaryReport/xlsx/" + fy.toString() + "/all");
+            HttpGet httpXLSGet = new HttpGet(baseUrl + "/budgetSummary/xlsx/" + fy.toString() + "/all");
             httpXLSGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getXLSRes = client.execute(httpXLSGet);
             HttpEntity getXLSResEnt = getXLSRes.getEntity();
 
             Integer getXLSstatus = getXLSRes.getStatusLine().getStatusCode();
 
-            printBox(baseUrl + "/budgetSummaryReport/xlsx/" + fy.toString() + "/all", getXLSstatus.toString());
+            printBox(baseUrl + "/budgetSummary/xlsx/" + fy.toString() + "/all", getXLSstatus.toString());
             Assert.assertEquals(200, getXLSstatus.intValue());
 
             InputStream is = getXLSResEnt.getContent();
@@ -223,14 +223,14 @@ public class BossApiApplicationTests {
             // PDF
             printBox("Test PDF BudgetReport");
 
-            HttpGet httpPDFGet = new HttpGet(baseUrl + "/budgetSummaryReport/pdf/" + fy.toString() + "/all");
+            HttpGet httpPDFGet = new HttpGet(baseUrl + "/budgetSummary/pdf/" + fy.toString() + "/all");
             httpPDFGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getPDFRes = client.execute(httpPDFGet);
             HttpEntity getPDFResEnt = getPDFRes.getEntity();
 
             Integer getPDFstatus = getPDFRes.getStatusLine().getStatusCode();
 
-            printBox(baseUrl + "/budgetSummaryReport/pdf/" + fy.toString() + "/all", getPDFstatus.toString());
+            printBox(baseUrl + "/budgetSummary/pdf/" + fy.toString() + "/all", getPDFstatus.toString());
             Assert.assertEquals(200, getPDFstatus.intValue());
 
             InputStream isPDF = getPDFResEnt.getContent();
@@ -249,14 +249,14 @@ public class BossApiApplicationTests {
 
             printBox("Test CSV BudgetReport");
 
-            HttpGet httpCSVGet = new HttpGet(baseUrl + "/budgetSummaryReport/csv/" + fy.toString() + "/all");
+            HttpGet httpCSVGet = new HttpGet(baseUrl + "/budgetSummary/csv/" + fy.toString() + "/all");
             httpCSVGet.setHeader("Content-type", "application/json");
             CloseableHttpResponse getCSVRes = client.execute(httpCSVGet);
             HttpEntity getCSVResEnt = getCSVRes.getEntity();
 
             Integer getCSVstatus = getCSVRes.getStatusLine().getStatusCode();
 
-            printBox(baseUrl + "/budgetSummaryReport/csv/" + fy.toString() + "/all", getCSVstatus.toString());
+            printBox(baseUrl + "/budgetSummary/csv/" + fy.toString() + "/all", getCSVstatus.toString());
             Assert.assertEquals(200, getCSVstatus.intValue());
 
             InputStream isCSV = getCSVResEnt.getContent();
