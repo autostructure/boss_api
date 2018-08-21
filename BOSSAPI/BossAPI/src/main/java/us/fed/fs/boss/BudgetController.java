@@ -266,7 +266,7 @@ public class BudgetController {
             switch (type) {
                 case "json":
                     CompletableFuture<PayrollDetails> summaryFutureJSON;
-                    if (jobCodeId.get() != null) {
+                    if (jobCodeId.isPresent()) {
                         JobCode jc = jobCodeRepository.getOne(jobCodeId.get());
                         summaryFutureJSON = reportService.getPayrollDetails(Optional.of(jc));
                     } else {
@@ -304,7 +304,7 @@ public class BudgetController {
             switch (type) {
                 case "json":
                     CompletableFuture<PayrollForecast> summaryFutureJSON;
-                    if (jobCodeId.get() != null) {
+                    if (jobCodeId.isPresent()) {
                         JobCode jc = jobCodeRepository.getOne(jobCodeId.get());
                         summaryFutureJSON = reportService.getPayrollForecast(Optional.of(jc));
                     } else {
