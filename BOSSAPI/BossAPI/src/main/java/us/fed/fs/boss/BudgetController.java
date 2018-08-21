@@ -265,12 +265,12 @@ public class BudgetController {
         try {
             switch (type) {
                 case "json":
-                    CompletableFuture<PayrollDetails> summaryFutureJSON = null;
+                    CompletableFuture<PayrollDetails> summaryFutureJSON;
                     if (jobCodeId.get() != null) {
                         JobCode jc = jobCodeRepository.getOne(jobCodeId.get());
-                        summaryFutureJSON = reportService.getPayrollDetailsJSONByJobCode(jc);
+                        summaryFutureJSON = reportService.getPayrollDetails(Optional.of(jc));
                     } else {
-                        summaryFutureJSON = reportService.getPayrollDetailsJSON();
+                        summaryFutureJSON = reportService.getPayrollDetails(Optional.empty());
                     }
 
                     PayrollDetails report = summaryFutureJSON.get();
@@ -303,12 +303,12 @@ public class BudgetController {
         try {
             switch (type) {
                 case "json":
-                    CompletableFuture<PayrollForecast> summaryFutureJSON = null;
+                    CompletableFuture<PayrollForecast> summaryFutureJSON;
                     if (jobCodeId.get() != null) {
                         JobCode jc = jobCodeRepository.getOne(jobCodeId.get());
-                        summaryFutureJSON = reportService.getPayrollForecastJSONByJobCode(jc);
+                        summaryFutureJSON = reportService.getPayrollForecast(Optional.of(jc));
                     } else {
-                        summaryFutureJSON = reportService.getPayrollForecastJSON();
+                        summaryFutureJSON = reportService.getPayrollForecast(Optional.empty());
                     }
 
                     PayrollForecast report = summaryFutureJSON.get();
