@@ -59,6 +59,7 @@
                                                 </div>                                                        
                                             </div>                                            
                                         </div>
+                                        <div class="items">
                                         <div class="row">
                                                 <div class="col">
                                                     <div class="form-group">
@@ -117,9 +118,10 @@
                                                     </div>                                                        
                                                 </div>                                                                                                                                                      
                                         </div>
+                                    </div>
                                         <div class="row">
                                                 <div class="col col-md-6 text-center">
-                                                    <button id="viewReports" class="btn btn-info">Add Additional Training</button> 
+                                                    <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional Training</button> 
                                                 </div> 
                                                 <div class="col col-md-6">
                                                     <input type="submit" id="submitV" class="btn btn-success">    
@@ -127,6 +129,15 @@
                                         </div>                                                                                                                       
                                     </div>
                                 </div>
+
+                                <div class="itemss">
+                                    
+                                   <div class="form-group"><label>Author Email:</label>
+                                   <input id="author_email" class="form-control" name="author" required="required" type="EMAIL" /></div>
+                                    
+                                   </div>
+                                    
+                                   <button type="button" class="add_fiedld_button">Add Field</button>
 
                                 </section>
                          </section>                         

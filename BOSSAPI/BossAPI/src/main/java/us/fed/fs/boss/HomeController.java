@@ -69,4 +69,8 @@ public class HomeController {
     public String addTrainingEmployee(){
         return "addTrainingEmployee";
     } 
+    @RequestMapping("/addTrainingClass")
+    public String addTrainingClass(){
+        return "addTrainingClass";
+    }     
 }

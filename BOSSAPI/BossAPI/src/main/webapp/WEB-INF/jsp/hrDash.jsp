@@ -73,7 +73,7 @@
                                                               <a href="/addTrainingEmployee">Add Training by Employee</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="#">Add Training by Class</a>
+                                                              <a href="/addTrainingClass">Add Training by Class</a>
                                                           </li>
                                                           <li class="list-group-item">
                                                             <a href="#">Assign Training</a>

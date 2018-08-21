@@ -43,12 +43,13 @@
                                         </div>
                                         <div class="row chartHolder">
                                             <!-- rendering pie charts -->
-                                            <div class="col col-md-5">
-                                                    <canvas id="pie-chart" width="300" height="300"></canvas>
-                                            </div>
+
                                             <div class="col col-md-5">
                                                     <canvas id="pie-chart2" width="300" height="300"></canvas>
                                             </div>
+                                            <div class="col col-md-5">
+                                                    <canvas id="pie-chart" width="300" height="300"></canvas>
+                                            </div>                                            
 
                                             <!-- quick links col -->
                                             <div class="col col-md-2 qlinks">

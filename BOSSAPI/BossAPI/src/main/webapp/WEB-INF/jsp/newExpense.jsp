@@ -199,9 +199,9 @@
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group">
-                                                            <label for="comphours" class="control-label">Comp Hours<span class="reqClass"> *</span></label>
-                                                            <input type="number" id="comphours" required class="form-control" aria-label="Comp Hours"  min="1" max="99" aria-describedby="basic-addon1">
-                                                            <div class="help-block with-errors"></div>
+                                                            <label for="comphours" class="control-label">Comp Hours</label>
+                                                            <input type="number" id="comphours"  class="form-control" aria-label="Comp Hours"  min="1" max="99" aria-describedby="basic-addon1">
+                                                            
                                                         </div>
                                                     </div> 
                                                     <div class="col"> 
@@ -228,7 +228,7 @@
 
                                                 <div id="detailsTable">
                                                 <div class="row">
-                                                    <h2 class="title3">Details Table</h2>
+                                                    <h2 class="title3">Job Code Details Table</h2>
                                                 </div>
 
                                                     <div class="row bottomRow">
@@ -254,7 +254,7 @@
                                                             <div class="row">                                                        
                                                                 <div class="col">
                                                                     <div class="form-group">
-                                                                        <label for="jobcodedesc" class="control-label">Desc<span class="reqClass"> *</span></label>
+                                                                        <label for="jobcodedesc" class="control-label">Job Code Desc<span class="reqClass"> *</span></label>
                                                                         <input readonly="readonly" type="text" id="jobcodedesc" required class="form-control" required aria-label="job code description" placeholder="Description">
                                                                         <div class="help-block with-errors"></div>
                                                                     </div>
@@ -384,13 +384,7 @@
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                    <label class="control-label" for="tpov">POV Miles</label>
-                                                    <input type="text"  id="tpov" class="form-control"  aria-label="POV Miles" placeholder="POV Miles"  aria-describedby="basic-addon1">
-                                                    <div class="help-block with-errors"></div>    
-                                                    </div>
-                                                </div>                                                
+                                               
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label class="control-label" for="tactcode">Activity Code<span class="reqClass"> *</span></label>
@@ -474,6 +468,13 @@
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group">
+                                                            <label class="control-label" for="tpov">POV Miles</label>
+                                                            <input type="text"  id="tpov" class="form-control"  aria-label="POV Miles" placeholder="POV Miles"  aria-describedby="basic-addon1">
+                                                            <div class="help-block with-errors"></div>    
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <div class="form-group">
                                                                 <label for="tstate">State<span class="reqClass"> *</span></label>
                                                                 <input type="text" id="tstate" required class="form-control"  maxlength="3" minlength="2" aria-label="travel state">
                                                                 <div class="help-block with-errors"></div>
@@ -492,7 +493,7 @@
 
                                             <div id="detailsTable">
                                             <div class="row">
-                                                <h2 class="title3">Details Table</h2>
+                                                <h2 class="title3">Job Code Details Table</h2>
                                             </div>
 
                                                 <div class="row bottomRow">
@@ -517,7 +518,7 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="tjobcodedesc">Desc<span class="reqClass"> *</span></label>
+                                                                    <label class="control-label" for="tjobcodedesc">Job Code Desc<span class="reqClass"> *</span></label>
                                                                     <input type="text" readonly="readonly" id="tjobcodedesc" class="form-control"  required aria-label="Job Code Description" placeholder="Description">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
@@ -722,7 +723,7 @@
                                                 </div>
                                             <div id="detailsTable">
                                             <div class="row">
-                                                <h2 class="title3">Details Table</h2>
+                                                <h2 class="title3">Job Code Details Table</h2>
                                             </div>
 
                                                 <div class="row bottomRow">
@@ -747,7 +748,7 @@
                                                         <div class="row">                                                        
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="vjobcodedesc">Desc<span class="reqClass"> *</span></label>
+                                                                    <label class="control-label" for="vjobcodedesc">Job Code Desc<span class="reqClass"> *</span></label>
                                                                     <input type="text" readonly="readonly" id="vjobcodedesc" class="form-control"  required aria-label="Job Code Desc" value="Default">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
@@ -950,7 +951,7 @@
                                                 </div>
                                             <div id="detailsTable">
                                             <div class="row">
-                                                <h2 class="title3">Details Table</h2>
+                                                <h2 class="title3">Job Code Details Table</h2>
                                             </div>
 
                                                 <div class="row bottomRow">
@@ -975,7 +976,7 @@
                                                         <div class="row">                                                      
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label class="control-label" for="ojobcodedesc">Desc<span class="reqClass"> *</span></label>
+                                                                    <label class="control-label" for="ojobcodedesc">Job Code Desc<span class="reqClass"> *</span></label>
                                                                     <input type="text" readonly="readonly" id="ojobcodedesc" class="form-control"  required aria-label="Unit Code" value="Default">
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>

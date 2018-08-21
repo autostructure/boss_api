@@ -85,7 +85,7 @@
                                         <p class="card-text"><a href="/viewAllEmployees">View Employees</a></p>
                                         <p class="card-text"><a href="/addNewEmployee">Add New Employees</a></p>
                                         <p class="card-text"><a href="#">Assign Training</a></p>
-                                        <p class="card-text"><a href="#">Add Training by Class</a></p>
+                                        <p class="card-text"><a href="/addTrainingClass">Add Training by Class</a></p>
                                         <p class="card-text"><a href="#">Add DRA's</a></p>
                                 </div>
                                 <div class="card-footer text-right">
