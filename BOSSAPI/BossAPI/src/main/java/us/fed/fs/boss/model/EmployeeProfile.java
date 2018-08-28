@@ -53,6 +53,9 @@ public class EmployeeProfile implements Serializable {
 
     @Column(name = "StateAssigned")
     private String stateAssigned;
+    
+    @Column(name = "DutyStation")
+    private String dutyStation;
 
     @Column(name = "EmergencyContactFirstName1")
     private String emergencyContactFirstName1;
@@ -116,6 +119,9 @@ public class EmployeeProfile implements Serializable {
 
     @Column(name = "Title")
     private String title;
+    
+    @Column(name = "RoomNumber")
+    private String roomNumber;
 
     @Column(name = "PayPeriodsLeft")
     private Short payPeriodsLeft;
