@@ -1,8 +1,11 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -11,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -132,5 +136,12 @@ public class EmployeeProfile implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ActivityCodeFK")
     private ActivityCode activityCode;
+    
+    @OneToMany(
+        mappedBy = "training"
+    )
+    @JsonManagedReference(value="training")
+    private List<Training> training;
+
 
 }
