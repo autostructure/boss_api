@@ -14,5 +14,4 @@ public class FileTypeDetector {
             return MediaType.APPLICATION_OCTET_STREAM;
         }
     }
-     
 }

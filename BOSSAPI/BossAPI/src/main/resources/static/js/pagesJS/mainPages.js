@@ -1,6 +1,6 @@
 $(mainHeader).load("../../templates/budgetHeader.html");
 $(mainFooter).load("../../templates/budgetFooter.html");
-$(sidebar).load("../../templates/sidebar.html")
+$(sidebar).load("../../templates/sidebar.html");
 $(document).ready(function () {
     
     
