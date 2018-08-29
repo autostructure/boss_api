@@ -84,9 +84,9 @@
                                 <div class="card-tbody show" id="collapseThree">
                                         <p class="card-text"><a href="/viewAllEmployees">View Employees</a></p>
                                         <p class="card-text"><a href="/addNewEmployee">Add New Employees</a></p>
-                                        <p class="card-text"><a href="#">Assign Training</a></p>
+                                        <p class="card-text"><a href="/assignTraining">Add Training Intervals</a></p>
                                         <p class="card-text"><a href="/addTrainingClass">Add Training by Class</a></p>
-                                        <p class="card-text"><a href="#">Add DRA's</a></p>
+                                        <p class="card-text"><a href="/addDraEmployee">Add DRA for Employee</a></p>
                                 </div>
                                 <div class="card-footer text-right">
                                         <p class="card-text dashboard"><a href="/hrDash">Visit Dashboard</a></p>

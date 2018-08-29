@@ -76,7 +76,7 @@
                                                               <a href="/addTrainingClass">Add Training by Class</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                            <a href="#">Assign Training</a>
+                                                            <a href="/assignTraining">Add Training Intervals</a>
                                                           </li>
                                                           <li class="list-group-item">
                                                             <a href="#">Training Due Next 6 Months</a>
@@ -94,7 +94,7 @@
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="#">Add DRA by Employee</a>                                
+                                                              <a href="/addDraEmployee">Add DRA by Employee</a>                                
                                                           </li>
                                                           <li class="list-group-item">
                                                               <a href="#">Assign DRA's</a>
