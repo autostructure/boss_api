@@ -12,9 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,7 +21,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Getter @Setter @NoArgsConstructor
 public class JobCode implements Serializable  {
     
     @Id
@@ -46,5 +42,89 @@ public class JobCode implements Serializable  {
     
     @Column(name = "Amount", precision=10, scale=2)
     private BigDecimal amount;
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the overrideCode
+     */
+    public Integer getOverrideCode() {
+        return overrideCode;
+    }
+
+    /**
+     * @param overrideCode the overrideCode to set
+     */
+    public void setOverrideCode(Integer overrideCode) {
+        this.overrideCode = overrideCode;
+    }
+
+    /**
+     * @return the financialYear
+     */
+    public Short getFinancialYear() {
+        return financialYear;
+    }
+
+    /**
+     * @param financialYear the financialYear to set
+     */
+    public void setFinancialYear(Short financialYear) {
+        this.financialYear = financialYear;
+    }
+
+    /**
+     * @return the jobCode
+     */
+    public String getJobCode() {
+        return jobCode;
+    }
+
+    /**
+     * @param jobCode the jobCode to set
+     */
+    public void setJobCode(String jobCode) {
+        this.jobCode = jobCode;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the amount
+     */
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    /**
+     * @param amount the amount to set
+     */
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
     
 }

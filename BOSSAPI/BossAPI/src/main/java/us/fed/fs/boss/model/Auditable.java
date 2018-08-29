@@ -14,20 +14,16 @@ import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.TemporalType;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Getter @Setter @NoArgsConstructor
 abstract class Auditable<U> {
 
     @CreatedBy
-    protected U createdBy;
+    private U createdBy;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
@@ -40,7 +36,63 @@ abstract class Auditable<U> {
     private Date updatedAt;
 
     @LastModifiedBy
-    protected U lastModifiedBy;
+    private U lastModifiedBy;
+
+    /**
+     * @return the createdBy
+     */
+    public U getCreatedBy() {
+        return createdBy;
+    }
+
+    /**
+     * @param createdBy the createdBy to set
+     */
+    public void setCreatedBy(U createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    /**
+     * @return the createdAt
+     */
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @param createdAt the createdAt to set
+     */
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    /**
+     * @return the updatedAt
+     */
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    /**
+     * @param updatedAt the updatedAt to set
+     */
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    /**
+     * @return the lastModifiedBy
+     */
+    public U getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    /**
+     * @param lastModifiedBy the lastModifiedBy to set
+     */
+    public void setLastModifiedBy(U lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
     
     
 }
