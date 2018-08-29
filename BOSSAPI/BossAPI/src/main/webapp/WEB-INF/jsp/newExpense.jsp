@@ -76,14 +76,14 @@
                                                     <p class="reqText"><span class="shaded">Shaded</span>  fields are auto populated based on your selections</p>
                                                 </div>                                                
                                                 <div class="row">
-                                                        <div class="col">
+                                                        <div class="col-md-3 col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="fy">Fiscal Year<span class="reqClass"> *</span></label>
                                                                 <select class="form-control" name="select" required id="fy"></select>
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-md-3 col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="dateentered">Date Entered<span class="reqClass"> *</span></label>
                                                                 <div class="input-group date" data-provide="datepicker">
@@ -95,7 +95,7 @@
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-md-3 col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="datemod">Date Modified<span class="reqClass"> *</span></label>
                                                                 <div class="input-group date" data-provide="datepicker">
@@ -107,7 +107,7 @@
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-md-3 col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="dateob">Date Obligated<span class="reqClass"> *</span></label>
                                                                 <div class="input-group date" data-provide="datepicker">
@@ -121,7 +121,7 @@
                                                         </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col">
+                                                    <div class="col-md-3 col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="namecode">Namecode<span class="reqClass"> *</span></label>
                                                                 <select class="form-control" required id="namecode">
@@ -130,14 +130,14 @@
                                                                 <div class="help-block with-errors"></div>
                                                             </div>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-md-3 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="desc">Description<span class="reqClass"> *</span></label>
                                                             <input type="text" disabled id="desc" class="form-control"  aria-label="description" value="Salary" aria-describedby="basic-addon1">
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>  
-                                                    <div class="col">
+                                                    <div class="col-md-3 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="actcode">Activity Code<span class="reqClass"> *</span></label>
                                                             <select class="form-control" required id="actcode">
@@ -146,7 +146,7 @@
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>                                                    
-                                                    <div class="col">
+                                                    <div class="col-md-3 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="boc">Budget Object Code (BOC)<span class="reqClass"> *</span></label>
                                                             <input type="text" disabled id="boc" class="form-control"  aria-label="budget object code" required value="11" aria-describedby="basic-addon1">
@@ -155,14 +155,14 @@
                                                     </div>
                                                 </div>                                                
                                                 <div class="row">
-                                                    <div class="col">
+                                                    <div class="col-md-3 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="pc">Payment Code<span class="reqClass"> *</span></label>
                                                             <input type="text" disabled id="pc" class="form-control" aria-label="payment code" required value="SAL" minlength="1" maxlength="3" maxaria-describedby="basic-addon1">
                                                             <div class="help-block with-errors"></div>
                                                         </div>  
                                                     </div>                                                    
-                                                    <div class="col">
+                                                    <div class="col-md-3 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="payperiod">Pay Period<span class="reqClass"> *</span></label>
                                                             <select class="form-control" id="payperiod">
@@ -197,14 +197,14 @@
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-md-3 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="comphours" class="control-label">Comp Hours</label>
                                                             <input type="number" id="comphours"  class="form-control" aria-label="Comp Hours"  min="1" max="99" aria-describedby="basic-addon1">
                                                             
                                                         </div>
                                                     </div> 
-                                                    <div class="col"> 
+                                                    <div class="col-md-3 col-sm-6"> 
                                                         <div class="form-group">
                                                             <label for="state">State<span class="reqClass"> *</span></label>
                                                             <select class="form-control" required id="state">
@@ -225,14 +225,14 @@
                                                         <textarea class="form-control" id="remarks" rows="1"></textarea>
                                                     </div>
                                                 </div>                                                
-
+                                            <!-- START OF DETAILS TABLE -->
                                                 <div id="detailsTable">
                                                 <div class="row">
                                                     <h2 class="title3">Job Code Details Table</h2>
                                                 </div>
 
                                                     <div class="row bottomRow">
-                                                        <div class="col-4 bottomBL">
+                                                        <div class="col-md-4 col-sm-12 bottomBL">
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="form-group">
@@ -280,7 +280,7 @@
                                                             </div>
                                                             
                                                         <div class="row">
-                                                            <div class="col-4 offset-7">
+                                                            <div class="col-4 col-sm-12 col-sm-offset-7 col-md-offset-7">
                                                                 <button id="addbtn" type="button" class="btn btn-lg btn-success">
                                                                     <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
                                                                     <span class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
@@ -289,7 +289,7 @@
                                                         </div>
                                                             
                                                         </div>
-                                                        <div class="col-8 bottomBR">
+                                                        <div class="col-md-8 col-sm-12 bottomBR">
                                                                 <table id="timeTable" class="table">
                                                                         <thead>
                                                                           <tr>
