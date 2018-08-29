@@ -1,5 +1,6 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import javax.persistence.Cacheable;
 
@@ -8,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -18,8 +16,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "ExpenseCodes")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Getter @Setter @NoArgsConstructor
 public class ExpenseCode implements Serializable {
 
     @Id
@@ -27,5 +25,33 @@ public class ExpenseCode implements Serializable {
     
     @Column(name = "Type", nullable = false)
     private String type;
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
     
 }
