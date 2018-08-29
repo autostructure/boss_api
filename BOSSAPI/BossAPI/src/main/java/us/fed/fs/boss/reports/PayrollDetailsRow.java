@@ -17,6 +17,21 @@ public class PayrollDetailsRow {
     private BigDecimal overtimeToDate;
     private BigDecimal regPayForecast;
     private BigDecimal totalFYForecast;
+    private Long employeeProfileId;
+    
+       /**
+     * @return the employeeProfileId
+     */
+    public Long getEmployeeProfileId() {
+        return employeeProfileId;
+    }
+
+    /**
+     * @param employeeProfileId the employeeProfileId to set
+     */
+    public void setEmployeeProfileId(Long employeeProfileId) {
+        this.employeeProfileId = employeeProfileId;
+    }
 
     /**
      * @return the section

@@ -64,7 +64,10 @@ public class ReportService {
 
         // O(n^3)
         for (EmployeeProfile profile : profiles) {
+            
             PayrollDetailsRow row = new PayrollDetailsRow();
+            
+            row.setEmployeeProfileId(profile.getId());
 
             BigDecimal regPayToDate = BigDecimal.ZERO;
             BigDecimal overtimeToDate = BigDecimal.ZERO;

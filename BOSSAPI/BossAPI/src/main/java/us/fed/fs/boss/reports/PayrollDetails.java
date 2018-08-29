@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class PayrollDetails {
+    
     private List<PayrollDetailsRow> rows;
     private BigDecimal totalRegPayToDate;
     private BigDecimal totalOvertimeToDate;
@@ -79,4 +80,6 @@ public class PayrollDetails {
     public void setGrandTotalFYForecast(BigDecimal grandTotalFYForecast) {
         this.grandTotalFYForecast = grandTotalFYForecast;
     }
+
+ 
 }
