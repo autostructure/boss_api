@@ -1,29 +1,43 @@
-var jsonData = [
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "AD", "name": "Wortley, Bill", "ppleft":"10", "regPay":"4000", "regPaytoDate":"33320", "ot":"0"},
-    {"sec": "AB", "name": "Smith, Becky", "ppleft":"12", "regPay":"3000", "regPaytoDate":"43888", "ot":"0"},
-    {"sec": "D", "name": "Smith, Tom", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Keidel, Dog", "ppleft":"12", "regPay":"3000", "regPaytoDate":"87333", "ot":"0"},
-    {"sec": "DA", "name": "Sherry, Drew", "ppleft":"12", "regPay":"3000", "regPaytoDate":"39220", "ot":"0"},
-    {"sec": "A", "name": "Rogers, Mark", "ppleft":"12", "regPay":"1200", "regPaytoDate":"29220", "ot":"0"},
-    {"sec": "A", "name": "Buckley, Bill", "ppleft":"12", "regPay":"1000", "regPaytoDate":"9220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"},
-    {"sec": "A", "name": "Caresse, Hennington", "ppleft":"12", "regPay":"3000", "regPaytoDate":"59220", "ot":"0"}
-];
+var jsonData = {"rows":[
+     {"section":"A","sectionDescription":"Administration","name":"Mahmood, Ileen","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"Z","sectionDescription":"Administration","name":"Knepper, Nia","ppLeft":10,"regPayPerPP":2000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Unger, Adam","ppLeft":10,"regPayPerPP":3000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"F","sectionDescription":"Administration","name":"Starkes, Tricia","ppLeft":10,"regPayPerPP":100.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Majewski, Vonda","ppLeft":10,"regPayPerPP":500.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"Gd","sectionDescription":"Administration","name":"Work, Pauletta","ppLeft":10,"regPayPerPP":10000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"g","sectionDescription":"Administration","name":"Carr, Susie","ppLeft":10,"regPayPerPP":5000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"gd","sectionDescription":"Administration","name":"Mahar, Fay","ppLeft":10,"regPayPerPP":13000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Dederick, Mindy","ppLeft":10,"regPayPerPP":1200.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"G","sectionDescription":"Administration","name":"Vanalstyne, Silas","ppLeft":10,"regPayPerPP":1400.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Clemons, Lyla","ppLeft":10,"regPayPerPP":170.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Hinson, Deangelo","ppLeft":10,"regPayPerPP":1300.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Kriebel, Lee","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Teasdale, Prince","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Espinal, Geralyn","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"B","sectionDescription":"Administration","name":"Kirchoff, Isiah","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"B","sectionDescription":"Administration","name":"Lovell, Hector","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"B","sectionDescription":"Administration","name":"Rennie, Kara","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"B","sectionDescription":"Administration","name":"Crick, Eleanore","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"B","sectionDescription":"Administration","name":"Bradsher, Alphonso","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"B","sectionDescription":"Administration","name":"Prewitt, Ressie","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"A","sectionDescription":"Administration","name":"Glynn, Von","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"A","sectionDescription":"Administration","name":"Desoto, Dagmar","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"A","sectionDescription":"Administration","name":"Fonte, Kittie","ppLeft":10,"regPayPerPP":10000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"A","sectionDescription":"Administration","name":"Philpot, Genoveva","ppLeft":10,"regPayPerPP":5000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"A","sectionDescription":"Administration","name":"Ferber, Jewell","ppLeft":10,"regPayPerPP":1500.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"A","sectionDescription":"Administration","name":"Cremer, Jacalyn","ppLeft":10,"regPayPerPP":5000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"A","sectionDescription":"Administration","name":"Neill, Chantal","ppLeft":10,"regPayPerPP":1030.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Lamberton, Nakita","ppLeft":10,"regPayPerPP":1010.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Dobson, Veronika","ppLeft":10,"regPayPerPP":8000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+    ,{"section":"AD","sectionDescription":"Administration","name":"Stockdale, Jalisa","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
+]};
 
 $('#payrollSub').addClass('show');
 $('#payrollSub > li:nth-child(2) > a').addClass('highlight');
  
 $(document).ready(function() {
+    var api = '';
+
     $('#payrollSub').addClass('show');
     $('#payrollSub > li:nth-child(2) > a').addClass('highlight');
 
@@ -32,127 +46,160 @@ $(document).ready(function() {
     } );
     $('#payroll thead tr:nth-child(1) th:nth-child(2)').each( function () {
         $(this).html( '<label class="headLabel" for="name">Name Code</label><input type="text" id="name" class="headSearch" placeholder="Search Name Code" />' );
-    } );   
+    } );
 
- 
-    var dt = $('#payroll').DataTable({ 
-        dom: 'Brtip',
-        bProcessing: true,
-        bPaginate: false,
-        // setting footer totall
-        "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            regTotal = api
-                .column( 4, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-            otTotal = api
-                .column( 5, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-            regpayTotal = api
-                .column( 6, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    console.log(intVal(a));
-                    console.log(intVal(b));
-                    return intVal(a) + intVal(b);
-                }, 0 );
-            gTotal = api
-                .column( 7, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
- 
-            $( api.column( 4 ).footer() ).html(regTotal);
-            $( api.column( 5 ).footer() ).html(otTotal);
-            $( api.column( 6 ).footer() ).html(regpayTotal);
-            $( api.column( 7 ).footer() ).html(gTotal);
-        },
-        // end of footer totals
-        buttons: [
-            {
-                text: 'Print <i class="fa fa-lg fa-print"></i>',
-                extend: 'print',
-                exportOptions:{
-                    columns: [0,1,2,3,4,5,6,7]
-                },
-                className: 'table-btns print-btn'
-            },
-            {
-                text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
-                extend: 'excel',
-                exportOptions:{
-                    columns: [0,1,2,3,4,5,6,7]
-                },
-                className: 'table-btns excel-btn'
-            },
-            {
-                text: 'Add <i class="fa fa-lg fa-plus"></i>',
-                action: function(){
-                    window.location.href = './newSalary.html';
-                },
-                className: 'table-btns add-btn'
-            },
-            {
-                text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
-                action: function(){
-                    window.location.reload();
-                },
-                className: 'table-btns refresh-btn'
-            }
-         
-        ],
-        data: jsonData,
-        columnDefs: { sortable: false, targets: [8] },
-        columns: [
-            { data: "sec" },
-            { data: "name" },
-            { data: "ppleft" },
-            { data: "regPay" },
-            { data: "regPaytoDate" },
-            { data: "ot" },
-            { data: null,
-                "render":function(data, type, full, meta){
-                    return data.ppleft * data.regPay;
-                 }
-            },
-            { data: null,
-                "render": function(data, type, full, meta){
-                    var proj = data.ppleft * data.regPay
-                return parseInt(data.regPaytoDate) + parseInt(proj);
+    $.ajax({
+        type: 'GET',
+        url: api+'/jobCode',
+        success: function(json){
+            $('#jobcode').append(json.map(function(jc){
+                var selected = "";
+                if (jc.jobCode.match(/^FRFI38\d\d$/)) {
+                    console.log("Matched " + jc.jobCode);
+                    selected = " selected"
                 }
+                return '<option value="'+jc.id+'"id="'+jc.id+'"'+selected+'>'+jc.jobCode +'</option>';
+            })) ;
+        }
+    }); //end of get jobcode ajax call
+    $.ajax({
+        type: 'GET',
+        url: api+'/payrollDetails/json',
+        success: function(json){
+            console.log(json);
+            populateDataTable(json); // live data
+            //populateDataTable(jsonData); // dev data
+        }
+    });
+    
+    function populateDataTable(jsonData) {
+        var dt = $('#payroll').DataTable({ 
+            dom: 'Brtip',
+            bProcessing: true,
+            bPaginate: false,
+            // setting footer totall
+            "footerCallback": function ( row, data, start, end, display ) {
+                var api = this.api(), data;
+    
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+    
+                regTotal = api
+                    .column( 4, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                otTotal = api
+                    .column( 5, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                regpayTotal = api
+                    .column( 6, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        //console.log(intVal(a));
+                        //console.log(intVal(b));
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                gTotal = api
+                    .column( 7, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+    
+                $( api.column( 4 ).footer() ).html(regTotal);
+                $( api.column( 5 ).footer() ).html(otTotal);
+                $( api.column( 6 ).footer() ).html(regpayTotal);
+                $( api.column( 7 ).footer() ).html(gTotal);
             },
- 
-            {data: null,
-                "render": function(){
-                    return `
-                    <div>
-                        <div class="dropdown1">
-                        <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
-                        <div class="dropdown-content1">
-                        <a href="#">Edit Pay</a>
-                        <a href="#">Delete Pay</a>
+            // end of footer totals
+            buttons: [
+                {
+                    text: 'Print <i class="fa fa-lg fa-print"></i>',
+                    extend: 'print',
+                    exportOptions:{
+                        columns: [0,1,2,3,4,5,6,7]
+                    },
+                    className: 'table-btns print-btn'
+                },
+                {
+                    text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
+                    extend: 'excel',
+                    exportOptions:{
+                        columns: [0,1,2,3,4,5,6,7]
+                    },
+                    className: 'table-btns excel-btn'
+                },
+                {
+                    text: 'Add <i class="fa fa-lg fa-plus"></i>',
+                    action: function(){
+                        window.location.href = './newSalary.html';
+                    },
+                    className: 'table-btns add-btn'
+                },
+                {
+                    text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
+                    action: function(){
+                        window.location.reload();
+                    },
+                    className: 'table-btns refresh-btn'
+                }
+            
+            ],
+            data: jsonData.rows,
+            columnDefs: { sortable: false, targets: [8] },
+            columns: [
+                { data: "section", orderData:[0,1] },
+                { data: "name" },
+                { data: "ppLeft" },
+                { data: "regPayPerPP",
+                    "render":$.fn.dataTable.render.number( ',', '.', 0, '$' )
+                },
+                { data: "regPayToDate",
+                    "render": $.fn.dataTable.render.number( ',', '.', 0, '$' )
+                },
+                { data: "overtimeToDate",
+                    "render":$.fn.dataTable.render.number( ',', '.', 0, '$' )
+                },
+                { data: null,
+                    "render":function(data, type, full, meta){
+                        var amount = data.ppLeft * data.regPayPerPP;
+                        return $.fn.dataTable.render.number( ',', '.', 0, '$' ).display(amount);
+                    }
+                },
+                { data: null,
+                    "render": function(data, type, full, meta){
+                        var projected = data.ppLeft * data.regPayPerPP;
+                        var amount = parseInt(data.regPayToDate) + parseInt(projected);
+                        return $.fn.dataTable.render.number( ',', '.', 0, '$' ).display(amount);
+                    }
+                },
+    
+                {data: null,
+                    "render": function(data, type, full, meta){
+                        return `
+                        <div>
+                            <div class="dropdown1">
+                            <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                            <div class="dropdown-content1">
+                            <a data-target="#myModal" href="#myModal" class="editBtn" data-id="${full.employeeProfileId}">Edit Pay</a>
+                            </div>
                         </div>
                     </div>
-                  </div>
-                    `
-                }
-            }],
-        });
+                        `
+                    },
+                    "sortable": false,
+                    "orderable": false
+                }],
+            });
  
         dt.columns().every( function () {
             var that = this;
@@ -164,4 +211,55 @@ $(document).ready(function() {
                 }
             });
         });
+    }
+    $('#payroll tbody').on( 'click', '.editBtn', function () {
+        var employeeID = $(this).data("id");
+        //var data = table.row( $(this).parents('tr') ).data();
+        //var id = (data.id);
+        $.ajax({
+            type: 'GET',
+            url: api+'/employeeProfile/'+employeeID,
+            success: function(data){
+                $('#myModal #empName').val(data.firstName+' '+data.lastName);
+                $('#myModal #empPPLeft').val(data.payPeriodsLeft);
+                $('#myModal #empRegPay').val(data.regPayPerPayPeriod);
+                $("#empID").data(data);
+            }
+        });
+        $('#myModal').modal('show');
+    });
+
+    $("#editForm").submit(function() {
+        var pd = $("#empID").data();
+        pd.payPeriodsLeft = parseInt($('#myModal #empPPLeft').val());
+        pd.regPayPerPayPeriod = parseInt($('#myModal #empRegPay').val());
+        var id = parseInt($('#empID').data('id'));
+
+        console.log(pd);
+        console.log(id);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/employeeProfile",
+            data: JSON.stringify(pd),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function(data) {
+                $('#myModal').modal('hide');
+                $('#success').show();
+                $('#success').delay(5000).fadeOut();
+                //window.location.href = api + '/payrollDetails';
+            },
+            error: function(request, status, error) {
+                console.log(request.responseJSON);
+                $('#myModal').modal('hide');
+                $('#error').show()
+                $('#error').delay(5000).fadeOut();
+                //window.location.href = api + '/payrollDetails';
+            }
+        });
+        return false;
+    });
 });

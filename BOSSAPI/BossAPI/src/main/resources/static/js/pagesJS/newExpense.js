@@ -14,7 +14,7 @@
             $("#datemod, #tdatemod, #vdatemod, #odatemod").datepicker('setDate', new Date().toDateString());
             $("#dateob, #tdateob, #vdateob, #odateob").datepicker('setDate', new Date().toLocaleDateString());
         } catch (e) {
-            console.error("error - " + e);
+            console.log("error - " + e);
         }
     
         // showing expense on sidenav
@@ -30,7 +30,9 @@
 
 
         function getJobCodeSuccess(info) {
+            
             try {
+
                 $.each(info, function (value, key) {
                     $('#jobcode, #tjobcode, #vjobcode, #ojobcode').append($("<option />").val(key.id).text(key.jobCode).attr("id", key.id));
                 });
@@ -167,6 +169,7 @@ $('#ojobcode').on('change', function () {
 
     $("#addbtn").click(function () {
         // var absoluteunit = $("#unitcode").val();
+        
         var jobcode = $("#jobcode").val();
         var desc = $("#jobcodedesc").val();
         var expcode = $("#expcode").val();
@@ -183,12 +186,91 @@ $('#ojobcode').on('change', function () {
             '</div>' +
             '</div></td></tr>';
         $("table tbody").append(markup);
-        console.log($('#tableJobCode').text());
+});
+
+$("#taddbtn").click(function () {
+    // var absoluteunit = $("#unitcode").val();
+    
+
+    try {
+        var jobcode = $("#tjobcode").val();
+        var desc = $("#tjobcodedesc").val();
+        var expcode = $("#texpcode").val();
+        var expfront = expcode.substring(0, 3);
+        var expback = expcode.substr(3);
+        var amount = $('#tamount').val();
+        var hours = $("#thours").val();
+        var markup = "<tr><td id='ttableExp'>" + expfront + "</td><td id='ttableJobCode'>" + jobcode +
+            "</td><td id='ttableHours'>" + hours + "</td><td id='ttableType'>" + expback + "</td><td id='tamount'>Amount to be Calc</td>" +
+            '<td> <div class="input-group date" data-provide="datepicker">' +
+            '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">' +
+            '<div class="input-group-addon">' +
+            '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
+            '</div>' +
+            '</div></td></tr>';
+        $("#travelTable tbody").append(markup);
+    } catch (e) {
+        console.log(e);
+        
+    }
 
 
 
 
-    });
+
+});
+
+$("#vaddbtn").click(function () {
+    // var absoluteunit = $("#unitcode").val();
+    
+    var jobcode = $("#vjobcode").val();
+    var desc = $("#vjobcodedesc").val();
+    var expcode = $("#vexpcode").val();
+    var expfront = expcode.substring(0, 3);
+    var expback = expcode.substr(3);
+    var amount = $('#vamount').val();
+    var hours = $("#vhours").val();
+    var markup = "<tr><td id='vtableExp'>" + expfront + "</td><td id='vtableJobCode'>" + jobcode +
+        "</td><td id='vtableHours'>" + hours + "</td><td id='vtableType'>" + expback + "</td><td id='vamount'>Amount to be Calc</td>" +
+        '<td> <div class="input-group date" data-provide="datepicker">' +
+        '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">' +
+        '<div class="input-group-addon">' +
+        '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
+        '</div>' +
+        '</div></td></tr>';
+    $("#visaTable tbody").append(markup);
+
+
+
+
+
+});
+
+$("#oaddbtn").click(function () {
+    // var absoluteunit = $("#unitcode").val();
+    
+    var jobcode = $("#ojobcode").val();
+    var desc = $("#ojobcodedesc").val();
+    var expcode = $("#oexpcode").val();
+    var expfront = expcode.substring(0, 3);
+    var expback = expcode.substr(3);
+    var amount = $('#oamount').val();
+    var hours = $("#ohours").val();
+    var markup = "<tr><td id='otableExp'>" + expfront + "</td><td id='otableJobCode'>" + jobcode +
+        "</td><td id='otableHours'>" + hours + "</td><td id='otableType'>" + expback + "</td><td id='oamount'>Amount to be Calc</td>" +
+        '<td> <div class="input-group date" data-provide="datepicker">' +
+        '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">' +
+        '<div class="input-group-addon">' +
+        '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
+        '</div>' +
+        '</div></td></tr>';
+    $("#otherTable tbody").append(markup);
+
+
+
+
+
+});
 
     // $('#addbtn').on('click', function(){
     //   var 
@@ -262,13 +344,16 @@ $('#ojobcode').on('change', function () {
                 var table_dateVerified = $(this).find("#tableDateVerified").html();
                 
                 try {
-                    timeTableObj.ttableExp = table_exp;
-                    timeTableObj.ttableJobCode = table_jobcode;
-                    timeTableObj.ttableAmount = table_amount;
-                    timeTableObj.ttJobCodeDesc = table_jobCodeDesc;
-                    timeTableObj.ttableDateVerified = table_dateVerified;
+                    if (table_jobcode != undefined) {
+                        timeTableObj.tableExp = table_exp;
+                        timeTableObj.tableJobCode = table_jobcode;
+                        timeTableObj.tableAmount = table_amount;
+                        timeTableObj.tJobCodeDesc = table_jobCodeDesc;
+                        timeTableObj.tableDateVerified = table_dateVerified;
+                        timeTableObj.tableHours = table_hours;
 
-                    timeTableArr.push(timeTableObj);
+                        timeTableArr.push(timeTableObj);
+                    }
                 } catch (e) {
                     console.log(e);
                 }
@@ -276,7 +361,7 @@ $('#ojobcode').on('change', function () {
 
 
 
-            debugger;
+            
 
             //expense Details
             timeDataV2.activityCode.name = actcode;
@@ -355,61 +440,68 @@ $('#ojobcode').on('change', function () {
                 }
             });
 
-            expenseDetailsElement.amount = 0;
-            expenseDetailsElement.dateVerified = "";
-            expenseDetailsElement.expenseCode.type = expcode.split("-")[1];
-            expenseDetailsElement.expenseCode.id = parseInt(expcode.split("-")[0]);
-            expenseDetailsElement.hours = hours;
-            
-            
-
-            $.ajax({
-                url: api + "/jobCode/" + jobCode_id,
-                type: "GET",
-                success: function (json) {
-                    
-                   
-                        expenseDetailsElement.JobCode.amount = json.amount;
-                        expenseDetailsElement.JobCode.description = json.description;
-                        expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                        expenseDetailsElement.JobCode.id = json.id;
-                        
-                        /*expenseDetailsElement.JobCode.amount = json.amount;
-                        expenseDetailsElement.JobCode.description = json.description;
-                        expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                        expenseDetailsElement.JobCode.id = json.id;*/
-
-                        //expenseDetailsElement.JobCode = jobCodeJSON;
+            if (timeTableArr.length > 0) {
+                $.each(timeTableArr, function (index, value) {
 
                     
-                },
-                async: false,
-                error(xhr, status, error) {
-                    
-                    try {
-                        console.log(xhr.responseText);
-                        console.log(xhr.statusText);
-                        console.log(xhr.readyState);
-                        console.log(status);
-                        console.log(error);
-                    } catch (e) {
-                        console.log(e);
+                    expenseDetailsElement.amount = value.ttableAmount;
+
+                    //need to figure out why can't set date on webpage
+                    if (value.tableDateVerified != null && value.tableDateVerified != "") {
+                        expenseDetailsElement.dateVerified = getCorrectDateFormat(value.tableDateVerified);
                     }
-                }
+                    else {
+                        //this needs to change
+                        var date = new Date();
+                        expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
+                    }
+                    expenseDetailsElement.expenseCode.type = value.tableExp.split("-")[1];
+                    expenseDetailsElement.expenseCode.id = parseInt(value.tableExp.split("-")[0]);
+                    expenseDetailsElement.hours = parseInt(value.tableHours);
 
-            });
 
-            
-            
-            expenseDetailsElement.type = "";
-            expenseDetailsElement.verified = true;
 
-            timeDataV2.expenseDetails.push(expenseDetailsElement);
+                    $.ajax({
+                        url: api + "/jobCode/" + value.tableJobCode,
+                        type: "GET",
+                        success: function (json) {
 
+
+                            expenseDetailsElement.JobCode.amount = json.amount;
+                            expenseDetailsElement.JobCode.description = json.description;
+                            expenseDetailsElement.JobCode.financialYear = json.financialYear;
+                            expenseDetailsElement.JobCode.jobCode = json.jobCode;
+                            expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
+                            expenseDetailsElement.JobCode.id = json.id;
+
+
+
+
+                        },
+                        async: false,
+                        error(xhr, status, error) {
+
+                            try {
+                                console.log(xhr.responseText);
+                                console.log(xhr.statusText);
+                                console.log(xhr.readyState);
+                                console.log(status);
+                                console.log(error);
+                            } catch (e) {
+                                console.log(e);
+                            }
+                        }
+
+                    });
+
+
+
+                    expenseDetailsElement.type = "";
+                    expenseDetailsElement.verified = true;
+
+                    timeDataV2.expenseDetails.push(expenseDetailsElement);
+                });
+            }
             timeDataV2.financialYear = parseInt(fy);
             timeDataV2.fromDate = "";
             timeDataV2.lastModifiedBy = "";
@@ -473,6 +565,7 @@ $('#ojobcode').on('change', function () {
                         console.log(status);
                         console.log(error);
                         
+                        
                     } catch (e) {
                         console.log(e);
                     }
@@ -529,13 +622,15 @@ $("#travelSubmit").click(function () {
             var table_dateVerified = $(this).find("#ttableDateVerified").html();
 
             try {
-                timeTableObj.ttableExp = table_exp;
-                timeTableObj.ttableJobCode = table_jobcode;
-                timeTableObj.ttableAmount = table_Amount;
-                timeTableObj.ttJobCodeDesc = table_jobCodeDesc;
-                timeTableObj.ttableDateVerified = table_dateVerified;
+                if (table_jobcode != undefined) {
+                    travelTableObj.ttableExp = table_exp;
+                    travelTableObj.ttableJobCode = table_jobcode;
+                    travelTableObj.ttableAmount = table_Amount;
+                    travelTableObj.ttJobCodeDesc = table_jobCodeDesc;
+                    travelTableObj.ttableDateVerified = table_dateVerified;
 
-                timeTableArr.push(timeTableObj);
+                    travelTableArr.push(timeTableObj);
+                }
             } catch (e) {
                 console.log(e);
             }
@@ -617,54 +712,64 @@ $("#travelSubmit").click(function () {
                 }
             }
         });
-
-        expenseDetailsElement.amount = parseFloat(amount);
-        expenseDetailsElement.dateVerified = "";
-        expenseDetailsElement.expenseCode.type = expcode.split("-")[1];
-        expenseDetailsElement.expenseCode.id = parseInt(expcode.split("-")[0]);
-        expenseDetailsElement.hours = parseInt(hours);
-
-        
-        
-        $.ajax({
-            url: api + "/jobCode/" + jobCode_id,
-            type: "GET",
-            success: function (json) {
-
-
-
-
-                expenseDetailsElement.JobCode.amount = parseFloat(json.amount);
-                expenseDetailsElement.JobCode.description = json.description;
-                expenseDetailsElement.JobCode.financialYear = parseInt(json.financialYear);
-                expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                expenseDetailsElement.JobCode.id = parseInt(json.id);
-
-
-            },
-            async: false,
-            error(xhr, status, error) {
-
-                try {
-                    console.log(xhr.responseText);
-                    console.log(xhr.statusText);
-                    console.log(xhr.readyState);
-                    console.log(status);
-                    console.log(error);
-                } catch (e) {
-                    console.log(e);
+        if (travelTableArr.length > 0) {
+            $.each(travelTableArr, function (index, value) {
+                
+                expenseDetailsElement.amount = parseFloat(value.ttableAmount);
+                if (value.ttableDateVerified != null && value.ttableDateVerified != "") {
+                    expenseDetailsElement.dateVerified = getCorrectDateFormat(value.ttableDateVerified);
+                } else {
+                    //this needs to change
+                    var date = new Date();
+                    expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
                 }
-            }
+                expenseDetailsElement.expenseCode.type = value.ttableExp.split("-")[1];
+                expenseDetailsElement.expenseCode.id = parseInt(value.ttableExp.split("-")[0]);
+                expenseDetailsElement.hours = 0;
 
-        });
+
+
+                $.ajax({
+                    url: api + "/jobCode/" + value.ttableJobCode,
+                    type: "GET",
+                    success: function (json) {
 
 
 
-        expenseDetailsElement.type = "";
-        expenseDetailsElement.verified = true;
 
-        timeDataV2.expenseDetails.push(expenseDetailsElement);
+                        expenseDetailsElement.JobCode.amount = parseFloat(json.amount);
+                        expenseDetailsElement.JobCode.description = json.description;
+                        expenseDetailsElement.JobCode.financialYear = parseInt(json.financialYear);
+                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
+                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
+                        expenseDetailsElement.JobCode.id = parseInt(json.id);
+
+
+                    },
+                    async: false,
+                    error(xhr, status, error) {
+
+                        try {
+                            console.log(xhr.responseText);
+                            console.log(xhr.statusText);
+                            console.log(xhr.readyState);
+                            console.log(status);
+                            console.log(error);
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }
+
+                });
+
+
+
+                expenseDetailsElement.type = "";
+                expenseDetailsElement.verified = true;
+
+                timeDataV2.expenseDetails.push(expenseDetailsElement);
+            });
+        }
 
         timeDataV2.financialYear = parseInt(fy);
         timeDataV2.fromDate = getCorrectDateFormat(fromDate);
@@ -729,7 +834,7 @@ $("#travelSubmit").click(function () {
                     console.log(xhr.readyState);
                     console.log(status);
                     console.log(error);
-                    debugger;
+                    
                 } catch (e) {
                     console.log(e);
                 }
@@ -784,14 +889,15 @@ $("#visaSubmit").click(function () {
             var table_dateVerified = $(this).find("#vtableDateVerified").html();
 
             try {
-                
-                visaTableObj.vtableExp = table_exp;
-                visaTableObj.vtableJobCode = table_jobcode;
-                visaTableObj.vtableAmount = table_Amount;
-                visaTableObj.vtJobCodeDesc = table_jobCodeDesc;
-                visaTableObj.vtableDateVerified = table_dateVerified;
+                if (table_jobcode != undefined) {
+                    visaTableObj.vtableExp = table_exp;
+                    visaTableObj.vtableJobCode = table_jobcode;
+                    visaTableObj.vtableAmount = table_Amount;
+                    visaTableObj.vtJobCodeDesc = table_jobCodeDesc;
+                    visaTableObj.vtableDateVerified = table_dateVerified;
 
-                visaTableArr.push(visaTableObj);
+                    visaTableArr.push(visaTableObj);
+                }
             } catch (e) {
                 console.log(e);
             }
@@ -845,64 +951,72 @@ $("#visaSubmit").click(function () {
                 }
             }
         });
-
-        expenseDetailsElement.amount = parseFloat(amount);
-        expenseDetailsElement.dateVerified = "";
-        expenseDetailsElement.expenseCode.type = expcode.split("-")[1];
-        expenseDetailsElement.expenseCode.id = parseInt(expcode.split("-")[0]);
-        expenseDetailsElement.hours = parseInt(hours);
-
-
-
-        $.ajax({
-            url: api + "/jobCode/" + jobCode_id,
-            type: "GET",
-            success: function (json) {
-
-
-
-
-                expenseDetailsElement.JobCode.amount = parseInt(json.amount);
-                expenseDetailsElement.JobCode.description = json.description;
-                expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                expenseDetailsElement.JobCode.id = parseInt(json.id);
-
-                /*expenseDetailsElement.JobCode.amount = json.amount;
-                expenseDetailsElement.JobCode.description = json.description;
-                expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                expenseDetailsElement.JobCode.id = json.id;*/
-
-                //expenseDetailsElement.JobCode = jobCodeJSON;
-
-
-            },
-            async: false,
-            error(xhr, status, error) {
-
-                try {
-                    console.log(xhr.responseText);
-                    console.log(xhr.statusText);
-                    console.log(xhr.readyState);
-                    console.log(status);
-                    console.log(error);
-                } catch (e) {
-                    console.log(e);
+        if (visaTableArr.length > 0) {
+            $.each(visaTableArr, function (index, value) {
+                expenseDetailsElement.amount = parseFloat(value.vtableAmount);
+                if (value.vtableDateVerified != null && value.vtableDateVerified != "") {
+                    expenseDetailsElement.dateVerified = getCorrectDateFormat(value.vtableDateVerified);
+                } else {
+                    //this needs to change
+                    var date = new Date();
+                    expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
                 }
-            }
+                expenseDetailsElement.expenseCode.type = value.vtableExp.split("-")[1];
+                expenseDetailsElement.expenseCode.id = parseInt(value.vtableExp.split("-")[0]);
+                expenseDetailsElement.hours = 0;
 
-        });
+
+
+                $.ajax({
+                    url: api + "/jobCode/" + value.vtableJobCode,
+                    type: "GET",
+                    success: function (json) {
 
 
 
-        expenseDetailsElement.type = "";
-        expenseDetailsElement.verified = true;
 
-        timeDataV2.expenseDetails.push(expenseDetailsElement);
+                        expenseDetailsElement.JobCode.amount = parseInt(json.amount);
+                        expenseDetailsElement.JobCode.description = json.description;
+                        expenseDetailsElement.JobCode.financialYear = json.financialYear;
+                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
+                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
+                        expenseDetailsElement.JobCode.id = parseInt(json.id);
 
+                        /*expenseDetailsElement.JobCode.amount = json.amount;
+                        expenseDetailsElement.JobCode.description = json.description;
+                        expenseDetailsElement.JobCode.financialYear = json.financialYear;
+                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
+                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
+                        expenseDetailsElement.JobCode.id = json.id;*/
+
+                        //expenseDetailsElement.JobCode = jobCodeJSON;
+
+
+                    },
+                    async: false,
+                    error(xhr, status, error) {
+
+                        try {
+                            console.log(xhr.responseText);
+                            console.log(xhr.statusText);
+                            console.log(xhr.readyState);
+                            console.log(status);
+                            console.log(error);
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }
+
+                });
+
+
+
+                expenseDetailsElement.type = value.vtableType;
+                expenseDetailsElement.verified = true;
+
+                timeDataV2.expenseDetails.push(expenseDetailsElement);
+            });
+        }
         timeDataV2.financialYear = parseInt(fy);
         timeDataV2.fromDate = "";
         timeDataV2.lastModifiedBy = "";
@@ -964,7 +1078,7 @@ $("#visaSubmit").click(function () {
                     console.log(xhr.readyState);
                     console.log(status);
                     console.log(error);
-                    debugger;
+                    
                 } catch (e) {
                     console.log(e);
                 }
@@ -1018,13 +1132,15 @@ $("#otherSubmit").click(function () {
             var table_dateVerified = $(this).find("o#tableDateVerified").html();
 
             try {
-                otherTableObj.otableExp = table_exp;
-                otherTableObj.otableJobCode = table_jobcode;
-                otherTableObj.otableAmount = table_Amount;
-                otherTableObj.otJobCodeDesc = table_jobCodeDesc;
-                otherTableObj.otableDateVerified = table_dateVerified;
+                if (table_jobcode != undefined) {
+                    otherTableObj.otableExp = table_exp;
+                    otherTableObj.otableJobCode = table_jobcode;
+                    otherTableObj.otableAmount = table_Amount;
+                    otherTableObj.otJobCodeDesc = table_jobCodeDesc;
+                    otherTableObj.otableDateVerified = table_dateVerified;
 
-                otherTableArr.push(otherTableObj);
+                    otherTableArr.push(otherTableObj);
+                }
             } catch (e) {
                 console.log(e);
             }
@@ -1044,7 +1160,7 @@ $("#otherSubmit").click(function () {
             url: api + "/employeeProfile",
             type: "GET",
             success: function (json) {
-                debugger;
+                
                 //var jObj = JSON.parse(json);
                 $.each(json, function (value, key) {
 
@@ -1079,62 +1195,66 @@ $("#otherSubmit").click(function () {
             }
         });
 
-        expenseDetailsElement.amount = 0;
-        expenseDetailsElement.dateVerified = "";
-        expenseDetailsElement.expenseCode.type = expcode.split("-")[1];
-        expenseDetailsElement.expenseCode.id = expcode.split("-")[0];
-        expenseDetailsElement.hours = hours;
+        if (otherTableArr.length > 0) {
+            $.each(otherTableArr, function (index, value) {
 
-
-
-        $.ajax({
-            url: api + "/jobCode/" + jobCode_id,
-            type: "GET",
-            success: function (json) {
-
-
-
-
-                expenseDetailsElement.JobCode.amount = parseFloat(json.amount);
-                expenseDetailsElement.JobCode.description = json.description;
-                expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                expenseDetailsElement.JobCode.id = parseInt(json.id);
-
-                /*expenseDetailsElement.JobCode.amount = json.amount;
-                expenseDetailsElement.JobCode.description = json.description;
-                expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                expenseDetailsElement.JobCode.id = json.id;*/
-
-                //expenseDetailsElement.JobCode = jobCodeJSON;
-
-
-            },
-            async: false,
-            error(xhr, status, error) {
-
-                try {
-                    console.log(xhr.responseText);
-                    console.log(xhr.statusText);
-                    console.log(xhr.readyState);
-                    console.log(status);
-                    console.log(error);
-                } catch (e) {
-                    console.log(e);
+                expenseDetailsElement.amount = parseInt(value.otableAmount);
+                if (value.otableDateVerified != null && value.otableDateVerified != "") {
+                    expenseDetailsElement.dateVerified = getCorrectDateFormat(value.otableDateVerified);
+                } else {
+                    //this needs to change
+                    var date = new Date();
+                    expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
                 }
-            }
+                expenseDetailsElement.expenseCode.type = value.otableExp.split("-")[1];
+                expenseDetailsElement.expenseCode.id = parseInt(value.otableExp.split("-")[0]);
+                expenseDetailsElement.hours = hours;
 
-        });
+
+
+                $.ajax({
+                    url: api + "/jobCode/" + value.otableJobCode,
+                    type: "GET",
+                    success: function (json) {
 
 
 
-        expenseDetailsElement.type = "";
-        expenseDetailsElement.verified = true;
 
-        timeDataV2.expenseDetails.push(expenseDetailsElement);
+                        expenseDetailsElement.JobCode.amount = parseFloat(json.amount);
+                        expenseDetailsElement.JobCode.description = json.description;
+                        expenseDetailsElement.JobCode.financialYear = json.financialYear;
+                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
+                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
+                        expenseDetailsElement.JobCode.id = parseInt(json.id);
+
+
+
+
+                    },
+                    async: false,
+                    error(xhr, status, error) {
+
+                        try {
+                            console.log(xhr.responseText);
+                            console.log(xhr.statusText);
+                            console.log(xhr.readyState);
+                            console.log(status);
+                            console.log(error);
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }
+
+                });
+
+
+
+                expenseDetailsElement.type = value.otableType;
+                expenseDetailsElement.verified = true;
+
+                timeDataV2.expenseDetails.push(expenseDetailsElement);
+            });
+        }
 
         timeDataV2.financialYear = parseInt(fy);
         timeDataV2.fromDate = "";
@@ -1197,7 +1317,7 @@ $("#otherSubmit").click(function () {
                     console.log(xhr.readyState);
                     console.log(status);
                     console.log(error);
-                    debugger;
+                   
                 } catch (e) {
                     console.log(e);
                 }
@@ -1243,7 +1363,8 @@ var visaTableObj = {
     "vtableJobCode": "string",
     "vtableAmount": "string",
     "vtableJobCodeDesc": "string",
-    "vtableDateVerified": "string"
+    "vtableDateVerified": "string",
+    "vtableType": "string"
 };
 
 var otherTableObj = {
@@ -1251,7 +1372,8 @@ var otherTableObj = {
     "otableJobCode": "string",
     "otableAmount": "string",
     "otableJobCodeDesc": "string",
-    "otableDateVerified": "string"
+    "otableDateVerified": "string",
+    "otableType": "string"
 };
 
 

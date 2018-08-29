@@ -122,7 +122,7 @@ console.log(optionDate);
         $('#jobCodes tbody').on( 'click', '.editBtn', function () {
             var data = table.row( $(this).parents('tr') ).data();
             var id = (data.id);
-            console.log(id)
+            console.log(id);
             $('#myModal #emfyear').val(data.financialYear);
             $('#myModal #emjcode').val(data.jobCode);
             $('#myModal #emdesc').val(data.description);
@@ -169,13 +169,13 @@ $("#saveJC").click(function() {
             console.log(data);
             table.ajax.reload();
             $('#addModal').modal('hide');
-            $('#success').show()
+            $('#success').show();
             $('#success').delay(5000).fadeOut();
         },
         error: function(e) {
             console.log(e.responseText);
             $('#addModal').modal('hide');
-            $('#error').show()
+            $('#error').show();
             $('#error').delay(5000).fadeOut();
         }
     });
@@ -215,7 +215,7 @@ $("#editForm").submit(function() {
             e.preventDefault();
             console.log(e.responseText);
             $('#myModal').modal('hide');
-            $('#error').show()
+            $('#error').show();
             $('#error').delay(5000).fadeOut();
         }
     });
@@ -252,7 +252,7 @@ $("#deleteJC").click(function() {
         error: function(e) {
             console.log(e.responseText);
             $('#deleteModal').modal('hide');
-            $('#error').show()
+            $('#error').show();
             $('#error').delay(5000).fadeOut();
         }
     });
