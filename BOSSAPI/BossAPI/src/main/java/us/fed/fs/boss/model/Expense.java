@@ -1,5 +1,7 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -28,6 +30,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "Expenses")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
+@JsonInclude(Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Expense extends Auditable<String> implements Serializable {
     

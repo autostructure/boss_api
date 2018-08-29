@@ -221,7 +221,7 @@ public class BudgetController {
     
     @GetMapping("/employeeProfile/{id}")
     public EmployeeProfile getEmployeeProfileById(@PathVariable(value = "id") Long employeeProfileId) {
-        return employeeProfileRepository.findById(expenseId)
+        return employeeProfileRepository.findById(employeeProfileId)
                 .orElseThrow(() -> new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId));
     }
 

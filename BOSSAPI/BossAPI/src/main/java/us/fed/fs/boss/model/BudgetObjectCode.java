@@ -1,5 +1,6 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import javax.persistence.Cacheable;
 
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "BudgetObjectCodes")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class BudgetObjectCode implements Serializable {
 
