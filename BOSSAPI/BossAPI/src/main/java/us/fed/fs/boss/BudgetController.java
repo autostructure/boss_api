@@ -218,6 +218,12 @@ public class BudgetController {
     public List<EmployeeProfile> getAllEmployeeProfiles() {
         return employeeProfileRepository.findAll();
     }
+    
+    @GetMapping("/employeeProfile/{id}")
+    public EmployeeProfile getEmployeeProfileById(@PathVariable(value = "id") Long employeeProfileId) {
+        return employeeProfileRepository.findById(expenseId)
+                .orElseThrow(() -> new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId));
+    }
 
     // Get Budget Summary JSON
     @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
