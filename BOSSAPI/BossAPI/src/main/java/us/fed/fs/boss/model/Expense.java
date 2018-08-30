@@ -30,7 +30,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "Expenses")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
-@JsonInclude(Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Expense extends Auditable<String> implements Serializable {
     

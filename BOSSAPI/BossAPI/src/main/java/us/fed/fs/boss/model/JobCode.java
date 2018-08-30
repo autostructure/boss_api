@@ -21,7 +21,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "JobCodes")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class JobCode implements Serializable  {
     
@@ -33,13 +32,13 @@ public class JobCode implements Serializable  {
     @Column(name = "OverrideCode", nullable = true)
     private Integer overrideCode;
     
-    @Column(name = "FinancialYear", nullable = false)
+    @Column(name = "FinancialYear", nullable = true)
     private Short financialYear;
     
     @Column(name = "JobCode", nullable = false)
     private String jobCode;
     
-    @Column(name = "Description", nullable = false)
+    @Column(name = "Description", nullable = true)
     private String description;
     
     @Column(name = "Amount", precision=10, scale=2)

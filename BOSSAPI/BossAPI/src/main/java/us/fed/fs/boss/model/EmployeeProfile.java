@@ -1,7 +1,9 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,8 +27,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "EmployeeProfiles")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
+@XmlRootElement
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class EmployeeProfile implements Serializable {
 
     @Id
@@ -127,6 +132,12 @@ public class EmployeeProfile implements Serializable {
 
     @Column(name = "RegPayPerPayPeriod")
     private BigDecimal regPayPerPayPeriod;
+    
+    @Column(name = "OvertimeHourlyWage")
+    private BigDecimal overtimeHourlyWage;
+    
+    @Column(name = "PWPSalary")
+    private BigDecimal pWPSalary;
 
     @ManyToOne
     @JoinColumn(name = "ActivityCodeFK")
@@ -135,7 +146,6 @@ public class EmployeeProfile implements Serializable {
     @OneToMany(
         mappedBy = "training"
     )
-    @JsonManagedReference(value="training")
     private List<Training> training;
 
     /**
@@ -626,6 +636,20 @@ public class EmployeeProfile implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the overtimeHourlyWage
+     */
+    public BigDecimal getOvertimeHourlyWage() {
+        return overtimeHourlyWage;
+    }
+
+    /**
+     * @param overtimeHourlyWage the overtimeHourlyWage to set
+     */
+    public void setOvertimeHourlyWage(BigDecimal overtimeHourlyWage) {
+        this.overtimeHourlyWage = overtimeHourlyWage;
     }
 
 

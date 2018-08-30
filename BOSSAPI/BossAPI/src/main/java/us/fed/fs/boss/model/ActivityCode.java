@@ -18,7 +18,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "ActivityCodes")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ActivityCode implements Serializable {
 

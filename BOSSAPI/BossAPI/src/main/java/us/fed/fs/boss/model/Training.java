@@ -1,7 +1,7 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -20,8 +20,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "Training")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @EntityListeners(AuditingEntityListener.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Training implements Serializable {
     
     @Id
@@ -47,7 +47,6 @@ public class Training implements Serializable {
     @Column(name = "DateOfTraining")
     private Date dateOfTraining;
     
-    @JsonBackReference(value="training")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="training")
     private Training training;

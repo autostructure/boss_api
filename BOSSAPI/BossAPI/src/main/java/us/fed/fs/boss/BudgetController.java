@@ -75,9 +75,6 @@ public class BudgetController {
     BudgetObjectCodeRepository budgetObjectCodeRepository;
 
     @Autowired
-    EmployeeProfileRepository employeeProfileRepository;
-
-    @Autowired
     ReportService reportService;
 
     @Autowired
@@ -162,24 +159,6 @@ public class BudgetController {
         JobCode updatedJobCode = jobCodeRepository.save(jobCodeDetails);
         return updatedJobCode;
     }
-    
-    @PostMapping("/employeeProfile")
-    public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
-        employeeProfileDetails = employeeProfileRepository.save(employeeProfileDetails);
-        return new ResponseEntity<EmployeeProfile>(employeeProfileDetails, HttpStatus.OK);
-
-    }
-
-    @PutMapping("/employeeProfile/{id}")
-    public EmployeeProfile updateEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId,
-            @Valid @RequestBody EmployeeProfile employeeProfileDetails) {
-
-        employeeProfileRepository.findById(employeeProfileId)
-                .orElseThrow(() -> new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId));
-
-        EmployeeProfile updatedEmployeeProfile = employeeProfileRepository.save(employeeProfileDetails);
-        return updatedEmployeeProfile;
-    }
 
     @DeleteMapping("/jobCode/{id}")
     public ResponseEntity<?> deleteJobCode(@PathVariable(value = "id") Long jobCodeId) {
@@ -212,19 +191,7 @@ public class BudgetController {
     public List<PaymentCode> getAllPaymentCodes() {
         return paymentCodeRepository.findAll();
     }
-
-    // Get All Employee Profiles
-    @GetMapping("/employeeProfile")
-    public List<EmployeeProfile> getAllEmployeeProfiles() {
-        return employeeProfileRepository.findAll();
-    }
     
-    @GetMapping("/employeeProfile/{id}")
-    public EmployeeProfile getEmployeeProfileById(@PathVariable(value = "id") Long employeeProfileId) {
-        return employeeProfileRepository.findById(employeeProfileId)
-                .orElseThrow(() -> new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId));
-    }
-
     // Get Budget Summary JSON
     @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
     public ResponseEntity getBudgetSummary(
