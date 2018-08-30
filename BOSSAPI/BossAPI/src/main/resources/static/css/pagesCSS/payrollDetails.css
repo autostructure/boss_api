@@ -34,10 +34,10 @@ input[type=search] {
 td, th{
     text-align: center;
 }
-#payroll_info, #payroll_paginate, #payroll_filter, #payroll_length{
+#jobCodes_info, #jobCodes_paginate, #jobCodes_filter, #jobCodes_length{
     padding: 20px 20px;
 }
-#payroll_filter{
+#jobCodes_filter{
     position: absolute;
     top: -85px;
     right: 10px;
@@ -48,6 +48,7 @@ td, th{
     text-shadow: none;
     font-size: 2.5rem;
     border-bottom: 8px solid #006633;
+    margin-bottom: 0px;
 }
 
 .usa-section1{
@@ -55,9 +56,9 @@ td, th{
     width: 100%;
 }
 
-#payroll_wrapper > div.dt-buttons{
+#jobCodes_wrapper > div.dt-buttons{
     position: absolute;
-    top: -65px;
+    top: -55px;
     right: 10px;
 }
 .table-btns{
@@ -73,32 +74,124 @@ td, th{
 .fa-print{
     color: rgb(0, 175, 29);
 }
+.fa-file-excel-o{
+    color: rgb(102, 0, 175);
+}
 .fa-plus{
     color: rgb(0, 152, 198);
 }
 .fa-repeat{
     color: rgb(254, 146, 5);
 }
-#payroll_filter > label{
+#jobCodes_filter > label{
     font-size: 1.5em;
 }
-
-
-.dropbtn1 {
-    background-color: rgba(255, 255, 255, 0) !important;
-    color: rgb(58, 58, 58);
-    padding: 5px !important;
-    font-size: 16px;
-    border: none;
-    z-index: 0 !important;
+.hide {
+    display: none;
+}
+#jobCodes_filter{
+    padding: 20px 20px 0px 20px;
+}
+.alert{
+    font-size: 1.8em;
 }
 
 
+
+
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 3.0em;
+    color: white;
+}
+#myModal > div > div > div.modal-header > button{
+    display: none;
+}
+.modal-header{
+    background-color: #006633;
+    padding: 20px;
+}
+.modal-body{
+    padding: 25px 25px 25px 25px;
+}
+.modall{
+    font-size: 1.3em;
+}
+.form-group{
+    font-size: 1.5em;
+}
+.modal-footer{
+    justify-content: center;
+}
+.btn-info{
+    color: #006633;
+    background-color: transparent;
+    border: none;
+}
+.modal-content{
+    padding: 0px !important;
+}
+#myModal > div > div > div.modal-footer > button.btn.btn-default {
+    float: left;
+    color: #006633;
+    background-color: white;
+    border-color: #006633;
+}
 .headSearch{
     width: 100%;
     text-align: center;
     font-size: .9em;
 }
+
+
+button.close{
+    display: none;
+}
+.modal-title{
+    margin: auto;
+}
+.deleteCon {
+    font-size: 2.0em;
+    text-align: center;
+}
+.btn-default{
+    color: #006633;
+    background-color: white;
+    border-color: #006633;
+}
+
+.fyLab{
+    margin-top: 0px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+.fiscalyearDiv{
+    padding-left: 30px;
+}
+.alert{
+    display: none;
+}
+.fyLabel{
+    font-size: 1.6em;
+    margin-top: 5px;
+}
+.headLabel{
+    margin-top: 4px !important;
+}
+
+
+#fySelect {
+    font-size: 1.5em;
+    line-height: 1.5;
+    height: 35px;
+    text-align-last: center;
+    padding-right: 29px;
+    border: 1px solid #ababab;
+    border-radius: 3px;
+}
+
 .topRow{
     padding-bottom: 15px;
 }
@@ -113,7 +206,38 @@ table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:aft
     display: block;
     font-family: FontAwesome;
 }
-.headLabel{
-    margin-top: 0px !important
+#deleteModal > div > div > div.modal-header{
+    background-color: red;
+}
+.reqClass{
+    color: red;
+}
+.reqText{
+    padding: 10px 20px 0px 20px;
+    font-size: 1.3em;
+}
+form [type=submit] {
+    display: block;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+#showHide{
+    visibility: hidden;
+}
+#selectForm > div:nth-child(1) > div > div > label{
+    font-size: 1.4em;
+}
+#year{
+    font-size: 1.4em;
 }
 
+i.fa.circled {
+    background-color:white;
+    color:#006633;
+    padding: .25em;
+    border-radius:.75em;
+}
+
+tfoot:not(.top-footer) {
+    background-color: initial;
+}

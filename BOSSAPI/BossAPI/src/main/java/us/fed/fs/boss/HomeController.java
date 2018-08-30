@@ -81,4 +81,8 @@ public class HomeController {
     public String addDraEmployee(){
         return "addDraEmployee";
     }         
+    @RequestMapping("/payrollForecast")
+    public String payrollForecast() {
+        return "payrollForecast";
+    }
 }

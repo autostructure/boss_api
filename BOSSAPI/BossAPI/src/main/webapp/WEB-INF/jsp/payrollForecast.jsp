@@ -8,7 +8,7 @@
     <title>FIA-BOSS</title>
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/payrollDetails.css?v=<%= (int) (Math.random() * 100) %>">
+    <link rel="stylesheet" href="css/pagesCSS/payrollForecast.css?v=<%= (int) (Math.random() * 100) %>">
 </head>
 
 <body class="layout-demo">
@@ -27,7 +27,7 @@
                                 <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                     <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
                                     <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
-                                    <a class="breadcrumbLinkMain"href="../payrollDetails.html">Employee Payroll Forecast</a>
+                                    <a class="breadcrumbLinkMain"href="../payrollForecast.html">Payroll Forecast</a>
                                 </p>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="usa-grid usa-buffer-top">
                                 <div class="use-width-one-whole content-div">
-                                    <h2 class="title2">Payroll Details</h2>
+                                    <h2 class="title2">Payroll Forecast</h2>
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
@@ -62,7 +62,7 @@
                                             <th scope="col">Regular Pay to Date</th>
                                             <th scope="col">Regular Pay Forecast</th>
                                             <th scope="col" id="stop">Total FY Forecast</th>
-                                            <th scope="col">Select</th>
+                                            <!--th scope="col">Select</th-->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,11 +70,19 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th colspan="2" style="text-align: left; font-size: 2.0em">Grand Totals</th>
+                                            <th colspan="2" style="text-align: left; font-size: 2.0em"></th>
                                             <th>Regular Pay To Date</th>
                                             <th>Regular Pay Forecast</th>
                                             <th>Total Forecast</th>
+                                            <!--th></th-->
+                                        </tr>
+                                        <tr class="top-footer">
                                             <th></th>
+                                            <th style="text-align: left; font-size: 2.0em">GRAND TOTAL</th>
+                                            <th id="grandTotalPayToDate">Regular Pay To Date</th>
+                                            <th id="grandTotalPayForecast">Regular Pay Forecast</th>
+                                            <th id="grandTotalFYForecast">Total Forecast</th>
+                                            <!--th></th-->
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -89,7 +97,7 @@
                                     <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Edit Employee Pay</h4>
+                                        <h4 class="modal-title">Edit Activity Pay</h4>
                                     </div>
                                     <div class="modal-body">
                                             <div class="row">
@@ -140,7 +148,7 @@
 
         <script src="js/ead.min.js"></script>
         <script src="js/pagesJS/mainPages.js"></script>
-        <script src="js/pagesJS/payrollDetails.js?v=<%= (int) (Math.random() * 100) %>"></script>
+        <script src="js/pagesJS/payrollForecast.js?v=<%= (int) (Math.random() * 100) %>"></script>
 
 </body>
 

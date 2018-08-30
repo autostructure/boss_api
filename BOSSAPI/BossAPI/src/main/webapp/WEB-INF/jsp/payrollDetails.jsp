@@ -45,6 +45,12 @@
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
                                             <h2 class="title2">Payroll Details</h2>
+                                            <div id="success" class="alert alert-success" role="alert">
+                                                Update Successful!                                         
+                                            </div>
+                                            <div id="error" class="alert alert-danger" role="alert">
+                                                Error Adding Changes
+                                            </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="form-group">
@@ -78,11 +84,20 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th colspan="4" style="text-align: left; font-size: 2.0em">Grand Totals</th>
+                                                    <th colspan="4" style="text-align: left; font-size: 2.0em"></th>
                                                     <th>Regular Pay To Date</th>
                                                     <th>Overtime To Date</th>
                                                     <th>Regular Pay Forecast</th>
                                                     <th>Total Forecast</th>
+                                                    <th></th>
+                                                </tr>
+                                                <tr class="top-footer">
+                                                    <th></th>
+                                                    <th colspan="3" style="text-align: left; font-size: 2.0em">GRAND TOTAL</th>
+                                                    <th id="totalRegPayToDate">Regular Pay To Date</th>
+                                                    <th id="totalOvertimeToDate">Overtime To Date</th>
+                                                    <th id="totalRegPayForecast">Regular Pay Forecast</th>
+                                                    <th id="grandTotalFYForecast">Total Forecast</th>
                                                     <th></th>
                                                 </tr>
                                             </tfoot>
@@ -98,23 +113,32 @@
                                             <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Edit Employee Pay</h4>
+                                                <h4 class="modal-title"><i class="fa fa-edit circled"></i>  Edit Employee Pay</h4>
                                             </div>
                                             <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="form-group">
-                                                            <label for="empName" class="modall control-label">Employee Name</label>
-                                                            <input required type="text" class="form-control modall" id="empName" name="empName" placeholder="Employee Name" disabled>
+                                                            <label for="empFirstName" class="modall control-label">First Name</label>
+                                                            <input required type="text" class="form-control modall" id="empFirstName" name="empFirstName" placeholder="First Name">
                                                             <div class="help-block with-errors"></div>
                                                             </div>
                                                         </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                            <label for="empPPLeft" class="modall control-label">Pay Periods Left<span class="reqClass"> *</span></label>
+                                                            <input type="text" class="form-control modall" id="empPPLeft" name="empPPLeft" placeholder="Enter Number of Pay Periods Left">
+                                                            </div>
+                                                        </div>   
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <label for="empPPLeft" class="modall control-label">Pay Periods Left<span class="reqClass"> *</span></label>
-                                                            <input type="text" class="form-control modall" id="empPPLeft" name="empPPLeft" placeholder="Enter Number of Pay Periods Left">
-                                                        </div>                                                    
+                                                            <div class="form-group">
+                                                            <label for="empLastName" class="modall control-label">Last Name</label>
+                                                            <input required type="text" class="form-control modall" id="empLastName" name="empLastName" placeholder="Last Name">
+                                                            <div class="help-block with-errors"></div>
+                                                            </div>
+                                                        </div>                                                 
                                                         <div class="col">
                                                             <div class="form-group">
                                                             <label for="empRegPay" class="modall control-label">Amount<span class="reqClass"> *</span></label>

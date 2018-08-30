@@ -1,4 +1,4 @@
-var jsonData = {"rows":[
+var testData = {"rows":[
      {"section":"A","sectionDescription":"Administration","name":"Mahmood, Ileen","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
     ,{"section":"Z","sectionDescription":"Administration","name":"Knepper, Nia","ppLeft":10,"regPayPerPP":2000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
     ,{"section":"AD","sectionDescription":"Administration","name":"Unger, Adam","ppLeft":10,"regPayPerPP":3000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
@@ -31,23 +31,17 @@ var jsonData = {"rows":[
     ,{"section":"AD","sectionDescription":"Administration","name":"Dobson, Veronika","ppLeft":10,"regPayPerPP":8000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
     ,{"section":"AD","sectionDescription":"Administration","name":"Stockdale, Jalisa","ppLeft":10,"regPayPerPP":1000.00,"regPayToDate":0,"overtimeToDate":0,"regPayForecast":10000.00,"totalFYForecast":10000.00}
 ]};
+var useTestData = false;
 
-$('#payrollSub').addClass('show');
-$('#payrollSub > li:nth-child(2) > a').addClass('highlight');
- 
 $(document).ready(function() {
     var api = '';
 
     $('#payrollSub').addClass('show');
     $('#payrollSub > li:nth-child(2) > a').addClass('highlight');
 
-    $('#payroll thead tr:nth-child(1) th:nth-child(1)').each( function () {
-        $(this).html( '<label class="headLabel" for="sec">Section</label><input type="text" id="sec" class="headSearch" placeholder="Search Section" />' );
-    } );
-    $('#payroll thead tr:nth-child(1) th:nth-child(2)').each( function () {
-        $(this).html( '<label class="headLabel" for="name">Name Code</label><input type="text" id="name" class="headSearch" placeholder="Search Name Code" />' );
-    } );
-
+    $('#payroll thead th:nth-child(1)').html( '<label class="headLabel" for="sec">Section</label><input type="text" id="sec" class="headSearch" placeholder="Search Section" />' );
+    $('#payroll thead th:nth-child(2)').html( '<label class="headLabel" for="name">Name Code</label><input type="text" id="name" class="headSearch" placeholder="Search Name Code" />' );
+    
     $.ajax({
         type: 'GET',
         url: api+'/jobCode',
@@ -67,60 +61,16 @@ $(document).ready(function() {
         url: api+'/payrollDetails/json',
         success: function(json){
             console.log(json);
-            populateDataTable(json); // live data
-            //populateDataTable(jsonData); // dev data
+            populateDataTable(useTestData?testData:json); // test data vs live data
         }
     });
     
     function populateDataTable(jsonData) {
+        var currency = $.fn.dataTable.render.number( ',', '.', 0, '$' );
         var dt = $('#payroll').DataTable({ 
             dom: 'Brtip',
             bProcessing: true,
             bPaginate: false,
-            // setting footer totall
-            "footerCallback": function ( row, data, start, end, display ) {
-                var api = this.api(), data;
-    
-                var intVal = function ( i ) {
-                    return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')*1 :
-                        typeof i === 'number' ?
-                            i : 0;
-                };
-    
-                regTotal = api
-                    .column( 4, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-                otTotal = api
-                    .column( 5, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-                regpayTotal = api
-                    .column( 6, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                        //console.log(intVal(a));
-                        //console.log(intVal(b));
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-                gTotal = api
-                    .column( 7, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-    
-                $( api.column( 4 ).footer() ).html(regTotal);
-                $( api.column( 5 ).footer() ).html(otTotal);
-                $( api.column( 6 ).footer() ).html(regpayTotal);
-                $( api.column( 7 ).footer() ).html(gTotal);
-            },
-            // end of footer totals
             buttons: [
                 {
                     text: 'Print <i class="fa fa-lg fa-print"></i>',
@@ -198,9 +148,10 @@ $(document).ready(function() {
                     },
                     "sortable": false,
                     "orderable": false
-                }],
-            });
- 
+                }
+            ],
+        });
+
         dt.columns().every( function () {
             var that = this;
             $( 'input', this.header(2) ).on( 'keyup change', function () {
@@ -211,16 +162,21 @@ $(document).ready(function() {
                 }
             });
         });
+
+        $('#payroll #totalRegPayToDate').html(currency.display(jsonData.totalRegPayToDate));
+        $('#payroll #totalOvertimeToDate').html(currency.display(jsonData.totalOvertimeToDate));
+        $('#payroll #totalRegPayForecast').html(currency.display(jsonData.totalRegPayForecast));
+        $('#payroll #grandTotalFYForecast').html(currency.display(jsonData.grandTotalFYForecast));
+
     }
     $('#payroll tbody').on( 'click', '.editBtn', function () {
         var employeeID = $(this).data("id");
-        //var data = table.row( $(this).parents('tr') ).data();
-        //var id = (data.id);
         $.ajax({
             type: 'GET',
             url: api+'/employeeProfile/'+employeeID,
             success: function(data){
-                $('#myModal #empName').val(data.firstName+' '+data.lastName);
+                $('#myModal #empFirstName').val(data.firstName);
+                $('#myModal #empLastName').val(data.lastName);
                 $('#myModal #empPPLeft').val(data.payPeriodsLeft);
                 $('#myModal #empRegPay').val(data.regPayPerPayPeriod);
                 $("#empID").data(data);
@@ -233,6 +189,8 @@ $(document).ready(function() {
         var pd = $("#empID").data();
         pd.payPeriodsLeft = parseInt($('#myModal #empPPLeft').val());
         pd.regPayPerPayPeriod = parseInt($('#myModal #empRegPay').val());
+        pd.firstName = $('#myModal #empFirstName').val();
+        pd.lastName = $('#myModal #empLastName').val();
         var id = parseInt($('#empID').data('id'));
 
         console.log(pd);
@@ -250,7 +208,7 @@ $(document).ready(function() {
                 $('#myModal').modal('hide');
                 $('#success').show();
                 $('#success').delay(5000).fadeOut();
-                //window.location.href = api + '/payrollDetails';
+                window.location.href = api + '/payrollDetails';
             },
             error: function(request, status, error) {
                 console.log(request.responseJSON);
