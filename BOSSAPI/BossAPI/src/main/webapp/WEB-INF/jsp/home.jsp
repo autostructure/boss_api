@@ -40,7 +40,7 @@
                                         <p class="card-text"><a href="/jobCodes">Job Codes</a></p>
                                         <p class="card-text"><a href="/budgetSummary">Budget Summary</a></p>
                                         <p class="card-text"><a href="/payrollDetails">Payroll</a></p>
-                                        <p class="card-text"><a href="#">Reports</a></p>
+                                        <p class="card-text"><a href="/unverifiedReport">Verification Report</a></p>
                                 </div>
                                 <div class="card-footer text-right">
                                         <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>

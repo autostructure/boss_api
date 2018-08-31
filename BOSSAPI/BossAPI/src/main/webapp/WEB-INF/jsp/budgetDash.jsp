@@ -87,7 +87,12 @@
                                                     <div class="col quickLinks">
                                                         <a href="./payrollDetails">Employee Payroll Forecast</a>
                                                     </div>
-                                                </div> 
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col quickLinks">
+                                                        <a href="./unverifiedReport">Verification Report</a>
+                                                    </div>
+                                                </div>  
                                                                                                                                                                                                                                                                                             
                                             </div>
                                         </div>                                        

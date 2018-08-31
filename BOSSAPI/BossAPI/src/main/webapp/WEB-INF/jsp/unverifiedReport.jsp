@@ -8,7 +8,7 @@
     <title>FIA-BOSS</title>
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/budgetSummary.css">
+    <link rel="stylesheet" href="css/pagesCSS/unverifiedReport.css">
 </head>
 
 <body class="layout-demo">
@@ -29,16 +29,16 @@
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
-                                                <a class="breadcrumbLinkMain"href="../budgetSummary.html">Budget Summary</a>
+                                                <a class="breadcrumbLink"href="./home">Dashboard |</a>
+                                                <a class="breadcrumbLink"href="./budgetDash">Budget |</a>
+                                                <a class="breadcrumbLinkMain"href="./unverifiedReport">Verification Report</a>
                                             </p>
                                         </div>
                                     </div>
                                 <section class="usa-section">
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole title-div">
-                                            <h1 id="title">Budget</h1>
+                                            <h1 id="title">Budget - Verification Report</h1>
                                             <form role="form" data-toggle="validator" id="selectForm">
                                                 <div class="row">                                            
                                                     <div class="col">
@@ -53,18 +53,18 @@
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="col">
+                                                    <div class="col">
                                                         <div class="form-group">
                                                             <label class="serLabel" for="verif">Choose Type<span class="reqClass"> *</span></label>
                                                             <select required class="form-control" name="verif" id="verif">
                                                                 <option value="">Choose Type</option>
-                                                                <option value="all">All</option>
-                                                                <option value="verified">Verified</option>
-                                                                <option value="unverified">Unverified</option>
+                                                                <option value="All">All</option>
+                                                                <option value="Verified">Verified</option>
+                                                                <option value="Unverified">Unverified</option>
                                                             </select>                                                                        
                                                             <div class="help-block with-errors"></div>
                                                         </div>
-                                                    </div> -->
+                                                    </div>
                                                 </div>                                                                
                                                 <div class="row">
                                                     <div class="col-md-4 offset-md-4">
@@ -100,7 +100,7 @@
  
                                     <div class="usa-grid usa-buffer-top" id="showHide">
                                         <div class="use-width-one-whole content-div">
-                                            <h2 class="title2">Budget Summary</h2>
+                                            <h2 class="title2">Unverified Report</h2>
                                         <table id="budget" class="usa-table-borderless display" style="width:100%">
                                             
                                             <thead class="header">
@@ -144,7 +144,7 @@
          </footer>
         <script src="js/ead.min.js"></script>
         <script src="js/pagesJS/mainPages.js"></script>
-        <script src="js/pagesJS/budgetSummary.js"></script>
+        <script src="js/pagesJS/unverifiedReport.js"></script>
 </body>
 
 </html>
