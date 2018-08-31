@@ -1,9 +1,20 @@
-
 var fy = $('#fy').val();
 var tempAPI = 'http://localhost:8090/jobCode';
 
 var dat = [{ id: 1, overrideCode: "a", financialYear: 2000, jobCode: "SPIX", description: "soils", amount:223 },
     { id: 1, overrideCode: "b", financialYear: 2000, jobCode: "SPIX2", description: "soils2", amount:334 }];
+
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 
 var dt = new Date();
 var optionDate = dt.getFullYear();
@@ -26,11 +37,13 @@ $(document).ready(function () {
     }
 
 
-
+    
+    fy = getParameterByName('year');
+    debugger;
     var inf = "";
     $.ajax({
         type: 'GET',
-        url: api + '/jobCode?finanicalYear=' + fy,
+        url: api + '/jobCode?financialYear=' + fy,
         success: function (json) {
             populateDataTable(json);
         }
@@ -241,7 +254,10 @@ $(document).ready(function () {
                 $('#error').delay(5000).fadeOut();
             }
         });
+
+
+
+
     });
 
 });
-
