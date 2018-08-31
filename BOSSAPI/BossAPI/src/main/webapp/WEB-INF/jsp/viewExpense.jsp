@@ -84,6 +84,7 @@
          </footer>
 
         <script src="js/ead.min.js"></script>
+		<script src="js/pagesJS/ApiCalls.js"></script>
         <script src="js/pagesJS/mainPages.js"></script>
         <script src="js/pagesJS/viewExpense.js"></script>
 </body>
