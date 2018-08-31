@@ -4,7 +4,7 @@
 
 
     var api = 'http://localhost:8090';
-    $(document).ready(function () {
+    $(document).ready(function (){
 
 
         //---------------------The reason I commented this out was it sometimes causes an error with datepicker funtion-----------------------------------------
@@ -20,14 +20,16 @@
         // showing expense on sidenav
         $('#expenseSub').addClass('show');
         $('#expenseSub > li:nth-child(1) > a').addClass('highlight');
+        
+        $.getScript("js/pagesJS/ApiCalls.js", function (){
 
-        getJobCodeApiCall(getJobCodeSuccess, getJobCodeError, "2017");
-        getActivityCodeApiCall(getActivityCodeSuccess, getActivityCodeError);
-        getExpenseCodeApiCall(null, getExpenseSuccess, getExpenseError);
-        getbudgetObjectCodeApiCall(getBudgetObjectCodeSuccess, getBudgetObjectCodeError);
-        getEmployeeProfileApiCall(getEmployeeProfileSuccess, getEmployeeProfileError);
+            getJobCode(getJobCodeSuccess, getJobCodeError, "2017");
+            getActivityCode(getActivityCodeSuccess, getActivityCodeError);
+            getExpenseCode(null, getExpenseSuccess, getExpenseError);
+            getbudgetObjectCode(getBudgetObjectCodeSuccess, getBudgetObjectCodeError);
+            getEmployeeProfiles(getEmployeeProfileSuccess, getEmployeeProfileError);
 
-
+        });
 
         function getJobCodeSuccess(info) {
             
@@ -108,7 +110,7 @@
 
 
     // setting current year and giving a range of years for dropdown
-    $('#fy, #tfy, #vfy, #ofy').each(function () {
+    $('#fy, #tfy, #vfy, #ofy').each(function (){
         var year = (new Date()).getFullYear();
         var current = year;
         year -= 3;
@@ -123,7 +125,7 @@
 
 
     // auto selecting the job codes unit and description based off job code selected
-$('#jobcode').on('change', function () {
+$('#jobcode').on('change', function (){
     var key = (this.value);
     $.get(api + '/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
@@ -133,7 +135,7 @@ $('#jobcode').on('change', function () {
         }
     });
 });
-$('#tjobcode').on('change', function () {
+$('#tjobcode').on('change', function (){
     var key = (this.value);
     //debugger;
     $.get(api + '/jobCode/' + key, function (data, status) {
@@ -144,7 +146,7 @@ $('#tjobcode').on('change', function () {
         }
     });
 });
-$('#vjobcode').on('change', function () {
+$('#vjobcode').on('change', function (){
     var key = (this.value);
     $.get(api + '/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
@@ -154,7 +156,7 @@ $('#vjobcode').on('change', function () {
         }
     });
 });
-$('#ojobcode').on('change', function () {
+$('#ojobcode').on('change', function (){
     var key = (this.value);
     $.get(api + '/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
@@ -167,7 +169,7 @@ $('#ojobcode').on('change', function () {
 
 
 
-    $("#addbtn").click(function () {
+    $("#addbtn").click(function (){
         // var absoluteunit = $("#unitcode").val();
         
         var jobcode = $("#jobcode").val();
@@ -188,7 +190,7 @@ $('#ojobcode').on('change', function () {
         $("table tbody").append(markup);
 });
 
-$("#taddbtn").click(function () {
+$("#taddbtn").click(function (){
     // var absoluteunit = $("#unitcode").val();
     
 
@@ -220,7 +222,7 @@ $("#taddbtn").click(function () {
 
 });
 
-$("#vaddbtn").click(function () {
+$("#vaddbtn").click(function (){
     // var absoluteunit = $("#unitcode").val();
     
     var jobcode = $("#vjobcode").val();
@@ -246,7 +248,7 @@ $("#vaddbtn").click(function () {
 
 });
 
-$("#oaddbtn").click(function () {
+$("#oaddbtn").click(function (){
     // var absoluteunit = $("#unitcode").val();
     
     var jobcode = $("#ojobcode").val();
@@ -302,7 +304,7 @@ $("#oaddbtn").click(function () {
     // '</tr>'
     // )
     // });
-    $("#timeSubmit").click(function () {
+    $("#timeSubmit").click(function (){
         try {
             var fy = $("#fy").val();
             var dateEntered = $("#dateentered").val();
@@ -335,7 +337,7 @@ $("#oaddbtn").click(function () {
 
             var table_list = [];
 
-            $('#timeTable tr').each(function () {
+            $('#timeTable tr').each(function (){
                 var table_exp = $(this).find("#tableExp").html();
                 var table_jobcode = $(this).find("#tableJobCode").html();
                 var table_hours = $(this).find("#tableHours").html();
@@ -344,7 +346,7 @@ $("#oaddbtn").click(function () {
                 var table_dateVerified = $(this).find("#tableDateVerified").html();
                 
                 try {
-                    if (table_jobcode != undefined) {
+                    if (table_jobcode !== undefined) {
                         timeTableObj.tableExp = table_exp;
                         timeTableObj.tableJobCode = table_jobcode;
                         timeTableObj.tableAmount = table_amount;
@@ -373,9 +375,7 @@ $("#oaddbtn").click(function () {
                 success: function (json) {
 
                     $.each(json, function (value, key) {
-
-                        if (key.id == budgetObjCode_id) {
-
+                        if (key.id === budgetObjCode_id) {
                             boc = key.name;
                         }
                     });
@@ -409,7 +409,7 @@ $("#oaddbtn").click(function () {
                     //var jObj = JSON.parse(json);
                     $.each(json, function (value, key) {
                         
-                        if (namecode == key.nameCode) {
+                        if (namecode === key.nameCode) {
                             
                             //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
                             employeeProfileJSON.id = parseInt(key.id);
@@ -447,7 +447,7 @@ $("#oaddbtn").click(function () {
                     expenseDetailsElement.amount = value.ttableAmount;
 
                     //need to figure out why can't set date on webpage
-                    if (value.tableDateVerified != null && value.tableDateVerified != "") {
+                    if (value.tableDateVerified !== null && value.tableDateVerified !== "") {
                         expenseDetailsElement.dateVerified = getCorrectDateFormat(value.tableDateVerified);
                     }
                     else {
@@ -479,7 +479,7 @@ $("#oaddbtn").click(function () {
 
                         },
                         async: false,
-                        error(xhr, status, error) {
+                        error: function(xhr, status, error) {
 
                             try {
                                 console.log(xhr.responseText);
@@ -515,7 +515,7 @@ $("#oaddbtn").click(function () {
                 success: function (json) {
                     
                     $.each(json, function (value, key) {
-                        if (key.code == pc_id) {
+                        if (key.code === pc_id) {
                             
                             //alert("have matched pc_id: " + key.code);
                             timeDataV2.paymentCode.name = key.name;
@@ -524,7 +524,7 @@ $("#oaddbtn").click(function () {
                     });
                 },
                 async: false,
-                error(xhr, error, status) {
+                error: function(xhr, error, status) {
                     console.log(xhr.responseText);
                 }
                         
@@ -552,10 +552,10 @@ $("#oaddbtn").click(function () {
                 data: j,
                 type: "POST",
                 contentType: "application/json",
-                success(result, status, xhr) {
+                success: function(result, status, xhr) {
                     console.log("post expense success!");
                 },
-                error(xhr, status, error) {
+                error: function(xhr, status, error) {
                     
                     try {
                         
@@ -568,6 +568,7 @@ $("#oaddbtn").click(function () {
                         
                     } catch (e) {
                         console.log(e);
+                        alert(e);
                     }
                 }
             });
@@ -579,7 +580,7 @@ $("#oaddbtn").click(function () {
         }
 });
 
-$("#travelSubmit").click(function () {
+$("#travelSubmit").click(function (){
     try {
         var fy = $("#tfy").val();
         var dateEntered = $("#tdateentered").val();
@@ -613,7 +614,7 @@ $("#travelSubmit").click(function () {
 
         var table_list = [];
 
-        $('#travelTable tr').each(function () {
+        $('#travelTable tr').each(function (){
             var table_exp = $(this).find("#ttableExp").html();
             var table_jobcode = $(this).find("#ttableJobCode").html();
             var table_hours = $(this).find("#ttableHours").html();
@@ -622,7 +623,7 @@ $("#travelSubmit").click(function () {
             var table_dateVerified = $(this).find("#ttableDateVerified").html();
 
             try {
-                if (table_jobcode != undefined) {
+                if (table_jobcode !== undefined) {
                     travelTableObj.ttableExp = table_exp;
                     travelTableObj.ttableJobCode = table_jobcode;
                     travelTableObj.ttableAmount = table_Amount;
@@ -646,7 +647,7 @@ $("#travelSubmit").click(function () {
                 
                 $.each(json, function (value, key) {
                     
-                    if (key.id == budgetObjCode_id) {
+                    if (key.id === budgetObjCode_id) {
                         
                         boc = key.name;
                     }
@@ -681,7 +682,7 @@ $("#travelSubmit").click(function () {
                 //var jObj = JSON.parse(json);
                 $.each(json, function (value, key) {
                     
-                    if (namecode == key.id) {
+                    if (namecode === key.id) {
 
                         //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
                         employeeProfileJSON.id = parseInt(key.id);
@@ -716,7 +717,7 @@ $("#travelSubmit").click(function () {
             $.each(travelTableArr, function (index, value) {
                 
                 expenseDetailsElement.amount = parseFloat(value.ttableAmount);
-                if (value.ttableDateVerified != null && value.ttableDateVerified != "") {
+                if (value.ttableDateVerified !== null && value.ttableDateVerified !== "") {
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(value.ttableDateVerified);
                 } else {
                     //this needs to change
@@ -747,7 +748,7 @@ $("#travelSubmit").click(function () {
 
                     },
                     async: false,
-                    error(xhr, status, error) {
+                    error: function(xhr, status, error) {
 
                         try {
                             console.log(xhr.responseText);
@@ -786,7 +787,7 @@ $("#travelSubmit").click(function () {
             success: function (json) {
 
                 $.each(json, function (value, key) {
-                    if (key.code == pc_id) {
+                    if (key.code === pc_id) {
 
                         //alert("have matched pc_id: " + key.code);
                         timeDataV2.paymentCode.name = key.name;
@@ -795,7 +796,7 @@ $("#travelSubmit").click(function () {
                 });
             },
             async: false,
-            error(xhr, error, status) {
+            error: function(xhr, error, status) {
                 
                 console.log("response text: " + xhr.responseText);
             }
@@ -823,10 +824,10 @@ $("#travelSubmit").click(function () {
             data: j,
             type: "POST",
             contentType: "application/json",
-            success(result, status, xhr) {
+            success: function(result, status, xhr) {
                 console.log("post expense success!");
             },
-            error(xhr, status, error) {
+            error: function(xhr, status, error) {
                 //debugger;
                 try {
                     console.log("response Text: " + xhr.responseText);
@@ -847,7 +848,7 @@ $("#travelSubmit").click(function () {
     }
 });
 
-$("#visaSubmit").click(function () {
+$("#visaSubmit").click(function (){
     try {
         var fy = $("#vfy").val();
         var dateEntered = $("#vdateentered").val();
@@ -860,7 +861,7 @@ $("#visaSubmit").click(function () {
         var actcode = $("#vactcode :selected").text();
         var boc = $("#vboc :selected").text();
         var pc = $("#vpc :selected").text();
-        var stateAssigned = $("#vstateassigned").val() //check spelling
+        var stateAssigned = $("#vstateassigned").val();//check spelling
         var remarks = $("#vremarks").val();
         var unitcode = $("#vunitcode").val();
         var jobcode = $("#vjobcode :selected").text();
@@ -880,7 +881,7 @@ $("#visaSubmit").click(function () {
 
         var table_list = [];
 
-        $('#visaTable tr').each(function () {
+        $('#visaTable tr').each(function (){
             var table_exp = $(this).find("#vtableExp").html();
             var table_jobcode = $(this).find("v#tableJobCode").html();
             //var table_hours = $(this).find("#tableHours").html();
@@ -889,7 +890,7 @@ $("#visaSubmit").click(function () {
             var table_dateVerified = $(this).find("#vtableDateVerified").html();
 
             try {
-                if (table_jobcode != undefined) {
+                if (table_jobcode !== undefined) {
                     visaTableObj.vtableExp = table_exp;
                     visaTableObj.vtableJobCode = table_jobcode;
                     visaTableObj.vtableAmount = table_Amount;
@@ -921,7 +922,7 @@ $("#visaSubmit").click(function () {
                 //var jObj = JSON.parse(json);
                 $.each(json, function (value, key) {
 
-                    if (namecode == key.nameCode) {
+                    if (namecode === key.nameCode) {
 
                         //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
                         employeeProfileJSON.id = parseInt(key.id);
@@ -954,7 +955,7 @@ $("#visaSubmit").click(function () {
         if (visaTableArr.length > 0) {
             $.each(visaTableArr, function (index, value) {
                 expenseDetailsElement.amount = parseFloat(value.vtableAmount);
-                if (value.vtableDateVerified != null && value.vtableDateVerified != "") {
+                if (value.vtableDateVerified !== null && value.vtableDateVerified !== "") {
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(value.vtableDateVerified);
                 } else {
                     //this needs to change
@@ -994,7 +995,7 @@ $("#visaSubmit").click(function () {
 
                     },
                     async: false,
-                    error(xhr, status, error) {
+                    error: function(xhr, status, error) {
 
                         try {
                             console.log(xhr.responseText);
@@ -1030,7 +1031,7 @@ $("#visaSubmit").click(function () {
             success: function (json) {
 
                 $.each(json, function (value, key) {
-                    if (key.code == pc_id) {
+                    if (key.code === pc_id) {
 
                         //alert("have matched pc_id: " + key.code);
                         timeDataV2.paymentCode.name = key.name;
@@ -1039,7 +1040,7 @@ $("#visaSubmit").click(function () {
                 });
             },
             async: false,
-            error(xhr, error, status) {
+            error: function(xhr, error, status) {
                 console.log(xhr.responseText);
             }
 
@@ -1067,10 +1068,10 @@ $("#visaSubmit").click(function () {
             data: j,
             type: "POST",
             contentType: "application/json",
-            success(result, status, xhr) {
+            success: function(result, status, xhr) {
                 console.log("post expense success!");
             },
-            error(xhr, status, error) {
+            error: function(xhr, status, error) {
                 //debugger;
                 try {
                     console.log("responseCode: " + xhr.responseText);
@@ -1092,7 +1093,7 @@ $("#visaSubmit").click(function () {
 });
 
 
-$("#otherSubmit").click(function () {
+$("#otherSubmit").click(function (){
     try {
         var fy = $("#ofy").val();
         var dateEntered = $("#odateentered").val();
@@ -1123,7 +1124,7 @@ $("#otherSubmit").click(function () {
 
         var table_list = [];
 
-        $('#otherTable tr').each(function () {
+        $('#otherTable tr').each(function (){
             var table_exp = $(this).find("#otableExp").html();
             var table_jobcode = $(this).find("#otableJobCode").html();
             //var table_hours = $(this).find("#tableHours").html();
@@ -1132,7 +1133,7 @@ $("#otherSubmit").click(function () {
             var table_dateVerified = $(this).find("o#tableDateVerified").html();
 
             try {
-                if (table_jobcode != undefined) {
+                if (table_jobcode !== undefined) {
                     otherTableObj.otableExp = table_exp;
                     otherTableObj.otableJobCode = table_jobcode;
                     otherTableObj.otableAmount = table_Amount;
@@ -1164,7 +1165,7 @@ $("#otherSubmit").click(function () {
                 //var jObj = JSON.parse(json);
                 $.each(json, function (value, key) {
 
-                    if (namecode == key.nameCode) {
+                    if (namecode === key.nameCode) {
 
                         //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
                         employeeProfileJSON.id = key.id;
@@ -1199,7 +1200,7 @@ $("#otherSubmit").click(function () {
             $.each(otherTableArr, function (index, value) {
 
                 expenseDetailsElement.amount = parseInt(value.otableAmount);
-                if (value.otableDateVerified != null && value.otableDateVerified != "") {
+                if (value.otableDateVerified !== null && value.otableDateVerified !== "") {
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(value.otableDateVerified);
                 } else {
                     //this needs to change
@@ -1232,14 +1233,14 @@ $("#otherSubmit").click(function () {
 
                     },
                     async: false,
-                    error(xhr, status, error) {
+                    error: function(xhr, status, err) {
 
                         try {
                             console.log(xhr.responseText);
                             console.log(xhr.statusText);
                             console.log(xhr.readyState);
                             console.log(status);
-                            console.log(error);
+                            console.log(err);
                         } catch (e) {
                             console.log(e);
                         }
@@ -1269,7 +1270,7 @@ $("#otherSubmit").click(function () {
             success: function (json) {
 
                 $.each(json, function (value, key) {
-                    if (key.code == pc_id) {
+                    if (key.code === pc_id) {
 
                         //alert("have matched pc_id: " + key.code);
                         timeDataV2.paymentCode.name = key.name;
@@ -1278,7 +1279,7 @@ $("#otherSubmit").click(function () {
                 });
             },
             async: false,
-            error(xhr, error, status) {
+            error: function(xhr, error, status) {
                 console.log("error - " + xhr.responseText);
             }
 
@@ -1306,10 +1307,10 @@ $("#otherSubmit").click(function () {
             data: j,
             type: "POST",
             contentType: "application/json",
-            success(result, status, xhr) {
+            success: function(result, status, xhr) {
                 console.log("post expense success!");
             },
-            error(xhr, status, error) {
+            error: function(xhr, status, error) {
                 //debugger;
                 try {
                     console.log("responseCode: " + xhr.responseText);
@@ -1480,14 +1481,14 @@ var ActivityCodeJSON = {
 };
 
 
-    $("#add").click(function () {
+    $("#add").click(function (){
         var lastField = $("#buildyourform div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
         fieldWrapper.data("idx", intId);
         var fName = $("<input type=\"text\" class=\"fieldname\" />");
         var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
-        removeButton.click(function () {
+        removeButton.click(function (){
             $(this).parent().remove();
         });
         fieldWrapper.append(fName);
@@ -1495,10 +1496,10 @@ var ActivityCodeJSON = {
         fieldWrapper.append(removeButton);
         $("#buildyourform").append(fieldWrapper);
     });
-    $("#preview").click(function () {
+    $("#preview").click(function (){
         $("#yourform").remove();
         var fieldSet = $("<fieldset id=\"yourform\"><legend>Your Form</legend></fieldset>");
-        $("#buildyourform div").each(function () {
+        $("#buildyourform div").each(function (){
             var id = "input" + $(this).attr("id").replace("field", "");
             var label = $("<label for=\"" + id + "\">" + $(this).find("input.fieldname").first().val() + "</label>");
             var input;
