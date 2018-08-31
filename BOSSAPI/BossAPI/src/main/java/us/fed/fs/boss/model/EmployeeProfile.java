@@ -1,8 +1,6 @@
 package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -18,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,8 +24,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "EmployeeProfiles")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
-@XmlRootElement
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class EmployeeProfile implements Serializable {
@@ -650,6 +645,20 @@ public class EmployeeProfile implements Serializable {
      */
     public void setOvertimeHourlyWage(BigDecimal overtimeHourlyWage) {
         this.overtimeHourlyWage = overtimeHourlyWage;
+    }
+
+    /**
+     * @return the pWPSalary
+     */
+    public BigDecimal getPWPSalary() {
+        return pWPSalary;
+    }
+
+    /**
+     * @param pWPSalary the pWPSalary to set
+     */
+    public void setPWPSalary(BigDecimal pWPSalary) {
+        this.pWPSalary = pWPSalary;
     }
 
 

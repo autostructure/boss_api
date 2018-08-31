@@ -8,7 +8,7 @@ function setYear(){
             yr = $(this).val();
             console.log(yr);
         }
-    })
+    });
 };
 
 var fy = $('#fy').val();

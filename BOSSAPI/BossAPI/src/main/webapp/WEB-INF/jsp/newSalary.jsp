@@ -59,12 +59,8 @@
                                                     <div class="col">
                                                             <div class="form-group">
                                                                 <label for="namecode">Namecode</label>
-                                                                <select class="form-control" id="namecode">
-                                                                    <option>1</option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
+                                                                <select id="nameCode" class="form-control">
+                                                                    <option value="" selected disabled hidden>[Select Namecode]</option>
                                                                 </select>
                                                             </div>
                                                     </div>
@@ -119,7 +115,7 @@
                                                
                                                 <div class="row submitrow">
                                                     <div class="col-4 offset-4">
-                                                        <button type="button" class="btn btn-lg submitbtn btn-success">
+                                                        <button id="submitNewSalary" type="button" class="btn btn-lg submitbtn btn-success">
                                                             <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
                                                             Submit New Salary 
                                                         </button> 
