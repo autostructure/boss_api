@@ -93,7 +93,7 @@
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
                                             <h2 class="title2">Job Code Mgmt</h2>
-                                        <div id="showHide">
+                                       
                                             <table id="jobCodes" class="usa-table-borderless display" style="width:100%">
                                                 
                                                 <thead>
@@ -103,16 +103,19 @@
                                                         <th scope="col">Job Code</th>
                                                         <th scope="col">Description</th>
                                                         <th scope="col">Amount</th>
-                                                        <th id="stop"></th>
+                                                        <!--<th id="stop"></th>-->
 
 
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    
-                                                </tbody>
+												<tbody>
+												</tbody>
+
+
+												
+
                                             </table>
-                                        </div>
+                                        
                                     </div>
                                 </div> 
 
@@ -303,7 +306,10 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
          </footer>
-        <script src="js/ead.min.js"></script>
+		 		<script src="js/ead.min.js"></script>
+
+		<script src="js/pagesJS/ApiCalls.js"></script>
+
         <script src="js/pagesJS/mainPages.js"></script>
         <script src="js/pagesJS/jobCode.js"></script>
 </body>
