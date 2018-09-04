@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.EmployeeProfile;
@@ -44,8 +45,15 @@ public class HumanResourcesController {
     
     // Get All Employee Profiles
     @GetMapping("/employeeProfile")
-    public List<EmployeeProfile> getAllEmployeeProfiles() {
-        return employeeProfileRepository.findAll();
+    public ResponseEntity getAllEmployeeProfiles(@RequestParam(value = "nameCode", required=false) final String nameCode) {
+       
+        if(nameCode==null) {
+            return new ResponseEntity<>(employeeProfileRepository.findAll(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0), HttpStatus.OK);
+        }
+        
+   
     }
     
     @GetMapping("/employeeProfile/{id}")
@@ -55,6 +63,5 @@ public class HumanResourcesController {
             return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
         });
     }
-
 
 }

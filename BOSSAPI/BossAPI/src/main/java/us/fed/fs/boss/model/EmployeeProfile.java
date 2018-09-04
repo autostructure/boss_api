@@ -38,7 +38,7 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "LastName")
     private String lastName;
 
-    @Column(name = "NameCode", unique = true)
+    @Column(name = "NameCode", unique = true, nullable = false)
     private String nameCode;
 
     @Column(name = "HomePhone")
