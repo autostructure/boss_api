@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,6 +25,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -158,33 +161,43 @@ public class EmployeeProfile implements Serializable {
             mappedBy = "training"
     )
     private List<Training> training;
-    
+
     @Column(name = "addressCity")
     private String addressCity;
-    
+
     @Column(name = "series")
     private String series;
-    
+
     @Column(name = "grade")
     private String grade;
-    
+
     @Column(name = "payment_plan")
     private String paymentPlan;
-    
+
     @Column(name = "addressState")
     private String addressState;
-    
+
     @Column(name = "addressZip")
     private String addressZip;
-    
-     @Temporal(TemporalType.DATE)
+
+    @Temporal(TemporalType.DATE)
     private Date confidentialityAgreementDate;
+
+    @Transient
+    private Long supervisorId;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "supervisor_id")
+    private EmployeeProfile supervisor;
+
+    @OneToMany(mappedBy = "supervisor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EmployeeProfile> employees = new HashSet<EmployeeProfile>();
 
     @JsonIgnore
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private EmployeeProfilePhoto employeeProfilePhoto;
-    
+
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private DriversLicense driversLicense;
@@ -853,7 +866,8 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @param confidentialityAgreementDate the confidentialityAgreementDate to set
+     * @param confidentialityAgreementDate the confidentialityAgreementDate to
+     * set
      */
     public void setConfidentialityAgreementDate(Date confidentialityAgreementDate) {
         this.confidentialityAgreementDate = confidentialityAgreementDate;
@@ -873,5 +887,46 @@ public class EmployeeProfile implements Serializable {
         this.driversLicense = driversLicense;
     }
 
+    /**
+     * @return the employees
+     */
+    public Set<EmployeeProfile> getEmployees() {
+        return employees;
+    }
+
+    /**
+     * @param employees the employees to set
+     */
+    public void setEmployees(Set<EmployeeProfile> employees) {
+        this.employees = employees;
+    }
+
+    /**
+     * @return the supervisorId
+     */
+    public Long getSupervisorId() {
+        return supervisorId;
+    }
+
+    /**
+     * @param supervisorId the supervisorId to set
+     */
+    public void setSupervisorId(Long supervisorId) {
+        this.supervisorId = supervisorId;
+    }
+
+    /**
+     * @return the supervisor
+     */
+    public EmployeeProfile getSupervisor() {
+        return supervisor;
+    }
+
+    /**
+     * @param supervisor the supervisor to set
+     */
+    public void setSupervisor(EmployeeProfile supervisor) {
+        this.supervisor = supervisor;
+    }
 
 }
