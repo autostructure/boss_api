@@ -1,21 +1,28 @@
 package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -38,6 +45,12 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "LastName")
     private String lastName;
 
+    @Column(name = "MiddleInitial")
+    private String middleInitial;
+
+    @Column(name = "PreferredName")
+    private String preferredName;
+
     @Column(name = "NameCode", unique = true, nullable = false)
     private String nameCode;
 
@@ -52,7 +65,7 @@ public class EmployeeProfile implements Serializable {
 
     @Column(name = "StateAssigned")
     private String stateAssigned;
-    
+
     @Column(name = "DutyStation")
     private String dutyStation;
 
@@ -118,7 +131,7 @@ public class EmployeeProfile implements Serializable {
 
     @Column(name = "Title")
     private String title;
-    
+
     @Column(name = "RoomNumber")
     private String roomNumber;
 
@@ -127,21 +140,62 @@ public class EmployeeProfile implements Serializable {
 
     @Column(name = "RegPayPerPayPeriod")
     private BigDecimal regPayPerPayPeriod;
-    
+
     @Column(name = "OvertimeHourlyWage")
     private BigDecimal overtimeHourlyWage;
-    
+
     @Column(name = "PWPSalary")
     private BigDecimal pWPSalary;
 
     @ManyToOne
     @JoinColumn(name = "ActivityCodeFK")
     private ActivityCode activityCode;
-    
+
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
+
     @OneToMany(
-        mappedBy = "training"
+            mappedBy = "training"
     )
     private List<Training> training;
+    
+    @Column(name = "addressCity")
+    private String addressCity;
+    
+    @Column(name = "series")
+    private String series;
+    
+    @Column(name = "grade")
+    private String grade;
+    
+    @Column(name = "payment_plan")
+    private String paymentPlan;
+    
+    @Column(name = "addressState")
+    private String addressState;
+    
+    @Column(name = "addressZip")
+    private String addressZip;
+    
+     @Temporal(TemporalType.DATE)
+    private Date confidentialityAgreementDate;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    private EmployeeProfilePhoto employeeProfilePhoto;
+    
+    @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    private DriversLicense driversLicense;
+
+    public void setEmployeeProfilePhoto(EmployeeProfilePhoto profilePhoto) {
+        this.employeeProfilePhoto = profilePhoto;
+    }
+
+    public EmployeeProfilePhoto getEmployeeProfilePhoto() {
+        return this.employeeProfilePhoto;
+    }
 
     /**
      * @return the firstName
@@ -291,7 +345,8 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @param emergencyContactStreetAddress1 the emergencyContactStreetAddress1 to set
+     * @param emergencyContactStreetAddress1 the emergencyContactStreetAddress1
+     * to set
      */
     public void setEmergencyContactStreetAddress1(String emergencyContactStreetAddress1) {
         this.emergencyContactStreetAddress1 = emergencyContactStreetAddress1;
@@ -389,7 +444,8 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @param emergencyContactRelationship1 the emergencyContactRelationship1 to set
+     * @param emergencyContactRelationship1 the emergencyContactRelationship1 to
+     * set
      */
     public void setEmergencyContactRelationship1(String emergencyContactRelationship1) {
         this.emergencyContactRelationship1 = emergencyContactRelationship1;
@@ -431,7 +487,8 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @param emergencyContactStreetAddress2 the emergencyContactStreetAddress2 to set
+     * @param emergencyContactStreetAddress2 the emergencyContactStreetAddress2
+     * to set
      */
     public void setEmergencyContactStreetAddress2(String emergencyContactStreetAddress2) {
         this.emergencyContactStreetAddress2 = emergencyContactStreetAddress2;
@@ -529,7 +586,8 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @param emergencyContactRelationship2 the emergencyContactRelationship2 to set
+     * @param emergencyContactRelationship2 the emergencyContactRelationship2 to
+     * set
      */
     public void setEmergencyContactRelationship2(String emergencyContactRelationship2) {
         this.emergencyContactRelationship2 = emergencyContactRelationship2;
@@ -659,6 +717,160 @@ public class EmployeeProfile implements Serializable {
      */
     public void setPWPSalary(BigDecimal pWPSalary) {
         this.pWPSalary = pWPSalary;
+    }
+
+    /**
+     * @return the middleInitial
+     */
+    public String getMiddleInitial() {
+        return middleInitial;
+    }
+
+    /**
+     * @param middleInitial the middleInitial to set
+     */
+    public void setMiddleInitial(String middleInitial) {
+        this.middleInitial = middleInitial;
+    }
+
+    /**
+     * @return the preferredName
+     */
+    public String getPreferredName() {
+        return preferredName;
+    }
+
+    /**
+     * @param preferredName the preferredName to set
+     */
+    public void setPreferredName(String preferredName) {
+        this.preferredName = preferredName;
+    }
+
+    /**
+     * @return the dateOfBirth
+     */
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    /**
+     * @param dateOfBirth the dateOfBirth to set
+     */
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    /**
+     * @return the addressCity
+     */
+    public String getAddressCity() {
+        return addressCity;
+    }
+
+    /**
+     * @param addressCity the addressCity to set
+     */
+    public void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
+    }
+
+    /**
+     * @return the addressState
+     */
+    public String getAddressState() {
+        return addressState;
+    }
+
+    /**
+     * @param addressState the addressState to set
+     */
+    public void setAddressState(String addressState) {
+        this.addressState = addressState;
+    }
+
+    /**
+     * @return the addressZip
+     */
+    public String getAddressZip() {
+        return addressZip;
+    }
+
+    /**
+     * @param addressZip the addressZip to set
+     */
+    public void setAddressZip(String addressZip) {
+        this.addressZip = addressZip;
+    }
+
+    /**
+     * @return the series
+     */
+    public String getSeries() {
+        return series;
+    }
+
+    /**
+     * @param series the series to set
+     */
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    /**
+     * @return the grade
+     */
+    public String getGrade() {
+        return grade;
+    }
+
+    /**
+     * @param grade the grade to set
+     */
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    /**
+     * @return the paymentPlan
+     */
+    public String getPaymentPlan() {
+        return paymentPlan;
+    }
+
+    /**
+     * @param paymentPlan the paymentPlan to set
+     */
+    public void setPaymentPlan(String paymentPlan) {
+        this.paymentPlan = paymentPlan;
+    }
+
+    /**
+     * @return the confidentialityAgreementDate
+     */
+    public Date getConfidentialityAgreementDate() {
+        return confidentialityAgreementDate;
+    }
+
+    /**
+     * @param confidentialityAgreementDate the confidentialityAgreementDate to set
+     */
+    public void setConfidentialityAgreementDate(Date confidentialityAgreementDate) {
+        this.confidentialityAgreementDate = confidentialityAgreementDate;
+    }
+
+    /**
+     * @return the driversLicense
+     */
+    public DriversLicense getDriversLicense() {
+        return driversLicense;
+    }
+
+    /**
+     * @param driversLicense the driversLicense to set
+     */
+    public void setDriversLicense(DriversLicense driversLicense) {
+        this.driversLicense = driversLicense;
     }
 
 
