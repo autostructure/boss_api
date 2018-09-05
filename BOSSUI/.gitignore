@@ -1,8 +1,0 @@
-.*
-!/.gitignore
-node_modules/
-package-lock.json
-bin
-obj
-packages
-/database/database.dbmdl
