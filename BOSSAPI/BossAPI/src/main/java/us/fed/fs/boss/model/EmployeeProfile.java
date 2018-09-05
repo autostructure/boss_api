@@ -191,7 +191,7 @@ public class EmployeeProfile implements Serializable {
     private EmployeeProfile supervisor;
 
     @OneToMany(mappedBy = "supervisor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<EmployeeProfile> employees = new HashSet<EmployeeProfile>();
+    private Set<EmployeeProfile> employees;
 
     @JsonIgnore
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
@@ -201,6 +201,10 @@ public class EmployeeProfile implements Serializable {
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private DriversLicense driversLicense;
+
+    public EmployeeProfile() {
+        this.employees = new HashSet<EmployeeProfile>();
+    }
 
     public void setEmployeeProfilePhoto(EmployeeProfilePhoto profilePhoto) {
         this.employeeProfilePhoto = profilePhoto;
