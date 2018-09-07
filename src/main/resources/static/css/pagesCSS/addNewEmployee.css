@@ -108,7 +108,7 @@ input, select{
 .title-div{
     margin-top: 50px !important;
 }
-#submitEC, #submitV, #viewReports{
+#submitEC, #submitV, #viewReports, input[type='submit']{
     width: 70%;
     height: 50%;
     font-size: 2.0em !important;
