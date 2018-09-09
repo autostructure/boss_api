@@ -4,7 +4,7 @@
 
 
     var api = 'http://localhost:8090';
-    $(document).ready(function (){
+    $(document).ready(function () {
 
 
         //---------------------The reason I commented this out was it sometimes causes an error with datepicker funtion-----------------------------------------
@@ -20,16 +20,14 @@
         // showing expense on sidenav
         $('#expenseSub').addClass('show');
         $('#expenseSub > li:nth-child(1) > a').addClass('highlight');
-        
-        $.getScript("js/pagesJS/ApiCalls.js", function (){
 
-            getJobCode(getJobCodeSuccess, getJobCodeError, "2017");
-            getActivityCode(getActivityCodeSuccess, getActivityCodeError);
-            getExpenseCode(null, getExpenseSuccess, getExpenseError);
-            getbudgetObjectCode(getBudgetObjectCodeSuccess, getBudgetObjectCodeError);
-            getEmployeeProfiles(getEmployeeProfileSuccess, getEmployeeProfileError);
+        getJobCodeApiCall(getJobCodeSuccess, getJobCodeError, "2017");
+        getActivityCodeApiCall(getActivityCodeSuccess, getActivityCodeError);
+        getExpenseCodeApiCall(null, getExpenseSuccess, getExpenseError);
+        getbudgetObjectCodeApiCall(getBudgetObjectCodeSuccess, getBudgetObjectCodeError);
+        getEmployeeProfileApiCall(getEmployeeProfileSuccess, getEmployeeProfileError);
 
-        });
+
 
         function getJobCodeSuccess(info) {
             
@@ -79,7 +77,7 @@
                 $.each(info, function (value, key) {
                 
 
-                    $('#namecode').append($("<option />").text(key.nameCode).val(key.id));
+                    $('#namecode,#tnamecode,#vnamecode,#onamecode').append($("<option />").text(key.nameCode).val(key.id));
                 });
             } catch (e) {
                 console.log(e);
@@ -110,7 +108,7 @@
 
 
     // setting current year and giving a range of years for dropdown
-    $('#fy, #tfy, #vfy, #ofy').each(function (){
+    $('#fy, #tfy, #vfy, #ofy').each(function () {
         var year = (new Date()).getFullYear();
         var current = year;
         year -= 3;
@@ -125,7 +123,7 @@
 
 
     // auto selecting the job codes unit and description based off job code selected
-$('#jobcode').on('change', function (){
+$('#jobcode').on('change', function () {
     var key = (this.value);
     $.get(api + '/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
@@ -135,7 +133,7 @@ $('#jobcode').on('change', function (){
         }
     });
 });
-$('#tjobcode').on('change', function (){
+$('#tjobcode').on('change', function () {
     var key = (this.value);
     //debugger;
     $.get(api + '/jobCode/' + key, function (data, status) {
@@ -146,7 +144,7 @@ $('#tjobcode').on('change', function (){
         }
     });
 });
-$('#vjobcode').on('change', function (){
+$('#vjobcode').on('change', function () {
     var key = (this.value);
     $.get(api + '/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
@@ -156,7 +154,7 @@ $('#vjobcode').on('change', function (){
         }
     });
 });
-$('#ojobcode').on('change', function (){
+$('#ojobcode').on('change', function () {
     var key = (this.value);
     $.get(api + '/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
@@ -169,7 +167,7 @@ $('#ojobcode').on('change', function (){
 
 
 
-    $("#addbtn").click(function (){
+    $("#addbtn").click(function () {
         // var absoluteunit = $("#unitcode").val();
         
         var jobcode = $("#jobcode").val();
@@ -180,21 +178,22 @@ $('#ojobcode').on('change', function (){
         var amount = $('#amount').val();
         var hours = $("#hours").val();
         var markup = "<tr><td id='tableExp'>" + expfront + "</td><td id='tableJobCode'>" + jobcode +
-            "</td><td id='tableHours'>" + hours + "</td><td id='tableType'>" + expback + "</td><td id='amount'>Amount to be Calc</td>" +
+            "</td><td id='tableHours'>" + hours + "</td><td id='tableType'>" + expback + "</td><td id='amount'>" + "amount to be calc" + "</td>" +
             '<td> <div class="input-group date" data-provide="datepicker">' +
             '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">' +
             '<div class="input-group-addon">' +
             '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
             '</div>' +
             '</div></td></tr>';
-        $("table tbody").append(markup);
+        $("#timeTable tbody").append(markup);
 });
 
-$("#taddbtn").click(function (){
+$("#taddbtn").click(function () {
     // var absoluteunit = $("#unitcode").val();
     
 
     try {
+        
         var jobcode = $("#tjobcode").val();
         var desc = $("#tjobcodedesc").val();
         var expcode = $("#texpcode").val();
@@ -203,7 +202,7 @@ $("#taddbtn").click(function (){
         var amount = $('#tamount').val();
         var hours = $("#thours").val();
         var markup = "<tr><td id='ttableExp'>" + expfront + "</td><td id='ttableJobCode'>" + jobcode +
-            "</td><td id='ttableHours'>" + hours + "</td><td id='ttableType'>" + expback + "</td><td id='tamount'>Amount to be Calc</td>" +
+            "</td><td id='ttableType'>" + expback + "</td><td id='vamount'>" + amount + "</td>" +
             '<td> <div class="input-group date" data-provide="datepicker">' +
             '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">' +
             '<div class="input-group-addon">' +
@@ -216,13 +215,13 @@ $("#taddbtn").click(function (){
         
     }
 
-
+    
 
 
 
 });
 
-$("#vaddbtn").click(function (){
+$("#vaddbtn").click(function () {
     // var absoluteunit = $("#unitcode").val();
     
     var jobcode = $("#vjobcode").val();
@@ -233,7 +232,7 @@ $("#vaddbtn").click(function (){
     var amount = $('#vamount').val();
     var hours = $("#vhours").val();
     var markup = "<tr><td id='vtableExp'>" + expfront + "</td><td id='vtableJobCode'>" + jobcode +
-        "</td><td id='vtableHours'>" + hours + "</td><td id='vtableType'>" + expback + "</td><td id='vamount'>Amount to be Calc</td>" +
+        "</td><td id='vtableType'>" + expback + "</td><td id='vamount'>" + amount + "</td>" +
         '<td> <div class="input-group date" data-provide="datepicker">' +
         '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">' +
         '<div class="input-group-addon">' +
@@ -248,7 +247,7 @@ $("#vaddbtn").click(function (){
 
 });
 
-$("#oaddbtn").click(function (){
+$("#oaddbtn").click(function () {
     // var absoluteunit = $("#unitcode").val();
     
     var jobcode = $("#ojobcode").val();
@@ -259,7 +258,7 @@ $("#oaddbtn").click(function (){
     var amount = $('#oamount').val();
     var hours = $("#ohours").val();
     var markup = "<tr><td id='otableExp'>" + expfront + "</td><td id='otableJobCode'>" + jobcode +
-        "</td><td id='otableHours'>" + hours + "</td><td id='otableType'>" + expback + "</td><td id='oamount'>Amount to be Calc</td>" +
+        "</td><td id='otableType'>" + expback + "</td><td id='oamount'>" + amount + "</td>" +
         '<td> <div class="input-group date" data-provide="datepicker">' +
         '<input type="text" placeholder="Pick a date" id="tableDateVerified" class="form-control">' +
         '<div class="input-group-addon">' +
@@ -304,8 +303,9 @@ $("#oaddbtn").click(function (){
     // '</tr>'
     // )
     // });
-    $("#timeSubmit").click(function (){
+    $("#timeSubmit").click(function () {
         try {
+            
             var fy = $("#fy").val();
             var dateEntered = $("#dateentered").val();
             var datemod = getCorrectDateFormat($("#datemod").val());
@@ -337,16 +337,16 @@ $("#oaddbtn").click(function (){
 
             var table_list = [];
 
-            $('#timeTable tr').each(function (){
+            $('#timeTable tr').each(function () {
                 var table_exp = $(this).find("#tableExp").html();
                 var table_jobcode = $(this).find("#tableJobCode").html();
                 var table_hours = $(this).find("#tableHours").html();
                 var table_jobCodeDesc = $(this).find("#tableJobCodeDesc").html();
                 var table_amount = $(this).find("#tableAmount").html();
                 var table_dateVerified = $(this).find("#tableDateVerified").html();
-                
+                //debugger;
                 try {
-                    if (table_jobcode !== undefined) {
+                    if (table_jobcode != undefined) {
                         timeTableObj.tableExp = table_exp;
                         timeTableObj.tableJobCode = table_jobcode;
                         timeTableObj.tableAmount = table_amount;
@@ -375,7 +375,9 @@ $("#oaddbtn").click(function (){
                 success: function (json) {
 
                     $.each(json, function (value, key) {
-                        if (key.id === budgetObjCode_id) {
+
+                        if (key.id == budgetObjCode_id) {
+
                             boc = key.name;
                         }
                     });
@@ -394,37 +396,280 @@ $("#oaddbtn").click(function (){
 
             });
             timeDataV2.budgetObjectCode.name = boc;
-            timeDataV2.budgetObjectCode.Id = parseInt(budgetObjCode_id);
+            timeDataV2.budgetObjectCode.id = parseInt(budgetObjCode_id);
             timeDataV2.category.description = "";
-            timeDataV2.category.id = 0;
+            timeDataV2.category.id = null;
             timeDataV2.createdAt = "";
             timeDataV2.createdBy = "";
             timeDataV2.description = desc;
 
             $.ajax({
-                url: api + "/employeeProfile",
+                url: api + "/employeeProfile?nameCode=" + namecode,
                 type: "GET",
-                success: function (json) {
-                    
+                success: function (key) {
+
                     //var jObj = JSON.parse(json);
-                    $.each(json, function (value, key) {
+                    // $.each(json, function (value, key) {
+
+                    // if (namecode == key.nameCode) {
+
+                    //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
+                    employeeProfileJSON.id = parseInt(key.id);
+
+                    if (key.driversLicense != undefined) {
+                        employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(key.driversLicense.expiration);
+                        employeeProfileJSON.driversLicense.id = parseInt(key.driversLicense.id);
+                        employeeProfileJSON.driversLicense.number = key.driversLicense.number;
+                        employeeProfileJSON.driversLicense.state = key.driversLicense.state;
+                    } else {
+                        var date = new Date();
+                        employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(date.getDate());
+                        employeeProfileJSON.driversLicense.id = null;
+                        employeeProfileJSON.driversLicense.number = "";
+                        employeeProfileJSON.driversLicense.state = "";
                         
-                        if (namecode === key.nameCode) {
-                            
-                            //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
-                            employeeProfileJSON.id = parseInt(key.id);
-                            employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
-                            employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
-                            employeeProfileJSON.nameCode = namecode;
-                            employeeProfileJSON.activityCode.name = actcode;
-                            employeeProfileJSON.activityCode.code = actcode_id;
-                            employeeProfileJSON.title = key.title;//employeeProfile.title;
-                            timeDataV2.employeeProfile = employeeProfileJSON;
+                    }
 
-                            
 
-                        }
-                    });
+                    if (key.cellPhone != undefined) {
+                        employeeProfileJSON.cellPhone = key.cellPhone;
+                    } else {
+                        employeeProfileJSON.cellPhone = "";
+                    }
+
+                    if (key.dutyStation != undefined) {
+                        employeeProfileJSON.dutyStation = key.dutyStation;
+                    } else {
+                        employeeProfileJSON.dutyStation = "";
+                    }
+
+
+                    if (key.emergencyContactCellPhone1 != undefined) {
+                        employeeProfileJSON.emergencyContactCellPhone1 = key.emergencyContactCellPhone1;
+                    } else {
+                        employeeProfileJSON.emergencyContactCellPhone1 = "";
+                    }
+
+                    if (key.emergencyContactCellPhone2 != undefined) {
+                        employeeProfileJSON.emergencyContactCellPhone2 = key.emergencyContactCellPhone2;
+                    } else {
+                        employeeProfileJSON.emergencyContactCellPhone2 = "";
+                    }
+
+                    if (key.emergencyContactCity1 != undefined) {
+                        employeeProfileJSON.emergencyContactCity1 = key.emergencyContactCity1;
+                    } else {
+                        employeeProfileJSON.emergencyContactCity1 = "";
+                    }
+
+                    if (key.emergencyContactCity2 != undefined) {
+                        employeeProfileJSON.emergencyContactCity2 = key.emergencyContactCity2;
+                    } else {
+                        employeeProfileJSON.emergencyContactCity2 = "";
+                    }
+
+                    if (key.emergencyContactFirstName1 != undefined) {
+                        employeeProfileJSON.emergencyContactFirstName1 = key.emergencyContactFirstName1;
+                    } else {
+                        employeeProfileJSON.emergencyContactFirstName1 = "";
+                    }
+
+                    if (key.emergencyContactFirstName2 != undefined) {
+                        employeeProfileJSON.emergencyContactFirstName2 = key.emergencyContactFirstName2;
+                    } else {
+                        employeeProfileJSON.emergencyContactFirstName2 = "";
+                    }
+
+                    if (key.emergencyContactHomePhone1 != undefined) {
+                        employeeProfileJSON.emergencyContactHomePhone1 = key.emergencyContactHomePhone1;
+                    } else {
+                        employeeProfileJSON.emergencyContactHomePhone1 = "";
+                    }
+
+                    if (key.emergencyContactHomePhone2 != undefined) {
+                        employeeProfileJSON.emergencyContactHomePhone2 = key.emergencyContactHomePhone2;
+
+                    } else {
+                        employeeProfileJSON.emergencyContactHomePhone2 = "";//key.emergencyContactHomePhone2;
+                    }
+
+                    if (key.emergencyContactLastName1 != undefined) {
+                        employeeProfileJSON.emergencyContactLastName1 = key.emergencyContactLastName1;
+
+                    } else {
+                        employeeProfileJSON.emergencyContactLastName1 = "";//key.emergencyContactLastName1;
+
+                    }
+
+                    if (key.emergencyContactLastName2 != undefined) {
+                        employeeProfileJSON.emergencyContactLastName2 = key.emergencyContactLastName2;
+                    } else {
+                        employeeProfileJSON.emergencyContactLastName2 = "";//key.emergencyContactLastName2;
+                    }
+
+                    if (key.emergencyContactRelationship1 != undefined) {
+                        employeeProfileJSON.emergencyContactRelationship1 = key.emergencyContactRelationship1;
+                    } else {
+                        employeeProfileJSON.emergencyContactRelationship1 = "";//key.emergencyContactRelationship1;
+                    }
+
+
+                    if (key.emergencyContactRelationship2 != undefined) {
+                        employeeProfileJSON.emergencyContactRelationship2 = key.emergencyContactRelationship2;
+
+                    } else {
+                        employeeProfileJSON.emergencyContactRelationship2 = "";//key.emergencyContactRelationship2;
+                    }
+
+                    if (key.emergencyContactState1 != undefined) {
+                        employeeProfileJSON.emergencyContactState1 = key.emergencyContactState1;
+                    } else {
+                        employeeProfileJSON.emergencyContactState1 = "";//key.emergencyContactState1;
+                    }
+
+                    if (key.emergencyContactState2 != undefined) {
+                        employeeProfileJSON.emergencyContactState2 = key.emergencyContactState2;
+                    } else {
+                        employeeProfileJSON.emergencyContactState2 = "test";//key.emergencyContactState2;
+                    }
+
+                    if (key.emergencyContactStreetAddress1 != undefined) {
+                        employeeProfileJSON.emergencyContactStreetAddress1 = key.emergencyContactStreetAddress1;
+                    } else {
+                        employeeProfileJSON.emergencyContactStreetAddress1 = "";//key.emergencyContactStreetAddress1;
+                    }
+
+                    if (key.emergencyContactStreetAddress2 != undefined) {
+                        employeeProfileJSON.emergencyContactStreetAddress2 = key.emergencyContactStreetAddress2;
+                    } else {
+                        employeeProfileJSON.emergencyContactStreetAddress2 = "";//key.emergencyContactStreetAddress2;
+                    }
+
+                    if (key.emergencyContactWorkPhone1 != undefined) {
+                        employeeProfileJSON.emergencyContactWorkPhone1 = key.emergencyContactWorkPhone1;
+                    } else {
+                        employeeProfileJSON.emergencyContactWorkPhone1 = "";//key.emergencyContactWorkPhone1;
+                    }
+
+                    if (key.emergencyContactWorkPhone2 != undefined) {
+                        employeeProfileJSON.emergencyContactWorkPhone2 = key.emergencyContactWorkPhone2;
+                    } else {
+                        employeeProfileJSON.emergencyContactWorkPhone2 = "";//key.emergencyContactWorkPhone2;
+                    }
+
+                    if (key.emergencyContactZip1 != undefined) {
+                        employeeProfileJSON.emergencyContactZip1 = key.emergencyContactZip1;
+                    } else {
+                        employeeProfileJSON.emergencyContactZip1 = "";//key.emergencyContactZip1;
+                    }
+
+                    if (key.emergencyContactZip2 != undefined) {
+                        employeeProfileJSON.emergencyContactZip2 = key.emergencyContactZip2;
+                    } else {
+                        employeeProfileJSON.emergencyContactZip2 = "";//key.emergencyContactZip2;
+                    }
+
+
+                    if (key.homePhone != undefined) {
+                        employeeProfileJSON.homePhone = key.homePhone;
+                    } else {
+                        employeeProfileJSON.homePhone = "";//key.homePhone;
+                    }
+
+                    if (key.overtimeHourlyWage != undefined) {
+                        employeeProfileJSON.overtimeHourlyWage = key.overtimeHourlyWage;
+                    } else {
+                        employeeProfileJSON.overtimeHourlyWage = "";//key.overtimeHourlyWage;
+                    }
+
+                    if (key.personalEmail != undefined) {
+                        employeeProfileJSON.personalEmail = key.personalEmail;
+                    } else {
+                        employeeProfileJSON.personalEmail = "";//key.personalEmail;
+                    }
+
+                    if (key.roomNumber != undefined) {
+                        employeeProfileJSON.roomNumber = key.roomNumber;
+                    } else {
+                        employeeProfileJSON.roomNumber = "";//key.roomNumber;
+                    }
+
+                    if (key.training != undefined) {
+                        //employeeProfileJSON.training.push(JSONtraining);//key.training;
+                    } else {
+                        $.each(key.training, function (key, value) {
+                            if (value.dateOfTraining != undefined) {
+                                JSONtraining.dateOfTraining = getCorrectDateFormat(value.dateOfTraining);
+                            } else {
+                                var date = new Date();
+                                JSONtraining.dateOfTraining = getCorrectDateFormat(date.getDate);
+                            }
+
+                            if (value.title != undefined) {
+                                JSONtraining.title = value.title;
+                            } else {
+                                JSONtraining.title = "";
+                            }
+
+                            if (value.hours != undefined) {
+                                JSONtraining.hours = parseInt(value.hours);
+                            } else {
+                                JSONtraining.hours = 0;
+                            }
+
+                            if (value.id != undefined) {
+                                JSONtraining.id = parseInt(value.id);
+                            } else {
+                                JSONtraining.id = 0;
+                            }
+
+                            if (value.location) {
+                                JSONtraining.location - value.location;
+                            } else {
+                                JSONtraining.location = "";
+                            }
+
+                            if (value.presenter != undefined) {
+                                JSONtraining.presenter = value.presenter;
+                            } else {
+                                JSONtraining.presenter = "";
+                            }
+
+                            if (value.title != undefined) {
+                                JSONtraining.title = value.title;
+                            } else {
+                                JSONtraining.title = "";
+                            }
+
+                            if (value.yearsValid != undefined) {
+                                JSONtraining.yearsValid = parseInt(value.yearsValid);
+                            } else {
+                                JSONtraining.yearsValid = 0;
+                            }
+
+
+                        });
+                    }
+
+                    employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
+                    employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
+                    employeeProfileJSON.nameCode = namecode;
+                    employeeProfileJSON.activityCode.name = actcode;
+                    employeeProfileJSON.activityCode.code = actcode_id;
+                    employeeProfileJSON.title = key.title;//employeeProfile.title;
+
+                    if (key.stateAssigned != undefined) {
+                        employeeProfileJSON.stateAssigned = key.stateAssigned;
+                    } else {
+                        employeeProfileJSON.stateAssigned = "";
+                    }
+                    
+
+                    timeDataV2.employeeProfile = employeeProfileJSON;
+
+
+                    
+
 
                 },
                 async:false,
@@ -443,11 +688,14 @@ $("#oaddbtn").click(function (){
             if (timeTableArr.length > 0) {
                 $.each(timeTableArr, function (index, value) {
 
-                    
-                    expenseDetailsElement.amount = value.ttableAmount;
+                    if (value.ttableAmount != null) {
+                        expenseDetailsElement.amount = value.ttableAmount;
+                    } else {
+                        expenseDetailsElement.amount = 0;
+                    }
 
                     //need to figure out why can't set date on webpage
-                    if (value.tableDateVerified !== null && value.tableDateVerified !== "") {
+                    if (value.tableDateVerified != null && value.tableDateVerified != "") {
                         expenseDetailsElement.dateVerified = getCorrectDateFormat(value.tableDateVerified);
                     }
                     else {
@@ -455,8 +703,39 @@ $("#oaddbtn").click(function (){
                         var date = new Date();
                         expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
                     }
-                    expenseDetailsElement.expenseCode.type = value.tableExp.split("-")[1];
-                    expenseDetailsElement.expenseCode.id = parseInt(value.tableExp.split("-")[0]);
+
+                    var exp_code = value.tableExp;
+                    var check = false;
+                    $.ajax({
+                        url: api + "/expenseCode",
+                        type: "GET",
+                        success: function (json) {
+                            
+                            $.each(json, function (key, values) {
+                                
+                                if (values.id == exp_code) {
+                                    
+                                    expenseDetailsElement.expenseCode.type = values.type;
+                                    expenseDetailsElement.expenseCode.id = parseInt(values.id);
+                                    check = true;
+                                }
+                            });
+                        },
+                        async: false,
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                    if (check == false) {
+                        expenseDetailsElement.expenseCode.type = "";
+                        expenseDetailsElement.expenseCode.id = null;
+                    }
+                        
+
+                
+
+
+                    
                     expenseDetailsElement.hours = parseInt(value.tableHours);
 
 
@@ -467,19 +746,19 @@ $("#oaddbtn").click(function (){
                         success: function (json) {
 
 
-                            expenseDetailsElement.JobCode.amount = json.amount;
-                            expenseDetailsElement.JobCode.description = json.description;
-                            expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                            expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                            expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                            expenseDetailsElement.JobCode.id = json.id;
+                            expenseDetailsElement.jobCode.amount = json.amount;
+                            expenseDetailsElement.jobCode.description = json.description;
+                            expenseDetailsElement.jobCode.financialYear = json.financialYear;
+                            expenseDetailsElement.jobCode.jobCode = json.jobCode;
+                            expenseDetailsElement.jobCode.overrideCode = parseInt(json.overrideCode);
+                            expenseDetailsElement.jobCode.id = json.id;
 
 
 
 
                         },
                         async: false,
-                        error: function(xhr, status, error) {
+                        error(xhr, status, error) {
 
                             try {
                                 console.log(xhr.responseText);
@@ -498,6 +777,7 @@ $("#oaddbtn").click(function (){
 
                     expenseDetailsElement.type = "";
                     expenseDetailsElement.verified = true;
+                    expenseDetailsElement.id = null;
 
                     timeDataV2.expenseDetails.push(expenseDetailsElement);
                 });
@@ -515,7 +795,7 @@ $("#oaddbtn").click(function (){
                 success: function (json) {
                     
                     $.each(json, function (value, key) {
-                        if (key.code === pc_id) {
+                        if (key.code == pc_id) {
                             
                             //alert("have matched pc_id: " + key.code);
                             timeDataV2.paymentCode.name = key.name;
@@ -524,7 +804,7 @@ $("#oaddbtn").click(function (){
                     });
                 },
                 async: false,
-                error: function(xhr, error, status) {
+                error(xhr, error, status) {
                     console.log(xhr.responseText);
                 }
                         
@@ -538,6 +818,7 @@ $("#oaddbtn").click(function (){
             timeDataV2.travelVoucherNumber = 0;
             timeDataV2.unitCode = unitcode;
             timeDataV2.updatedAt = getCorrectDateFormat(datemod);
+            timeDataV2.id = null;
 
 
             
@@ -545,17 +826,18 @@ $("#oaddbtn").click(function (){
             //debugger;
             var j = JSON.stringify(timeDataV2);
             console.log(j);
-
+            
            // debugger;
             $.ajax({
                 url: api + "/expense",
                 data: j,
                 type: "POST",
                 contentType: "application/json",
-                success: function(result, status, xhr) {
+                success(result, status, xhr) {
                     console.log("post expense success!");
+                    $('#timeTable tbody').empty();
                 },
-                error: function(xhr, status, error) {
+                error(xhr, status, error) {
                     
                     try {
                         
@@ -568,9 +850,9 @@ $("#oaddbtn").click(function (){
                         
                     } catch (e) {
                         console.log(e);
-                        alert(e);
                     }
-                }
+                },
+                async: false
             });
 
             //postExpense(postExpenseSuccess, postExpenseRejected, j);
@@ -580,7 +862,7 @@ $("#oaddbtn").click(function (){
         }
 });
 
-$("#travelSubmit").click(function (){
+$("#travelSubmit").click(function () {
     try {
         var fy = $("#tfy").val();
         var dateEntered = $("#tdateentered").val();
@@ -614,7 +896,7 @@ $("#travelSubmit").click(function (){
 
         var table_list = [];
 
-        $('#travelTable tr').each(function (){
+        $('#travelTable tr').each(function () {
             var table_exp = $(this).find("#ttableExp").html();
             var table_jobcode = $(this).find("#ttableJobCode").html();
             var table_hours = $(this).find("#ttableHours").html();
@@ -622,21 +904,28 @@ $("#travelSubmit").click(function (){
             var table_Amount = $(this).find("#ttableAmount").html();
             var table_dateVerified = $(this).find("#ttableDateVerified").html();
 
+            
+
             try {
-                if (table_jobcode !== undefined) {
+                if (table_jobcode != undefined) {
                     travelTableObj.ttableExp = table_exp;
                     travelTableObj.ttableJobCode = table_jobcode;
-                    travelTableObj.ttableAmount = table_Amount;
+                    if (table_Amount != undefined) {
+                        travelTableObj.ttableAmount = table_Amount;
+                    } else {
+                        travelTableObj.ttableAmount = 0;
+                    }
+
                     travelTableObj.ttJobCodeDesc = table_jobCodeDesc;
                     travelTableObj.ttableDateVerified = table_dateVerified;
 
-                    travelTableArr.push(timeTableObj);
+                    travelTableArr.push(travelTableObj);
                 }
             } catch (e) {
                 console.log(e);
             }
         });
-
+        
         //expense Details
         timeDataV2.activityCode.name = actcode;
         timeDataV2.activityCode.code = actcode_id;
@@ -647,7 +936,7 @@ $("#travelSubmit").click(function (){
                 
                 $.each(json, function (value, key) {
                     
-                    if (key.id === budgetObjCode_id) {
+                    if (key.id == budgetObjCode_id) {
                         
                         boc = key.name;
                     }
@@ -667,7 +956,7 @@ $("#travelSubmit").click(function (){
 
         });
         timeDataV2.budgetObjectCode.name = boc;
-        timeDataV2.budgetObjectCode.Id = parseInt(budgetObjCode_id);
+        timeDataV2.budgetObjectCode.id = parseInt(budgetObjCode_id);
         timeDataV2.category.description = "";
         timeDataV2.createdAt = "";
         timeDataV2.createdBy = "";
@@ -675,30 +964,272 @@ $("#travelSubmit").click(function (){
         //timeDataV2. = jobcode;
 
         $.ajax({
-            url: api + "/employeeProfile",
+            url: api + "/employeeProfile?nameCode=" + namecode,
             type: "GET",
-            success: function (json) {
-                
+            success: function (key) {
+
                 //var jObj = JSON.parse(json);
-                $.each(json, function (value, key) {
-                    
-                    if (namecode === key.id) {
+                // $.each(json, function (value, key) {
 
-                        //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
-                        employeeProfileJSON.id = parseInt(key.id);
-                        employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
-                        employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
-                        employeeProfileJSON.nameCode = namecode;
-                        employeeProfileJSON.activityCode.name = actcode;
-                        employeeProfileJSON.activityCode.code = actcode_id;
-                        employeeProfileJSON.title = key.title;//employeeProfile.title;
-                        employeeProfileJSON.stateAssigned = stateAssigned;
-                        timeDataV2.employeeProfile = employeeProfileJSON;
+                // if (namecode == key.nameCode) {
+
+                //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
+                employeeProfileJSON.id = parseInt(key.id);
+
+                if (key.driversLicense != undefined) {
+                    employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(key.driversLicense.expiration);
+                    employeeProfileJSON.driversLicense.id = parseInt(key.driversLicense.id);
+                    employeeProfileJSON.driversLicense.number = key.driversLicense.number;
+                    employeeProfileJSON.driversLicense.state = key.driversLicense.state;
+                } else {
+                    var date = new Date();
+                    employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(date.getDate());
+                    employeeProfileJSON.driversLicense.id = null;
+                    employeeProfileJSON.driversLicense.number = "";
+                    employeeProfileJSON.driversLicense.state = "";
+
+                }
+
+
+                if (key.cellPhone != undefined) {
+                    employeeProfileJSON.cellPhone = key.cellPhone;
+                } else {
+                    employeeProfileJSON.cellPhone = "";
+                }
+
+                if (key.dutyStation != undefined) {
+                    employeeProfileJSON.dutyStation = key.dutyStation;
+                } else {
+                    employeeProfileJSON.dutyStation = "";
+                }
+
+
+                if (key.emergencyContactCellPhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactCellPhone1 = key.emergencyContactCellPhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactCellPhone1 = "";
+                }
+
+                if (key.emergencyContactCellPhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactCellPhone2 = key.emergencyContactCellPhone2;
+                } else {
+                    employeeProfileJSON.emergencyContactCellPhone2 = "";
+                }
+
+                if (key.emergencyContactCity1 != undefined) {
+                    employeeProfileJSON.emergencyContactCity1 = key.emergencyContactCity1;
+                } else {
+                    employeeProfileJSON.emergencyContactCity1 = "";
+                }
+
+                if (key.emergencyContactCity2 != undefined) {
+                    employeeProfileJSON.emergencyContactCity2 = key.emergencyContactCity2;
+                } else {
+                    employeeProfileJSON.emergencyContactCity2 = "";
+                }
+
+                if (key.emergencyContactFirstName1 != undefined) {
+                    employeeProfileJSON.emergencyContactFirstName1 = key.emergencyContactFirstName1;
+                } else {
+                    employeeProfileJSON.emergencyContactFirstName1 = "";
+                }
+
+                if (key.emergencyContactFirstName2 != undefined) {
+                    employeeProfileJSON.emergencyContactFirstName2 = key.emergencyContactFirstName2;
+                } else {
+                    employeeProfileJSON.emergencyContactFirstName2 = "";
+                }
+
+                if (key.emergencyContactHomePhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactHomePhone1 = key.emergencyContactHomePhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactHomePhone1 = "";
+                }
+
+                if (key.emergencyContactHomePhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactHomePhone2 = key.emergencyContactHomePhone2;
+
+                } else {
+                    employeeProfileJSON.emergencyContactHomePhone2 = "";//key.emergencyContactHomePhone2;
+                }
+
+                if (key.emergencyContactLastName1 != undefined) {
+                    employeeProfileJSON.emergencyContactLastName1 = key.emergencyContactLastName1;
+
+                } else {
+                    employeeProfileJSON.emergencyContactLastName1 = "";//key.emergencyContactLastName1;
+
+                }
+
+                if (key.emergencyContactLastName2 != undefined) {
+                    employeeProfileJSON.emergencyContactLastName2 = key.emergencyContactLastName2;
+                } else {
+                    employeeProfileJSON.emergencyContactLastName2 = "";//key.emergencyContactLastName2;
+                }
+
+                if (key.emergencyContactRelationship1 != undefined) {
+                    employeeProfileJSON.emergencyContactRelationship1 = key.emergencyContactRelationship1;
+                } else {
+                    employeeProfileJSON.emergencyContactRelationship1 = "";//key.emergencyContactRelationship1;
+                }
+
+
+                if (key.emergencyContactRelationship2 != undefined) {
+                    employeeProfileJSON.emergencyContactRelationship2 = key.emergencyContactRelationship2;
+
+                } else {
+                    employeeProfileJSON.emergencyContactRelationship2 = "";//key.emergencyContactRelationship2;
+                }
+
+                if (key.emergencyContactState1 != undefined) {
+                    employeeProfileJSON.emergencyContactState1 = key.emergencyContactState1;
+                } else {
+                    employeeProfileJSON.emergencyContactState1 = "";//key.emergencyContactState1;
+                }
+
+                if (key.emergencyContactState2 != undefined) {
+                    employeeProfileJSON.emergencyContactState2 = key.emergencyContactState2;
+                } else {
+                    employeeProfileJSON.emergencyContactState2 = "test";//key.emergencyContactState2;
+                }
+
+                if (key.emergencyContactStreetAddress1 != undefined) {
+                    employeeProfileJSON.emergencyContactStreetAddress1 = key.emergencyContactStreetAddress1;
+                } else {
+                    employeeProfileJSON.emergencyContactStreetAddress1 = "";//key.emergencyContactStreetAddress1;
+                }
+
+                if (key.emergencyContactStreetAddress2 != undefined) {
+                    employeeProfileJSON.emergencyContactStreetAddress2 = key.emergencyContactStreetAddress2;
+                } else {
+                    employeeProfileJSON.emergencyContactStreetAddress2 = "";//key.emergencyContactStreetAddress2;
+                }
+
+                if (key.emergencyContactWorkPhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactWorkPhone1 = key.emergencyContactWorkPhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactWorkPhone1 = "";//key.emergencyContactWorkPhone1;
+                }
+
+                if (key.emergencyContactWorkPhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactWorkPhone2 = key.emergencyContactWorkPhone2;
+                } else {
+                    employeeProfileJSON.emergencyContactWorkPhone2 = "";//key.emergencyContactWorkPhone2;
+                }
+
+                if (key.emergencyContactZip1 != undefined) {
+                    employeeProfileJSON.emergencyContactZip1 = key.emergencyContactZip1;
+                } else {
+                    employeeProfileJSON.emergencyContactZip1 = "";//key.emergencyContactZip1;
+                }
+
+                if (key.emergencyContactZip2 != undefined) {
+                    employeeProfileJSON.emergencyContactZip2 = key.emergencyContactZip2;
+                } else {
+                    employeeProfileJSON.emergencyContactZip2 = "";//key.emergencyContactZip2;
+                }
+
+
+                if (key.homePhone != undefined) {
+                    employeeProfileJSON.homePhone = key.homePhone;
+                } else {
+                    employeeProfileJSON.homePhone = "";//key.homePhone;
+                }
+
+                if (key.overtimeHourlyWage != undefined) {
+                    employeeProfileJSON.overtimeHourlyWage = key.overtimeHourlyWage;
+                } else {
+                    employeeProfileJSON.overtimeHourlyWage = "";//key.overtimeHourlyWage;
+                }
+
+                if (key.personalEmail != undefined) {
+                    employeeProfileJSON.personalEmail = key.personalEmail;
+                } else {
+                    employeeProfileJSON.personalEmail = "";//key.personalEmail;
+                }
+
+                if (key.roomNumber != undefined) {
+                    employeeProfileJSON.roomNumber = key.roomNumber;
+                } else {
+                    employeeProfileJSON.roomNumber = "";//key.roomNumber;
+                }
+
+                if (key.training != undefined) {
+                    //employeeProfileJSON.training.push(JSONtraining);//key.training;
+                } else {
+                    $.each(key.training, function (key, value) {
+                        if (value.dateOfTraining != undefined) {
+                            JSONtraining.dateOfTraining = getCorrectDateFormat(value.dateOfTraining);
+                        } else {
+                            var date = new Date();
+                            JSONtraining.dateOfTraining = getCorrectDateFormat(date.getDate);
+                        }
+
+                        if (value.title != undefined) {
+                            JSONtraining.title = value.title;
+                        } else {
+                            JSONtraining.title = "";
+                        }
+
+                        if (value.hours != undefined) {
+                            JSONtraining.hours = parseInt(value.hours);
+                        } else {
+                            JSONtraining.hours = 0;
+                        }
+
+                        if (value.id != undefined) {
+                            JSONtraining.id = parseInt(value.id);
+                        } else {
+                            JSONtraining.id = 0;
+                        }
+
+                        if (value.location) {
+                            JSONtraining.location - value.location;
+                        } else {
+                            JSONtraining.location = "";
+                        }
+
+                        if (value.presenter != undefined) {
+                            JSONtraining.presenter = value.presenter;
+                        } else {
+                            JSONtraining.presenter = "";
+                        }
+
+                        if (value.title != undefined) {
+                            JSONtraining.title = value.title;
+                        } else {
+                            JSONtraining.title = "";
+                        }
+
+                        if (value.yearsValid != undefined) {
+                            JSONtraining.yearsValid = parseInt(value.yearsValid);
+                        } else {
+                            JSONtraining.yearsValid = 0;
+                        }
+
+
+                    });
+                }
+
+                employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
+                employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
+                employeeProfileJSON.nameCode = namecode;
+                employeeProfileJSON.activityCode.name = actcode;
+                employeeProfileJSON.activityCode.code = actcode_id;
+                employeeProfileJSON.title = key.title;//employeeProfile.title;
+
+                if (key.stateAssigned != undefined) {
+                    employeeProfileJSON.stateAssigned = key.stateAssigned;
+                } else {
+                    employeeProfileJSON.stateAssigned = "";
+                }
+
+
+                timeDataV2.employeeProfile = employeeProfileJSON;
 
 
 
-                    }
-                });
+
 
             },
             async: false,
@@ -717,38 +1248,62 @@ $("#travelSubmit").click(function (){
             $.each(travelTableArr, function (index, value) {
                 
                 expenseDetailsElement.amount = parseFloat(value.ttableAmount);
-                if (value.ttableDateVerified !== null && value.ttableDateVerified !== "") {
+                if (value.ttableDateVerified != null && value.ttableDateVerified != "") {
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(value.ttableDateVerified);
                 } else {
                     //this needs to change
                     var date = new Date();
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
                 }
-                expenseDetailsElement.expenseCode.type = value.ttableExp.split("-")[1];
-                expenseDetailsElement.expenseCode.id = parseInt(value.ttableExp.split("-")[0]);
+                var exp_code = value.ttableExp;
+                var check = false;
+                $.ajax({
+                    url: api + "/expenseCode",
+                    type: "GET",
+                    success: function (json) {
+
+                        $.each(json, function (key, values) {
+                            
+                            if (values.id == exp_code) {
+
+                                expenseDetailsElement.expenseCode.type = values.type;
+                                expenseDetailsElement.expenseCode.id = parseInt(values.id);
+                                check = true;
+                            }
+                        });
+                    },
+                    async: false,
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+                if (check == false) {
+                    expenseDetailsElement.expenseCode.type = "";
+                    expenseDetailsElement.expenseCode.id = null;
+                }
                 expenseDetailsElement.hours = 0;
 
 
-
+                
                 $.ajax({
                     url: api + "/jobCode/" + value.ttableJobCode,
                     type: "GET",
                     success: function (json) {
 
+                        
 
 
-
-                        expenseDetailsElement.JobCode.amount = parseFloat(json.amount);
-                        expenseDetailsElement.JobCode.description = json.description;
-                        expenseDetailsElement.JobCode.financialYear = parseInt(json.financialYear);
-                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                        expenseDetailsElement.JobCode.id = parseInt(json.id);
+                        expenseDetailsElement.jobCode.amount = parseFloat(json.amount);
+                        expenseDetailsElement.jobCode.description = json.description;
+                        expenseDetailsElement.jobCode.financialYear = parseInt(json.financialYear);
+                        expenseDetailsElement.jobCode.jobCode = json.jobCode;
+                        expenseDetailsElement.jobCode.overrideCode = json.overrideCode;
+                        expenseDetailsElement.jobCode.id = parseInt(json.id);
 
 
                     },
                     async: false,
-                    error: function(xhr, status, error) {
+                    error(xhr, status, error) {
 
                         try {
                             console.log(xhr.responseText);
@@ -756,13 +1311,14 @@ $("#travelSubmit").click(function (){
                             console.log(xhr.readyState);
                             console.log(status);
                             console.log(error);
+                            
                         } catch (e) {
                             console.log(e);
                         }
                     }
 
                 });
-
+                
 
 
                 expenseDetailsElement.type = "";
@@ -787,7 +1343,7 @@ $("#travelSubmit").click(function (){
             success: function (json) {
 
                 $.each(json, function (value, key) {
-                    if (key.code === pc_id) {
+                    if (key.code == pc_id) {
 
                         //alert("have matched pc_id: " + key.code);
                         timeDataV2.paymentCode.name = key.name;
@@ -796,7 +1352,7 @@ $("#travelSubmit").click(function (){
                 });
             },
             async: false,
-            error: function(xhr, error, status) {
+            error(xhr, error, status) {
                 
                 console.log("response text: " + xhr.responseText);
             }
@@ -817,17 +1373,18 @@ $("#travelSubmit").click(function (){
         //debugger;
         var j = JSON.stringify(timeDataV2);
         console.log(j);
-
+        
         // debugger;
         $.ajax({
             url: api + "/expense",
             data: j,
             type: "POST",
             contentType: "application/json",
-            success: function(result, status, xhr) {
+            success(result, status, xhr) {
                 console.log("post expense success!");
+                $('#travelTable tbody').empty();
             },
-            error: function(xhr, status, error) {
+            error(xhr, status, error) {
                 //debugger;
                 try {
                     console.log("response Text: " + xhr.responseText);
@@ -835,11 +1392,13 @@ $("#travelSubmit").click(function (){
                     console.log(xhr.readyState);
                     console.log(status);
                     console.log(error);
+                    //debugger;
                     
                 } catch (e) {
                     console.log(e);
                 }
-            }
+            },
+            async: false
         });
 
         //postExpense(postExpenseSuccess, postExpenseRejected, j);
@@ -848,7 +1407,7 @@ $("#travelSubmit").click(function (){
     }
 });
 
-$("#visaSubmit").click(function (){
+$("#visaSubmit").click(function () {
     try {
         var fy = $("#vfy").val();
         var dateEntered = $("#vdateentered").val();
@@ -861,7 +1420,7 @@ $("#visaSubmit").click(function (){
         var actcode = $("#vactcode :selected").text();
         var boc = $("#vboc :selected").text();
         var pc = $("#vpc :selected").text();
-        var stateAssigned = $("#vstateassigned").val();//check spelling
+        var stateAssigned = $("#vstateassigned").val() //check spelling
         var remarks = $("#vremarks").val();
         var unitcode = $("#vunitcode").val();
         var jobcode = $("#vjobcode :selected").text();
@@ -875,25 +1434,29 @@ $("#visaSubmit").click(function (){
         var pc_id = $("#vpc").val();
         var jobCode_id = $("#vjobcode").val();
 
-        console.log("vpc id: " + pc_id);
-        console.log("vpc name: " + pc);
+
 
 
         var table_list = [];
 
-        $('#visaTable tr').each(function (){
+        $('#visaTable tr').each(function () {
             var table_exp = $(this).find("#vtableExp").html();
-            var table_jobcode = $(this).find("v#tableJobCode").html();
+            var table_jobcode = $(this).find("#vtableJobCode").html();
             //var table_hours = $(this).find("#tableHours").html();
             var table_jobCodeDesc = $(this).find("#vtableJobCodeDesc").html();
             var table_Amount = $(this).find("#vtableAmount").html();
             var table_dateVerified = $(this).find("#vtableDateVerified").html();
 
             try {
-                if (table_jobcode !== undefined) {
+                if (table_jobcode != undefined) {
                     visaTableObj.vtableExp = table_exp;
                     visaTableObj.vtableJobCode = table_jobcode;
-                    visaTableObj.vtableAmount = table_Amount;
+                    if (table_Amount != undefined) {
+                        visaTableObj.vtableAmount = parseInt(table_Amount);
+                    } else {
+                        visaTableObj.vtableAmount = 0;
+                    }
+
                     visaTableObj.vtJobCodeDesc = table_jobCodeDesc;
                     visaTableObj.vtableDateVerified = table_dateVerified;
 
@@ -904,40 +1467,286 @@ $("#visaSubmit").click(function (){
             }
         });
 
+
+
+
         //expense Details
         timeDataV2.activityCode.name = actcode;
         timeDataV2.activityCode.code = actcode_id;
         timeDataV2.budgetObjectCode.name = boc;
-        timeDataV2.budgetObjectCode.Id = parseInt(budgetObjCode_id);
+        timeDataV2.budgetObjectCode.id = parseInt(budgetObjCode_id);
         timeDataV2.category.description = "";
         timeDataV2.createdAt = "";
         timeDataV2.createdBy = "";
         timeDataV2.description = desc;
 
         $.ajax({
-            url: api + "/employeeProfile",
+            url: api + "/employeeProfile?nameCode=" + namecode,
             type: "GET",
-            success: function (json) {
-                
+            success: function (key) {
+
                 //var jObj = JSON.parse(json);
-                $.each(json, function (value, key) {
+                // $.each(json, function (value, key) {
 
-                    if (namecode === key.nameCode) {
+                // if (namecode == key.nameCode) {
 
-                        //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
-                        employeeProfileJSON.id = parseInt(key.id);
-                        employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
-                        employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
-                        employeeProfileJSON.nameCode = namecode;
-                        employeeProfileJSON.activityCode.name = actcode;
-                        employeeProfileJSON.activityCode.code = actcode_id;
-                        employeeProfileJSON.title = key.title;//employeeProfile.title;
-                        timeDataV2.employeeProfile = employeeProfileJSON;
+                //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
+                employeeProfileJSON.id = parseInt(key.id);
+
+                if (key.driversLicense != undefined) {
+                    employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(key.driversLicense.expiration);
+                    employeeProfileJSON.driversLicense.id = parseInt(key.driversLicense.id);
+                    employeeProfileJSON.driversLicense.number = key.driversLicense.number;
+                    employeeProfileJSON.driversLicense.state = key.driversLicense.state;
+                } else {
+                    var date = new Date();
+                    employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(date.getDate());
+                    employeeProfileJSON.driversLicense.id = null;
+                    employeeProfileJSON.driversLicense.number = "";
+                    employeeProfileJSON.driversLicense.state = "";
+
+                }
+
+
+                if (key.cellPhone != undefined) {
+                    employeeProfileJSON.cellPhone = key.cellPhone;
+                } else {
+                    employeeProfileJSON.cellPhone = "";
+                }
+
+                if (key.dutyStation != undefined) {
+                    employeeProfileJSON.dutyStation = key.dutyStation;
+                } else {
+                    employeeProfileJSON.dutyStation = "";
+                }
+
+
+                if (key.emergencyContactCellPhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactCellPhone1 = key.emergencyContactCellPhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactCellPhone1 = "";
+                }
+
+                if (key.emergencyContactCellPhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactCellPhone2 = key.emergencyContactCellPhone2;
+                } else {
+                    employeeProfileJSON.emergencyContactCellPhone2 = "";
+                }
+
+                if (key.emergencyContactCity1 != undefined) {
+                    employeeProfileJSON.emergencyContactCity1 = key.emergencyContactCity1;
+                } else {
+                    employeeProfileJSON.emergencyContactCity1 = "";
+                }
+
+                if (key.emergencyContactCity2 != undefined) {
+                    employeeProfileJSON.emergencyContactCity2 = key.emergencyContactCity2;
+                } else {
+                    employeeProfileJSON.emergencyContactCity2 = "";
+                }
+
+                if (key.emergencyContactFirstName1 != undefined) {
+                    employeeProfileJSON.emergencyContactFirstName1 = key.emergencyContactFirstName1;
+                } else {
+                    employeeProfileJSON.emergencyContactFirstName1 = "";
+                }
+
+                if (key.emergencyContactFirstName2 != undefined) {
+                    employeeProfileJSON.emergencyContactFirstName2 = key.emergencyContactFirstName2;
+                } else {
+                    employeeProfileJSON.emergencyContactFirstName2 = "";
+                }
+
+                if (key.emergencyContactHomePhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactHomePhone1 = key.emergencyContactHomePhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactHomePhone1 = "";
+                }
+
+                if (key.emergencyContactHomePhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactHomePhone2 = key.emergencyContactHomePhone2;
+
+                } else {
+                    employeeProfileJSON.emergencyContactHomePhone2 = "";//key.emergencyContactHomePhone2;
+                }
+
+                if (key.emergencyContactLastName1 != undefined) {
+                    employeeProfileJSON.emergencyContactLastName1 = key.emergencyContactLastName1;
+
+                } else {
+                    employeeProfileJSON.emergencyContactLastName1 = "";//key.emergencyContactLastName1;
+
+                }
+
+                if (key.emergencyContactLastName2 != undefined) {
+                    employeeProfileJSON.emergencyContactLastName2 = key.emergencyContactLastName2;
+                } else {
+                    employeeProfileJSON.emergencyContactLastName2 = "";//key.emergencyContactLastName2;
+                }
+
+                if (key.emergencyContactRelationship1 != undefined) {
+                    employeeProfileJSON.emergencyContactRelationship1 = key.emergencyContactRelationship1;
+                } else {
+                    employeeProfileJSON.emergencyContactRelationship1 = "";//key.emergencyContactRelationship1;
+                }
+
+
+                if (key.emergencyContactRelationship2 != undefined) {
+                    employeeProfileJSON.emergencyContactRelationship2 = key.emergencyContactRelationship2;
+
+                } else {
+                    employeeProfileJSON.emergencyContactRelationship2 = "";//key.emergencyContactRelationship2;
+                }
+
+                if (key.emergencyContactState1 != undefined) {
+                    employeeProfileJSON.emergencyContactState1 = key.emergencyContactState1;
+                } else {
+                    employeeProfileJSON.emergencyContactState1 = "";//key.emergencyContactState1;
+                }
+
+                if (key.emergencyContactState2 != undefined) {
+                    employeeProfileJSON.emergencyContactState2 = key.emergencyContactState2;
+                } else {
+                    employeeProfileJSON.emergencyContactState2 = "";//key.emergencyContactState2;
+                }
+
+                if (key.emergencyContactStreetAddress1 != undefined) {
+                    employeeProfileJSON.emergencyContactStreetAddress1 = key.emergencyContactStreetAddress1;
+                } else {
+                    employeeProfileJSON.emergencyContactStreetAddress1 = "";//key.emergencyContactStreetAddress1;
+                }
+
+                if (key.emergencyContactStreetAddress2 != undefined) {
+                    employeeProfileJSON.emergencyContactStreetAddress2 = key.emergencyContactStreetAddress2;
+                } else {
+                    employeeProfileJSON.emergencyContactStreetAddress2 = "";//key.emergencyContactStreetAddress2;
+                }
+
+                if (key.emergencyContactWorkPhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactWorkPhone1 = key.emergencyContactWorkPhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactWorkPhone1 = "";//key.emergencyContactWorkPhone1;
+                }
+
+                if (key.emergencyContactWorkPhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactWorkPhone2 = key.emergencyContactWorkPhone2;
+                } else {
+                    employeeProfileJSON.emergencyContactWorkPhone2 = "";//key.emergencyContactWorkPhone2;
+                }
+
+                if (key.emergencyContactZip1 != undefined) {
+                    employeeProfileJSON.emergencyContactZip1 = key.emergencyContactZip1;
+                } else {
+                    employeeProfileJSON.emergencyContactZip1 = "";//key.emergencyContactZip1;
+                }
+
+                if (key.emergencyContactZip2 != undefined) {
+                    employeeProfileJSON.emergencyContactZip2 = key.emergencyContactZip2;
+                } else {
+                    employeeProfileJSON.emergencyContactZip2 = "";//key.emergencyContactZip2;
+                }
+
+
+                if (key.homePhone != undefined) {
+                    employeeProfileJSON.homePhone = key.homePhone;
+                } else {
+                    employeeProfileJSON.homePhone = "";//key.homePhone;
+                }
+
+                if (key.overtimeHourlyWage != undefined) {
+                    employeeProfileJSON.overtimeHourlyWage = key.overtimeHourlyWage;
+                } else {
+                    employeeProfileJSON.overtimeHourlyWage = "";//key.overtimeHourlyWage;
+                }
+
+                if (key.personalEmail != undefined) {
+                    employeeProfileJSON.personalEmail = key.personalEmail;
+                } else {
+                    employeeProfileJSON.personalEmail = "";//key.personalEmail;
+                }
+
+                if (key.roomNumber != undefined) {
+                    employeeProfileJSON.roomNumber = key.roomNumber;
+                } else {
+                    employeeProfileJSON.roomNumber = "";//key.roomNumber;
+                }
+
+                if (key.training != undefined) {
+                    //employeeProfileJSON.training.push(JSONtraining);//key.training;
+                } else {
+                    $.each(key.training, function (key, value) {
+                        if (value.dateOfTraining != undefined) {
+                            JSONtraining.dateOfTraining = getCorrectDateFormat(value.dateOfTraining);
+                        } else {
+                            var date = new Date();
+                            JSONtraining.dateOfTraining = getCorrectDateFormat(date.getDate);
+                        }
+
+                        if (value.title != undefined) {
+                            JSONtraining.title = value.title;
+                        } else {
+                            JSONtraining.title = "";
+                        }
+
+                        if (value.hours != undefined) {
+                            JSONtraining.hours = parseInt(value.hours);
+                        } else {
+                            JSONtraining.hours = 0;
+                        }
+
+                        if (value.id != undefined) {
+                            JSONtraining.id = parseInt(value.id);
+                        } else {
+                            JSONtraining.id = 0;
+                        }
+
+                        if (value.location) {
+                            JSONtraining.location - value.location;
+                        } else {
+                            JSONtraining.location = "";
+                        }
+
+                        if (value.presenter != undefined) {
+                            JSONtraining.presenter = value.presenter;
+                        } else {
+                            JSONtraining.presenter = "";
+                        }
+
+                        if (value.title != undefined) {
+                            JSONtraining.title = value.title;
+                        } else {
+                            JSONtraining.title = "";
+                        }
+
+                        if (value.yearsValid != undefined) {
+                            JSONtraining.yearsValid = parseInt(value.yearsValid);
+                        } else {
+                            JSONtraining.yearsValid = 0;
+                        }
+
+
+                    });
+                }
+
+                employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
+                employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
+                employeeProfileJSON.nameCode = namecode;
+                employeeProfileJSON.activityCode.name = actcode;
+                employeeProfileJSON.activityCode.code = actcode_id;
+                employeeProfileJSON.title = key.title;//employeeProfile.title;
+
+                if (key.stateAssigned != undefined) {
+                    employeeProfileJSON.stateAssigned = key.stateAssigned;
+                } else {
+                    employeeProfileJSON.stateAssigned = "";
+                }
+
+
+                timeDataV2.employeeProfile = employeeProfileJSON;
 
 
 
-                    }
-                });
+
 
             },
             async: false,
@@ -955,15 +1764,39 @@ $("#visaSubmit").click(function (){
         if (visaTableArr.length > 0) {
             $.each(visaTableArr, function (index, value) {
                 expenseDetailsElement.amount = parseFloat(value.vtableAmount);
-                if (value.vtableDateVerified !== null && value.vtableDateVerified !== "") {
+                if (value.vtableDateVerified != null && value.vtableDateVerified != "") {
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(value.vtableDateVerified);
                 } else {
                     //this needs to change
                     var date = new Date();
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
                 }
-                expenseDetailsElement.expenseCode.type = value.vtableExp.split("-")[1];
-                expenseDetailsElement.expenseCode.id = parseInt(value.vtableExp.split("-")[0]);
+                var exp_code = value.vtableExp;
+                var check = false;
+                $.ajax({
+                    url: api + "/expenseCode",
+                    type: "GET",
+                    success: function (json) {
+
+                        $.each(json, function (key, values) {
+
+                            if (values.id == exp_code) {
+
+                                expenseDetailsElement.expenseCode.type = values.type;
+                                expenseDetailsElement.expenseCode.id = parseInt(values.id);
+                                check = true;
+                            }
+                        });
+                    },
+                    async: false,
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+                if (check == false) {
+                    expenseDetailsElement.expenseCode.type = "";
+                    expenseDetailsElement.expenseCode.id = null;
+                }
                 expenseDetailsElement.hours = 0;
 
 
@@ -976,12 +1809,12 @@ $("#visaSubmit").click(function (){
 
 
 
-                        expenseDetailsElement.JobCode.amount = parseInt(json.amount);
-                        expenseDetailsElement.JobCode.description = json.description;
-                        expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                        expenseDetailsElement.JobCode.id = parseInt(json.id);
+                        expenseDetailsElement.jobCode.amount = parseInt(json.amount);
+                        expenseDetailsElement.jobCode.description = json.description;
+                        expenseDetailsElement.jobCode.financialYear = json.financialYear;
+                        expenseDetailsElement.jobCode.jobCode = json.jobCode;
+                        expenseDetailsElement.jobCode.overrideCode = json.overrideCode;
+                        expenseDetailsElement.jobCode.id = parseInt(json.id);
 
                         /*expenseDetailsElement.JobCode.amount = json.amount;
                         expenseDetailsElement.JobCode.description = json.description;
@@ -995,7 +1828,7 @@ $("#visaSubmit").click(function (){
 
                     },
                     async: false,
-                    error: function(xhr, status, error) {
+                    error(xhr, status, error) {
 
                         try {
                             console.log(xhr.responseText);
@@ -1031,7 +1864,7 @@ $("#visaSubmit").click(function (){
             success: function (json) {
 
                 $.each(json, function (value, key) {
-                    if (key.code === pc_id) {
+                    if (key.code == pc_id) {
 
                         //alert("have matched pc_id: " + key.code);
                         timeDataV2.paymentCode.name = key.name;
@@ -1040,14 +1873,14 @@ $("#visaSubmit").click(function (){
                 });
             },
             async: false,
-            error: function(xhr, error, status) {
+            error(xhr, error, status) {
                 console.log(xhr.responseText);
             }
 
         });
 
         timeDataV2.secCode = "";
-        timeDataV2.state = state;
+        timeDataV2.state = "";
         timeDataV2.toDate = "";
         timeDataV2.total = 0;
         timeDataV2.travelRemarks = remarks;
@@ -1068,10 +1901,11 @@ $("#visaSubmit").click(function (){
             data: j,
             type: "POST",
             contentType: "application/json",
-            success: function(result, status, xhr) {
+            success(result, status, xhr) {
                 console.log("post expense success!");
+                $('#visaTable tbody').empty();
             },
-            error: function(xhr, status, error) {
+            error(xhr, status, error) {
                 //debugger;
                 try {
                     console.log("responseCode: " + xhr.responseText);
@@ -1080,10 +1914,12 @@ $("#visaSubmit").click(function (){
                     console.log(status);
                     console.log(error);
                     
+                    
                 } catch (e) {
                     console.log(e);
                 }
-            }
+            },
+            async: false
         });
 
         //postExpense(postExpenseSuccess, postExpenseRejected, j);
@@ -1093,7 +1929,7 @@ $("#visaSubmit").click(function (){
 });
 
 
-$("#otherSubmit").click(function (){
+$("#otherSubmit").click(function () {
     try {
         var fy = $("#ofy").val();
         var dateEntered = $("#odateentered").val();
@@ -1124,7 +1960,7 @@ $("#otherSubmit").click(function (){
 
         var table_list = [];
 
-        $('#otherTable tr').each(function (){
+        $('#otherTable tr').each(function () {
             var table_exp = $(this).find("#otableExp").html();
             var table_jobcode = $(this).find("#otableJobCode").html();
             //var table_hours = $(this).find("#tableHours").html();
@@ -1133,10 +1969,15 @@ $("#otherSubmit").click(function (){
             var table_dateVerified = $(this).find("o#tableDateVerified").html();
 
             try {
-                if (table_jobcode !== undefined) {
+                if (table_jobcode != undefined) {
                     otherTableObj.otableExp = table_exp;
                     otherTableObj.otableJobCode = table_jobcode;
-                    otherTableObj.otableAmount = table_Amount;
+                    if (table_Amount != undefined) {
+                        otherTableObj.otableAmount = parseInt(table_Amount);
+                    }
+                    else {
+                        otherTableObj.otableAmount = 0;
+                    }
                     otherTableObj.otJobCodeDesc = table_jobCodeDesc;
                     otherTableObj.otableDateVerified = table_dateVerified;
 
@@ -1151,36 +1992,279 @@ $("#otherSubmit").click(function (){
         timeDataV2.activityCode.name = actcode;
         timeDataV2.activityCode.code = actcode_id;
         timeDataV2.budgetObjectCode.name = boc;
-        timeDataV2.budgetObjectCode.Id = parseInt(budgetObjCode_id);
+        timeDataV2.budgetObjectCode.id = parseInt(budgetObjCode_id);
         timeDataV2.category.description = "";
         timeDataV2.createdAt = "";
         timeDataV2.createdBy = "";
         timeDataV2.description = desc;
 
         $.ajax({
-            url: api + "/employeeProfile",
+            url: api + "/employeeProfile?nameCode=" + namecode,
             type: "GET",
-            success: function (json) {
-                
+            success: function (key) {
+
                 //var jObj = JSON.parse(json);
-                $.each(json, function (value, key) {
+                // $.each(json, function (value, key) {
 
-                    if (namecode === key.nameCode) {
+                // if (namecode == key.nameCode) {
 
-                        //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
-                        employeeProfileJSON.id = key.id;
-                        employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
-                        employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
-                        employeeProfileJSON.nameCode = namecode;
-                        employeeProfileJSON.activityCode.name = actcode;
-                        employeeProfileJSON.activityCode.code = actcode_id;
-                        employeeProfileJSON.title = key.title;//employeeProfile.title;
-                        timeDataV2.employeeProfile = employeeProfileJSON;
+                //alert("namecode - " + namecode + " && key.nameCode - " + key.nameCode);
+                employeeProfileJSON.id = parseInt(key.id);
+
+                if (key.driversLicense != undefined) {
+                    employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(key.driversLicense.expiration);
+                    employeeProfileJSON.driversLicense.id = parseInt(key.driversLicense.id);
+                    employeeProfileJSON.driversLicense.number = key.driversLicense.number;
+                    employeeProfileJSON.driversLicense.state = key.driversLicense.state;
+                } else {
+                    var date = new Date();
+                    employeeProfileJSON.driversLicense.expiration = getCorrectDateFormat(date.getDate());
+                    employeeProfileJSON.driversLicense.id = null;
+                    employeeProfileJSON.driversLicense.number = "";
+                    employeeProfileJSON.driversLicense.state = "";
+
+                }
+
+
+                if (key.cellPhone != undefined) {
+                    employeeProfileJSON.cellPhone = key.cellPhone;
+                } else {
+                    employeeProfileJSON.cellPhone = "";
+                }
+
+                if (key.dutyStation != undefined) {
+                    employeeProfileJSON.dutyStation = key.dutyStation;
+                } else {
+                    employeeProfileJSON.dutyStation = "";
+                }
+
+
+                if (key.emergencyContactCellPhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactCellPhone1 = key.emergencyContactCellPhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactCellPhone1 = "";
+                }
+
+                if (key.emergencyContactCellPhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactCellPhone2 = key.emergencyContactCellPhone2;
+                } else {
+                    employeeProfileJSON.emergencyContactCellPhone2 = "";
+                }
+
+                if (key.emergencyContactCity1 != undefined) {
+                    employeeProfileJSON.emergencyContactCity1 = key.emergencyContactCity1;
+                } else {
+                    employeeProfileJSON.emergencyContactCity1 = "";
+                }
+
+                if (key.emergencyContactCity2 != undefined) {
+                    employeeProfileJSON.emergencyContactCity2 = key.emergencyContactCity2;
+                } else {
+                    employeeProfileJSON.emergencyContactCity2 = "";
+                }
+
+                if (key.emergencyContactFirstName1 != undefined) {
+                    employeeProfileJSON.emergencyContactFirstName1 = key.emergencyContactFirstName1;
+                } else {
+                    employeeProfileJSON.emergencyContactFirstName1 = "";
+                }
+
+                if (key.emergencyContactFirstName2 != undefined) {
+                    employeeProfileJSON.emergencyContactFirstName2 = key.emergencyContactFirstName2;
+                } else {
+                    employeeProfileJSON.emergencyContactFirstName2 = "";
+                }
+
+                if (key.emergencyContactHomePhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactHomePhone1 = key.emergencyContactHomePhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactHomePhone1 = "";
+                }
+
+                if (key.emergencyContactHomePhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactHomePhone2 = key.emergencyContactHomePhone2;
+
+                } else {
+                    employeeProfileJSON.emergencyContactHomePhone2 = "";//key.emergencyContactHomePhone2;
+                }
+
+                if (key.emergencyContactLastName1 != undefined) {
+                    employeeProfileJSON.emergencyContactLastName1 = key.emergencyContactLastName1;
+
+                } else {
+                    employeeProfileJSON.emergencyContactLastName1 = "";//key.emergencyContactLastName1;
+
+                }
+
+                if (key.emergencyContactLastName2 != undefined) {
+                    employeeProfileJSON.emergencyContactLastName2 = key.emergencyContactLastName2;
+                } else {
+                    employeeProfileJSON.emergencyContactLastName2 = "";//key.emergencyContactLastName2;
+                }
+
+                if (key.emergencyContactRelationship1 != undefined) {
+                    employeeProfileJSON.emergencyContactRelationship1 = key.emergencyContactRelationship1;
+                } else {
+                    employeeProfileJSON.emergencyContactRelationship1 = "";//key.emergencyContactRelationship1;
+                }
+
+
+                if (key.emergencyContactRelationship2 != undefined) {
+                    employeeProfileJSON.emergencyContactRelationship2 = key.emergencyContactRelationship2;
+
+                } else {
+                    employeeProfileJSON.emergencyContactRelationship2 = "";//key.emergencyContactRelationship2;
+                }
+
+                if (key.emergencyContactState1 != undefined) {
+                    employeeProfileJSON.emergencyContactState1 = key.emergencyContactState1;
+                } else {
+                    employeeProfileJSON.emergencyContactState1 = "";//key.emergencyContactState1;
+                }
+
+                if (key.emergencyContactState2 != undefined) {
+                    employeeProfileJSON.emergencyContactState2 = key.emergencyContactState2;
+                } else {
+                    employeeProfileJSON.emergencyContactState2 = "";//key.emergencyContactState2;
+                }
+
+                if (key.emergencyContactStreetAddress1 != undefined) {
+                    employeeProfileJSON.emergencyContactStreetAddress1 = key.emergencyContactStreetAddress1;
+                } else {
+                    employeeProfileJSON.emergencyContactStreetAddress1 = "";//key.emergencyContactStreetAddress1;
+                }
+
+                if (key.emergencyContactStreetAddress2 != undefined) {
+                    employeeProfileJSON.emergencyContactStreetAddress2 = key.emergencyContactStreetAddress2;
+                } else {
+                    employeeProfileJSON.emergencyContactStreetAddress2 = "";//key.emergencyContactStreetAddress2;
+                }
+
+                if (key.emergencyContactWorkPhone1 != undefined) {
+                    employeeProfileJSON.emergencyContactWorkPhone1 = key.emergencyContactWorkPhone1;
+                } else {
+                    employeeProfileJSON.emergencyContactWorkPhone1 = "";//key.emergencyContactWorkPhone1;
+                }
+
+                if (key.emergencyContactWorkPhone2 != undefined) {
+                    employeeProfileJSON.emergencyContactWorkPhone2 = key.emergencyContactWorkPhone2;
+                } else {
+                    employeeProfileJSON.emergencyContactWorkPhone2 = "";//key.emergencyContactWorkPhone2;
+                }
+
+                if (key.emergencyContactZip1 != undefined) {
+                    employeeProfileJSON.emergencyContactZip1 = key.emergencyContactZip1;
+                } else {
+                    employeeProfileJSON.emergencyContactZip1 = "";//key.emergencyContactZip1;
+                }
+
+                if (key.emergencyContactZip2 != undefined) {
+                    employeeProfileJSON.emergencyContactZip2 = key.emergencyContactZip2;
+                } else {
+                    employeeProfileJSON.emergencyContactZip2 = "";//key.emergencyContactZip2;
+                }
+
+
+                if (key.homePhone != undefined) {
+                    employeeProfileJSON.homePhone = key.homePhone;
+                } else {
+                    employeeProfileJSON.homePhone = "";//key.homePhone;
+                }
+
+                if (key.overtimeHourlyWage != undefined) {
+                    employeeProfileJSON.overtimeHourlyWage = key.overtimeHourlyWage;
+                } else {
+                    employeeProfileJSON.overtimeHourlyWage = "";//key.overtimeHourlyWage;
+                }
+
+                if (key.personalEmail != undefined) {
+                    employeeProfileJSON.personalEmail = key.personalEmail;
+                } else {
+                    employeeProfileJSON.personalEmail = "";//key.personalEmail;
+                }
+
+                if (key.roomNumber != undefined) {
+                    employeeProfileJSON.roomNumber = key.roomNumber;
+                } else {
+                    employeeProfileJSON.roomNumber = "";//key.roomNumber;
+                }
+
+                if (key.training != undefined) {
+                    //employeeProfileJSON.training.push(JSONtraining);//key.training;
+                } else {
+                    $.each(key.training, function (key, value) {
+                        if (value.dateOfTraining != undefined) {
+                            JSONtraining.dateOfTraining = getCorrectDateFormat(value.dateOfTraining);
+                        } else {
+                            var date = new Date();
+                            JSONtraining.dateOfTraining = getCorrectDateFormat(date.getDate);
+                        }
+
+                        if (value.title != undefined) {
+                            JSONtraining.title = value.title;
+                        } else {
+                            JSONtraining.title = "";
+                        }
+
+                        if (value.hours != undefined) {
+                            JSONtraining.hours = parseInt(value.hours);
+                        } else {
+                            JSONtraining.hours = 0;
+                        }
+
+                        if (value.id != undefined) {
+                            JSONtraining.id = parseInt(value.id);
+                        } else {
+                            JSONtraining.id = 0;
+                        }
+
+                        if (value.location) {
+                            JSONtraining.location - value.location;
+                        } else {
+                            JSONtraining.location = "";
+                        }
+
+                        if (value.presenter != undefined) {
+                            JSONtraining.presenter = value.presenter;
+                        } else {
+                            JSONtraining.presenter = "";
+                        }
+
+                        if (value.title != undefined) {
+                            JSONtraining.title = value.title;
+                        } else {
+                            JSONtraining.title = "";
+                        }
+
+                        if (value.yearsValid != undefined) {
+                            JSONtraining.yearsValid = parseInt(value.yearsValid);
+                        } else {
+                            JSONtraining.yearsValid = 0;
+                        }
+
+
+                    });
+                }
+
+                employeeProfileJSON.firstName = key.firstName;//emplyeeProfile.firstName;
+                employeeProfileJSON.lastName = key.lastName;//employeeProfile.lastName;
+                employeeProfileJSON.nameCode = namecode;
+                employeeProfileJSON.activityCode.name = actcode;
+                employeeProfileJSON.activityCode.code = actcode_id;
+                employeeProfileJSON.title = key.title;//employeeProfile.title;
+
+                if (key.stateAssigned != undefined) {
+                    employeeProfileJSON.stateAssigned = key.stateAssigned;
+                } else {
+                    employeeProfileJSON.stateAssigned = "";
+                }
+
+
+                timeDataV2.employeeProfile = employeeProfileJSON;
 
 
 
-                    }
-                });
+
 
             },
             async: false,
@@ -1200,19 +2284,43 @@ $("#otherSubmit").click(function (){
             $.each(otherTableArr, function (index, value) {
 
                 expenseDetailsElement.amount = parseInt(value.otableAmount);
-                if (value.otableDateVerified !== null && value.otableDateVerified !== "") {
+                if (value.otableDateVerified != null && value.otableDateVerified != "") {
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(value.otableDateVerified);
                 } else {
                     //this needs to change
                     var date = new Date();
                     expenseDetailsElement.dateVerified = getCorrectDateFormat(date.getDate());
                 }
-                expenseDetailsElement.expenseCode.type = value.otableExp.split("-")[1];
-                expenseDetailsElement.expenseCode.id = parseInt(value.otableExp.split("-")[0]);
-                expenseDetailsElement.hours = hours;
+                var exp_code = value.otableExp;
+                var check = false;
+                $.ajax({
+                    url: api + "/expenseCode",
+                    type: "GET",
+                    success: function (json) {
+
+                        $.each(json, function (key, values) {
+
+                            if (values.id == exp_code) {
+
+                                expenseDetailsElement.expenseCode.type = values.type;
+                                expenseDetailsElement.expenseCode.id = parseInt(values.id);
+                                check = true;
+                            }
+                        });
+                    },
+                    async: false,
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+                if (check == false) {
+                    expenseDetailsElement.expenseCode.type = "";
+                    expenseDetailsElement.expenseCode.id = null;
+                }
+                expenseDetailsElement.hours = 0;
 
 
-
+                
                 $.ajax({
                     url: api + "/jobCode/" + value.otableJobCode,
                     type: "GET",
@@ -1221,26 +2329,26 @@ $("#otherSubmit").click(function (){
 
 
 
-                        expenseDetailsElement.JobCode.amount = parseFloat(json.amount);
-                        expenseDetailsElement.JobCode.description = json.description;
-                        expenseDetailsElement.JobCode.financialYear = json.financialYear;
-                        expenseDetailsElement.JobCode.jobCode = json.jobCode;
-                        expenseDetailsElement.JobCode.overrideCode = json.overrideCode;
-                        expenseDetailsElement.JobCode.id = parseInt(json.id);
-
+                        expenseDetailsElement.jobCode.amount = parseFloat(json.amount);
+                        expenseDetailsElement.jobCode.description = json.description;
+                        expenseDetailsElement.jobCode.financialYear = json.financialYear;
+                        expenseDetailsElement.jobCode.jobCode = json.jobCode;
+                        expenseDetailsElement.jobCode.overrideCode = json.overrideCode;
+                        expenseDetailsElement.jobCode.id = parseInt(json.id);
+                        
 
 
 
                     },
                     async: false,
-                    error: function(xhr, status, err) {
+                    error(xhr, status, error) {
 
                         try {
                             console.log(xhr.responseText);
                             console.log(xhr.statusText);
                             console.log(xhr.readyState);
                             console.log(status);
-                            console.log(err);
+                            console.log(error);
                         } catch (e) {
                             console.log(e);
                         }
@@ -1270,7 +2378,7 @@ $("#otherSubmit").click(function (){
             success: function (json) {
 
                 $.each(json, function (value, key) {
-                    if (key.code === pc_id) {
+                    if (key.code == pc_id) {
 
                         //alert("have matched pc_id: " + key.code);
                         timeDataV2.paymentCode.name = key.name;
@@ -1279,14 +2387,14 @@ $("#otherSubmit").click(function (){
                 });
             },
             async: false,
-            error: function(xhr, error, status) {
+            error(xhr, error, status) {
                 console.log("error - " + xhr.responseText);
             }
 
         });
 
         timeDataV2.secCode = "";
-        timeDataV2.state = state;
+        timeDataV2.state = "";
         timeDataV2.toDate = "";
         timeDataV2.total = 0;
         timeDataV2.travelRemarks = "";
@@ -1300,6 +2408,7 @@ $("#otherSubmit").click(function (){
         //debugger;
         var j = JSON.stringify(timeDataV2);
         console.log(j);
+        //debugger;
 
         // debugger;
         $.ajax({
@@ -1307,10 +2416,11 @@ $("#otherSubmit").click(function (){
             data: j,
             type: "POST",
             contentType: "application/json",
-            success: function(result, status, xhr) {
+            success(result, status, xhr) {
                 console.log("post expense success!");
+                $('#otherTable tbody').empty();
             },
-            error: function(xhr, status, error) {
+            error(xhr, status, error) {
                 //debugger;
                 try {
                     console.log("responseCode: " + xhr.responseText);
@@ -1318,11 +2428,13 @@ $("#otherSubmit").click(function (){
                     console.log(xhr.readyState);
                     console.log(status);
                     console.log(error);
+                    
                    
                 } catch (e) {
                     console.log(e);
                 }
-            }
+            },
+            async: false
         });
 
         //postExpense(postExpenseSuccess, postExpenseRejected, j);
@@ -1383,14 +2495,60 @@ var employeeProfileJSON = {
         "code": "string",
         "name": "string"
     },
+    "cellPhone": "string",
+    "dutyStation": "string",
+    "emergencyContactCellPhone1": "string",
+    "emergencyContactCellPhone2": "string",
+    "emergencyContactCity1": "string",
+    "emergencyContactCity2": "string",
+    "emergencyContactFirstName1": "string",
+    "emergencyContactFirstName2": "string",
+    "emergencyContactHomePhone1": "string",
+    "emergencyContactHomePhone2": "string",
+    "emergencyContactLastName1": "string",
+    "emergencyContactLastName2": "string",
+    "emergencyContactRelationship1": "string",
+    "emergencyContactRelationship2": "string",
+    "emergencyContactState1": "string",
+    "emergencyContactState2": "string",
+    "emergencyContactStreetAddress1": "string",
+    "emergencyContactStreetAddress2": "string",
+    "emergencyContactWorkPhone1": "string",
+    "emergencyContactWorkPhone2": "string",
+    "emergencyContactZip1": "string",
+    "emergencyContactZip2": "string",
     "firstName": "string",
+    "homePhone": "string",
     "id": 0,
     "lastName": "string",
     "nameCode": "string",
+    "overtimeHourlyWage": 0,
     "payPeriodsLeft": 0,
-    "regPayPerPeriod": 0,
+    "personalEmail": "string",
+    "regPayPerPayPeriod": 0,
+    "roomNumber": "string",
     "stateAssigned": "string",
-    "title": "string"
+    "title": "string",
+    "driversLicense":{
+        "employeeProfile": {},
+        "expiration": "string",
+        "id": 0,
+        "number": "string",
+        "state":"string"
+    },
+    "training": [
+    ]
+};
+
+var JSONtraining = {
+    "dateOfTraining": "2018-09-04T13:33:03.132Z",
+    "hours": 0,
+    "id": 0,
+    "location": "string",
+    "presenter": "string",
+    "title": "string",
+    "training": {},
+    "yearsValid": 0
 };
 
     var expenseDetailsElement = {
@@ -1404,7 +2562,7 @@ var employeeProfileJSON = {
 
         "hours": 0,
         "id": 0,
-       "JobCode": {
+       "jobCode": {
             "amount": 0,
             "description": "string",
             "financialYear": 0,
@@ -1425,7 +2583,7 @@ var timeDataV2 = {
         "name": "string"
     },
     "budgetObjectCode": {
-        "Id": 0,
+        "id": 0,
         "name": "string"
     },
     "category": {
@@ -1481,14 +2639,14 @@ var ActivityCodeJSON = {
 };
 
 
-    $("#add").click(function (){
+    $("#add").click(function () {
         var lastField = $("#buildyourform div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
         fieldWrapper.data("idx", intId);
         var fName = $("<input type=\"text\" class=\"fieldname\" />");
         var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
-        removeButton.click(function (){
+        removeButton.click(function () {
             $(this).parent().remove();
         });
         fieldWrapper.append(fName);
@@ -1496,10 +2654,10 @@ var ActivityCodeJSON = {
         fieldWrapper.append(removeButton);
         $("#buildyourform").append(fieldWrapper);
     });
-    $("#preview").click(function (){
+    $("#preview").click(function () {
         $("#yourform").remove();
         var fieldSet = $("<fieldset id=\"yourform\"><legend>Your Form</legend></fieldset>");
-        $("#buildyourform div").each(function (){
+        $("#buildyourform div").each(function () {
             var id = "input" + $(this).attr("id").replace("field", "");
             var label = $("<label for=\"" + id + "\">" + $(this).find("input.fieldname").first().val() + "</label>");
             var input;

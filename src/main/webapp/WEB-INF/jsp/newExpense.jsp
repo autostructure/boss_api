@@ -1,4 +1,4 @@
-s<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -545,9 +545,9 @@ s<!doctype html>
 
                                                         <div class="row">
                                                             <div class="col-4 offset-7">
-                                                                <button type="button" class="btn btn-lg btn-success">
+                                                                <button id="taddbtn" type="button" class="btn btn-lg btn-success">
                                                                     <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
-                                                                    <span id="taddbtn" class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                    <span class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
                                                                 </button>                                                                     
                                                             </div>
                                                         </div>
@@ -564,29 +564,7 @@ s<!doctype html>
                                                                       </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                      <tr>
-                                                                        <td>
-                                                                            <input type="text" id="ttableExp" class="form-control" aria-label="description" value="02" aria-describedby="basic-addon1">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" id="ttableJobCode" class="form-control" aria-label="description" value="FRF13818" aria-describedby="basic-addon1">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" id="ttableAmount" class="form-control"  aria-label="description" value="$234" aria-describedby="basic-addon1">
-                                                                        </td>                                                                        
-                                                                        <td>
-                                                                            <span class="ttableJobCodeDesc">Mileage & Parking</span>
-                                                                        </td>
 
-                                                                        <td>
-                                                                            <div class="input-group date" data-provide="datepicker">
-                                                                                <input type="text" placeholder="Pick a date" id="ttableDateVerified" class="form-control">
-                                                                                <div class="input-group-addon">
-                                                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                                                </div>
-                                                                            </div>                                                                                
-                                                                        </td>
-                                                                      </tr>
                                                                     </tbody>
                                                                   </table>
                                                     </div>
@@ -596,7 +574,7 @@ s<!doctype html>
 
                                             <div class="row submitrow">
                                                 <div class="col-4 offset-4">
-                                                    <button id="travelSubmit" type="button" class="btn btn-lg submitbtn btn-success">
+                                                    <button id="travelSubmit" type="submit" class="btn btn-lg submitbtn btn-success">
                                                         <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
                                                         Submit Expense 
                                                     </button> 
@@ -665,11 +643,11 @@ s<!doctype html>
                                                                 <div class="form-group">
                                                                     <label class="control-label" for="vnamecode">Namecode<span class="reqClass"> *</span></label>
                                                                     <select class="form-control" required id="vnamecode">
-                                                                        <option>1</option>
+                                                                       <!-- <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
                                                                         <option>4</option>
-                                                                        <option>5</option>
+                                                                        <option>5</option> -->
                                                                     </select>
                                                                     <div class="help-block with-errors"></div>
                                                                 </div>
@@ -775,9 +753,9 @@ s<!doctype html>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4 offset-7">
-                                                                <button type="button" class="btn btn-lg btn-success">
+                                                                <button id="vaddbtn" type="button" class="btn btn-lg btn-success">
                                                                     <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
-                                                                    <span id="vaddbtn" class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                    <span class="addbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
                                                                 </button>                                                                     
                                                             </div>
                                                         </div>
@@ -794,7 +772,7 @@ s<!doctype html>
                                                                       </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                      <tr>
+                                                                     <!-- <tr>
                                                                         <td>
                                                                             <input type="text" id="vtableExp" class="form-control" aria-label="description" value="02" aria-describedby="basic-addon1">
                                                                         </td>
@@ -815,7 +793,7 @@ s<!doctype html>
                                                                                 </div>
                                                                             </div>                                                                                
                                                                         </td>
-                                                                      </tr>
+                                                                      </tr>-->
                                                                     </tbody>
                                                                   </table>
                                                     </div>
@@ -824,7 +802,7 @@ s<!doctype html>
 
                                             <div class="row submitrow">
                                                 <div class="col-4 offset-4">
-                                                    <button id="visaSubmit" type="button" class="btn btn-lg submitbtn btn-success">
+                                                    <button id="visaSubmit" type="submit" class="btn btn-lg submitbtn btn-success">
                                                         <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
                                                         Submit Expense 
                                                     </button> 
@@ -894,11 +872,11 @@ s<!doctype html>
                                                                 <div class="form-group">
                                                                     <label class="control-label" for="onamecode">Namecode<span class="reqClass"> *</span></label>
                                                                     <select required class="form-control" id="onamecode">
-                                                                        <option>1</option>
+                                                                       <!-- <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
                                                                         <option>4</option>
-                                                                        <option>5</option>
+                                                                        <option>5</option>m -->
                                                                     </select>
                                                                     
                                                                 </div>
@@ -1004,15 +982,15 @@ s<!doctype html>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4 offset-7">
-                                                                <button type="button" class="btn btn-lg btn-success">
+                                                                <button id="oaddbtn" type="button" class="btn btn-lg btn-success">
                                                                     <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
-                                                                    <span id="oaddbtn" class="oaddbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+                                                                    <span  class="oaddbtn">Add</span> <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
                                                                 </button>                                                                     
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-8 bottomBR">
-                                                            <table class="otherTable">
+                                                            <table id="otherTable" class="otherTable">
                                                                     <thead>
                                                                       <tr>
                                                                         <th style="width: 10%">Exp#</th>
@@ -1023,7 +1001,7 @@ s<!doctype html>
                                                                       </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                      <tr>
+                                                                      <!--<tr>
                                                                         <td>
                                                                             <input type="text" id="otableExp" class="form-control" aria-label="description" value="02" aria-describedby="basic-addon1">
                                                                         </td>
@@ -1044,7 +1022,7 @@ s<!doctype html>
                                                                                 </div>
                                                                             </div>                                                                                
                                                                         </td>
-                                                                      </tr>
+                                                                      </tr>-->
                                                                     </tbody>
                                                                   </table>
                                                     </div>
@@ -1053,7 +1031,7 @@ s<!doctype html>
 
                                             <div class="row submitrow">
                                                 <div class="col-4 offset-4">
-                                                    <button type="button" id="otherSubmit" class="btn btn-lg submitbtn btn-success">
+                                                    <button type="submit" id="otherSubmit" class="btn btn-lg submitbtn btn-success">
                                                         <!-- <i class="fa fa-2x fa-arrow-circle-o-right" style="color: #006633"></i> -->
                                                         Submit Expense 
                                                     </button> 
@@ -1077,8 +1055,9 @@ s<!doctype html>
         </main>
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
          </footer>
-
         <script src="js/ead.min.js"></script>
+		<script src="js/pagesJS/ApiCalls.js"></script>
+
         <script src="js/pagesJS/mainPages.js"></script>
         <script src="js/pagesJS/newExpense.js"></script>
         <script src="js/bootstrap-datepicker.js"></script>
