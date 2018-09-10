@@ -1,8 +1,7 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -25,7 +24,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -35,7 +33,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EmployeeProfile implements Serializable {
 
     @Id
@@ -182,15 +180,14 @@ public class EmployeeProfile implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date confidentialityAgreementDate;
-
-    @Transient
-    private Long supervisorId;
-
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "supervisor_id")
+    @JsonIgnore
     private EmployeeProfile supervisor;
 
-    @OneToMany(mappedBy = "supervisor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "supervisor", fetch = FetchType.EAGER, 
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EmployeeProfile> employees;
 
     @JsonIgnore
@@ -203,7 +200,7 @@ public class EmployeeProfile implements Serializable {
     private DriversLicense driversLicense;
 
     public EmployeeProfile() {
-        this.employees = new HashSet<EmployeeProfile>();
+        this.employees = new HashSet<>();
     }
 
     public void setEmployeeProfilePhoto(EmployeeProfilePhoto profilePhoto) {
@@ -903,20 +900,6 @@ public class EmployeeProfile implements Serializable {
      */
     public void setEmployees(Set<EmployeeProfile> employees) {
         this.employees = employees;
-    }
-
-    /**
-     * @return the supervisorId
-     */
-    public Long getSupervisorId() {
-        return supervisorId;
-    }
-
-    /**
-     * @param supervisorId the supervisorId to set
-     */
-    public void setSupervisorId(Long supervisorId) {
-        this.supervisorId = supervisorId;
     }
 
     /**

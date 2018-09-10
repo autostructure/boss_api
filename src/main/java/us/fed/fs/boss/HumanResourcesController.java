@@ -1,6 +1,7 @@
 package us.fed.fs.boss;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ public class HumanResourcesController {
 
     @Autowired
     EmployeeProfileRepository employeeProfileRepository;
-    
+
     @Autowired
     TrainingRepository trainingRepository;
-    
+
     @Autowired
     DutyStationRepository dutyStationRepository;
 
@@ -49,8 +50,17 @@ public class HumanResourcesController {
                     return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
                 });
 
+        // do this programmatically for later groups / permissions control
+        employeeProfileDetails.getEmployees().forEach((child) -> {
+            if (!child.getId().equals(employeeProfileDetails.getId())) {
+                child.setSupervisor(employeeProfileDetails);
+                employeeProfileRepository.save(child);
+            }
+        });
+
         EmployeeProfile updatedEmployeeProfile = employeeProfileRepository.save(employeeProfileDetails);
         return updatedEmployeeProfile;
+
     }
 
     // Get All Employee Profiles
@@ -64,12 +74,12 @@ public class HumanResourcesController {
         }
 
     }
-    
+
     @GetMapping("/dutyStations")
     public ResponseEntity getDutyStations(@RequestParam(value = "nameCode", required = false) final String nameCode) {
         List<String> namesList = dutyStationRepository.findAll().stream()
-                                   .map(DutyStation::getDescription)
-                                   .collect(Collectors.toList());
+                .map(DutyStation::getDescription)
+                .collect(Collectors.toList());
         return new ResponseEntity<>(namesList, HttpStatus.OK);
     }
 
@@ -80,7 +90,7 @@ public class HumanResourcesController {
                     return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
                 });
     }
-    
+
     // Get All Employee Profiles
     @GetMapping("/training")
     public ResponseEntity getAllTrainings(@RequestParam(value = "nameCode", required = false) final String nameCode) {
