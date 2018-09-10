@@ -1,6 +1,7 @@
 package us.fed.fs.boss;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
+import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Training;
+import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
 
@@ -26,6 +29,9 @@ public class HumanResourcesController {
     
     @Autowired
     TrainingRepository trainingRepository;
+    
+    @Autowired
+    DutyStationRepository dutyStationRepository;
 
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -57,6 +63,14 @@ public class HumanResourcesController {
             return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0), HttpStatus.OK);
         }
 
+    }
+    
+    @GetMapping("/dutyStations")
+    public ResponseEntity getDutyStations(@RequestParam(value = "nameCode", required = false) final String nameCode) {
+        List<String> namesList = dutyStationRepository.findAll().stream()
+                                   .map(DutyStation::getDescription)
+                                   .collect(Collectors.toList());
+        return new ResponseEntity<>(namesList, HttpStatus.OK);
     }
 
     @GetMapping("/employeeProfile/{id}")
