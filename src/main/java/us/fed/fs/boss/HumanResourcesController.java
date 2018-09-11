@@ -55,20 +55,12 @@ public class HumanResourcesController {
                     return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
                 });
 
-        // do this programmatically for later groups / permissions control
         employeeProfileDetails.getEmployees().forEach((child) -> {
             if (!child.getId().equals(employeeProfileDetails.getId())) {
                 Set<EmployeeProfile> supervisors = child.getSupervisors();
                 if (!supervisors.contains(employeeProfileDetails)) {
                     supervisors.add(employeeProfileDetails);
                     child.setSupervisors(supervisors);
-                    for(int i =0; i < 100; i++) {
-                    System.out.println("LOG ---------------------> added");
-                    }
-                } else {
-                    for(int i =0; i < 100; i++) {
-                    System.out.println("LOG ---------------------> supervisors.contains 1");
-                    }
                 }
                 employeeProfileRepository.save(child);
             }
