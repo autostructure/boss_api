@@ -18,6 +18,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -37,6 +39,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class EmployeeProfile implements Serializable {
 
     @Id
+    @Column(name="employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -180,15 +183,19 @@ public class EmployeeProfile implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date confidentialityAgreementDate;
-    
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "supervisor_id")
-    @JsonIgnore
-    private EmployeeProfile supervisor;
 
-    @OneToMany(mappedBy = "supervisor", fetch = FetchType.EAGER, 
-            cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<EmployeeProfile> employees;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "supervisor_employee",
+            joinColumns = {
+                @JoinColumn(name = "employee_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "supervisor_id")})
+    
+    @JsonIgnore
+    private Set<EmployeeProfile> supervisors = new HashSet<>();
+
+    @ManyToMany(mappedBy = "supervisors")
+    private Set<EmployeeProfile> employees = new HashSet<>();
 
     @JsonIgnore
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
@@ -889,6 +896,20 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
+     * @return the supervisors
+     */
+    public Set<EmployeeProfile> getSupervisors() {
+        return supervisors;
+    }
+
+    /**
+     * @param supervisors the supervisors to set
+     */
+    public void setSupervisors(Set<EmployeeProfile> supervisors) {
+        this.supervisors = supervisors;
+    }
+
+    /**
      * @return the employees
      */
     public Set<EmployeeProfile> getEmployees() {
@@ -900,20 +921,6 @@ public class EmployeeProfile implements Serializable {
      */
     public void setEmployees(Set<EmployeeProfile> employees) {
         this.employees = employees;
-    }
-
-    /**
-     * @return the supervisor
-     */
-    public EmployeeProfile getSupervisor() {
-        return supervisor;
-    }
-
-    /**
-     * @param supervisor the supervisor to set
-     */
-    public void setSupervisor(EmployeeProfile supervisor) {
-        this.supervisor = supervisor;
     }
 
 }

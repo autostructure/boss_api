@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
+import us.fed.fs.boss.model.Contact;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Training;
+import us.fed.fs.boss.repository.ContactRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
@@ -33,6 +35,9 @@ public class HumanResourcesController {
 
     @Autowired
     DutyStationRepository dutyStationRepository;
+
+    @Autowired
+    ContactRepository contactRepository;
 
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -53,7 +58,18 @@ public class HumanResourcesController {
         // do this programmatically for later groups / permissions control
         employeeProfileDetails.getEmployees().forEach((child) -> {
             if (!child.getId().equals(employeeProfileDetails.getId())) {
-                child.setSupervisor(employeeProfileDetails);
+                Set<EmployeeProfile> supervisors = child.getSupervisors();
+                if (!supervisors.contains(employeeProfileDetails)) {
+                    supervisors.add(employeeProfileDetails);
+                    child.setSupervisors(supervisors);
+                    for(int i =0; i < 100; i++) {
+                    System.out.println("LOG ---------------------> added");
+                    }
+                } else {
+                    for(int i =0; i < 100; i++) {
+                    System.out.println("LOG ---------------------> supervisors.contains 1");
+                    }
+                }
                 employeeProfileRepository.save(child);
             }
         });
@@ -109,6 +125,38 @@ public class HumanResourcesController {
                 .orElseThrow(() -> {
                     return new ResourceNotFoundException("Training", "id", trainingId);
                 });
+    }
+
+    @GetMapping("/contact")
+    public ResponseEntity getAllContacts() {
+        return new ResponseEntity<>(contactRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/contact/{id}")
+    public Contact getContactById(@PathVariable(value = "id") Long contactId) {
+        return contactRepository.findById(contactId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("Contact", "id", contactId);
+                });
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity createContact(@Valid @RequestBody Contact contact) {
+        contact = contactRepository.save(contact);
+        return new ResponseEntity<>(contact, HttpStatus.OK);
+    }
+
+    @PutMapping("/contact/{id}")
+    public Contact updateContact(@PathVariable(value = "id") Long contactId,
+            @RequestBody Contact contact) {
+
+        contactRepository.findById(contactId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("EmployeeProfile", "id", contactId);
+                });
+
+        return contactRepository.save(contact);
+
     }
 
 }
