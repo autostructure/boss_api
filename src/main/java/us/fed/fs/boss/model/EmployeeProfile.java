@@ -39,7 +39,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class EmployeeProfile implements Serializable {
 
     @Id
-    @Column(name="employee_id")
+    @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -190,7 +190,6 @@ public class EmployeeProfile implements Serializable {
                 @JoinColumn(name = "employee_id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "supervisor_id")})
-    
     @JsonIgnore
     private Set<EmployeeProfile> supervisors = new HashSet<>();
 

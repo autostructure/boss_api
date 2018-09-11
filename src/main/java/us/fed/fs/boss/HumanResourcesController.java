@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.Contact;
+import us.fed.fs.boss.model.DeliberativeRiskAssessment;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Training;
 import us.fed.fs.boss.repository.ContactRepository;
+import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
@@ -38,6 +40,9 @@ public class HumanResourcesController {
 
     @Autowired
     ContactRepository contactRepository;
+
+    @Autowired
+    DeliberativeRiskAssessmentRepository deliberativeRiskAssessmentRepository;
 
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -148,6 +153,44 @@ public class HumanResourcesController {
                 });
 
         return contactRepository.save(contact);
+
+    }
+
+    @GetMapping("/dra")
+    public ResponseEntity getAllDeliberativeRiskAssessments(@RequestParam(value = "employee", required = false) final Long employeeProfileId) {
+        if (employeeProfileId == null) {
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByEmployeeProfileId(employeeProfileId), HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/dra/{id}")
+    public DeliberativeRiskAssessment getDeliberativeRiskAssessmentById(@PathVariable(value = "id") Long deliberativeRiskAssessmentId) {
+        return deliberativeRiskAssessmentRepository.findById(deliberativeRiskAssessmentId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("DeliberativeRiskAssessment", "id", deliberativeRiskAssessmentId);
+                });
+    }
+
+    @PostMapping("/dra")
+    public ResponseEntity createDeliberativeRiskAssessment(@Valid @RequestBody DeliberativeRiskAssessment deliberativeRiskAssessment) {
+        deliberativeRiskAssessment = deliberativeRiskAssessmentRepository.save(deliberativeRiskAssessment);
+        return new ResponseEntity<>(deliberativeRiskAssessment, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/dra/{id}")
+    public DeliberativeRiskAssessment updateDeliberativeRiskAssessmentId(@PathVariable(value = "id") Long deliberativeRiskAssessmentId,
+            @RequestBody DeliberativeRiskAssessment deliberativeRiskAssessment) {
+
+        deliberativeRiskAssessmentRepository.findById(deliberativeRiskAssessmentId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("DeliberativeRiskAssessment", "id", deliberativeRiskAssessmentId);
+                });
+
+        DeliberativeRiskAssessment updatedDeliberativeRiskAssessment = deliberativeRiskAssessmentRepository.save(deliberativeRiskAssessment);
+        return updatedDeliberativeRiskAssessment;
 
     }
 

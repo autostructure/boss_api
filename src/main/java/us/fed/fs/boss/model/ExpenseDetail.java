@@ -1,7 +1,7 @@
 package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
