@@ -1,7 +1,5 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
@@ -34,19 +32,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Expense extends Auditable<String> implements Serializable {
     
-    // SQL Server and MySQL
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    // ORACLE IDENTITY
-    /*
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "expense_Sequence")
-    @SequenceGenerator(name = "expense_Sequence", sequenceName = "EXPENSE_SEQ")   
-    private Long id;
-    */
     
     @Column(name = "SECCode")
     private String secCode;
