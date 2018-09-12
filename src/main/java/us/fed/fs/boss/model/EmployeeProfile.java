@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -41,147 +42,194 @@ public class EmployeeProfile implements Serializable {
     @Id
     @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.Public.class)
     private Long id;
 
     @Column(name = "FirstName")
+    @JsonView(Views.Public.class)
     private String firstName;
 
     @Column(name = "LastName")
+    @JsonView(Views.Public.class)
     private String lastName;
 
     @Column(name = "MiddleInitial")
+    @JsonView(Views.Public.class)
     private String middleInitial;
 
     @Column(name = "PreferredName")
+    @JsonView(Views.Internal.class)
     private String preferredName;
 
     @Column(name = "NameCode", unique = true, nullable = false)
+    @JsonView(Views.Public.class)
     private String nameCode;
 
     @Column(name = "HomePhone")
+    @JsonView(Views.Internal.class)
     private String homePhone;
 
     @Column(name = "CellPhone")
+    @JsonView(Views.Internal.class)
     private String cellPhone;
 
     @Column(name = "PersonalEmail")
+    @JsonView(Views.Internal.class)
     private String personalEmail;
 
     @Column(name = "StateAssigned")
+    @JsonView(Views.Internal.class)
     private String stateAssigned;
 
     @Column(name = "DutyStation")
+    @JsonView(Views.Public.class)
     private String dutyStation;
 
     @Column(name = "EmergencyContactFirstName1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactFirstName1;
 
     @Column(name = "EmergencyContactLastName1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactLastName1;
 
     @Column(name = "EmergencyContactStreetAddress1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactStreetAddress1;
 
     @Column(name = "EmergencyContactCity1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactCity1;
 
     @Column(name = "EmergencyContactState1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactState1;
 
     @Column(name = "EmergencyContactZip1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactZip1;
 
     @Column(name = "EmergencyContactHomePhone1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactHomePhone1;
 
     @Column(name = "EmergencyContactCellPhone1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactCellPhone1;
 
     @Column(name = "EmergencyContactWorkPhone1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactWorkPhone1;
 
     @Column(name = "EmergencyContactRelationship1")
+    @JsonView(Views.Internal.class)
     private String emergencyContactRelationship1;
 
     @Column(name = "EmergencyContactFirstName2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactFirstName2;
 
     @Column(name = "EmergencyContactLastName2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactLastName2;
 
     @Column(name = "EmergencyContactStreetAddress2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactStreetAddress2;
 
     @Column(name = "EmergencyContactCity2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactCity2;
 
     @Column(name = "EmergencyContactState2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactState2;
 
     @Column(name = "EmergencyContactZip2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactZip2;
 
     @Column(name = "EmergencyContactHomePhone2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactHomePhone2;
 
     @Column(name = "EmergencyContactCellPhone2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactCellPhone2;
 
     @Column(name = "EmergencyContactWorkPhone2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactWorkPhone2;
 
     @Column(name = "EmergencyContactRelationship2")
+    @JsonView(Views.Internal.class)
     private String emergencyContactRelationship2;
 
     @Column(name = "Title")
+    @JsonView(Views.Internal.class)
     private String title;
 
     @Column(name = "RoomNumber")
+    @JsonView(Views.Internal.class)
     private String roomNumber;
 
     @Column(name = "PayPeriodsLeft")
+    @JsonView(Views.Internal.class)
     private Short payPeriodsLeft;
 
     @Column(name = "RegPayPerPayPeriod")
+    @JsonView(Views.Internal.class)
     private BigDecimal regPayPerPayPeriod;
 
     @Column(name = "OvertimeHourlyWage")
+    @JsonView(Views.Internal.class)
     private BigDecimal overtimeHourlyWage;
 
     @Column(name = "PWPSalary")
+    @JsonView(Views.Internal.class)
     private BigDecimal pWPSalary;
 
     @ManyToOne
     @JoinColumn(name = "ActivityCodeFK")
+    @JsonView(Views.Public.class)
     private ActivityCode activityCode;
 
     @Temporal(TemporalType.DATE)
+    @JsonView(Views.Internal.class)
     private Date dateOfBirth;
 
     @OneToMany(
             mappedBy = "training"
     )
+    @JsonView(Views.Internal.class)
     private List<Training> training;
 
     @Column(name = "addressCity")
+    @JsonView(Views.Internal.class)
     private String addressCity;
 
     @Column(name = "series")
+    @JsonView(Views.Internal.class)
     private String series;
 
     @Column(name = "grade")
+    @JsonView(Views.Internal.class)
     private String grade;
 
     @Column(name = "payment_plan")
+    @JsonView(Views.Internal.class)
     private String paymentPlan;
 
     @Column(name = "addressState")
+    @JsonView(Views.Internal.class)
     private String addressState;
 
     @Column(name = "addressZip")
+    @JsonView(Views.Internal.class)
     private String addressZip;
 
     @Temporal(TemporalType.DATE)
+    @JsonView(Views.Internal.class)
     private Date confidentialityAgreementDate;
 
     @ManyToMany(cascade = {CascadeType.ALL})
@@ -194,6 +242,7 @@ public class EmployeeProfile implements Serializable {
     private Set<EmployeeProfile> supervisors = new HashSet<>();
 
     @ManyToMany(mappedBy = "supervisors")
+    @JsonView(Views.Internal.class)
     private Set<EmployeeProfile> employees = new HashSet<>();
 
     @JsonIgnore
@@ -203,6 +252,7 @@ public class EmployeeProfile implements Serializable {
 
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
+    @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
 
     public EmployeeProfile() {

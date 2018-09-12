@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.Contact;
 import us.fed.fs.boss.model.DeliberativeRiskAssessment;
+import us.fed.fs.boss.model.DeliberativeRiskAssessmentAircraft;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Training;
 import us.fed.fs.boss.repository.ContactRepository;
+import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
@@ -43,6 +46,9 @@ public class HumanResourcesController {
 
     @Autowired
     DeliberativeRiskAssessmentRepository deliberativeRiskAssessmentRepository;
+
+    @Autowired
+    DeliberativeRiskAssessmentAircraftRepository deliberativeRiskAssessmentAircraftRepository;
 
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -194,4 +200,58 @@ public class HumanResourcesController {
 
     }
 
+    @DeleteMapping("/dra/{id}")
+    public ResponseEntity<?> deleteDeliberativeRiskAssessment(@PathVariable(value = "id") Long deliberativeRiskAssessmentId) {
+
+        DeliberativeRiskAssessment dra = deliberativeRiskAssessmentRepository.findById(deliberativeRiskAssessmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("DeliberativeRiskAssessment", "id", deliberativeRiskAssessmentId));
+        deliberativeRiskAssessmentRepository.delete(dra);
+        return ResponseEntity.ok().build();
+
+    }
+
+    @GetMapping("/draAircraft")
+    public ResponseEntity getAllDeliberativeRiskAssessmentAircrafts(@RequestParam(value = "employee", required = false) final Long employeeProfileId) {
+        return new ResponseEntity<>(deliberativeRiskAssessmentAircraftRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/draAircraft/{id}")
+    public DeliberativeRiskAssessmentAircraft getDeliberativeRiskAssessmentAircraftById(@PathVariable(value = "id") Long deliberativeRiskAssessmentAircraftId) {
+        return deliberativeRiskAssessmentAircraftRepository.findById(deliberativeRiskAssessmentAircraftId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("DeliberativeRiskAssessmentAircraft", "id", deliberativeRiskAssessmentAircraftId);
+                });
+    }
+
+    @PostMapping("/draAircraft")
+    public ResponseEntity createDeliberativeRiskAssessmentAircraft(@Valid @RequestBody DeliberativeRiskAssessmentAircraft deliberativeRiskAssessmentAircraft) {
+        deliberativeRiskAssessmentAircraft = deliberativeRiskAssessmentAircraftRepository.save(deliberativeRiskAssessmentAircraft);
+        return new ResponseEntity<>(deliberativeRiskAssessmentAircraft, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/draAircraft/{id}")
+    public DeliberativeRiskAssessmentAircraft updateDeliberativeRiskAssessmentAircraftId(@PathVariable(value = "id") Long deliberativeRiskAssessmentAircraftId,
+            @RequestBody DeliberativeRiskAssessmentAircraft deliberativeRiskAssessmentAircraft) {
+
+        deliberativeRiskAssessmentAircraftRepository.findById(deliberativeRiskAssessmentAircraftId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("DeliberativeRiskAssessmentAircraft", "id", deliberativeRiskAssessmentAircraftId);
+                });
+
+        DeliberativeRiskAssessmentAircraft updatedDeliberativeRiskAssessmentAircraft = deliberativeRiskAssessmentAircraftRepository.save(deliberativeRiskAssessmentAircraft);
+        return updatedDeliberativeRiskAssessmentAircraft;
+
+    }
+
+    @DeleteMapping("/draAircraft/{id}")
+    public ResponseEntity<?> deleteDeliberativeRiskAssessmentAircraft(@PathVariable(value = "id") Long deliberativeRiskAssessmentAircraftId) {
+
+        DeliberativeRiskAssessmentAircraft dra = deliberativeRiskAssessmentAircraftRepository.findById(deliberativeRiskAssessmentAircraftId)
+                .orElseThrow(() -> new ResourceNotFoundException("DeliberativeRiskAssessmentAircraft", "id", deliberativeRiskAssessmentAircraftId));
+        deliberativeRiskAssessmentAircraftRepository.delete(dra);
+        return ResponseEntity.ok().build();
+
+    }
 }

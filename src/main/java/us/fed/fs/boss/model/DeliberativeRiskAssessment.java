@@ -1,26 +1,33 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "DeliberativeRiskAssessment")
 @EntityListeners(AuditingEntityListener.class)
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class DeliberativeRiskAssessment implements Serializable {
 
     @Id
@@ -40,30 +47,20 @@ public class DeliberativeRiskAssessment implements Serializable {
     @Column(name = "AssessmentUpdated")
     @Temporal(TemporalType.DATE)
     private Date assessmentUpdated;
-
-    @Column(name = "IdentifiedHazards")
-    private String identifiedHazards;
-    
-    @Column(name = "AssignedTo")
-    private String assignedTo;
     
     @ManyToOne(optional = false)
     @JoinColumn(name="employee_id")
+    @JsonView(Views.Public.class)
     private EmployeeProfile employeeProfile;
-
-    @Column(name = "InitialProposedControlMeasures")
-    private String initialProposedControlMeasures;
-
-    @Column(name = "HowToImplementControls")
-    private String howToImplementControls;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "InitialRiskToleranceRating")
-    private RiskToleranceRating initialRiskToleranceRating;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "ResidualRiskToleranceRating")
-    private RiskToleranceRating residualRiskToleranceRating;
+    
+    @OneToMany(
+        mappedBy = "deliberativeRiskAssessment",
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true
+    )
+    @JsonManagedReference(value="deliberativeRiskAssessmentHazards")
+    private List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards;
+    
 
     /**
      * @return the id
@@ -136,91 +133,6 @@ public class DeliberativeRiskAssessment implements Serializable {
     }
 
     /**
-     * @return the identifiedHazards
-     */
-    public String getIdentifiedHazards() {
-        return identifiedHazards;
-    }
-
-    /**
-     * @param identifiedHazards the identifiedHazards to set
-     */
-    public void setIdentifiedHazards(String identifiedHazards) {
-        this.identifiedHazards = identifiedHazards;
-    }
-
-    /**
-     * @return the initialProposedControlMeasures
-     */
-    public String getInitialProposedControlMeasures() {
-        return initialProposedControlMeasures;
-    }
-
-    /**
-     * @param initialProposedControlMeasures the initialProposedControlMeasures
-     * to set
-     */
-    public void setInitialProposedControlMeasures(String initialProposedControlMeasures) {
-        this.initialProposedControlMeasures = initialProposedControlMeasures;
-    }
-
-    /**
-     * @return the howToImplementControls
-     */
-    public String getHowToImplementControls() {
-        return howToImplementControls;
-    }
-
-    /**
-     * @param howToImplementControls the howToImplementControls to set
-     */
-    public void setHowToImplementControls(String howToImplementControls) {
-        this.howToImplementControls = howToImplementControls;
-    }
-
-    /**
-     * @return the initialRiskToleranceRating
-     */
-    public RiskToleranceRating getInitialRiskToleranceRating() {
-        return initialRiskToleranceRating;
-    }
-
-    /**
-     * @param initialRiskToleranceRating the initialRiskToleranceRating to set
-     */
-    public void setInitialRiskToleranceRating(RiskToleranceRating initialRiskToleranceRating) {
-        this.initialRiskToleranceRating = initialRiskToleranceRating;
-    }
-
-    /**
-     * @return the residualRiskToleranceRating
-     */
-    public RiskToleranceRating getResidualRiskToleranceRating() {
-        return residualRiskToleranceRating;
-    }
-
-    /**
-     * @param residualRiskToleranceRating the residualRiskToleranceRating to set
-     */
-    public void setResidualRiskToleranceRating(RiskToleranceRating residualRiskToleranceRating) {
-        this.residualRiskToleranceRating = residualRiskToleranceRating;
-    }
-
-    /**
-     * @return the assignedTo
-     */
-    public String getAssignedTo() {
-        return assignedTo;
-    }
-
-    /**
-     * @param assignedTo the assignedTo to set
-     */
-    public void setAssignedTo(String assignedTo) {
-        this.assignedTo = assignedTo;
-    }
-
-    /**
      * @return the employeeProfile
      */
     public EmployeeProfile getEmployeeProfile() {
@@ -232,5 +144,19 @@ public class DeliberativeRiskAssessment implements Serializable {
      */
     public void setEmployeeProfile(EmployeeProfile employeeProfile) {
         this.employeeProfile = employeeProfile;
+    }
+
+    /**
+     * @return the deliberativeRiskAssessmentHazards
+     */
+    public List<DeliberativeRiskAssessmentHazard> getDeliberativeRiskAssessmentHazards() {
+        return deliberativeRiskAssessmentHazards;
+    }
+
+    /**
+     * @param deliberativeRiskAssessmentHazards the deliberativeRiskAssessmentHazards to set
+     */
+    public void setDeliberativeRiskAssessmentHazards(List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards) {
+        this.deliberativeRiskAssessmentHazards = deliberativeRiskAssessmentHazards;
     }
 }
