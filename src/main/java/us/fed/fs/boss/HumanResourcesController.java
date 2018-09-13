@@ -88,9 +88,13 @@ public class HumanResourcesController {
     // Get All Employee Profiles
     @JsonView(Views.Internal.class)
     @GetMapping("/employeeProfile")
-    public List<EmployeeProfile> getAllEmployeeProfiles(@RequestParam(value = "nameCode", required = false) final String nameCode) {
+    public ResponseEntity getAllEmployeeProfiles(@RequestParam(value = "nameCode", required = false) final String nameCode) {
 
-            return employeeProfileRepository.findAll();
+        if (nameCode == null) {
+            return new ResponseEntity<>(employeeProfileRepository.findAll(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0), HttpStatus.OK);
+        }
 
     }
 
