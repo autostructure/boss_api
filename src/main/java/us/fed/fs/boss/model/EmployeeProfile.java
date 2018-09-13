@@ -3,12 +3,14 @@ package us.fed.fs.boss.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,7 +44,7 @@ public class EmployeeProfile implements Serializable {
     @Id
     @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Minimal.class)
     private Long id;
 
     @Column(name = "FirstName")
@@ -62,7 +64,7 @@ public class EmployeeProfile implements Serializable {
     private String preferredName;
 
     @Column(name = "NameCode", unique = true, nullable = false)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Minimal.class)
     private String nameCode;
 
     @Column(name = "HomePhone")
@@ -238,12 +240,12 @@ public class EmployeeProfile implements Serializable {
                 @JoinColumn(name = "employee_id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "supervisor_id")})
-    @JsonIgnore
-    private Set<EmployeeProfile> supervisors = new HashSet<>();
+    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    private List<EmployeeProfile> supervisors = new ArrayList<>();
 
     @ManyToMany(mappedBy = "supervisors")
     @JsonView(Views.Internal.class)
-    private Set<EmployeeProfile> employees = new HashSet<>();
+    private List<EmployeeProfile> employees = new ArrayList<>();
 
     @JsonIgnore
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
@@ -254,9 +256,10 @@ public class EmployeeProfile implements Serializable {
             fetch = FetchType.LAZY, optional = false)
     @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
+    
 
     public EmployeeProfile() {
-        this.employees = new HashSet<>();
+        this.employees = new ArrayList<>();
     }
 
     public void setEmployeeProfilePhoto(EmployeeProfilePhoto profilePhoto) {
@@ -947,28 +950,29 @@ public class EmployeeProfile implements Serializable {
     /**
      * @return the supervisors
      */
-    public Set<EmployeeProfile> getSupervisors() {
+    public List<EmployeeProfile> getSupervisors() {
         return supervisors;
     }
 
     /**
      * @param supervisors the supervisors to set
      */
-    public void setSupervisors(Set<EmployeeProfile> supervisors) {
+    public void setSupervisors(List<EmployeeProfile> supervisors) {
         this.supervisors = supervisors;
     }
 
     /**
      * @return the employees
      */
-    public Set<EmployeeProfile> getEmployees() {
+    
+    public List<EmployeeProfile> getEmployees() {
         return employees;
     }
 
     /**
      * @param employees the employees to set
      */
-    public void setEmployees(Set<EmployeeProfile> employees) {
+    public void setEmployees(List<EmployeeProfile> employees) {
         this.employees = employees;
     }
 

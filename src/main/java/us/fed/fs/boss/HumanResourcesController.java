@@ -1,5 +1,6 @@
 package us.fed.fs.boss;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ import us.fed.fs.boss.model.DeliberativeRiskAssessmentAircraft;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Training;
+import us.fed.fs.boss.model.Views;
 import us.fed.fs.boss.repository.ContactRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
@@ -57,6 +59,7 @@ public class HumanResourcesController {
 
     }
 
+    @JsonView(Views.Internal.class)
     @PutMapping("/employeeProfile/{id}")
     public EmployeeProfile updateEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId,
             @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -68,7 +71,7 @@ public class HumanResourcesController {
 
         employeeProfileDetails.getEmployees().forEach((child) -> {
             if (!child.getId().equals(employeeProfileDetails.getId())) {
-                Set<EmployeeProfile> supervisors = child.getSupervisors();
+                List<EmployeeProfile> supervisors = child.getSupervisors();
                 if (!supervisors.contains(employeeProfileDetails)) {
                     supervisors.add(employeeProfileDetails);
                     child.setSupervisors(supervisors);
@@ -83,14 +86,11 @@ public class HumanResourcesController {
     }
 
     // Get All Employee Profiles
+    @JsonView(Views.Internal.class)
     @GetMapping("/employeeProfile")
-    public ResponseEntity getAllEmployeeProfiles(@RequestParam(value = "nameCode", required = false) final String nameCode) {
+    public List<EmployeeProfile> getAllEmployeeProfiles(@RequestParam(value = "nameCode", required = false) final String nameCode) {
 
-        if (nameCode == null) {
-            return new ResponseEntity<>(employeeProfileRepository.findAll(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0), HttpStatus.OK);
-        }
+            return employeeProfileRepository.findAll();
 
     }
 
@@ -102,6 +102,7 @@ public class HumanResourcesController {
         return new ResponseEntity<>(namesList, HttpStatus.OK);
     }
 
+    @JsonView(Views.Internal.class)
     @GetMapping("/employeeProfile/{id}")
     public EmployeeProfile getEmployeeProfileById(@PathVariable(value = "id") Long employeeProfileId) {
         return employeeProfileRepository.findById(employeeProfileId)
