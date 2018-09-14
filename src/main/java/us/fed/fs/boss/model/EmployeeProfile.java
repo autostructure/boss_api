@@ -244,7 +244,7 @@ public class EmployeeProfile implements Serializable {
     private List<EmployeeProfile> supervisors = new ArrayList<>();
 
     @ManyToMany(mappedBy = "supervisors")
-    @JsonView(Views.Internal.class)
+    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     private List<EmployeeProfile> employees = new ArrayList<>();
 
     @JsonIgnore

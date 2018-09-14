@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -97,7 +98,7 @@ public class Expense extends Auditable<String> implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "EmployeeProfileFK")
-    @JsonView(Views.Public.class)
+    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     private EmployeeProfile employeeProfile;
     
     @OneToMany(
