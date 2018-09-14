@@ -25,13 +25,13 @@ function makeAjaxCall(_url, methodType, _data) {
             $.ajax({
                 type: methodType,
                 url: _url,
-                contentType: 'application/json',
-                data: JSON.stringify(_data),
-                dataType: 'json',
+                data: _data,
                 success: function (json) {
+                    
                     resolve(json);
                 },
                 error: function (xhr, status, error) {
+                    
                     reject(error);
                 }
             });
@@ -42,7 +42,7 @@ function makeAjaxCall(_url, methodType, _data) {
 
 
 //GET /error API call
-function getError(resolved, rejected) {
+function getErrorApiCall(resolved, rejected) {
     try {
 
         var endpoint = "/error";
@@ -58,7 +58,7 @@ function getError(resolved, rejected) {
 }
 
 //GET /error API call
-function getActivityCode(resolved, rejected) {
+function getActivityCodeApiCall(resolved, rejected) {
     try {
 
         var endpoint = "/activityCode";
@@ -73,7 +73,7 @@ function getActivityCode(resolved, rejected) {
     }
 }
 
-function getbudgetObjectCode(resolved, rejected) {
+function getbudgetObjectCodeApiCall(resolved, rejected) {
     try {
 
         var endpoint = "/budgetObjectCode";
@@ -88,7 +88,7 @@ function getbudgetObjectCode(resolved, rejected) {
     }
 }
 
-function getBudgetSummary(type, financialYear, verified, resolved, rejected) {
+function getBudgetSummaryApiCall(type, financialYear, verified, resolved, rejected) {
     try {
 
         var endpoint = "/budgetSummary";
@@ -103,25 +103,10 @@ function getBudgetSummary(type, financialYear, verified, resolved, rejected) {
     }
 }
 
-function getEmployeeProfiles(resolved, rejected) {
+function getEmployeeProfileApiCall(resolved, rejected) {
     try {
 
         var endpoint = "/employeeProfile";
-        var url = api + endpoint;
-        makeAjaxCall(url, "GET", null).then(resolved, rejected);
-
-    } catch (e) {
-
-        console.log(e);
-        return "";
-
-    }
-}
-
-function getEmployeeProfileById(resolved, rejected, id) {
-    try {
-
-        var endpoint = "/employeeProfile/" + id;
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -143,7 +128,7 @@ function postExpense(resolved, rejected, data) {
     }
 }
 
-function getExpenseCode(financialYear, resolved, rejected) {
+function getExpenseCodeApiCall(financialYear, resolved, rejected) {
 
     try {
 
@@ -164,7 +149,7 @@ function getExpenseCode(financialYear, resolved, rejected) {
     }
 }
 
-function deleteExpenseWithID(id, resolved, rejected) {
+function deleteExpenseWithIDApiCall(id, resolved, rejected) {
     try {
 
         var endpoint = "/expense";
@@ -179,7 +164,7 @@ function deleteExpenseWithID(id, resolved, rejected) {
     }
 }
 
-function putExpenseWithID(resolved, rejected, data, id) {
+function putExpenseWithIDApiCall(resolved, rejected, data, id) {
     try {
 
         var endpoint = "/expense";
@@ -194,7 +179,7 @@ function putExpenseWithID(resolved, rejected, data, id) {
     }
 }
 
-function getJobCode(resolved, rejected, financialYear) {
+function getJobCodeApiCall(resolved, rejected, financialYear) {
     
     var endpoint = "/jobCode";
     var url = "";
@@ -206,10 +191,10 @@ function getJobCode(resolved, rejected, financialYear) {
     makeAjaxCall(url, "GET", null).then(resolved, rejected);
 }
 
-function postJobCode(resolved, rejected, data) {
+function postJobCodeApiCall(resolved, rejected, data) {
     try {
 
-        var endpoint = "/jobCode";
+        var endpoint = "/employeeProfile";
         var url = api + endpoint;
         makeAjaxCall(url, "POST", data).then(resolved, rejected);
 
@@ -220,7 +205,7 @@ function postJobCode(resolved, rejected, data) {
     }
 }
 
-function deleteJobCodeEithID(resolved, rejected, id) {
+function deleteJobCodeEithIDApiCall(resolved, rejected, id) {
     try {
 
         var endpoint = "/jobCode";
@@ -234,7 +219,7 @@ function deleteJobCodeEithID(resolved, rejected, id) {
     }
 }
 
-function getJobCodeWithID(resolved, rejected, id) {
+function getJobCodeWithIDApiCall(resolved, rejected, id) {
     try {
 
         var endpoint = "/jobCode";
@@ -248,7 +233,7 @@ function getJobCodeWithID(resolved, rejected, id) {
     }
 }
 
-function getPaymentCode(resolved, rejected) {
+function getPaymentCodeApiCall(resolved, rejected) {
     try {
 
         var endpoint = "/paymentCode";
@@ -324,20 +309,64 @@ function getPayrollForecastWithTypeAndJobCodeId(resolved, rejected, type, jobCod
     }
 }
 
-function putEmployeeProfileWithID(resolved, rejected, data, id) {
-    try {
-
-        var endpoint = "/employeeProfile";
-        var url = api + endpoint + "/" + id;
-        makeAjaxCall(url, "PUT", data).then(resolved, rejected);
-
-    } catch (e) {
-
-        console.error(e);
-        return "";
-
+/**
+ * Put some information into an entity without leaving everything else null.
+ * @param {string} url The url of the API.
+ * @param {number} id The id of the entity to update
+ * @param {object} partial A keyed array of properties to update
+ * @param {function} resolved
+ * @param {function} rejected
+ */
+function putPartialInfo(url, id, partial, resolved, rejected) {
+    resolved = resolved || function(){}
+    rejected = rejected || function(a,b,c){
+        console.log(a);
+        console.log(a.responseJSON);
+        console.log(b);
+        console.log(c);
+        //break
+    }
+    if (id == 0) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(partial),
+            cache: false,
+            timeout: 600000,
+            success: resolved,
+            error: rejected,
+        });
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: url + "/" + id,
+            contentType: "application/json",
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function(json) {
+                for (k in partial) {
+                    json[k] = partial[k];
+                }
+                $.ajax({
+                    type: 'PUT',
+                    url: url + "/" + id,
+                    contentType: "application/json",
+                    dataType: 'json',
+                    cache: false,
+                    timeout: 600000,
+                    data: JSON.stringify(json),
+                    success: resolved,
+                    error: rejected,
+                });
+            },
+            error: rejected
+        });
     }
 }
+
 
 
 
