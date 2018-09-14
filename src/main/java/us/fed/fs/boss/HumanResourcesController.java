@@ -58,6 +58,16 @@ public class HumanResourcesController {
         return new ResponseEntity<>(employeeProfileDetails, HttpStatus.OK);
 
     }
+    
+    @DeleteMapping("/employeeProfile/{id}")
+    public ResponseEntity<?> deleteEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId) {
+
+        EmployeeProfile pfile = employeeProfileRepository.findById(employeeProfileId)
+                .orElseThrow(() -> new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId));
+        employeeProfileRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
 
     @JsonView(Views.Internal.class)
     @PutMapping("/employeeProfile/{id}")
