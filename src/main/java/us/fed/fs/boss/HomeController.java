@@ -103,6 +103,6 @@ public class HomeController {
 
     @RequestMapping("/editEmployee/{nameCode}")
     public String editEmployee() {
-        return "addNewEmployee";
+        return "editEmployee";
     }
 }
