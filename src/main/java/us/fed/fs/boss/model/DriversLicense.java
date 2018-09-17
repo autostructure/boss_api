@@ -1,5 +1,6 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,7 @@ public class DriversLicense {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_profile_id")
+    @JsonIgnore
     private EmployeeProfile employeeProfile;
     
     @Temporal(TemporalType.DATE)

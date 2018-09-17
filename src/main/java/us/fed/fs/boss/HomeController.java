@@ -45,48 +45,64 @@ public class HomeController {
     public String payrollDetails() {
         return "payrollDetails";
     }
+
     @RequestMapping("/newSalary")
     public String newSalary() {
         return "newSalary";
     }
+
     @RequestMapping("/empPortal")
     public String empPortal() {
         return "empPortal";
-    }         
+    }
+
     @RequestMapping("/hrDash")
     public String hrDash() {
         return "hrDash";
-    }       
+    }
+
     @RequestMapping("/viewAllEmployees")
     public String viewAllEmployees() {
         return "viewAllEmployees";
-    }         
+    }
+
     @RequestMapping("/addNewEmployee")
     public String addNewEmployee() {
         return "addNewEmployee";
-    }       
+    }
+
     @RequestMapping("/addTrainingEmployee")
-    public String addTrainingEmployee(){
+    public String addTrainingEmployee() {
         return "addTrainingEmployee";
-    } 
+    }
+
     @RequestMapping("/addTrainingClass")
-    public String addTrainingClass(){
+    public String addTrainingClass() {
         return "addTrainingClass";
-    }     
+    }
+
     @RequestMapping("/assignTraining")
-    public String assignTraining(){
+    public String assignTraining() {
         return "assignTraining";
-    }         
+    }
+
     @RequestMapping("/addDraEmployee")
-    public String addDraEmployee(){
+    public String addDraEmployee() {
         return "addDraEmployee";
-    }         
+    }
+
     @RequestMapping("/payrollForecast")
     public String payrollForecast() {
         return "payrollForecast";
     }
+
     @RequestMapping("/unverifiedReport")
     public String unverifiedReport() {
         return "unverifiedReport";
-    }    
+    }
+
+    @RequestMapping("/editEmployee/{nameCode}")
+    public String editEmployee() {
+        return "editEmployee";
+    }
 }

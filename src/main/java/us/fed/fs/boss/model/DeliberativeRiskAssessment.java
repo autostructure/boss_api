@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +51,7 @@ public class DeliberativeRiskAssessment implements Serializable {
     
     @ManyToOne(optional = false)
     @JoinColumn(name="employee_id")
-    @JsonView(Views.Public.class)
+    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     private EmployeeProfile employeeProfile;
     
     @OneToMany(

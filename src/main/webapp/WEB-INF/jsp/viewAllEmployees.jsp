@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="img/favicons/favicon.ico" type="image/x-icon">
-    <title>FIA-BOSS</title>
-    <link rel="stylesheet" href="css/ead.min.css">
-    <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/viewAllEmployees.css">
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="img/favicons/favicon.ico" type="image/x-icon">
+        <title>FIA-BOSS</title>
+        <link rel="stylesheet" href="css/ead.min.css">
+        <link rel="stylesheet" href="css/pagesCSS/all.css">
+        <link rel="stylesheet" href="css/pagesCSS/viewAllEmployees.css">
+    </head>
 
-<body class="layout-demo">
-    <header class="usa-header usa-header-extended" role="banner" id="mainHeader">
-    </header>
+    <body class="layout-demo">
+        <header class="usa-header usa-header-extended" role="banner" id="mainHeader">
+        </header>
         <div class="usa-overlay"></div>
         <main id="main-content">
                 <div class="wrapper">
@@ -249,6 +249,6 @@
          <script src="js/pagesJS/viewAllEmployees.js"></script>
         <script src="js/pagesJS/mainHRPages.js"></script>
 
-</body>
+    </body>
 
 </html>

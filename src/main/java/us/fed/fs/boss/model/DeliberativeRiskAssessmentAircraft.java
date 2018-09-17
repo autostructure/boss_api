@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -47,7 +48,7 @@ public class DeliberativeRiskAssessmentAircraft implements Serializable {
     
     @ManyToOne(optional = false)
     @JoinColumn(name="prepared_by_id")
-    @JsonView(Views.Public.class)
+    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     private EmployeeProfile preparedBy;
     
     @Column(name = "PreparedDate")
@@ -57,7 +58,7 @@ public class DeliberativeRiskAssessmentAircraft implements Serializable {
     
     @ManyToOne(optional = false)
     @JoinColumn(name="reviewed_by_id")
-    @JsonView(Views.Public.class)
+    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     private EmployeeProfile reviewedBy;
     
     @Column(name = "ReviewedDate")
@@ -66,7 +67,7 @@ public class DeliberativeRiskAssessmentAircraft implements Serializable {
     private Date reviewedDate;
     
     @ManyToOne(optional = false)
-    
+    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     @JoinColumn(name="approved_by_id")
     private EmployeeProfile approvedBy;
     
