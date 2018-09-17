@@ -12,47 +12,67 @@ var tempData = [
 ];
 
 
-var tempAPI = 'http://localhost:8090/jobCode?financialYear=';
+var tempAPI = 'http://localhost:8090/employeeProfile';//jobCode?financialYear=;
+var API = 'http://localhost:8090';
 
-        $(document).ready(function() {
-        $('#employees').addClass('show');
-        $('#employees > li:nth-child(1) > a').addClass('highlight');    
+$(document).ready(function() {
+    $('#employees').addClass('show');
+    $('#employees a[href="/viewAllEmployees"]').addClass('highlight');
 
+    $.ajax({
+        url: tempAPI,
+        contentType: "application/json",
+        dataType: 'json',
+        cache: false,
+        type: 'GET',
+        timeout: 600000,
+        success: function(json){
+            populateDataTable(json);
+            //populateDataTable(tempData);
+        },
+        error: function(a,b,c){
+            console.log(a.responseText);
+        },
+        async: false
+    });
 
+    function populateDataTable(jsonData) {
+        
         var table = $('#allEmployees').DataTable( {
             dom: "Brtip",
             // searchable: true,
             destroy: true,
             "paging": false,
             // ajax:{"url":tempAPI + yr,"dataSrc":""},
-            data: tempData,
-            columnDefs: [ {
-            "targets": [5],
-            "orderable": false
-            }],
-            
+            data: jsonData,
             columns:[
-            { data: "nameCode"},
-            { data: "lastName"},
-            { data:"firstName" },
-            { data:"supervisor" },
-            { data:"officePhone" },
-            { data:"cellPhone" },
+            { data:"nameCode"},
+            { data:"lastName"},
+            { data:"firstName"},
+            { data:"null",
+                "render": function(data, type, row){
+                    return "Coming Soon!";
+                }
+            },
             { data:"dutyStation" },
-            { data:"email" },
-            {data: null,
+            { data:"cellPhone" },
+            { data:"personalEmail" },
+            { data: null,
                 "render": function(data, type, row){
                     return `
-                    <div class="dropdown1">
-                    <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
-                        <div class="dropdown-content1">
-                            <a data-target="#myModal" href="#myModal" class="editBtn" id="' + row.id + '"  data-id=\"" + full[1] + "\" >Edit Employee Details</a>
+                        <div class="dropdown1">
+                            <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                            <div id="dropList" class="dropdown-content1">
+                                <a href="` + API + `/editEmployee/` + row.nameCode + `" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit Employee</a>
+                                <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete Employee</a>
+                                <a data-toggle="modal" data-target="#myModal_contact" href="#" data-value=` + row.id + ` class="contactBtn" id="contactBtn">contact info</a>
+                            </div>
                         </div>
-                    </div>
                     
                     `;
-                }
-           
+                },
+                "sortable": false,
+                "orderable": false
             }],  
                 buttons:[
             {
@@ -90,6 +110,111 @@ var tempAPI = 'http://localhost:8090/jobCode?financialYear=';
         
         
         });
+
+        var selected_row = 0;
+        var id_employee = 0;
+
+
+
+        //for the anchor tag in the table
+        $('#deleteBtn').click(function () {
+            var _val = $('#deleteBtn').attr("data-value");
+            var _id = $('#deleteBtn').attr("data-id");
+            selected_row = parseInt(_val);
+            id_employee = _id;
+            $('#employeeName_deleteModal').html(id_employee);
+        });
+
+        //for the anchor tag in the table
+        $('#contactBtn').click(function () {
+            var _val = $('#contactBtn').attr("data-value");
+            var _id = $('#contactBtn').attr("data-id");
+            selected_row = parseInt(_val);
+            id_employee = _id;
+            //$("#myModal_contact").html();
+            
+
+        });
+
+
+        $('#myModal_contact').on('shown.bs.modal', function () {
+            
+            var modal = $(this);
+            $.ajax({
+                url: API + "/employeeProfile/" + selected_row,
+                type: 'GET',
+                success: function (json) {
+                    
+                    modal.find(".modal-body #CityOne").val(json.emergencyContactCity1);
+                    modal.find(".modal-body #CityTwo").val(json.emergencyContactCity2);
+                    modal.find(".modal-body #FirstNameOne").val(json.emergencyContactFirstName1);
+                    modal.find(".modal-body #FirstNameTwo").val(json.emergencyContactFirstName2);
+                    modal.find(".modal-body #HomePhoneOne").val(json.emergencyContactHomePhone1);
+                    modal.find(".modal-body #HomePhoneTwo").val(json.emergencyContactHomePhone2);
+                    modal.find(".modal-body #LastNameOne").val(json.emergencyContactLastName1);
+                    modal.find(".modal-body #LastNameTwo").val(json.emergencyContactLastName2);
+                    modal.find(".modal-body #FirstRelationship").val(json.emergencyContactRelationship1);
+                    modal.find(".modal-body #SecondRelationship").val(json.emergencyContactRelationship2);
+                    modal.find(".modal-body #StateOne").val(json.emergencyContactState1);
+                    modal.find(".modal-body #StateTwo").val(json.emergencyContactState2);
+                    modal.find(".modal-body #AddressOne").val(json.emergencyContactStreetAddress1);
+                    modal.find(".modal-body #AddressTwo").val(json.emergencyContactStreetAddress2);
+                    modal.find(".modal-body #WorkPhoneOne").val(json.emergencyContactWorkPhone1);
+                    modal.find(".modal-body #WorkPhoneTwo").val(json.emergencyContactWorkPhone2);
+                    modal.find(".modal-body #ZipOne").val(json.emergencyContactZip1);
+                    modal.find(".modal-body #ZipTwo").val(json.emergencyContactZip2);
+                    modal.find(".modal-body #CellPhoneOne").val(json.emergencyContactCellPhone1);
+                    modal.find(".modal-body #CellPhoneTwo").val(json.emergencyContactCellPhone2);
+
+
+                },
+                error: function (xhr,status,error) {
+                    console.log("error getting employe profile in modal contact: " + selected_row);
+                },
+                async: false
+            });
+            
+        }); 
+
+        //click for yes on the modal
+        $('#myModal_delete').on('click', '#deleteModal_delete', function () {
+            
+            $.ajax({
+                url: API + "/employeeProfile/" + selected_row,
+                type: "DELETE",
+                success: function (data) {
+                    $.ajax({
+                        url: tempAPI,
+                        contentType: "application/json",
+                        dataType: 'json',
+                        cache: false,
+                        type: 'GET',
+                        timeout: 600000,
+                        success: function (json) {
+                            populateDataTable(json);
+                            //populateDataTable(tempData);
+                        },
+                        error: function (a, b, c) {
+                            console.log(a.responseText);
+                        }
+                    });
+                },
+                error(xhr, status, error) {
+                    console.log(error);
+                    
+                }
+
+            });
+        });
+
+        //click for yes on the modal
+
+
+        //click for yes on the modal
+    }
+
+
+
 
 });
           
