@@ -32,7 +32,7 @@
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
                                 <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/addTrainingEmployee">Add Training by Employee</a>
+                                <a class="breadcrumbLinkMain"href="/addTrainingEmployee">Log Training by Employee</a>
                             </p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Add Training by Employee</h1>
+                                <h1 id="title">Log Training by Employee</h1>
                             </div>
                         </div>
                         <div class="container trainBG">
@@ -54,6 +54,11 @@
                                                 <option value="JACOBS">Jacobs, Doug</option>
                                                 <option value="LANEY">Laney, Mike</option>
                                                 <option value="BHOWDEN">Howden, BEN</option>
+                                                <option value="TEST1">Marth, Beth</option>
+                                                <option value="test2">Walter, Bill</option>
+                                                <option value="test3">Gaimon, Neil</option>
+                                                <option value="test4">Smith, Jeffrey</option>
+                                                <option value="test5">Baublitz, Garret</option>
                                             </select>
                                             <div class="help-block with-errors"></div>
                                         </div>                                                        
@@ -63,8 +68,26 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="tTitle">Title<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="tTitle" required placeholder="Training Title" aria-label="Training Title">
+                                                <label for="ttitle">Title<span class="reqClass"> *</span></label>
+                                                <select name="ttitle" required id="ttitle" class="form-control">
+                                                    <option value="">Choose Training</option>
+                                                    <option value="atv">All Terrain Vehicle Use</option>
+                                                    <option value="bear">Bear Safety and Spray Training</option>
+                                                    <option value="check">Check Drive</option>
+                                                    <option value="dd">Defensive Driving</option>
+                                                    <option value="dli">Driver License Issues</option>
+                                                    <option value="ecf">Emergency Contact Form</option>
+                                                    <option value="fet">Fire Extinguisher Training</option>
+                                                    <option value="faaed">First Aid - AED</option>
+                                                    <option value="facpr">First Aid - CPR</option>
+                                                    <option value="farc">First Aid - Red Cross</option>
+                                                    <option value="fawfr">First Aid - Wilderness / First Responder</option>
+                                                    <option value="h">Horsemanship</option>
+                                                    <option value="osha">OSHA 1960</option>
+                                                    <option value="swr">Swift Water Rescue</option>
+                                                    <option value="ttl">Trailer Towing - Large</option>
+                                                    <option value="wpv">Workplace Violence</option>
+                                                </select>
                                                 <div class="help-block with-errors"></div>
                                             </div>                                                        
                                         </div> 
@@ -82,9 +105,9 @@
                                         </div> 
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="tPresenter">Presenter<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="tPresenter" required placeholder="Presenters Name" aria-label="Presenters Name">
-                                                <div class="help-block with-errors"></div>
+                                                <label for="tPresenter">Presenter</label>
+                                                <input type="text" class="form-control" id="tPresenter"  placeholder="Presenters Name" aria-label="Presenters Name">
+
                                             </div>                                                        
                                         </div>
                                     </div>
@@ -103,25 +126,12 @@
                                                 <div class="help-block with-errors"></div>
                                             </div>                                                        
                                         </div> 
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="tYears">Number of Years Valid<span class="reqClass"> *</span></label>
-                                                <select name="tYears" required id="tYears" class="form-control">
-                                                    <option value="">Select Years</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                        
-                                        </div>                                                                                                                                                      
+                                                                                                                                                    
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col col-md-6 text-center">
-                                        <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional Training</button> 
+                                        <button type="button" id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional Training</button> 
                                     </div> 
                                     <div class="col col-md-6">
                                         <input type="submit" id="submitV" class="btn btn-success">    
@@ -130,14 +140,7 @@
                         </div>
                         </div>
 
-                        <div class="itemss">
 
-                            <div class="form-group"><label>Author Email:</label>
-                                <input id="author_email" class="form-control" name="author" required="required" type="EMAIL" /></div>
-
-                        </div>
-
-                        <button type="button" class="add_fiedld_button">Add Field</button>
 
                     </section>
                 </section>                         

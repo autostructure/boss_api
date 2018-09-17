@@ -78,15 +78,15 @@
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        <h5 class="card-title">Human<br>Resources</h5>
+                                        <h5 class="card-title">Support<br></h5>
                                     </button>
                                 </div>
                                 <div class="card-tbody show" id="collapseThree">
                                     <p class="card-text"><a href="/viewAllEmployees">View Employees</a></p>
                                     <p class="card-text"><a href="/addNewEmployee">Add New Employees</a></p>
-                                    <p class="card-text"><a href="/assignTraining">Add Training Intervals</a></p>
-                                    <p class="card-text"><a href="/addTrainingClass">Add Training by Class</a></p>
-                                    <p class="card-text"><a href="/addDraEmployee">Add DRA for Employee</a></p>
+                                    <p class="card-text"><a href="/assignTraining">Add New Training</a></p>
+                                    <p class="card-text"><a href="/addTrainingClass">Log Training by Employee</a></p>
+                                    <p class="card-text"><a href="/addDraEmployee">Log DRA by Employee</a></p>
                                 </div>
                                 <div class="card-footer text-right">
                                     <p class="card-text dashboard"><a href="/hrDash">Visit Dashboard</a></p>

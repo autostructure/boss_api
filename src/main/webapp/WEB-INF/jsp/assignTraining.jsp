@@ -32,7 +32,7 @@
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
                                 <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/addTrainingClass">Add Training Interval</a>
+                                <a class="breadcrumbLinkMain"href="/addTrainingClass">Add New Training</a>
                             </p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Add Training Intervals</h1>
+                                <h1 id="title">Add New Training</h1>
                             </div>
                         </div>
                         <div class="container trainBG">

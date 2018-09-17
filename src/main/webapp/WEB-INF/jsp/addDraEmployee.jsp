@@ -32,7 +32,7 @@
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
                                 <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/addDraEmployee">Add DRA by Employee</a>
+                                <a class="breadcrumbLinkMain"href="/addDraEmployee">Log DRA by Employee</a>
                             </p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Add DRA by Employee</h1>
+                                <h1 id="title">Log DRA by Employee</h1>
                             </div>
                         </div>
                         <div class="container trainBG">
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col col-md-6 text-center">
-                                        <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional DRA</button> 
+                                        <button type="button" id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional DRA</button> 
                                     </div> 
                                     <div class="col col-md-6">
                                         <input type="submit" id="submitV" class="btn btn-success">    
@@ -114,14 +114,7 @@
                         </div>
                         </div>
 
-                        <div class="itemss">
 
-                            <div class="form-group"><label>Author Email:</label>
-                                <input id="author_email" class="form-control" name="author" required="required" type="EMAIL" /></div>
-
-                        </div>
-
-                        <button type="button" class="add_fiedld_button">Add Field</button>
 
                     </section>
                 </section>                         

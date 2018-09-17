@@ -37,9 +37,9 @@ $(document).ready(function() {
     '</div>' + 
     '<div class="col">' +
         '<div class="form-group">' +
-            '<label for="tPresenter">Presenter<span class="reqClass"> *</span></label>' +
-            '<input type="text" class="form-control" id="tPresenter' + x + '" required placeholder="Presenters Name" aria-label="Presenters Name">' +
-            '<div class="help-block with-errors"></div>' +
+            '<label for="tPresenter">Presenter</label>' +
+            '<input type="text" class="form-control" id="tPresenter' + x + '"  placeholder="Presenters Name" aria-label="Presenters Name">' +
+
         '</div>' +                                                        
     '</div>' +
 '</div>' +
@@ -58,20 +58,7 @@ $(document).ready(function() {
             '<div class="help-block with-errors"></div>' +
         '</div>' +                                                        
     '</div> ' +
-    '<div class="col">' +
-        '<div class="form-group">' +
-            '<label for="tYears">Number of Years Valid<span class="reqClass"> *</span></label>' +
-            '<select name="tYears" required id="tYears' + x + '" class="form-control">' +
-                    '<option value="">Select Years</option>' +
-                    '<option value="1">1</option>' +
-                    '<option value="2">2</option>' +
-                    '<option value="3">3</option>' +
-                    '<option value="4">4</option>' +
-                    '<option value="5">5</option>' +
-                '</select>' +
-            '<div class="help-block with-errors"></div>' +
-        '</div> ' +                                                       
-    '</div>'+
+
                                                                                                                                              
 '</div>' +
 '<button class="remove_field">Remove</button>' +      

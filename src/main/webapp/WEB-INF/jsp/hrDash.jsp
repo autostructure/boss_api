@@ -30,7 +30,7 @@
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/hrDash">HR Dashboard</a>
+                                <a class="breadcrumbLinkMain"href="/hrDash">Support Dashboard</a>
                             </p>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">HR Dashboard</h1>
+                                <h1 id="title">Support Dashboard</h1>
                             </div>
                         </div>
                         <div class="container">
@@ -70,13 +70,13 @@
                                         <div class="card-body">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <a href="/addTrainingEmployee">Add Training by Employee</a>                                
+                                                    <a href="/addTrainingEmployee">Log Training by Employee</a>                                
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href="/addTrainingClass">Add Training by Class</a>
+                                                    <a href="/addTrainingClass">Log Training by Class</a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href="/assignTraining">Add Training Intervals</a>
+                                                    <a href="/assignTraining">Add New Training</a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <a href="#">Training Due Next 6 Months</a>
@@ -94,13 +94,10 @@
                                         <div class="card-body">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <a href="/addDraEmployee">Add DRA by Employee</a>                                
+                                                    <a href="/addDraEmployee">Log DRA by Employee</a>                                
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href="#">Assign DRA's</a>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <a href="#">DRA Tasks</a>
+                                                    <a href="#">Add New DRA</a>
                                                 </li>
                                             </ul>
                                         </div>
