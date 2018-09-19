@@ -46,7 +46,6 @@ $(document).ready(function() {
             // ajax:{"url":tempAPI + yr,"dataSrc":""},
             data: jsonData,
             columns:[
-            { data:"nameCode"},
             { data:"lastName"},
             { data:"firstName"},
             { data:"null",
