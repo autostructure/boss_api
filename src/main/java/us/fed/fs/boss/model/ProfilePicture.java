@@ -33,7 +33,7 @@ public class ProfilePicture {
         this.fileName = fileName;
     }
  
-    @Column(name = "FileDate")
+    @Column(name = "FileData")
     public byte[] getData() {
         return data;
     }
