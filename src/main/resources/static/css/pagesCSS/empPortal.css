@@ -85,9 +85,7 @@ input, select{
     background-color: #006633;
     border-color: #006633;
 }
-.empPhoto{
-    max-width: 260px;
-}
+
 .photoText{
     padding-top: 20px;
     max-width: 260px;
@@ -131,9 +129,28 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     color: rgba(255, 255, 255, 0.00)
 }
 
-  @media screen and (max-width: 1024px) { /* Specific to this particular image */
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
     img.bg {
-      left: 50%;
-      margin-left: -512px;   /* 50% */
+        left: 50%;
+        margin-left: -512px;   /* 50% */
     }
-  }
+}
+
+input.submitChanges {
+    margin:auto;
+}
+
+.bgImg {
+    background: url("/img/empPortal.jpg");
+    background-size: cover;
+}
+
+#colEmployeePhoto2 label {
+    width: 100%;
+}
+
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+    color: #dddc;
+}

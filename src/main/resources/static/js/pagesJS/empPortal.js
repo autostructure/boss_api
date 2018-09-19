@@ -10,6 +10,10 @@ $(document).ready(function() {
     $("#formIdentificationInfo_employeePhoto").on("click change update",function() {
 
     });
+    var userId = 46 //// Temporary
+    var employeeForms = $("#formEmployeeInfo, #formEmergencyInfo, #formIdentificationInfo");
+    CustomFormFunctions.populateElements(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
+    CustomFormFunctions.setSneakySave(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
 });
 $(window).on('hashchange', function() {
     switch (location.hash) {
@@ -34,6 +38,7 @@ $(window).on('hashchange', function() {
         break;
     }
 });
+
 // Bootstrap Field Writer //
 var fields = {
     "formEmployeeInfo" : [
@@ -138,7 +143,7 @@ var fields = {
                 "type":"input/text",
                 "required":true
             },
-            {   "fieldName":"emergencyContactFirstName1",
+            {   "fieldName":"emergencyContactLastName1",
                 "title":"Last Name",
                 "type":"input/text",
                 "required":true
@@ -292,4 +297,4 @@ var fields = {
         ]
     ]
 }
-addBootstrapFields(fields);
+CustomFormFunctions.addBootstrapFields(fields);

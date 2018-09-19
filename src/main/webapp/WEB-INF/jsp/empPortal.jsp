@@ -114,32 +114,32 @@
                                     <h4 class="title3">Monthly Vehicle Usage</h4>
                                     <div class="row">
                                         <div class="col">
-                                                <div class="form-group">
-                                                    <label class="" for="vMonth">Current Month<span class="reqClass"> *</span></label>
-                                                    <input type="text" class="form-control" id="vMonth" required placeholder="Enter Current Month" aria-label="Current Month">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>                                                     
+                                            <div class="form-group">
+                                                <label class="" for="vMonth">Current Month<span class="reqClass"> *</span></label>
+                                                <input type="text" class="form-control" id="vMonth" required placeholder="Enter Current Month" aria-label="Current Month">
+                                                <div class="help-block with-errors"></div>
+                                            </div>                                                     
                                         </div>
                                         <div class="col">
-                                                <div class="form-group">
-                                                    <label class="" for="vYear">Current Year<span class="reqClass"> *</span></label>
-                                                    <input type="text" class="form-control" id="vYear" required placeholder="Enter Current Year" aria-label="Current Year">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>                                                     
+                                            <div class="form-group">
+                                                <label class="" for="vYear">Current Year<span class="reqClass"> *</span></label>
+                                                <input type="text" class="form-control" id="vYear" required placeholder="Enter Current Year" aria-label="Current Year">
+                                                <div class="help-block with-errors"></div>
+                                            </div>                                                     
                                         </div>
                                         <div class="col">
-                                                <div class="form-group">
-                                                    <label class="" for="vLicense">Vehicle License<span class="reqClass"> *</span></label>
-                                                    <input type="text" class="form-control" id="vLicense" required placeholder="Enter Vehicle License" aria-label="Vehicle License">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>                                                     
+                                            <div class="form-group">
+                                                <label class="" for="vLicense">Vehicle License<span class="reqClass"> *</span></label>
+                                                <input type="text" class="form-control" id="vLicense" required placeholder="Enter Vehicle License" aria-label="Vehicle License">
+                                                <div class="help-block with-errors"></div>
+                                            </div>                                                     
                                         </div>
                                         <div class="col">
-                                                <div class="form-group">
-                                                    <label class="" for="vOpCrew">Operator Crew Number</label>
-                                                    <input type="text" class="form-control" id="vOpCrew" required placeholder="Operator Crew Number" aria-label="Operator Crew Number">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>                                                     
+                                            <div class="form-group">
+                                                <label class="" for="vOpCrew">Operator Crew Number</label>
+                                                <input type="text" class="form-control" id="vOpCrew" required placeholder="Operator Crew Number" aria-label="Operator Crew Number">
+                                                <div class="help-block with-errors"></div>
+                                            </div>                                                     
                                         </div>                                                                                                
                                     </div>
                                     <h4 class="title4">Last Month</h4>
@@ -200,7 +200,7 @@
         </footer>
         <script src="/js/ead.min.js"></script>
         <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
+        <script src="/js/pagesJS/customFormFunctions.js"></script>
         <script src="/js/pagesJS/empPortal.js"></script>
         <script src="/js/pagesJS/mainHRPages.js"></script>
         <script src="/js/pagesJS/ApiCalls.js"></script>

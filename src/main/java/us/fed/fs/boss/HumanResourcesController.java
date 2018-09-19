@@ -2,7 +2,6 @@ package us.fed.fs.boss;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,7 @@ import us.fed.fs.boss.model.DeliberativeRiskAssessment;
 import us.fed.fs.boss.model.DeliberativeRiskAssessmentAircraft;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
+import us.fed.fs.boss.model.ProfilePicture;
 import us.fed.fs.boss.model.Training;
 import us.fed.fs.boss.model.Views;
 import us.fed.fs.boss.repository.ContactRepository;
@@ -29,6 +29,7 @@ import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
+import us.fed.fs.boss.repository.ProfilePictureRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
 
 @RestController
@@ -52,13 +53,16 @@ public class HumanResourcesController {
     @Autowired
     DeliberativeRiskAssessmentAircraftRepository deliberativeRiskAssessmentAircraftRepository;
 
+    @Autowired
+    ProfilePictureRepository profilePictureRepository;
+
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
         employeeProfileDetails = employeeProfileRepository.save(employeeProfileDetails);
         return new ResponseEntity<>(employeeProfileDetails, HttpStatus.OK);
 
     }
-    
+
     @DeleteMapping("/employeeProfile/{id}")
     public ResponseEntity<?> deleteEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId) {
 
@@ -268,5 +272,15 @@ public class HumanResourcesController {
         deliberativeRiskAssessmentAircraftRepository.delete(dra);
         return ResponseEntity.ok().build();
 
+    }
+
+    // Get All Employee Profiles
+    @JsonView(Views.Internal.class)
+    @GetMapping("/profilePicture/{profilePictureId}")
+    public ResponseEntity getProfilePicture(@PathVariable(value = "profilePictureId") final Long profilePictureId) {
+        ProfilePicture pic = profilePictureRepository.findById(profilePictureId).orElseThrow(
+                () -> new ResourceNotFoundException("ProfilePicture", "profilePictureId", profilePictureId)
+        );
+        return new ResponseEntity<>("hey: " + profilePictureId.toString(), HttpStatus.OK);
     }
 }
