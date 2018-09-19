@@ -8,35 +8,40 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeProfileAdminSerializer extends StdSerializer<List<EmployeeProfile>>{
- 
-     public EmployeeProfileAdminSerializer() {
+public class EmployeeProfileAdminSerializer extends StdSerializer<List<EmployeeProfile>> {
+
+    public EmployeeProfileAdminSerializer() {
         this(null);
     }
- 
+
     public EmployeeProfileAdminSerializer(Class<List<EmployeeProfile>> t) {
         super(t);
     }
- 
+
     @Override
     public void serialize(
-      List<EmployeeProfile> items, 
-      JsonGenerator generator, 
-      SerializerProvider provider) 
-      throws IOException, JsonProcessingException {
-        
+            List<EmployeeProfile> items,
+            JsonGenerator generator,
+            SerializerProvider provider)
+            throws IOException, JsonProcessingException {
+
         List<Supervisor> supes = new ArrayList<>();
-         
-        for (EmployeeProfile item : items) {
-            supes.add(new Supervisor(item.getId(), item.getNameCode()));
-        }
+
+        items.forEach(
+                (item) -> {
+                    supes.add(new Supervisor(item.getId(), item.getNameCode()));
+                }
+        );
+
         generator.writeObject(supes);
+
     }
-    
+
     private class Supervisor {
+
         private Long id;
         private String nameCode;
-        
+
         public Supervisor(Long id, String nameCode) {
             this.id = id;
             this.nameCode = nameCode;
