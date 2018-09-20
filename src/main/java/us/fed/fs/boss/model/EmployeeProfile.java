@@ -64,6 +64,10 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "NameCode", unique = true, nullable = false)
     @JsonView(Views.Minimal.class)
     private String nameCode;
+    
+    @Column(name = "ProfilePicture", unique = false, nullable = true)
+    @JsonView(Views.Minimal.class)
+    private Long profilePicture;
 
     @Column(name = "HomePhone")
     @JsonView(Views.Internal.class)
@@ -972,6 +976,20 @@ public class EmployeeProfile implements Serializable {
      */
     public void setEmployees(List<EmployeeProfile> employees) {
         this.employees = employees;
+    }
+
+    /**
+     * @return the profilePicture
+     */
+    public Long getProfilePicture() {
+        return profilePicture;
+    }
+
+    /**
+     * @param profilePicture the profilePicture to set
+     */
+    public void setProfilePicture(Long profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
 }

@@ -1,11 +1,23 @@
 package us.fed.fs.boss;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +27,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.Contact;
 import us.fed.fs.boss.model.DeliberativeRiskAssessment;
 import us.fed.fs.boss.model.DeliberativeRiskAssessmentAircraft;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
-import us.fed.fs.boss.model.ProfilePicture;
+import us.fed.fs.boss.model.UploadedDocument;
 import us.fed.fs.boss.model.Training;
 import us.fed.fs.boss.model.Views;
 import us.fed.fs.boss.repository.ContactRepository;
@@ -29,8 +43,10 @@ import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
-import us.fed.fs.boss.repository.ProfilePictureRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
+import us.fed.fs.boss.repository.UploadedDocumentRepository;
+import us.fed.fs.boss.upload.UploadFileResponse;
+import us.fed.fs.boss.upload.UploadService;
 
 @RestController
 public class HumanResourcesController {
@@ -54,7 +70,7 @@ public class HumanResourcesController {
     DeliberativeRiskAssessmentAircraftRepository deliberativeRiskAssessmentAircraftRepository;
 
     @Autowired
-    ProfilePictureRepository profilePictureRepository;
+    UploadService uploadService;
 
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -274,13 +290,65 @@ public class HumanResourcesController {
 
     }
 
-    // Get All Employee Profiles
-    @JsonView(Views.Internal.class)
+    @PostMapping("/profilePicture")
+    public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = false) final Long employeeProfileId) {
+
+        try {
+            
+            EmployeeProfile profile =  employeeProfileRepository.findById(employeeProfileId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
+                });
+            
+            String fileName = file.getOriginalFilename();
+            File convFile = new File(fileName);
+            convFile.createNewFile();
+            try (FileOutputStream fos = new FileOutputStream(convFile)) {
+                fos.write(file.getBytes());
+            }
+
+            String type = file.getContentType();
+            if (type == null) {
+                return ResponseEntity.status(400).body("Bad Image Format");
+            }
+            switch (type) {
+                case MediaType.IMAGE_JPEG_VALUE:
+                case MediaType.IMAGE_PNG_VALUE:
+                    CompletableFuture<Long> future = uploadService.upload(convFile, "profilePicture", file.getContentType());
+                    Long imageId = future.get();
+                    profile.setProfilePicture(imageId);
+                    employeeProfileRepository.save(profile);
+                    String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/profilePicture/")
+                            .path(imageId.toString())
+                            .toUriString();
+
+                    UploadFileResponse resp = new UploadFileResponse(fileName, fileDownloadUri,
+                            file.getContentType(), file.getSize());
+
+                    return new ResponseEntity<>(resp, HttpStatus.OK);
+                default:
+                    return ResponseEntity.status(400).body("Bad Image Format");
+
+            }
+
+        } catch (IOException | InterruptedException | ExecutionException ex) {
+            Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
+            return ResponseEntity.status(500).body(ex.getLocalizedMessage());
+        }
+    }
+
     @GetMapping("/profilePicture/{profilePictureId}")
-    public ResponseEntity getProfilePicture(@PathVariable(value = "profilePictureId") final Long profilePictureId) {
-        ProfilePicture pic = profilePictureRepository.findById(profilePictureId).orElseThrow(
-                () -> new ResourceNotFoundException("ProfilePicture", "profilePictureId", profilePictureId)
-        );
-        return new ResponseEntity<>("hey: " + profilePictureId.toString(), HttpStatus.OK);
+    public ResponseEntity downloadProfilePicture(@PathVariable Long profilePictureId, HttpServletResponse response) {
+        try {
+            // Load file as Resource
+            UploadedDocument doc = uploadService.getUploadedDocument(profilePictureId).get();
+            response.setContentType(doc.getDocType());
+            return ResponseEntity.ok(doc.getData());
+        } catch (InterruptedException | ExecutionException ex) {
+            Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
+            return ResponseEntity.status(500).body(ex.getLocalizedMessage());
+
+        }
     }
 }
