@@ -68,6 +68,10 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "ProfilePicture", unique = false, nullable = true)
     @JsonView(Views.Minimal.class)
     private Long profilePicture;
+    
+    @Column(name = "Certificate", unique = false, nullable = true)
+    @JsonView(Views.Internal.class)
+    private Long certificate;
 
     @Column(name = "HomePhone")
     @JsonView(Views.Internal.class)
@@ -990,6 +994,20 @@ public class EmployeeProfile implements Serializable {
      */
     public void setProfilePicture(Long profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    /**
+     * @return the certificate
+     */
+    public Long getCertificate() {
+        return certificate;
+    }
+
+    /**
+     * @param certificate the certificate to set
+     */
+    public void setCertificate(Long certificate) {
+        this.certificate = certificate;
     }
 
 }

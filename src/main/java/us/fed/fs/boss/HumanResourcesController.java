@@ -10,12 +10,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,12 +36,12 @@ import us.fed.fs.boss.model.UploadedDocument;
 import us.fed.fs.boss.model.Training;
 import us.fed.fs.boss.model.Views;
 import us.fed.fs.boss.repository.ContactRepository;
+import us.fed.fs.boss.repository.CrewsRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
-import us.fed.fs.boss.repository.UploadedDocumentRepository;
 import us.fed.fs.boss.upload.UploadFileResponse;
 import us.fed.fs.boss.upload.UploadService;
 
@@ -62,6 +59,9 @@ public class HumanResourcesController {
 
     @Autowired
     ContactRepository contactRepository;
+    
+    @Autowired
+    CrewsRepository crewsRepository;
 
     @Autowired
     DeliberativeRiskAssessmentRepository deliberativeRiskAssessmentRepository;
@@ -294,12 +294,12 @@ public class HumanResourcesController {
     public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = false) final Long employeeProfileId) {
 
         try {
-            
-            EmployeeProfile profile =  employeeProfileRepository.findById(employeeProfileId)
-                .orElseThrow(() -> {
-                    return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
-                });
-            
+
+            EmployeeProfile profile = employeeProfileRepository.findById(employeeProfileId)
+                    .orElseThrow(() -> {
+                        return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
+                    });
+
             String fileName = file.getOriginalFilename();
             File convFile = new File(fileName);
             convFile.createNewFile();
@@ -328,7 +328,7 @@ public class HumanResourcesController {
 
                     return new ResponseEntity<>(resp, HttpStatus.OK);
                 default:
-                    return ResponseEntity.status(400).body("Bad Image Format");
+                    return ResponseEntity.status(400).body("Bad Image Format. Please use only JPEG or PNG.");
 
             }
 
@@ -343,6 +343,69 @@ public class HumanResourcesController {
         try {
             // Load file as Resource
             UploadedDocument doc = uploadService.getUploadedDocument(profilePictureId).get();
+            response.setContentType(doc.getDocType());
+            return ResponseEntity.ok(doc.getData());
+        } catch (InterruptedException | ExecutionException ex) {
+            Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
+            return ResponseEntity.status(500).body(ex.getLocalizedMessage());
+
+        }
+    }
+
+    @PostMapping("/certificate")
+    public ResponseEntity uploadCertificate(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = false) final Long employeeProfileId) {
+
+        try {
+
+            EmployeeProfile profile = employeeProfileRepository.findById(employeeProfileId)
+                    .orElseThrow(() -> {
+                        return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
+                    });
+
+            String fileName = file.getOriginalFilename();
+            File convFile = new File(fileName);
+            convFile.createNewFile();
+            try (FileOutputStream fos = new FileOutputStream(convFile)) {
+                fos.write(file.getBytes());
+            }
+
+            String type = file.getContentType();
+            if (type == null) {
+                return ResponseEntity.status(400).body("Bad Image Format");
+            }
+            switch (type) {
+                case MediaType.IMAGE_JPEG_VALUE:
+                case MediaType.IMAGE_PNG_VALUE:
+                case MediaType.APPLICATION_PDF_VALUE:
+                    CompletableFuture<Long> future = uploadService.upload(convFile, "certificate", file.getContentType());
+                    Long imageId = future.get();
+                    profile.setCertificate(imageId);
+                    employeeProfileRepository.save(profile);
+                    String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/certificate/")
+                            .path(imageId.toString())
+                            .toUriString();
+
+                    UploadFileResponse resp = new UploadFileResponse(fileName, fileDownloadUri,
+                            file.getContentType(), file.getSize());
+
+                    return new ResponseEntity<>(resp, HttpStatus.OK);
+                default:
+                    return ResponseEntity.status(400).body("Bad File Format. Please Use Only JPEG, PNG OR PDF");
+
+            }
+
+        } catch (IOException | InterruptedException | ExecutionException ex) {
+            Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
+            return ResponseEntity.status(500).body(ex.getLocalizedMessage());
+        }
+    }
+
+    @GetMapping("/certificate/{certificateId}")
+    public ResponseEntity downloadCertificate(@PathVariable Long certificateId, HttpServletResponse response) {
+        try {
+            // Load file as Resource
+            UploadedDocument doc = uploadService.getUploadedDocument(certificateId).get();
             response.setContentType(doc.getDocType());
             return ResponseEntity.ok(doc.getData());
         } catch (InterruptedException | ExecutionException ex) {
