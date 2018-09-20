@@ -25,18 +25,8 @@ public class UploadService {
         doc.setFileType(fileType);
         doc.setName(f.getName());
         uploadedDocumentRepository.save(doc);
+        f.delete();
         return CompletableFuture.completedFuture(doc.getId());
-    }
-
-    @Async
-    public CompletableFuture<Void> upload(byte[] data, String docType, String fileType, String fileName) throws InterruptedException {
-        UploadedDocument doc = new UploadedDocument();
-        doc.setData(data);
-        doc.setDocType(docType);
-        doc.setFileType(fileType);
-        doc.setName(fileName);
-        uploadedDocumentRepository.save(doc);
-        return CompletableFuture.completedFuture(null);
     }
 
     @Async
