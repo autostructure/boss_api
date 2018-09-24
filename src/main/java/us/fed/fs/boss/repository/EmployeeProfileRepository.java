@@ -13,7 +13,7 @@ public interface EmployeeProfileRepository extends JpaRepository<EmployeeProfile
 
     @Override
     List<EmployeeProfile> findAll();
-    
+
     List<EmployeeProfile> findByNameCode(String nameCode);
 
     @Override

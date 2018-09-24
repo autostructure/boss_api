@@ -1,17 +1,20 @@
 var fy = $('#fy').val();
 var tempAPI = 'http://localhost:8090/jobCode';
 
-var dat = [{ id: 1, overrideCode: "a", financialYear: 2000, jobCode: "SPIX", description: "soils", amount:223 },
-    { id: 1, overrideCode: "b", financialYear: 2000, jobCode: "SPIX2", description: "soils2", amount:334 }];
+var dat = [{id: 1, overrideCode: "a", financialYear: 2000, jobCode: "SPIX", description: "soils", amount: 223},
+    {id: 1, overrideCode: "b", financialYear: 2000, jobCode: "SPIX2", description: "soils2", amount: 334}];
 
 
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
+    if (!url)
+        url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
+            results = regex.exec(url);
+    if (!results)
+        return null;
+    if (!results[2])
+        return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
@@ -37,7 +40,7 @@ $(document).ready(function () {
     }
 
 
-    
+
     fy = getParameterByName('year');
     debugger;
     var inf = "";
@@ -50,20 +53,20 @@ $(document).ready(function () {
     });
 
 
-    
+
     function populateDataTable(jsonData) {
         var table = $('#jobCodes').DataTable({
             data: jsonData,
             bProcessing: true,
             bPaginate: false,
             dom: 'Brtip',
-            columnDefs: { sortable: false, targets: [4] },
+            columnDefs: {sortable: false, targets: [4]},
             columns: [
-                { data: "financialYear" },
-                { data: "overrideCode" },
-                { data: "jobCode" },
-                { data: "description" },
-                { data: "amount" }
+                {data: "financialYear"},
+                {data: "overrideCode"},
+                {data: "jobCode"},
+                {data: "description"},
+                {data: "amount"}
 
 
             ],
@@ -102,7 +105,7 @@ $(document).ready(function () {
         });
 
 
-       
+
 
         table.columns().every(function () {
             var that = this;
@@ -110,8 +113,8 @@ $(document).ready(function () {
             $('input', this.header()).on('keyup change', function () {
                 if (that.search() !== this.value) {
                     that
-                        .search(this.value)
-                        .draw();
+                            .search(this.value)
+                            .draw();
                 }
             });
         });

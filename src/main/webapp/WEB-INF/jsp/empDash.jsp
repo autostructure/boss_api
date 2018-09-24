@@ -58,7 +58,7 @@
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
         <script src="/js/pagesJS/empPortal.js"></script>
-        <script src="/js/pagesJS/mainHRPages.js"></script>
+        <script src="/js/pagesJS/personnelPages.js"></script>
         <script src="/js/pagesJS/ApiCalls.js"></script>
 </body>
 

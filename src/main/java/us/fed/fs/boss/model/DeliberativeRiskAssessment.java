@@ -48,20 +48,19 @@ public class DeliberativeRiskAssessment implements Serializable {
     @Column(name = "AssessmentUpdated")
     @Temporal(TemporalType.DATE)
     private Date assessmentUpdated;
-    
+
     @ManyToOne(optional = false)
-    @JoinColumn(name="employee_id")
+    @JoinColumn(name = "employee_id")
     @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     private EmployeeProfile employeeProfile;
-    
+
     @OneToMany(
-        mappedBy = "deliberativeRiskAssessment",
-        cascade = CascadeType.ALL, 
-        orphanRemoval = true
+            mappedBy = "deliberativeRiskAssessment",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    @JsonManagedReference(value="deliberativeRiskAssessmentHazards")
+    @JsonManagedReference(value = "deliberativeRiskAssessmentHazards")
     private List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards;
-    
 
     /**
      * @return the id
@@ -155,7 +154,8 @@ public class DeliberativeRiskAssessment implements Serializable {
     }
 
     /**
-     * @param deliberativeRiskAssessmentHazards the deliberativeRiskAssessmentHazards to set
+     * @param deliberativeRiskAssessmentHazards the
+     * deliberativeRiskAssessmentHazards to set
      */
     public void setDeliberativeRiskAssessmentHazards(List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards) {
         this.deliberativeRiskAssessmentHazards = deliberativeRiskAssessmentHazards;

@@ -8,6 +8,7 @@ package us.fed.fs.boss.reports;
 import java.math.BigDecimal;
 
 public class PayrollDetailsRow {
+
     private String section;
     private String sectionDescription;
     private String name;
@@ -18,8 +19,8 @@ public class PayrollDetailsRow {
     private BigDecimal regPayForecast;
     private BigDecimal totalFYForecast;
     private Long employeeProfileId;
-    
-       /**
+
+    /**
      * @return the employeeProfileId
      */
     public Long getEmployeeProfileId() {

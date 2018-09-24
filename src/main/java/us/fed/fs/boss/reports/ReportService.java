@@ -64,9 +64,9 @@ public class ReportService {
 
         // O(n^3)
         for (EmployeeProfile profile : profiles) {
-            
+
             PayrollDetailsRow row = new PayrollDetailsRow();
-            
+
             row.setEmployeeProfileId(profile.getId());
 
             BigDecimal regPayToDate = BigDecimal.ZERO;
@@ -81,7 +81,7 @@ public class ReportService {
 
             Expense[] userSalaries = Arrays.stream(salaryExpenses)
                     .filter(expense -> expense.getEmployeeProfile()
-                            .getId().equals(profile.getId()))
+                    .getId().equals(profile.getId()))
                     .toArray(Expense[]::new);
 
             /* (8, 'Base Salaries')
@@ -169,7 +169,7 @@ public class ReportService {
             BigDecimal grandTotalPayToDate = BigDecimal.ZERO;
             BigDecimal grandTotalPayForecast = BigDecimal.ZERO;
             BigDecimal grandTotalFYForecast = BigDecimal.ZERO;
-            
+
             PayrollDetails details = summaryFutureXLSX.get();
 
             for (PayrollDetailsRow detail : details.getRows()) {

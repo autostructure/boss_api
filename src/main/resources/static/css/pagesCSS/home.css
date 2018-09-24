@@ -91,14 +91,14 @@ a:visited{
 }
 
 @media screen and (min-width: 990px) and (max-width: 1400px){
-.card-title {
-    position: absolute;
-    top: 10px;
-    left: 5px;
-    color: white;
-    font-size: 2.5em;
-    text-align: left;
-}
+    .card-title {
+        position: absolute;
+        top: 10px;
+        left: 5px;
+        color: white;
+        font-size: 2.5em;
+        text-align: left;
+    }
 }
 .fa-superpowers{
     color: red;

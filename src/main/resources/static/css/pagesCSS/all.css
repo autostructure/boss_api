@@ -137,10 +137,10 @@ a.active span{
     width: 20% !important;
 }
 @media screen and (min-width: 600px){
-.usa-footer-primary-section .usa-grid-full {
-    padding-left: 15rem;
-    padding-right: 15rem;
-}
+    .usa-footer-primary-section .usa-grid-full {
+        padding-left: 15rem;
+        padding-right: 15rem;
+    }
 }
 /* ---------------------------------------------------------------------END OF FOOTER STYLES------------------------------------------------------------ */
 
@@ -148,7 +148,7 @@ a.active span{
 
 
 /* ---------------------------------------------------------------------START OF SIDENAV STYLES------------------------------------------------------------ */
- .wrapper {
+.wrapper {
     display: flex;
 }
 a.noUline{
@@ -352,7 +352,7 @@ table.dataTable thead th {
     position: relative;
     background-image: none !important;
 }
- 
+
 table.dataTable thead th.sorting:after,
 table.dataTable thead th.sorting_asc:after,
 table.dataTable thead th.sorting_desc:after {

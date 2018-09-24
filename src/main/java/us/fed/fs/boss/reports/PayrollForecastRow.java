@@ -3,7 +3,7 @@ package us.fed.fs.boss.reports;
 import java.math.BigDecimal;
 
 public class PayrollForecastRow {
-    
+
     private String activityCode;
     private String activityCodeDescription;
     private BigDecimal regPayToDate;
@@ -79,5 +79,5 @@ public class PayrollForecastRow {
     public void setTotalFYForecast(BigDecimal totalFYForecast) {
         this.totalFYForecast = totalFYForecast;
     }
-    
+
 }

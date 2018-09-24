@@ -16,19 +16,20 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "Crews")
 @EntityListeners(AuditingEntityListener.class)
 public class Crews {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "Description")
     private String description;
-    
+
     @Column(name = "Name")
     private String name;
-    
+
     @Column(name = "IsLeader")
     private Boolean isLeader;
-    
+
     @ManyToOne
     @JoinColumn(name = "EmployeeProfileFK")
     @JsonIgnore
@@ -103,5 +104,5 @@ public class Crews {
     public void setEmployeeProfile(EmployeeProfile employeeProfile) {
         this.employeeProfile = employeeProfile;
     }
-    
+
 }

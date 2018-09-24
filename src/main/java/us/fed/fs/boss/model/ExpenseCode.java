@@ -21,7 +21,7 @@ public class ExpenseCode implements Serializable {
 
     @Id
     private Long id;
-    
+
     @Column(name = "Type", nullable = false)
     private String type;
 
@@ -52,5 +52,5 @@ public class ExpenseCode implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-    
+
 }

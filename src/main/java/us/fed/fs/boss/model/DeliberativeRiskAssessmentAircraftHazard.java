@@ -40,7 +40,7 @@ public class DeliberativeRiskAssessmentAircraftHazard implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "PostMitigationValue")
     private RiskToleranceRatingAircraft postMitigationValue;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "System")
     private SystemAircraft system;
@@ -48,10 +48,10 @@ public class DeliberativeRiskAssessmentAircraftHazard implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "SubSystem")
     private SubSystemAircraft subSystem;
-    
-    @JsonBackReference(value="identifiedHazardsAircraft")
+
+    @JsonBackReference(value = "identifiedHazardsAircraft")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="deliberativeRiskAssessmentAircraft")
+    @JoinColumn(name = "deliberativeRiskAssessmentAircraft")
     private DeliberativeRiskAssessment deliberativeRiskAssessmentAircraft;
 
     /**
@@ -134,7 +134,8 @@ public class DeliberativeRiskAssessmentAircraftHazard implements Serializable {
     }
 
     /**
-     * @param deliberativeRiskAssessmentAircraft the deliberativeRiskAssessmentAircraft to set
+     * @param deliberativeRiskAssessmentAircraft the
+     * deliberativeRiskAssessmentAircraft to set
      */
     public void setDeliberativeRiskAssessmentAircraft(DeliberativeRiskAssessment deliberativeRiskAssessmentAircraft) {
         this.deliberativeRiskAssessmentAircraft = deliberativeRiskAssessmentAircraft;

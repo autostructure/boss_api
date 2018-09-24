@@ -59,7 +59,7 @@ public class HumanResourcesController {
 
     @Autowired
     ContactRepository contactRepository;
-    
+
     @Autowired
     CrewsRepository crewsRepository;
 
@@ -101,11 +101,8 @@ public class HumanResourcesController {
 
         employeeProfileDetails.getEmployees().forEach((child) -> {
             if (!child.getId().equals(employeeProfileDetails.getId())) {
-                List<EmployeeProfile> supervisors = child.getSupervisors();
-                if (!supervisors.contains(employeeProfileDetails)) {
-                    supervisors.add(employeeProfileDetails);
-                    child.setSupervisors(supervisors);
-                }
+                EmployeeProfile supervisor = child.getSupervisor();
+                child.setSupervisor(employeeProfileDetails);
                 employeeProfileRepository.save(child);
             }
         });

@@ -23,7 +23,7 @@ public class ActivityCode implements Serializable {
 
     @Id
     private String code;
-    
+
     @Column(name = "Name", nullable = false)
     private String name;
 
@@ -54,6 +54,5 @@ public class ActivityCode implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-}
 
+}

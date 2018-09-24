@@ -1,29 +1,29 @@
 package us.fed.fs.boss.model;
- 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
- 
+
 @Entity
 @Table(name = "UploadedDocument")
 public class UploadedDocument {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     @Column(name = "Name")
     private String name;
-    
+
     @Column(name = "DocType")
     private String docType;
-    
-      @Column(name = "FileType")
+
+    @Column(name = "FileType")
     private String fileType;
-    
+
     @Column(name = "Data")
     private byte[] data;
 
@@ -96,6 +96,5 @@ public class UploadedDocument {
     public void setFileType(String fileType) {
         this.fileType = fileType;
     }
- 
-    
+
 }

@@ -1,6 +1,7 @@
 package us.fed.fs.boss.reports;
 
 public class BudgetSummaryRow {
+
     private String jobCode;
     private String fiscalYear;
     private String description;

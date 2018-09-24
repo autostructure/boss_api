@@ -20,7 +20,7 @@ public class BudgetObjectCode implements Serializable {
 
     @Id
     private Long id;
-    
+
     @Column(name = "Name", nullable = false)
     private String name;
 
@@ -51,5 +51,5 @@ public class BudgetObjectCode implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }

@@ -1,6 +1,7 @@
 package us.fed.fs.boss.upload;
 
 public class UploadFileResponse {
+
     private String fileName;
     private String fileDownloadUri;
     private String fileType;

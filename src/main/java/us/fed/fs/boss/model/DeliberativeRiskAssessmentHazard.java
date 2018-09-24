@@ -24,7 +24,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class DeliberativeRiskAssessmentHazard implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,10 +48,10 @@ public class DeliberativeRiskAssessmentHazard implements Serializable {
 
     @Column(name = "AssignedTo")
     private String assignedTo;
-    
-    @JsonBackReference(value="deliberativeRiskAssessmentHazards")
+
+    @JsonBackReference(value = "deliberativeRiskAssessmentHazards")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="deliberativeRiskAssessment")
+    @JoinColumn(name = "deliberativeRiskAssessment")
     private DeliberativeRiskAssessment deliberativeRiskAssessment;
 
     /**
@@ -76,7 +76,8 @@ public class DeliberativeRiskAssessmentHazard implements Serializable {
     }
 
     /**
-     * @param initialProposedControlMeasures the initialProposedControlMeasures to set
+     * @param initialProposedControlMeasures the initialProposedControlMeasures
+     * to set
      */
     public void setInitialProposedControlMeasures(String initialProposedControlMeasures) {
         this.initialProposedControlMeasures = initialProposedControlMeasures;

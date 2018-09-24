@@ -23,32 +23,32 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Training implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "YearsValid")
     private Short yearsValid;
-    
+
     @Column(name = "Hours")
     private Short hours;
-    
+
     @Column(name = "Location")
     private String location;
-    
-     @Column(name = "Presenter")
+
+    @Column(name = "Presenter")
     private String presenter;
-     
+
     @Column(name = "Title")
     private String title;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DateOfTraining")
     private Date dateOfTraining;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="training")
+    @JoinColumn(name = "training")
     private Training training;
 
     /**

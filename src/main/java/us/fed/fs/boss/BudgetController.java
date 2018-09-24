@@ -191,7 +191,7 @@ public class BudgetController {
     public List<PaymentCode> getAllPaymentCodes() {
         return paymentCodeRepository.findAll();
     }
-    
+
     // Get Budget Summary JSON
     @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
     public ResponseEntity getBudgetSummary(

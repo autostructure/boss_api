@@ -13,12 +13,13 @@ $(document).ready(function () {
     });
     // This expands and highlights the appropriate link in the sidebar.
     var loc = window.location.pathname
-    $('#sidebar a[href="'+loc+'"]').parent().parent().addClass('show');
-    $('#sidebar a[href="'+loc+'"]').addClass('highlight');
+    $('#sidebar a[href="' + loc + '"]').parent().parent().addClass('show');
+    $('#sidebar a[href="' + loc + '"]').addClass('highlight');
     // This removes a bad css style from bootstrap select elements.
-    $("select").attr("size","");
+    $("select").attr("size", "");
 });
 
 if ($(window).width() < 514) {
     $('#sidebar, .main-header, .breadcrumbdiv').addClass('hidden');
-};
+}
+;

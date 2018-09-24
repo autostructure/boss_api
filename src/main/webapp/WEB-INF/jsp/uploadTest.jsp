@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="img/favicons/favicon.ico" type="image/x-icon">
+        <title>FIA-BOSS</title>
+        <link rel="stylesheet" href="css/ead.min.css">
+        <link rel="stylesheet" href="css/pagesCSS/all.css">
+        <link rel="stylesheet" href="css/pagesCSS/home.css">
+    </head>
+
+    <body class="layout-demo">
+        <header class="usa-header usa-header-extended" role="banner" id="mainHeader">
+        </header>
+
+        <main id="background">
+            <div class="container mainTitleDiv">
+                <p>Hey how's it goin my name G R E G</p>
+            </div>
+        </main>
+
+
+        <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
+        </footer>
+
+        <script src="js/ead.min.js"></script>
+        <script src="js/pagesJS/home.js"></script>
+
+    </body>
+
+</html>

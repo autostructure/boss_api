@@ -93,6 +93,5 @@ abstract class Auditable<U> {
     public void setLastModifiedBy(U lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
-    
-    
+
 }

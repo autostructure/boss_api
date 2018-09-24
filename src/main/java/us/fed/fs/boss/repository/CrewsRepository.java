@@ -18,4 +18,3 @@ public interface CrewsRepository extends JpaRepository<Crews, Long> {
     void delete(Crews budgetObjectCode);
 
 }
-

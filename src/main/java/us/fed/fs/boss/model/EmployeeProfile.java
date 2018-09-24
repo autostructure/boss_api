@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import java.io.Serializable;
+
+import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.io.Serializable;
+
 import java.util.List;
-import java.util.ArrayList;
+
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,8 +22,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -64,11 +65,11 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "NameCode", unique = true, nullable = false)
     @JsonView(Views.Minimal.class)
     private String nameCode;
-    
+
     @Column(name = "ProfilePicture", unique = false, nullable = true)
     @JsonView(Views.Minimal.class)
     private Long profilePicture;
-    
+
     @Column(name = "Certificate", unique = false, nullable = true)
     @JsonView(Views.Internal.class)
     private Long certificate;
@@ -240,18 +241,15 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private Date confidentialityAgreementDate;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "supervisor_employee",
-            joinColumns = {
-                @JoinColumn(name = "employee_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "supervisor_id")})
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
-    private List<EmployeeProfile> supervisors = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "supervisor_id")
+    @JsonSerialize(using = EmployeeProfileSupervisorSerializer.class)
+    private EmployeeProfile supervisor;
 
-    @ManyToMany(mappedBy = "supervisors")
+    @OneToMany(mappedBy = "supervisor", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
-    private List<EmployeeProfile> employees = new ArrayList<>();
+    private List<EmployeeProfile> employees;
 
     @JsonIgnore
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
@@ -262,7 +260,6 @@ public class EmployeeProfile implements Serializable {
             fetch = FetchType.LAZY, optional = false)
     @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
-    
 
     public EmployeeProfile() {
         this.employees = new ArrayList<>();
@@ -954,23 +951,8 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @return the supervisors
-     */
-    public List<EmployeeProfile> getSupervisors() {
-        return supervisors;
-    }
-
-    /**
-     * @param supervisors the supervisors to set
-     */
-    public void setSupervisors(List<EmployeeProfile> supervisors) {
-        this.supervisors = supervisors;
-    }
-
-    /**
      * @return the employees
      */
-    
     public List<EmployeeProfile> getEmployees() {
         return employees;
     }
@@ -1008,6 +990,20 @@ public class EmployeeProfile implements Serializable {
      */
     public void setCertificate(Long certificate) {
         this.certificate = certificate;
+    }
+
+    /**
+     * @return the supervisor
+     */
+    public EmployeeProfile getSupervisor() {
+        return supervisor;
+    }
+
+    /**
+     * @param supervisor the supervisor to set
+     */
+    public void setSupervisor(EmployeeProfile supervisor) {
+        this.supervisor = supervisor;
     }
 
 }

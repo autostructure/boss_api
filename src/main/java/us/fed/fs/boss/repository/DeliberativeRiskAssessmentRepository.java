@@ -16,8 +16,7 @@ public interface DeliberativeRiskAssessmentRepository extends JpaRepository<Deli
 
     @Override
     void delete(DeliberativeRiskAssessment deliberativeRiskAssessment);
-    
-    List<DeliberativeRiskAssessment> findAllByEmployeeProfileId(Long employeeProfileId); 
+
+    List<DeliberativeRiskAssessment> findAllByEmployeeProfileId(Long employeeProfileId);
 
 }
-

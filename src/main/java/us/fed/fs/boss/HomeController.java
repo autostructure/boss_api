@@ -57,9 +57,9 @@ public class HomeController {
     public String empPortal() {
         return "empPortal";
     }         
-    @RequestMapping("/hrDash")
-    public String hrDash() {
-        return "hrDash";
+    @RequestMapping("/personnelDash")
+    public String personnel() {
+        return "personnelDash";
     }       
     @RequestMapping("/viewAllEmployees")
     public String viewAllEmployees() {
@@ -97,4 +97,8 @@ public class HomeController {
     public String unverifiedReport() {
         return "unverifiedReport";
     }    
+    @RequestMapping("/uploadTest")
+    public String uploadTest() {
+        return "uploadTest";
+    }
 }

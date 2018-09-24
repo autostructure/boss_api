@@ -31,7 +31,7 @@
                                     <a class="nav-link" id="property-tab" data-toggle="tab" href="#property" role="tab" aria-controls="property" >Issued Property</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#training" role="tab" aria-controls="trainingCerts" >Training/Certs</a>
+                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#trainingCerts" role="tab" aria-controls="trainingCerts" >Training/Certs</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="generalInfo" >General Info</a>
@@ -101,10 +101,31 @@
                             <!--  END OF CHECK IN TAB   -->                                    
 
                             <!-- START OF TRAINING TAB  -->
-                            <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="trainingCerts">
-                                <form role="form" data-toggle="validator" class="trainingCerts" id="formTraining">
-                                    <h4 class="title3">Training</h4>
-                                </form>
+                            <div class="tab-pane fade" id="trainingCerts" role="tabpanel" aria-labelledby="trainingCerts">
+                                <h4 class="title3">Training Due Next 6 Months</h4>
+                                <table id="tblTrainingDue" class="usa-table-borderless display dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Title</th>
+                                            <th>Valid Until (Due Date)</th>
+                                            <th>Select</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <h4 class="title3">Training Completed</h4>
+                                <table id="tblTrainingComplete" class="usa-table-borderless display dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Title</th>
+                                            <th>Location</th>
+                                            <th>Presenter</th>
+                                            <th>Valid Until</th>
+                                            <th>Approved By</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                             <!-- END OF TRAINING TAB    -->    
 
@@ -202,7 +223,7 @@
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/pagesJS/customFormFunctions.js"></script>
         <script src="/js/pagesJS/empPortal.js"></script>
-        <script src="/js/pagesJS/mainHRPages.js"></script>
+        <script src="/js/pagesJS/personnelPages.js"></script>
         <script src="/js/pagesJS/ApiCalls.js"></script>
 </body>
 

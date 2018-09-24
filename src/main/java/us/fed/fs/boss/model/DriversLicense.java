@@ -25,7 +25,7 @@ public class DriversLicense {
 
     @Column(name = "drivers_license_state")
     private String state;
-    
+
     @Column(name = "drivers_license_number")
     private String number;
 
@@ -33,7 +33,7 @@ public class DriversLicense {
     @JoinColumn(name = "employee_profile_id")
     @JsonIgnore
     private EmployeeProfile employeeProfile;
-    
+
     @Temporal(TemporalType.DATE)
     private Date expiration;
 
@@ -107,5 +107,4 @@ public class DriversLicense {
         this.expiration = expiration;
     }
 
-   
 }

@@ -2,7 +2,7 @@ var api = "http://localhost:8090";
 
 function makeAjaxCall(_url, methodType, _data) {
     var promiseObj = new Promise(function (resolve, reject) {
-        
+
         if (_data === null) {
             $.ajax({
                 type: methodType,
@@ -14,7 +14,7 @@ function makeAjaxCall(_url, methodType, _data) {
                     } catch (e) {
                         console.log(e);
                     }
-                    
+
                 },
                 error: function (xhr, status, error) {
                     reject(xhr.responseText);
@@ -27,16 +27,16 @@ function makeAjaxCall(_url, methodType, _data) {
                 url: _url,
                 data: _data,
                 success: function (json) {
-                    
+
                     resolve(json);
                 },
                 error: function (xhr, status, error) {
-                    
+
                     reject(error);
                 }
             });
         }
-    }); 
+    });
     return promiseObj;
 }
 
@@ -180,7 +180,7 @@ function putExpenseWithIDApiCall(resolved, rejected, data, id) {
 }
 
 function getJobCodeApiCall(resolved, rejected, financialYear) {
-    
+
     var endpoint = "/jobCode";
     var url = "";
     if (financialYear !== null) {
@@ -318,8 +318,8 @@ function getPayrollForecastWithTypeAndJobCodeId(resolved, rejected, type, jobCod
  * @param {function} rejected
  */
 function putPartialInfo(url, id, partial, resolved, rejected) {
-    resolved = resolved || function(){}
-    rejected = rejected || function(a,b,c){
+    resolved = resolved || function () {}
+    rejected = rejected || function (a, b, c) {
         console.log(a);
         console.log(a.responseJSON);
         console.log(b);
@@ -346,7 +346,7 @@ function putPartialInfo(url, id, partial, resolved, rejected) {
             dataType: 'json',
             cache: false,
             timeout: 600000,
-            success: function(json) {
+            success: function (json) {
                 for (k in partial) {
                     json[k] = partial[k];
                 }

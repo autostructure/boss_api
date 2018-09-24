@@ -32,81 +32,81 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Expense extends Auditable<String> implements Serializable {
-    
+
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "SECCode")
     private String secCode;
-    
+
     @ManyToOne
     @JoinColumn(name = "ActivityCodeFK")
     private ActivityCode activityCode;
-    
+
     @Column(name = "UnitCode")
     private String unitCode;
-    
+
     @Column(name = "PayPeriod")
     private int payPeriod;
-    
+
     @Column(name = "Total")
     private BigDecimal total;
-    
+
     @Column(name = "FinancialYear")
     private Short financialYear;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DateObl")
     private Date obligatedDate;
 
     @Column(name = "Description")
     private String description;
-    
+
     @Column(name = "OverrideCode")
     private String overrideCode;
-    
+
     @ManyToOne
     @JoinColumn(name = "PaymentCodeFK")
     private PaymentCode paymentCode;
-    
+
     @ManyToOne
     @JoinColumn(name = "BudgetObjectCodeFK")
     private BudgetObjectCode budgetObjectCode;
-    
+
     @Column(name = "State")
     private String state;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CategoryFK")
     private Category category;
-    
+
     @Column(name = "FromDate")
     @Temporal(TemporalType.DATE)
     private Date fromDate;
-    
+
     @Column(name = "TravelVoucherNumber")
     private Long travelVoucherNumber;
-    
+
     @Column(name = "ToDate")
     @Temporal(TemporalType.DATE)
     private Date toDate;
-    
+
     @Column(name = "TravelRemarks")
     private String travelRemarks;
-    
+
     @ManyToOne
     @JoinColumn(name = "EmployeeProfileFK")
     @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
     private EmployeeProfile employeeProfile;
-    
+
     @OneToMany(
-        mappedBy = "expense",
-        cascade = CascadeType.ALL, 
-        orphanRemoval = true
+            mappedBy = "expense",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    @JsonManagedReference(value="expenseDetails")
+    @JsonManagedReference(value = "expenseDetails")
     private List<ExpenseDetail> expenseDetails;
 
     /**

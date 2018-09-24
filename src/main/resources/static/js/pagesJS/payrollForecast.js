@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var api = '';
 
     $('#payrollSub').addClass('show');
@@ -6,22 +6,22 @@ $(document).ready(function() {
 
     $.ajax({
         type: 'GET',
-        url: api+'/jobCode',
-        success: function(json){
-            $('#jobcode').append(json.map(function(jc){
+        url: api + '/jobCode',
+        success: function (json) {
+            $('#jobcode').append(json.map(function (jc) {
                 var selected = "";
                 if (jc.jobCode.match(/^FRFI38\d\d$/)) {
                     console.log("Matched " + jc.jobCode);
                     selected = " selected"
                 }
-                return '<option value="'+jc.id+'"id="'+jc.id+'"'+selected+'>'+jc.jobCode +'</option>';
-            })) ;
+                return '<option value="' + jc.id + '"id="' + jc.id + '"' + selected + '>' + jc.jobCode + '</option>';
+            }));
         }
     }); //end of get jobcode ajax call
     $.ajax({
         type: 'GET',
-        url: api+'/payrollForecast/json',
-        success: function(json){
+        url: api + '/payrollForecast/json',
+        success: function (json) {
             console.log(json);
             populateDataTable(json); // live data
             //populateDataTable(jsonData); // dev data
@@ -29,8 +29,8 @@ $(document).ready(function() {
     });
 
     function populateDataTable(jsonData) {
-        var currency = $.fn.dataTable.render.number( ',', '.', 0, '$' );
-        var dt = $('#payroll').DataTable({ 
+        var currency = $.fn.dataTable.render.number(',', '.', 0, '$');
+        var dt = $('#payroll').DataTable({
             dom: 'Brtip',
             bProcessing: true,
             bPaginate: false,
@@ -38,53 +38,53 @@ $(document).ready(function() {
                 {
                     text: 'Print <i class="fa fa-lg fa-print"></i>',
                     extend: 'print',
-                    exportOptions:{
-                        columns: [0,1,2,3,4]
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
                     },
                     className: 'table-btns print-btn'
                 },
                 {
                     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                     extend: 'excel',
-                    exportOptions:{
-                        columns: [0,1,2,3,4]
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
                     },
                     className: 'table-btns excel-btn'
                 },
                 {
                     text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
-                    action: function(){
+                    action: function () {
                         window.location.reload();
                     },
                     className: 'table-btns refresh-btn'
                 }
-            
+
             ],
             data: jsonData.rows,
-            columnDefs: { sortable: false, targets: [5] },
+            columnDefs: {sortable: false, targets: [5]},
             columns: [
-                { data: "activityCode" },
-                { data: "activityCodeDescription" },
-                { data: "regPayToDate",
-                    "render": $.fn.dataTable.render.number( ',', '.', 0, '$' )
+                {data: "activityCode"},
+                {data: "activityCodeDescription"},
+                {data: "regPayToDate",
+                    "render": $.fn.dataTable.render.number(',', '.', 0, '$')
                 },
-                { data: "regPayForecast",
-                    "render": $.fn.dataTable.render.number( ',', '.', 0, '$' )
+                {data: "regPayForecast",
+                    "render": $.fn.dataTable.render.number(',', '.', 0, '$')
                 },
-                { data: "totalFYForecast",
-                    "render": $.fn.dataTable.render.number( ',', '.', 0, '$' )
+                {data: "totalFYForecast",
+                    "render": $.fn.dataTable.render.number(',', '.', 0, '$')
                 },
             ],
-            
+
         });
 
-        dt.columns().every( function () {
+        dt.columns().every(function () {
             var that = this;
-            $( 'input', this.header(2) ).on( 'keyup change', function () {
-                if ( that.search() !== this.value ) {
+            $('input', this.header(2)).on('keyup change', function () {
+                if (that.search() !== this.value) {
                     that
-                        .search( this.value )
-                        .draw();
+                            .search(this.value)
+                            .draw();
                 }
             });
         });
@@ -94,15 +94,15 @@ $(document).ready(function() {
         $('#payroll #grandTotalFYForecast').html(currency.display(jsonData.grandTotalFYForecast));
 
     }
-    $('#payroll tbody').on( 'click', '.editBtn', function () {
+    $('#payroll tbody').on('click', '.editBtn', function () {
         var employeeID = $(this).data("id");
         //var data = table.row( $(this).parents('tr') ).data();
         //var id = (data.id);
         $.ajax({
             type: 'GET',
-            url: api+'/employeeProfile/'+employeeID,
-            success: function(data){
-                $('#myModal #empName').val(data.firstName+' '+data.lastName);
+            url: api + '/employeeProfile/' + employeeID,
+            success: function (data) {
+                $('#myModal #empName').val(data.firstName + ' ' + data.lastName);
                 $('#myModal #empPPLeft').val(data.payPeriodsLeft);
                 $('#myModal #empRegPay').val(data.regPayPerPayPeriod);
                 $("#empID").data(data);
@@ -111,7 +111,7 @@ $(document).ready(function() {
         $('#myModal').modal('show');
     });
 
-    $("#editForm").submit(function() {
+    $("#editForm").submit(function () {
         var pd = $("#empID").data();
         pd.payPeriodsLeft = parseInt($('#myModal #empPPLeft').val());
         pd.regPayPerPayPeriod = parseInt($('#myModal #empRegPay').val());
@@ -128,13 +128,13 @@ $(document).ready(function() {
             dataType: 'json',
             cache: false,
             timeout: 600000,
-            success: function(data) {
+            success: function (data) {
                 $('#myModal').modal('hide');
                 $('#success').show();
                 $('#success').delay(5000).fadeOut();
                 //window.location.href = api + '/payrollDetails';
             },
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 console.log(request.responseJSON);
                 $('#myModal').modal('hide');
                 $('#error').show()

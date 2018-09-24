@@ -14,6 +14,8 @@ $(document).ready(function() {
     var employeeForms = $("#formEmployeeInfo, #formEmergencyInfo, #formIdentificationInfo");
     CustomFormFunctions.populateElements(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
     CustomFormFunctions.setSneakySave(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
+    
+    $('.empPhoto').attr('src', "/profilePicture/" + userId);
 });
 $(window).on('hashchange', function() {
     switch (location.hash) {
