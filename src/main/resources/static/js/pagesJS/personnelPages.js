@@ -1,6 +1,6 @@
 $(mainHeader).load("../../templates/budgetHeader.html");
 $(mainFooter).load("../../templates/budgetFooter.html");
-$(sidebar).load("../../templates/personnelSidebar.html");
+$(sidebar).load("../../templates/hrsidebar.html");
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         // open or close navbar
@@ -13,10 +13,10 @@ $(document).ready(function () {
     });
     // This expands and highlights the appropriate link in the sidebar.
     var loc = window.location.pathname
-    $('#sidebar a[href="'+loc+'"]').parent().parent().addClass('show');
-    $('#sidebar a[href="'+loc+'"]').addClass('highlight');
+    $('#sidebar a[href="' + loc + '"]').parent().parent().addClass('show');
+    $('#sidebar a[href="' + loc + '"]').addClass('highlight');
     // This removes a bad css style from bootstrap select elements.
-    $("select").attr("size","");
+    $("select").attr("size", "");
 });
 
 if ($(window).width() < 514) {

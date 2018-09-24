@@ -236,6 +236,26 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "addressZip")
     @JsonView(Views.Internal.class)
     private String addressZip;
+    
+    @Column(name = "eyeColor")
+    @JsonView(Views.Internal.class)
+    private String eyeColor;
+    
+    @Column(name = "hairColor")
+    @JsonView(Views.Internal.class)
+    private String hairColor;
+    
+    @Column(name = "gender")
+    @JsonView(Views.Internal.class)
+    private String gender;
+    
+    @Column(name = "race")
+    @JsonView(Views.Internal.class)
+    private String race;
+    
+    @Column(name = "otherIdentifyingFeatures")
+    @JsonView(Views.Internal.class)
+    private String otherIdentifyingFeatures;
 
     @Temporal(TemporalType.DATE)
     @JsonView(Views.Internal.class)
@@ -1004,6 +1024,76 @@ public class EmployeeProfile implements Serializable {
      */
     public void setSupervisor(EmployeeProfile supervisor) {
         this.supervisor = supervisor;
+    }
+
+    /**
+     * @return the eyeColor
+     */
+    public String getEyeColor() {
+        return eyeColor;
+    }
+
+    /**
+     * @param eyeColor the eyeColor to set
+     */
+    public void setEyeColor(String eyeColor) {
+        this.eyeColor = eyeColor;
+    }
+
+    /**
+     * @return the hairColor
+     */
+    public String getHairColor() {
+        return hairColor;
+    }
+
+    /**
+     * @param hairColor the hairColor to set
+     */
+    public void setHairColor(String hairColor) {
+        this.hairColor = hairColor;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the race
+     */
+    public String getRace() {
+        return race;
+    }
+
+    /**
+     * @param race the race to set
+     */
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    /**
+     * @return the otherIdentifyingFeatures
+     */
+    public String getOtherIdentifyingFeatures() {
+        return otherIdentifyingFeatures;
+    }
+
+    /**
+     * @param otherIdentifyingFeatures the otherIdentifyingFeatures to set
+     */
+    public void setOtherIdentifyingFeatures(String otherIdentifyingFeatures) {
+        this.otherIdentifyingFeatures = otherIdentifyingFeatures;
     }
 
 }

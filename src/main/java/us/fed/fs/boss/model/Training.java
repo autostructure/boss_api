@@ -7,12 +7,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,11 +43,6 @@ public class Training implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "DateOfTraining")
     private Date dateOfTraining;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "training")
-    private Training training;
-
     /**
      * @return the id
      */
@@ -148,19 +140,4 @@ public class Training implements Serializable {
     public void setDateOfTraining(Date dateOfTraining) {
         this.dateOfTraining = dateOfTraining;
     }
-
-    /**
-     * @return the training
-     */
-    public Training getTraining() {
-        return training;
-    }
-
-    /**
-     * @param training the training to set
-     */
-    public void setTraining(Training training) {
-        this.training = training;
-    }
-
 }

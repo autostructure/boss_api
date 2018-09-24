@@ -19,13 +19,30 @@ public class UploadService {
 
     @Async
     public CompletableFuture<Long> upload(File f, String docType, String fileType) throws InterruptedException, IOException {
+        
+        
         UploadedDocument doc = new UploadedDocument();
         doc.setData(readFileToByteArray(f));
         doc.setDocType(docType);
         doc.setFileType(fileType);
         doc.setName(f.getName());
+        
+        System.out.println("upload " + f.getName());
+        System.out.println("upload");
+        System.out.println("upload");
+        System.out.println("upload");
+        System.out.println("upload");
+        
         uploadedDocumentRepository.save(doc);
+        
+        System.out.println("uploaded");
+        System.out.println("uploaded");
+        System.out.println("uploaded");
+        System.out.println("uploaded");
+        System.out.println("uploaded");
+        
         f.delete();
+        
         return CompletableFuture.completedFuture(doc.getId());
     }
 

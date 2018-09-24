@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -288,7 +289,7 @@ public class HumanResourcesController {
     }
 
     @PostMapping("/profilePicture")
-    public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = false) final Long employeeProfileId) {
+    public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = true) final Long employeeProfileId) {
 
         try {
 
@@ -340,8 +341,21 @@ public class HumanResourcesController {
         try {
             // Load file as Resource
             UploadedDocument doc = uploadService.getUploadedDocument(profilePictureId).get();
-            response.setContentType(doc.getDocType());
-            return ResponseEntity.ok(doc.getData());
+
+            final HttpHeaders headers = new HttpHeaders();
+            
+            String type = doc.getFileType().toLowerCase();
+            
+            if(type.contains("jpg") || type.contains("jpeg")) {
+                headers.setContentType(MediaType.IMAGE_JPEG);
+            }
+            
+            if(type.contains("png")) {
+                headers.setContentType(MediaType.IMAGE_PNG);
+            }
+
+            return new ResponseEntity<byte[]>(doc.getData(), headers, HttpStatus.CREATED);
+
         } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
             return ResponseEntity.status(500).body(ex.getLocalizedMessage());
