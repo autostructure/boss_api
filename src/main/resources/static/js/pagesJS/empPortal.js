@@ -7,15 +7,48 @@ $(document).ready(function() {
     $("#identification-tab").on("click",function(){location.hash = "#Identification"});
     $(window).trigger('hashchange');
 
-    $("#formIdentificationInfo_employeePhoto").on("click change update",function() {
-
-    });
     var userId = 46 //// Temporary
     var employeeForms = $("#formEmployeeInfo, #formEmergencyInfo, #formIdentificationInfo");
     CustomFormFunctions.populateElements(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
     CustomFormFunctions.setSneakySave(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
     
-    $('.empPhoto').attr('src', "/profilePicture/" + userId);
+    $.ajax({
+        'url':'employeeProfile/'+userId,
+        'type':'GET',
+        'success':function(json) {
+            console.log(json);
+        }
+    });
+    function updateProfilePicture() {
+        $.ajax({
+            'url':'employeeProfile/'+userId,
+            'type':'GET',
+            'success':function(json) {
+                $('.empPhoto').attr('src', "/profilePicture/" + json.profilePicture);
+            }
+        });
+    }
+    $("#formIdentificationInfo_employeePhoto").on("change update",function() {
+        var form = this.closest('form');
+        var data = new FormData(form);
+        $.ajax({
+            url: "/profilePicture/?employeeId=" + userId,
+            type: "POST",
+            enctype: 'multipart/form-data',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                $(".empPhoto").attr("src", data.fileDownloadUri);
+            },
+            error: function (e) {
+                console.log(e.responseJSON);
+            }
+        });
+    });
+    updateProfilePicture();
 });
 $(window).on('hashchange', function() {
     switch (location.hash) {
@@ -206,7 +239,7 @@ var fields = {
                 "title":"First Name",
                 "type":"input/text",
             },
-            {   "fieldName":"emergencyContactFirstName2",
+            {   "fieldName":"emergencyContactLastName2",
                 "title":"Last Name",
                 "type":"input/text",
             },
@@ -283,10 +316,20 @@ var fields = {
                 },
                 "colspan":3,
             },
-            {   "fieldName":"skinTone",
-                "title":"Skin Tone",
-                "type":"input/text",
-                "placeholder":"very light",
+            {   "fieldName":"race",
+                "title":"Race",
+                "type":"select/text",
+                "placeholder":"",
+                "options":{
+                    "Hispanic":"Hispanic/Latino",
+                    "Native":"American Indian or Alaska Native",
+                    "EastAsian":"East Asian",
+                    "SouthAsian":"South Asian (Desi)",
+                    "African":"Black or African American",
+                    "Hawaiian":"Native Hawaiian or Other Pacific Islander",
+                    "White":"White or Caucasian",
+                    "Other":"Two or more races or other",
+                }
             },
         ],
         [

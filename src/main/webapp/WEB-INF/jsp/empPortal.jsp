@@ -60,10 +60,12 @@
                                     <p class="photoText">My Photo, Click to Edit</p>
                                 </div>
                                 <div class="col col-md-4" id="colEmployeePhoto2">
+                                    <form method="POST" enctype="multipart/form-data" action="/profilePicture?employeeId=">
                                     <label for="formIdentificationInfo_employeePhoto">
-                                        <input type="file" id="formIdentificationInfo_employeePhoto">
+                                        <input type="file" name="file" id="formIdentificationInfo_employeePhoto">
                                         <img src="/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
                                     </label>
+                                    </form>
                                 </div>
                             </div>
                             <!--  START OF GENERAL TAB      -->
