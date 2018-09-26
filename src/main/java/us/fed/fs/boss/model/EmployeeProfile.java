@@ -30,12 +30,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "EmployeeProfiles")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
+@DynamicUpdate
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EmployeeProfile implements Serializable {
@@ -69,10 +71,6 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "ProfilePicture", unique = false, nullable = true)
     @JsonView(Views.Minimal.class)
     private Long profilePicture;
-
-    @Column(name = "Certificate", unique = false, nullable = true)
-    @JsonView(Views.Internal.class)
-    private Long certificate;
 
     @Column(name = "HomePhone")
     @JsonView(Views.Internal.class)
@@ -207,12 +205,6 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private Date dateOfBirth;
 
-    @OneToMany(
-            mappedBy = "training"
-    )
-    @JsonView(Views.Internal.class)
-    private List<Training> training;
-
     @Column(name = "addressCity")
     @JsonView(Views.Internal.class)
     private String addressCity;
@@ -280,6 +272,21 @@ public class EmployeeProfile implements Serializable {
             fetch = FetchType.LAZY, optional = false)
     @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
+    
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<Training> training;
+    
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Certificate> certificates;
 
     public EmployeeProfile() {
         this.employees = new ArrayList<>();
@@ -999,20 +1006,6 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @return the certificate
-     */
-    public Long getCertificate() {
-        return certificate;
-    }
-
-    /**
-     * @param certificate the certificate to set
-     */
-    public void setCertificate(Long certificate) {
-        this.certificate = certificate;
-    }
-
-    /**
      * @return the supervisor
      */
     public EmployeeProfile getSupervisor() {
@@ -1094,6 +1087,20 @@ public class EmployeeProfile implements Serializable {
      */
     public void setOtherIdentifyingFeatures(String otherIdentifyingFeatures) {
         this.otherIdentifyingFeatures = otherIdentifyingFeatures;
+    }
+
+    /**
+     * @return the certificates
+     */
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    /**
+     * @param certificates the certificates to set
+     */
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
     }
 
 }

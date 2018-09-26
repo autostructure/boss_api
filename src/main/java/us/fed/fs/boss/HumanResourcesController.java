@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
+import us.fed.fs.boss.model.Certificate;
 import us.fed.fs.boss.model.Contact;
 import us.fed.fs.boss.model.DeliberativeRiskAssessment;
 import us.fed.fs.boss.model.DeliberativeRiskAssessmentAircraft;
@@ -35,6 +36,7 @@ import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.UploadedDocument;
 import us.fed.fs.boss.model.Training;
+import us.fed.fs.boss.model.TrainingCourse;
 import us.fed.fs.boss.model.Views;
 import us.fed.fs.boss.repository.ContactRepository;
 import us.fed.fs.boss.repository.CrewsRepository;
@@ -42,6 +44,7 @@ import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
+import us.fed.fs.boss.repository.TrainingCourseRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
 import us.fed.fs.boss.upload.UploadFileResponse;
 import us.fed.fs.boss.upload.UploadService;
@@ -63,6 +66,9 @@ public class HumanResourcesController {
 
     @Autowired
     CrewsRepository crewsRepository;
+    
+    @Autowired
+    TrainingCourseRepository trainingCourseRepository;
 
     @Autowired
     DeliberativeRiskAssessmentRepository deliberativeRiskAssessmentRepository;
@@ -77,7 +83,6 @@ public class HumanResourcesController {
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
         employeeProfileDetails = employeeProfileRepository.save(employeeProfileDetails);
         return new ResponseEntity<>(employeeProfileDetails, HttpStatus.OK);
-
     }
 
     @DeleteMapping("/employeeProfile/{id}")
@@ -91,7 +96,7 @@ public class HumanResourcesController {
     }
 
     @JsonView(Views.Internal.class)
-    @PutMapping("/employeeProfile/{id}")
+@PutMapping("/employeeProfile/{id}")
     public EmployeeProfile updateEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId,
             @RequestBody EmployeeProfile employeeProfileDetails) {
 
@@ -143,7 +148,8 @@ public class HumanResourcesController {
                 });
     }
 
-    // Get All Employee Profiles
+    // Training 
+    
     @GetMapping("/training")
     public ResponseEntity getAllTrainings(@RequestParam(value = "nameCode", required = false) final String nameCode) {
 
@@ -162,7 +168,90 @@ public class HumanResourcesController {
                     return new ResourceNotFoundException("Training", "id", trainingId);
                 });
     }
+    
+    @PostMapping("/training")
+    public ResponseEntity createTraining(@Valid @RequestBody Training training) {
+        training = trainingRepository.save(training);
+        return new ResponseEntity<>(training, HttpStatus.OK);
 
+    }
+    
+    @PutMapping("/training/{id}")
+    public Training updateTraining(@PathVariable(value = "id") Long trainingId,
+            @RequestBody Training training) {
+
+        employeeProfileRepository.findById(trainingId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("Training", "id", trainingId);
+                });
+        Training updatedTraining = trainingRepository.save(training);
+        return updatedTraining;
+
+    }
+    
+    
+    
+    @DeleteMapping("/training/{id}")
+    public ResponseEntity<?> deleteTraining(@PathVariable(value = "id") Long trainingId) {
+
+        Training pfile = trainingRepository.findById(trainingId)
+                .orElseThrow(() -> new ResourceNotFoundException("Training", "id", trainingId));
+        trainingRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
+    
+    // Training Courses 
+
+     @GetMapping("/trainingCourse")
+    public ResponseEntity getAllTrainingCourses() {
+
+            return new ResponseEntity<>(trainingCourseRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/trainingCourse/{id}")
+    public TrainingCourse getTrainingCourseById(@PathVariable(value = "id") Long trainingCourseId) {
+        return trainingCourseRepository.findById(trainingCourseId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("TrainingCourse", "id", trainingCourseId);
+                });
+    }
+    
+    @PostMapping("/trainingCourse")
+    public ResponseEntity createTrainingCourse(@Valid @RequestBody TrainingCourse trainingCourse) {
+        trainingCourse = trainingCourseRepository.save(trainingCourse);
+        return new ResponseEntity<>(trainingCourse, HttpStatus.OK);
+
+    }
+    
+    @PutMapping("/trainingCourse/{id}")
+    public TrainingCourse updateTrainingCourse(@PathVariable(value = "id") Long trainingCourseId,
+            @RequestBody TrainingCourse trainingCourse) {
+
+        employeeProfileRepository.findById(trainingCourseId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("TrainingCourse", "id", trainingCourseId);
+                });
+        TrainingCourse updatedTrainingCourse = trainingCourseRepository.save(trainingCourse);
+        return updatedTrainingCourse;
+
+    }
+    
+    
+    
+    @DeleteMapping("/trainingCourse/{id}")
+    public ResponseEntity<?> deleteTrainingCourse(@PathVariable(value = "id") Long trainingCourseId) {
+
+        TrainingCourse pfile = trainingCourseRepository.findById(trainingCourseId)
+                .orElseThrow(() -> new ResourceNotFoundException("TrainingCourse", "id", trainingCourseId));
+        trainingCourseRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
+    
+    // General Contacts 
+    
     @GetMapping("/contact")
     public ResponseEntity getAllContacts() {
         return new ResponseEntity<>(contactRepository.findAll(), HttpStatus.OK);
@@ -390,8 +479,18 @@ public class HumanResourcesController {
                 case MediaType.APPLICATION_PDF_VALUE:
                     CompletableFuture<Long> future = uploadService.upload(convFile, "certificate", file.getContentType());
                     Long imageId = future.get();
-                    profile.setCertificate(imageId);
+                    
+                    List<Certificate> certs = profile.getCertificates();
+                    
+                    Certificate cert = new Certificate();
+                    cert.setDocumentId(imageId);
+                    cert.setEmployee(profile);
+                    certs.add(cert);
+                    profile.setCertificates(certs);
+                    
+                    
                     employeeProfileRepository.save(profile);
+                    
                     String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                             .path("/certificate/")
                             .path(imageId.toString())
