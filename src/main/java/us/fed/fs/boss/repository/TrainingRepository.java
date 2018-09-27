@@ -13,6 +13,12 @@ public interface TrainingRepository extends JpaRepository<Training, Long> {
 
     @Override
     List<Training> findAll();
+    
+    List<Training> findAllByTrainingCourseId(Long trainingCourseId); 
+    
+    List<Training> findAllByEmployeeId(Long employeeId); 
+    
+    List<Training> findAllByEmployeeIdAndTrainingCourseId(Long employeeId, Long trainingCourseId); 
 
     @Override
     void delete(Training expenseDetail);

@@ -98,7 +98,7 @@ public class Expense extends Auditable<String> implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "EmployeeProfileFK")
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile employeeProfile;
 
     @OneToMany(

@@ -255,12 +255,12 @@ public class EmployeeProfile implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "supervisor_id")
-    @JsonSerialize(using = EmployeeProfileSupervisorSerializer.class)
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
     private EmployeeProfile supervisor;
 
     @OneToMany(mappedBy = "supervisor", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private List<EmployeeProfile> employees;
 
     @JsonIgnore

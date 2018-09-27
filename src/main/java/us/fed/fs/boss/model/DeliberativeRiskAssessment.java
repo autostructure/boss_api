@@ -51,7 +51,7 @@ public class DeliberativeRiskAssessment implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id")
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile employeeProfile;
 
     @OneToMany(

@@ -6,13 +6,13 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import java.io.IOException;
 
-public class EmployeeProfileSupervisorSerializer extends StdSerializer<EmployeeProfile> {
+public class EmployeeProfileMinimalSerializer extends StdSerializer<EmployeeProfile> {
 
-    public EmployeeProfileSupervisorSerializer() {
+    public EmployeeProfileMinimalSerializer() {
         this(null);
     }
 
-    public EmployeeProfileSupervisorSerializer(Class<EmployeeProfile> t) {
+    public EmployeeProfileMinimalSerializer(Class<EmployeeProfile> t) {
         super(t);
     }
 

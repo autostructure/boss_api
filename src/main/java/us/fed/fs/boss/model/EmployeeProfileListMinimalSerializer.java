@@ -8,13 +8,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeProfileAdminSerializer extends StdSerializer<List<EmployeeProfile>> {
+public class EmployeeProfileListMinimalSerializer extends StdSerializer<List<EmployeeProfile>> {
 
-    public EmployeeProfileAdminSerializer() {
+    public EmployeeProfileListMinimalSerializer() {
         this(null);
     }
 
-    public EmployeeProfileAdminSerializer(Class<List<EmployeeProfile>> t) {
+    public EmployeeProfileListMinimalSerializer(Class<List<EmployeeProfile>> t) {
         super(t);
     }
 

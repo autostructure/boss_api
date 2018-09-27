@@ -33,18 +33,18 @@ public class Training implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee")
     private EmployeeProfile employee;
     
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
     @OneToOne
     @JoinColumn(name="ApprovedById")
     private EmployeeProfile approvedBy;
     
-    @Column(name="CourseId")
-    private Long courseId;
+    @Column(name="TrainingCourseId")
+    private Long trainingCourseId;
     
     @Column(name="YearsValid")
     private Short yearsValid;
@@ -94,21 +94,6 @@ public class Training implements Serializable {
     public void setApprovedBy(EmployeeProfile approvedBy) {
         this.approvedBy = approvedBy;
     }
-
-    /**
-     * @return the courseId
-     */
-    public Long getCourseId() {
-        return courseId;
-    }
-
-    /**
-     * @param courseId the courseId to set
-     */
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
-
     /**
      * @return the yearsValid
      */
@@ -135,6 +120,20 @@ public class Training implements Serializable {
      */
     public void setDateOfTraining(Date dateOfTraining) {
         this.dateOfTraining = dateOfTraining;
+    }
+
+    /**
+     * @return the trainingCourseId
+     */
+    public Long getTrainingCourseId() {
+        return trainingCourseId;
+    }
+
+    /**
+     * @param trainingCourseId the trainingCourseId to set
+     */
+    public void setTrainingCourseId(Long trainingCourseId) {
+        this.trainingCourseId = trainingCourseId;
     }
     
 }

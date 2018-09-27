@@ -18,7 +18,7 @@
         <main id="background">
             <div class="container mainTitleDiv">
                 <p>Hey how's it going my name G R E G</p>
-                <form method="POST" enctype="multipart/form-data" action="/profilePicture?employeeId=1">
+                <form method="POST" enctype="multipart/form-data" action="/certificate?employeeId=1">
 			<table>
 				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
 				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>

@@ -66,7 +66,7 @@ public class HumanResourcesController {
 
     @Autowired
     CrewsRepository crewsRepository;
-    
+
     @Autowired
     TrainingCourseRepository trainingCourseRepository;
 
@@ -96,7 +96,7 @@ public class HumanResourcesController {
     }
 
     @JsonView(Views.Internal.class)
-@PutMapping("/employeeProfile/{id}")
+    @PutMapping("/employeeProfile/{id}")
     public EmployeeProfile updateEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId,
             @RequestBody EmployeeProfile employeeProfileDetails) {
 
@@ -149,14 +149,24 @@ public class HumanResourcesController {
     }
 
     // Training 
-    
     @GetMapping("/training")
-    public ResponseEntity getAllTrainings(@RequestParam(value = "nameCode", required = false) final String nameCode) {
+    public ResponseEntity getAllTrainings(
+            @RequestParam(value = "employeeId", required = false) final Long employeeId,
+            @RequestParam(value = "trainingCourseId", required = false) final Long trainingCourseId) {
 
-        if (nameCode == null) {
-            return new ResponseEntity<>(trainingRepository.findAll(), HttpStatus.OK);
+        boolean justEmployee = employeeId != null && trainingCourseId == null;
+        boolean justCourse = employeeId == null && trainingCourseId != null;
+        boolean both = employeeId != null && trainingCourseId != null;
+
+        if (justCourse) {
+            return new ResponseEntity<>(trainingRepository.findAllByTrainingCourseId(trainingCourseId), HttpStatus.OK);
+        } else if (justEmployee) {
+            return new ResponseEntity<>(trainingRepository.findAllByEmployeeId(employeeId), HttpStatus.OK);
+        } else if (both) {
+            return new ResponseEntity<>(trainingRepository.findAllByEmployeeIdAndTrainingCourseId(employeeId, trainingCourseId), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0).getTraining(), HttpStatus.OK);
+            return new ResponseEntity<>(trainingRepository.findAll(), HttpStatus.OK);
+
         }
 
     }
@@ -168,14 +178,14 @@ public class HumanResourcesController {
                     return new ResourceNotFoundException("Training", "id", trainingId);
                 });
     }
-    
+
     @PostMapping("/training")
     public ResponseEntity createTraining(@Valid @RequestBody Training training) {
         training = trainingRepository.save(training);
         return new ResponseEntity<>(training, HttpStatus.OK);
 
     }
-    
+
     @PutMapping("/training/{id}")
     public Training updateTraining(@PathVariable(value = "id") Long trainingId,
             @RequestBody Training training) {
@@ -188,9 +198,7 @@ public class HumanResourcesController {
         return updatedTraining;
 
     }
-    
-    
-    
+
     @DeleteMapping("/training/{id}")
     public ResponseEntity<?> deleteTraining(@PathVariable(value = "id") Long trainingId) {
 
@@ -200,13 +208,12 @@ public class HumanResourcesController {
         return ResponseEntity.ok().build();
 
     }
-    
-    // Training Courses 
 
-     @GetMapping("/trainingCourse")
+    // Training Courses 
+    @GetMapping("/trainingCourse")
     public ResponseEntity getAllTrainingCourses() {
 
-            return new ResponseEntity<>(trainingCourseRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(trainingCourseRepository.findAll(), HttpStatus.OK);
 
     }
 
@@ -217,14 +224,14 @@ public class HumanResourcesController {
                     return new ResourceNotFoundException("TrainingCourse", "id", trainingCourseId);
                 });
     }
-    
+
     @PostMapping("/trainingCourse")
     public ResponseEntity createTrainingCourse(@Valid @RequestBody TrainingCourse trainingCourse) {
         trainingCourse = trainingCourseRepository.save(trainingCourse);
         return new ResponseEntity<>(trainingCourse, HttpStatus.OK);
 
     }
-    
+
     @PutMapping("/trainingCourse/{id}")
     public TrainingCourse updateTrainingCourse(@PathVariable(value = "id") Long trainingCourseId,
             @RequestBody TrainingCourse trainingCourse) {
@@ -237,9 +244,7 @@ public class HumanResourcesController {
         return updatedTrainingCourse;
 
     }
-    
-    
-    
+
     @DeleteMapping("/trainingCourse/{id}")
     public ResponseEntity<?> deleteTrainingCourse(@PathVariable(value = "id") Long trainingCourseId) {
 
@@ -249,9 +254,8 @@ public class HumanResourcesController {
         return ResponseEntity.ok().build();
 
     }
-    
+
     // General Contacts 
-    
     @GetMapping("/contact")
     public ResponseEntity getAllContacts() {
         return new ResponseEntity<>(contactRepository.findAll(), HttpStatus.OK);
@@ -432,14 +436,14 @@ public class HumanResourcesController {
             UploadedDocument doc = uploadService.getUploadedDocument(profilePictureId).get();
 
             final HttpHeaders headers = new HttpHeaders();
-            
+
             String type = doc.getFileType().toLowerCase();
-            
-            if(type.contains("jpg") || type.contains("jpeg")) {
+
+            if (type.contains("jpg") || type.contains("jpeg")) {
                 headers.setContentType(MediaType.IMAGE_JPEG);
             }
-            
-            if(type.contains("png")) {
+
+            if (type.contains("png")) {
                 headers.setContentType(MediaType.IMAGE_PNG);
             }
 
@@ -479,18 +483,17 @@ public class HumanResourcesController {
                 case MediaType.APPLICATION_PDF_VALUE:
                     CompletableFuture<Long> future = uploadService.upload(convFile, "certificate", file.getContentType());
                     Long imageId = future.get();
-                    
+
                     List<Certificate> certs = profile.getCertificates();
-                    
+
                     Certificate cert = new Certificate();
                     cert.setDocumentId(imageId);
                     cert.setEmployee(profile);
                     certs.add(cert);
                     profile.setCertificates(certs);
-                    
-                    
+
                     employeeProfileRepository.save(profile);
-                    
+
                     String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                             .path("/certificate/")
                             .path(imageId.toString())
@@ -516,8 +519,25 @@ public class HumanResourcesController {
         try {
             // Load file as Resource
             UploadedDocument doc = uploadService.getUploadedDocument(certificateId).get();
-            response.setContentType(doc.getDocType());
-            return ResponseEntity.ok(doc.getData());
+            
+            final HttpHeaders headers = new HttpHeaders();
+
+            String type = doc.getFileType().toLowerCase();
+
+            if (type.contains("jpg") || type.contains("jpeg")) {
+                headers.setContentType(MediaType.IMAGE_JPEG);
+            }
+
+            if (type.contains("png")) {
+                headers.setContentType(MediaType.IMAGE_PNG);
+            }
+            
+            if (type.contains("pdf")) {
+                headers.setContentType(MediaType.APPLICATION_PDF);
+            }
+
+            return new ResponseEntity<byte[]>(doc.getData(), headers, HttpStatus.CREATED);
+            
         } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
             return ResponseEntity.status(500).body(ex.getLocalizedMessage());

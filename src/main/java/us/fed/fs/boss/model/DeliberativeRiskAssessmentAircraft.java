@@ -48,7 +48,7 @@ public class DeliberativeRiskAssessmentAircraft implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "prepared_by_id")
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile preparedBy;
 
     @Column(name = "PreparedDate")
@@ -58,7 +58,7 @@ public class DeliberativeRiskAssessmentAircraft implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "reviewed_by_id")
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile reviewedBy;
 
     @Column(name = "ReviewedDate")
@@ -67,7 +67,7 @@ public class DeliberativeRiskAssessmentAircraft implements Serializable {
     private Date reviewedDate;
 
     @ManyToOne(optional = false)
-    @JsonSerialize(using = EmployeeProfileAdminSerializer.class)
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     @JoinColumn(name = "approved_by_id")
     private EmployeeProfile approvedBy;
 
