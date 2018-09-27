@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,6 +45,13 @@ public class Training implements Serializable {
     @OneToOne
     @JoinColumn(name="ApprovedById")
     private EmployeeProfile approvedBy;
+    
+    @OneToMany(
+            mappedBy = "training",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Certificate> certificates;
     
     @Column(name="TrainingCourseId")
     private Long trainingCourseId;
@@ -134,6 +144,20 @@ public class Training implements Serializable {
      */
     public void setTrainingCourseId(Long trainingCourseId) {
         this.trainingCourseId = trainingCourseId;
+    }
+
+    /**
+     * @return the certificates
+     */
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    /**
+     * @param certificates the certificates to set
+     */
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
     }
     
 }

@@ -457,13 +457,13 @@ public class HumanResourcesController {
     }
 
     @PostMapping("/certificate")
-    public ResponseEntity uploadCertificate(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = false) final Long employeeProfileId) {
+    public ResponseEntity uploadCertificate(@RequestParam("file") MultipartFile file, @RequestParam(value = "trainingId", required = false) final Long trainingId) {
 
         try {
 
-            EmployeeProfile profile = employeeProfileRepository.findById(employeeProfileId)
+            Training training = trainingRepository.findById(trainingId)
                     .orElseThrow(() -> {
-                        return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
+                        return new ResourceNotFoundException("Training", "id", trainingId);
                     });
 
             String fileName = file.getOriginalFilename();
@@ -484,15 +484,15 @@ public class HumanResourcesController {
                     CompletableFuture<Long> future = uploadService.upload(convFile, "certificate", file.getContentType());
                     Long imageId = future.get();
 
-                    List<Certificate> certs = profile.getCertificates();
+                    List<Certificate> certs = training.getCertificates();
 
                     Certificate cert = new Certificate();
                     cert.setDocumentId(imageId);
-                    cert.setEmployee(profile);
+                    cert.setEmployee(training);
                     certs.add(cert);
-                    profile.setCertificates(certs);
+                    training.setCertificates(certs);
 
-                    employeeProfileRepository.save(profile);
+                    trainingRepository.save(training);
 
                     String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                             .path("/certificate/")
