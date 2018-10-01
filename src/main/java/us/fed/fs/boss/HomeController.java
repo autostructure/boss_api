@@ -80,11 +80,15 @@ public class HomeController {
     @RequestMapping("/addTrainingClass")
     public String addTrainingClass(){
         return "addTrainingClass";
-    }     
+    }
     @RequestMapping("/assignTraining")
     public String assignTraining(){
         return "assignTraining";
-    }         
+    }
+    @RequestMapping("/viewTraining")
+    public String viewTraining(){
+        return "viewTraining";
+    }
     @RequestMapping("/addDraEmployee")
     public String addDraEmployee(){
         return "addDraEmployee";

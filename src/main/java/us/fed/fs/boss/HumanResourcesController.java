@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -38,6 +39,7 @@ import us.fed.fs.boss.model.UploadedDocument;
 import us.fed.fs.boss.model.Training;
 import us.fed.fs.boss.model.TrainingCourse;
 import us.fed.fs.boss.model.Views;
+import us.fed.fs.boss.repository.CertificateRepository;
 import us.fed.fs.boss.repository.ContactRepository;
 import us.fed.fs.boss.repository.CrewsRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
@@ -46,6 +48,7 @@ import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.TrainingCourseRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
+import us.fed.fs.boss.repository.UploadedDocumentRepository;
 import us.fed.fs.boss.upload.UploadFileResponse;
 import us.fed.fs.boss.upload.UploadService;
 
@@ -69,12 +72,18 @@ public class HumanResourcesController {
 
     @Autowired
     TrainingCourseRepository trainingCourseRepository;
+    
+    @Autowired
+    CertificateRepository certificateRepository;
 
     @Autowired
     DeliberativeRiskAssessmentRepository deliberativeRiskAssessmentRepository;
 
     @Autowired
     DeliberativeRiskAssessmentAircraftRepository deliberativeRiskAssessmentAircraftRepository;
+    
+    @Autowired
+    UploadedDocumentRepository uploadedDocumentRepository;
 
     @Autowired
     UploadService uploadService;
@@ -457,7 +466,8 @@ public class HumanResourcesController {
     }
 
     @PostMapping("/certificate")
-    public ResponseEntity uploadCertificate(@RequestParam("file") MultipartFile file, @RequestParam(value = "trainingId", required = false) final Long trainingId) {
+    public ResponseEntity uploadCertificate(@RequestParam("file") MultipartFile file, @RequestParam(value = "trainingId", required = false) final Long trainingId,
+            @RequestParam(value = "description", required = false) final String description) {
 
         try {
 
@@ -489,8 +499,10 @@ public class HumanResourcesController {
                     Certificate cert = new Certificate();
                     cert.setDocumentId(imageId);
                     cert.setEmployee(training);
+                    cert.setDescription(description != null ? description : "");
                     certs.add(cert);
                     training.setCertificates(certs);
+                    
 
                     trainingRepository.save(training);
 
@@ -519,7 +531,7 @@ public class HumanResourcesController {
         try {
             // Load file as Resource
             UploadedDocument doc = uploadService.getUploadedDocument(certificateId).get();
-            
+
             final HttpHeaders headers = new HttpHeaders();
 
             String type = doc.getFileType().toLowerCase();
@@ -531,17 +543,30 @@ public class HumanResourcesController {
             if (type.contains("png")) {
                 headers.setContentType(MediaType.IMAGE_PNG);
             }
-            
+
             if (type.contains("pdf")) {
                 headers.setContentType(MediaType.APPLICATION_PDF);
             }
 
             return new ResponseEntity<byte[]>(doc.getData(), headers, HttpStatus.CREATED);
-            
+
         } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
             return ResponseEntity.status(500).body(ex.getLocalizedMessage());
 
         }
+    }
+    
+    @DeleteMapping("/certificate/{id}")
+    public ResponseEntity<?> deleteCertificate(@PathVariable(value = "id") Long certificateId) {
+
+        Certificate cert = certificateRepository.findById(certificateId)
+                .orElseThrow(() -> new ResourceNotFoundException("Certificate", "id", certificateId));
+        
+        uploadedDocumentRepository.deleteById(cert.getDocumentId());
+        certificateRepository.delete(cert);
+        
+        return ResponseEntity.ok().build();
+
     }
 }
