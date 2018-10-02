@@ -13,6 +13,8 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
     @Override
     List<Vehicle> findAll();
+    
+    List<Vehicle> findAllByAssignedOperatorId(Long empoyeeProfileId); 
 
     @Override
     void delete(Vehicle vehicle);
