@@ -56,8 +56,9 @@ public class Training implements Serializable {
     @Column(name="TrainingCourseId")
     private Long trainingCourseId;
     
-    @Column(name="YearsValid")
-    private Short yearsValid;
+    @Temporal(TemporalType.DATE)
+    @Column(name="ValidUntil")
+    private Date validUntil;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "DateOfTraining")
@@ -105,17 +106,17 @@ public class Training implements Serializable {
         this.approvedBy = approvedBy;
     }
     /**
-     * @return the yearsValid
+     * @return the Date it's Valid Until
      */
-    public Short getYearsValid() {
-        return yearsValid;
+    public Date getValidUntil() {
+        return validUntil;
     }
 
     /**
-     * @param yearsValid the yearsValid to set
+     * @param validUntil the Date it's valid until
      */
-    public void setYearsValid(Short yearsValid) {
-        this.yearsValid = yearsValid;
+    public void setValidUntil(Date validUntil) {
+        this.validUntil = validUntil;
     }
 
     /**

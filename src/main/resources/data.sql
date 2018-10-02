@@ -350,3 +350,30 @@ values
 ('Sandpoint ID'),
 ('Tucson AZ'),
 ('Vancouver WA');
+
+INSERT INTO dbo.training_course(category, title, default_years, default_years_leader, description) VALUES
+('Office', 'PPI', 5, 1, 'Learn how to handle Protected Personal Info'),
+('Office', 'Recording Stuff', 5, 2, 'Learn how to record your stuff properly'),
+('Emergency', 'First Aid', 3, 3, 'Basic First Aid'),
+('Emergency', 'Search and Rescue', 5, 1, 'Find missing people'),
+('Emergency', 'Bear Fighting 101', 5, 1, 'Title says it all'),
+('Emergency', 'Bear Spray Techniques', 5, 1, 'How to use Bear Spray'),
+('Heavy Equipment', 'ATV Training', 5, 1, ''),
+('Heavy Equipment', 'Chainsaw Handling', 5, 1, ''),
+('Heavy Equipment', 'Motorcycle training', 5, 1, ''),
+('Heavy Equipment', 'Hovercraft training', 5, 1, ''),
+('Heavy Equipment', 'Bear Trap setting', 5, 1, '');
+
+INSERT INTO dbo.training(training_course_id, date_of_training, valid_until, approved_by_id, employee) VALUES
+(3, '2015-11-03', '2018-11-03', 1, 47),
+(3, '2015-11-03', '2018-11-03', 1, 46),
+(4, '2015-06-03', '2018-06-03', 2, 47),
+(4, '2015-06-03', '2018-06-03', 2, 46),
+(5, '2017-06-03', '2018-06-03', 1, 47),
+(5, '2017-06-03', '2018-06-03', 1, 46),
+(6, '2017-06-03', '2020-06-03', 2, 47),
+(6, '2017-06-03', '2020-06-03', 2, 46),
+(4, '2018-06-03', '2021-06-03', null, 47),
+(4, '2018-06-03', '2021-06-03', null, 46),
+(7, '2018-09-03', '2021-09-03', null, 47),
+(7, '2018-09-03', '2021-09-03', null, 46);
