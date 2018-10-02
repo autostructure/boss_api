@@ -3,7 +3,7 @@ package us.fed.fs.boss.reports;
 import java.util.List;
 
 public class BudgetSummary {
-    
+
     private List<BudgetSummaryRow> rows;
     private String totalOperating;
     private String totalObligated;
@@ -64,5 +64,5 @@ public class BudgetSummary {
     public void setTotalBalance(String totalBalance) {
         this.totalBalance = totalBalance;
     }
-    
+
 }

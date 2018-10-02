@@ -18,4 +18,3 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
     void delete(Contact budgetObjectCode);
 
 }
-

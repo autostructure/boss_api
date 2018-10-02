@@ -49,13 +49,17 @@ public class HomeController {
     public String newSalary() {
         return "newSalary";
     }
+    @RequestMapping("/empDash")
+    public String empDash() {
+        return "empDash";
+    }      
     @RequestMapping("/empPortal")
     public String empPortal() {
         return "empPortal";
     }         
-    @RequestMapping("/hrDash")
-    public String hrDash() {
-        return "hrDash";
+    @RequestMapping("/personnelDash")
+    public String personnel() {
+        return "personnelDash";
     }       
     @RequestMapping("/viewAllEmployees")
     public String viewAllEmployees() {
@@ -64,7 +68,11 @@ public class HomeController {
     @RequestMapping("/addNewEmployee")
     public String addNewEmployee() {
         return "addNewEmployee";
-    }       
+    }               
+    @RequestMapping("/editEmployee/{nameCode}")
+    public String editEmployee() {
+        return "editEmployee";
+    }  
     @RequestMapping("/addTrainingEmployee")
     public String addTrainingEmployee(){
         return "addTrainingEmployee";
@@ -88,5 +96,13 @@ public class HomeController {
     @RequestMapping("/unverifiedReport")
     public String unverifiedReport() {
         return "unverifiedReport";
+    }    
+    @RequestMapping("/uploadTest")
+    public String uploadTest() {
+        return "uploadTest";
+    }
+    @RequestMapping("/fleetDash")
+    public String fleetDash() {
+        return "fleetDash";
     }    
 }

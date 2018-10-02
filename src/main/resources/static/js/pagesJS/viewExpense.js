@@ -3,17 +3,17 @@ var api = "localhost:8090/expense";
 // ONCE WE LOAD SOME DATA, NEED TO TURN AJAX URL AND REMOVE VAR
 
 // var dataSet = [
-    // [ "FS", "HD", "LaneyM", "FEDEX", "05","2019", "FRF13818", "26", "12,000,000", "2011/07/25" ],
-    // [ "SF", "TD", "LazerasS", "UPS", "05", "2019","FRF13818", "26", "1,877", "2011/07/25" ],
-    // [ "DS", "GD", "RussellM", "AZ", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
-    // [ "RS", "AD", "BlancD", "UPS", "05", "2019","FRF13818", "26", "100", "2011/07/25" ],
-    // [ "R", "DD", "ThomH", "DISCOUNT STORAGE", "05", "2016","FRF13818", "26", "12,000", "2011/07/25" ],
-    // [ "K", "D", "CharioniD", "UPS", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
+// [ "FS", "HD", "LaneyM", "FEDEX", "05","2019", "FRF13818", "26", "12,000,000", "2011/07/25" ],
+// [ "SF", "TD", "LazerasS", "UPS", "05", "2019","FRF13818", "26", "1,877", "2011/07/25" ],
+// [ "DS", "GD", "RussellM", "AZ", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
+// [ "RS", "AD", "BlancD", "UPS", "05", "2019","FRF13818", "26", "100", "2011/07/25" ],
+// [ "R", "DD", "ThomH", "DISCOUNT STORAGE", "05", "2016","FRF13818", "26", "12,000", "2011/07/25" ],
+// [ "K", "D", "CharioniD", "UPS", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
 
 // ];
 
 $(document).ready(function () {
-    
+
     try {
         $('#expenseSub').addClass('show');
         $('#expenseSub > li:nth-child(2) > a').addClass('highlight');
@@ -41,10 +41,10 @@ $(document).ready(function () {
         }
     });
 
-    
+
 
     function setJsonTable(json) {
-        
+
         if (json != null) {
             var dt = $('#expense').DataTable({
                 dom: 'Brtip',
@@ -76,16 +76,16 @@ $(document).ready(function () {
                 ],
                 data: expense_test,
                 aoColumns: [
-                    { mData: "actCode" },
-                    { mData: "secCode" },
-                    { mData: "employeeProfile.nameCode" },
-                    { mData: "description" },
-                    { mData: "payPeriod" },
-                    { mData: "seq" },
-                    { mData: "jobCode" },
-                    { mData: "expCode" },
-                    { mData: "total" },
-                    { mData: "obligatedDate" }
+                    {mData: "actCode"},
+                    {mData: "secCode"},
+                    {mData: "employeeProfile.nameCode"},
+                    {mData: "description"},
+                    {mData: "payPeriod"},
+                    {mData: "seq"},
+                    {mData: "jobCode"},
+                    {mData: "expCode"},
+                    {mData: "total"},
+                    {mData: "obligatedDate"}
                     //{data: null,
                     //    "render": function(){
                     //        return `
@@ -112,8 +112,8 @@ $(document).ready(function () {
                 $('input', this.header()).on('keyup change', function () {
                     if (that.search() !== this.value) {
                         that
-                            .search(this.value)
-                            .draw();
+                                .search(this.value)
+                                .draw();
                     }
                 });
             });
@@ -122,14 +122,14 @@ $(document).ready(function () {
             $('#investmentTable').html('<tr><td colspan="11"><center><div class="use-width-one-whole title-div"><h2 id="title">No Records</h2></div></center></td></tr>');
         }
 
-        
+
 
     }
 
-   
 
 
 
 
-    });
+
+});
 

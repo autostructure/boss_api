@@ -31,7 +31,7 @@
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
+                                                <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
                                                 <a class="breadcrumbLinkMain"href="/addTrainingClass">Add Training Interval</a>
                                             </p>
                                         </div>
@@ -139,7 +139,7 @@
          <script src="js/ead.min.js"></script>
          <script src="js/bootstrap-datepicker.js"></script>
          <script src="js/pagesJS/assignTraining.js"></script>
-        <script src="js/pagesJS/mainHRPages.js"></script>
+        <script src="js/pagesJS/personnelPages.js"></script>
 
 </body>
 

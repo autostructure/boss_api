@@ -34,7 +34,6 @@ import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.ActivityCode;
 import us.fed.fs.boss.model.BudgetObjectCode;
-import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.Expense;
 import us.fed.fs.boss.model.ExpenseCode;
 import us.fed.fs.boss.model.JobCode;
@@ -47,7 +46,6 @@ import us.fed.fs.boss.reports.ReportService;
 import us.fed.fs.boss.reports.ReportsFileBuilder.FileType;
 import us.fed.fs.boss.repository.ActivityCodeRepository;
 import us.fed.fs.boss.repository.BudgetObjectCodeRepository;
-import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.ExpenseCodeRepository;
 import us.fed.fs.boss.repository.ExpenseRepository;
 import us.fed.fs.boss.repository.JobCodeRepository;
@@ -191,7 +189,7 @@ public class BudgetController {
     public List<PaymentCode> getAllPaymentCodes() {
         return paymentCodeRepository.findAll();
     }
-    
+
     // Get Budget Summary JSON
     @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
     public ResponseEntity getBudgetSummary(

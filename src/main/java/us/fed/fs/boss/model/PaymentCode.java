@@ -1,6 +1,5 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import javax.persistence.Cacheable;
 
@@ -21,7 +20,7 @@ public class PaymentCode implements Serializable {
 
     @Id
     private String code;
-    
+
     @Column(name = "Name", nullable = false)
     private String name;
 
@@ -52,5 +51,5 @@ public class PaymentCode implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }

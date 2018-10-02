@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -29,51 +30,51 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class DeliberativeRiskAssessmentAircraft implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "Description")
     private String description;
-    
+
     @OneToMany(
-        mappedBy = "deliberativeRiskAssessmentAircraft",
-        cascade = CascadeType.ALL, 
-        orphanRemoval = true
+            mappedBy = "deliberativeRiskAssessmentAircraft",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    @JsonManagedReference(value="identifiedHazardsAircraft")
+    @JsonManagedReference(value = "identifiedHazardsAircraft")
     private List<DeliberativeRiskAssessmentAircraftHazard> identifiedHazardsAircraft;
-    
+
     @ManyToOne(optional = false)
-    @JoinColumn(name="prepared_by_id")
-    @JsonView(Views.Public.class)
+    @JoinColumn(name = "prepared_by_id")
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile preparedBy;
-    
+
     @Column(name = "PreparedDate")
     @JsonView(Views.Public.class)
     @Temporal(TemporalType.DATE)
     private Date preparedDate;
-    
+
     @ManyToOne(optional = false)
-    @JoinColumn(name="reviewed_by_id")
-    @JsonView(Views.Public.class)
+    @JoinColumn(name = "reviewed_by_id")
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile reviewedBy;
-    
+
     @Column(name = "ReviewedDate")
     @JsonView(Views.Public.class)
     @Temporal(TemporalType.DATE)
     private Date reviewedDate;
-    
+
     @ManyToOne(optional = false)
-    
-    @JoinColumn(name="approved_by_id")
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
+    @JoinColumn(name = "approved_by_id")
     private EmployeeProfile approvedBy;
-    
+
     @Column(name = "ApprovedDate")
     @Temporal(TemporalType.DATE)
     private Date approvedDate;
-    
+
 
     /*
      * @return the id

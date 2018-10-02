@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -47,20 +48,19 @@ public class DeliberativeRiskAssessment implements Serializable {
     @Column(name = "AssessmentUpdated")
     @Temporal(TemporalType.DATE)
     private Date assessmentUpdated;
-    
+
     @ManyToOne(optional = false)
-    @JoinColumn(name="employee_id")
-    @JsonView(Views.Public.class)
+    @JoinColumn(name = "employee_id")
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile employeeProfile;
-    
+
     @OneToMany(
-        mappedBy = "deliberativeRiskAssessment",
-        cascade = CascadeType.ALL, 
-        orphanRemoval = true
+            mappedBy = "deliberativeRiskAssessment",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    @JsonManagedReference(value="deliberativeRiskAssessmentHazards")
+    @JsonManagedReference(value = "deliberativeRiskAssessmentHazards")
     private List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards;
-    
 
     /**
      * @return the id
@@ -154,7 +154,8 @@ public class DeliberativeRiskAssessment implements Serializable {
     }
 
     /**
-     * @param deliberativeRiskAssessmentHazards the deliberativeRiskAssessmentHazards to set
+     * @param deliberativeRiskAssessmentHazards the
+     * deliberativeRiskAssessmentHazards to set
      */
     public void setDeliberativeRiskAssessmentHazards(List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards) {
         this.deliberativeRiskAssessmentHazards = deliberativeRiskAssessmentHazards;

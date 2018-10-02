@@ -15,131 +15,122 @@
 <body class="layout-demo">
     <header class="usa-header usa-header-extended" role="banner" id="mainHeader">
     </header>
-        <div class="usa-overlay"></div>
-        <main id="main-content">
-            <div class="wrapper">
-                <nav id="sidebar">
-                </nav><!-- end of sidenav -->
-                <section class="usa-section1">
-                    <header class="main-header" role="banner">
-                        <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image"/>                                 
-                    </header>
-                    <div class="usa-grid">
-                            <div class="usa-width-one-whole">
-                                <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                    <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                    <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
-                                    <a class="breadcrumbLinkMain"href="/addNewEmployee">Add New Employee</a>
-                                </p>
-                            </div>
+    <div class="usa-overlay"></div>
+    <main id="main-content">
+        <div class="wrapper">
+            <nav id="sidebar">
+            </nav><!-- end of sidenav -->
+            <section class="usa-section1">
+                <header class="main-header" role="banner">
+                    <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image"/>                                 
+                </header>
+                <div class="usa-grid">
+                    <div class="usa-width-one-whole">
+                        <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
+                            <a class="breadcrumbLink"href="/home">Dashboard |</a>
+                            <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
+                            <a class="breadcrumbLinkMain"href="/addNewEmployee">Add New Employee</a>
+                        </p>
                     </div>
-                    <section class="usa-section">
-                        <div class="usa-grid usa-buffer-top">
-                            <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Add New Employee</h1>
-                            </div>
-                        </div>                                    
-
-                        <div class="usa-grid usa-buffer-top">
-                            <div class="usa-width-one-whole faded">
-                                <div class="border">
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist"> <!-- start of tabs list -->
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="generalInfo" >General Info</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="work-tab" data-toggle="tab" href="#work" role="tab" aria-controls="workInfo" >Work Info</a>
-                                    </li>                                                
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="emergency-tab" data-toggle="tab" href="#emergency" role="tab" aria-controls="emergencyInfo" >Emergency Info</a>
-                                    </li>                                                
-                                    <li class="nav-item">
-                                        <a disabled class="disabled nav-link" id="training-tab" data-toggle="tab" href="#training" role="tab" aria-controls="trainingInfo" >Training Info</a>
-                                    </li>
-                                                                    
-                                    </ul> <!-- end of tabs list -->
-
-                                    <div class="tab-content" id="myTabContent"><!-- start of tab content -->
-
-
-                                    <!--    START OF GENERAL TAB    -->
-                                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="generalInfo">
-                                        
-                                        <form role="form" data-toggle="validator" class="generalInfo" id="formGeneralInfo">
-                                            <input hidden id="employeeId" name="id" value="0">
-                                            <div class="row">
-                                                <div class="col col-md-4 offset-md-4">
-                                                    <input type="submit" id="submitEmployeeInfo" class="btn btn-success" value="Next">
-                                                </div>
+                </div>
+                <section class="usa-section">
+                    <div class="usa-grid usa-buffer-top">
+                        <div class="usa-width-one-whole title-div">
+                            <h1 id="title">Add New Employee</h1>
+                        </div>
+                    </div>
+                    <div id="success" class="alert alert-success" role="alert">
+                        Update Successfull!                                         
+                    </div>
+                    <div id="error" class="alert alert-danger" role="alert">
+                        Error: <span id='errorText'></span>
+                    </div>
+                    <select hidden disabled id="templateSelectState">
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+                    <div class="usa-grid usa-buffer-top">
+                        <div class="usa-width-one-whole faded">
+                            <div class="border">
+                                <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="generalInfo">
+                                   <form role="form" data-toggle="validator" class="generalInfo" id="formGeneralInfo" action="javascript:0" method="POST">
+                                        <input hidden id="employeeId" name="id" value="0">
+                                        <div class="row">
+                                            <div class="col col-md-6">
+                                                <input type="submit" id="submitAndAddAnother" class="btn btn-success" value="Submit and Add Another">
                                             </div>
-                                        </form>
-                                    </div>
-                                    <!--    END OF GENERAL TAB  -->
-
-                                    <!--    START OF WORK TAB   -->
-                                    <div class="tab-pane fade" id="work" role="tabpanel" aria-labelledby="workInfo">
-                                        <form role="form" data-toggle="validator" class="workInfo" id="formWorkInfo">
-                                            <h4 class="title3">Employee Work Information</h4>
-                                            <div class="col"><div class="form-group">
-                                                <label for="dutyStation">Duty Station<span class="reqClass"> *</span></label>
-                                                <select id="dutyStation" name="dutyStation" required name='dutyStation' class="form-control">
-                                                    <option value="">Choose Duty Station</option>
-                                                    <option value="ogden">Ogden, UT</option>
-                                                    <option value="mccall">McCall, MT</option>
-                                                    <option value="pontiac">Pontiac, MI</option>
-                                                </select>
-                                                <div class="help-block with-errors"></div>
-                                            </div></div>
-                                            <div class="col"><div class="form-group">
-                                                <label for="activityCode">Activity Code<span class="reqClass"> *</span></label>
-                                                <select id="activityCode" required name="activityCode" aria-label="Activity Code" class="form-control">
-                                                    <option value="">Choose Activity Code</option>
-                                                </select>
-                                                <div class="help-block with-errors"></div>
-                                            </div></div>
-                                            <div class="row">
-                                                <div class="col col-md-4 offset-md-4">
-                                                    <input type="submit" id="submitWorkInfo" class="btn btn-success" value="Next">
-                                                </div>    
+                                            <div class="col col-md-6">
+                                                <input type="submit" id="submitAndEdit" class="btn btn-success" value="Submit and Edit Info">
                                             </div>
-                                        </form>
-                                    </div>
-                                    <!--    END OF WORK TAB -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div><!-- end of border div -->
+                        </div>
+                    </div>                             
+                </section>
+            </section>                         
+                
+        </div><!-- end of sidenav wrapper div -->
+    </main>
 
-                                    <!--    START OF EMERGENCY TAB  -->
-                                    <div class="tab-pane fade" id="emergency" role="tabpanel" aria-labelledby="emergencyInfo">
-                                            <form role="form" data-toggle="validator" class="emergencyInfo" id="formEmergencyInfo">
-                                                <h4 class="title3">Emergency Contact Information</h4>
-                                                <div class="row">
-                                                    <div class="col col-md-4 offset-md-4">
-                                                        <input type="submit" id="submitEmergencyInfo" class="btn btn-success">    
-                                                    </div>    
-                                                </div>                                                
-
-                                            </form>
-
-                                    </div>
-                                    <!--    END OF EMERGENCY TAB    -->
-
-                                    <!--    START OF TRAINING TAB   -->      
-                                    <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="trainingInfo">
-                                    </div>
-                                    </div><!-- end of all tab content -->
-                                </div><!-- end of border div -->
-                            </div>
-                        </div>                             
-                    </section>
-                </section>                         
-                    
-            </div><!-- end of sidenav wrapper div -->
-        </main>
-
-        <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
-        </footer>
-        <script src="/js/ead.min.js"></script>
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/pagesJS/addNewEmployee.js"></script>
-        <script src="/js/pagesJS/mainHRPages.js"></script>
+    <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
+    </footer>
+    <script src="/js/ead.min.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
+    <script src="/js/pagesJS/addNewEmployee.js"></script>
+    <script src="/js/pagesJS/personnelPages.js"></script>
+    <script src="/js/pagesJS/ApiCalls.js"></script>
 
 </body>
 

@@ -1,5 +1,6 @@
 package us.fed.fs.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,14 +25,15 @@ public class DriversLicense {
 
     @Column(name = "drivers_license_state")
     private String state;
-    
+
     @Column(name = "drivers_license_number")
     private String number;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_profile_id")
+    @JsonIgnore
     private EmployeeProfile employeeProfile;
-    
+
     @Temporal(TemporalType.DATE)
     private Date expiration;
 
@@ -105,5 +107,4 @@ public class DriversLicense {
         this.expiration = expiration;
     }
 
-   
 }

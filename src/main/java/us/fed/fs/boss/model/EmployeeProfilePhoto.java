@@ -1,7 +1,5 @@
 package us.fed.fs.boss.model;
 
-import java.sql.Blob;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,7 +24,8 @@ public class EmployeeProfilePhoto {
     private String name;
 
     @Column(name = "IMAGE")
-    private Blob image;
+    @Lob
+    private byte[] image;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_profile_id")
@@ -60,20 +60,6 @@ public class EmployeeProfilePhoto {
     }
 
     /**
-     * @return the image
-     */
-    public Blob getImage() {
-        return image;
-    }
-
-    /**
-     * @param image the image to set
-     */
-    public void setImage(Blob image) {
-        this.image = image;
-    }
-
-    /**
      * @return the employeeProfile
      */
     public EmployeeProfile getEmployeeProfile() {
@@ -85,5 +71,19 @@ public class EmployeeProfilePhoto {
      */
     public void setEmployeeProfile(EmployeeProfile employeeProfile) {
         this.employeeProfile = employeeProfile;
+    }
+
+    /**
+     * @return the image
+     */
+    public byte[] getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

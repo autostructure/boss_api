@@ -13,7 +13,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     @Override
     List<Expense> findAll();
-    
+
     List<Expense> findByFinancialYear(Short year);
 
     @Override

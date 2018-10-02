@@ -16,6 +16,5 @@ public interface DeliberativeRiskAssessmentAircraftRepository extends JpaReposit
 
     @Override
     void delete(DeliberativeRiskAssessmentAircraft deliberativeRiskAssessmentAircraft);
-    
-}
 
+}

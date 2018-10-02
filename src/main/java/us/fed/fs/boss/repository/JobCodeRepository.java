@@ -13,7 +13,7 @@ public interface JobCodeRepository extends JpaRepository<JobCode, Long> {
 
     @Override
     public List<JobCode> findAll();
-    
+
     public List<JobCode> findByFinancialYear(Short year);
 
     @Override

@@ -2,8 +2,11 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -13,9 +16,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -23,33 +28,30 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Training implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "YearsValid")
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee")
+    private EmployeeProfile employee;
+    
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
+    @OneToOne
+    @JoinColumn(name="ApprovedById")
+    private EmployeeProfile approvedBy;
+    
+    @Column(name="TrainingCourseId")
+    private Long trainingCourseId;
+    
+    @Column(name="YearsValid")
     private Short yearsValid;
-    
-    @Column(name = "Hours")
-    private Short hours;
-    
-    @Column(name = "Location")
-    private String location;
-    
-     @Column(name = "Presenter")
-    private String presenter;
-     
-    @Column(name = "Title")
-    private String title;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "DateOfTraining")
     private Date dateOfTraining;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="training")
-    private Training training;
 
     /**
      * @return the id
@@ -66,6 +68,33 @@ public class Training implements Serializable {
     }
 
     /**
+     * @return the employee
+     */
+    public EmployeeProfile getEmployee() {
+        return employee;
+    }
+
+    /**
+     * @param employee the employee to set
+     */
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
+    }
+
+    /**
+     * @return the approvedBy
+     */
+    public EmployeeProfile getApprovedBy() {
+        return approvedBy;
+    }
+
+    /**
+     * @param approvedBy the approvedBy to set
+     */
+    public void setApprovedBy(EmployeeProfile approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+    /**
      * @return the yearsValid
      */
     public Short getYearsValid() {
@@ -77,62 +106,6 @@ public class Training implements Serializable {
      */
     public void setYearsValid(Short yearsValid) {
         this.yearsValid = yearsValid;
-    }
-
-    /**
-     * @return the hours
-     */
-    public Short getHours() {
-        return hours;
-    }
-
-    /**
-     * @param hours the hours to set
-     */
-    public void setHours(Short hours) {
-        this.hours = hours;
-    }
-
-    /**
-     * @return the location
-     */
-    public String getLocation() {
-        return location;
-    }
-
-    /**
-     * @param location the location to set
-     */
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    /**
-     * @return the presenter
-     */
-    public String getPresenter() {
-        return presenter;
-    }
-
-    /**
-     * @param presenter the presenter to set
-     */
-    public void setPresenter(String presenter) {
-        this.presenter = presenter;
-    }
-
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     /**
@@ -150,17 +123,17 @@ public class Training implements Serializable {
     }
 
     /**
-     * @return the training
+     * @return the trainingCourseId
      */
-    public Training getTraining() {
-        return training;
+    public Long getTrainingCourseId() {
+        return trainingCourseId;
     }
 
     /**
-     * @param training the training to set
+     * @param trainingCourseId the trainingCourseId to set
      */
-    public void setTraining(Training training) {
-        this.training = training;
+    public void setTrainingCourseId(Long trainingCourseId) {
+        this.trainingCourseId = trainingCourseId;
     }
-
+    
 }

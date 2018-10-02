@@ -76,8 +76,8 @@
     margin-top: 50px;
 }
 .card{
-        box-shadow: 5px 10px 15px rgba(33,33,33,0.2);
-        border: 1px solid rgba(33, 33, 33, 0.2);
+    box-shadow: 5px 10px 15px rgba(33,33,33,0.2);
+    border: 1px solid rgba(33, 33, 33, 0.2);
 }
 .card-body{
     min-height: 180px;

@@ -22,19 +22,19 @@ public class Contact implements Serializable {
 
     @Column(name = "Description")
     private String description;
-    
+
     @Column(name = "StreeAddress")
     private String streetAddress;
-    
+
     @Column(name = "city")
     private String city;
-    
+
     @Column(name = "State")
     private String state;
-    
+
     @Column(name = "Phone1")
     private String phone1;
-    
+
     @Column(name = "Phone2")
     private String phone2;
 

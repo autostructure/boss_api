@@ -3,12 +3,15 @@ package us.fed.fs.boss.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.io.Serializable;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
+import java.io.Serializable;
+
 import java.util.List;
-import java.util.Set;
+
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,8 +22,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -29,12 +30,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "EmployeeProfiles")
 @EntityListeners(AuditingEntityListener.class)
 @Cacheable
+@DynamicUpdate
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EmployeeProfile implements Serializable {
@@ -42,7 +45,7 @@ public class EmployeeProfile implements Serializable {
     @Id
     @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Minimal.class)
     private Long id;
 
     @Column(name = "FirstName")
@@ -62,8 +65,12 @@ public class EmployeeProfile implements Serializable {
     private String preferredName;
 
     @Column(name = "NameCode", unique = true, nullable = false)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Minimal.class)
     private String nameCode;
+
+    @Column(name = "ProfilePicture", unique = false, nullable = true)
+    @JsonView(Views.Minimal.class)
+    private Long profilePicture;
 
     @Column(name = "HomePhone")
     @JsonView(Views.Internal.class)
@@ -198,12 +205,6 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private Date dateOfBirth;
 
-    @OneToMany(
-            mappedBy = "training"
-    )
-    @JsonView(Views.Internal.class)
-    private List<Training> training;
-
     @Column(name = "addressCity")
     @JsonView(Views.Internal.class)
     private String addressCity;
@@ -227,23 +228,40 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "addressZip")
     @JsonView(Views.Internal.class)
     private String addressZip;
+    
+    @Column(name = "eyeColor")
+    @JsonView(Views.Internal.class)
+    private String eyeColor;
+    
+    @Column(name = "hairColor")
+    @JsonView(Views.Internal.class)
+    private String hairColor;
+    
+    @Column(name = "gender")
+    @JsonView(Views.Internal.class)
+    private String gender;
+    
+    @Column(name = "race")
+    @JsonView(Views.Internal.class)
+    private String race;
+    
+    @Column(name = "otherIdentifyingFeatures")
+    @JsonView(Views.Internal.class)
+    private String otherIdentifyingFeatures;
 
     @Temporal(TemporalType.DATE)
     @JsonView(Views.Internal.class)
     private Date confidentialityAgreementDate;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "supervisor_employee",
-            joinColumns = {
-                @JoinColumn(name = "employee_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "supervisor_id")})
-    @JsonIgnore
-    private Set<EmployeeProfile> supervisors = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "supervisor_id")
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
+    private EmployeeProfile supervisor;
 
-    @ManyToMany(mappedBy = "supervisors")
-    @JsonView(Views.Internal.class)
-    private Set<EmployeeProfile> employees = new HashSet<>();
+    @OneToMany(mappedBy = "supervisor", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
+    private List<EmployeeProfile> employees;
 
     @JsonIgnore
     @OneToOne(mappedBy = "employeeProfile", cascade = CascadeType.ALL,
@@ -254,9 +272,24 @@ public class EmployeeProfile implements Serializable {
             fetch = FetchType.LAZY, optional = false)
     @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
+    
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<Training> training;
+    
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Certificate> certificates;
 
     public EmployeeProfile() {
-        this.employees = new HashSet<>();
+        this.employees = new ArrayList<>();
     }
 
     public void setEmployeeProfilePhoto(EmployeeProfilePhoto profilePhoto) {
@@ -945,31 +978,129 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @return the supervisors
-     */
-    public Set<EmployeeProfile> getSupervisors() {
-        return supervisors;
-    }
-
-    /**
-     * @param supervisors the supervisors to set
-     */
-    public void setSupervisors(Set<EmployeeProfile> supervisors) {
-        this.supervisors = supervisors;
-    }
-
-    /**
      * @return the employees
      */
-    public Set<EmployeeProfile> getEmployees() {
+    public List<EmployeeProfile> getEmployees() {
         return employees;
     }
 
     /**
      * @param employees the employees to set
      */
-    public void setEmployees(Set<EmployeeProfile> employees) {
+    public void setEmployees(List<EmployeeProfile> employees) {
         this.employees = employees;
+    }
+
+    /**
+     * @return the profilePicture
+     */
+    public Long getProfilePicture() {
+        return profilePicture;
+    }
+
+    /**
+     * @param profilePicture the profilePicture to set
+     */
+    public void setProfilePicture(Long profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    /**
+     * @return the supervisor
+     */
+    public EmployeeProfile getSupervisor() {
+        return supervisor;
+    }
+
+    /**
+     * @param supervisor the supervisor to set
+     */
+    public void setSupervisor(EmployeeProfile supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    /**
+     * @return the eyeColor
+     */
+    public String getEyeColor() {
+        return eyeColor;
+    }
+
+    /**
+     * @param eyeColor the eyeColor to set
+     */
+    public void setEyeColor(String eyeColor) {
+        this.eyeColor = eyeColor;
+    }
+
+    /**
+     * @return the hairColor
+     */
+    public String getHairColor() {
+        return hairColor;
+    }
+
+    /**
+     * @param hairColor the hairColor to set
+     */
+    public void setHairColor(String hairColor) {
+        this.hairColor = hairColor;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the race
+     */
+    public String getRace() {
+        return race;
+    }
+
+    /**
+     * @param race the race to set
+     */
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    /**
+     * @return the otherIdentifyingFeatures
+     */
+    public String getOtherIdentifyingFeatures() {
+        return otherIdentifyingFeatures;
+    }
+
+    /**
+     * @param otherIdentifyingFeatures the otherIdentifyingFeatures to set
+     */
+    public void setOtherIdentifyingFeatures(String otherIdentifyingFeatures) {
+        this.otherIdentifyingFeatures = otherIdentifyingFeatures;
+    }
+
+    /**
+     * @return the certificates
+     */
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    /**
+     * @param certificates the certificates to set
+     */
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
     }
 
 }
