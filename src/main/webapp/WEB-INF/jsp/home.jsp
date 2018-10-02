@@ -66,7 +66,7 @@
                                     <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href="/fleetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>

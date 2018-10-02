@@ -101,4 +101,8 @@ public class HomeController {
     public String uploadTest() {
         return "uploadTest";
     }
+    @RequestMapping("/fleetDash")
+    public String fleetDash() {
+        return "fleetDash";
+    }    
 }
