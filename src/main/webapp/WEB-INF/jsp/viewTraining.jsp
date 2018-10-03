@@ -4,11 +4,12 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="img/favicons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
         <title>FIA-BOSS</title>
-        <link rel="stylesheet" href="css/ead.min.css">
-        <link rel="stylesheet" href="css/pagesCSS/all.css">
-        <link rel="stylesheet" href="css/pagesCSS/viewTraining.css">
+        <link rel="stylesheet" href="/css/ead.min.css">
+        <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
+        <link rel="stylesheet" href="/css/pagesCSS/all.css">
+        <link rel="stylesheet" href="/css/pagesCSS/viewTraining.css">
     </head>
 
     <body class="layout-demo">
@@ -59,11 +60,12 @@
                         </select>
                         <div hidden><!--Templates-->
                             <div id="templateButtonList" class="dropdown1">
-                                <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                                <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                                 <div id="dropList" class="dropdown-content1">
                                     <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
                                     <a class="btn-modal btn-modal-approve" data-toggle="modal" data-target="#myModal_approve" href="#">Approve Training</a>
                                     <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
+                                    <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a>
                                     <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
                                 </div>
                             </div>
@@ -72,6 +74,10 @@
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">Training List</h2>
                                 <div id="showHide">
+                                    <div class="form-check" id="viewOldCheckbox">
+                                        <input type="checkbox" id="viewOld" class="form-check-input">
+                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
+                                    </div>
                                     <table id="tblTraining" class="usa-table-borderless display" style="width:100%">
                                         <thead><tr>
                                             <th scope="col">Employee NameCode</th>
@@ -90,20 +96,23 @@
                         <div id="myModal_renew" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form id="form_training_renew">
-                                        <input name='id' class='trainingId' hidden>
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Renew Training</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Renew the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn" data-dismiss="modal" id="btn_renew_training">Renew</button>
-                                        </div>
-                                    </form>
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Renew Training</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_training_renew">
+                                            <p>Renew this class for <span class='employeeName'></span>?</p>
+                                            <p><span class='category'></span> - <span class='trainingCourse'></span></p>
+                                            <p><span class='description'></span></p>
+                                            <input hidden name='employee.id'>
+                                            <input hidden name='trainingCourseId'>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn" data-dismiss="modal" id="btn_renew_training">Renew</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -189,10 +198,11 @@
         </footer>
         <script src="js/ead.min.js"></script>
 
-        <script src="js/pagesJS/customFormFunctions.js"></script>
-        <script src="js/pagesJS/ApiCalls.js"></script>
-        <script src="js/pagesJS/viewTraining.js"></script>
-        <script src="js/pagesJS/personnelPages.js"></script>
+        <script src="/js/pagesJS/customFormFunctions.js"></script>
+        <script src="/js/bootstrap-datepicker.js"></script>
+        <script src="/js/pagesJS/ApiCalls.js"></script>
+        <script src="/js/pagesJS/viewTraining.js"></script>
+        <script src="/js/pagesJS/personnelPages.js"></script>
 
     </body>
 

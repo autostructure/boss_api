@@ -1,120 +1,106 @@
 .usa-section {
-    padding: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
     width: 100%;
+    padding: 0px 50px 0px 50px;
     min-height: 80vh;
+    margin-bottom: 120px;
 }
-.usa-grid{
+.usa-grid {
     padding: 0px;
 }
 .breadcrumbLinkMain{
-    color: #39679b !important;
+    color: #39679b;
 }
 #title{
     font-size: 4.0em;
     font-weight: 100;
-    padding-left: 30px;
+    border-bottom: 2px solid #39679b;
     font-family: lightFont;
     padding-bottom: 10px;
 }
 
-.bannerImg{
-    min-width: 100%;
-}
-
-.nav-item a{
-    font-size: 1.5em;
-    color: rgb(36, 36, 36);
-}
-.nav-tabs .nav-link.active{
-    border-color: #ddd #ddd #fff;
-    border-top-color: #39679b;
-    border-right-color: rgb(221, 221, 221);
-    border-bottom-color: rgb(255, 255, 255);
-    border-left-color: rgb(221, 221, 221);
-    color: #39679b !important;
-}
-.nav-tabs .nav-link{
-    border: 3px solid transparent;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-    background-color: rgba(255, 255, 255, 0.481);
-}
-hr.break{
-    border: 0;
-    height: 1px;
-    background: #333;
-    background-image: linear-gradient(to right, #ccc, #333, #ccc);
-}
-label{
-    font-size: 1.3em;
-}
-input, select{
-    font-size: 1.4em !important;
-}
-.bdayLabel{
-    font-size: 1.5em;
+.content-div {
+    border: 1px solid rgba(33, 33, 33, .2);
+    border-radius: 8px;
     position: relative;
-    top: 54px;
-    left: 10px;
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
 }
-#bdate, #byear{
-    margin-top: 15px;
-}
-
-#submitGen{
-    margin-top: 50px;
-    margin-left: 30px;
-}
-.reqClass{
-    color: red;
-}
-.btn-success{
-    background-color: #39679b;
-    border-color: #39679b;
-}
-
-.title4{
-    margin-top: 30px;
-    border-bottom: 1px solid #39679b;
-    padding-bottom: 10px;
-    font-size: 1.7em;
-    color: #39679b;
-}
-.title3{
-    margin-top: 30px;
-    font-size: 2.2em;
-}
-.title-div{
+.title-div {
     margin-top: 50px !important;
 }
-a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\f067';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'FontAwesome';
-    font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.00)
-}
-.trainBG{
-    border: 1px solid rgba(106, 106, 106, 0.981);
-    background-color: #b7c6f252;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 3px 5px 10px rgba(106, 106, 106, 0.981);
-}
-#submitEC, #submitV, #viewReports{
-    width: 50%;
-    height: 30%;
-    font-size: 2.0em !important;
-    margin: 50px auto;
 
+.usa-section1 {
+    padding-top: 0px !important;
+    width: 100%;
+    background-color: rgba(193, 193, 193, 0.02);
 }
-hr:after {
-    font-family: FontAwesome;
-    content: '\f01a';
-    color: #999;
+.card {
+    box-shadow: 5px 10px 15px rgba(33,33,33,0.2);
+    border: 1px solid rgba(33, 33, 33, 0.2);
+}
+.title2{
+    padding: 20px;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.5rem;
+    border-bottom: 8px solid #39679b;
+    margin-bottom: 0px;
+}
+#allEmployees_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+.table-btns{
+    background-color: white !important;
+    border: none !important;
+    margin: 0px 10px;
+    font-size: 1.2em !important;
+    background-image: none !important;
+}
+.fa.fa-lg{
+    margin-left: 5px;
+}
+.fa-print{
+    color: rgb(0, 175, 29);
+}
+.fa-file-excel-o{
+    color: rgb(102, 0, 175);
+}
+.fa-plus{
+    color: rgb(0, 152, 198);
+}
+.fa-repeat{
+    color: rgb(254, 146, 5);
+}
+#allEmployees_filter > label{
+    font-size: 1.5em;
+}
+.hide {
     display: none;
-    background-color: #fff;
-    padding: 0 .5em;
+}
+#allEmployees_filter{
+    padding: 20px 20px 0px 20px;
+}
+.alert{
+    font-size: 1.8em;
+}
+td, th{
+    text-align: center;
+}
+#allEmployees_info, #allEmployees_paginate, #allEmployees_filter, #allEmployees_length{
+    padding: 20px 20px;
+}
+#allEmployees_filter{
+    position: absolute;
+    top: -85px;
+    right: 10px;
+}
+.modal, .modal .form-control {
+    font-size: 15px;
+}
+.reqClass {
+    color: red;
 }
