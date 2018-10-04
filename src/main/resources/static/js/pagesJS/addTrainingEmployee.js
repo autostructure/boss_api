@@ -1,9 +1,15 @@
 var api = "http://localhost:8090";
 
+
 $(document).ready(function () {
     $('#training').addClass('show');
-    $('#training > li:nth-child(1) > a').addClass('highlight');
+    $('#training > li:nth-child(1) > a').addClass('highlight'); 
+    $('#imgs').hide();
 
+    
+
+
+    $('#tName').append('<option value="' + '-1' + '">' + 'Please Select a Name ' + ' </oprion>');
     $.ajax({
         url: api + "/employeeProfile",
         type: "GET",
@@ -12,391 +18,460 @@ $(document).ready(function () {
             var i = 0;
             $.each(json, function (index, value) {
                 var info = value;
+                var name_wrapper = $(".mainAdd_" + x);
 
-                $('#dStation').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + ' </oprion>');
-
+                $('#tName').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + ' </oprion>');
             });
         },
         error: function (xhr, status, error) {
 
         }
+
     });
+    $('#tTitle').append('<option value="' + '-1' + '">' + 'Please enter a training Course Title' + ' </oprion>');
+  
+        $.ajax({
+            url: api + "/trainingCourse",
+            type: "GET",
+            success: function (json) {
+                //debugger;
+                $.each(json, function (index, value) {
+                    var info = value;
+                    //var name_wrapper = $(".mainAdd_" + x);
 
+                    $('#tTitle').append('<option value="' + value.id + '">' + value.title + ' </oprion>');
+                });
+            },
+            error: function (a, b, c) {
+                console.log(a.responseText);
+                debugger;
+            }
+        });
 
-
+      
+    
+ 
     var max_fields = 5; //maximum input boxes allowed
     var wrapper = $(".items"); //Fields wrapper
+    
     var add_button = $(".add_field_button"); //Add button ID
-    var x = 1; //initlal text box count
+    var x = 0; //initlal text box count
     var y = 0; //initial dropdown box namecode count
     $(add_button).click(function (e) { //on add input button click
-        // e.preventDefault();
-        if (x < max_fields) { //max input box allowed
-            x++; //text box increment
+            e.preventDefault();
+
             $(wrapper).append(
-                    '<div class="mainAdd">' +
-                    '<hr class="break">' +
+                '<div class="mainAdd">'+
                     '<div class="row">' +
-                    '<div class="col">' +
-                    '<div class="form-group">' +
-                    '<label for="tTitle">Title<span class="reqClass"> *</span></label>' +
-                    '<input type="text" class="form-control" id="tTitle' + x + '" required placeholder="Training Title" aria-label="Training Title">' +
-                    '<div class="help-block with-errors"></div>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="col">' +
-                    '<div class="form-group">' +
-                    '<label for="tDate">Date of Training<span class="reqClass"> *</span></label>' +
-                    '<div class="input-group date" data-provide="datepicker">' +
-                    '<input type="text" required id="tDate' + x + '" class="form-control">' +
-                    '<div class="input-group-addon">' +
-                    '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="help-block with-errors"></div>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="col">' +
-                    '<div class="form-group">' +
-                    '<label for="tPresenter">Presenter<span class="reqClass"> *</span></label>' +
-                    '<input type="text" class="form-control" id="tPresenter' + x + '" required placeholder="Presenters Name" aria-label="Presenters Name">' +
-                    '<div class="help-block with-errors"></div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="row">' +
-                    '<div class="col">' +
-                    '<div class="form-group">' +
-                    '<label for="tHours">Hours<span class="reqClass"> *</span></label>' +
-                    '<input type="text" class="form-control" id="tHours' + x + '" required placeholder="Enter Hours" aria-label="Training Hours">' +
-                    '<div class="help-block with-errors"></div>' +
-                    '</div>' +
-                    '</div> ' +
-                    '<div class="col">' +
-                    '<div class="form-group">' +
-                    '<label for="tLocation">Location<span class="reqClass"> *</span></label>' +
-                    '<input type="text" class="form-control" id="tLocation' + x + '" required placeholder="Location" aria-label="Location">' +
-                    '<div class="help-block with-errors"></div>' +
-                    '</div>' +
-                    '</div> ' +
-                    '<div class="col">' +
-                    '<div class="form-group">' +
-                    //'<label for="tYears">Number of Years Valid<span class="reqClass"> *</span></label>' +
-                    //'<select name="tYears" required id="tYears' + x + '" class="form-control">' +
-                    //'<option value="">Select Years</option>' +
-                    //'<option value="1">1</option>' +
-                    //'<option value="2">2</option>' +
-                    //'<option value="3">3</option>' +
-                    //'<option value="4">4</option>' +
-                    //'<option value="5">5</option>' +
-                    //'</select>' +
-                    //'<div class="help-block with-errors"></div>' +
-                    '</div> ' +
-                    '</div>' +
-                    '</div>' +
-                    '<button class="remove_field">Remove</button>' +
-                    '</div>'
-
-                    ); //add input box
-        }
-    });
-
-    $(wrapper).on("click", ".remove_field", function (e) { //user click on remove field
-        e.preventDefault();
-        $(this).parent('div').remove();
-        x--;
-    });
-
-
-
-    $("#addEmployee").click(function () {
-        //debugger;
-        y++;
-        $(".wrapper").find("#nameAdd").append(
-                '<div class="row">' +
+                        '<div class="col">' +
+                            '<div class="form-group">' +
+                                '<label>Employee Name<span class="reqClass">*</span></label><br />' +
+                                '<select required class="form-control name" id="tName_' + x + '" placeholder="Select Employee Name" aria-label="Employee">' +
+                                '</select>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col">' +
+                            '<div class="form-group">' +
+                                '<label for="tTitle">Title<span class="reqClass"> *</span></label>' +
+                                '<select required class="form-control title" id="tTitle_' + x + '" placeholder="Training Title" aria-label="Training Title">' +
+                                '</select>' +
+                                '<div class="help-block with-errors"></div>' +
+						    '</div>' +
+                        '</div>' +
                 '<div class="col">' +
                 '<div class="form-group">' +
-                '<label for="eNameCode">Select Employee Namecode<span class="reqClass"> *</span></label>' +
-                '<select name="dstation" required id="dStation_' + y + '" class="form-control">' +
-                '</select >' +
+                '<label for="tYearsValid">Years Valid<span class="reqClass"> *</span></label>' +
+                '<input required type="text" class="form-control title" id="tYearsValid_' + x + '" placeholder="Years Valid" aria-label="Years Valid">' +
                 '<div class="help-block with-errors"></div>' +
                 '</div>' +
                 '</div>' +
+                         '<div class="col">' +
+                            '<div class="form-group">' +
+                                '<label for="tDate">Date of Training<span class="reqClass"> *</span></label>' +
+                                '<div class="input-group date" data-provide="datepicker">' +
+                                    '<input required type="text" id="tDate_' + x + '" class="form-control tdate">' +
+                                    '<div class="input-group-addon">' +
+                                        '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
+                                    '</div>' +                                                                    
+                                 '</div>' +
+                                 '<div class="help-block with-errors"></div>' +
+                             '</div>' +
+                          '</div>' +
+                       '</div>' + 
+                        '<button id="copyRow" class="copy_field">Copy Row</button> ' +
+                        '<button class="remove_field">Remove</button>' +
+                    '</div>' +
                 '</div>'
-                );
+
+                
+
+            ); //add input box
+        
+
+
         $.ajax({
             url: api + "/employeeProfile",
             type: "GET",
             success: function (json) {
+                var divine = $(".items div.mainAdd div.row div.col");
+
+                $(divine).find('input,select').each(function () {
+                    
+                    var _id = $(this).attr('id');
+                    
+                    if (_id != undefined) {
+                        if (_id.split('_')[0] == "tName") {
+                            $(this).append('<option value="' + '-1' + '">' + 'Please select a name' + ' </oprion>');
+                        }
+                    }
+                });
 
                 var i = 0;
                 $.each(json, function (index, value) {
                     var info = value;
+                    
+                    //debugger;
+                    $(divine).find('input,select').each(function () {
+                        
+                        //debugger;
+                        var _id = $(this).attr('id');
+                        if (_id != undefined) {
+                            if (_id.split('_')[0] == "tName") {
+                                $(this).append('<option value="' + value.id + '">' + value.lastName + value.firstName + ' </oprion>');
 
-                    $('#dStation_' + y).append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + ' </oprion>');
+                            }
 
+                            
+                        }
+                    });
+                       // append('<option value="' + value.id + '">' + value.lastName + value.firstName + ' </oprion>');
+                    
+                    //$(name_wrapper).append('<option value="' + value.id + '">' + value.lastName + value.firstName + ' </oprion>');
                 });
             },
             error: function (xhr, status, error) {
-
+                console.log(xhr.responseText);
+                
             }
+            
         });
-    });
 
-    $(this).find('input:not([disabled]):not([type=submit]), textarea, select').each(function () {
+        $.ajax({
+            url: api + "/trainingCourse",
+            type: 'GET',
+            success: function (json) {
+                var i = 0;
+                var divine = $(".items div.mainAdd div.row div.col");
+                $(divine).find('input,select').each(function () {
+                    //debugger;
 
-    });
+                    var _id = $(this).attr('id');
+                    if (_id != undefined) {
+                        if (_id.split('_')[0] == "tTitle") {
+                           $(this).append('<option value="' + '-1' + '">' + 'Please enter a Training Course Title' + ' </oprion>');
 
-
-    $(':file').on('change', function () {
-        var file = this.files[0];
-        if (file.size > 1024) {
-            alert('max upload size is 1k')
-        }
-
-        // Also see .name, .type
-    });
-
-
-
-    $(':button').on('click', function () {
-
-        var formData = new FormData($('form')[0]);
-        var employee_id =
-                $.ajax({
-                    // Your server script to process the upload
-                    url: 'http://localhost:8090/certificate',
-                    type: 'POST',
-
-                    // Form data
-                    data: ,
-
-                    // Tell jQuery not to process data or worry about content-type
-                    // You *must* include these options!
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-
-                    // Custom XMLHttpRequest
-                    xhr: function () {
-                        var myXhr = $.ajaxSettings.xhr();
-                        if (myXhr.upload) {
-                            // For handling the progress of the upload
-                            myXhr.upload.addEventListener('progress', function (e) {
-                                if (e.lengthComputable) {
-                                    $('progress').attr({
-                                        value: e.loaded,
-                                        max: e.total,
-                                    });
-                                }
-                            }, false);
                         }
-                        return myXhr;
                     }
                 });
+                $.each(json, function (index, value) {
+                    var info = value;
+                    
+                    //debugger;
+                    $(divine).find('input,select').each(function () {
+                        //debugger;
+
+                        var _id = $(this).attr('id');
+                        if (_id != undefined) {
+                            if (_id.split('_')[0] == "tTitle") {
+                                $(this).append('<option value="' + value.id + '">' + value.title + ' </oprion>');
+                                
+                            }
+                        }
+                    });
+                   // $(name_wrapper).append('<option value="' + value.id + '">' + value.title + ' </oprion>');
+                });
+            },
+            error: function (a, b, c) {
+                console.log(a.responseText);
+                
+            }
+        });
+        x++;
+
+       
+
     });
 
-    $(".submit_button").click(function () {
+    $(wrapper).on("click", ".remove_field", function (e) { //user click on remove field
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    });
 
+    $(wrapper).on("click", ".copy_field", function (e) {
+        e.preventDefault();
+        var row = $(this).parent('div').clone();
+        
+        x++;
+        $(wrapper).append(row);
+    });
+
+
+   
+    
+
+
+    $("#submitV").click(function (e) {
 
         var _id;
         var i;
         var name_element;
-        for (i = 0; i <= y; i++) {
+        var divs_input = $('.items input');
+        var divs_select = $('.items select');
+        
+        var divs = $('.items div.mainAdd');
+        var len = divs.length;
+        
+        var t_name_og;
+        var t_title_trainingCourseId_og;
+        var t_YearsValid_og;
+        var t_Date_og;
 
-            if (i == 0) {
-                name_element = $("#dStation").val();
-            } else {
-                name_element = $("#dStation_" + i).val();
+        var t_name;
+        var t_title_trainingCourseId;
+        var t_YearsValid;
+        var t_Date;
+
+        t_name_og = $('#tName').val();
+        t_title_trainingCourseId_og = $('#tTitle').val();
+        
+        t_YearsValid_og = $('#tYearsValid').val();
+        t_Date_og = $('#tDate').val();
+        var checker = false;
+
+
+        
+
+        if (t_name_og != -1 && t_title_trainingCourseId_og != -1 && t_YearsValid_og != "" && t_Date_og != "") {
+
+            if (len == 0) {
+                e.preventDefault();
             }
-            if (name_element != undefined && name_element != null) {
-                $.ajax({
-                    url: api + "/employeeProfile/" + name_element,
-                    type: "GET",
 
-                    success: function (json) {
-                        var _json = json;
-                        /* employeePlaceHolder.id = json.id;
-                         employeePlaceHolder.firstName = json.firstName;
-                         employeePlaceHolder.lastName = json.lastName;
-                         employeePlaceHolder.middleInitial = json.middleInitial;
-                         employeePlaceHolder.preferredName = json.preferredName;
-                         employeePlaceHolder.nameCode = json.nameCode;
-                         employeePlaceHolder.homePhone = json.homePhone;
-                         employeePlaceHolder.cellPhone = json.cellPhone;
-                         employeePlaceHolder.personalEmail = json.personalEmail;
-                         employeePlaceHolder.stateAssigned = json.stateAssigned;
-                         employeePlaceHolder.dutyStation = json.dutyStation;
-                         employeePlaceHolder.emergencyContactFirstName1 = json.emergencyContactFirstName1;
-                         employeePlaceHolder.emergencyContactFirstName2 = json.emergencyContactFirstName2;
-                         employeePlaceHolder.emergencyContactLastName1 = json.emergencyContactLastName1;
-                         employeePlaceHolder.emergencyContactLastName2 = json.emergencyContactLastName2;
-                         employeePlaceHolder.emergencyContactStreetAddress1 = json.emergencyContactStreetAddress1;
-                         employeePlaceHolder.emergencyContactStreetAddress2 = json.emergencyContactStreetAddress2;
-                         employeePlaceHolder.emergencyContactCity1 = json.emergencyContactCity1;
-                         employeePlaceHolder.emergencyContactCity1 = json.emergencyContactCity2;
-                         employeePlaceHolder.emergencyContactState1 = json.emergencyContactState1;
-                         employeePlaceHolder.emergencyContactState2 = json.emergencyContactState2;
-                         employeePlaceHolder.emergencyContactZip1 = json.emergencyContactZip1;
-                         employeePlaceHolder.emergencyContactZip2 = json.emergencyContactZip2;
-                         employeePlaceHolder.emergencyContactHomePhone1 = json.emergencyContactHomePhone1;
-                         employeePlaceHolder.emergencyContactHomePhone1 = json.emergencyContactHomePhone2;
-                         employeePlaceHolder.emergencyContactCellPhone1 = json.emergencyContactCellPhone1;
-                         employeePlaceHolder.emergencyContactCellPhone2 = json.emergencyContactCellPhone2;
-                         employeePlaceHolder.emergencyContactWorkPhone1 = json.emergencyContactWorkPhone1;
-                         employeePlaceHolder.emergencyContactWorkPhone2 = json.emergencyContactWorkPhone2;
-                         employeePlaceHolder.emergencyContactRelationship1 = json.emergencyContactRelationship1;
-                         employeePlaceHolder.emergencyContactRelationship2 = json.emergencyContactRelationship2;
-                         employeePlaceHolder.title = json.title;
-                         employeePlaceHolder.roomNumber = json.roomNumber;
-                         employeePlaceHolder.payPeriodsLeft = json.payPeriodsLeft;
-                         employeePlaceHolder.regPayPerPayPeriod = json.regPayPerPayPeriod;
-                         employeePlaceHolder. */
 
-                        var u;
+            var _employee;
+            $.ajax({
+                url: api + "/employeeProfile/" + t_name_og,
+                type: "GET",
+                cache: false,
 
-                        var title;
-                        var DateOfTraining;
-                        var Presenter;
-                        var _hours;
-                        var _Location;
+                success: function (json) {
+                    _employee = json;
+                },
+                error: function (a, b, c) {
+                    console.log(a.responseText);
+                    
+                },
+                async: false
+            });
 
-                        for (u = 1; u <= x; u++) {
+            trainingObj.employee = _employee;
+            trainingObj.dateOfTraining = getCorrectDateFormat(t_Date_og);
+            trainingObj.trainingCourseId = parseInt(t_title_trainingCourseId_og);
+            trainingObj.yearsValid = parseInt(t_YearsValid_og);
+            //console.log(trainingObj);
 
-                            if (u == 1) {
-                                title = $('#tTitle').val();
-                                DateOfTraining = $('#tDate').val();
-                                Presenter = $('#tPresenter').val();
-                                _hours = $('#tHours').val();
-                                _Location = $('#tLocation').val();
 
-                            } else {
-                                title = $('#tTitle_' + u).val();
-                                DateOfTraining = $('#tDate_' + u).val();
-                                Presenter = $('#tPresenter_' + u).val();
-                                _hours = $('#tHours_' + u).val();
-                                _Location = $('#tLocation_' + u).val();
+
+
+            $.ajax({
+                url: api + "/training",
+                type: 'POST',
+                data: JSON.stringify(trainingObj),
+                cache: false,
+                timeout: 600000,
+                contentType: "application/json",
+                success: function (json) {
+                    console.log("training was uploaded!");
+
+                },
+                error: function (a, b, c) {
+                    console.log(a.responseText);
+                    
+                }
+
+            });
+        } else {
+            console.log('did not do main row for training post');
+            checker = true;
+            //The reasoning for this is for not posting bad data, and have the validator work, but 
+        }
+        var index = 0;
+        
+            if (len > 0) {
+                for (i = 0; i <= len; i++) {
+                    for (j = 0; j <= 1; j++) {
+                        
+                            var input = divs_input[j + index];
+                            var select = divs_select[j + index];
+
+                            //$(input).css('color: red;');
+                            var id_input = $(input).attr("id");
+                            var id_select = $(select).attr("id");
+
+                            var val_input = $(input).val();
+                            var val_select = $(select).val();
+
+                            var split_id_input = id_input.split('_');
+                            var split_id_select = id_select.split('_');
+
+                            var split_input = split_id_input[0];
+                            var split_select = split_id_select[0];
+
+                            if (split_select == 'tName') {
+
+                                t_name = val_select;
                             }
-                            _json
-                            employeeTraining.title = title;
-                            employeeTraining.dateOfTraining = getCorrectDateFormat(DateOfTraining);
-                            employeeTraining.presenter = Presenter;
-                            employeeTraining.hours = parseInt(_hours);
-                            employeeTraining.location = _Location;
-                            employeeTraining.id = null;
-                            _id = _json.id;
 
+                            if (split_input == 'tYearsValid') {
 
-
-                            _json.training.push(employeeTraining);
-                        }
-
-                        console.log(_json);
-
-                        $.ajax({
-                            url: api + "/employeeProfile/" + _id,
-                            type: "PUT",
-                            dataType: "json",
-                            contentType: "application/json",
-                            cache: false,
-                            timeout: 600000,
-                            data: JSON.stringify(_json),
-                            success: function (json) {
-                                debugger;
-                            },
-                            error(xhr, status, error) {
-                                console.log(xhr.responseText);
-                                debugger;
+                                t_YearsValid = val_input;
                             }
-                        });
 
+                            if (split_select == 'tTitle') {
 
-                    },
-                    error: function (xhr, status, error) {
+                                t_title_trainingCourseId = val_select;
+                            }
+
+                            if (split_input == 'tDate') {
+
+                                t_Date = val_input;
+                            }
+
 
                     }
-                });
+
+
+
+
+                    if (t_name != -1 && t_YearsValid != "" && t_title_trainingCourseId != -1 && t_Date != "") {
+                        _employee = null;
+                        e.preventDefault();
+
+                        if (t_name != t_name_og && t_YearsValid != t_YearsValid_og && t_title_trainingCourseId != t_title_trainingCourseId_og && t_Date != t_Date_og) {
+                            $.ajax({
+                                url: api + "/employeeProfile/" + t_name,
+                                type: "GET",
+                                cache: false,
+
+                                success: function (json) {
+                                    _employee = json;
+                                    console.log('go employee with success! id: ' + t_name);
+                                },
+                                error: function (a, b, c) {
+                                    console.log(a.responseText);
+
+                                },
+                                async: false
+                            });
+
+                            trainingObj.employee = _employee;
+                            trainingObj.dateOfTraining = getCorrectDateFormat(t_Date);
+                            trainingObj.trainingCourseId = parseInt(t_title_trainingCourseId);
+                            trainingObj.yearsValid = parseInt(t_YearsValid);
+
+
+
+                            console.log(trainingObj);
+                            $.ajax({
+                                url: "/training",
+                                type: 'POST',
+                                data: JSON.stringify(trainingObj),
+                                cache: false,
+                                timeout: 600000,
+                                contentType: "application/json",
+                                success: function (json) {
+                                    console.log("success for posting training!");
+
+                                },
+                                error: function (a, b, c) {
+                                    console.log(a.responseText);
+
+                                }
+                            });
+                        }
+                    } else {
+                        console.log('did not do post for row');
+                        checker = true;
+                    }
+
+                    index = index + 2;
+                }
+
+
             }
-        }
+       
+
+
+
+        
+       
+        
+
     });
 
-    var employeePlaceHolder = {
-        "id": 1,
-        "firstName": "Ileen",
-        "lastName": "Mahmood",
-        "middleInitial": null,
-        "preferredName": null,
-        "nameCode": "ILMahmood",
-        "homePhone": null,
-        "cellPhone": null,
-        "personalEmail": null,
-        "stateAssigned": null,
-        "dutyStation": null,
-        "emergencyContactFirstName1": null,
-        "emergencyContactLastName1": null,
-        "emergencyContactStreetAddress1": null,
-        "emergencyContactCity1": null,
-        "emergencyContactState1": null,
-        "emergencyContactZip1": null,
-        "emergencyContactHomePhone1": null,
-        "emergencyContactCellPhone1": null,
-        "emergencyContactWorkPhone1": null,
-        "emergencyContactRelationship1": null,
-        "emergencyContactFirstName2": null,
-        "emergencyContactLastName2": null,
-        "emergencyContactStreetAddress2": null,
-        "emergencyContactCity2": null,
-        "emergencyContactState2": null,
-        "emergencyContactZip2": null,
-        "emergencyContactHomePhone2": null,
-        "emergencyContactCellPhone2": null,
-        "emergencyContactWorkPhone2": null,
-        "emergencyContactRelationship2": null,
-        "title": null,
-        "roomNumber": null,
-        "payPeriodsLeft": 10,
-        "regPayPerPayPeriod": 1000.00,
-        "overtimeHourlyWage": null,
-        "pWPSalary": null,
-        "activityCode": {
-            "code": "AD",
-            "name": "Administration"
-        },
-        "dateOfBirth": null,
-        "training": [],
-        "addressCity": null,
-        "series": null,
-        "grade": null,
-        "paymentPlan": null,
-        "addressState": null,
-        "addressZip": null,
-        "confidentialityAgreementDate": null,
-        "supervisors": [],
-        "employees": [],
-        "driversLicense": null,
-        "pwpsalary": null
+    
+    var trainingObj = {
+        certificates: [],
+        dateOfTraining: "string",
+        employee: {},
+        trainingCourseId: 0,
+        yearsValid: 0,
+        id: 0
     };
 
-    var employeeTraining = {
-        "dateOfTraining": "2018-09-1717:32:14.924Z",
-        "hours": 0,
-        "id": "string",
-        "location": "string",
-        "presenter": "string",
-        "title": "string",
-        "training": {},
-        "yearsValid": 0
+    var trainingCourseObj = {
+        "category": "string",
+        "defaultYears": 0,
+        "defaultYearsLeader": 0,
+        "description": "string",
+        "id": 0,
+        "title": "string"
     };
+
+
+
 
 
 
 
     function getCorrectDateFormat(date_str) {
         var date = new Date(date_str);
+        
         return date.toISOString();
     }
 
+    function getCorrectNormalDateFormat(date, format) {
+        date = CustomFormFunctions.getDateFrom(date);
+        var year = ("0000" + date.getFullYear().toString()).substr(-4, 4);
+        var month = ("0000" + (date.getMonth() + 1).toString()).substr(-2, 2);
+        var day = ("0000" + date.getDate().toString()).substr(-2, 2);
+        var time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        switch (format) {
+            case "mm/dd/yyyy":
+                return month + "/" + day + "/" + year;
+            case "yyyy/mm/dd":
+                return year + "/" + month + "/" + day;
+            case "mm/dd/yyy HH:mm:ss":
+                return year + "/" + month + "/" + day + " " + time;
+            case "yyyy-mm-dd":
+            case "ISO-Short":
+            default:
+                return date.toISOString();
+        }
 
+    }
+
+
+    
 });
 
 
