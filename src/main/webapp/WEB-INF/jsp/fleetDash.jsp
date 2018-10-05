@@ -8,8 +8,7 @@
         <title>FIA-BOSS</title>
         <link rel="stylesheet" href="css/ead.min.css">
         <link rel="stylesheet" href="css/pagesCSS/all.css">
-        <link rel="stylesheet" href="css/pagesCSS/hrDash.css">
-        <link rel="stylesheet" href="css/pagesCSS/fleetDash.css">
+        <link rel="stylesheet" href="css/pagesCSS/fleetPages.css">
     </head>
 
     <body class="layout-demo">
@@ -31,7 +30,7 @@
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/fleetDash">Property Management Dashboard</a>
+                                <a class="breadcrumbLinkMainFleet"href="/fleetDash">Property Management Dashboard</a>
                             </p>
                         </div>
                     </div>
@@ -53,10 +52,10 @@
                                         <div class="card-body">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <a href="#">Add New Fleet</a>                                  
+                                                    <a href="/addNewFleet">Add New Fleet</a>                                  
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href="#">View / Edit Fleet</a>  
+                                                    <a href="/viewFleet">View / Edit Fleet</a>  
                                                 </li>
                                                 <li class="list-group-item">
                                                     <a href="#">Fleet Reports</a>  

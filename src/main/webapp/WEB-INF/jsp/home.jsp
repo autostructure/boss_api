@@ -24,7 +24,7 @@
             </div>
             <div class="container-fluid cardsDiv">
                 <div class="row align-items-center">
-                    <div class="col-lg-2 col-md-6 offset-lg-1">
+                    <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-block">
                                 <img src="img/budgetBG.jpg" alt="budget mountain picture" class="img-fluid">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-block">
                                 <img src="img/propBG.jpg" alt="budget mountain picture" class="img-fluid">
@@ -59,8 +59,8 @@
                                     </button>
                                 </div>
                                 <div class="card-tbody show" id="collapseTwo">
-                                    <p class="card-text"><a href="#">Fleet Management</a></p>
-                                    <p class="card-text"><a href="#">Field Equip General</a></p>
+                                    <p class="card-text"><a href="/addNewFleet">Add New Fleet Vehicle</a></p>
+                                    <p class="card-text"><a href="#">View / Edit Fleet</a></p>
                                     <p class="card-text"><a href="#">Field Equip Electronic</a></p>
                                     <p class="card-text"><a href="#">ID Cards/Keys</a></p>
                                     <p class="card-text"><a href="#">Reports</a></p>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-block">
                                 <img src="img/hrBG.jpg" alt="budget mountain picture" class="img-fluid">
@@ -94,12 +94,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6">
+                    <!-- <div class="col-lg-2 col-md-6">
                         <div class="card">
                             <div class="card-block">
                                 <img src="img/crewBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
-                                    <!-- <h4 class="hTitle">Budget</h4> -->
+                                    <h4 class="hTitle">Budget</h4>
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                         <h5 class="card-title">Crew</h5>
                                     </button>
@@ -116,8 +116,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
+                    </div> -->
+                    <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="card-block">
                                 <img src="img/empBG.jpg" alt="budget mountain picture" class="img-fluid">

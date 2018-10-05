@@ -74,6 +74,55 @@ function addBootstrapFields(data) {
                 .append('<option value="WI">Wisconsin</option>')
                 .append('<option value="WY">Wyoming</option>');
     }
+    { //vehicle classes for fleet section
+        var vehClass = $("<select></select>")
+            .append('<option value="105">New</option>')
+            .append('<option value="112">4x4 SUV, 4DR, Compact, Hard Top Wagon</option>')
+            .append('<option value="160">Pickup HD</option>')
+            .append('<option value="161">Pickup, Crew Cab</option>')
+            .append('<option value="165">Pickup, Gas 4x2</option>')
+            .append('<option value="166">Pickup, Crew Cab, Gas 4x2</option>')
+            .append('<option value="180">Pickup, Gas 4x2</option>')
+            .append('<option value="186">Pickup, Crew Cab, Gas 4x2</option>')
+            .append('<option value="188">Van 4x2</option>')
+            .append('<option value="201">Utility Vehicle (Expedition, Tahoe) 4x4</option>')
+            .append('<option value="217">Utility Vehicle Excursion Diesel 4x4</option>')
+            .append('<option value="220">Utility, HD</option>')
+            .append('<option value="223">Utility, HD</option>')
+            .append('<option value="224">Carryall, AC</option>')
+            .append('<option value="241">Pickup, Compact Crew</option>')
+            .append('<option value="247">Pickup, Midsize, 4x4</option>')
+            .append('<option value="253">Utility Vehicle (Cherokee, Bronco) 4x4</option>')
+            .append('<option value="255">Utility Vehicle (Expedition, Tahoe) 4x4</option>')
+            .append('<option value="257">Pickup, Gas 4x4</option>')
+            .append('<option value="261">Pickup, HD Ext Cab</option>')
+            .append('<option value="269">Pickup, HD Ext Cab</option>')
+            .append('<option value="270">Pickup, HD</option>')
+            .append('<option value="280">Pickup, Gas 4x4</option>')
+            .append('<option value="281">Pickup, Gas 4x4</option>')
+            .append('<option value="290">Pickup, Gas 4x4</option>')
+            .append('<option value="293">Utility Vehicle Excursion Diesel 4x4</option>')
+            .append('<option value="49C">Pickup, Gas 4x4</option>')
+            .append('<option value="50">Camp Trailer</option>')
+            .append('<option value="51">ATV Trailer</option>')
+            .append('<option value="52">Flatbed Trailer</option>')
+            .append('<option value="55">Pickup, LD, Gas 4x4</option>')
+            .append('<option value="56C">Pickup, MD, Gas 4x4</option>')
+            .append('<option value="57">Pickup, Full Size</option>')
+            .append('<option value="67E">Pickup, LD, Gas 4x4</option>')
+            .append('<option value="998">Motorcycle</option>')
+            .append('<option value="999">Small 4 Wheeler All Terrain Vehicle</option>');
+    }
+    { //vehicle ownership type for fleet section
+        var vehOwner = $("<select></select>")
+            .append('<option value="ATV">All Terrain Vehicle</option>')
+            .append('<option value="GSA">General Services Administration</option>')
+            .append('<option value="LEASE">Leased Vehicle</option>')
+            .append('<option value="MC">Motorcycles</option>')
+            .append('<option value="RMRS">Rocky Mtn Research Station</option>')
+            .append('<option value="WCF">Working Capital Fund</option>');
+    }
+    
     function formColumn(col) {
         var colEl;
         if (col.custom) {
@@ -108,6 +157,12 @@ function addBootstrapFields(data) {
                 input.append($("<option value=''>" + (col.placeholder || "Choose " + col.title) + "</option>"));
                 if (types[1] == "state") {
                     input.append(stateSelect.find("option").clone());
+                }
+                if (types[1] == "vclass") {
+                    input.append(vehClass.find("option").clone());
+                }
+                if (types[1] == "vown") {
+                    input.append(vehOwner.find("option").clone());
                 }
                 if (col.options) {
                     for (var val in col.options) {

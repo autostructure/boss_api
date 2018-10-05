@@ -25,15 +25,6 @@
                         <div class="border">
                             <ul class="nav nav-tabs" id="myTab" role="tablist"> <!-- start of tabs list -->
                                 <li class="nav-item">
-                                    <a class="nav-link" id="checkIn-tab" data-toggle="tab" href="#checkIn" role="tab" aria-controls="checkIn" >Check In - Check Out</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="property-tab" data-toggle="tab" href="#property" role="tab" aria-controls="property" >Issued Property</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#trainingCerts" role="tab" aria-controls="trainingCerts" >Training/Certs</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="generalInfo" >General Info</a>
                                 </li>
                                 <li class="nav-item">
@@ -42,6 +33,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="identification-tab" data-toggle="tab" href="#identification" role="tab" aria-controls="identificationInfo" >Identifying Features</a>
                                 </li>
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link" id="checkIn-tab" data-toggle="tab" href="#checkIn" role="tab" aria-controls="checkIn" >Check In - Check Out</a>
+                                </li> -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="property-tab" data-toggle="tab" href="#property" role="tab" aria-controls="property" >Fleet Usage</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#trainingCerts" role="tab" aria-controls="trainingCerts" >Training/Certs</a>
+                                </li>
+
                                                             
                             </ul> <!-- end of tabs list -->
 
@@ -69,7 +70,7 @@
                                 </div>
                             </div>
                             <!--  START OF GENERAL TAB      -->
-                            <div class="tab-pane fade show" id="general" role="tabpanel" aria-labelledby="generalInfo">
+                            <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="generalInfo">
                                 <form role="form" data-toggle="validator" id="formEmployeeInfo"></form>
                             </div>
                             <!--  END OF GENERAL TAB         -->
@@ -90,7 +91,7 @@
                             <!--  END OF IDENTIFICATION TAB  -->
 
                             <!--  START OF CHECK IN TAB -->
-                            <div class="tab-pane fade" id="checkIn" role="tabpanel" aria-labelledby="checkIn">
+                            <!-- <div class="tab-pane fade" id="checkIn" role="tabpanel" aria-labelledby="checkIn">
                                 <form role="form" data-toggle="validator" id="formCheckIn">
                                     <h4 class=title3>Check In / Check Out - <span class='info'>You are currently Checked Out.</span></h4>
                                     <br><br>
@@ -99,7 +100,7 @@
                                         <h1 class="col-md-6">Check Back In</h1>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                             <!--  END OF CHECK IN TAB   -->                                    
 
                             <!-- START OF TRAINING TAB  -->
