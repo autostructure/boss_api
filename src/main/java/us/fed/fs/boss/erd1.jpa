@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="5.0-beta-rc1" status="GENERATED" persistenceUnitName="DEFAULT_PU" sm="false" id="_15385050301101" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity abs="false" class="EmployeeProfiles" v="true" xre="false" m="false" rootElement="_15385050301101" id="_15385050330792">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="addressCity" id="_15385050330888">
+                <jpa:column name="address_city" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="addressState" id="_15385050330889">
+                <jpa:column name="address_state" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="addressZip" id="_153850503308810">
+                <jpa:column name="address_zip" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="cellPhone" id="_153850503308811">
+                <jpa:column name="cell_phone" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" name="confidentialityAgreementDate" id="_153850503308812">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="confidentiality_agreement_date" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" name="dateOfBirth" id="_153850503308813">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="date_of_birth" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="dutyStation" id="_153850503308814">
+                <jpa:column name="duty_station" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactCellPhone1" id="_153850503308815">
+                <jpa:column name="emergency_contact_cell_phone1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactCellPhone2" id="_153850503308816">
+                <jpa:column name="emergency_contact_cell_phone2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactCity1" id="_153850503308817">
+                <jpa:column name="emergency_contact_city1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactCity2" id="_153850503308818">
+                <jpa:column name="emergency_contact_city2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactFirstName1" id="_153850503308819">
+                <jpa:column name="emergency_contact_first_name1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactFirstName2" id="_153850503308820">
+                <jpa:column name="emergency_contact_first_name2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactHomePhone1" id="_153850503308821">
+                <jpa:column name="emergency_contact_home_phone1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactHomePhone2" id="_153850503308822">
+                <jpa:column name="emergency_contact_home_phone2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactLastName1" id="_153850503308823">
+                <jpa:column name="emergency_contact_last_name1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactLastName2" id="_153850503308824">
+                <jpa:column name="emergency_contact_last_name2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactRelationship1" id="_153850503308825">
+                <jpa:column name="emergency_contact_relationship1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactRelationship2" id="_153850503308826">
+                <jpa:column name="emergency_contact_relationship2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactState1" id="_153850503308827">
+                <jpa:column name="emergency_contact_state1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactState2" id="_153850503308828">
+                <jpa:column name="emergency_contact_state2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactStreetAddress1" id="_153850503308829">
+                <jpa:column name="emergency_contact_street_address1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactStreetAddress2" id="_153850503308830">
+                <jpa:column name="emergency_contact_street_address2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactWorkPhone1" id="_153850503308831">
+                <jpa:column name="emergency_contact_work_phone1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactWorkPhone2" id="_153850503308832">
+                <jpa:column name="emergency_contact_work_phone2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactZip1" id="_153850503308833">
+                <jpa:column name="emergency_contact_zip1" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="emergencyContactZip2" id="_153850503308834">
+                <jpa:column name="emergency_contact_zip2" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="eyeColor" id="_153850503308835">
+                <jpa:column name="eye_color" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="firstName" id="_153850503308836">
+                <jpa:column name="first_name" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="gender" id="_153850503308837">
+                <jpa:column name="gender" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="grade" id="_153850503308838">
+                <jpa:column name="grade" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="hairColor" id="_153850503308839">
+                <jpa:column name="hair_color" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="homePhone" id="_153850503308840">
+                <jpa:column name="home_phone" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="lastName" id="_153850503308941">
+                <jpa:column name="last_name" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="middleInitial" id="_153850503308942">
+                <jpa:column name="middle_initial" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="nameCode" id="_153850503308943">
+                <jpa:column name="name_code" unique="false" nullable="false" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="otherIdentifyingFeatures" id="_153850503308944">
+                <jpa:column name="other_identifying_features" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.math.BigDecimal" v="true" name="overtimeHourlyWage" id="_153850503308945">
+                <jpa:column name="overtime_hourly_wage" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" precision="19" scale="2"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.math.BigDecimal" v="true" name="pwpsalary" id="_153850503308946">
+                <jpa:column name="pwpsalary" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" precision="19" scale="2"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Short" v="true" name="payPeriodsLeft" id="_153850503308947">
+                <jpa:column name="pay_periods_left" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="paymentPlan" id="_153850503308948">
+                <jpa:column name="payment_plan" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="personalEmail" id="_153850503308949">
+                <jpa:column name="personal_email" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="preferredName" id="_153850503308950">
+                <jpa:column name="preferred_name" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.math.BigInteger" v="true" name="profilePicture" id="_153850503308951">
+                <jpa:column name="profile_picture" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="race" id="_153850503308952">
+                <jpa:column name="race" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.math.BigDecimal" v="true" name="regPayPerPayPeriod" id="_153850503308953">
+                <jpa:column name="reg_pay_per_pay_period" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" precision="19" scale="2"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="roomNumber" id="_153850503308954">
+                <jpa:column name="room_number" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="series" id="_153850503308955">
+                <jpa:column name="series" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="stateAssigned" id="_153850503308956">
+                <jpa:column name="state_assigned" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="title" id="_153850503308957">
+                <jpa:column name="title" unique="false" nullable="true" insertable="true" updatable="true" table="employee_profiles" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one connected-entity-id="_15385050330814" connected-attribute-id="_153850503309072" v="true" name="activityCodefk" id="_153850503308958">
+                <jpa:join-column name="ACTIVITY_CODEFK" rc="CODE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one connected-entity-id="_15385050330792" connected-attribute-id="_153850503308959" v="true" name="supervisorId" id="_153850503308960">
+                <jpa:join-column name="SUPERVISOR_ID" rc="EMPLOYEE_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" connected-entity-id="_15385050330792" connected-attribute-id="_153850503308960" v="true" name="employeeProfilesCollection" id="_153850503308959"/>
+            <jpa:one-to-many own="false" connected-entity-id="_15385050330815" connected-attribute-id="_153850503309081" v="true" name="monthlyiwfiausageCollection" id="_153850503308961"/>
+            <jpa:one-to-many own="false" connected-entity-id="_15385050330816" connected-attribute-id="_1538505033091109" v="true" name="vehicleCollection" id="_153850503308962"/>
+            <jpa:id attribute-type="Long" v="true" name="employeeId" id="_15385050330867">
+                <jpa:column name="employee_id" unique="false" nullable="false" insertable="true" updatable="true" table="employee_profiles"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="employee_profiles">
+            <jpa:unique-constraint>
+                <jpa:column-name>name_code</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="JobCodes" v="true" xre="false" m="false" rootElement="_15385050301101" id="_15385050330813">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="java.math.BigDecimal" v="true" name="amount" id="_153850503309064">
+                <jpa:column name="amount" unique="false" nullable="true" insertable="true" updatable="true" table="job_codes" precision="10" scale="2"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="description" id="_153850503309065">
+                <jpa:column name="description" unique="false" nullable="true" insertable="true" updatable="true" table="job_codes" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Short" v="true" name="financialYear" id="_153850503309066">
+                <jpa:column name="financial_year" unique="false" nullable="true" insertable="true" updatable="true" table="job_codes"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="jobCode" id="_153850503309067">
+                <jpa:column name="job_code" unique="false" nullable="false" insertable="true" updatable="true" table="job_codes" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="overrideCode" id="_153850503309068">
+                <jpa:column name="override_code" unique="false" nullable="true" insertable="true" updatable="true" table="job_codes"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" connected-entity-id="_15385050330815" connected-attribute-id="_153850503309082" v="true" name="monthlyiwfiausageCollection" id="_153850503309069"/>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_153850503309063">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="job_codes"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="job_codes"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="ActivityCodes" v="true" xre="false" m="false" rootElement="_15385050301101" id="_15385050330814">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="name" id="_153850503309071">
+                <jpa:column name="name" unique="false" nullable="false" insertable="true" updatable="true" table="activity_codes" length="255"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" connected-entity-id="_15385050330792" connected-attribute-id="_153850503308958" v="true" name="employeeProfilesCollection" id="_153850503309072"/>
+            <jpa:id attribute-type="String" v="true" name="code" id="_153850503309070">
+                <jpa:column name="code" unique="false" nullable="false" insertable="true" updatable="true" table="activity_codes" length="255"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="activity_codes"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Monthlyiwfiausage" v="true" xre="false" m="false" rootElement="_15385050301101" id="_15385050330815">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="java.math.BigDecimal" v="true" name="cost" id="_153850503309074">
+                <jpa:column name="cost" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage" precision="19" scale="2"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="short" v="true" name="daysUsed" id="_153850503309075">
+                <jpa:column name="days_used" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="short" v="true" name="gas" id="_153850503309076">
+                <jpa:column name="gas" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="int" v="true" name="mileage" id="_153850503309077">
+                <jpa:column name="mileage" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="short" v="true" name="month" id="_153850503309078">
+                <jpa:column name="month" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="short" v="true" name="oil" id="_153850503309079">
+                <jpa:column name="oil" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="short" v="true" name="year" id="_153850503309080">
+                <jpa:column name="year" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage"/>
+            </jpa:basic>
+            <jpa:many-to-one connected-entity-id="_15385050330792" connected-attribute-id="_153850503308961" v="true" name="operatorId" id="_153850503309081">
+                <jpa:join-column name="OPERATOR_ID" rc="EMPLOYEE_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one connected-entity-id="_15385050330813" connected-attribute-id="_153850503309069" v="true" name="jobCodeId" id="_153850503309082">
+                <jpa:join-column name="JOB_CODE_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one connected-entity-id="_15385050330816" connected-attribute-id="_1538505033091108" v="true" name="vehicle" id="_153850503309083">
+                <jpa:join-column name="VEHICLE" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_153850503309073">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="monthlyiwfiausage"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="monthlyiwfiausage"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Vehicle" v="true" xre="false" m="false" rootElement="_15385050301101" id="_15385050330816">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="accessory" id="_153850503309085">
+                <jpa:column name="accessory" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="cityOrLocation" id="_153850503309086">
+                <jpa:column name="city_or_location" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="color" id="_153850503309087">
+                <jpa:column name="color" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" name="dateAquired" id="_153850503309088">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="date_aquired" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="description" id="_153850503309089">
+                <jpa:column name="description" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" name="disposalDate" id="_153850503309090">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="disposal_date" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="engineNumber" id="_153850503309091">
+                <jpa:column name="engine_number" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="equipmentNumber" id="_153850503309092">
+                <jpa:column name="equipment_number" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="keysToolBox" id="_153850503309093">
+                <jpa:column name="keys_tool_box" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="license" id="_153850503309094">
+                <jpa:column name="license" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="make" id="_153850503309095">
+                <jpa:column name="make" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="modelNumber" id="_153850503309096">
+                <jpa:column name="model_number" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Short" v="true" name="modelYear" id="_153850503309097">
+                <jpa:column name="model_year" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="oldLicense" id="_153850503309098">
+                <jpa:column name="old_license" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="ownershipType" id="_153850503309099">
+                <jpa:column name="ownership_type" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" name="releasedDate" id="_1538505033090100">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="released_date" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" name="replacementDate" id="_1538505033090101">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="replacement_date" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="state" id="_1538505033090102">
+                <jpa:column name="state" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="tailgate" id="_1538505033090103">
+                <jpa:column name="tailgate" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="tonneau" id="_1538505033090104">
+                <jpa:column name="tonneau" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="topper" id="_1538505033090105">
+                <jpa:column name="topper" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="vehicleClassCode" id="_1538505033090106">
+                <jpa:column name="vehicle_class_code" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="vin" id="_1538505033090107">
+                <jpa:column name="vin" unique="false" nullable="true" insertable="true" updatable="true" table="vehicle" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one connected-entity-id="_15385050330792" connected-attribute-id="_153850503308962" v="true" name="assignedOperatorId" id="_1538505033091109">
+                <jpa:join-column name="ASSIGNED_OPERATOR_ID" rc="EMPLOYEE_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" connected-entity-id="_15385050330815" connected-attribute-id="_153850503309083" v="true" name="monthlyiwfiausageCollection" id="_1538505033091108"/>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_153850503309084">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="vehicle"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="vehicle"/>
+    </jpa:entity>
+</jpa:entity-mappings>

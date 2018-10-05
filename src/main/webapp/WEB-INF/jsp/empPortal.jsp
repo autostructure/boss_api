@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/pagesCSS/all.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/css/pagesCSS/empPortal.css">
+    <link rel="stylesheet" href="/css/pagesCSS/viewTraining.css">
 
 </head>
 
@@ -57,8 +58,10 @@
                                     </div>
                                 </div>
                                 <div class="col col-md-3" id="colEmployeePhoto">
-                                    <img src="/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
-                                    <p class="photoText">My Photo, Click to Edit</p>
+                                    <a href="#Identification">
+                                        <img src="/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
+                                        <p class="photoText">My Photo, Click to Edit</p>
+                                    </a>
                                 </div>
                                 <div class="col col-md-4" id="colEmployeePhoto2">
                                     <form method="POST" enctype="multipart/form-data" action="/profilePicture?employeeId=">
@@ -67,6 +70,15 @@
                                         <img src="/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
                                     </label>
                                     </form>
+                                </div>
+                                <div id="templateButtonList" class="dropdown1">
+                                    <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                                    <div id="dropList" class="dropdown-content1">
+                                        <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
+                                        <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
+                                        <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a>
+                                        <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--  START OF GENERAL TAB      -->
@@ -85,7 +97,7 @@
                             <div class="tab-pane fade" id="identification" role="tabpanel" aria-labelledby="identificationInfo">
                                 <form role="form" data-toggle="validator" class="identificationInfo" id="formIdentificationInfo">
                                     <h4 class="title3">Identifying Features</h4>
-                                    <h4>The information on this form would be used to identify you in the event of an unforeseen, fatal event.</h4>
+                                    <h4>This information is used for emergency purposes only.</h4>
                                 </form>
                             </div>
                             <!--  END OF IDENTIFICATION TAB  -->
@@ -105,36 +117,105 @@
 
                             <!-- START OF TRAINING TAB  -->
                             <div class="tab-pane fade" id="trainingCerts" role="tabpanel" aria-labelledby="trainingCerts">
-                                <h4 class="title3">Training Due Next 6 Months</h4>
-                                <table id="tblTrainingDue" class="usa-table-borderless display dataTable no-footer">
-                                    <thead>
-                                        <tr>
-                                            <th>Category</th>
-                                            <th>Title</th>
-                                            <th>Valid Until (Due Date)</th>
-                                            <th>Select</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                                <h4 class="title3">Training Completed</h4>
-                                <table id="tblTrainingComplete" class="usa-table-borderless display dataTable no-footer">
-                                    <thead>
-                                        <tr>
-                                            <th>Category</th>
-                                            <th>Title</th>
-                                            <th>Location</th>
-                                            <th>Presenter</th>
-                                            <th>Valid Until</th>
-                                            <th>Approved By</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                <h2 class="title2">Training List</h2>
+                                <div id="showHide">
+                                    <div class="form-check" id="viewOldCheckbox">
+                                        <input type="checkbox" id="viewOld" class="form-check-input">
+                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
+                                    </div>
+                                    <table id="tblTraining" class="usa-table-borderless display" style="width:100%">
+                                        <thead><tr>
+                                            <th scope="col">Employee Namecode</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Training Title</th>
+                                            <th scope="col">Date Completed</th>
+                                            <th scope="col">Valid Until</th>
+                                            <th scope="col">Approved By</th>
+                                            <th id="stop"></th>
+                                        </tr></thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="myModal_renew" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Renew Training</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="form_training_renew">
+                                                <p>Renew this class for <span class='employeeName'></span>?</p>
+                                                <p><span class='category'></span> - <span class='trainingCourse'></span></p>
+                                                <p><span class='description'></span></p>
+                                                <input hidden name='employee.id'>
+                                                <input hidden name='trainingCourseId'>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn" data-dismiss="modal" id="btn_renew_training">Renew</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="myModal_upload" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Add Documents and Certifications</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span id="certificate_list"></span>
+                                            <hr>
+                                            <p>Add a document for the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
+                                            <form id="form_training_upload" method="POST" enctype="multipart/form-data" action="/certificate?trainingId=">
+                                                <input name='id' class='trainingId' hidden>
+                                                <label for="form_training_upload_file">
+                                                    <input type="file" name="file" id="form_training_upload_file">
+                                                </label>
+                                                <label for="form_training_upload_description">
+                                                    Description
+                                                    <input type="text" name="description" id="form_training_upload_description">
+                                                </label>
+                                                <br>
+                                                <button type="button" class="btn" id="btn_add_training_docs">Add</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <button type="button" class="btn" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="myModal_remove" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form id="form_training_remove">
+                                            <input name='id' class='trainingId' hidden>
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Remove Training</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Remove the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
+                                                <p>If you Confirm this, you will have to re-add it.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn text-danger" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <!-- END OF TRAINING TAB    -->    
 
-                            <!--  START OF PROPERTY TAB  -->
-                            <div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="property">
-                                <form role="form" data-toggle="validator" class="vehicleInfo">
+                            <!--  START OF INVENTORY TAB  -->
+                            <div class="tab-pane fade" id="inventory" role="tabpanel" aria-labelledby="inventory">
+                                <form role="form" data-toggle="validator" class="inventoryInfo">
                                     <h4 class="title3">Monthly Vehicle Usage</h4>
                                     <div class="row">
                                         <div class="col">
@@ -209,7 +290,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <!-- END OF PROPERTY TAB -->
+                            <!-- END OF INVENTORY TAB -->
                           
 
 

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -31,21 +32,21 @@ import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.Certificate;
 import us.fed.fs.boss.model.Contact;
 import us.fed.fs.boss.model.DeliberativeRiskAssessment;
-import us.fed.fs.boss.model.DeliberativeRiskAssessmentAircraft;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.UploadedDocument;
 import us.fed.fs.boss.model.Training;
 import us.fed.fs.boss.model.TrainingCourse;
 import us.fed.fs.boss.model.Views;
+import us.fed.fs.boss.repository.CertificateRepository;
 import us.fed.fs.boss.repository.ContactRepository;
 import us.fed.fs.boss.repository.CrewsRepository;
-import us.fed.fs.boss.repository.DeliberativeRiskAssessmentAircraftRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
 import us.fed.fs.boss.repository.TrainingCourseRepository;
 import us.fed.fs.boss.repository.TrainingRepository;
+import us.fed.fs.boss.repository.UploadedDocumentRepository;
 import us.fed.fs.boss.upload.UploadFileResponse;
 import us.fed.fs.boss.upload.UploadService;
 
@@ -69,12 +70,15 @@ public class HumanResourcesController {
 
     @Autowired
     TrainingCourseRepository trainingCourseRepository;
+    
+    @Autowired
+    CertificateRepository certificateRepository;
 
     @Autowired
     DeliberativeRiskAssessmentRepository deliberativeRiskAssessmentRepository;
 
     @Autowired
-    DeliberativeRiskAssessmentAircraftRepository deliberativeRiskAssessmentAircraftRepository;
+    UploadedDocumentRepository uploadedDocumentRepository;
 
     @Autowired
     UploadService uploadService;
@@ -336,51 +340,6 @@ public class HumanResourcesController {
 
     }
 
-    @GetMapping("/draAircraft")
-    public ResponseEntity getAllDeliberativeRiskAssessmentAircrafts(@RequestParam(value = "employee", required = false) final Long employeeProfileId) {
-        return new ResponseEntity<>(deliberativeRiskAssessmentAircraftRepository.findAll(), HttpStatus.OK);
-
-    }
-
-    @GetMapping("/draAircraft/{id}")
-    public DeliberativeRiskAssessmentAircraft getDeliberativeRiskAssessmentAircraftById(@PathVariable(value = "id") Long deliberativeRiskAssessmentAircraftId) {
-        return deliberativeRiskAssessmentAircraftRepository.findById(deliberativeRiskAssessmentAircraftId)
-                .orElseThrow(() -> {
-                    return new ResourceNotFoundException("DeliberativeRiskAssessmentAircraft", "id", deliberativeRiskAssessmentAircraftId);
-                });
-    }
-
-    @PostMapping("/draAircraft")
-    public ResponseEntity createDeliberativeRiskAssessmentAircraft(@Valid @RequestBody DeliberativeRiskAssessmentAircraft deliberativeRiskAssessmentAircraft) {
-        deliberativeRiskAssessmentAircraft = deliberativeRiskAssessmentAircraftRepository.save(deliberativeRiskAssessmentAircraft);
-        return new ResponseEntity<>(deliberativeRiskAssessmentAircraft, HttpStatus.OK);
-
-    }
-
-    @PutMapping("/draAircraft/{id}")
-    public DeliberativeRiskAssessmentAircraft updateDeliberativeRiskAssessmentAircraftId(@PathVariable(value = "id") Long deliberativeRiskAssessmentAircraftId,
-            @RequestBody DeliberativeRiskAssessmentAircraft deliberativeRiskAssessmentAircraft) {
-
-        deliberativeRiskAssessmentAircraftRepository.findById(deliberativeRiskAssessmentAircraftId)
-                .orElseThrow(() -> {
-                    return new ResourceNotFoundException("DeliberativeRiskAssessmentAircraft", "id", deliberativeRiskAssessmentAircraftId);
-                });
-
-        DeliberativeRiskAssessmentAircraft updatedDeliberativeRiskAssessmentAircraft = deliberativeRiskAssessmentAircraftRepository.save(deliberativeRiskAssessmentAircraft);
-        return updatedDeliberativeRiskAssessmentAircraft;
-
-    }
-
-    @DeleteMapping("/draAircraft/{id}")
-    public ResponseEntity<?> deleteDeliberativeRiskAssessmentAircraft(@PathVariable(value = "id") Long deliberativeRiskAssessmentAircraftId) {
-
-        DeliberativeRiskAssessmentAircraft dra = deliberativeRiskAssessmentAircraftRepository.findById(deliberativeRiskAssessmentAircraftId)
-                .orElseThrow(() -> new ResourceNotFoundException("DeliberativeRiskAssessmentAircraft", "id", deliberativeRiskAssessmentAircraftId));
-        deliberativeRiskAssessmentAircraftRepository.delete(dra);
-        return ResponseEntity.ok().build();
-
-    }
-
     @PostMapping("/profilePicture")
     public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = true) final Long employeeProfileId) {
 
@@ -457,13 +416,14 @@ public class HumanResourcesController {
     }
 
     @PostMapping("/certificate")
-    public ResponseEntity uploadCertificate(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = false) final Long employeeProfileId) {
+    public ResponseEntity uploadCertificate(@RequestParam("file") MultipartFile file, @RequestParam(value = "trainingId", required = false) final Long trainingId,
+            @RequestParam(value = "description", required = false) final String description) {
 
         try {
 
-            EmployeeProfile profile = employeeProfileRepository.findById(employeeProfileId)
+            Training training = trainingRepository.findById(trainingId)
                     .orElseThrow(() -> {
-                        return new ResourceNotFoundException("EmployeeProfile", "id", employeeProfileId);
+                        return new ResourceNotFoundException("Training", "id", trainingId);
                     });
 
             String fileName = file.getOriginalFilename();
@@ -484,15 +444,17 @@ public class HumanResourcesController {
                     CompletableFuture<Long> future = uploadService.upload(convFile, "certificate", file.getContentType());
                     Long imageId = future.get();
 
-                    List<Certificate> certs = profile.getCertificates();
+                    List<Certificate> certs = training.getCertificates();
 
                     Certificate cert = new Certificate();
                     cert.setDocumentId(imageId);
-                    cert.setEmployee(profile);
+                    cert.setEmployee(training);
+                    cert.setDescription(description != null ? description : "");
                     certs.add(cert);
-                    profile.setCertificates(certs);
+                    training.setCertificates(certs);
+                    
 
-                    employeeProfileRepository.save(profile);
+                    trainingRepository.save(training);
 
                     String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                             .path("/certificate/")
@@ -519,7 +481,7 @@ public class HumanResourcesController {
         try {
             // Load file as Resource
             UploadedDocument doc = uploadService.getUploadedDocument(certificateId).get();
-            
+
             final HttpHeaders headers = new HttpHeaders();
 
             String type = doc.getFileType().toLowerCase();
@@ -531,17 +493,30 @@ public class HumanResourcesController {
             if (type.contains("png")) {
                 headers.setContentType(MediaType.IMAGE_PNG);
             }
-            
+
             if (type.contains("pdf")) {
                 headers.setContentType(MediaType.APPLICATION_PDF);
             }
 
             return new ResponseEntity<byte[]>(doc.getData(), headers, HttpStatus.CREATED);
-            
+
         } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(HumanResourcesController.class.getName()).log(Level.SEVERE, null, ex);
             return ResponseEntity.status(500).body(ex.getLocalizedMessage());
 
         }
+    }
+    
+    @DeleteMapping("/certificate/{id}")
+    public ResponseEntity<?> deleteCertificate(@PathVariable(value = "id") Long certificateId) {
+
+        Certificate cert = certificateRepository.findById(certificateId)
+                .orElseThrow(() -> new ResourceNotFoundException("Certificate", "id", certificateId));
+        
+        uploadedDocumentRepository.deleteById(cert.getDocumentId());
+        certificateRepository.delete(cert);
+        
+        return ResponseEntity.ok().build();
+
     }
 }

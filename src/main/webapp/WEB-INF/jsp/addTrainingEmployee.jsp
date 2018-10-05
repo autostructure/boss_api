@@ -31,120 +31,133 @@
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
+                                                <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
                                                 <a class="breadcrumbLinkMain"href="/addTrainingEmployee">Add Training by Employee</a>
                                             </p>
                                         </div>
                                     </div>
                                 <section class="usa-section">
 
-                                    <div class="usa-grid usa-buffer-top">
+                                   <div class="usa-grid usa-buffer-top">
                                         <div class="usa-width-one-whole title-div">
                                             <h1 id="title">Add Training by Employee</h1>
                                         </div>
                                     </div>
+									<!-- data-toggle="validator"-->
                                     <div class="container trainBG">
-                                        <form role="form" data-toggle="validator" class="generalInfo">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="eNameCode">Select Employee Namecode<span class="reqClass"> *</span></label>
-                                                    <select name="dstation" required id="dStation" class="form-control">
-                                                            <option value="">Choose Employee</option>
-                                                            <option value="JACOBS">Jacobs, Doug</option>
-                                                            <option value="LANEY">Laney, Mike</option>
-                                                            <option value="BHOWDEN">Howden, BEN</option>
-                                                        </select>
+                                       <form role="form" class="generalInfo" id="SubmitForm">
+                                        
+										<div class="items">
+										</div>
+                                        
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label>Employee Name<span class="reqClass">*</span></label><br/>
+													<select class="form-control" name="tName" required id="tName" placeholder="Select Employee Name" aria-label="Employee">	
+													</select>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="tTitle">Title<span class="reqClass"> *</span></label>
+                                                    <select class="form-control" name="tTitle" required id="tTitle" placeholder="Training Title" aria-label="Training Title">
+													</select>
                                                     <div class="help-block with-errors"></div>
-                                                </div>                                                        
-                                            </div>                                            
-                                        </div>
-                                        <div class="items">
-                                        <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="tTitle">Title<span class="reqClass"> *</span></label>
-                                                        <input type="text" class="form-control" id="tTitle" required placeholder="Training Title" aria-label="Training Title">
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>                                                        
-                                                </div> 
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="tDate">Date of Training<span class="reqClass"> *</span></label>
-                                                        <div class="input-group date" data-provide="datepicker">
-                                                            <input type="text" required id="tDate" class="form-control">
+												</div>
+											</div>
+
+											<div class="col">
+												<div class="form-group">
+													<label for="tYearsValid">Years Valid<span class="reqClass"> *</span></label>
+                                                    <input type="text" class="form-control" name="tYearsValid" required id="tYearsValid" placeholder="Years Valid" aria-label="Years Valid">
+												
+                                                    <div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="tDate">Date of Training<span class="reqClass"> *</span></label>
+														<div class="input-group date" data-provide="datepicker">
+                                                            <input type="text" required id="tDate" name="tDate" class="form-control">
                                                             <div class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
                                                             </div>                                                                    
                                                         </div>
                                                         <div class="help-block with-errors"></div>
                                                     </div>  
-                                                </div> 
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="tPresenter">Presenter<span class="reqClass"> *</span></label>
-                                                        <input type="text" class="form-control" id="tPresenter" required placeholder="Presenters Name" aria-label="Presenters Name">
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>                                                        
                                                 </div>
-                                        </div>
-                                        <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="tHours">Hours<span class="reqClass"> *</span></label>
-                                                        <input type="text" class="form-control" id="tPresenter" required placeholder="Enter Hours" aria-label="Training Hours">
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>                                                        
-                                                </div> 
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="tLocation">Location<span class="reqClass"> *</span></label>
-                                                        <input type="text" class="form-control" id="tLocation" required placeholder="Location" aria-label="Location">
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>                                                        
-                                                </div> 
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="tYears">Number of Years Valid<span class="reqClass"> *</span></label>
-                                                        <select name="tYears" required id="tYears" class="form-control">
-                                                                <option value="">Select Years</option>
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                            </select>
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>                                                        
-                                                </div>                                                                                                                                                      
-                                        </div>
-                                    </div>
-                                        <div class="row">
-                                                <div class="col col-md-6 text-center">
-                                                    <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional Training</button> 
-                                                </div> 
-                                                <div class="col col-md-6">
-                                                    <input type="submit" id="submitV" class="btn btn-success">    
-                                                </div> 
-                                        </div>                                                                                                                       
-                                    </div>
-                                </div>
+											</div>
 
-                                <div class="itemss">
+										</div>
+	
+
+										
+										<hr/>
+
+                                        <div class="row">
+                                            <div class="col col-md-6 text-center">
+                                                <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional Training</button> 
+                                            </div> 
+											<div class="col col-md-6 form-group">
+												<input type="submit" value="submit" id="submitV" class="btn btn-success submit_button"></input>    
+                                            </div> 
+                                        </div>
+										</form>
+                                    </div>
+								
+                                </div>
+								</div>
+								<div id="myModal_result" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title"></h4>
+											</div>
+											<div class="modal-body">
+												<p>Adding the training to the employees was successful</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn" data-dismiss="modal">close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+									<!-- <div class="itemss">
                                     
                                    <div class="form-group"><label>Author Email:</label>
                                    <input id="author_email" class="form-control" name="author" required="required" type="EMAIL" /></div>
                                     
                                    </div>
                                     
-                                   <button type="button" class="add_fiedld_button">Add Field</button>
+                                   <button type="button" class="add_fiedld_button">Add Field</button> -->
+
 
                                 </section>
-                         </section>                         
+                         </section> 
+						 
                         
                 </div><!-- end of sidenav wrapper div -->
                 
+												<div id="myModal_success" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title text-center">success</h4>
+											</div>
+											<div class="modal-body">
+												<p>Successful Submit for Employee Classes</p>
 
+											</div>
+											<div class="modal-footer">
+												<button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Continue</button>
+											</div>
+										</div>
+									</div>
+								</div>
 
 
 
@@ -155,6 +168,8 @@
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
          </footer>
          <script src="js/ead.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+		 <!--<script src="js/pageJS/ApiCalls.js"></script>-->
          <script src="js/bootstrap-datepicker.js"></script>
          <script src="js/pagesJS/addTrainingEmployee.js"></script>
         <script src="js/pagesJS/personnelPages.js"></script>

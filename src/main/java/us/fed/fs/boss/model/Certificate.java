@@ -25,11 +25,14 @@ public class Certificate implements Serializable {
 
     @Column(name = "DocumentId")
     private Long documentId;
+    
+    @Column(name = "Description")
+    private String description;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee")
-    private EmployeeProfile employee;
+    @JoinColumn(name = "training")
+    private Training training;
 
     /**
      * @return the id
@@ -60,17 +63,31 @@ public class Certificate implements Serializable {
     }
 
     /**
-     * @return the employee
+     * @return the training
      */
-    public EmployeeProfile getEmployee() {
-        return employee;
+    public Training getEmployee() {
+        return training;
     }
 
     /**
-     * @param employee the employee to set
+     * @param training the training to set
      */
-    public void setEmployee(EmployeeProfile employee) {
-        this.employee = employee;
+    public void setEmployee(Training training) {
+        this.training = training;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }

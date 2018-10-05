@@ -281,13 +281,6 @@ public class EmployeeProfile implements Serializable {
     @JsonIgnore
     private List<Training> training;
     
-    @OneToMany(
-            mappedBy = "employee",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Certificate> certificates;
-
     public EmployeeProfile() {
         this.employees = new ArrayList<>();
     }
@@ -1088,19 +1081,4 @@ public class EmployeeProfile implements Serializable {
     public void setOtherIdentifyingFeatures(String otherIdentifyingFeatures) {
         this.otherIdentifyingFeatures = otherIdentifyingFeatures;
     }
-
-    /**
-     * @return the certificates
-     */
-    public List<Certificate> getCertificates() {
-        return certificates;
-    }
-
-    /**
-     * @param certificates the certificates to set
-     */
-    public void setCertificates(List<Certificate> certificates) {
-        this.certificates = certificates;
-    }
-
 }

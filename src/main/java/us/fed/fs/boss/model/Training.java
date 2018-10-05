@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,11 +46,19 @@ public class Training implements Serializable {
     @JoinColumn(name="ApprovedById")
     private EmployeeProfile approvedBy;
     
+    @OneToMany(
+            mappedBy = "training",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Certificate> certificates;
+    
     @Column(name="TrainingCourseId")
     private Long trainingCourseId;
     
-    @Column(name="YearsValid")
-    private Short yearsValid;
+    @Temporal(TemporalType.DATE)
+    @Column(name="ValidUntil")
+    private Date validUntil;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "DateOfTraining")
@@ -95,17 +106,17 @@ public class Training implements Serializable {
         this.approvedBy = approvedBy;
     }
     /**
-     * @return the yearsValid
+     * @return the Date it's Valid Until
      */
-    public Short getYearsValid() {
-        return yearsValid;
+    public Date getValidUntil() {
+        return validUntil;
     }
 
     /**
-     * @param yearsValid the yearsValid to set
+     * @param validUntil the Date it's valid until
      */
-    public void setYearsValid(Short yearsValid) {
-        this.yearsValid = yearsValid;
+    public void setValidUntil(Date validUntil) {
+        this.validUntil = validUntil;
     }
 
     /**
@@ -134,6 +145,20 @@ public class Training implements Serializable {
      */
     public void setTrainingCourseId(Long trainingCourseId) {
         this.trainingCourseId = trainingCourseId;
+    }
+
+    /**
+     * @return the certificates
+     */
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    /**
+     * @param certificates the certificates to set
+     */
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
     }
     
 }

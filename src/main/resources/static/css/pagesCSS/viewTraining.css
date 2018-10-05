@@ -98,9 +98,6 @@ td, th{
     top: -85px;
     right: 10px;
 }
-.modal, .modal .form-control {
+.modal {
     font-size: 15px;
-}
-.reqClass {
-    color: red;
 }

@@ -154,3 +154,7 @@ input.submitChanges {
 ::-ms-input-placeholder {
     color: #dddc;
 }
+
+textarea.form-control {
+    font-size: 15px;
+}

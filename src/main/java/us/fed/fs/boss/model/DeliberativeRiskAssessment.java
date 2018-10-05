@@ -1,8 +1,8 @@
 package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -35,32 +35,20 @@ public class DeliberativeRiskAssessment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Activity")
-    private String activity;
+    @Column(name = "Title")
+    private String title;
+    
+    @Column(name = "YearsValid")
+    private Short yearsValid;
 
-    @Column(name = "ForestUnit")
-    private String forestUnit;
-
-    @Column(name = "InitialAssessment")
+    @Column(name = "DateOfAssessment")
     @Temporal(TemporalType.DATE)
-    private Date initialAssessment;
-
-    @Column(name = "AssessmentUpdated")
-    @Temporal(TemporalType.DATE)
-    private Date assessmentUpdated;
+    private Date dateOfAssessment;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id")
     @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     private EmployeeProfile employeeProfile;
-
-    @OneToMany(
-            mappedBy = "deliberativeRiskAssessment",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonManagedReference(value = "deliberativeRiskAssessmentHazards")
-    private List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards;
 
     /**
      * @return the id
@@ -77,59 +65,45 @@ public class DeliberativeRiskAssessment implements Serializable {
     }
 
     /**
-     * @return the activity
+     * @return the title
      */
-    public String getActivity() {
-        return activity;
+    public String getTitle() {
+        return title;
     }
 
     /**
-     * @param activity the activity to set
+     * @param title the title to set
      */
-    public void setActivity(String activity) {
-        this.activity = activity;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
-     * @return the forestUnit
+     * @return the yearsValid
      */
-    public String getForestUnit() {
-        return forestUnit;
+    public Short getYearsValid() {
+        return yearsValid;
     }
 
     /**
-     * @param forestUnit the forestUnit to set
+     * @param yearsValid the yearsValid to set
      */
-    public void setForestUnit(String forestUnit) {
-        this.forestUnit = forestUnit;
+    public void setYearsValid(Short yearsValid) {
+        this.yearsValid = yearsValid;
     }
 
     /**
-     * @return the initialAssessment
+     * @return the dateOfAssessment
      */
-    public Date getInitialAssessment() {
-        return initialAssessment;
+    public Date getDateOfAssessment() {
+        return dateOfAssessment;
     }
 
     /**
-     * @param initialAssessment the initialAssessment to set
+     * @param dateOfAssessment the dateOfAssessment to set
      */
-    public void setInitialAssessment(Date initialAssessment) {
-        this.initialAssessment = initialAssessment;
-    }
-
-    /**
-     * @return the assessmentUpdated
-     */
-    public Date getAssessmentUpdated() {
-        return assessmentUpdated;
-    }
-
-    /**
-     * @param assessmentUpdated the assessmentUpdated to set
-     */
-    public void setAssessmentUpdated(Date assessmentUpdated) {
-        this.assessmentUpdated = assessmentUpdated;
+    public void setDateOfAssessment(Date dateOfAssessment) {
+        this.dateOfAssessment = dateOfAssessment;
     }
 
     /**
@@ -146,18 +120,4 @@ public class DeliberativeRiskAssessment implements Serializable {
         this.employeeProfile = employeeProfile;
     }
 
-    /**
-     * @return the deliberativeRiskAssessmentHazards
-     */
-    public List<DeliberativeRiskAssessmentHazard> getDeliberativeRiskAssessmentHazards() {
-        return deliberativeRiskAssessmentHazards;
-    }
-
-    /**
-     * @param deliberativeRiskAssessmentHazards the
-     * deliberativeRiskAssessmentHazards to set
-     */
-    public void setDeliberativeRiskAssessmentHazards(List<DeliberativeRiskAssessmentHazard> deliberativeRiskAssessmentHazards) {
-        this.deliberativeRiskAssessmentHazards = deliberativeRiskAssessmentHazards;
-    }
 }
