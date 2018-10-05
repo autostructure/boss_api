@@ -6,8 +6,8 @@ var training_config = {
 }
 
 $(document).ready(function() {
-    $("#checkIn-tab").on("click",function(){location.hash = "#CheckIn"});
-    $("#inventory-tab").on("click",function(){location.hash = "#Inventory"});
+    // $("#checkIn-tab").on("click",function(){location.hash = "#CheckIn"});
+    $("#property-tab").on("click",function(){location.hash = "#Property"});
     $("#training-tab").on("click",function(){location.hash = "#Training"});
     $("#general-tab").on("click",function(){location.hash = "#Profile"});
     $("#emergency-tab").on("click",function(){location.hash = "#Emergency"});
@@ -329,9 +329,9 @@ $(window).on('hashchange', function() {
             $("#identification-tab").trigger("click");
         break;
         default:
-        case "#CheckIn":
-            $("#checkIn-tab").trigger("click");
-        break;
+        // case "#CheckIn":
+        //     $("#checkIn-tab").trigger("click");
+        // break;
     }
 });
 // Training //

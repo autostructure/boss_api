@@ -1,6 +1,6 @@
-$(mainHeader).load("../../templates/header.html");
+$(mainHeader).load("../../templates/budgetHeader.html");
 $(mainFooter).load("../../templates/budgetFooter.html");
-$(sidebar).load("../../templates/sidebar.html");
+$(sidebar).load("../../templates/propsidebar.html");
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         // open or close navbar
@@ -22,4 +22,3 @@ $(document).ready(function () {
 if ($(window).width() < 514) {
     $('#sidebar, .main-header, .breadcrumbdiv').addClass('hidden');
 }
-;

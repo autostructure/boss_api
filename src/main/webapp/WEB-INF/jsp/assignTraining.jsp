@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/addTrainingClass.css">
+    <link rel="stylesheet" href="css/pagesCSS/addTrainingEmployee.css">
 </head>
 
 <body class="layout-demo">
@@ -31,98 +31,110 @@
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
-                                                <a class="breadcrumbLinkMain"href="/addTrainingClass">Add Training Interval</a>
+                                                <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
+                                                <a class="breadcrumbLinkMain"href="/addTrainingEmployee">Add Training by Employee</a>
                                             </p>
                                         </div>
                                     </div>
                                 <section class="usa-section">
 
-                                    <div class="usa-grid usa-buffer-top">
+                                   <div class="usa-grid usa-buffer-top">
                                         <div class="usa-width-one-whole title-div">
-                                            <h1 id="title">Add Training Intervals</h1>
+                                            <h1 id="title">Add Training by Employee</h1>
                                         </div>
                                     </div>
                                     <div class="container trainBG">
-                                        <form role="form" data-toggle="validator" class="generalInfo">
+                                        <!--<form role="form" data-toggle="validator" class="generalInfo" id="SubmitForm">-->
+                                        
+										<div class="items">
+										</div>
+                                        
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label>Employee Name<span class="reqClass">*</span></label><br/>
+													<select class="form-control" id="tName" placeholder="Select Employee Name" aria-label="Employee">	
+													</select>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="tTitle">Title<span class="reqClass"> *</span></label>
+                                                    <select class="form-control" id="tTitle" placeholder="Training Title" aria-label="Training Title">
+													</select>
+                                                    <div class="help-block with-errors"></div>
+												</div>
+											</div>
 
-                                        <div class="items">
-                                        <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="tTitle">Title<span class="reqClass"> *</span></label>
-                                                        <input type="text" class="form-control" id="tTitle" required placeholder="Training Title" aria-label="Training Title">
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>                                                        
-                                                </div> 
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="groups">Groups to Assign<span class="reqClass"> *</span></label>
-                                                        <select name="groups" required id="groups" class="form-control">
-                                                                <option value="">Select Groups</option>
-                                                                <option value="all">All Employees</option>
-                                                                <option value="field">Field</option>
-                                                                <option value="office">Office</option>
-                                                            </select>
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>                                                        
-                                                </div> 
-                                                  
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="tYears">Number of Years Valid For Employees<span class="reqClass"> *</span></label>
-                                                    <select name="tYears" required id="tYears" class="form-control">
-                                                            <option value="">Select Years</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="once">Training only required once</option>
-                                                        </select>
+											<div class="col">
+												<div class="form-group">
+													<label for="tYearsValid">Years Valid<span class="reqClass"> *</span></label>
+                                                    <select class="form-control" id="tYearsValid" placeholder="Years Valid" aria-label="Years Valid">
+													</select>
                                                     <div class="help-block with-errors"></div>
-                                                </div>                                                        
-                                            </div> 
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label for="tYearsSup">Number of Years Valid For Supervisors<span class="reqClass"> *</span></label>
-                                                    <select name="tYearsSup" required id="tYearsSup" class="form-control">
-                                                            <option value="">Select Years</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="once">Training only required once</option>
-                                                        </select>
-                                                    <div class="help-block with-errors"></div>
-                                                </div>                                                        
-                                            </div> 
-                                        </div>
-                                       
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label for="tDate">Date of Training<span class="reqClass"> *</span></label>
+														<div class="input-group date" data-provide="datepicker">
+                                                            <input type="text" id="tDate" class="form-control">
+                                                            <div class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                            </div>                                                                    
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>  
+                                                </div>
+											</div>
+
+										</div>
+	
+
+										
+										<hr/>
+
                                         <div class="row">
-                                                <div class="col">
-                                                    <input type="submit" id="submitV" class="btn btn-success">    
-                                                </div> 
+                                            <div class="col col-md-6 text-center">
+                                                <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional Training</button> 
+                                            </div> 
+											<div class="col col-md-6">
+												<button type="submit" id="submitV" class="btn btn-success submit_button">Submit</button>    
+                                            </div> 
                                         </div>                                                                                                                       
                                     </div>
                                 </div>
+								</div>
+								<div id="myModal_result" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title"></h4>
+											</div>
+											<div class="modal-body">
+												<p>Adding the training to the employees was successful</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn" data-dismiss="modal">close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+									<!-- <div class="itemss">
+                                    
+                                   <div class="form-group"><label>Author Email:</label>
+                                   <input id="author_email" class="form-control" name="author" required="required" type="EMAIL" /></div>
+                                    
+                                   </div>
+                                    
+                                   <button type="button" class="add_fiedld_button">Add Field</button> -->
 
 
                                 </section>
-                         </section>                         
+                         </section> 
+						 
                         
                 </div><!-- end of sidenav wrapper div -->
                 
@@ -137,9 +149,10 @@
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
          </footer>
          <script src="js/ead.min.js"></script>
+		 <!--<script src="js/pageJS/ApiCalls.js"></script>-->
          <script src="js/bootstrap-datepicker.js"></script>
-         <script src="js/pagesJS/assignTraining.js"></script>
-        <script src="js/pagesJS/personnelPages.js"></script>
+         <script src="js/pagesJS/addTrainingEmployee.js"></script>
+        <script src="js/pagesJS/mainHRPages.js"></script>
 
 </body>
 

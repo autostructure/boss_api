@@ -105,4 +105,20 @@ public class HomeController {
     public String uploadTest() {
         return "uploadTest";
     }
+    @RequestMapping("/fleetDash")
+    public String fleetDash() {
+        return "fleetDash";
+    }    
+    @RequestMapping("/addNewFleet")
+    public String addNewFleet() {
+        return "addNewFleet";
+    }       
+    @RequestMapping("/viewFleet")
+    public String viewFleet() {
+        return "viewFleet";
+    }      
+    @RequestMapping("/viewEditFleet")
+    public String viewEditFleet() {
+        return "viewEditFleet";
+    }         
 }

@@ -28,7 +28,6 @@
     <!-- Gov banner END -->
     <div class="usa-navbar white">
       <a href="/home"><img src="../../img/US-FS-LOGO.jpg" alt="USDA" align="left" class='usda-logo'> </a>
-            
             <div class="usa-logo" id="logo"> 
                 <em class="usa-logo-text">
                 <div class="children" id="pageTitle">FIA-BOSS <span id="smallPageTitle">Business Operations Software System</span></div>
@@ -37,71 +36,41 @@
         <button class="usa-menu-btn">Menu</button>
       </div>
       
-  
+  <!-- Start of Navigation -->
     <nav role="navigation" class="usa-nav">
-      <div class="usa-nav-inner">
-        <!-- <button class="usa-nav-close">
-          <img src="/assets/img/close.svg" alt="close">
-        </button> -->
-      <ul id="topNavUl" class="usa-nav-primary usa-accordion">
-        <li id="sidebarCollapse">
-          
-          <a class="usa-nav-link" href="#" id="menuOpen">
-              <i class="fa fa-bars"></i>
-            <span>Menu</span>
-          </a>
-        </li>
-        <li>
-          <a class="usa-nav-link" id="budgetNav" href="/budgetDash">
-            <span>Budget</span>
-          </a>
-        </li>
-        <li>
-          <a class="usa-nav-link" id="propNav" href="#" >
-          <span>Property Mgmt</span>
-          </a>
-        </li>
-        <li>
-          <a class="usa-nav-link" id="hrNav" href="/personnelDash" >
-          <span>Personnel</span>
-          </a>
-        </li>
-        <li>
-          <a class="usa-nav-link" id="crewNav" href="#" >
-          <span>Crew Supervisor</span>
-          </a>
-        </li>
-        <li>
-          <a class="usa-nav-link" id="empNav" href="/empPortal" >
-          <span>Employee Portal</span>
-          </a>
-        </li>
-    </ul>
-
-      <div class="usa-nav-secondary">
-        <form class="usa-search usa-search-small  js-search-form">
-        <div role="search">
-          <label class="usa-sr-only" for="extended-search-field-small">Search small</label>
-          <input id="extended-search-field-small" type="search" name="search">
-          <button type="submit">
-            <span class="usa-sr-only">Search</span>
-          </button>
-        </div>
-        </form>
-    
-    
-        <ul class="usa-unstyled-list usa-nav-secondary-links">
-          <li>
-              <span class="usa-header-login-button">Login</span>
-          </li>  
-          <li class="js-search-button-container">
-            <button class="usa-header-search-button js-search-button">Search</button>
-          </li>             
+        <div class="usa-nav-inner">
+          <ul id="topNavUl" class="usa-nav-primary usa-accordion">
+            <li id="sidebarCollapse">
+              
+              <a class="usa-nav-link" href="#" id="menuOpen">
+                  <i class="fa fa-bars"></i>
+                <span>Menu</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="budgetNav" href="/budgetDash">
+                <span>Budget</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="propNav" href="/fleetDash" >
+              <span>Property Mgmt</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="hrNav" href="/personnelDash" >
+              <span>Personnel</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="empNav" href="/empPortal#Profile" >
+              <span>Employee Portal</span>
+              </a>
+            </li>
         </ul>
       </div>
-  
-      </div>
     </nav>
+    <!-- End of Navigation Panel -->
   </div>
 
   <script>
@@ -113,12 +82,10 @@
       // this will get the full URL at the address bar
       var url = window.location.href;
 
-      // passes on every "a" tag
+      // parsing thru a tags, to set active on parent
       $("#topNavUl a").each(function() {
-          // checks if its the same on the address bar
           if (url == (this.href)) {
               $(this).closest("a").addClass("active");
-              //for making parent of submenu active
              $(this).closest("a").parent().parent().addClass("active");
           }
       });

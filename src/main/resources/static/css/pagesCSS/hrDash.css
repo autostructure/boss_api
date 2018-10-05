@@ -9,6 +9,11 @@
 .usa-grid{
     padding: 0px;
 }
+.usa-section1{
+    padding-top: 0px !important;
+    width: 100%;
+    background-color: rgba(193, 193, 193, 0.02);
+}
 #title{
     font-size: 4.0em;
     font-weight: 100;
@@ -28,11 +33,7 @@
     margin-top: 50px !important;
 }
 
-.usa-section1{
-    padding-top: 0px !important;
-    width: 100%;
-    background-color: rgba(193, 193, 193, 0.02);
-}
+
 #budget{
     margin-top: 40px;
 }
