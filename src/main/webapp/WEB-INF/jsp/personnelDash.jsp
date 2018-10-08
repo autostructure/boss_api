@@ -69,21 +69,12 @@
                                                     </div>                                                    
                                                     <div class="card-body">
                                                       <ul class="list-group">
-                                                          <li class="list-group-item">
-                                                              <a href="/addTrainingEmployee">Add Training by Employee</a>                                
-                                                          </li>
-                                                          <li class="list-group-item">
-                                                              <a href="/addTrainingClass">Add Training by Class</a>
-                                                          </li>
-                                                          <li class="list-group-item">
-                                                            <a href="/assignTraining">Add Training Intervals</a>
-                                                          </li>
-                                                          <li class="list-group-item">
-                                                            <a href="#">Training Due Next 6 Months</a>
-                                                          </li>                                                          
+                                                        <li class="list-group-item"><a href="/addTrainingEmployee">Record Trainings</a></li>
+                                                        <li class="list-group-item"><a href="/viewTraining">View Recorded Trainings</a></li>
+                                                        <li class="list-group-item"><a href="/addTrainingClass">Add/Edit Available Training Courses</a></li>
                                                       </ul>
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                             <div class="col">
                                                 <div class="card">

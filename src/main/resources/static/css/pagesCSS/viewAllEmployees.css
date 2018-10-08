@@ -21,7 +21,7 @@
 }
 
 
-.modal-body {
+#myModal_contact .modal-body {
     height: 700px;
 
 }

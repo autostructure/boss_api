@@ -120,6 +120,23 @@ CustomFormFunctions.addBootstrapFields = function (data) {
                         input.append("<option value='" + val + "'>" + name + "</option>")
                     }
                 }
+                if (col.selectFrom) {
+                    var url = col.selectFrom.url;
+                    var value = col.selectFrom.value;
+                    var label = col.selectFrom.label;
+                    if (!url) {
+                        console.log("SelectFrom.url must be a string.")
+                        console.log(col.selectFrom);
+                        return false;
+                    }
+                    if (!value) {
+                        value = 'id';
+                    }
+                    if (!label) {
+                        label = 'description';
+                    }
+                    CustomFormFunctions.populateDropDown(input, url, value, label, false);
+                }
             } else if (types[0] == "textarea") {
                 var input = $("<textarea>");
                 input.attr("placeholder", col.placeholder || "");
@@ -161,9 +178,9 @@ CustomFormFunctions.addBootstrapFields = function (data) {
                 if (col.step)
                     input.attr("step", col.step);
                 if (col.min)
-                    input.attr("step", col.min);
+                    input.attr("min", col.min);
                 if (col.max)
-                    input.attr("step", col.max);
+                    input.attr("max", col.max);
             }
             if (col.type != "input/date") {
                 groupEl.append(input);
@@ -196,6 +213,41 @@ CustomFormFunctions.addBootstrapFields = function (data) {
 }
 
 /**
+ * Populates a dropdown dynamically
+ * @param {jQuery} element the select element to populate
+ * @param {string} url the api url
+ * @param {string} valueKey the key of what will go in the database
+ * @param {string} labelKey the key of what will display
+ * @param {boolean} removeExistingOptions false to only add to element.  True to remove all options with an actual value
+ */
+CustomFormFunctions.populateDropDown = function (element, url, valueKey, labelKey, removeExistingOptions) {
+    element = $(element).filter("select");
+    if (removeExistingOptions) {
+        element.find("option[value!='']").remove();
+    }
+    $.ajax({
+        type: 'GET',
+        url: url,
+        contentType: "application/json",
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function (json) {
+            for (k in json) {
+                var opt = json[k];
+                var val = opt[valueKey];
+                var name = opt[labelKey];
+                if (typeof opt === "string") {
+                    val = opt;
+                    name = opt;
+                }
+                element.append("<option value='"+val+"'>"+name+"</option>");
+            }
+        },
+    });
+}
+
+/**
  * Automatically populates all the elements selected with data from a specific API.
  * @param {*} elements jQuery object (or string) with the elements to populate.
  * @param {string} url The url of the API to populate from.
@@ -212,14 +264,28 @@ CustomFormFunctions.populateElements = function (elements, url, entityID) {
         timeout: 600000,
         success: function (json) {
             for (k in json) {
-                var el = elements.filter("[name='" + k + "']");
-                el.val(json[k]);
-                if (el.hasClass('datepicker')) {
-                    el.val(CustomFormFunctions.formatDate(json[k], "mm/dd/yyyy"));
-                }
+                // var el = elements.filter("[name='" + k + "']");
+                // el.val(json[k]);
+                // if (el.hasClass('datepicker')) {
+                //     el.val(CustomFormFunctions.formatDate(json[k], "mm/dd/yyyy"));
+                // }
+                populate(k, json[k]);
             }
         },
     });
+    function populate(key, value) {
+        if (key instanceof Object) {
+            for (k in value) {
+                populate(key + "." + k, value[k]);
+            }
+        } else {
+            var el = elements.filter("[name='" + key + "']");
+            el.val(value);
+            if (el.hasClass('datepicker')) {
+                el.val(CustomFormFunctions.formatDate(value, "mm/dd/yyyy"));
+            }
+        }
+    }
 }
 
 /**
@@ -281,13 +347,13 @@ CustomFormFunctions.getDateFrom = function (input) {
  * @param {string} format 
  */
 CustomFormFunctions.formatDate = function (date, format) {
-    console.log(date);
     date = CustomFormFunctions.getDateFrom(date);
     var year = ("0000" + date.getFullYear().toString()).substr(-4, 4);
     var month = ("0000" + (date.getMonth() + 1).toString()).substr(-2, 2);
     var day = ("0000" + date.getDate().toString()).substr(-2, 2);
     switch (format) {
         case "mm/dd/yyyy":
+        case "bootstrap":
             return month + "/" + day + "/" + year;
         case "yyyy/mm/dd":
             return year + "/" + month + "/" + day;
@@ -295,5 +361,55 @@ CustomFormFunctions.formatDate = function (date, format) {
         case "ISO-Short":
         default:
             return date.toISOString();
+    }
+}
+
+CustomFormFunctions.putPartialInfo = function(url, id, partial, resolved, rejected) {
+    resolved = resolved || function () {}
+    rejected = rejected || function (a, b, c) {
+        console.log(a);
+        console.log(a.responseJSON);
+        console.log(b);
+        console.log(c);
+        //break
+    }
+    if (id == 0) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(partial),
+            cache: false,
+            timeout: 600000,
+            success: resolved,
+            error: rejected,
+        });
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: url + "/" + id,
+            contentType: "application/json",
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (json) {
+                for (k in partial) {
+                    json[k] = partial[k];
+                }
+                $.ajax({
+                    type: 'PUT',
+                    url: url + "/" + id,
+                    contentType: "application/json",
+                    dataType: 'json',
+                    cache: false,
+                    timeout: 600000,
+                    data: JSON.stringify(json),
+                    success: resolved,
+                    error: rejected,
+                });
+            },
+            error: rejected
+        });
     }
 }
