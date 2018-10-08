@@ -1,0 +1,94 @@
+
+<!-- Gov banner BEGIN -->
+<div id="mainHeading">
+    <div class="usa-banner">
+        <div class="usa-accordion">
+            <header class="usa-banner-header">
+                <div class="usa-grid usa-banner-inner"> 
+                    <p class="usa-usda-tagline">United States Department of Agriculture<img class="usa-banner-header2-img" src="../../img/usda-white.png" alt="U.S. usda"></p>
+                    <div class="usa-official-tagline usa-banner-header2 img" id="usaTagline">&nbsp; An official website of the United States government <img src="../../img/favicons/favicon-57.png" alt="U.S. flag"></div>
+                    <button class="usa-accordion-button usa-banner-button usa-official-tagline usa-white-text-link" aria-expanded="false" aria-controls="gov-banner"> <span class="usa-banner-button-text">Here 's how you know</span> </button>
+                </div> 
+            </header>
+            <div class="usa-banner-content usa-grid usa-accordion-content" id="gov-banner">
+                <div class="usa-banner-guidance-gov usa-width-one-half"> <img class="usa-banner-icon usa-media_block-img" src="../../img/icon-dot-gov.svg" alt="Dot gov">
+                    <div class="usa-media_block-body">
+                        <p> <strong>The .gov means it’s official.</strong>
+                            <br>Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you’re on a .gov or .mil site by inspecting your browser’s address (or “location”) bar. </p>
+                    </div>  
+                </div>
+                <div class="usa-banner-guidance-ssl usa-width-one-half"> <img class="usa-banner-icon usa-media_block-img" src="../../img/icon-https.svg" alt="SSL">
+                    <div class="usa-media_block-body">
+                        <p>This site is also protected by an TLS 1.2 certificate that’s been signed by the U.S. government. The <strong>https://</strong> means all transmitted data is encrypted — in other words, any information or browsing history that you provide is transmitted securely.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Gov banner END -->
+    <div class="usa-navbar white">
+      <a href="/home"><img src="../../img/US-FS-LOGO.jpg" alt="USDA" align="left" class='usda-logo'> </a>
+            <div class="usa-logo" id="logo"> 
+                <em class="usa-logo-text">
+                <div class="children" id="pageTitle">FIA-BOSS <span id="smallPageTitle">Business Operations Software System</span></div>
+                </em> 
+            </div>
+        <button class="usa-menu-btn">Menu</button>
+      </div>
+      
+  <!-- Start of Navigation -->
+    <nav role="navigation" class="usa-nav">
+        <div class="usa-nav-inner">
+          <ul id="topNavUl" class="usa-nav-primary usa-accordion">
+            <li id="sidebarCollapse">
+              
+              <a class="usa-nav-link" href="#" id="menuOpen">
+                  <i class="fa fa-bars"></i>
+                <span>Menu</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="budgetNav" href="/budgetDash">
+                <span>Budget</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="propNav" href="/fleetDash" >
+              <span>Property Mgmt</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="hrNav" href="/personnelDash" >
+              <span>Personnel</span>
+              </a>
+            </li>
+            <li>
+              <a class="usa-nav-link" id="empNav" href="/empPortal#Profile" >
+              <span>Employee Portal</span>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- End of Navigation Panel -->
+  </div>
+
+  <script>
+  $.getScript( "../../js/ead.min.js");
+  </script>
+
+<script type="text/javascript">
+  $(function() {
+      // this will get the full URL at the address bar
+      var url = window.location.href;
+
+      // parsing thru a tags, to set active on parent
+      $("#topNavUl a").each(function() {
+          if (url == (this.href)) {
+              $(this).closest("a").addClass("active");
+             $(this).closest("a").parent().parent().addClass("active");
+          }
+      });
+  });        
+</script>
+
