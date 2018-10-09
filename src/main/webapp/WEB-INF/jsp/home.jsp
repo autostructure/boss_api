@@ -30,9 +30,9 @@
                                 <img src="img/budgetBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <a class="btn btn-link" href="/budgetDash">
                                         <h5 class="card-title">Budget</h5>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseOne">
                                     <p class="card-text"><a href="/newExpense">Create New Expense</a></p>
@@ -54,9 +54,9 @@
                                 <img src="img/propBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <a class="btn btn-link" href="/fleetDash">
                                         <h5 class="card-title">Property<br>Mgmt</h5>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseTwo">
                                     <p class="card-text"><a href="/addNewFleet">Add New Fleet Vehicle</a></p>
@@ -77,16 +77,16 @@
                                 <img src="img/hrBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <a class="btn btn-link" href="/personnelDash">
                                         <h5 class="card-title">Personnel<br></h5>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseThree">
                                     <p class="card-text"><a href="/viewAllEmployees">View Employees</a></p>
-                                    <p class="card-text"><a href="/addNewEmployee">Add New Employees</a></p>
-                                    <p class="card-text"><a href="/assignTraining">Add New Training</a></p>
-                                    <p class="card-text"><a href="/addTrainingEmployee">Log Training by Employee</a></p>
-                                    <p class="card-text"><a href="/addDraEmployee">Log DRA by Employee</a></p>
+                                    <p class="card-text"><a href="/viewTraining">View Recorded Training</a></p>
+                                    <p class="card-text"><a href="/addTrainingClass">View Training Available</a></p>
+                                    <p class="card-text"><a href="/viewDRA">View Recorded DRA's</a></p>
+                                    <p class="card-text"><a href="/addDRASet">View DRA's Available</a></p>
                                 </div>
                                 <div class="card-footer text-right">
                                     <p class="card-text dashboard"><a href="/personnelDash">Visit Dashboard</a></p>
@@ -123,9 +123,9 @@
                                 <img src="img/empBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <a class="btn btn-link" href="/empDash">
                                         <h5 class="card-title">Employee<br>Portal</h5>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseFive">
                                     <p class="card-text"><a href="/empPortal">My Profile</a></p>
@@ -135,7 +135,7 @@
                                     <p class="card-text"><a href="/empPortal">Training / Certs</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href="/empDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>

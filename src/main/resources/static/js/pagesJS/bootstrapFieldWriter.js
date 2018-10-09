@@ -211,9 +211,9 @@ function addBootstrapFields(data) {
                 if (col.step)
                     input.attr("step", col.step);
                 if (col.min)
-                    input.attr("step", col.min);
+                    input.attr("min", col.min);
                 if (col.max)
-                    input.attr("step", col.max);
+                    input.attr("max", col.max);
             }
             if (col.type != "input/date") {
                 groupEl.append(input);

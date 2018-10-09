@@ -58,7 +58,7 @@ public class HomeController {
         return "empPortal";
     }         
     @RequestMapping("/personnelDash")
-    public String personnel() {
+    public String personnelDash() {
         return "personnelDash";
     }       
     @RequestMapping("/viewAllEmployees")

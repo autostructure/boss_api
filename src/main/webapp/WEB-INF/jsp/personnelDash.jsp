@@ -69,6 +69,7 @@
                                                     </div>                                                    
                                                     <div class="card-body">
                                                       <ul class="list-group">
+<<<<<<< HEAD
                                                           <li class="list-group-item">
                                                               <a href="/addTrainingEmployee">Record Employee Training</a>                                
                                                           </li>
@@ -79,9 +80,14 @@
                                                             <a href="/addTrainingClass">Training Courses</a>
                                                           </li>
                                                          
+=======
+                                                        <li class="list-group-item"><a href="/addTrainingEmployee">Record Trainings</a></li>
+                                                        <li class="list-group-item"><a href="/viewTraining">View Recorded Trainings</a></li>
+                                                        <li class="list-group-item"><a href="/addTrainingClass">Add/Edit Available Training Courses</a></li>
+>>>>>>> 4d35bc4dabaf456dec09befc0efd9f0746872637
                                                       </ul>
                                                     </div>
-                                                  </div>
+                                                </div>
                                             </div>
                                             <div class="col">
                                                 <div class="card">
