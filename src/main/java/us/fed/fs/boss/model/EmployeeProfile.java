@@ -273,14 +273,6 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
     
-    @OneToMany(
-            mappedBy = "employee",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonIgnore
-    private List<Training> training;
-    
     public EmployeeProfile() {
         this.employees = new ArrayList<>();
     }
@@ -757,20 +749,6 @@ public class EmployeeProfile implements Serializable {
      */
     public void setActivityCode(ActivityCode activityCode) {
         this.activityCode = activityCode;
-    }
-
-    /**
-     * @return the training
-     */
-    public List<Training> getTraining() {
-        return training;
-    }
-
-    /**
-     * @param training the training to set
-     */
-    public void setTraining(List<Training> training) {
-        this.training = training;
     }
 
     /**
