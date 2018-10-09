@@ -163,7 +163,8 @@ $(document).ready(function () {
                     className: 'table-btns refresh-btn'
                 },
                 {
-                    text: '<label for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
+                    text: '<label class="viewLabel" for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
+                    // text: 'View Old <i class="fa fa-lg fa-eye" id="viewOld"></i>',
                     action: function() {
                         $("#viewOld").click();
                         var show = $("#viewOld")[0].checked;

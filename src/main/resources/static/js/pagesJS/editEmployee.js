@@ -222,7 +222,6 @@ var fields = {
         "type":"input/text",
         "required":true,
         "colspan":12,
-        "disabled":true,
 },
 {   "fieldName":"addressCity",
         "title":"City",
@@ -252,8 +251,7 @@ var fields = {
 },
 {   "fieldName":"personalEmail",
         "title":"Personal Email",
-        "type":"input/email",
-        "required":true
+        "type":"input/email"
 },
 ], // end row
 [

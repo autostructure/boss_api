@@ -153,25 +153,32 @@ var fields = {
                 "placeholder":"Select Category",
                 "type":"select/text",
                 "required":true,
+                "colspan": 6,
             },
             {   "fieldName":"category",
                 "title":"Category",
                 "placeholder":"Select Category",
                 "type":"input/text",
                 "hidden":true,
+                "colspan": 6,
             },
             {   "fieldName":"title",
-                "title":"Title",
-                "type":"input/text",
-                "required":true,
-            },
+            "title":"Title",
+            "type":"input/text",
+            "required":true,
+            }
+        ],
+        [
+
             {   "fieldName":"description",
                 "title":"Description",
                 "placeholder":"Brief Description, maybe a sentance long.",
                 "type":"textarea",
                 "colspan":12,
                 "required":true,
-            },
+            }
+        ],
+        [
             {   "fieldName":"defaultYears",
                 "title":"Default Years Valid",
                 "placeholder":"years",
@@ -180,12 +187,12 @@ var fields = {
                 "required":true,
             },
             {   "fieldName":"defaultYearsLeader",
-                "title":"Default Years Valid<br>For Crew Leader",
+                "title":"Years Valid For Crew Leader",
                 "placeholder":"years",
                 "type":"input/number",
                 "colspan":6,
                 "required":true,
-            },
+            }
         ]
     ]
 }
