@@ -8,7 +8,7 @@
     <title>FIA-BOSS</title>
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/personnelDash.css">
+    <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
 </head>
 
 <body class="layout-demo">
@@ -70,17 +70,15 @@
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="/addTrainingEmployee">Add Training by Employee</a>                                
+                                                              <a href="/addTrainingEmployee">Record Employee Training</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/addTrainingClass">Add Training by Class</a>
+                                                              <a href="/viewTraining">View All Training</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                            <a href="/assignTraining">Add Training Intervals</a>
+                                                            <a href="/addTrainingClass">Training Courses</a>
                                                           </li>
-                                                          <li class="list-group-item">
-                                                            <a href="#">Training Due Next 6 Months</a>
-                                                          </li>                                                          
+                                                         
                                                       </ul>
                                                     </div>
                                                   </div>
@@ -94,13 +92,13 @@
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="/addDraEmployee">Add DRA by Employee</a>                                
+                                                              <a href="/addDraEmployee">Record Employee DRA's</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="#">Assign DRA's</a>
+                                                              <a href="#">View All DRA's</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                            <a href="#">DRA Tasks</a>
+                                                            <a href="#">DRA Courses / Tasks</a>
                                                         </li>
                                                       </ul>
                                                     </div>

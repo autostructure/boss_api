@@ -67,7 +67,7 @@ $(document).ready(function () {
                             <div id="dropList" class="dropdown-content1">
                                 <a href="` + API + `/editEmployee/` + row.nameCode + `" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit Employee</a>
                                 <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete Employee</a>
-                                <a data-toggle="modal" data-target="#myModal_contact" href="#" data-value=` + row.id + ` class="contactBtn" id="contactBtn">contact info</a>
+                                <a data-toggle="modal" data-target="#myModal_contact" href="#" data-value=` + row.id + ` class="contactBtn" id="contactBtn">Contact Info</a>
                             </div>
                         </div>
                     

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/addTrainingClass.css">
+    <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
 </head>
 
 <body class="layout-demo">
@@ -65,7 +65,7 @@
                                                         <th scope="col">Title</th>
                                                         <th scope="col">Description</th>
                                                         <th scope="col">Default Years Valid</th>
-                                                        <th scope="col">Default Years Valid<br>For Crew Leads</th>
+                                                        <th scope="col">Years Valid For Crew Leads</th>
                                                         <th id="stop"></th>
                                                     </tr></thead>
                                                     <tbody></tbody>
@@ -97,19 +97,19 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                     <h4 class="modal-title">Edit Training</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                                                    
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Edit the course "<span class='category'></span> - <span class='courseTitle'></span>"</p>
+                                                    <p class="modalText" >Edit the course "<span class='category'></span> - <span class='courseTitle'></span>"</p>
                                                     <form id="form_edit">
                                                         <input name='id' class='trainingId' hidden>
                                                             
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                                    <button type="button" class="btn" data-dismiss="modal" id="btn_edit">Save Changes</button>
+                                                    <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn_pers_copy" data-dismiss="modal" id="btn_edit">Save Changes</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,16 +120,16 @@
                                                 <form id="form_training_remove">
                                                     <input name='id' class='trainingId' hidden>
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         <h4 class="modal-title">Remove Training</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                                                        
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Remove the course "<span class='category'></span> - <span class='courseTitle'></span>"?</p>
-                                                        <p>If you Confirm this, you will have to re-add it.</p>
+                                                        <p class="modalText">Remove the course "<span class='category'></span> - <span class='courseTitle'></span>"?</p>
+                                                        <p class="modalText">If you Confirm this, you will have to re-add it.</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                                        <button type="button" class="btn bg-danger" data-dismiss="modal" id="btn_remove">Yes, Remove</button>
+                                                        <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                                        <button type="button" class="btn btn_pers_remove" data-dismiss="modal" id="btn_remove">Yes, Remove</button>
                                                     </div>
                                                 </form>
                                             </div>

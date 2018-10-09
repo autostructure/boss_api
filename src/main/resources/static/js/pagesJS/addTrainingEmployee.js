@@ -98,8 +98,8 @@ $(document).ready(function () {
                              '</div>' +
                           '</div>' +
                        '</div>' + 
-                        '<button id="copyRow" class="copy_field">Copy Row</button> ' +
-                        '<button class="remove_field">Remove</button>' +
+                        '<button id="copyRow" class="copy_field btn_pers_copy">Copy Row <i class="fa fa-arrows-v" aria-hidden="true" style="padding-left: 10px"></i></button> ' +
+                        '<button class="remove_field btn_pers_remove">Remove <i class="fa fa-minus-square-o" aria-hidden="true" style="padding-left:10px"></i></button>' +
                     '</div>' +
                 '</div>'
 

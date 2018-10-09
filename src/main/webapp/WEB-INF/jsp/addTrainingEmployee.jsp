@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/addTrainingEmployee.css">
+    <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
 </head>
 
 <body class="layout-demo">
@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
 									<!-- data-toggle="validator"-->
-                                    <div class="container trainBG">
+                                    <div class="container trainBG" style="margin-top: 50px">
                                        <form role="form" class="generalInfo" id="SubmitForm">
                                         
 										<div class="items">
@@ -90,17 +90,13 @@
 											</div>
 
 										</div>
-	
-
-										
-										<hr/>
 
                                         <div class="row">
                                             <div class="col col-md-6 text-center">
                                                 <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional Training</button> 
                                             </div> 
-											<div class="col col-md-6 form-group">
-												<input type="submit" value="submit" id="submitV" class="btn btn-success submit_button"></input>    
+											<div class="col col-md-6 text-center form-group">
+												<input type="submit" value="Submit" id="submitV" class="btn btn-success submit_button"></input>    
                                             </div> 
                                         </div>
 										</form>

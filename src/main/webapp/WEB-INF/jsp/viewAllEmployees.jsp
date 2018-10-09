@@ -8,7 +8,8 @@
         <title>FIA-BOSS</title>
         <link rel="stylesheet" href="css/ead.min.css">
         <link rel="stylesheet" href="css/pagesCSS/all.css">
-        <link rel="stylesheet" href="css/pagesCSS/viewAllEmployees.css">
+        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
     </head>
 
     <body class="layout-demo">
@@ -88,16 +89,17 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Confirmation</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            
                         </div>
                         <div class="modal-body">
                             <p>Are you sure you want to delete this employee?</p>
                             <p id="employeeName_deleteModal"></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal">No</button>
-                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Yes</button>
+                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">No</button>
+                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn btn_pers_remove">Yes</button>
                         </div>
                     </div>
                 </div>
@@ -108,8 +110,8 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Contact Info</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -229,7 +231,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default btn_pers_copy" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
