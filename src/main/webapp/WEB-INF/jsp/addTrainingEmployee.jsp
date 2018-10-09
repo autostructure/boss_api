@@ -69,12 +69,17 @@
 
 											<div class="col">
 												<div class="form-group">
-													<label for="tYearsValid">Years Valid<span class="reqClass"> *</span></label>
-                                                    <input type="text" class="form-control" name="tYearsValid" required id="tYearsValid" placeholder="Years Valid" aria-label="Years Valid">
-												
-                                                    <div class="help-block with-errors"></div>
-												</div>
-											</div>
+													<label for="tValidUntil">Valid Until<span class="reqClass"> *</span></label>
+														<div class="input-group date" data-provide="datepicker">
+                                                            <input type="text" required id="tValidUntil" name="tValidUntil" class="form-control">
+                                                            <div class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                            </div>                                                                    
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>  
+                                                </div>
+											
 											<div class="col">
 												<div class="form-group">
 													<label for="tDate">Date of Training<span class="reqClass"> *</span></label>
@@ -88,11 +93,11 @@
                                                     </div>  
                                                 </div>
 											</div>
-
+											<!--<button class="btn copy_main" id="mainCopy">Copy Row</button>-->
 										</div>
-	
-
 										
+
+
 										<hr/>
 
                                         <div class="row">
@@ -107,7 +112,7 @@
                                     </div>
 								
                                 </div>
-								</div>
+								
 								<div id="myModal_result" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -141,23 +146,44 @@
                         
                 </div><!-- end of sidenav wrapper div -->
                 
-												<div id="myModal_success" class="modal fade" role="dialog">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h4 class="modal-title text-center">success</h4>
-											</div>
-											<div class="modal-body">
-												<p>Successful Submit for Employee Classes</p>
+				<div id="myModal_success" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							<!--	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title text-center">success</h4> -->
+							</div>
+							<div class="modal-body">
+								<h3 class="text-center"> Successful Submit for Employee Classes</h3>
 
-											</div>
-											<div class="modal-footer">
-												<button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Continue</button>
-											</div>
-										</div>
-									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Continue</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="myModal_error" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+								<h4 class="modal-title text-center">Unable to submit training</h4>
+							</div>
+							<div class="modal-body">
+								<p class="text-center">Unable to submit employee's:</p><br/>
+								<div class="employees_error">
 								</div>
+	
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Continue</button>
+							</div>
+						</div>
+					</div>
+				</div>
 
 
 

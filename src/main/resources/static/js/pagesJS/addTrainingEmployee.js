@@ -5,8 +5,8 @@ $(document).ready(function () {
     $('#training').addClass('show');
     $('#training > li:nth-child(1) > a').addClass('highlight'); 
     $('#imgs').hide();
-
-    
+   
+    $('select').attr('size','');
 
 
     $('#tName').append('<option value="' + '-1' + '">' + 'Please Select a Name ' + ' </oprion>');
@@ -24,7 +24,7 @@ $(document).ready(function () {
             });
         },
         error: function (xhr, status, error) {
-
+            console.log(xhr.responseText);
         }
 
     });
@@ -44,7 +44,7 @@ $(document).ready(function () {
             },
             error: function (a, b, c) {
                 console.log(a.responseText);
-                debugger;
+                
             }
         });
 
@@ -78,13 +78,19 @@ $(document).ready(function () {
                                 '<div class="help-block with-errors"></div>' +
 						    '</div>' +
                         '</div>' +
-                '<div class="col">' +
-                '<div class="form-group">' +
-                '<label for="tYearsValid">Years Valid<span class="reqClass"> *</span></label>' +
-                '<input required type="text" class="form-control title" id="tYearsValid_' + x + '" placeholder="Years Valid" aria-label="Years Valid">' +
-                '<div class="help-block with-errors"></div>' +
-                '</div>' +
-                '</div>' +
+                        '<div class="col">' +
+                            '<div class="form-group">' +
+                                    '<label for="tValidUntil_' + x + '">Valid Until<span class="reqClass"> *</span></label>' +
+                                    '<div class="input-group date" data-provide="datepicker">' +
+                                        '<input required type="text" id="tValidUntil_' + x + '" class="form-control tdate">' +
+                                        '<div class="input-group-addon">' +
+                                            '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="help-block with-errors"></div>' +
+                              '</div>' +
+                        '</div>' +
+                 
                          '<div class="col">' +
                             '<div class="form-group">' +
                                 '<label for="tDate">Date of Training<span class="reqClass"> *</span></label>' +
@@ -122,6 +128,7 @@ $(document).ready(function () {
                     if (_id != undefined) {
                         if (_id.split('_')[0] == "tName") {
                             $(this).append('<option value="' + '-1' + '">' + 'Please select a name' + ' </oprion>');
+                            
                         }
                     }
                 });
@@ -138,7 +145,7 @@ $(document).ready(function () {
                         if (_id != undefined) {
                             if (_id.split('_')[0] == "tName") {
                                 $(this).append('<option value="' + value.id + '">' + value.lastName + value.firstName + ' </oprion>');
-
+                                
                             }
 
                             
@@ -169,7 +176,7 @@ $(document).ready(function () {
                     if (_id != undefined) {
                         if (_id.split('_')[0] == "tTitle") {
                            $(this).append('<option value="' + '-1' + '">' + 'Please enter a Training Course Title' + ' </oprion>');
-
+                          
                         }
                     }
                 });
@@ -190,6 +197,8 @@ $(document).ready(function () {
                     });
                    // $(name_wrapper).append('<option value="' + value.id + '">' + value.title + ' </oprion>');
                 });
+
+                $('select').attr('size','');
             },
             error: function (a, b, c) {
                 console.log(a.responseText);
@@ -214,6 +223,14 @@ $(document).ready(function () {
         $(wrapper).append(row);
     });
 
+    $(wrapper).on("click", ".copy_main", function (e) {
+        e.preventDefault();
+        var row = $(this).parent('div').clone();
+
+        x++;
+        $(wrapper).append(row);
+    });
+
 
    
     
@@ -221,15 +238,17 @@ $(document).ready(function () {
 
     $("#submitV").click(function (e) {
 
+        //var employee_id_errors = []; //this is for employees that did not go through!
+        var employee_errors = [];
         var _id;
         var i;
         var name_element;
         var divs_input = $('.items input');
         var divs_select = $('.items select');
-        
+
         var divs = $('.items div.mainAdd');
-        var len = divs.length;
-        
+        var len = divs.length - 1;
+
         var t_name_og;
         var t_title_trainingCourseId_og;
         var t_YearsValid_og;
@@ -242,17 +261,17 @@ $(document).ready(function () {
 
         t_name_og = $('#tName').val();
         t_title_trainingCourseId_og = $('#tTitle').val();
-        
-        t_YearsValid_og = $('#tYearsValid').val();
+
+        t_YearsValid_og = $('#tValidUntil').val();
         t_Date_og = $('#tDate').val();
         var checker = false;
 
 
-        
+       
 
         if (t_name_og != -1 && t_title_trainingCourseId_og != -1 && t_YearsValid_og != "" && t_Date_og != "") {
 
-            if (len == 0) {
+            if (len == -1) {
                 e.preventDefault();
             }
 
@@ -265,10 +284,11 @@ $(document).ready(function () {
 
                 success: function (json) {
                     _employee = json;
+                    //employee_errors.push(_employee);
                 },
                 error: function (a, b, c) {
                     console.log(a.responseText);
-                    
+
                 },
                 async: false
             });
@@ -276,7 +296,7 @@ $(document).ready(function () {
             trainingObj.employee = _employee;
             trainingObj.dateOfTraining = getCorrectDateFormat(t_Date_og);
             trainingObj.trainingCourseId = parseInt(t_title_trainingCourseId_og);
-            trainingObj.yearsValid = parseInt(t_YearsValid_og);
+            trainingObj.validUntil = getCorrectDateFormat(t_YearsValid_og);
             //console.log(trainingObj);
 
 
@@ -290,133 +310,173 @@ $(document).ready(function () {
                 timeout: 600000,
                 contentType: "application/json",
                 success: function (json) {
-                    console.log("training was uploaded!");
+                    //console.log("training was uploaded!");
 
                 },
                 error: function (a, b, c) {
                     console.log(a.responseText);
+                    checker = true;
+                    if (_employee != undefined || _employee != null) {
+                        employee_errors.push(_employee);
+                    }
                     
                 }
 
             });
         } else {
-            console.log('did not do main row for training post');
+            //console.log('did not do main row for training post');
             checker = true;
             //The reasoning for this is for not posting bad data, and have the validator work, but 
         }
         var index = 0;
-        
-            if (len > 0) {
-                for (i = 0; i <= len; i++) {
-                    for (j = 0; j <= 1; j++) {
-                        
-                            var input = divs_input[j + index];
-                            var select = divs_select[j + index];
 
-                            //$(input).css('color: red;');
-                            var id_input = $(input).attr("id");
-                            var id_select = $(select).attr("id");
-
-                            var val_input = $(input).val();
-                            var val_select = $(select).val();
-
-                            var split_id_input = id_input.split('_');
-                            var split_id_select = id_select.split('_');
-
-                            var split_input = split_id_input[0];
-                            var split_select = split_id_select[0];
-
-                            if (split_select == 'tName') {
-
-                                t_name = val_select;
-                            }
-
-                            if (split_input == 'tYearsValid') {
-
-                                t_YearsValid = val_input;
-                            }
-
-                            if (split_select == 'tTitle') {
-
-                                t_title_trainingCourseId = val_select;
-                            }
-
-                            if (split_input == 'tDate') {
-
-                                t_Date = val_input;
-                            }
+        if (len > -1) {
+            for (i = 0; i <= len; i++) {
+                t_name = "";
+                t_YearsValid = "";
+                t_title_trainingCourseId = "";
+                t_Date = "";
 
 
+                for (j = 0; j <= 1; j++) {
+
+
+                    //console.log("i: " + i + ", j: " + j + ",index: " + index);
+
+
+                    var input = divs_input[j + index];
+                    var select = divs_select[j + index];
+
+
+
+                    //$(input).css('color: red;');
+                    var id_input = $(input).attr("id");
+                    var id_select = $(select).attr("id");
+
+                    var val_input = $(input).val();
+                    var val_select = $(select).val();
+
+                    var split_id_input = id_input.split('_');
+                    var split_id_select = id_select.split('_');
+
+                    var split_input = split_id_input[0];
+                    var split_select = split_id_select[0];
+
+                    if (split_select == 'tName') {
+
+                        t_name = val_select;
+                    }
+
+                    if (split_input == 'tValidUntil') {
+
+                        t_YearsValid = val_input;
+                    }
+
+                    if (split_select == 'tTitle') {
+
+                        t_title_trainingCourseId = val_select;
+                    }
+
+                    if (split_input == 'tDate') {
+
+                        t_Date = val_input;
                     }
 
 
 
 
-                    if (t_name != -1 && t_YearsValid != "" && t_title_trainingCourseId != -1 && t_Date != "") {
-                        _employee = null;
-                        e.preventDefault();
-
-                        if (t_name != t_name_og && t_YearsValid != t_YearsValid_og && t_title_trainingCourseId != t_title_trainingCourseId_og && t_Date != t_Date_og) {
-                            $.ajax({
-                                url: api + "/employeeProfile/" + t_name,
-                                type: "GET",
-                                cache: false,
-
-                                success: function (json) {
-                                    _employee = json;
-                                    console.log('go employee with success! id: ' + t_name);
-                                },
-                                error: function (a, b, c) {
-                                    console.log(a.responseText);
-
-                                },
-                                async: false
-                            });
-
-                            trainingObj.employee = _employee;
-                            trainingObj.dateOfTraining = getCorrectDateFormat(t_Date);
-                            trainingObj.trainingCourseId = parseInt(t_title_trainingCourseId);
-                            trainingObj.yearsValid = parseInt(t_YearsValid);
-
-
-
-                            console.log(trainingObj);
-                            $.ajax({
-                                url: "/training",
-                                type: 'POST',
-                                data: JSON.stringify(trainingObj),
-                                cache: false,
-                                timeout: 600000,
-                                contentType: "application/json",
-                                success: function (json) {
-                                    console.log("success for posting training!");
-
-                                },
-                                error: function (a, b, c) {
-                                    console.log(a.responseText);
-
-                                }
-                            });
-                        }
-                    } else {
-                        console.log('did not do post for row');
-                        checker = true;
-                    }
-
-                    index = index + 2;
                 }
 
 
+
+
+                if (t_name != -1 && t_YearsValid != "" && t_title_trainingCourseId != -1 && t_Date != "") {
+                    _employee = null;
+                    e.preventDefault();
+
+                    if (t_name != t_name_og && t_YearsValid != t_YearsValid_og && t_title_trainingCourseId != t_title_trainingCourseId_og && t_Date != t_Date_og) {
+                        $.ajax({
+                            url: api + "/employeeProfile/" + t_name,
+                            type: "GET",
+                            cache: false,
+
+                            success: function (json) {
+                                _employee = json;
+                               // employee_errors.push(_employee);
+                                //console.log('go employee with success! id: ' + t_name);
+                            },
+                            error: function (a, b, c) {
+                                console.log(a.responseText);
+
+                            },
+                            async: false
+                        });
+
+                        trainingObj.employee = _employee;
+                        trainingObj.dateOfTraining = getCorrectDateFormat(t_Date);
+                        trainingObj.trainingCourseId = parseInt(t_title_trainingCourseId);
+                        trainingObj.validUntil = getCorrectDateFormat(t_YearsValid);
+
+
+
+                        //console.log(trainingObj);
+                        $.ajax({
+                            url: "/training",
+                            type: 'POST',
+                            data: JSON.stringify(trainingObj),
+                            cache: false,
+                            timeout: 600000,
+                            contentType: "application/json",
+                            success: function (json) {
+                                //console.log("success for posting training!");
+
+                            },
+                            error: function (a, b, c) {
+                                console.log(a.responseText);
+                                checker = true;
+                                if (_employee != undefined || _employee != null) {
+                                    employee_errors.push(_employee);
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    console.log('did not do post for row');
+                    checker = true;
+                }
+
+                index = index + 2;
             }
-       
 
+            
 
-
+        }
         
-       
-        
+        if (!checker) {
+            $('#myModal_success').modal('show');
+        }
+        else {
+            $('#myModal_error').modal('show');
+        }
 
+        $('#myModal_success').on('hidden.bs.modal', function () {
+            location.reload();
+        });
+
+        $('#myModal_error').on('shown.bs.modal', function () {
+            var modal = $(this);
+            var div = "";
+            $.each(employee_errors, function (index, value) {
+                div = div + '<div class="row"><div class="col">Employee Name: ' + value.lastName + ", " + value.firstName + '</div></div>';
+            });
+            
+            $(modal).find('.modal-body .employees_error').append(div);
+
+        });
     });
+
+
+
 
     
     var trainingObj = {
@@ -424,7 +484,7 @@ $(document).ready(function () {
         dateOfTraining: "string",
         employee: {},
         trainingCourseId: 0,
-        yearsValid: 0,
+        validUntil: "string",
         id: 0
     };
 
