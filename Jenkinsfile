@@ -17,7 +17,7 @@ node {
 
   env.POM_VERSION = "${pom.version}"
 
-  sh "sed -i \"s|snapshot_version|${pom.version}|g\" hieradata/common.yaml"
+  sh "sed -i \"s|snapshot_version|${pom.version}|g\" data/common.yaml"
 
   stage('Package') {
     // Run Maven:
