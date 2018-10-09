@@ -205,6 +205,20 @@ function postJobCodeApiCall(resolved, rejected, data) {
     }
 }
 
+function postAuxContact(resolved, rejected, data) {
+    try {
+
+        var endpoint = "/contact";
+        var url = api + endpoint;
+        makeAjaxCall(url, "POST", data).then(resolved, rejected);
+
+    } catch (e) {
+        console.log(e);
+        return "";
+
+    }
+}
+
 function deleteJobCodeEithIDApiCall(resolved, rejected, id) {
     try {
 

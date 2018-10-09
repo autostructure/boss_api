@@ -121,4 +121,8 @@ public class HomeController {
     public String viewEditFleet() {
         return "viewEditFleet";
     }         
+    @RequestMapping("/auxContact")
+    public String auxContact() {
+        return "auxContact";
+    }           
 }
