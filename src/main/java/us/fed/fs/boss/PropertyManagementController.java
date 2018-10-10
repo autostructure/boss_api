@@ -19,19 +19,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
-import us.fed.fs.boss.model.UploadedDocument;
+import us.fed.fs.boss.model.FieldEquipment;
 import us.fed.fs.boss.model.Vehicle;
 import us.fed.fs.boss.model.Views;
+import us.fed.fs.boss.repository.FieldEquipmentRepository;
 import us.fed.fs.boss.repository.VehicleRepository;
 
 @RestController
-public class FleetController {
+public class PropertyManagementController {
 
     @Autowired
     VehicleRepository vehicleRepository;
 
     @Autowired
     CaptchaService captchaService;
+    
+    @Autowired
+    FieldEquipmentRepository fieldEquipmentRepository;
 
     @PostMapping("/vehicle")
     public ResponseEntity createVehicle(@Valid @RequestBody Vehicle vehicleDetails) {
@@ -96,9 +100,60 @@ public class FleetController {
             headers.setContentType(MediaType.IMAGE_PNG);
             return new ResponseEntity<byte[]>(imgData, headers, HttpStatus.CREATED);
         } catch (InterruptedException | ExecutionException ex) {
-            Logger.getLogger(FleetController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PropertyManagementController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+    }
+    
+    @PostMapping("/fieldEquipment")
+    public ResponseEntity createFieldEquipment(@Valid @RequestBody FieldEquipment fieldEquipmentDetails) {
+
+        fieldEquipmentDetails = fieldEquipmentRepository.save(fieldEquipmentDetails);
+        return new ResponseEntity<>(fieldEquipmentDetails, HttpStatus.OK);
+
+    }
+
+    // Get All Employee Profiles
+    @JsonView(Views.Internal.class)
+    @GetMapping("/fieldEquipment")
+    public ResponseEntity getAllFieldEquipments(@RequestParam(value = "nameCode", required = false) final String nameCode) {
+
+        return new ResponseEntity<>(fieldEquipmentRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/fieldEquipment/{id}")
+    public ResponseEntity getFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
+
+        FieldEquipment fieldEquipment = fieldEquipmentRepository.findById(fieldEquipmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("FieldEquipment", "id", fieldEquipmentId));
+        return new ResponseEntity<>(fieldEquipment, HttpStatus.OK);
+
+    }
+
+    @JsonView(Views.Internal.class)
+    @PutMapping("/fieldEquipment/{id}")
+    public FieldEquipment updateFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId,
+            @RequestBody FieldEquipment fieldEquipmentDetails) {
+
+        fieldEquipmentRepository.findById(fieldEquipmentId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("FieldEquipment", "id", fieldEquipmentId);
+                });
+
+        FieldEquipment updated = fieldEquipmentRepository.save(fieldEquipmentDetails);
+        return updated;
+
+    }
+
+    @DeleteMapping("/fieldEquipment/{id}")
+    public ResponseEntity<?> deleteFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
+
+        FieldEquipment pfile = fieldEquipmentRepository.findById(fieldEquipmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("FieldEquipment", "id", fieldEquipmentId));
+        fieldEquipmentRepository.delete(pfile);
+        return ResponseEntity.ok().build();
 
     }
 
