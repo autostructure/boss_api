@@ -123,6 +123,14 @@ public class Vehicle implements Serializable {
     )
     @JsonManagedReference(value = "vehicleMaintenanceRecords")
     private List<VehicleMaintenanceRecord> vehicleMaintenanceRecords;
+    
+    @OneToMany(
+            mappedBy = "vehicle",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference(value = "vehicleCosts")
+    private List<VehicleCost> vehicleCosts;
 
     /**
      * @return the id
@@ -500,6 +508,20 @@ public class Vehicle implements Serializable {
      */
     public void setVehicleMaintenanceRecords(List<VehicleMaintenanceRecord> vehicleMaintenanceRecords) {
         this.vehicleMaintenanceRecords = vehicleMaintenanceRecords;
+    }
+
+    /**
+     * @return the vehicleCosts
+     */
+    public List<VehicleCost> getVehicleCosts() {
+        return vehicleCosts;
+    }
+
+    /**
+     * @param vehicleCosts the vehicleCosts to set
+     */
+    public void setVehicleCosts(List<VehicleCost> vehicleCosts) {
+        this.vehicleCosts = vehicleCosts;
     }
 
 }
