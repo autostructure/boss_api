@@ -92,9 +92,7 @@ input, select{
 .title3{
     margin-top: 30px;
     font-size: 2.2em;
-}
-.noUline{
-    color: #39679b !important;
+    border-bottom: 1px solid #39679b;
 }
 .title4{
     margin-top: 30px;
@@ -103,6 +101,15 @@ input, select{
     font-size: 1.7em;
     color: #39679b;
 }
+.title5{
+    margin-top: 30px;
+    font-size: 2.0em;
+    border-bottom: 1px solid #39679b;
+}
+.noUline{
+    color: #39679b !important;
+}
+
 .alert {
     font-size: 1.8em;
     display: none;
@@ -114,7 +121,6 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     right: 20px;
     font-family: 'FontAwesome';
     font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.00)
 }
 .trainBG{
     border: 1px solid rgba(106, 106, 106, 0.981);
@@ -176,6 +182,7 @@ hr:after {
     left: 10px;
     padding: 0px;
 }
+
 td, th{
     text-align: center;
 }
@@ -294,6 +301,39 @@ td, th{
     top: -115px;
     right: 10px;
 }
+#auxTable_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+#auxTable > thead> tr > th, #auxTable > tbody > tr > td{
+    border-right: 0px solid gray;
+    border-left: 0px solid gray;
+}
+#auxTable{
+    min-width: 100%;
+}
+#auxTable_wrapper{
+    border-radius: 10px;
+    /* border: 1px solid gray; */
+}
+
+#auxTable_filter, #auxTable_paginate, #auxTable_length, #auxTable_info{
+    padding: 20px 20px;
+}
+#auxTable_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
+}
+
+#auxTable_filter > label{
+    font-size: 1.5em;
+}
+#auxTable_wrapper{
+    background-color: white;
+}
 
 /* modals */
 .modal-content{
@@ -387,4 +427,10 @@ td, th{
 }
 .list-group-item > a{
     color: #39679b;
+}
+
+#btn_add_aux{
+    margin: auto;
+    margin-top: 40px;
+    font-size: 1.4em;
 }

@@ -57,6 +57,9 @@
                                                           <li class="list-group-item">
                                                               <a href="/addNewEmployee">Add New Employee</a>
                                                           </li>
+                                                          <li class="list-group-item">
+                                                              <a href="/auxContact">Auxiliary Contact List</a>
+                                                          </li>                                                          
                                                       </ul>
                                                     </div>
                                                   </div>
@@ -69,9 +72,9 @@
                                                     </div>                                                    
                                                     <div class="card-body">
                                                       <ul class="list-group">
-                                                        <li class="list-group-item"><a href="/addTrainingEmployee">Record Trainings</a></li>
-                                                        <li class="list-group-item"><a href="/viewTraining">View Recorded Trainings</a></li>
-                                                        <li class="list-group-item"><a href="/addTrainingClass">Add/Edit Available Training Courses</a></li>
+                                                        <li class="list-group-item"><a href="/addTrainingEmployee">Record Employee Training</a></li>
+                                                        <li class="list-group-item"><a href="/viewTraining">View All Training</a></li>
+                                                        <li class="list-group-item"><a href="/addTrainingClass">Training Courses</a></li>
                                                       </ul>
                                                     </div>
                                                 </div>
@@ -85,13 +88,13 @@
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="/addDraEmployee">Record Employee DRA's</a>                                
+                                                              <a href="/addDraEmployee">Record Employee DRA</a>                                
                                                           </li>
                                                           <li class="list-group-item">
                                                               <a href="#">View All DRA's</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                            <a href="#">DRA Courses / Tasks</a>
+                                                            <a href="#">DRA Courses</a>
                                                         </li>
                                                       </ul>
                                                     </div>

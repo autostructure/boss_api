@@ -45,7 +45,7 @@ var fields = {
         },
         {
             "fieldName":"fmodel",
-            "title":"Vehicle Moel",
+            "title":"Vehicle Model",
             "type":"input/text",
             "required":true,
             "colspan":2,

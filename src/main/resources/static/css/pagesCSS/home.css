@@ -29,15 +29,22 @@
 .mainTitleDiv{
     padding-top: 75px;
 }
+p:nth-child(1){
+    margin-top: 10px;
+}
 .cardsDiv{
     margin-top: 75px;
     padding-bottom: 75px;
+}
+#collapseThree > .card-text{
+    padding: 3px;
 }
 .card-text {
     font-size: 1.2em;
     text-decoration: none;
     font-weight: 600;
     padding: 5px;
+    text-align: center;
 }
 a{
     text-decoration: none;

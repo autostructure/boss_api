@@ -82,11 +82,13 @@
                                     </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseThree">
-                                    <p class="card-text"><a href="/viewAllEmployees">View Employees</a></p>
-                                    <p class="card-text"><a href="/viewTraining">View Recorded Training</a></p>
-                                    <p class="card-text"><a href="/addTrainingClass">View Training Available</a></p>
-                                    <p class="card-text"><a href="/viewDRA">View Recorded DRA's</a></p>
-                                    <p class="card-text"><a href="/addDRASet">View DRA's Available</a></p>
+                                    <p class="card-text"><a href="/viewAllEmployees">View All Employees</a></p>
+                                    <p class="card-text"><a href="/addNewEmployee">Add New Employee</a></p>
+                                    <p class="card-text"><a href="/addTrainingEmployee">Record Employee Training</a></p>
+                                    <p class="card-text"><a href="/viewTraining">View All Training</a></p>
+                                    <p class="card-text"><a href="/addTrainingClass">Training Courses</a></p>
+                                    <p class="card-text"><a href="/addDraEmployee">Record Employee DRA</a></p>
+                                    <p class="card-text"><a href="/auxContact">Auxiliary Contact List</a></p>
                                 </div>
                                 <div class="card-footer text-right">
                                     <p class="card-text dashboard"><a href="/personnelDash">Visit Dashboard</a></p>
