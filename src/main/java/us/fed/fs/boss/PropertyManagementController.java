@@ -19,13 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.fed.fs.boss.exception.ResourceNotFoundException;
-import us.fed.fs.boss.model.UploadedDocument;
 import us.fed.fs.boss.model.Vehicle;
 import us.fed.fs.boss.model.Views;
 import us.fed.fs.boss.repository.VehicleRepository;
 
 @RestController
-public class FleetController {
+public class PropertyManagementController {
 
     @Autowired
     VehicleRepository vehicleRepository;
@@ -96,7 +95,7 @@ public class FleetController {
             headers.setContentType(MediaType.IMAGE_PNG);
             return new ResponseEntity<byte[]>(imgData, headers, HttpStatus.CREATED);
         } catch (InterruptedException | ExecutionException ex) {
-            Logger.getLogger(FleetController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PropertyManagementController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

@@ -86,28 +86,28 @@ public class Vehicle implements Serializable {
 
     @Column(name = "Tonneau")
     private String tonneau;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DateAquired")
     private Date dateAquired;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ReplacementDate")
     private Date replacementDate;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DisposalDate")
     private Date disposalDate;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ReleasedDate")
     private Date releasedDate;
-    
+
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "assigned_operator_id")
     @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
     private EmployeeProfile assignedOperator;
-    
+
     @OneToMany(
             mappedBy = "vehicle",
             cascade = CascadeType.ALL,
@@ -115,6 +115,14 @@ public class Vehicle implements Serializable {
     )
     @JsonManagedReference(value = "monthlyIWFIAUsages")
     private List<MonthlyIWFIAUsage> monthlyIWFIAUsages;
+
+    @OneToMany(
+            mappedBy = "vehicle",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference(value = "vehicleMaintenanceRecords")
+    private List<VehicleMaintenanceRecord> vehicleMaintenanceRecords;
 
     /**
      * @return the id
@@ -478,6 +486,20 @@ public class Vehicle implements Serializable {
      */
     public void setMonthlyIWFIAUsages(List<MonthlyIWFIAUsage> monthlyIWFIAUsages) {
         this.monthlyIWFIAUsages = monthlyIWFIAUsages;
+    }
+
+    /**
+     * @return the vehicleMaintenanceRecords
+     */
+    public List<VehicleMaintenanceRecord> getVehicleMaintenanceRecords() {
+        return vehicleMaintenanceRecords;
+    }
+
+    /**
+     * @param vehicleMaintenanceRecords the vehicleMaintenanceRecords to set
+     */
+    public void setVehicleMaintenanceRecords(List<VehicleMaintenanceRecord> vehicleMaintenanceRecords) {
+        this.vehicleMaintenanceRecords = vehicleMaintenanceRecords;
     }
 
 }
