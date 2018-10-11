@@ -43,89 +43,39 @@
                                 <h1 id="title">Add Fleet Vehicle</h1>
                             </div>
                         </div>
+                        <div id="success" class="alert alert-success" role="alert">
+                            Update Successfull!                                         
+                        </div>
+                        <div id="error" class="alert alert-danger" role="alert">
+                            Error: <span id='errorText'></span>
+                        </div>                        
                      
                         <div class="container trainBG">
-                            <form role="form" data-toggle="validator" class="generalInfo">
+                                <form role="form" id="newFleet" data-toggle="validator">
+                                    </form>                                                                                      
+                        </div>
 
-                            <div class="items">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6">
-                                        <div class="form-group">
-                                            <label for="fLicense">License<span class="reqClass"> *</span></label>
-                                            <input type="text" maxLength="10" minLength="5" class="form-control" id="fLicense" required placeholder="License Number" aria-label="License Number">
-                                            <div class="help-block with-errors"></div>
-                                        </div>                                                        
-                                    </div> 
-
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="form-group">
-                                            <label for="fOwner">Owner<span class="reqClass"> *</span></label>
-                                            <input type="text" minLength="2" maxLength="5" class="form-control" id="fOwner" required placeholder="Owner" aria-label="Owner">
-                                            <div class="help-block with-errors"></div>
-                                        </div>                                                        
-                                    </div> 
  
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="form-group">
-                                            <label for="fMake">Make<span class="reqClass"> *</span></label>
-                                            <input type="text" class="form-control" id="fMake" required placeholder="Vehicle Make" aria-label="Vehicle Make">
-                                            <div class="help-block with-errors"></div>
-                                        </div>                                                        
-                                    </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="successModal">Success</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <h3 class="modal_body">Awesome! Vehicle has been saved</h3>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="viewList">View Vehicles List</button>
+                                <button type="button" class="btn" id="addAnother">Add Another Vehicle</button>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label for="fModel">Model<span class="reqClass"> *</span></label>
-                                            <input type="text" class="form-control" id="fModel" required placeholder="Vehicle Model" aria-label="Vehicle Model">
-                                            <div class="help-block with-errors"></div>
-                                        </div>                                                        
-                                    </div> 
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label for="fVin">VIN<span class="reqClass"> *</span></label>
-                                            <input type="text" class="form-control" minLength="17" maxLength="17" id="fVin" required placeholder="Vehicle VIN #" aria-label="Vehicle Vin Number">
-                                            <div class="help-block with-errors"></div>
-                                        </div>                                                        
-                                    </div> 
-                                                                                                                                                     
                             </div>
-
-
                         </div>
-                            <div class="row">
-                                    <div class="col">
-                                        <input type="submit" id="submitV" class="btn btn-success">    
-                                    </div> 
-                            </div>                                                                                                                       
-                        </div>
-                    </div>
-
-                    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="successModal">Success</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h3 class="modal_body">Awesome! Vehicle has been saved</h3>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="viewList">View Vehicles List</button>
-          <button type="button" class="btn" id="addAnother">Add Another Vehicle</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 
@@ -145,6 +95,7 @@
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
         <script src="js/ead.min.js"></script>
+        <script src="js/pagesJS/bootstrapFieldWriter.js"></script>
         <script src = "js/pagesJS/addNewFleet.js"></script>
         <script src="js/pagesJS/mainFleetPages.js"></script>
 

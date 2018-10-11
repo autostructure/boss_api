@@ -128,6 +128,9 @@ label{
 .list-group-item > a{
     color: #913a04;
 }
+#error, #success {
+    display: none;
+}
 .trainBG{
     border: 1px solid rgba(106, 106, 106, 0.981);
     background-color: #b7c6f252;
