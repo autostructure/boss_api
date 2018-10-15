@@ -40,6 +40,10 @@ public class DeliberativeRiskAssessment implements Serializable {
     @Column(name = "DateOfAssessment")
     @Temporal(TemporalType.DATE)
     private Date dateOfAssessment;
+    
+    @Column(name = "DateDue")
+    @Temporal(TemporalType.DATE)
+    private Date dateDue;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee")
@@ -131,6 +135,20 @@ public class DeliberativeRiskAssessment implements Serializable {
      */
     public void setEmployee(EmployeeProfile employee) {
         this.employee = employee;
+    }
+
+    /**
+     * @return the dateDue
+     */
+    public Date getDateDue() {
+        return dateDue;
+    }
+
+    /**
+     * @param dateDue the dateDue to set
+     */
+    public void setDateDue(Date dateDue) {
+        this.dateDue = dateDue;
     }
 
 }

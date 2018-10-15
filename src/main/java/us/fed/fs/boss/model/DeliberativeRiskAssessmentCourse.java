@@ -2,6 +2,7 @@ package us.fed.fs.boss.model;
 
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -29,11 +32,12 @@ public class DeliberativeRiskAssessmentCourse implements Serializable {
     @Column(name = "Description")
     private String description;
     
-    @Column(name = "DefaultYears")
-    private Short defaultYears;
+    @Column(name = "WiggleRoom")
+    private Short wiggleRoom;
     
-    @Column(name = "DefaultYearsLeader")
-    private Short defaultYearsLeader;
+    @Column(name = "CompleteBy")
+    @Temporal(TemporalType.DATE)
+    private Date completeBy;
 
     /**
      * @return the id
@@ -92,32 +96,32 @@ public class DeliberativeRiskAssessmentCourse implements Serializable {
     }
 
     /**
-     * @return the defaultYears
+     * @return the completeBy
      */
-    public Short getDefaultYears() {
-        return defaultYears;
+    public Date getCompleteBy() {
+        return completeBy;
     }
 
     /**
-     * @param defaultYears the defaultYears to set
+     * @param completeBy the completeBy to set
      */
-    public void setDefaultYears(Short defaultYears) {
-        this.defaultYears = defaultYears;
+    public void setCompleteBy(Date completeBy) {
+        this.completeBy = completeBy;
     }
 
     /**
-     * @return the defaultYearsLeader
+     * @return the wiggleRoom
      */
-    public Short getDefaultYearsLeader() {
-        return defaultYearsLeader;
+    public Short getWiggleRoom() {
+        return wiggleRoom;
     }
 
     /**
-     * @param defaultYearsLeader the defaultYearsLeader to set
+     * @param wiggleRoom the wiggleRoom to set
      */
-    public void setDefaultYearsLeader(Short defaultYearsLeader) {
-        this.defaultYearsLeader = defaultYearsLeader;
+    public void setWiggleRoom(Short wiggleRoom) {
+        this.wiggleRoom = wiggleRoom;
     }
-    
+
     
 }

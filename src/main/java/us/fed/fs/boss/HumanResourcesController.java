@@ -309,11 +309,11 @@ public class HumanResourcesController {
         boolean both = employeeId != null && deliberativeRiskAssessmentCourseId != null;
 
         if (justCourse) {
-            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByDeliberativeRiskAssessmentCourseId(deliberativeRiskAssessmentCourseId), HttpStatus.OK);
         } else if (justEmployee) {
-            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByEmployeeId(employeeId), HttpStatus.OK);
         } else if (both) {
-            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByEmployeeIdAndDeliberativeRiskAssessmentCourseId(employeeId, employeeId), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
 
