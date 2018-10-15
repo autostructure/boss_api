@@ -175,6 +175,12 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "Title")
     @JsonView(Views.Internal.class)
     private String title;
+    
+    @Column(name = "HeightInches")
+    private Short heightInches;
+    
+    @Column(name = "WeightPounds")
+    private Short weightPounds;
 
     @Column(name = "RoomNumber")
     @JsonView(Views.Internal.class)
@@ -1058,5 +1064,33 @@ public class EmployeeProfile implements Serializable {
      */
     public void setOtherIdentifyingFeatures(String otherIdentifyingFeatures) {
         this.otherIdentifyingFeatures = otherIdentifyingFeatures;
+    }
+
+    /**
+     * @return the heightInches
+     */
+    public Short getHeightInches() {
+        return heightInches;
+    }
+
+    /**
+     * @param heightInches the heightInches to set
+     */
+    public void setHeightInches(Short heightInches) {
+        this.heightInches = heightInches;
+    }
+
+    /**
+     * @return the weightPounds
+     */
+    public Short getWeightPounds() {
+        return weightPounds;
+    }
+
+    /**
+     * @param weightPounds the weightPounds to set
+     */
+    public void setWeightPounds(Short weightPounds) {
+        this.weightPounds = weightPounds;
     }
 }

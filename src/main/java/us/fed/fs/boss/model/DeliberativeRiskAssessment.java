@@ -42,9 +42,12 @@ public class DeliberativeRiskAssessment implements Serializable {
     private Date dateOfAssessment;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee")
     @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
-    private EmployeeProfile employeeProfile;
+    private EmployeeProfile employee;
+    
+    @Column(name="DeliberativeRiskAssessmentCourseId")
+    private Long deliberativeRiskAssessmentCourseId;
 
     /**
      * @return the id
@@ -103,17 +106,31 @@ public class DeliberativeRiskAssessment implements Serializable {
     }
 
     /**
-     * @return the employeeProfile
+     * @return the deliberativeRiskAssessmentCourseId
      */
-    public EmployeeProfile getEmployeeProfile() {
-        return employeeProfile;
+    public Long getDeliberativeRiskAssessmentCourseId() {
+        return deliberativeRiskAssessmentCourseId;
     }
 
     /**
-     * @param employeeProfile the employeeProfile to set
+     * @param deliberativeRiskAssessmentCourseId the deliberativeRiskAssessmentCourseId to set
      */
-    public void setEmployeeProfile(EmployeeProfile employeeProfile) {
-        this.employeeProfile = employeeProfile;
+    public void setDeliberativeRiskAssessmentCourseId(Long deliberativeRiskAssessmentCourseId) {
+        this.deliberativeRiskAssessmentCourseId = deliberativeRiskAssessmentCourseId;
+    }
+
+    /**
+     * @return the employee
+     */
+    public EmployeeProfile getEmployee() {
+        return employee;
+    }
+
+    /**
+     * @param employee the employee to set
+     */
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
     }
 
 }
