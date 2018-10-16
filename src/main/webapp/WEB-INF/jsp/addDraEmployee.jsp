@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
+    <link rel="stylesheet" href="css/pagesCSS/addDraEmployee.css">
 </head>
 
 <body class="layout-demo">
@@ -48,25 +48,20 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="eNameCode">Select Employee Namecode<span class="reqClass"> *</span></label>
-                                                    <select name="dstation" required id="dStation" class="form-control">
-                                                            <option value="">Choose Employee</option>
-                                                            <option value="JACOBS">Jacobs, Doug</option>
-                                                            <option value="LANEY">Laney, Mike</option>
-                                                            <option value="BHOWDEN">Howden, BEN</option>
-                                                            <option value="SKAUTH">Kauth, Shelby</option>
-                                                            <option value="CHARIZON">Charizo, Dario</option>
-                                                        </select>
+                                                    <label for="dStation_OG">Select Employee Namecode<span class="reqClass"> *</span></label>
+                                                    <select name="dStation_OG" required id="dStation_OG" class="form-control">
+
+                                                    </select>
                                                     <div class="help-block with-errors"></div>
                                                 </div>                                                        
                                             </div>                                            
-                                        </div>
-                                        <div class="items">
-                                        <div class="row">
+                                        
+                                        
+                                        
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="draTitle">DRA Title<span class="reqClass"> *</span></label>
-                                                    <select name="draTitle" required id="draTitle" class="form-control">
+                                                    <label for="draTitle_OG">DRA Title<span class="reqClass"> *</span></label>
+                                                    <select name="draTitle_OG" required id="draTitle_OG" class="form-control">
                                                             <option value="">Choose DRA</option>
                                                             <option value="air">Aircraft</option>
                                                             <option value="atv">ATV</option>
@@ -87,8 +82,8 @@
                                             </div> 
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="draYear">Year Valid For<span class="reqClass"> *</span></label>
-                                                    <select name="draYear" required id="draYear" class="form-control">
+                                                    <label for="draYear_OG">Year Valid For<span class="reqClass"> *</span></label>
+                                                    <select name="draYear_OG" required id="draYear_OG" class="form-control">
                                                             <option value="">Choose Year</option>
                                                             <option value="2016">2016</option>
                                                             <option value="2017">2017</option>
@@ -99,29 +94,75 @@
                                                         </select>
                                                     <div class="help-block with-errors"></div>
                                                 </div>                                                        
-                                            </div> 
-
+                                            </div>
+											<div class="col">
+												<div class="form-group">
+													<label for="dra_date_OG">Assessment Date<span class="reqClass"> *</span></label>
+														<div class="input-group date" data-provide="datepicker">
+                                                            <input type="text" required id="dra_date_OG" name="dra_date_OG" class="form-control">
+                                                            <div class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                            </div>                                                                    
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>  
+                                                </div>
+											</div>
+										<div class="items"></div>
                                         </div>
-                                    </div>
+										
+                                    
                                         <div class="row">
                                                 <div class="col col-md-6 text-center">
                                                     <button id="viewReports" id="add" class="btn btn-info add_field_button">Add Additional DRA</button> 
                                                 </div> 
                                                 <div class="col col-md-6">
-                                                    <input type="submit" id="submitV" class="btn btn-success">    
+                                                    <input type="submit" id="submitV" value="submit" class="btn btn-success"></input>    
                                                 </div> 
                                         </div>                                                                                                                       
                                     </div>
                                 </div>
 
-                                <div class="itemss">
-                                    
-                                   <div class="form-group"><label>Author Email:</label>
-                                   <input id="author_email" class="form-control" name="author" required="required" type="EMAIL" /></div>
-                                    
-                                   </div>
-                                    
-                                   <button type="button" class="add_fiedld_button">Add Field</button>
+
+												<div id="myModal_success" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							<!--	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title text-center">success</h4> -->
+							</div>
+							<div class="modal-body">
+								<h3 class="text-center"> Successful Submit for Employee DRA's</h3>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Continue</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="myModal_error" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+								<h4 class="modal-title text-center">Unable to submit DRA</h4>
+							</div>
+							<div class="modal-body">
+								<p class="text-center">Unable to submit employee's:</p><br/>
+								<div class="employees_error">
+								</div>
+	
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Continue</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 
                                 </section>
                          </section>                         
