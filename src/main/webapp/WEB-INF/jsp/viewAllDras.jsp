@@ -19,57 +19,144 @@
     <main id="main-content">
         <div class="wrapper">
             <nav id="sidebar">
-            </nav><!-- end of sidenav -->
+            </nav>
+            <!-- end of sidenav -->
             <section class="usa-section1">
                 <header class="main-header" role="banner">
-                    <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image"/>                                 
+                    <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image" />
                 </header>
                 <div class="usa-grid">
                     <div class="usa-width-one-whole">
                         <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                            <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                            <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
-                            <a class="breadcrumbLinkMain"href="/addNewEmployee">Add New Employee</a>
+                            <a class="breadcrumbLink" href="/home">Dashboard |</a>
+                            <a class="breadcrumbLink" href="/personnelDash">Personnel Dashboard |</a>
+                            <a class="breadcrumbLinkMain" href="/addNewEmployee">Add New Employee</a>
                         </p>
                     </div>
                 </div>
                 <section class="usa-section">
-					<div class="usa-grid usa-buffer-top">
-                            <div class="use-width-one-whole content-div">
-                                <h2 class="title2">Employee List</h2>
-                                <div id="showHide">
-                                    <table id="allDrasCourses" class="usa-table-borderless display" style="width:100%">
-                                        <thead>
-                                            <tr>
-												<th scope="col">Dra Title</th>
-                                                <th scope="col">Dra assessment Year</th>
-                                                <th scope="col">Dra years Valid</th>
-                                               
-                                                <th id="stop"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                    <div class="usa-grid usa-buffer-top">
+                        <div class="use-width-one-whole content-div">
+                            <h2 class="title2">Employee List</h2>
+                            <div id="showHide">
+                                <table id="allDrasCourses" class="usa-table-borderless display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Complete By Date</th>
+                                            <th scope="col">Extra Days</th>
 
-                                        </tbody>
-                                    </table>
+                                            <th id="stop"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="myModal_add" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Dra Course</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_title">Dra Title:<span class="reqClass">*</span></label><br/>
+                                                <input type="text" required ID="dra_title" class="form-control dra_title" />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_category">Dra Category:<span class="reqClass">*</span></label><br/>
+                                                <input type="text" required ID="dra_category" class="form-control dra_category" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_wiggleRoom"> Room:<span class="reqClass">*</span></label><br>
+                                                <input type="text" required ID="dra_wiggleRoom" class="form-control dra_wiggleRoom" />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_CompleteBy">Complete By date:<span class="reqClass"> *</span></label>
+                                                <div class="input-group date" data-provide="datepicker">
+                                                    <input type="text" required id="dra_CompleteBy" name="dra_CompleteBy" class="form-control dra_CompleteBy">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_Description">Description:<span class="reqClass">*</span></label><br>
+                                                <input type="text" required ID="dra_Description" class="form-control dra_Description" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                    <button type="button" id="myModal_addYes" data-dismiss="modal" class="btn">Add</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div id="myModal_delete" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Dra Course</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete this Dra Course?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="cancel" class="btn" data-dismiss="modal">No</button>
+                                    <button type="button" id="myModal_del" data-dismiss="modal" class="btn">Yes</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </section>
-            </section>                         
-                
-        </div><!-- end of sidenav wrapper div -->
+            </section>
+
+        </div>
+        <!-- end of sidenav wrapper div -->
     </main>
 
     <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
     </footer>
     <script src="/js/ead.min.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/pagesJS/customFormFunctions.js"></script>
     <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
-    <script src="/js/pagesJS/addDra.js"></script>
+    <script src="/js/pagesJS/viewAllDras.js"></script>
     <script src="/js/pagesJS/personnelPages.js"></script>
     <script src="/js/pagesJS/ApiCalls.js"></script>
+
 
 </body>
 

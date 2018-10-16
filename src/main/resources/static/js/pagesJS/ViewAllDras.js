@@ -1,79 +1,11 @@
-var fakeData = [
-    {
-        "dateOfAssessment": "2018-10-11T15:20:34.611Z",
-        "employeeProfile": {
-            "activityCode": {
-                "code": "string",
-                "name": "string"
-            },
-            "addressCity": "string",
-            "addressState": "string",
-            "addressZip": "string",
-            "cellPhone": "string",
-            "confidentialityAgreementDate": "2018-10-11T15:20:34.611Z",
-            "dateOfBirth": "2018-10-11T15:20:34.611Z",
-            "driversLicense": {
-                "expiration": "2018-10-11T15:20:34.611Z",
-                "id": 0,
-                "number": "string",
-                "state": "string"
-            },
-            "dutyStation": "string",
-            "emergencyContactCellPhone1": "string",
-            "emergencyContactCellPhone2": "string",
-            "emergencyContactCity1": "string",
-            "emergencyContactCity2": "string",
-            "emergencyContactFirstName1": "string",
-            "emergencyContactFirstName2": "string",
-            "emergencyContactHomePhone1": "string",
-            "emergencyContactHomePhone2": "string",
-            "emergencyContactLastName1": "string",
-            "emergencyContactLastName2": "string",
-            "emergencyContactRelationship1": "string",
-            "emergencyContactRelationship2": "string",
-            "emergencyContactState1": "string",
-            "emergencyContactState2": "string",
-            "emergencyContactStreetAddress1": "string",
-            "emergencyContactStreetAddress2": "string",
-            "emergencyContactWorkPhone1": "string",
-            "emergencyContactWorkPhone2": "string",
-            "emergencyContactZip1": "string",
-            "emergencyContactZip2": "string",
-            "employees": [
-                {}
-            ],
-            "eyeColor": "string",
-            "firstName": "Parker",
-            "gender": "string",
-            "grade": "string",
-            "hairColor": "string",
-            "homePhone": "string",
-            "id": 0,
-            "lastName": "Bidigare",
-            "middleInitial": "string",
-            "nameCode": "pbidigare",
-            "otherIdentifyingFeatures": "string",
-            "overtimeHourlyWage": 0,
-            "pWPSalary": 0,
-            "payPeriodsLeft": 0,
-            "paymentPlan": "string",
-            "personalEmail": "string",
-            "preferredName": "string",
-            "profilePicture": 0,
-            "pwpsalary": 0,
-            "race": "string",
-            "regPayPerPayPeriod": 0,
-            "roomNumber": "string",
-            "series": "string",
-            "stateAssigned": "string",
-            "supervisor": {},
-            "title": "string"
-        },
-        "id": 1,
-        "title": "bears",
-        "yearsValid": 24
-    }
-];
+var fakeData = [{
+    category: "health",
+    completeBy: "2090",
+    description: "this is a description",
+    id: 1,
+    title: "dracourse",
+    wiggleRoom: 20
+}];
 
 //NOTE: need to convert dra to draCourse for this js page. Only the addDraEmployee deals with adding dra to a draCourse,
 //hence only a dra is associated to an employee.
@@ -84,112 +16,94 @@ var training_config = {
 }
 var userId = 3; // Temporary Spoofing
 
-$(document).ready(function () {
-    $("#firstDropDown").on("change", function(){
+$(document).ready(function() {
+    $("#firstDropDown").on("change", function() {
         var second = $("#secondDropDown");
         var oldVal = second.val();
-        var goodOptions = second.find("option[data-filter='"+this.value+"']");
+        var goodOptions = second.find("option[data-filter='" + this.value + "']");
         second.find("option").hide();
         goodOptions.show();
-        if (goodOptions.filter("[value='"+oldVal+"']").length == 0) {
+        if (goodOptions.filter("[value='" + oldVal + "']").length == 0) {
             second.val(goodOptions.val());
             //console.log(goodOptions.val());
         }
     });
-    if (!debug) {
-        $.ajax({
-            url: "/dra",
-            contentType: "application/json",
-            dataType: 'json',
-            cache: false,
-            type: 'GET',
-            timeout: 600000,
-            success: function (dras) {
-                populateDataTable(dras);
-            },
-            error: function (a, b, c) {
-                debugger;
-                console.log(a.responseText);
-            }
-        });
-    } else {
-        populateDataTable(fakeData);
-    }
+
+    $.ajax({
+        url: "/draCourse",
+        contentType: "application/json",
+        dataType: 'json',
+        cache: false,
+        type: 'GET',
+        timeout: 600000,
+        success: function(dras) {
+            populateDataTable(dras);
+        },
+        error: function(a, b, c) {
+
+            console.log(a.responseText);
+        }
+    });
+
 
     function populateDataTable(jsonData) {
         console.log('populateDataTable');
-        
+
         var latestDra = {};
-     /*   for (k in jsonData) {
-            var v = jsonData[k];
-            var key = v.employeeProfile.id+"_"+v.id;
-            var otherId = latestDra[key];
-            if (!otherId || jsonData[otherId].dateOfAssessment < v.dateOfAssessment) {
-                latestDra[key] = k;
-            }
-        }
-        for (key in latestDra) {
-            jsonData[latestDra[key]].isLatest = true;
-        }*/
-        console.log(jsonData);
+        /*   for (k in jsonData) {
+               var v = jsonData[k];
+               var key = v.employeeProfile.id+"_"+v.id;
+               var otherId = latestDra[key];
+               if (!otherId || jsonData[otherId].dateOfAssessment < v.dateOfAssessment) {
+                   latestDra[key] = k;
+               }
+           }
+           for (key in latestDra) {
+               jsonData[latestDra[key]].isLatest = true;
+           }*/
+
         var table = $('#allDrasCourses').DataTable({
             // 'order':[[4, "asc"]],
             'bPaginate': false,
             'data': jsonData,
             'dom': 'Bfti',
-            'columns': [
-                {
+            'columns': [{
                     'data': "title"
                 },
+                { 'data': "category" },
+                { 'data': "description" },
                 {
-                    'data': "dateOfAssessment",
-                    "render": function (data, type, row) {
-                        if (type == 'sort') return data;
-                        return CustomFormFunctions.formatDate(data, "bootstrap");
+                    'data': "completeBy",
+                    "render": function(data, type, row) {
+                        return CustomFormFunctions.formatDate(data, 'mm/dd/yyyy');
                     }
                 },
-                { 'data': "yearsValid" },
+                { 'data': "wiggleRoom" },
                 {
                     'data': null,
-                    "render": function (data, type, row) {
+                    "render": function(data, type, row) {
                         return `
                         <div class="dropdown1">
                             <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                             <div id="dropList" class="dropdown-content1">
-                                <a data-toggle="modal" data-target="#myModal_add" href="#" data-value=` + row.id + ` class="addBtn" id="addBtn">Add DRA</a>
                                 <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete DRA</a>
-                                <a data-toggle="modal" data-target="#myModal_edit" href="#" data-value=` + row.id + ` class="editBtn" id="editBtn">edit DRA</a>               
                             </div>
                         </div>
                     
                     `;
                     }
                 }
-                   
-                    
-                
-
             ],
-            'buttons': [
-                // {
-                //     text: 'Print <i class="fa fa-lg fa-print"></i>',
-                //     extend: 'print',
-                //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                //     },
-                //     className: 'table-btns print-btn'
-                // },
-                // {
-                //     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
-                //     extend: 'excel',
-                //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                //     },
-                //     className: 'table-btns excel-btn'
-                // },
+            'buttons': [{
+                    text: 'Add <i class="fa fa-lg fa-plus"></i>',
+                    action: function() {
+                        $('#myModal_add').modal();
+                    },
+                    className: 'table-btns add-btn'
+                },
                 {
                     text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
-                    action: function () {
+                    action: function() {
                         window.location.reload();
                     },
                     className: 'table-btns refresh-btn'
@@ -200,64 +114,97 @@ $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
         var selected_row = '';
 
-        $('#deleteBtn').on('click', function () {
+        $('.deleteBtn').on('click', function() {
             selected_row = $(this).attr('data-value');
         });
 
-        $('#editBtn').on('click', function () {
-            selected_row = $(this).attr('data-value');
-        });
+        $('#myModal_add').on('click', '#myModal_addYes', function() {
+            var modal = $('#myModal_add');
+            var dra_title = modal.find('div.modal-body div.row div.col div.form-group input.dra_title').val();
+            var dra_wiggleRoom = modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val();
+            var dra_CompleteBy = modal.find('div.modal-body div.row div.col div.form-group input.dra_CompleteBy').val();
+            var dra_Category = modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val();
+            var dra_description = modal.find('div.modal-body div.row div.col div.form-group input.dra_Description').val();
 
-        $('#addBtn').on('click', function () {
-            selected_row = $(this).attr('data-value');
-        });
+            draCourseObj.category = dra_Category;
+            draCourseObj.completeBy = getCorrectDateFormat(dra_CompleteBy);
+            draCourseObj.title = dra_title;
+            draCourseObj.description = dra_description;
+            draCourseObj.wiggleRoom = parseInt(dra_wiggleRoom);
 
-        $("#btn_remove_DRA").on("click", function(){
-            //var id = $(this).attr('data-value');
-            
             $.ajax({
-                'url': "/dra/" + selected_row,
-                'type':'DELETE',
-                'success':function(){window.location.reload()},
-                'error':function(a,b,c){
+                url: '/draCourse',
+                type: 'POST',
+                cache: false,
+                contentType: "application/json",
+                data: JSON.stringify(draCourseObj),
+                success: function() {
+                    window.location.reload();
+                },
+                error(a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+
+
+        });
+
+        $('#myModal_delete').on('click', '#myModal_del', function(e) {
+            $.ajax({
+                'url': "/draCourse/" + selected_row,
+                'type': 'DELETE',
+                'success': function() { window.location.reload() },
+                'error': function(a, b, c) {
                     console.log(a.responseJSON);
                 }
             });
         });
-
-
-        
-
     }
 
 });
 
+function getCorrectDateFormat(date_str) {
+    var date = new Date(date_str);
 
+    return date.toISOString();
+}
 
 
 
 
 var trainingRenewFields = {
     "form_training_renew": [
-        [
-            {   "fieldName":"dateOfTraining",
-                "title":"Training Completed On",
-                "placeholder":"Date of Training",
-                "type":"input/date",
-                "colspan":6,
+        [{
+                "fieldName": "dateOfTraining",
+                "title": "Training Completed On",
+                "placeholder": "Date of Training",
+                "type": "input/date",
+                "colspan": 6,
             },
-            {   "fieldName":"validUntil",
-                "title":"Valid Until",
-                "placeholder":"Valid Until",
-                "type":"input/date",
-                "colspan":6,
+            {
+                "fieldName": "validUntil",
+                "title": "Valid Until",
+                "placeholder": "Valid Until",
+                "type": "input/date",
+                "colspan": 6,
             },
-            {   "fieldName":"yearsValid",
-                "hidden":true,
-                "type":"input/number"
+            {
+                "fieldName": "yearsValid",
+                "hidden": true,
+                "type": "input/number"
             },
         ]
     ]
 }
 
 CustomFormFunctions.addBootstrapFields(trainingRenewFields);
+
+
+var draCourseObj = {
+    category: "string",
+    completeBy: "string",
+    description: "string",
+    id: null,
+    title: "string",
+    wiggleRoom: 0
+};
