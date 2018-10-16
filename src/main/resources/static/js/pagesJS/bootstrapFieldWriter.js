@@ -198,6 +198,9 @@ function addBootstrapFields(data) {
             if (col.type == "input/tel") {
                 input.attr("pattern", "\\(?\\d{3}\\)? ?-?\\d{3} ?-?\\d{4}");
             }
+            if (col.type == "input/vin"){
+                input.attr("pattern", "[A-HJ-NPR-Z0-9]{17}");
+            }
             if (col.type == "input/zipCode") {
                 input.attr("pattern", "(\\d{5}([\\-]\\d{4})?)");
                 input.attr("placeHolder", "12345 or 12345-6789");

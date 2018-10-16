@@ -84,7 +84,7 @@ var fields = {
             },
             {"fieldName": "vin",
                 "title": "Vin",
-                "type": "input/text",
+                "type": "input/vin",
                 "required": true,
                 "colspan": 6,
                 "placeholder": "Enter Vin",

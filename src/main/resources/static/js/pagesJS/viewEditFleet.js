@@ -120,7 +120,7 @@ var fields = {
         {
             "fieldName":"vin",
             "title":"VIN #",
-            "type":"input/text",
+            "type":"input/vin",
             "required":true,
             "colspan":4,
         },
