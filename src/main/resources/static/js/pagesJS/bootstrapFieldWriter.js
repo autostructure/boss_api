@@ -122,6 +122,20 @@ function addBootstrapFields(data) {
             .append('<option value="RMRS">Rocky Mtn Research Station</option>')
             .append('<option value="WCF">Working Capital Fund</option>');
     }
+    { //year fleet section
+        var vehYear = $("<select></select>")
+            .append('<option value="2011">2011</option>')
+            .append('<option value="2012">2012</option>')
+            .append('<option value="2013">2013</option>')
+            .append('<option value="2014">2014</option>')
+            .append('<option value="2015">2015</option>')
+            .append('<option value="2016">2016</option>')
+            .append('<option value="2017">2017</option>')
+            .append('<option value="2018">2018</option>')
+            .append('<option value="2019">2019</option>')
+            .append('<option value="2020">2020</option>')
+            .append('<option value="2021">2021</option>');
+    }
     
     function formColumn(col) {
         var colEl;
@@ -163,6 +177,9 @@ function addBootstrapFields(data) {
                 }
                 if (types[1] == "vown") {
                     input.append(vehOwner.find("option").clone());
+                }
+                if (types[1] == "vyear") {
+                    input.append(vehYear.find("option").clone());
                 }
                 if (col.options) {
                     for (var val in col.options) {

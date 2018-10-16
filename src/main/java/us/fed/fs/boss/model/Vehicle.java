@@ -1,6 +1,5 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
@@ -107,30 +106,6 @@ public class Vehicle implements Serializable {
     @JoinColumn(name = "assigned_operator_id")
     @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
     private EmployeeProfile assignedOperator;
-
-    @OneToMany(
-            mappedBy = "vehicle",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonManagedReference(value = "monthlyIWFIAUsages")
-    private List<MonthlyIWFIAUsage> monthlyIWFIAUsages;
-
-    @OneToMany(
-            mappedBy = "vehicle",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonManagedReference(value = "vehicleMaintenanceRecords")
-    private List<VehicleMaintenanceRecord> vehicleMaintenanceRecords;
-    
-    @OneToMany(
-            mappedBy = "vehicle",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonManagedReference(value = "vehicleCosts")
-    private List<VehicleCost> vehicleCosts;
 
     /**
      * @return the id
@@ -480,48 +455,6 @@ public class Vehicle implements Serializable {
      */
     public void setAssignedOperator(EmployeeProfile assignedOperator) {
         this.assignedOperator = assignedOperator;
-    }
-
-    /**
-     * @return the monthlyIWFIAUsages
-     */
-    public List<MonthlyIWFIAUsage> getMonthlyIWFIAUsages() {
-        return monthlyIWFIAUsages;
-    }
-
-    /**
-     * @param monthlyIWFIAUsages the monthlyIWFIAUsages to set
-     */
-    public void setMonthlyIWFIAUsages(List<MonthlyIWFIAUsage> monthlyIWFIAUsages) {
-        this.monthlyIWFIAUsages = monthlyIWFIAUsages;
-    }
-
-    /**
-     * @return the vehicleMaintenanceRecords
-     */
-    public List<VehicleMaintenanceRecord> getVehicleMaintenanceRecords() {
-        return vehicleMaintenanceRecords;
-    }
-
-    /**
-     * @param vehicleMaintenanceRecords the vehicleMaintenanceRecords to set
-     */
-    public void setVehicleMaintenanceRecords(List<VehicleMaintenanceRecord> vehicleMaintenanceRecords) {
-        this.vehicleMaintenanceRecords = vehicleMaintenanceRecords;
-    }
-
-    /**
-     * @return the vehicleCosts
-     */
-    public List<VehicleCost> getVehicleCosts() {
-        return vehicleCosts;
-    }
-
-    /**
-     * @param vehicleCosts the vehicleCosts to set
-     */
-    public void setVehicleCosts(List<VehicleCost> vehicleCosts) {
-        this.vehicleCosts = vehicleCosts;
     }
 
 }

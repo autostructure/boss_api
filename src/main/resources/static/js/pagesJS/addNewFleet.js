@@ -7,7 +7,7 @@ $(document).ready(function(){
     })
 });
 
-api = 'http://localhost:8090'
+
 $(document).ready(function () {
 
     // hiding error message once we start modifying the form again
@@ -25,14 +25,16 @@ $(document).ready(function () {
         } else {
             e.preventDefault();
         }
+
+
         // creating vars to submit to ajax
         var form = $('#newFleet');
         var method = "POST";
-        var url = api + "/vehicle";
+        var url =  "/vehicle";
         var data = {
             'license':form.find('[name=license]').val(),
             'vin':form.find('[name=vin]').val(),
-            'year':form.find('[name=year]').val(),
+            'modelYear':form.find('[name=year]').val(),
             'make':form.find('[name=make]').val(),
             'modelNumber':form.find('[name=modelNumber]').val(),
             'description':form.find('[name=description]').val()
@@ -49,14 +51,14 @@ $(document).ready(function () {
             cache: false,
             timeout: 600000,
             success: function(response){
-                console.log("successfully updated");
+                $('#exampleModal').modal('show');
+                console.log(" *** successfully updated see data below ***");
                 console.log(data);
-                window.location.reload();
             },
             error: function(error){
                 return false;
                 e.preventDefault();
-                console.log("Error" + error);
+                console.log(" !!! Error" + error + " !!! ") ;
                 console.log(a.responseJSON);
             }
         });
@@ -77,7 +79,6 @@ var fields = {
             {"fieldName": "license",
                 "title": "License",
                 "type": "input/text",
-                "required": true,
                 "colspan": 6,
                 "placeholder": "Enter License",
             },
@@ -92,20 +93,21 @@ var fields = {
         [ // vehicle info row              
             {"fieldName": "year",
                 "title": "Vehicle Year",
-                "type": "input/text",
+                "type": "select/vyear",
                 "required": true,
-                "colspan": 3
-                // "options": [, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,],
+                "colspan": 3,
             },            
             {"fieldName": "make",
                 "title": "Make",
                 "type": "input/text",
+                "required": true,
                 "colspan": 3,
                 "placeholder": "Enter Make",
             },   
             {"fieldName": "modelNumber",
                 "title": "Vehicle Model",
                 "type": "input/text",
+                "required": true,
                 "colspan": 3,
                 "placeholder": "Enter Model",
             },                           
@@ -119,7 +121,7 @@ var fields = {
 
         ], // end row
         [
-            {   "custom": '<input type="submit" class="btn btn-success" id="btn_add_aux" value="Add Auxilary Contact">' }
+            {   "custom": '<input type="submit" class="btn btn-success addNewFleetBtn"  value="Add Fleet Vehicle">' }
         ]
     ]
 }

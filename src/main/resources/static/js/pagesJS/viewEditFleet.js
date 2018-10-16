@@ -1,3 +1,46 @@
+// get method to displya data
+var id = window.location.pathname.split("/")[2];
+if (id) {
+var url = '/vehicle?id=' + id;
+if (parseInt(id)) {
+url = '/vehicle/' + id;
+}
+    var url = '/vehicle/' + id;
+    console.log(url);
+    console.log(id);
+    $.ajax({
+    type: 'GET',
+    url: url,
+    contentType: "application/json",
+    dataType: 'json',
+    cache: false,
+    timeout: 600000,
+    success: function(json){
+    console.log(json);
+        for (var key in json) {
+        fill(key, json[key]);
+    }
+    function fill (key, value) {
+    if (value instanceof Object) {
+        for (k in value) {
+        fill(k, value[k]);
+        };
+    } else {
+        var input = $("input[name='" + key + "'], select[name='" + key + "']");
+            if (input.attr("data-provide") == 'datepicker' && value != null) {
+                date = new Date(value);
+                value = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+            }
+        input.val(value);
+        }
+    }
+    },
+    error: function(json) {
+    }
+    });
+};
+
+// filling out data from form via get
 var data = {};
 var forms = $('#formGeneralInfo, #formWorkInfo, #formEmergencyInfo');
 forms.find('input:not([disabled]):not([type=submit]), textarea, select').each(function(){
@@ -18,104 +61,99 @@ forms.find('input:not([disabled]):not([type=submit]), textarea, select').each(fu
     console.log(this);
     }
 });
+
+
+// generating the fields w/ bootstrap field writer
 var fields = {
     "formGeneralInfo": [
     //vehicle information row
     [
         {
-            "fieldName":"flicense",
+            "fieldName":"license",
             "title":"Vehicle License",
             "type":"input/text",
-            "required":true,
             "colspan":2,
         },
         {
-            "fieldName":"fequip",
+            "fieldName":"equipmentNumber",
             "title":"Equipment Number",
             "type":"input/text",
             "required":true,
             "colspan":2,
         },
         {
-            "fieldName":"fmake",
+            "fieldName":"make",
             "title":"Vehicle Make",
             "type":"input/text",
             "required":true,
             "colspan":2,
         },
         {
-            "fieldName":"fmodel",
+            "fieldName":"modelNumber",
             "title":"Vehicle Model",
             "type":"input/text",
             "required":true,
             "colspan":2,
         },
         {
-            "fieldName":"fyear",
+            "fieldName":"modelYear",
             "title":"Year",
             "type":"input/text",
             "required":true,
             "colspan":2,
         },
         {
-            "fieldName":"fcolor",
+            "fieldName":"color",
             "title":"Color",
             "type":"input/text",
-            "required":true,
             "colspan":2,
         }                                        
     ],
     // vehicle extended basic info
     [
         {
-            "fieldName":"fdescription",
+            "fieldName":"description",
             "title":"Description",
             "type":"input/text",
-            "required":true,
             "colspan":4,
         },
         {
-            "fieldName":"fvin",
+            "fieldName":"vin",
             "title":"VIN #",
             "type":"input/text",
             "required":true,
             "colspan":4,
         },
         {
-            "fieldName":"fclassCode",
+            "fieldName":"vehicleClassCode",
             "title":"Vehicle Class Code",
             "type":"select/vclass",
-            "required":true,
             "colspan":4,
         }
     ],
     [
         {
-            "fieldName":"fownership",
+            "fieldName":"ownershipType",
             "title":"Ownership Type",
             "type":"select/vown",
-            "required":true,
             "colspan":3,
         },
         {
-            "fieldName":"fassigned",
+            "fieldName":"assignedOperator",
             "title":"Assigned Operator",
             "type":"input/text",
-            "required":true,
             "colspan":3,
         },
         {
-            "fieldName":"fnfcid",
+            "fieldName":"fnfcid", //missing from api
             "title":"NFC ID",
             "type":"input/text",
-            "required":true,
             "colspan":3,
         },    
         {
-            "fieldName":"foldlicense",
+            "fieldName":"oldLicense",
             "title":"Old License Number",
             "type":"input/text",
-            "required":true,
             "colspan":3,
         },                                  
     ],
@@ -123,31 +161,27 @@ var fields = {
     [
 
         {
-            "fieldName":"fccnumber",
+            "fieldName":"fccnumber", //missing from api
             "title":"Card Number",
             "type":"input/text",
-            "required":true,
             "colspan":3,
         },
         {
-            "fieldName":"fccexpdate",
-            "title":"Card Exp. Date",
+            "fieldName":"fcpin", //missing from api
+            "title":"Card Pin Number",
             "type":"input/text",
-            "required":true,
             "colspan":3,
         },
         {
-            "fieldName":"fccexp",
+            "fieldName":"fccexp", //missing from api
             "title":"Expiration Date",
             "type":"input/date",
-            "required":true,
             "colspan":3,
         },
         {
-            "fieldName":"fjobcode",
+            "fieldName":"fjobcode",  //missing from api
             "title":"Default Job Code",
             "type":"input/text",
-            "required":true,
             "colspan":3,
         }
 
@@ -162,41 +196,37 @@ var fields = {
     // state and disposal section
     [
         {
-            "fieldName":"fstate",
+            "fieldName":"state",
             "title":"State",
             "type":"select/state",
-            "required":true,
             "colspan":2,
         },        
         {
-            "fieldName":"fcity",
+            "fieldName":"cityOrLocation",
             "title":"City / Location",
             "type":"input/text",
-            "required":true,
             "colspan":2,
         },    
         {
-            "fieldName":"fdateacquired",
+            "fieldName":"dateAquired",
             "title":"Date Acquired",
             "type":"input/date",
-            "required":true,
             "colspan":2,
         },   
         {
-            "fieldName":"freplacementdate",
+            "fieldName":"replacementDate",
             "title":"Replacement Date",
             "type":"input/date",
-            "required":true,
             "colspan":2,
         },    
         {
-            "fieldName":"fdisposaldate",
+            "fieldName":"disposalDate",
             "title":"Disposal Date",
             "type":"input/date",
             "colspan":2,
         },    
         {
-            "fieldName":"freleaseddate",
+            "fieldName":"releasedDate",
             "title":"Released Date",
             "type":"input/date",
             "colspan":2,

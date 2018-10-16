@@ -232,3 +232,54 @@ td, th{
     text-align: center;
     font-size: .9em;
 }
+.addNewFleetBtn{
+    margin: auto;
+    margin-top: 30px !important;
+    min-width: 20% !important;
+    font-size: 2.0em !important;
+}
+
+/* fleet modals */
+.modal-content{
+    padding: 0px;
+}
+.modal-header{
+    color: white;
+    background-color: #ff6200;
+    text-align: center;
+    font-size: 1.5em;
+}
+.modal-body{
+    padding: 20px;
+    text-align: center;
+}
+.modal-title{
+    font-size: 2.0em;
+}
+.close{
+    color: white;
+    font-size: 1.5em;
+    opacity: 1;
+    margin-right: 3px;
+}
+.close:hover{
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    color: rgb(174, 174, 174);
+}
+.modal-footer{
+    margin: auto;
+}
+.btn{
+    font-size: 1.4em;
+}
+.fleetBtn{
+    background-color: #ff6200;
+    color: white;
+}
+.fleetBtn:hover{
+    background-color: white;
+    color: #ff6200;
+}

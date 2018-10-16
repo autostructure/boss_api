@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="css/ead.min.css">
         <link rel="stylesheet" href="css/pagesCSS/all.css">
         <link rel="stylesheet" href="css/pagesCSS/fleetPages.css">
-        <link rel="stylesheet" href="css/Modal.css">
     </head>
 
     <body class="layout-demo">
@@ -71,7 +70,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" id="viewList">View Vehicles List</button>
-                                <button type="button" class="btn" id="addAnother">Add Another Vehicle</button>
+                                <button type="button" class="btn fleetBtn" id="addAnother">Add Another Vehicle</button>
                                 </div>
                             </div>
                             </div>

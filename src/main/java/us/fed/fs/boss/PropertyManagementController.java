@@ -48,7 +48,7 @@ public class PropertyManagementController {
     // Get All Employee Profiles
     @JsonView(Views.Internal.class)
     @GetMapping("/vehicle")
-    public ResponseEntity getAllVehicles(@RequestParam(value = "nameCode", required = false) final String nameCode) {
+    public ResponseEntity getAllVehicles() {
 
         return new ResponseEntity<>(vehicleRepository.findAll(), HttpStatus.OK);
 

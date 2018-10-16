@@ -159,3 +159,69 @@ input.submitChanges {
 textarea.form-control {
     font-size: 15px;
 }
+#tblTraining_filter, #tblTraining_paginate, #tblTraining_filter, #tblTraining_length, #tblTraining_info{
+    padding: 20px 20px;
+}
+#tblTraining_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
+}
+
+td, th{
+    text-align: center;
+}
+#tblTraining_filter > label{
+    font-size: 1.5em;
+}
+#tblTraining_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -130px;
+    right: 10px;
+}
+.table-btns{
+    background-color: white !important;
+    border: none !important;
+    margin: 0px 10px;
+    font-size: 1.2em !important;
+    background-image: none !important;
+}
+.fa.fa-lg{
+    margin-left: 5px;
+}
+.fa-print{
+    color: rgb(0, 175, 29);
+}
+.fa-file-excel-o{
+    color: rgb(102, 0, 175);
+}
+.fa-plus{
+    color: rgb(0, 152, 198);
+}
+.fa-repeat{
+    color: rgb(254, 146, 5);
+}
+.viewLabel{
+    font-size: 1.0em !important;
+    margin-top: 0px !important;
+}
+.form-check{
+    min-height: 50px;
+}
+.title2{
+    padding: 20px;
+    font-family: mainFont;
+    text-shadow: none;
+    font-size: 2.5rem;
+    border-bottom: 4px solid #006633;
+}
+#viewOld{
+    font-size: 1.0em !important;
+}
+#tblTraining_wrapper > div.dt-buttons > button.dt-button.table-btns.view-btn > span > label{
+    font-size: 1.0em !important;
+}
+#formIdentificationInfo_employeePhoto, #form_training_upload_file{
+    font-size: 1.0em !important;
+}

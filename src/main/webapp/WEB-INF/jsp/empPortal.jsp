@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/pagesCSS/all.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/css/pagesCSS/empPortal.css">
+    <link rel="stylesheet" href="/css/modal.css">
     <link rel="stylesheet" href="/css/pagesCSS/viewTraining.css">
 
 </head>
@@ -214,7 +215,7 @@
                             <!-- END OF TRAINING TAB    -->    
 
                             <!--  START OF INVENTORY TAB  -->
-                            <div class="tab-pane fade" id="inventory" role="tabpanel" aria-labelledby="inventory">
+                            <div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="inventory">
                                 <form role="form" data-toggle="validator" class="inventoryInfo">
                                     <h4 class="title3">Monthly Vehicle Usage</h4>
                                     <div class="row">
