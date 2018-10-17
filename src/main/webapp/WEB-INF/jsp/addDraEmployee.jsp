@@ -26,8 +26,9 @@
 
             <section class="usa-section1">
                 <header class="main-header" role="banner">
-                    <img data-toggle="tooltip" data-html="true" title="Bucks in velvet on the edge of an aspen stand. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Utah. (Forest Service photo by Scott Dickson)"
-                        class="bannerImg" src="../../img/birch.jpg" alt="Banner Image" />
+                    <img data-toggle="tooltip" data-html="true" title="Bucks in velvet on the edge of an aspen stand. Photo captured during data collection efforts for the 
+                    Interior West Forest Inventory and Analysis (IWFIA) Program in Utah. (Forest Service photo by Scott Dickson)"
+                    class="bannerImg" src="../../img/birch.jpg" alt="Banner Image" />
                 </header>
                 <div class="usa-grid">
                     <div class="usa-width-one-whole">

@@ -95,7 +95,24 @@ $(document).ready(function() {
                     }
                 }
             ],
-            'buttons': [{
+            'buttons': [
+                {
+                    text: 'Print <i class="fa fa-lg fa-print"></i>',
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    },
+                    className: 'table-btns print-btn'
+                },
+                {
+                    text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    },
+                    className: 'table-btns excel-btn'
+                },
+                {
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function() {
                         $('#myModal_add').modal();

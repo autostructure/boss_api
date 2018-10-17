@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/ead.min.css">
     <link rel="stylesheet" href="/css/pagesCSS/all.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
-    <link rel="stylesheet" href="/css/pagesCSS/addNewEmployee.css">
+    <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
 </head>
 
 <body class="layout-demo">
@@ -23,22 +23,33 @@
             <!-- end of sidenav -->
             <section class="usa-section1">
                 <header class="main-header" role="banner">
-                    <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image" />
+                        <img data-toggle="tooltip" data-html="true" title="Bucks in velvet on the edge of an aspen stand. Photo captured during data collection efforts for the 
+                        Interior West Forest Inventory and Analysis (IWFIA) Program in Utah. (Forest Service photo by Scott Dickson)"
+                        class="bannerImg" src="../../img/birch.jpg" alt="Banner Image" />
                 </header>
                 <div class="usa-grid">
                     <div class="usa-width-one-whole">
                         <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                             <a class="breadcrumbLink" href="/home">Dashboard |</a>
                             <a class="breadcrumbLink" href="/personnelDash">Personnel Dashboard |</a>
-                            <a class="breadcrumbLinkMain" href="/addNewEmployee">Add New Employee</a>
+                            <a class="breadcrumbLinkMain" href="/viewAllDras">View All DRAs</a>
                         </p>
                     </div>
                 </div>
                 <section class="usa-section">
+                        <div class="usa-grid usa-buffer-top">
+                            <div class="usa-width-one-whole title-div">
+                                <h1 id="title">Edit DRA Courses Available</h1>
+                            </div>
+                        </div>                    
                     <div class="usa-grid usa-buffer-top">
                         <div class="use-width-one-whole content-div">
-                            <h2 class="title2">Dra List</h2>
+                            <h2 class="title2">DRA Courses</h2>
                             <div id="showHide">
+                                <div class="form-check" id="viewOldCheckbox">
+                                    <input type="checkbox" id="viewOld" class="form-check-input">
+                                    <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
+                                </div>
                                 <table id="allDrasCourses" class="usa-table-borderless display" style="width:100%">
                                     <thead>
                                         <tr>

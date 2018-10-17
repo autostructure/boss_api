@@ -191,23 +191,24 @@ hr:after {
     right: 10px;
 }
 /* view all dra table css */
-#allDrasCourses_filter, #allDrasCourses_paginate, #allDrasCourses_length, #allDrasCourses_info{
+#allDrasCourses_filter, #allDrasCourses_paginate, #allDrasCourses_length, #allDrasCourses_info, #tblDras_filter, #tblDras_paginate, #tblDras_length, #tblDras_info{
     padding: 20px 20px;
 }
-#allDrasCourses_filter{
+#allDrasCourses_filter, #tblDras_filter{
     position: absolute;
     top: -75px;
     left: 10px;
     padding: 0px;
 }
-#allDrasCourses_filter > label{
+#allDrasCourses_filter > label, #tblDras_filter > label{
     font-size: 1.5em;
 }
-#allDrasCourses_wrapper > div.dt-buttons{
+#allDrasCourses_wrapper > div.dt-buttons, #tblDras_wrapper > div.dt-buttons {
     position: absolute;
     top: -115px;
     right: 10px;
 }
+
 td, th{
     text-align: center;
 }
