@@ -112,7 +112,7 @@
                                         Additional DRA</button>
                                 </div>
                                 <div class="col col-md-6">
-                                    <input type="submit" id="submitV" value="submit" class="btn btn-success" />
+                                    <input type="button" id="submitV" value="submit" class="btn btn-success" />
                                 </div>
                             </div>
                         </form>

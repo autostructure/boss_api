@@ -91,10 +91,10 @@
                                                               <a href="/addDraEmployee">Record Employee DRA</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="#">View All DRA's</a>
+                                                              <a href="/viewRecordedDras">View All DRA's</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                            <a href="#">DRA Courses</a>
+                                                            <a href="/viewAllDras">DRA Courses</a>
                                                         </li>
                                                       </ul>
                                                     </div>

@@ -81,6 +81,14 @@ public class HomeController {
     public String addTrainingClass(){
         return "addTrainingClass";
     }
+    @RequestMapping("/viewAllDras")
+    public String viewAllDras(){
+        return "viewAllDras";
+    }    
+    @RequestMapping("/viewRecordedDras")
+    public String viewRecordedDras(){
+        return "viewRecordedDras";
+    }      
     @RequestMapping("/assignTraining")
     public String assignTraining(){
         return "assignTraining";

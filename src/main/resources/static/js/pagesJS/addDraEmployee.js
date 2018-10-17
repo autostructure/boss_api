@@ -4,6 +4,8 @@ $(document).ready(function () {
     var wrapper = $(".items"); //Fields wrapper
     var add_button = $(".add_field_button"); //Add button ID
     var x = 1; //initlal text box count
+    var draCourses = {};
+
     $(add_button).click(function (e) { //on add input button click
         e.preventDefault();
         var row = $(".template.dra-entry").clone().attr("id", "nth_row_"+x).removeClass("template");
@@ -29,10 +31,21 @@ $(document).ready(function () {
 
     CustomFormFunctions.populateDropDown($("select#draTitle_OG"), "/draCourse", "id", "title", false, function(){onAJAXSuccess("employees")});
     CustomFormFunctions.populateDropDown($("select#dStation_OG"), "/employeeProfile", "id", "nameCode", false, function(){onAJAXSuccess("titles")});
-    
-    var ajaxWaits = {"employees":false, "titles":false};
-    function onAJAXSuccess(title) {
-        ajaxWaits[title] = true;
+    $.ajax({
+        "url":"/draCourse",
+        "method":"GET",
+        "success":function(data) {
+            for (var k in data) {
+                var course = data[k];
+                draCourses[course.id] = course;
+            }
+            onAJAXSuccess("courseList");
+        }
+    })
+
+    var ajaxWaits = {"employees":false, "titles":false, "courseList":false};
+    function onAJAXSuccess(key) {
+        ajaxWaits[key] = true;
         allReturned = true;
         for (k in ajaxWaits) {
             if (ajaxWaits[k] == false) allReturned = false;
@@ -40,9 +53,39 @@ $(document).ready(function () {
         if (allReturned) {
             $(".add_field_button").click();
         }
-        console.log("Hello");
     }
-
+    $('.items').on("change update", "[name=deliberativeRiskAssessmentCourseId], [name=dateOfAssessment]", function() {
+        var group = $(this).closest(".dra-entry");
+        var course = draCourses[group.find("[name=deliberativeRiskAssessmentCourseId]").val()];
+        if (!course) return;
+        console.log(course);
+        var wiggleRoom = course.wiggleRoom;
+        var assessmentDate = CustomFormFunctions.getDateFrom(group.find("[name=dateOfAssessment]").val());
+        var completeBy = new Date(course.completeBy);
+        if (completeBy.getTime() == -68400000) { //31 Dec 1969
+            var dateDue = new Date(assessmentDate);
+            dateDue.setFullYear(assessmentDate.getFullYear() + 1);
+            dateDue = CustomFormFunctions.formatDate(dateDue, "bootstrap");
+            group.find("[name=dateDue]").val(dateDue);
+        } else {
+            var maxDate = new Date(completeBy);
+            maxDate.setFullYear(assessmentDate.getFullYear());
+            console.log(maxDate);
+            if (maxDate < assessmentDate) {
+                maxDate.setFullYear(assessmentDate.getFullYear() + 1);
+            }
+            console.log(maxDate);
+            minDate = new Date(maxDate);
+            var minDate = new Date(maxDate);
+            minDate.setDate(maxDate.getDate() - wiggleRoom);
+            if (minDate <= assessmentDate) {
+                maxDate.setFullYear(maxDate.getFullYear() + 1);
+            }
+            console.log(maxDate);
+            var dateDue = CustomFormFunctions.formatDate(maxDate, "bootstrap");
+            group.find("[name=dateDue]").val(dateDue);
+        }
+    });
     $("#submitV").click(function (e) {
         e.preventDefault();
         var allValid = true;

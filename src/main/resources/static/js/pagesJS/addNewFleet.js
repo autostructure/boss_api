@@ -91,7 +91,7 @@ var fields = {
             }
         ],
         [ // vehicle info row              
-            {"fieldName": "year",
+            {"fieldName": "modelYear",
                 "title": "Vehicle Year",
                 "type": "select/vyear",
                 "required": true,
