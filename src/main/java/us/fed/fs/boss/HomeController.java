@@ -100,7 +100,11 @@ public class HomeController {
     @RequestMapping("/addDraEmployee")
     public String addDraEmployee(){
         return "addDraEmployee";
-    }         
+    }    
+    @RequestMapping("/viewAllDras")
+    public String viewAllDras(){
+        return "viewAllDras";
+    }        
     @RequestMapping("/payrollForecast")
     public String payrollForecast() {
         return "payrollForecast";
@@ -125,7 +129,7 @@ public class HomeController {
     public String viewFleet() {
         return "viewFleet";
     }      
-    @RequestMapping("/viewEditFleet/{id}")
+    @RequestMapping("/viewEditFleet")
     public String viewEditFleet() {
         return "viewEditFleet";
     }         
