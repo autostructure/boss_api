@@ -135,10 +135,8 @@ $(document).ready(function () {
             'data': jsonData,
             'dom': 'Bfti',
             'columns': [
-                { 'data': "employeeProfile.nameCode" },
-                {
-                    'data': "title"
-                },
+                { 'data': "employee.nameCode" },
+                { 'data': "title" },
                 {
                     'data': "dateOfAssessment",
                     "render": function (data, type, row) {
@@ -155,7 +153,7 @@ $(document).ready(function () {
                             <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                             <div id="dropList" class="dropdown-content1">
                                 <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete DRA</a>
-                                <a data-toggle="modal" data-target="#myModal_edit" href="#" data-value=` + row.id + ` class="editBtn" id="editBtn">edit DRA</a>
+                                <a data-toggle="modal" data-target="#myModal_edit" href="#" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit DRA</a>
                             </div>
                         </div>
                     

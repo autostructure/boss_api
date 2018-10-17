@@ -37,7 +37,7 @@
                 <section class="usa-section">
                     <div class="usa-grid usa-buffer-top">
                         <div class="use-width-one-whole content-div">
-                            <h2 class="title2">Employee List</h2>
+                            <h2 class="title2">Dra List</h2>
                             <div id="showHide">
                                 <table id="allDrasCourses" class="usa-table-borderless display" style="width:100%">
                                     <thead>
@@ -58,16 +58,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="myModal_add" class="modal fade" role="dialog">
+                    <div id="myModal_edit" class="modal fade myModal_edit" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Add Dra Course</h4>
+                                    <h4 class="modal-title">Edit Dra Course</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
                                 </div>
                                 <div class="modal-body">
-
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
@@ -85,7 +83,66 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="dra_wiggleRoom"> Room:<span class="reqClass">*</span></label><br>
+                                                <label for="dra_wiggleRoom">Extra Days:<span class="reqClass">*</span></label><br>
+                                                <input type="text" required ID="dra_wiggleRoom" class="form-control dra_wiggleRoom" />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_CompleteBy">Complete By date:<span class="reqClass"> *</span></label>
+                                                <div class="input-group date" data-provide="datepicker">
+                                                    <input type="text" required id="dra_CompleteBy" name="dra_CompleteBy" class="form-control dra_CompleteBy">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_Description">Description:<span class="reqClass">*</span></label><br>
+                                                <input type="text" required ID="dra_Description" class="form-control dra_Description" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                    <button type="button" id="myModal_editConfirm" data-dismiss="modal" class="btn">Confirm Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="myModal_add" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Dra Course</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_title">Dra Title:<span class="reqClass">*</span></label><br/>
+                                                <input type="text" required ID="dra_title" class="form-control dra_title" />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_category">Dra Category:<span class="reqClass">*</span></label><br/>
+                                                <input type="text" required ID="dra_category" class="form-control dra_category" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="dra_wiggleRoom">Extra Days:<span class="reqClass">*</span></label><br>
                                                 <input type="text" required ID="dra_wiggleRoom" class="form-control dra_wiggleRoom" />
                                             </div>
                                         </div>
@@ -139,6 +196,7 @@
                             </div>
                         </div>
                     </div>
+
 
                 </section>
             </section>

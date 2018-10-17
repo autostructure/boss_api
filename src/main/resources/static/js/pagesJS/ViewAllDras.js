@@ -86,6 +86,7 @@ $(document).ready(function() {
                         <div class="dropdown1">
                             <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                             <div id="dropList" class="dropdown-content1">
+                                <a data-toggle="modal" data-target="#myModal_edit" href="#" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit DRA</a>
                                 <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete DRA</a>
                             </div>
                         </div>
@@ -118,6 +119,11 @@ $(document).ready(function() {
             selected_row = $(this).attr('data-value');
         });
 
+        $('.editBtn').on('click', function() {
+            selected_row = $(this).attr('data-value');
+            populateEdit_modal();
+        });
+
         $('#myModal_add').on('click', '#myModal_addYes', function() {
             var modal = $('#myModal_add');
             var dra_title = modal.find('div.modal-body div.row div.col div.form-group input.dra_title').val();
@@ -146,6 +152,64 @@ $(document).ready(function() {
                 }
             });
 
+
+        });
+
+        //$('#myModal_edit').on('shown.bs.model', function() {
+        function populateEdit_modal() {
+            $.ajax({
+                url: '/draCourse/' + selected_row,
+                type: 'GET',
+                cache: false,
+                timeout: 600000,
+                success: function(json) {
+                    var modal = $('#myModal_edit');
+
+                    modal.find('div.modal-body div.row div.col div.form-group input.dra_title').val(json.title);
+                    modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val(json.category);
+                    modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val(json.wiggleRoom);
+                    modal.find('div.modal-body div.row div.col div.form-group input.dra_CompleteBy').val(CustomFormFunctions.formatDate(json.completeBy, 'mm/dd/yyyy'));
+                    modal.find('div.modal-body div.row div.col div.form-group input.dra_Description').val(json.description);
+                },
+                error: function(a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+        }
+
+        $('#myModal_edit').on('click', '#myModal_editConfirm', function() {
+
+            var modal = $('.myModal_edit');
+            var title = modal.find('div.modal-body div.row div.col div.form-group input.dra_title').val();
+            var category = modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val();
+            var wiggleRoom = modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val();
+            var completeBy = modal.find('div.modal-body div.row div.col div.form-group input.dra_CompleteBy').val();
+            var description = modal.find('div.modal-body div.row div.col div.form-group input.dra_Description').val();
+
+            draCourseObj.title = title;
+            draCourseObj.category = category;
+            draCourseObj.wiggleRoom = wiggleRoom;
+            draCourseObj.completeBy = getCorrectDateFormat(completeBy);
+            draCourseObj.description = description;
+            draCourseObj.id = selected_row;
+            console.log(draCourseObj);
+
+
+            $.ajax({
+                url: '/draCourse/' + selected_row,
+                type: 'PUT',
+                cache: false,
+                timeout: 600000,
+                contentType: "application/json",
+                data: JSON.stringify(draCourseObj),
+                success: function(json) {
+                    window.location.reload();
+                },
+                error: function(a, b, c) {
+                    console.log(a.responseText);
+                }
+
+            });
 
         });
 

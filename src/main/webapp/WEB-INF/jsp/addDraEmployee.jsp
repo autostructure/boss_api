@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/ead.min.css">
     <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
-    <link rel="stylesheet" href="css/pagesCSS/addDraEmployee.css">
+    <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
 </head>
 
 <body class="layout-demo">
@@ -45,7 +45,7 @@
                             <h1 id="title">Add DRA by Employee</h1>
                         </div>
                     </div>
-                    <div class="container trainBG">
+                    <div class="container trainBG padTop">
                         <form role="form" data-toggle="validator" class="generalInfo">
                             <div class="mainAdd dra-entry template">
                                 <div class="row">
@@ -112,7 +112,7 @@
                                         Additional DRA</button>
                                 </div>
                                 <div class="col col-md-6">
-                                    <input type="button" id="submitV" value="submit" class="btn btn-success" />
+                                    <input type="button" id="submitV" value="Submit" class="btn btn-success" />
                                 </div>
                             </div>
                         </form>

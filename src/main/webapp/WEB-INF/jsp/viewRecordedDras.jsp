@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/css/ead.min.css">
         <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
         <link rel="stylesheet" href="/css/pagesCSS/all.css">
-        <link rel="stylesheet" href="/css/pagesCSS/viewTraining.css">
+        <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
     </head>
 
     <body class="layout-demo">
@@ -81,7 +81,7 @@
                                     <table id="tblDras" class="usa-table-borderless display" style="width:100%">
                                         <thead><tr>
                                             <th scope="col">Employee Name</th>
-                                            <th scope="col">Dra Title</th>
+                                            <th scope="col">DRA Title</th>
                                             <th scope="col">Date Assessment</th>
                                             <th scope="col">Valid Year</th>
                                             <th id="stop"></th>

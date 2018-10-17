@@ -100,10 +100,6 @@ public class HomeController {
     @RequestMapping("/addDraEmployee")
     public String addDraEmployee(){
         return "addDraEmployee";
-    }    
-    @RequestMapping("/viewAllDras")
-    public String viewAllDras(){
-        return "viewAllDras";
     }        
     @RequestMapping("/payrollForecast")
     public String payrollForecast() {
