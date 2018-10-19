@@ -58,7 +58,7 @@
                                                               <a href="/addNewEmployee">Add New Employee</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/auxContact">Auxiliary Contact List</a>
+                                                              <a href="/auxContact">Supplemental Phone Numbers</a>
                                                           </li>                                                          
                                                       </ul>
                                                     </div>

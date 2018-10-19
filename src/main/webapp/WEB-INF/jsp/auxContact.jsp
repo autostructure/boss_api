@@ -29,7 +29,7 @@
                     <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                         <a class="breadcrumbLink"href="/home">Dashboard |</a>
                         <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
-                        <a class="breadcrumbLinkMain"href="/auxContact">Auxiliary Contact List</a>
+                        <a class="breadcrumbLinkMain"href="/auxContact">Supplemental Phone Numbers</a>
                     </p>
                 </div>
             </div>
@@ -37,7 +37,7 @@
 
                 <div class="usa-grid usa-buffer-top">
                     <div class="usa-width-one-whole title-div">
-                        <h1 id="title">Auxiliary Contact List</h1>
+                        <h1 id="title">Supplemental Phone Numbers</h1>
                     </div>
                 </div>
                 <div id="success" class="alert alert-success" role="alert">
@@ -61,7 +61,7 @@
                         </thead>
                     </table>
 
-                        <h1 class="title5">Add New Auxiliary Contact</h1>
+                        <h1 class="title5">Add New Supplemental Phone Number</h1>
 
                     <form role="form" id="auxForm" data-toggle="validator">
                     </form>
