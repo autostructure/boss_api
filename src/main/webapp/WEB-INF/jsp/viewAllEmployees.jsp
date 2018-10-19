@@ -49,6 +49,10 @@
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">Employee List</h2>
                                 <div id="showHide">
+                                    <div class="form-check" id="viewOldCheckbox">
+                                        <input type="checkbox" id="viewOld" class="form-check-input">
+                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
+                                    </div>                                    
                                     <table id="allEmployees" class="usa-table-borderless display" style="width:100%">
 
                                         <thead>
@@ -114,121 +118,153 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
+                                <p class="contactClass">Employee Contact</p>
+                            <div class="row">
+                                    
+                                <div class="col">
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label">Primay Phone: </label> <input class="form-control" type="text" id="PrimryPhone" readonly></input>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="SecondaryPhone" readonly></input>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Personal Email: </label> <input class="form-control" type="text" id="PersonalEmail" readonly></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="contactClass">Primary Emergency Contact</p>                            
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">City One: </label> <input class="form-control" type="text" id="CityOne" readonly></input>
+                                        <label class="control-label">First Name: </label> <input class="form-control" type="text" id="FirstNameOne" readonly></input>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">City Two: </label> <input class="form-control" type="text" id="CityTwo" readonly></input>
+                                        <label class="control-label">Last Name: </label> <input class="form-control" type="text" id="LastNameOne" readonly></input>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">First Name One: </label> <input class="form-control" type="text" id="FirstNameOne" readonly></input>
+                                        <label class="control-label">Relationship: </label> <input class="form-control" type="text" id="FirstRelationship" readonly></input>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">                                
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="HomePhoneOne" readonly></input>
+                                    </div>
+                                </div>      
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="CellPhoneOne" readonly></input>
+                                    </div>
+                                </div>                                                          
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Work Phone: </label> <input class="form-control" type="text" id="WorkPhoneOne" readonly></input>
+                                    </div>
+                                </div>                                
+
+
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Last Name One: </label> <input class="form-control" type="text" id="LastNameOne" readonly></input>
+                                        <label class="control-label">Address: </label> <input class="form-control" type="text" id="AddressOne" readonly></input>
+                                    </div>
+                                </div>                                                                                              
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">City: </label> <input class="form-control" type="text" id="CityOne" readonly></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">State: </label> <input class="form-control" type="text" id="StateOne" readonly></input>
+                                    </div>
+                                </div>                                
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Zip: </label> <input class="form-control" type="text" id="ZipOne" readonly></input>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <p class="contactClass">Secondary Emergency Contact</p> 
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">First Name: </label> <input class="form-control" type="text" id="FirstNameTwo" readonly></input>
+                                    </div>
+                                </div>                                 
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Last Name: </label> <input class="form-control" type="text" id="LastNameTwo" readonly></input>
+                                    </div>
+                                </div>     
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Relationship: </label> <input class="form-control" type="text" id="SecondRelationship" readonly></input>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="row">                                                          
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="HomePhoneTwo" readonly></input>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Last Name Two: </label> <input class="form-control" type="text" id="LastNameTwo" readonly></input>
+                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="CellPhoneTwo" readonly></input>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Home Phone One: </label> <input class="form-control" type="text" id="HomePhoneOne" readonly></input>
+                                        <label class="control-label">Work Phone: </label> <input class="form-control" type="text" id="WorkPhoneTwo" readonly></input>
                                     </div>
-                                </div>
+                                </div>   
+                            </div>
+                            <div class="row">                                                            
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">Address: </label> <input class="form-control" type="text" id="AddressTwo" readonly></input>
+                                    </div>
+                                </div> 
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">City: </label> <input class="form-control" type="text" id="CityTwo" readonly></input>
+                                    </div>
+                                </div>                                                                                                                         
+                               
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Home Phone Two: </label> <input class="form-control" type="text" id="HomePhoneTwo" readonly></input>
+                                        <label class="control-label">State: </label> <input class="form-control" type="text" id="StateTwo" readonly></input>
                                     </div>
-                                </div>
+                                </div>  
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Relationship One: </label> <input class="form-control" type="text" id="FirstRelationship" readonly></input>
+                                        <label class="control-label">Zip: </label> <input class="form-control" type="text" id="ZipTwo" readonly></input>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Relationship Two: </label> <input class="form-control" type="text" id="SecondRelationship" readonly></input>
-                                    </div>
-                                </div>
+                                </div>   
+                              
                             </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">State One: </label> <input class="form-control" type="text" id="StateOne" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">State Two: </label> <input class="form-control" type="text" id="StateTwo" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Address One: </label> <input class="form-control" type="text" id="AddressOne" readonly></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Address Two: </label> <input class="form-control" type="text" id="AddressTwo" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Work Phone One: </label> <input class="form-control" type="text" id="WorkPhoneOne" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Work Phone Two: </label> <input class="form-control" type="text" id="WorkPhoneTwo" readonly></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Zip One: </label> <input class="form-control" type="text" id="ZipOne" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Zip Two: </label> <input class="form-control" type="text" id="ZipTwo" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Cell Phone One: </label> <input class="form-control" type="text" id="CellPhoneOne" readonly></input>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Cell Phone Two: </label> <input class="form-control" type="text" id="CellPhoneTwo" readonly></input>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default btn_pers_copy" data-dismiss="modal">Close</button>

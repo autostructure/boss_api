@@ -136,7 +136,7 @@ $(document).ready(function () {
                 //     text: 'Print <i class="fa fa-lg fa-print"></i>',
                 //     extend: 'print',
                 //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                //         columns: [0, 1, 2, 3, 4, 5]
                 //     },
                 //     className: 'table-btns print-btn'
                 // },
@@ -144,14 +144,14 @@ $(document).ready(function () {
                 //     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                 //     extend: 'excel',
                 //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                //         columns: [0, 1, 2, 3, 4, 5]
                 //     },
                 //     className: 'table-btns excel-btn'
                 // },
                 {
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function () {
-                        window.location.href = '/addTrainingEmployee';
+                        window.location.replace('/addTrainingEmployee');
                     },
                     className: 'table-btns add-btn'
                 },

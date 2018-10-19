@@ -65,7 +65,7 @@
                                     <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
                                     <a class="btn-modal btn-modal-approve" data-toggle="modal" data-target="#myModal_approve" href="#">Approve Training</a>
                                     <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
-                                    <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a>
+                                    <!-- <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a> -->
                                     <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
                                 </div>
                             </div>
@@ -97,8 +97,8 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title">Renew Training</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
                                         <form id="form_training_renew">
@@ -110,8 +110,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn" data-dismiss="modal" id="btn_renew_training">Renew</button>
+                                        <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn_pers_copy" data-dismiss="modal" id="btn_renew_training">Renew</button>
                                     </div>
                                 </div>
                             </div>
@@ -120,8 +120,8 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title">Add Documents and Certifications</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
                                         <span id="certificate_list"></span>
@@ -137,11 +137,12 @@
                                                 <input type="text" name="description" id="form_training_upload_description">
                                             </label>
                                             <br>
-                                            <button type="button" class="btn" id="btn_add_training_docs">Add</button>
-                                        </form>
+
                                     </div>
                                     <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn_pers_copy" id="btn_add_training_docs">Add</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -152,16 +153,17 @@
                                     <form id="form_training_approve">
                                         <input name='id' class='trainingId' hidden>
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title">Approve Training</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
                                         </div>
                                         <div class="modal-body">
                                             <p>Approve the training "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
                                             
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn" data-dismiss="modal" id="btn_approve_training">Approve</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal" id="btn_approve_training">Approve</button>
                                         </div>
                                     </form>
                                 </div>
@@ -173,16 +175,16 @@
                                     <form id="form_training_remove">
                                         <input name='id' class='trainingId' hidden>
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title">Remove Training</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             <p>Remove the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
                                             <p>If you Confirm this, you will have to re-add it.</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn text-danger" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
                                         </div>
                                     </form>
                                 </div>

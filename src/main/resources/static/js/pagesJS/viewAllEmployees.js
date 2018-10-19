@@ -42,7 +42,7 @@ $(document).ready(function () {
         console.log(jsonData);
 
         var table = $('#allEmployees').DataTable({
-            dom: "Brtip",
+            dom: "Brftip",
             // searchable: true,
             destroy: true,
             "paging": false,
@@ -81,7 +81,7 @@ $(document).ready(function () {
                     text: 'Print <i class="fa fa-lg fa-print"></i>',
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4, 5]
                     },
                     className: 'table-btns print-btn'
                 },
@@ -89,7 +89,7 @@ $(document).ready(function () {
                     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                     extend: 'excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4, 5]
                     },
                     className: 'table-btns excel-btn'
                 },
@@ -144,8 +144,9 @@ $(document).ready(function () {
                 url: API + "/employeeProfile/" + selected_row,
                 type: 'GET',
                 success: function (json) {
-
-                    modal.find(".modal-body #CityOne").val(json.emergencyContactCity1);
+                    modal.find(".modal-body #PrimaryPhone").val(json.homePhone);
+                    modal.find(".modal-body #SecondaryPhone").val(json.cellPhone);
+                    modal.find(".modal-body #PersonalEmail").val(json.personalEmail);
                     modal.find(".modal-body #CityTwo").val(json.emergencyContactCity2);
                     modal.find(".modal-body #FirstNameOne").val(json.emergencyContactFirstName1);
                     modal.find(".modal-body #FirstNameTwo").val(json.emergencyContactFirstName2);

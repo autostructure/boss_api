@@ -276,7 +276,7 @@ td, th{
 /* all employees table */
 #allEmployees_wrapper > div.dt-buttons{
     position: absolute;
-    top: -55px;
+    top: -115px;
     right: 10px;
 }
 #myModal_delete > div > div > div.modal-body{
@@ -298,8 +298,9 @@ td, th{
 }
 #allEmployees_filter{
     position: absolute;
-    top: -85px;
-    right: 10px;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
 }
 /* training courses table */
 #tblCourse_filter, #tblCourse_paginate, #tblCourse_length, #tblCourse_info{
@@ -451,5 +452,31 @@ td, th{
 #btn_add_aux{
     margin: auto;
     margin-top: 40px;
+    font-size: 1.4em;
+}
+
+#form_training_upload, #form_training_renew, #form_add, #form_edit{
+    font-size: 12px !important;
+}
+#form_training_upload_file{
+    font-size: 12px !important;
+}
+.modal-title{
+    font-size: 26px !important; 
+    text-align: center;
+}
+#myModal_contact > div > div > div.modal-body{
+    font-size: 12px !important;
+}
+.contactClass{
+    font-size: 1.3em;
+    margin-top: 25px;
+    border-bottom: 1px solid #39679b;
+    padding-bottom: 5px;
+}
+#myModal_contact > div > div > div.modal-body > label{
+    margin-top: 3px !important;
+}
+#form_add_description{
     font-size: 1.4em;
 }

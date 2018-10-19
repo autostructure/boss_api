@@ -78,18 +78,7 @@ $(document).ready(function () {
                                 '<div class="help-block with-errors"></div>' +
 						    '</div>' +
                         '</div>' +
-                        '<div class="col">' +
-                            '<div class="form-group">' +
-                                    '<label for="tValidUntil_' + x + '">Valid Until<span class="reqClass"> *</span></label>' +
-                                    '<div class="input-group date" data-provide="datepicker">' +
-                                        '<input required type="text" id="tValidUntil_' + x + '" class="form-control tdate">' +
-                                        '<div class="input-group-addon">' +
-                                            '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="help-block with-errors"></div>' +
-                              '</div>' +
-                        '</div>' +
+
                  
                          '<div class="col">' +
                             '<div class="form-group">' +
@@ -103,6 +92,18 @@ $(document).ready(function () {
                                  '<div class="help-block with-errors"></div>' +
                              '</div>' +
                           '</div>' +
+                          '<div class="col">' +
+                          '<div class="form-group">' +
+                                  '<label for="tValidUntil_' + x + '">Valid Until<span class="reqClass"> *</span></label>' +
+                                  '<div class="input-group date" data-provide="datepicker">' +
+                                      '<input required type="text" id="tValidUntil_' + x + '" class="form-control tdate">' +
+                                      '<div class="input-group-addon">' +
+                                          '<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>' +
+                                      '</div>' +
+                                  '</div>' +
+                                  '<div class="help-block with-errors"></div>' +
+                            '</div>' +
+                      '</div>' +
                        '</div>' + 
                         '<button id="copyRow" class="copy_field btn_pers_copy">Copy Row <i class="fa fa-arrows-v" aria-hidden="true" style="padding-left: 10px"></i></button> ' +
                         '<button class="remove_field btn_pers_remove">Remove <i class="fa fa-minus-square-o" aria-hidden="true" style="padding-left:10px"></i></button>' +
