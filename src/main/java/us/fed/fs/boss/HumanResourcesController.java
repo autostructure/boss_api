@@ -316,7 +316,6 @@ public class HumanResourcesController {
             return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByEmployeeIdAndDeliberativeRiskAssessmentCourseId(employeeId, employeeId), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
-
         }
 
     }

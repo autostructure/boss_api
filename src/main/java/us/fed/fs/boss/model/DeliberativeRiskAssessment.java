@@ -30,9 +30,6 @@ public class DeliberativeRiskAssessment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "Title")
-    private String title;
     
     @Column(name = "YearsValid")
     private Short yearsValid;
@@ -65,20 +62,6 @@ public class DeliberativeRiskAssessment implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     /**
