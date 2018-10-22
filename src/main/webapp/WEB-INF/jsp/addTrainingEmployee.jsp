@@ -66,18 +66,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="tDate">Date of Training<span class="reqClass"> *</span></label>
-                                            <div class="input-group date" data-provide="datepicker">
-                                                <input type="text" required id="tDate" name="tDate" class="form-control">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                </div>                                                                    
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>  
-                                    </div>
+
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="tValidUntil">Valid Until<span class="reqClass"> *</span></label>
@@ -91,7 +80,18 @@
                                         </div>  
                                     </div>
 
-
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="tDate">Date of Training<span class="reqClass"> *</span></label>
+                                            <div class="input-group date" data-provide="datepicker">
+                                                <input type="text" required id="tDate" name="tDate" class="form-control">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                </div>                                                                    
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>  
+                                    </div>
                                 </div>
                                 <!--<button class="btn copy_main" id="mainCopy">Copy Row</button>-->
                         </div>
@@ -151,16 +151,15 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            Success
                             <!--	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title text-center">success</h4> -->
                         </div>
                         <div class="modal-body">
-                            <h3 class="text-center"> Adding the training to the employee was successful</h3>
+                            <h3 class="text-center"> Successful Submit for Employee Classes</h3>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn btn_pers_copy">Continue</button>
+                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn">Continue</button>
                         </div>
                     </div>
                 </div>
