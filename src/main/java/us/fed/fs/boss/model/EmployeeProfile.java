@@ -185,6 +185,12 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "RoomNumber")
     @JsonView(Views.Internal.class)
     private String roomNumber;
+    
+    @Column(name = "FsEmail")
+    private String fsEmail;
+    
+    @Column(name = "SatPhone")
+    private String satPhone;
 
     @Column(name = "PayPeriodsLeft")
     @JsonView(Views.Internal.class)
@@ -1092,5 +1098,33 @@ public class EmployeeProfile implements Serializable {
      */
     public void setWeightPounds(Short weightPounds) {
         this.weightPounds = weightPounds;
+    }
+
+    /**
+     * @return the fsEmail
+     */
+    public String getFsEmail() {
+        return fsEmail;
+    }
+
+    /**
+     * @param fsEmail the fsEmail to set
+     */
+    public void setFsEmail(String fsEmail) {
+        this.fsEmail = fsEmail;
+    }
+
+    /**
+     * @return the satPhone
+     */
+    public String getSatPhone() {
+        return satPhone;
+    }
+
+    /**
+     * @param satPhone the satPhone to set
+     */
+    public void setSatPhone(String satPhone) {
+        this.satPhone = satPhone;
     }
 }
