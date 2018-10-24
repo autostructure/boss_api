@@ -70,9 +70,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="medical-tab" data-toggle="tab" href="#medical" role="tab" aria-controls="medicalInfo">Medical Info</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="legacy-tab" data-toggle="tab" href="#legacy" role="tab" aria-controls="legacyInfo">Legacy Info</a>
-                                    </li>
+
 
                                 </ul>
                                 <!-- end of tabs list -->
@@ -147,13 +145,6 @@
                                     </div>
                                     <!--    END OF MEDICAL TAB    -->
 
-                                    <!--    START OF LEGACY TAB  -->
-                                    <div class="tab-pane fade" id="legacy" role="tabpanel" aria-labelledby="legacyInfo">
-                                        <form role="form" data-toggle="validator" class="legacyInfo" id="formLegacyInfo">
-                                            <h4 class="title3">Legacy Information</h4>
-                                        </form>
-                                    </div>
-                                    <!--    END OF LEGACY TAB    -->
 
                                     <!--    START OF TRAINING TAB   -->
                                     <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="trainingInfo">

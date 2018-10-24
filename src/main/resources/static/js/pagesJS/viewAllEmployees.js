@@ -49,16 +49,22 @@ $(document).ready(function () {
             // ajax:{"url":tempAPI + yr,"dataSrc":""},
             data: jsonData,
             columns: [
-                {data: "lastName"},
-                {data: "firstName"},
-                {data: "null",
-                    "render": function (data, type, row) {
-                        return "Coming Soon!";
+                {
+                    'data': null,
+                    'render': function(data, type, row) {
+                        return data.lastName + ', ' + data.firstName;
                     }
                 },
+                {data: "supervisor"},
                 {data: "dutyStation"},
+                {data: null,
+                    "render": function(data, type, row){
+                        return '989-424-2342';
+                    }
+                },
+                {data: "satPhone"},
                 {data: "cellPhone"},
-                {data: "personalEmail"},
+                {data: "fsEmail"},
                 {data: null,
                     "render": function (data, type, row) {
                         return `

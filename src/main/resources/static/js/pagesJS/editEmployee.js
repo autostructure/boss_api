@@ -246,12 +246,45 @@ var fields = {
                     "url": "/dutyStations",
                 },
             },
+
             {
                 "fieldName": "roomNumber",
                 "title": "Room Number",
                 "type": "input/text",
             },
         ], // end row
+
+        [
+            {
+                "fieldName": "supervisor",
+                "title": "Supervisor",
+                "type": "select/text",
+                "selectFrom": {
+                    "url": "/employeeProfile",
+                    "value": "id",
+                    "label": "nameCode",
+                },
+                "colspan": 3,
+            },            
+            {
+                "fieldName": "officePhone",
+                "title": "Office Phone",
+                "type": "input/tel",
+                "colspan": 3,
+            },
+            {
+                "fieldName": "satPhone",
+                "title": "Satellite Phone",
+                "type": "input/tel",
+                "colspan": 3,
+            },
+            {
+                "fieldName": "fsEmail",
+                "title": "FS Email",
+                "type": "input/email",
+                "colspan": 3,
+            },
+        ],
         [ // Other
             {
                 "fieldName": "confidentialityAgreementDate",
@@ -259,18 +292,51 @@ var fields = {
                 "type": "input/date",
             },
             {
+                "fieldName": "payPlan",
+                "title": "Pay Plan",
+                "type": "input/text",
+                "colspan": 3,
+            },
+            {
                 "fieldName": "grade",
                 "title": "Grade",
                 "type": "select/text",
                 "options": [, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
             },
+
+        ], // end row
+        [
+            {
+                "fieldName": "payStatus",
+                "title": "Pay Status",
+                "type": "input/text",
+                "colspan": 3,
+            },
+            {
+                "fieldName": "startNonpayStatus",
+                "title": "Start Nonpay Status",
+                "type": "input/date",
+                "colspan": 3,
+            },
+            {
+                "fieldName": "returnToPayStatus",
+                "title": "Return To Pay Status",
+                "type": "input/date",
+                "colspan": 3,
+            },
+            {
+                "fieldName": "terminationDate",
+                "title": "Termination Date",
+                "type": "input/date",
+                "colspan": 3,
+            },
+        ],
+        [ // Pay information
             {
                 "fieldName": "series",
                 "title": "Series",
                 "type": "input/text",
             },
-        ], // end row
-        [ // Pay information
             {
                 "fieldName": "pwpSalary",
                 "title": "pwp Salary",
@@ -300,6 +366,18 @@ var fields = {
                 "disabled": true,
             },
         ], // end row
+        [
+            {
+                "fieldName": "masterNumber",
+                "title": "Master Number",
+                "type": "input/text",
+            },
+            {
+                "fieldName": "startNonpayStatus",
+                "title": "IP Number",
+                "type": "input/text",
+            },
+        ],
         [{
                 "fieldName": "section",
                 "title": "Section",
@@ -615,139 +693,7 @@ var fields = {
         [
             { "custom": $("#submitMedicalInfo").parent() } // Submit Button
         ]
-    ],
-    "formLegacyInfo": [
-        [{
-                "fieldName": "payPlan",
-                "title": "Pay Plan",
-                "type": "input/text",
-                "colspan": 3,
-            },
-            {
-                "fieldName": "series",
-                "title": "Series",
-                "type": "input/text",
-                "colspan": 3,
-            },
-            {
-                "fieldName": "grade",
-                "title": "Grade",
-                "type": "select/text",
-                "options": [, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-                "colspan": 3,
-            },
-            {
-                "fieldName": "step",
-                "title": "Step",
-                "type": "input/text",
-                "colspan": 3,
-            },
-        ], // end row
-        [{
-                "fieldName": "payStatus",
-                "title": "Pay Status",
-                "type": "input/text",
-                "colspan": 3,
-            },
-            {
-                "fieldName": "startNonpayStatus",
-                "title": "Start Nonpay Status",
-                "type": "input/date",
-                "colspan": 3,
-            },
-            {
-                "fieldName": "returnToPayStatus",
-                "title": "Return To Pay Status",
-                "type": "input/date",
-                "colspan": 3,
-            },
-            {
-                "fieldName": "terminationDate",
-                "title": "Termination Date",
-                "type": "input/date",
-                "colspan": 3,
-            },
-        ], // end row
-        [{
-                "fieldName": "masterNumber",
-                "title": "Master Number",
-                "type": "input/text",
-                "colspan": 4,
-            },
-            {
-                "fieldName": "startNonpayStatus",
-                "title": "IP Number",
-                "type": "input/text",
-                "colspan": 4,
-            },
-            {
-                "fieldName": "returnToPayStatus",
-                "title": "Title",
-                "type": "input/text",
-                "colspan": 4,
-            },
-        ], // end row
-        [{
-                "fieldName": "title",
-                "title": "Title",
-                "type": "input/text",
-                "colspan": 4,
-            },
-            {
-                "fieldName": "dutyStation",
-                "title": "Duty Station",
-                "type": "select/text",
-                "selectFrom": {
-                    "url": "/dutyStations",
-                },
-            },
-        ], // end row
-        [{
-                "fieldName": "supervisor",
-                "title": "Supervisor",
-                "type": "select/text",
-                "selectFrom": {
-                    "url": "/employeeProfile",
-                    "value": "id",
-                    "label": "nameCode",
-                },
-                "colspan": 4,
-            },
-            {
-                "fieldName": "startNonpayStatus",
-                "title": "IP Number",
-                "type": "input/text",
-                "colspan": 4,
-            },
-            {
-                "fieldName": "returnToPayStatus",
-                "title": "Title",
-                "type": "input/text",
-                "colspan": 4,
-            },
-        ], // end row
-        [{
-                "fieldName": "officePhone",
-                "title": "Office Phone",
-                "type": "input/tel",
-                "colspan": 4,
-            },
-            {
-                "fieldName": "username",
-                "title": "System Username",
-                "type": "input/text",
-                "colspan": 4,
-            },
-            {
-                "fieldName": "officeEmail",
-                "title": "Office Email",
-                "type": "input/email",
-                "colspan": 4,
-            },
-        ], // end row
-        [
-            { "custom": $('#submitLegacyInfo').parent() }
-        ]
-    ],
+    ]
+
 }
 CustomFormFunctions.addBootstrapFields(fields);

@@ -58,12 +58,13 @@
                                         <thead>
                                             <tr>
 
-                                                <th scope="col">Last Name</th>
-                                                <th scope="col">First Name</th>
+                                                <th scope="col">Employee</th>
                                                 <th scope="col">Supervisor</th>
                                                 <th scope="col">Duty Station</th>
-                                                <th scope="col">Cell Number</th>
-                                                <th scope="col">Email</th>
+                                                <th scope="col">Satellite Phone</th>
+                                                <th scope="col">Office Phone </th>                                        
+                                                <th scope="col">FS Email</th>
+                                                <th scope="col">Cell Phone</th>
                                                 <th id="stop"></th>
 
 
