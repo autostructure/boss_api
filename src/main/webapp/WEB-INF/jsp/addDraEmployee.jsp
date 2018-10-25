@@ -93,20 +93,22 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <button class="btn-lg remove_field">Remove</button>
-
-                                            <button class="btn-lg copy_field">Copy</button>
-                                        </div>
                                     </div>
-                                </div>
-                                <hr class="break">
+                                    <div class="row">
+                                            <div class="col">
+                                                <div class="form-group text-left" >            
+                                                    <button class="btn btn-lg btn_pers_copy copy_field">Copy This Row</button>
+                                                    <button class="btn btn-lg btn_pers_remove remove_field"><i class="fa fa-trash-o" aria-hidden="true"></i></button>                                                                    
+                                                </div>
+                                            </div>
+                                    </div>
+
+                              
+
                             </div>
                             <div class="items" id="draRows"></div>
+                    </div>
+                            
                             <div class="row">
                                 <div class="col col-md-6 text-center">
                                     <button id="viewReports" id="add" class="btn btn-info add_field_button">Add
