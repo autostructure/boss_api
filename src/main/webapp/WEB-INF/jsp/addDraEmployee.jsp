@@ -48,7 +48,7 @@
                     </div>
                     <div class="container trainBG padTop">
                         <form role="form" data-toggle="validator" class="generalInfo">
-                            <div class="mainAdd dra-entry template">
+                            <div class="mainAdd dra-entry template" hidden>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
@@ -106,7 +106,7 @@
                                 </div>
                                 <hr class="break">
                             </div>
-                            <div class="items"></div>
+                            <div class="items" id="draRows"></div>
                             <div class="row">
                                 <div class="col col-md-6 text-center">
                                     <button id="viewReports" id="add" class="btn btn-info add_field_button">Add

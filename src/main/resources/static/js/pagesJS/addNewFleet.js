@@ -34,7 +34,7 @@ $(document).ready(function () {
         var data = {
             'license':form.find('[name=license]').val(),
             'vin':form.find('[name=vin]').val(),
-            'modelYear':form.find('[name=year]').val(),
+            'modelYear':form.find('[name=modelYear]').val(),
             'make':form.find('[name=make]').val(),
             'modelNumber':form.find('[name=modelNumber]').val(),
             'description':form.find('[name=description]').val()

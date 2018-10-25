@@ -61,14 +61,11 @@
                             <option value="C3" data-filter="C">C3</option>
                         </select>
                         <div hidden><!--Templates-->
-                            <div id="templateButtonList" class="dropdown1">
-                                <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                            <div class="dropdown1 template">
+                                <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                                 <div id="dropList" class="dropdown-content1">
-                                    <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
-                                    <a class="btn-modal btn-modal-approve" data-toggle="modal" data-target="#myModal_approve" href="#">Approve Training</a>
-                                    <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
-                                    <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a>
-                                    <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
+                                    <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=0 class="deleteBtn" id="deleteBtn">Delete DRA</a>
+                                    <a data-toggle="modal" data-target="#myModal_renew" href="#" data-value=0 class="renewBtn" id="renewBtn">Renew DRA</a>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +82,7 @@
                                             <th scope="col">Employee Name</th>
                                             <th scope="col">DRA Title</th>
                                             <th scope="col">Date Assessment</th>
-                                            <th scope="col">Valid Year</th>
+                                            <th scope="col">Valid Until</th>
                                             <th id="stop"></th>
                                         </tr></thead>
                                         <tbody></tbody>
@@ -102,16 +99,16 @@
                                     </div>
                                     <div class="modal-body">
                                         <form id="form_Dra_renew">
-                                            <p>Renew this Dra for <span class='employeeName'></span>?</p>
-                                            <p><span class='title'></span> - <span class='trainingCourse'></span></p>
-                                            
+                                            <p>Renew the DRA "<span class='courseTitle'></span>" for <span class='employeeName'></span>?</p>
                                             <input hidden name='employee.id'>
-                                            <input hidden name='trainingCourseId'>
+                                            <input hidden name='deliberativeRiskAssessmentCourseId'>
+                                            <input hidden name='wiggleRoom'>
+                                            <input hidden name='completeBy'>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn" data-dismiss="modal" id="btn_renew_Dra">Renew</button>
+                                        <button type="button" class="btn" data-dismiss="modal" id="btn_renew_DRA">Renew</button>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +124,7 @@
                                             <h4 class="modal-title">Remove Training</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Remove the DRA "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
+                                            <p>Remove the DRA "<span class='courseTitle'></span>" for <span class='employeeName'></span>?</p>
                                             <p>If you Confirm this, you will have to re-add it.</p>
                                         </div>
                                         <div class="modal-footer">
@@ -148,8 +145,8 @@
         </footer>
         <script src="js/ead.min.js"></script>
 
-        <script src="/js/pagesJS/customFormFunctions.js"></script>
         <script src="/js/bootstrap-datepicker.js"></script>
+        <script src="/js/pagesJS/customFormFunctions.js"></script>
         <script src="/js/pagesJS/ApiCalls.js"></script>
         <script src="/js/pagesJS/ViewRecordedDras.js"></script>
         <script src="/js/pagesJS/personnelPages.js"></script>

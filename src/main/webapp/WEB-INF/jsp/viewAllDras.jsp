@@ -54,11 +54,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Title</th>
-                                            <th scope="col">Category</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Complete By Date</th>
-                                            <th scope="col">Extra Days</th>
-
                                             <th id="stop"></th>
                                         </tr>
                                     </thead>
@@ -84,20 +81,8 @@
                                                 <input type="text" required ID="dra_title" class="form-control dra_title" />
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="dra_category">Dra Category:<span class="reqClass">*</span></label><br/>
-                                                <input type="text" required ID="dra_category" class="form-control dra_category" />
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="dra_wiggleRoom">Extra Days:<span class="reqClass">*</span></label><br>
-                                                <input type="text" required ID="dra_wiggleRoom" class="form-control dra_wiggleRoom" />
-                                            </div>
-                                        </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="dra_CompleteBy">Complete By date:<span class="reqClass"> *</span></label>
@@ -143,20 +128,10 @@
                                                 <input type="text" required ID="dra_title" class="form-control dra_title" />
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="dra_category">Dra Category:<span class="reqClass">*</span></label><br/>
-                                                <input type="text" required ID="dra_category" class="form-control dra_category" />
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="dra_wiggleRoom">Extra Days:<span class="reqClass">*</span></label><br>
-                                                <input type="text" required ID="dra_wiggleRoom" class="form-control dra_wiggleRoom" />
-                                            </div>
-                                        </div>
+
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="dra_CompleteBy">Complete By date:<span class="reqClass"> *</span></label>

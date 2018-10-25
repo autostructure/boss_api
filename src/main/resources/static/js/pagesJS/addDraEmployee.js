@@ -11,8 +11,8 @@ $(document).ready(function () {
         var row = $(".template.dra-entry").clone().attr("id", "nth_row_"+x).removeClass("template");
         console.log($(".template.dra-entry").find("select").clone());
         row.find("input, select").val("");
-        row.appendTo(wrapper);
-    });
+        row.appendTo(wrapper).attr("hidden", false);
+    }).click();
     $('.items').on("click", ".remove_field", function (e) { //user click on remove field
         e.preventDefault();
         $(this).closest('.mainAdd').remove();
@@ -27,6 +27,11 @@ $(document).ready(function () {
         });
         x++;
         $('.items').append(row2);
+    });
+    $('.items').on("click update change", "[name=dateOfAssessment]", function(){
+        var date = CustomFormFunctions.getDateFrom($(this));
+        date.setFullYear(date.getFullYear() + 1)
+        $("[name=dateDue]").val(CustomFormFunctions.formatDate(date, "bootstrap"));
     });
 
     CustomFormFunctions.populateDropDown($("select#draTitle_OG"), "/draCourse", "id", "title", false, function(){onAJAXSuccess("employees")});
@@ -51,46 +56,14 @@ $(document).ready(function () {
             if (ajaxWaits[k] == false) allReturned = false;
         }
         if (allReturned) {
-            $(".add_field_button").click();
+            //$(".add_field_button").click();
         }
     }
-    $('.items').on("change update", "[name=deliberativeRiskAssessmentCourseId], [name=dateOfAssessment]", function() {
-        var group = $(this).closest(".dra-entry");
-        var course = draCourses[group.find("[name=deliberativeRiskAssessmentCourseId]").val()];
-        if (!course) return;
-        console.log(course);
-        var wiggleRoom = course.wiggleRoom;
-        var assessmentDate = CustomFormFunctions.getDateFrom(group.find("[name=dateOfAssessment]").val());
-        var completeBy = new Date(course.completeBy);
-        if (completeBy.getTime() == -68400000) { //31 Dec 1969
-            var dateDue = new Date(assessmentDate);
-            dateDue.setFullYear(assessmentDate.getFullYear() + 1);
-            dateDue = CustomFormFunctions.formatDate(dateDue, "bootstrap");
-            group.find("[name=dateDue]").val(dateDue);
-        } else {
-            var maxDate = new Date(completeBy);
-            maxDate.setFullYear(assessmentDate.getFullYear());
-            console.log(maxDate);
-            if (maxDate < assessmentDate) {
-                maxDate.setFullYear(assessmentDate.getFullYear() + 1);
-            }
-            console.log(maxDate);
-            minDate = new Date(maxDate);
-            var minDate = new Date(maxDate);
-            minDate.setDate(maxDate.getDate() - wiggleRoom);
-            if (minDate <= assessmentDate) {
-                maxDate.setFullYear(maxDate.getFullYear() + 1);
-            }
-            console.log(maxDate);
-            var dateDue = CustomFormFunctions.formatDate(maxDate, "bootstrap");
-            group.find("[name=dateDue]").val(dateDue);
-        }
-    });
     $("#submitV").click(function (e) {
         e.preventDefault();
         var allValid = true;
         var inProgress = 0;
-        $(".mainAdd").each(function(){
+        $(".items .mainAdd").each(function(){
             e.preventDefault();
             var entry = $(this);
             inProgress ++;

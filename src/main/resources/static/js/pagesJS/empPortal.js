@@ -21,9 +21,9 @@ $(document).ready(function() {
     
     function updateProfilePicture() {
         $.ajax({
-            'url':'employeeProfile/'+userId,
-            'type':'GET',
-            'success':function(json) {
+            'url': 'employeeProfile/' + userId,
+            'type': 'GET',
+            'success': function(json) {
                 var photoId = json.profilePicture;
                 $('.empPhoto').attr('src', photoId ? ("/profilePicture/" + photoId) : "/img/person.jpg" );
                 if (photoId) {
@@ -80,8 +80,16 @@ $(document).ready(function() {
                     for (k in json) {
                         trainingCourses[json[k].id] = json[k];
                     }
+                    trainingCourses[-1] = {
+                        'category': 'Uh Oh!',
+                        'title': 'Invalid Course',
+                        'description': 'This course has been removed.',
+                    }
                     for (k in trainings) {
                         var tr = trainings[k];
+                        if (!trainingCourses[tr.trainingCourseId]) {
+                            tr.trainingCourseId = -1;
+                        }
                         var course = trainingCourses[tr.trainingCourseId];
                         tr.category = course.category;
                         tr.title = course.title;
@@ -98,6 +106,56 @@ $(document).ready(function() {
             console.log(a.responseText);
         },
     });
+
+    // DRAs //
+    $.ajax({
+        url: "/dra?employeeId=" + userId,
+        contentType: "application/json",
+        dataType: 'json',
+        cache: false,
+        type: 'GET',
+        timeout: 600000,
+        success: function(dras) { // trainings ~~ dras
+            $.ajax({
+                url: "/draCourse",
+                contentType: "application/json",
+                dataType: 'json',
+                cache: false,
+                type: 'GET',
+                timeout: 600000,
+                success: function(json) {
+                    var trainingCourses = {};
+                    for (k in json) {
+                        trainingCourses[json[k].id] = json[k];
+                    }
+                    trainingCourses[-1] = {
+                        'category': 'Uh Oh!',
+                        'title': 'Invalid Course',
+                        'description': 'This course has been removed.',
+                    }
+                    for (k in dras) {
+                        var dra = dras[k];
+                        if (!trainingCourses[dra.deliberativeRiskAssessmentCourseId]) {
+                            dra.deliberativeRiskAssessmentCourseId = -1;
+                        }
+                        var course = trainingCourses[dra.deliberativeRiskAssessmentCourseId];
+                        dra.category = course.category;
+                        dra.title = course.title;
+                        dra.description = course.description;
+                        dra.dateOfTraining = dra.dateOfAssessment;
+                    }
+                    populateDRATable(dras);
+                },
+                error: function(a, b, c) {
+                    console.log(a.responseText);
+                },
+            });
+        },
+        error: function(a, b, c) {
+            console.log(a.responseText);
+        },
+    });
+
     function populateTrainingTable(jsonData) {
         console.log('populateDataTable');
         console.log(jsonData);
@@ -115,13 +173,15 @@ $(document).ready(function() {
         }
 
         var table = $('#tblTraining').DataTable({
-            'order':[[4, "asc"]],
-            'bPaginate':false,
+            'order': [
+                [4, "asc"]
+            ],
+            'bPaginate': false,
+            //'scrollY': 250,
             'data': jsonData,
             'dom':'Bfti',
             'columns': [
                 {'data': "employee.nameCode", "visible":false},
-                {'data': "category"},
                 {'data': "title",
                     'render':function(data, type, row) {
                         return "<span data-toggle='tooltip' data-placement='top' title='"+row.description+"'>"+data+"</span>";
@@ -302,6 +362,207 @@ $(document).ready(function() {
             });
         });
     }
+
+    function populateDRATable(jsonData) {
+        console.log('populateDataTable - DRA');
+        console.log(jsonData);
+        var latestTraining = {};
+        for (k in jsonData) {
+            var v = jsonData[k];
+            var key = v.employee.id + "_" + v.deliberativeRiskAssessmentCourseId;
+            var otherId = latestTraining[key];
+            if (!otherId || jsonData[otherId].dateOfAssessment < v.dateOfAssessment) {
+                latestTraining[key] = k;
+            }
+        }
+        for (key in latestTraining) {
+            jsonData[latestTraining[key]].isLatest = true;
+        }
+
+        var table = $('#tblDRA').DataTable({
+            'order': [
+                [3, "asc"]
+            ],
+            'bPaginate': false,
+            //'scrollY': 250,
+            'data': jsonData,
+            'dom': 'Bfti',
+            'columns': [
+                { 'data': "employee.nameCode", "visible": false },
+                {
+                    'data': "title",
+                    'render': function(data, type, row) {
+                        return "<span data-toggle='tooltip' data-placement='top' title='" + row.description + "'>" + data + "</span>";
+                    }
+                },
+                {
+                    'data': "dateOfAssessment",
+                    "render": function(data, type, row) {
+                        if (type == 'sort') return data;
+                        return CustomFormFunctions.formatDate(data, "bootstrap");
+                    }
+                },
+                {
+                    'data': "dateDue",
+                    "render": function(data, type, row) {
+                        var date = CustomFormFunctions.getDateFrom(data);
+                        if (type != 'display') return date.getTime();
+                        var one_day = 1000 * 60 * 60 * 24;
+                        var dateStr = CustomFormFunctions.formatDate(date, "bootstrap");
+                        var daysUntilDue = (date - new Date()) / one_day;
+                        console.log(date);
+                        if (!row.isLatest) {
+                            return "<span class='text-success'>Already Renewed</span>";
+                        } else if (daysUntilDue < 1) {
+                            return "<span class='bg-danger text-white'>" + dateStr + "</span><br>Overdue";
+                        } else if (daysUntilDue < training_config.dueWithinDays) {
+                            return "<span class='bg-warning'>" + dateStr + "</span><br>Up For Renewal";
+                        } else {
+                            return "<span>" + dateStr + "</span>";
+                        }
+                    }
+                },
+                {
+                    'data': "isLatest",
+                    "visible": false,
+                    "render": function(data, type, row) {
+                        return data ? "isLatest" : "";
+                    },
+                    "orderable": false,
+                },
+            ],
+            'buttons': [
+                // {
+                //     text: 'Print <i class="fa fa-lg fa-print"></i>',
+                //     extend: 'print',
+                //     exportOptions: {
+                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                //     },
+                //     className: 'table-btns print-btn'
+                // },
+                // {
+                //     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
+                //     extend: 'excel',
+                //     exportOptions: {
+                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                //     },
+                //     className: 'table-btns excel-btn'
+                // },
+                // {
+                //     text: 'Add <i class="fa fa-lg fa-plus"></i>',
+                //     action: function () {
+                //         window.location.href = '/addTrainingEmployee';
+                //     },
+                //     className: 'table-btns add-btn'
+                // },
+                {
+                    text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
+                    action: function() {
+                        window.location.reload();
+                    },
+                    className: 'table-btns refresh-btn'
+                },
+                {
+                    text: '<label for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
+                    action: function() {
+                        $("#viewOld").click();
+                        var show = $("#viewOld")[0].checked;
+                        console.log(show);
+                        var eye = $('label[for="viewOld"] i');
+                        if (show) {
+                            table.columns(5).search('').draw();
+                            eye.addClass("fa-eye");
+                            eye.removeClass("fa-eye-slash");
+                        } else {
+                            table.columns(5).search('isLatest').draw();
+                            eye.addClass("fa-eye-slash");
+                            eye.removeClass("fa-eye");
+                        }
+                    },
+                    className: 'table-btns view-btn'
+                },
+            ],
+        });
+        table.button('1').trigger();
+        table.button('1').trigger();
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(".btn-modal").on("click", function() {
+            var info = $(this).data("training");
+            $(".trainingId").val(info.id);
+            $(".trainingCourse").text(info.title);
+            $(".employeeName").text(info.employee.nameCode);
+            populateCertificateList();
+        });
+        $(".btn-modal-renew").on("click", function() {
+            populateRenewFields($(this).data("training"));
+        });
+        $("#btn_approve_training").on("click", function() {
+            var id = $(this).closest("form").find(".trainingId").val();
+            CustomFormFunctions.putPartialInfo("/training", id, { 'approvedBy': { 'id': userId } }, function() { window.location.reload() });
+        });
+        $("#form_training_upload_file").on("change update", function() {
+            $("#form_training_upload_description").val(this.files[0].name);
+        });
+        $("#btn_add_training_docs").on("click", function() {
+            var form = $("#form_training_upload");
+            var data = new FormData(form[0]);
+            var id = form.find('.trainingId').val();
+            $.ajax({
+                url: "/certificate?trainingId=" + id,
+                type: "POST",
+                enctype: 'multipart/form-data',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function(data) {
+                    $("#form_training_upload_file, #form_training_upload_description").val("");
+                    populateCertificateList();
+                },
+                error: function(e) {
+                    console.log(e.responseJSON);
+                }
+            });
+        });
+        $("#btn_remove_training").on("click", function() {
+            var id = $(this).closest("form").find(".trainingId").val();
+            $.ajax({
+                'url': "/training/" + id,
+                'type': 'DELETE',
+                'success': function() { window.location.reload() },
+                'error': function(a, b, c) {
+                    console.log(a.responseJSON);
+                }
+            });
+        });
+        $("#btn_renew_training").on("click", function() {
+            var data = {
+                'employee': {
+                    'id': $("#form_training_renew [name='employee.id']").val(),
+                },
+                'trainingCourseId': $("#form_training_renew [name='trainingCourseId']").val(),
+                'validUntil': CustomFormFunctions.formatDate("#form_training_renew [name='validUntil']"),
+                'dateOfTraining': CustomFormFunctions.formatDate("#form_training_renew [name='dateOfTraining']"),
+            }
+            console.log(JSON.stringify(data));
+            $.ajax({
+                'url': '/training',
+                'type': 'POST',
+                'contentType': "application/json",
+                'data': JSON.stringify(data),
+                'success': function() {
+                    window.location.reload();
+                },
+                'error': function(a, b, c) {
+                    console.log(a.responseJSON);
+                }
+            });
+        });
+    }
+
     $("#form_training_renew [name='dateOfTraining']").change(function() {
         var date1 = CustomFormFunctions.getDateFrom(this.value);
         var date2 = new Date(date1);

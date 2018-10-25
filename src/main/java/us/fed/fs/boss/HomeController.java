@@ -125,7 +125,7 @@ public class HomeController {
     public String viewFleet() {
         return "viewFleet";
     }      
-    @RequestMapping("/viewEditFleet")
+    @RequestMapping("/viewEditFleet/{id}")
     public String viewEditFleet() {
         return "viewEditFleet";
     }         

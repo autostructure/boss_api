@@ -377,3 +377,38 @@ INSERT INTO dbo.training(training_course_id, date_of_training, valid_until, appr
 (4, '2018-06-03', '2021-06-03', null, 46),
 (7, '2018-09-03', '2021-09-03', null, 47),
 (7, '2018-09-03', '2021-09-03', null, 46);
+
+INSERT INTO dbo.deliberative_risk_assessment_course(category, title, description, complete_by, wiggle_room) VALUES
+('Machines', 'Aircraft', 'Must be completed before participation', '1969-12-31', 0),
+('Machines', 'ATV', 'Must be completed before participation', '1969-12-31', 0),
+('Field', 'Camping', 'Must be completed before participation', '1969-12-31', 0),
+('Machines', 'Chain Saw', 'Must be completed before participation', '1969-12-31', 0),
+('Machines', 'Driving and Towing', 'Must be completed before April 30th', '2018-04-30', 90),
+('Field', 'Field Work', 'Must be completed before June 30th or before particiaption', '2018-06-30', 90),
+('Machines', 'Fire Arm', 'Must be completed before participation', '1969-12-31', 0),
+('Machines', 'Motorbike', 'Must be completed before participation', '1969-12-31', 0),
+('Office', 'Office Work', 'Must be completed before January 31st', '2018-01-31', 90),
+('Machines', 'Paddlecraft', 'Must be completed before participation', '1969-12-31', 0),
+('Machines', 'Stock Use', 'Must be completed before participation', '1969-12-31', 0),
+('Field', 'Trailer Living', 'Must be completed before participation', '1969-12-31', 0),
+('Machines', 'Winter Driving', 'Must be completed before December 15th', '2018-12-15', 90),
+('Field', 'Working Alone - Field Work', 'Must be completed before participation', '1969-12-31', 0),
+('Field', 'Living with Bears', 'Must be completed before traveling to Narnia', '1969-12-31', 0);
+
+INSERT INTO dbo.deliberative_risk_assessment(deliberative_risk_assessment_course_id, date_of_assessment, date_due, employee) VALUES
+(4, '2017-06-03', '2019-06-03', 47),
+(4, '2017-06-03', '2019-06-03', 46),
+(7, '2017-09-01', '2018-09-01', 47),
+(7, '2017-09-03', '2018-09-03', 46),
+(4, '2018-06-03', '2019-06-03', 47),
+(4, '2018-06-03', '2019-06-03', 46),
+(7, '2018-09-03', '2019-09-03', 47),
+(7, '2018-09-03', '2019-09-03', 46),
+(5, '2017-06-03', '2018-09-03', 47),
+(5, '2017-06-03', '2018-09-03', 46),
+(5, '2018-09-03', '2019-09-03', 47),
+(5, '2018-09-03', '2019-09-03', 46),
+(2, '2018-06-03', '2019-06-03', 47),
+(2, '2018-06-03', '2019-06-03', 46),
+(2, '2018-09-03', '2019-09-03', 47),
+(2, '2018-09-03', '2019-09-03', 46);

@@ -103,7 +103,7 @@
                                     <div class="modal-body">
                                         <form id="form_training_renew">
                                             <p>Renew this class for <span class='employeeName'></span>?</p>
-                                            <p><span class='category'></span> - <span class='trainingCourse'></span></p>
+                                            <p><span class='trainingCourse'></span></p>
                                             <p><span class='description'></span></p>
                                             <input hidden name='employee.id'>
                                             <input hidden name='trainingCourseId'>

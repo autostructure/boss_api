@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/css/pagesCSS/empPortal.css">
     <link rel="stylesheet" href="/css/modal.css">
-    <link rel="stylesheet" href="/css/pagesCSS/viewTraining.css">
+    <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
 
 </head>
 
@@ -42,7 +42,7 @@
                                     <a class="nav-link" id="property-tab" data-toggle="tab" href="#property" role="tab" aria-controls="property" >Fleet Usage</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#trainingCerts" role="tab" aria-controls="trainingCerts" >Training/Certs</a>
+                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#trainingCerts" role="tab" aria-controls="trainingCerts" >Training/DRA</a>
                                 </li>
 
                                                             
@@ -54,7 +54,7 @@
                                 <div class="row submitChangesTemplate" hidden>
                                     <div class="col col-md-6 offset-md-3">
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-lg btn-success submitChanges" value="Save Changes">
+                                            <!--input type="submit" class="btn btn-lg btn-success submitChanges" value="Save Changes"-->
                                         </div>
                                     </div>
                                 </div>
@@ -127,11 +127,27 @@
                                     <table id="tblTraining" class="usa-table-borderless display" style="width:100%">
                                         <thead><tr>
                                             <th scope="col">Employee Namecode</th>
-                                            <th scope="col">Category</th>
                                             <th scope="col">Training Title</th>
                                             <th scope="col">Date Completed</th>
                                             <th scope="col">Valid Until</th>
                                             <th scope="col">Approved By</th>
+                                            <th id="stop"></th>
+                                        </tr></thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <h2 class="title2">DRA List</h2>
+                                <div id="showHide">
+                                    <div class="form-check" id="viewOldCheckbox">
+                                        <input type="checkbox" id="viewOld_dra" class="form-check-input">
+                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
+                                    </div>
+                                    <table id="tblDRA" class="usa-table-borderless display" style="width:100%">
+                                        <thead><tr>
+                                            <th scope="col">Employee Namecode</th>
+                                            <th scope="col">Training Title</th>
+                                            <th scope="col">Date Completed</th>
+                                            <th scope="col">Valid Until</th>
                                             <th id="stop"></th>
                                         </tr></thead>
                                         <tbody></tbody>

@@ -58,7 +58,8 @@
                                         <thead>
                                             <tr>
 
-                                                <th scope="col">Employee</th>
+                                                <th scope="col">Last Name</th>
+                                                <th scope="col">First Name</th>
                                                 <th scope="col">Supervisor</th>
                                                 <th scope="col">Duty Station</th>
                                                 <th scope="col">Satellite Phone</th>
@@ -285,6 +286,7 @@
         </footer>
         <script src="js/ead.min.js"></script>
 
+        <script src="js/pagesJS/ApiCalls.js"></script>
         <script src="js/pagesJS/viewAllEmployees.js"></script>
         <script src="js/pagesJS/personnelPages.js"></script>
 

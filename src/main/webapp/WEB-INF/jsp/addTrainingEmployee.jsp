@@ -49,50 +49,52 @@
 
                                 <div class="items">
                                 </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Employee Name<span class="reqClass">*</span></label><br/>
-                                            <select class="form-control" name="tName" required id="tName" placeholder="Select Employee Name" aria-label="Employee">	
-                                            </select>
+                                <div class="template mainAdd" hidden>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Employee Name<span class="reqClass">*</span></label><br/>
+                                                <select class="form-control" name="tName" required id="tName" placeholder="Select Employee Name" aria-label="Employee">	
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="tTitle">Title<span class="reqClass"> *</span></label>
+                                                <select class="form-control" name="tTitle" required id="tTitle" placeholder="Training Title" aria-label="Training Title">
+                                                </select>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="tDate">Date of Training<span class="reqClass"> *</span></label>
+                                                <div class="input-group date" data-provide="datepicker">
+                                                    <input type="text" required id="tDate" name="tDate" class="form-control">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                    </div>                                                                    
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>  
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="tValidUntil">Valid Until<span class="reqClass"> *</span></label>
+                                                <div class="input-group date" data-provide="datepicker">
+                                                    <input type="text" required id="tValidUntil" name="tValidUntil" class="form-control">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+                                                    </div>                                                                    
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>  
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="tTitle">Title<span class="reqClass"> *</span></label>
-                                            <select class="form-control" name="tTitle" required id="tTitle" placeholder="Training Title" aria-label="Training Title">
-                                            </select>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="tValidUntil">Valid Until<span class="reqClass"> *</span></label>
-                                            <div class="input-group date" data-provide="datepicker">
-                                                <input type="text" required id="tValidUntil" name="tValidUntil" class="form-control">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                </div>                                                                    
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>  
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="tDate">Date of Training<span class="reqClass"> *</span></label>
-                                            <div class="input-group date" data-provide="datepicker">
-                                                <input type="text" required id="tDate" name="tDate" class="form-control">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
-                                                </div>                                                                    
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>  
-                                    </div>
+                                    <button id="copyRow" class="copy_field btn_pers_copy">Copy Row <i class="fa fa-arrows-v" aria-hidden="true" style="padding-left: 10px"></i></button>
+                                    <button class="remove_field btn_pers_remove">Remove <i class="fa fa-minus-square-o" aria-hidden="true" style="padding-left:10px"></i></button>
                                 </div>
+                            </form>
                                 <!--<button class="btn copy_main" id="mainCopy">Copy Row</button>-->
                         </div>
 
@@ -122,7 +124,7 @@
                                         <h4 class="modal-title"></h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Adding the training to the employees was successful</p>
+                                        <p>Loading...</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn" data-dismiss="modal">close</button>
@@ -198,6 +200,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
         <!--<script src="js/pageJS/ApiCalls.js"></script>-->
         <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/pagesJS/customFormFunctions.js"></script>
+        <script src="js/pagesJS/ApiCalls.js"></script>
         <script src="js/pagesJS/addTrainingEmployee.js"></script>
         <script src="js/pagesJS/personnelPages.js"></script>
 

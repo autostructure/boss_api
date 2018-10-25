@@ -50,17 +50,7 @@ $(document).ready(function() {
         console.log('populateDataTable');
 
         var latestDra = {};
-        /*   for (k in jsonData) {
-               var v = jsonData[k];
-               var key = v.employeeProfile.id+"_"+v.id;
-               var otherId = latestDra[key];
-               if (!otherId || jsonData[otherId].dateOfAssessment < v.dateOfAssessment) {
-                   latestDra[key] = k;
-               }
-           }
-           for (key in latestDra) {
-               jsonData[latestDra[key]].isLatest = true;
-           }*/
+
 
         var table = $('#allDrasCourses').DataTable({
             // 'order':[[4, "asc"]],
@@ -70,7 +60,6 @@ $(document).ready(function() {
             'columns': [{
                     'data': "title"
                 },
-                { 'data': "category" },
                 { 'data': "description" },
                 {
                     'data': "completeBy",
@@ -78,7 +67,6 @@ $(document).ready(function() {
                         return CustomFormFunctions.formatDate(data, 'mm/dd/yyyy');
                     }
                 },
-                { 'data': "wiggleRoom" },
                 {
                     'data': null,
                     "render": function(data, type, row) {
@@ -100,7 +88,7 @@ $(document).ready(function() {
                     text: 'Print <i class="fa fa-lg fa-print"></i>',
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2]
                     },
                     className: 'table-btns print-btn'
                 },
@@ -108,7 +96,7 @@ $(document).ready(function() {
                     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                     extend: 'excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2]
                     },
                     className: 'table-btns excel-btn'
                 },
@@ -144,16 +132,16 @@ $(document).ready(function() {
         $('#myModal_add').on('click', '#myModal_addYes', function() {
             var modal = $('#myModal_add');
             var dra_title = modal.find('div.modal-body div.row div.col div.form-group input.dra_title').val();
-            var dra_wiggleRoom = modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val();
+            //var dra_wiggleRoom = modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val();
             var dra_CompleteBy = modal.find('div.modal-body div.row div.col div.form-group input.dra_CompleteBy').val();
-            var dra_Category = modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val();
+            //var dra_Category = modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val();
             var dra_description = modal.find('div.modal-body div.row div.col div.form-group input.dra_Description').val();
 
-            draCourseObj.category = dra_Category;
+            //draCourseObj.category = dra_Category;
             draCourseObj.completeBy = getCorrectDateFormat(dra_CompleteBy);
             draCourseObj.title = dra_title;
             draCourseObj.description = dra_description;
-            draCourseObj.wiggleRoom = parseInt(dra_wiggleRoom);
+            //draCourseObj.wiggleRoom = parseInt(dra_wiggleRoom);
 
             $.ajax({
                 url: '/draCourse',
@@ -183,8 +171,8 @@ $(document).ready(function() {
                     var modal = $('#myModal_edit');
 
                     modal.find('div.modal-body div.row div.col div.form-group input.dra_title').val(json.title);
-                    modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val(json.category);
-                    modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val(json.wiggleRoom);
+                    //modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val(json.category);
+                    //modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val(json.wiggleRoom);
                     modal.find('div.modal-body div.row div.col div.form-group input.dra_CompleteBy').val(CustomFormFunctions.formatDate(json.completeBy, 'mm/dd/yyyy'));
                     modal.find('div.modal-body div.row div.col div.form-group input.dra_Description').val(json.description);
                 },
@@ -198,14 +186,14 @@ $(document).ready(function() {
 
             var modal = $('.myModal_edit');
             var title = modal.find('div.modal-body div.row div.col div.form-group input.dra_title').val();
-            var category = modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val();
-            var wiggleRoom = modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val();
+            //var category = modal.find('div.modal-body div.row div.col div.form-group input.dra_category').val();
+            //var wiggleRoom = modal.find('div.modal-body div.row div.col div.form-group input.dra_wiggleRoom').val();
             var completeBy = modal.find('div.modal-body div.row div.col div.form-group input.dra_CompleteBy').val();
             var description = modal.find('div.modal-body div.row div.col div.form-group input.dra_Description').val();
 
             draCourseObj.title = title;
-            draCourseObj.category = category;
-            draCourseObj.wiggleRoom = wiggleRoom;
+            //draCourseObj.category = category;
+            //draCourseObj.wiggleRoom = wiggleRoom;
             draCourseObj.completeBy = getCorrectDateFormat(completeBy);
             draCourseObj.description = description;
             draCourseObj.id = selected_row;

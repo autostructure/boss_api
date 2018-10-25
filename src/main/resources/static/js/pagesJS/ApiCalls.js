@@ -26,6 +26,7 @@ function makeAjaxCall(_url, methodType, _data) {
                 type: methodType,
                 url: _url,
                 data: _data,
+                contentType: "application/json",
                 success: function (json) {
 
                     resolve(json);

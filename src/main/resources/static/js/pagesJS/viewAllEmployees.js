@@ -11,32 +11,22 @@ var tempData = [
     {"nameCode": "BTHOMAS", "lastName": "Thomas", "firstName": "Bear", "supervisor": "Cindy", "officePhone": "665-655-6566", "cellPhone": "222-232-4252", "dutyStation": "Mira, CA", "email": "bgrizz@fs.fed.us"},
 ];
 
-
-var tempAPI = 'http://localhost:8090/employeeProfile';//jobCode?financialYear=;
-var API = 'http://localhost:8090';
-
 $(document).ready(function () {
     $('#employees').addClass('show');
     $('#employees a[href="/viewAllEmployees"]').addClass('highlight');
 
-    $.ajax({
-        url: tempAPI,
-        contentType: "application/json",
-        dataType: 'json',
-        cache: false,
-        type: 'GET',
-        timeout: 600000,
-        success: function (json) {
-            populateDataTable(json);
+    makeAjaxCall("/employeeProfile", "GET", null).then(
+        function (json) {
+            var employees = [];
+            for (k in json) {
+                employees[json[k].id] = json[k];
+            }
+            populateDataTable(json, employees);
             //populateDataTable(tempData);
-        },
-        error: function (a, b, c) {
-            console.log(a.responseText);
-        },
-        async: false
-    });
+        }
+    );
 
-    function populateDataTable(jsonData) {
+    function populateDataTable(jsonData, employees) {
 
         console.log('populateDataTable');
         console.log(jsonData);
@@ -49,13 +39,17 @@ $(document).ready(function () {
             // ajax:{"url":tempAPI + yr,"dataSrc":""},
             data: jsonData,
             columns: [
-                {
-                    'data': null,
-                    'render': function(data, type, row) {
-                        return data.lastName + ', ' + data.firstName;
+                {data: "lastName"},
+                {data: "firstName"},
+                {data: "supervisor",
+                    "render": function(data, type, row) {
+                        if (data == null) {
+                            return "n/a";
+                        }
+                        var fullSuperObject = employees[data.id];
+                        return fullSuperObject.lastName+", "+fullSuperObject.firstName;
                     }
                 },
-                {data: "supervisor"},
                 {data: "dutyStation"},
                 {data: null,
                     "render": function(data, type, row){
@@ -71,7 +65,7 @@ $(document).ready(function () {
                         <div class="dropdown1">
                             <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                             <div id="dropList" class="dropdown-content1">
-                                <a href="` + API + `/editEmployee/` + row.nameCode + `" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit Employee</a>
+                                <a href="/editEmployee/` + row.id + `" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit Employee</a>
                                 <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete Employee</a>
                                 <a data-toggle="modal" data-target="#myModal_contact" href="#" data-value=` + row.id + ` class="contactBtn" id="contactBtn">Contact Info</a>
                             </div>
@@ -102,7 +96,7 @@ $(document).ready(function () {
                 {
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function () {
-                        $('#addModal').modal('show');
+                        window.location = "/addNewEmployee";
                     },
                     className: 'table-btns add-btn'
                 },

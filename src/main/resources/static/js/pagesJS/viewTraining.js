@@ -19,99 +19,33 @@ $(document).ready(function() {
             //console.log(goodOptions.val());
         }
     });
-    $.ajax({
-        url: "/training",
-        contentType: "application/json",
-        dataType: 'json',
-        cache: false,
-        type: 'GET',
-        timeout: 600000,
-        success: function(trainings) {
-            $.ajax({
-                url: "/trainingCourse",
-                contentType: "application/json",
-                dataType: 'json',
-                cache: false,
-                type: 'GET',
-                timeout: 600000,
-                success: function(json) {
-                    var trainingCourses = {};
-                    for (k in json) {
-                        trainingCourses[json[k].id] = json[k];
-                    }
-                    for (k in trainings) {
-                        var tr = trainings[k];
-                        var course = trainingCourses[tr.trainingCourseId];
-                        tr.category = course.category;
-                        tr.title = course.title;
-                        tr.description = course.description;
-                    }
+    
+    var p0 = makeAjaxCall("/training", "GET", null);
+    var p1 = makeAjaxCall("/trainingCourse", "GET", null);
+    var p2 = makeAjaxCall("/employeeProfile", "GET", null);
+    Promise.all([p0,p1,p2]).then(function(results){
+        var trainings = results[0];
+        var CourseRes = results[1];
+        var employeeRes = results[2];
+        var trainingCourses = [{id:0,title:"Unknown",description:"Something's not right..."}];
+        var employees = [{id:0,lastName:"Unapproved",firstName:""}];
+        for (var i in CourseRes) {
+            var c = CourseRes[i];
+            trainingCourses[c.id] = c;
+        }
+        for (var i in employeeRes) {
+            var c = employeeRes[i];
+            employees[c.id] = c;
+        }
+        for (var i in trainings) {
+            var tr = trainings[i];
+            tr.course = trainingCourses[tr.trainingCourseId?tr.trainingCourseId:0];
+            tr.employee = employees[tr.employee?tr.employee.id:0];
+            tr.approvedBy = employees[tr.approvedBy?tr.approvedBy.id:0];
+        }
+        populateDataTable(trainings);
+    }) 
 
-
-                    training_list = [];
-                    $.each(trainings, function(index, value) {
-
-
-                        var _emp;
-                        $.ajax({
-                            url: "/employeeProfile/" + value.employee.id,
-                            type: "GET",
-                            cache: false,
-                            async: false,
-                            timeout: 600000,
-                            success: function(json) {
-                                _emp = json;
-                            },
-                            error: function(a, b, c) {
-                                console.log(a.responseText);
-                            }
-                        });
-
-                        var val = value;
-                        val.employee = _emp;
-                        training_list.push(val);
-                    });
-
-                    training_list_ = [];
-                    $.each(trainings, function(index, value) {
-                        var _emp;
-                        if (value.approvedBy != undefined || value.approvedBy != null) {
-                            if (value.approvedBy.id != null) {
-                                $.ajax({
-                                    url: "/employeeProfile/" + value.approvedBy.id,
-                                    type: "GET",
-                                    cache: false,
-                                    async: false,
-                                    timeout: 600000,
-                                    success: function(json) {
-                                        _emp = json;
-                                        
-                                    },
-                                    error: function(a, b, c) {
-                                        console.log(a.responseText);
-                                    }
-                                });
-
-                                var val = value;
-                                val.approvedBy = _emp;
-                                training_list_.push(val);
-                            }
-                        }
-                    });
-
-                    
-                    populateDataTable(training_list_);
-
-                },
-                error: function(a, b, c) {
-                    console.log(a.responseText);
-                },
-            });
-        },
-        error: function(a, b, c) {
-            console.log(a.responseText);
-        },
-    });
 
     function populateDataTable(jsonData) {
         console.log('populateDataTable');
@@ -147,7 +81,7 @@ $(document).ready(function() {
                 // { 'data': 'supervisor' },
 
                 {
-                    'data': "title",
+                    'data': "course.title",
                     'render': function(data, type, row) {
                         return "<span data-toggle='tooltip' data-placement='top' title='" + row.description + "'>" + data + "</span>";
                     }
@@ -190,6 +124,7 @@ $(document).ready(function() {
                 },
                 {
                     'data': "approvedBy.nameCode",
+                    'visible': false,
                     "render": function(data, type, row) {
                         if (!data) {
                             return "<span class='text-danger'>Unapproved</span>";
