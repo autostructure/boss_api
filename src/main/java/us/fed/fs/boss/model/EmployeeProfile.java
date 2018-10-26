@@ -80,6 +80,10 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private String cellPhone;
 
+    @Column(name = "OfficePhone")
+    @JsonView(Views.Internal.class)
+    private String officePhone;    
+
     @Column(name = "PersonalEmail")
     @JsonView(Views.Internal.class)
     private String personalEmail;
@@ -182,10 +186,7 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "WeightPounds")
     private Short weightPounds;
 
-    @Column(name = "RoomNumber")
-    @JsonView(Views.Internal.class)
-    private String roomNumber;
-    
+   
     @Column(name = "FsEmail")
     private String fsEmail;
     
@@ -233,6 +234,14 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private String paymentPlan;
 
+    @Column(name = "addressStreet1")
+    @JsonView(Views.Internal.class)
+    private String addressStreet1;   
+
+    @Column(name = "addressStreet2")
+    @JsonView(Views.Internal.class)
+    private String addressStreet2;      
+
     @Column(name = "addressState")
     @JsonView(Views.Internal.class)
     private String addressState;
@@ -260,6 +269,78 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "otherIdentifyingFeatures")
     @JsonView(Views.Internal.class)
     private String otherIdentifyingFeatures;
+
+    // medical tab info
+    @Column(name = "insuranceName")
+    @JsonView(Views.Internal.class)
+    private String insuranceName;    
+
+    @Column(name = "groupNumber")
+    @JsonView(Views.Internal.class)
+    private String groupNumber;      
+
+    @Column(name = "idNumber")
+    @JsonView(Views.Internal.class)
+    private String idNumber;     
+
+    @Column(name = "insurancePhone")
+    @JsonView(Views.Internal.class)
+    private String insurancePhone; 
+
+    @Column(name = "allergies")
+    @JsonView(Views.Internal.class)
+    private String allergies;    
+
+    @Column(name = "doctorsName")
+    @JsonView(Views.Internal.class)
+    private String doctorsName;         
+    
+    @Column(name = "doctorsStreetAddress")
+    @JsonView(Views.Internal.class)
+    private String doctorsStreetAddress;   
+
+    @Column(name = "doctorsCity")
+    @JsonView(Views.Internal.class)
+    private String doctorsCity;    
+
+    @Column(name = "doctorsState")
+    @JsonView(Views.Internal.class)
+    private String doctorsState;  
+
+    @Column(name = "doctorsZip")
+    @JsonView(Views.Internal.class)
+    private String doctorsZip; 
+
+    @Column(name = "doctorsPhone")
+    @JsonView(Views.Internal.class)
+    private String doctorsPhone;   
+
+    @Column(name = "dentistsName")
+    @JsonView(Views.Internal.class)
+    private String dentistsName;         
+    
+    @Column(name = "dentistsStreetAddress")
+    @JsonView(Views.Internal.class)
+    private String dentistsStreetAddress;   
+
+    @Column(name = "dentistsCity")
+    @JsonView(Views.Internal.class)
+    private String dentistsCity;    
+
+    @Column(name = "dentistsState")
+    @JsonView(Views.Internal.class)
+    private String dentistsState;  
+
+    @Column(name = "dentistsZip")
+    @JsonView(Views.Internal.class)
+    private String dentistsZip; 
+
+    @Column(name = "dentistsPhone")
+    @JsonView(Views.Internal.class)
+    private String dentistsPhone;   
+
+    // end of medical info                
+         
 
     @Temporal(TemporalType.DATE)
     @JsonView(Views.Internal.class)
@@ -707,19 +788,6 @@ public class EmployeeProfile implements Serializable {
         this.title = title;
     }
 
-    /**
-     * @return the roomNumber
-     */
-    public String getRoomNumber() {
-        return roomNumber;
-    }
-
-    /**
-     * @param roomNumber the roomNumber to set
-     */
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
 
     /**
      * @return the payPeriodsLeft
@@ -860,6 +928,34 @@ public class EmployeeProfile implements Serializable {
     public void setAddressCity(String addressCity) {
         this.addressCity = addressCity;
     }
+
+    /**
+     * @return the addressStreet1
+     */
+    public String getAddressStreet1() {
+        return addressStreet1;
+    }
+
+    /**
+     * @param addressStreet1 the addressStreet1 to set
+     */
+    public void setaddressStreet1(String addressStreet1) {
+        this.addressStreet1 = addressStreet1;
+    }    
+
+    /**
+     * @return the addressStreet2
+     */
+    public String getaddressStreet2() {
+        return addressStreet2;
+    }
+
+    /**
+     * @param addressStreet2 the addressStreet2 to set
+     */
+    public void setaddressStreet2(String addressStreet2) {
+        this.addressStreet2 = addressStreet2;
+    }       
 
     /**
      * @return the addressState
@@ -1127,4 +1223,276 @@ public class EmployeeProfile implements Serializable {
     public void setSatPhone(String satPhone) {
         this.satPhone = satPhone;
     }
+
+    /**
+     * @return the satPhone
+     */
+    public String getOfficePhone() {
+        return officePhone;
+    }
+
+    /**
+     * @param officePhone the satPhone to set
+     */
+    public void setOfficePhone(String officePhone) {
+        this.officePhone = officePhone;
+    } 
+
+    // start of medical info _____________________________________________________________________________________________________
+
+    // @Column(name = "insuranceName")
+    // @Column(name = "groupNumber")
+    // @Column(name = "idNumber")
+    // @Column(name = "insurancePhone")
+    // @Column(name = "allergies")
+    // @Column(name = "doctorsName")
+    // @Column(name = "doctorsStreetAddress") 
+    // @Column(name = "doctorsCity")   
+    // @Column(name = "doctorsState") 
+    // @Column(name = "doctorsZip")
+    // @Column(name = "doctorsPhone") 
+    // @Column(name = "dentistsName")       
+    // @Column(name = "dentistsStreetAddress")  
+    // @Column(name = "dentistsCity")
+    // @Column(name = "dentistsState")
+    // @Column(name = "dentistsZip")
+    // @Column(name = "dentistsPhone")
+ 
+    /**
+     * @return the satPhone
+     */
+    public String getinsuranceName() {
+        return insuranceName;
+    }
+
+    /**
+     * @param insuranceName the satPhone to set
+     */
+    public void setinsuranceName(String insuranceName) {
+        this.insuranceName = insuranceName;
+    } 
+
+    /**
+     * @return the groupNumber
+     */
+    public String getgroupNumber() {
+        return groupNumber;
+    }
+
+    /**
+     * @param groupNumber the groupNumber to set
+     */
+    public void setgroupNumber(String groupNumber) {
+        this.groupNumber = groupNumber;
+    }     
+
+    /**
+     * @return the idNumber
+     */
+    public String getidNumber() {
+        return idNumber;
+    }
+
+    /**
+     * @param idNumber the idNumber to set
+     */
+    public void setidNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }     
+    
+    /**
+     * @return the insurancePhone
+     */
+    public String getinsurancePhone() {
+        return insurancePhone;
+    }
+
+    /**
+     * @param insurancePhone the insurancePhone to set
+     */
+    public void setinsurancePhone(String insurancePhone) {
+        this.insurancePhone = insurancePhone;
+    }  
+
+    /**
+     * @return the allergies
+     */
+    public String getallergies() {
+        return allergies;
+    }
+
+    /**
+     * @param allergies the allergies to set
+     */
+    public void setallergies(String allergies) {
+        this.allergies = allergies;
+    }         
+
+    /**
+     * @return the doctorsName
+     */
+    public String getdoctorsName() {
+        return doctorsName;
+    }
+
+    /**
+     * @param doctorsName the doctorsName to set
+     */
+    public void setdoctorsName(String doctorsName) {
+        this.doctorsName = doctorsName;
+    }  
+
+    /**
+     * @return the doctorsStreetAddress
+     */
+    public String getdoctorsStreetAddress() {
+        return doctorsStreetAddress;
+    }
+
+    /**
+     * @param doctorsStreetAddress the doctorsStreetAddress to set
+     */
+    public void setdoctorsStreetAddress(String doctorsStreetAddress) {
+        this.doctorsStreetAddress = doctorsStreetAddress;
+    }     
+
+    /**
+     * @return the doctorsCity
+     */
+    public String getdoctorsCity() {
+        return doctorsCity;
+    }
+
+    /**
+     * @param doctorsCity the doctorsCity to set
+     */
+    public void setdoctorsCity(String doctorsCity) {
+        this.doctorsCity = doctorsCity;
+    }       
+
+    /**
+     * @return the doctorsState
+     */
+    public String getdoctorsState() {
+        return doctorsState;
+    }
+
+    /**
+     * @param doctorsState the doctorsState to set
+     */
+    public void setdoctorsState(String doctorsState) {
+        this.doctorsState = doctorsState;
+    }      
+
+    /**
+     * @return the doctorsZip
+     */
+    public String getdoctorsZip() {
+        return doctorsZip;
+    }
+
+    /**
+     * @param doctorsZip the doctorsState to set
+     */
+    public void setdoctorsZip(String doctorsZip) {
+        this.doctorsZip = doctorsZip;
+    }        
+
+    /**
+     * @return the doctorsPhone
+     */
+    public String getdoctorsPhone() {
+        return doctorsPhone;
+    }
+
+    /**
+     * @param doctorsPhone the doctorsState to set
+     */
+    public void setdoctorsPhone(String doctorsPhone) {
+        this.doctorsPhone = doctorsPhone;
+    }      
+
+    /**
+     * @return the dentistsName
+     */
+    public String getdentistsName() {
+        return dentistsName;
+    }
+
+    /**
+     * @param dentistsName the doctorsState to set
+     */
+    public void setdentistsName(String dentistsName) {
+        this.dentistsName = dentistsName;
+    }      
+
+    /**
+     * @return the dentistsStreetAddress
+     */
+    public String getdentistsStreetAddress() {
+        return dentistsStreetAddress;
+    }
+
+    /**
+     * @param dentistsStreetAddress the dentistsStreetAddress to set
+     */
+    public void setdentistsStreetAddress(String dentistsStreetAddress) {
+        this.dentistsStreetAddress = dentistsStreetAddress;
+    }            
+
+    /**
+     * @return the dentistsCity
+     */
+    public String getdentistsCity() {
+        return dentistsCity;
+    }
+
+    /**
+     * @param dentistsCity the dentistsCity to set
+     */
+    public void setdentistsCity(String dentistsCity) {
+        this.dentistsCity = dentistsCity;
+    }  
+
+    /**
+     * @return the dentistsState
+     */
+    public String getdentistsState() {
+        return dentistsState;
+    }
+
+    /**
+     * @param dentistsState the dentistsState to set
+     */
+    public void setdentistsState(String dentistsState) {
+        this.dentistsState = dentistsState;
+    }     
+
+    /**
+     * @return the dentistsZip
+     */
+    public String getdentistsZip() {
+        return dentistsZip;
+    }
+
+    /**
+     * @param dentistsZip the dentistsZip to set
+     */
+    public void setdentistsZip(String dentistsZip) {
+        this.dentistsZip = dentistsZip;
+    }       
+
+    /**
+     * @return the dentistsPhone
+     */
+    public String getdentistsPhone() {
+        return dentistsPhone;
+    }
+
+    /**
+     * @param dentistsPhone the dentistsPhone to set
+     */
+    public void setdentistsPhone(String dentistsPhone) {
+        this.dentistsPhone = dentistsPhone;
+    }           
 }

@@ -51,14 +51,10 @@ $(document).ready(function () {
                     }
                 },
                 {data: "dutyStation"},
-                {data: null,
-                    "render": function(data, type, row){
-                        return '989-424-2342';
-                    }
-                },
                 {data: "satPhone"},
-                {data: "cellPhone"},
+                {data: "officePhone"},
                 {data: "fsEmail"},
+                {data: "cellPhone"},
                 {data: null,
                     "render": function (data, type, row) {
                         return `

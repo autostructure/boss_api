@@ -167,12 +167,12 @@ var fields = {
         [ // Contact Info
             {
                 "fieldName": "homePhone",
-                "title": "Primary Phone",
+                "title": "Home Phone",
                 "type": "input/tel",
             },
             {
                 "fieldName": "cellPhone",
-                "title": "Secondary Phone",
+                "title": "Cell Phone",
                 "type": "input/tel",
             },
             {
@@ -183,32 +183,30 @@ var fields = {
         ], // end row
         [ // Address Info
             {
-                "fieldName": "addressStreet",
-                "title": "Street Address",
+                "fieldName": "addressStreet1",
+                "title": "Street Address (Home)",
                 "type": "input/text",
                 "colspan": 6,
-                "disabled": true,
             },
             {
                 "fieldName": "addressStreet2",
-                "title": "Street Address (Line 2)",
+                "title": "Street Address (Home Line 2)",
                 "type": "input/text",
                 "colspan": 6,
-                "disabled": true,
             },
             {
                 "fieldName": "addressCity",
-                "title": "City",
+                "title": "City (Home)",
                 "type": "input/text",
             },
             {
                 "fieldName": "addressState",
-                "title": "State",
+                "title": "State (Home)",
                 "type": "select/state",
             },
             {
                 "fieldName": "addressZip",
-                "title": "Zip",
+                "title": "Zip (Home)",
                 "type": "input/zipCode",
             },
         ],
@@ -224,7 +222,7 @@ var fields = {
             },
             {
                 "fieldName": "activityCode.code",
-                "title": "Activity Code",
+                "title": "Section Code",
                 "type": "select/text",
                 "selectFrom": {
                     "url": "/activityCode",
@@ -246,15 +244,6 @@ var fields = {
                     "url": "/dutyStations",
                 },
             },
-
-            {
-                "fieldName": "roomNumber",
-                "title": "Room Number",
-                "type": "input/text",
-            },
-        ], // end row
-
-        [
             {
                 "fieldName": "supervisor",
                 "title": "Supervisor",
@@ -265,24 +254,26 @@ var fields = {
                     "label": "nameCode",
                 },
                 "colspan": 3,
-            },            
+            },              
+
+        ], // end row
+
+        [
+          
             {
                 "fieldName": "officePhone",
                 "title": "Office Phone",
                 "type": "input/tel",
-                "colspan": 3,
             },
             {
                 "fieldName": "satPhone",
                 "title": "Satellite Phone",
                 "type": "input/tel",
-                "colspan": 3,
             },
             {
                 "fieldName": "fsEmail",
                 "title": "FS Email",
                 "type": "input/email",
-                "colspan": 3,
             },
         ],
         [ // Other
@@ -378,12 +369,7 @@ var fields = {
                 "type": "input/text",
             },
         ],
-        [{
-                "fieldName": "section",
-                "title": "Section",
-                "type": "input/text",
-                "colspan": 3,
-            },
+        [
             {
                 "fieldName": "employeePosition",
                 "title": "Employee Position",
