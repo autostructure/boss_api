@@ -26,62 +26,58 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image"/>
+                        <img data-toggle="tooltip" data-html="true" title="An aspen stand in Utah. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/birch.jpg" alt="Banner Image"/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLinkMainFleet"href="/viewEditFleet">View Edit Fleet Vehicle</a>
+                                <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
+                                <a class="breadcrumbLinkMain"href="/auxContact">Supplemental Phone Numbers</a>
                             </p>
                         </div>
                     </div>
                     <section class="usa-section">
-
+        
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="fleetTitle">Fleet IWFIA</h1>
+                                <h1 id="title">IWFIA Usage</h1>
                             </div>
                         </div>
-
-                        <div class="container trainBG">
-                                <!-- start of form -->
-
-                                <form role="form" data-toggle="validator" class="generalInfo" id="formGeneralInfo" action="javascript:0" method="POST">
-                                    <input hidden id="employeeId" name="id" value="0">
-                                    <div class="row">
-                                        <div class="col col-md-4 offset-md-4">
-                                            <input type="submit" id="submitV" class="btn btn-success" value="Update">
-                                        </div>
-                                    </div>
-                                </form>                                                                                                                          
+                        <div id="success" class="alert alert-success" role="alert">
+                            Update Successfull!                                         
                         </div>
-
-                        <div class="container trainBG">
-                            <div class="row">
-                                <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Monthly IWFIA Usage</button>
-                                </div>
-                                <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Maintenance</button>
-                                </div>
-                                <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Monthly Costs</button>
-                                </div>
-                                <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Out of Service</button>
-                                </div>                                                                                                
-                                                                                               
-                            </div>
+                        <div id="error" class="alert alert-danger" role="alert">
+                            Error: <span id='errorText'></span>
                         </div>
-
-
-
-
-
-
-                    </section>
-                </section>      
+                        <form id="formGeneralInfo"></form>
+                        <div class="container trainBG padTop">
+                            <table id="auxTable">
+                                <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>Year</th>
+                                        <th>Operator</th>
+                                        <th>Mileage</th>
+                                        <th>Gas</th>
+                                        <th>Oil</th>
+                                        <th>Days Used</th>
+                                        <th>Cost</th>
+                                        <th>Job Code</th>
+                                    </tr>
+                                </thead>
+                            </table>
+        
+                                <h1 class="title5">Add New Months Usage</h1>
+        
+                            <form role="form" id="auxForm" data-toggle="validator">
+                            </form>
+                                                                                                                                                        
+                        </div>                    
+        
+                    </section> <!-- end of usa section -->
+        
+                </section> <!-- end of usa-section1 -->       
                 
 
             </div><!-- end of sidenav wrapper div -->
@@ -99,7 +95,7 @@
         <script src="/js/ead.min.js"></script>
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
-        <script src="/js/pagesJS/viewEditFleet.js"></script>
+        <script src="/js/pagesJS/iwfia.js"></script>
         <script src="/js/pagesJS/mainFleetPages.js"></script>
 
 

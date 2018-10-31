@@ -152,168 +152,33 @@ var fields = {
             "fieldName":"license",
             "title":"Vehicle License",
             "type":"input/text",
-            "colspan":2,
         },
         {
             "fieldName":"equipmentNumber",
             "title":"Equipment Number",
             "type":"input/text",
             "required":true,
-            "colspan":2,
         },
         {
             "fieldName":"make",
             "title":"Vehicle Make",
             "type":"input/text",
             "required":true,
-            "colspan":2,
         },
         {
             "fieldName":"modelNumber",
             "title":"Vehicle Model",
             "type":"input/text",
             "required":true,
-            "colspan":2,
         },
         {
             "fieldName":"modelYear",
             "title":"Year",
             "type":"select/vyear",
             "required":true,
-            "colspan":2,
-        },
-        {
-            "fieldName":"color",
-            "title":"Color",
-            "type":"input/text",
-            "colspan":2,
-        }                                        
+        },                                     
     ],
-    // vehicle extended basic info
-    [
-        {
-            "fieldName":"description",
-            "title":"Description",
-            "type":"input/text",
-            "colspan":4,
-        },
-        {
-            "fieldName":"vin",
-            "title":"VIN #",
-            "type":"input/vin",
-            "required":true,
-            "colspan":4,
-        },
-        {
-            "fieldName":"vehicleClassCode",
-            "title":"Vehicle Class Code",
-            "type":"select/vclass",
-            "colspan":4,
-        }
-    ],
-    [
-        {
-            "fieldName":"ownershipType",
-            "title":"Ownership Type",
-            "type":"select/vown",
-            "colspan":3,
-        },
-        {
-            "fieldName":"assignedOperator",
-            "title":"Assigned Operator",
-            "type":"input/text",
-            "colspan":3,
-        },
-        {
-            "fieldName":"fnfcid", //missing from api
-            "title":"NFC ID",
-            "type":"input/text",
-            "colspan":3,
-        },    
-        {
-            "fieldName":"oldLicense",
-            "title":"Old License Number",
-            "type":"input/text",
-            "colspan":3,
-        },                                  
-    ],
-    // credit card information section
-    [
-
-        {
-            "fieldName":"fccnumber", //missing from api
-            "title":"Card Number",
-            "type":"input/text",
-            "colspan":3,
-        },
-        {
-            "fieldName":"fcpin", //missing from api
-            "title":"Card Pin Number",
-            "type":"input/text",
-            "colspan":3,
-        },
-        {
-            "fieldName":"fccexp", //missing from api
-            "title":"Expiration Date",
-            "type":"input/date",
-            "colspan":3,
-        },
-        {
-            "fieldName":"fjobcode",  //missing from api
-            "title":"Default Job Code",
-            "type":"input/text",
-            "colspan":3,
-        }
-
-    ],
-    // misc info section
-    [
-        
-       
-                      
-        
-    ],
-    // state and disposal section
-    [
-        {
-            "fieldName":"state",
-            "title":"State",
-            "type":"select/state",
-            "colspan":2,
-        },        
-        {
-            "fieldName":"cityOrLocation",
-            "title":"City / Location",
-            "type":"input/text",
-            "colspan":2,
-        },    
-        {
-            "fieldName":"dateAquired",
-            "title":"Date Acquired",
-            "type":"input/date",
-            "colspan":2,
-        },   
-        {
-            "fieldName":"replacementDate",
-            "title":"Replacement Date",
-            "type":"input/date",
-            "colspan":2,
-        },    
-        {
-            "fieldName":"disposalDate",
-            "title":"Disposal Date",
-            "type":"input/date",
-            "colspan":2,
-        },    
-        {
-            "fieldName":"releasedDate",
-            "title":"Released Date",
-            "type":"input/date",
-            "colspan":2,
-        },                                    
-    ],
-
-   
+  
     [
     { "custom":$('#submitV').parent() }
     ]
