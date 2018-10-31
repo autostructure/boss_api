@@ -1,0 +1,513 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< us.fed.fs:BossAPI >--------------------------
+[INFO] Building BossAPI 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:2.0.2.RELEASE:run (default-cli) > test-compile @ BossAPI >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.1:resources (default-resources) @ BossAPI ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 242 resources
+[INFO] skip non existing resourceDirectory C:\Users\Parker\source\repos\ConsoleBossRunner\ConsoleBossRunner\BOSS\FIA-BOSS\static
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ BossAPI ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.1:testResources (default-testResources) @ BossAPI ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\Parker\source\repos\ConsoleBossRunner\ConsoleBossRunner\BOSS\FIA-BOSS\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ BossAPI ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:2.0.2.RELEASE:run (default-cli) < test-compile @ BossAPI <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.0.2.RELEASE:run (default-cli) @ BossAPI ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.2.RELEASE)
+
+2018-10-26 11:27:47.318  INFO 31340 --- [  restartedMain] us.fed.fs.boss.BossApiApplication        : Starting BossApiApplication on DESKTOP-2K4SEA6 with PID 31340 (C:\Users\Parker\source\repos\ConsoleBossRunner\ConsoleBossRunner\BOSS\FIA-BOSS\target\classes started by Parker in C:\Users\Parker\source\repos\ConsoleBossRunner\ConsoleBossRunner\BOSS\FIA-BOSS)
+2018-10-26 11:27:47.323  INFO 31340 --- [  restartedMain] us.fed.fs.boss.BossApiApplication        : No active profile set, falling back to default profiles: default
+2018-10-26 11:27:47.374  INFO 31340 --- [  restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@60dd655e: startup date [Fri Oct 26 11:27:47 EDT 2018]; root of context hierarchy
+2018-10-26 11:27:50.265  INFO 31340 --- [  restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9680082c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-10-26 11:27:51.090  INFO 31340 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2018-10-26 11:27:51.134  INFO 31340 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-10-26 11:27:51.134  INFO 31340 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2018-10-26 11:27:51.144  INFO 31340 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\apache-maven-3.5.4\bin;c:\Program Files\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files\Microsoft SQL Server\110\DTS\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\Git\cmd;C:\Users\Parker\AppData\Local\Microsoft\WindowsApps;;C:\Users\Parker\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2018-10-26 11:27:51.429  INFO 31340 --- [ost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2018-10-26 11:27:51.437  INFO 31340 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-10-26 11:27:51.438  INFO 31340 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4065 ms
+2018-10-26 11:27:51.669  INFO 31340 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-10-26 11:27:51.678  INFO 31340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-10-26 11:27:51.679  INFO 31340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-10-26 11:27:51.679  INFO 31340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-10-26 11:27:51.680  INFO 31340 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-10-26 11:27:51.989  INFO 31340 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-10-26 11:27:52.429  INFO 31340 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-10-26 11:27:52.517  INFO 31340 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-10-26 11:27:52.546  INFO 31340 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-10-26 11:27:52.681  INFO 31340 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-10-26 11:27:52.683  INFO 31340 --- [  restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-10-26 11:27:52.778  INFO 31340 --- [  restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-10-26 11:27:53.030  INFO 31340 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+Hibernate: alter table certificate drop constraint FK7pgdtk91st57xa35yd5vowl66
+Hibernate: alter table crews drop constraint FK4bnyqm1xcteaak3qk6d2inih3
+Hibernate: alter table deliberative_risk_assessment drop constraint FKmes6h34vocenv3ffxja07w1e1
+Hibernate: alter table drivers_license drop constraint FKlt1tc5adv7bvnn2of0vs8y6xp
+Hibernate: alter table employee_profile_photo drop constraint FKl0hq1f8tw4m3qof65w4lcqroc
+Hibernate: alter table employee_profiles drop constraint FKn05okcs3f63uagy3uuyjv3oqn
+Hibernate: alter table employee_profiles drop constraint FKfhbteibf5etcaqpo2eo52bw31
+Hibernate: alter table expense_details drop constraint FKgeya5pf2ajl3qyf7f48cp1lww
+Hibernate: alter table expense_details drop constraint FKl9rglni0ow397ga2qsvxnmiby
+Hibernate: alter table expense_details drop constraint FKoarx7iit2k6608ogti19v56q3
+Hibernate: alter table expenses drop constraint FKlcc1hk6ixe8xe8xfpr5afiyyw
+Hibernate: alter table expenses drop constraint FKgomuqerno79h7n9d7s6a4mqow
+Hibernate: alter table expenses drop constraint FK8gngebngtw1dmxhhvmdvap9ch
+Hibernate: alter table expenses drop constraint FKpc0pncwdn4wa10lf87faw0ah6
+Hibernate: alter table expenses drop constraint FKl1eqm379tim0hjo6vvuq5syfh
+Hibernate: alter table monthlyiwfiausage drop constraint FK2g42b14kggq08790y3h6cuk0d
+Hibernate: alter table monthlyiwfiausage drop constraint FK2gvcq5kuc3nac6donl0hbvvq9
+Hibernate: alter table monthlyiwfiausage drop constraint FKkoit9qskkwbubf7dt86q1s18
+Hibernate: alter table training drop constraint FK5kp19fawlukdj84ei5m81snxw
+Hibernate: alter table training drop constraint FK3vgambgta48dftc6j7bofe04l
+Hibernate: alter table vehicle drop constraint FKht3mvs9x3uff1evy55vqrg6qj
+Hibernate: alter table vehicle_cost drop constraint FKrj0ve7ema6w2kkmh84rlaav2b
+Hibernate: alter table vehicle_maintenance_record drop constraint FK87vn9o1l3d69ogb7nycg4gbtb
+2018-10-26 11:27:54.158  WARN 31340 --- [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL via JDBC Statement
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:144) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:312) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1765) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at us.fed.fs.boss.BossApiApplication.main(BossApiApplication.java:10) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_181]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_181]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_181]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_181]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: Cannot find the object "vehicle_maintenance_record" because it does not exist or you do not have permissions.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:258) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1535) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:845) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:752) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7151) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2478) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:219) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:199) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:729) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-2.7.9.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-2.7.9.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	... 40 common frames omitted
+
+Hibernate: drop table activity_codes
+Hibernate: drop table budget_object_codes
+Hibernate: drop table certificate
+Hibernate: drop table contacts
+Hibernate: drop table crews
+Hibernate: drop table deliberative_risk_assessment
+Hibernate: drop table deliberative_risk_assessment_course
+Hibernate: drop table drivers_license
+Hibernate: drop table duty_station
+Hibernate: drop table employee_profile_photo
+Hibernate: drop table employee_profiles
+Hibernate: drop table expense_categories
+Hibernate: drop table expense_codes
+Hibernate: drop table expense_details
+Hibernate: drop table expenses
+Hibernate: drop table job_codes
+Hibernate: drop table monthlyiwfiausage
+Hibernate: drop table payment_codes
+Hibernate: drop table training
+Hibernate: drop table training_course
+Hibernate: drop table uploaded_document
+Hibernate: drop table vehicle
+Hibernate: drop table vehicle_cost
+Hibernate: drop table vehicle_maintenance_record
+2018-10-26 11:27:54.204  WARN 31340 --- [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL via JDBC Statement
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:241) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:144) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:312) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1765) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at us.fed.fs.boss.BossApiApplication.main(BossApiApplication.java:10) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_181]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_181]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_181]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_181]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: Cannot drop the table 'vehicle_maintenance_record', because it does not exist or you do not have permission.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:258) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1535) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:845) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:752) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7151) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2478) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:219) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:199) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:729) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-2.7.9.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-2.7.9.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	... 39 common frames omitted
+
+Hibernate: create table activity_codes (code varchar(255) not null, name varchar(255) not null, primary key (code))
+Hibernate: create table budget_object_codes (id bigint not null, name varchar(255) not null, primary key (id))
+Hibernate: create table certificate (id bigint identity not null, description varchar(255), document_id bigint, training bigint, primary key (id))
+Hibernate: create table contacts (id bigint identity not null, city varchar(255), description varchar(255), phone1 varchar(255), phone2 varchar(255), state varchar(255), stree_address varchar(255), primary key (id))
+Hibernate: create table crews (id bigint identity not null, description varchar(255), is_leader bit, name varchar(255), employee_profilefk bigint, primary key (id))
+Hibernate: create table deliberative_risk_assessment (id bigint identity not null, date_due date, date_of_assessment date, deliberative_risk_assessment_course_id bigint, years_valid smallint, employee bigint not null, primary key (id))
+Hibernate: create table deliberative_risk_assessment_course (id bigint identity not null, category varchar(255), complete_by date, description varchar(255), title varchar(255), wiggle_room smallint, primary key (id))
+Hibernate: create table drivers_license (id bigint identity not null, expiration date, drivers_license_number varchar(255), drivers_license_state varchar(255), employee_profile_id bigint, primary key (id))
+Hibernate: create table duty_station (id bigint identity not null, description varchar(255), primary key (id))
+Hibernate: create table employee_profile_photo (id bigint identity not null, image varbinary(MAX), name varchar(255), employee_profile_id bigint, primary key (id))
+Hibernate: create table employee_profiles (employee_id bigint identity not null, address_city varchar(255), address_state varchar(255), address_street1 varchar(255), address_street2 varchar(255), address_zip varchar(255), cell_phone varchar(255), confidentiality_agreement_date date, date_of_birth date, duty_station varchar(255), emergency_contact_cell_phone1 varchar(255), emergency_contact_cell_phone2 varchar(255), emergency_contact_city1 varchar(255), emergency_contact_city2 varchar(255), emergency_contact_first_name1 varchar(255), emergency_contact_first_name2 varchar(255), emergency_contact_home_phone1 varchar(255), emergency_contact_home_phone2 varchar(255), emergency_contact_last_name1 varchar(255), emergency_contact_last_name2 varchar(255), emergency_contact_relationship1 varchar(255), emergency_contact_relationship2 varchar(255), emergency_contact_state1 varchar(255), emergency_contact_state2 varchar(255), emergency_contact_street_address1 varchar(255), emergency_contact_street_address2 varchar(255), emergency_contact_work_phone1 varchar(255), emergency_contact_work_phone2 varchar(255), emergency_contact_zip1 varchar(255), emergency_contact_zip2 varchar(255), eye_color varchar(255), first_name varchar(255), fs_email varchar(255), gender varchar(255), grade varchar(255), hair_color varchar(255), height_inches smallint, home_phone varchar(255), last_name varchar(255), middle_initial varchar(255), name_code varchar(255) not null, office_phone varchar(255), other_identifying_features varchar(255), overtime_hourly_wage numeric(19,2), pwpsalary numeric(19,2), pay_periods_left smallint, payment_plan varchar(255), personal_email varchar(255), preferred_name varchar(255), profile_picture bigint, race varchar(255), reg_pay_per_pay_period numeric(19,2), sat_phone varchar(255), series varchar(255), state_assigned varchar(255), title varchar(255), weight_pounds smallint, activity_codefk varchar(255), supervisor_id bigint, primary key (employee_id))
+Hibernate: create table expense_categories (id bigint identity not null, category_description varchar(255), primary key (id))
+Hibernate: create table expense_codes (id bigint not null, type varchar(255) not null, primary key (id))
+Hibernate: create table expense_details (id bigint identity not null, amount numeric(10,2) not null, date_verified date, hours int, type varchar(255), verified bit not null, expense bigint, expense_codefk bigint, job_codefk bigint, primary key (id))
+Hibernate: create table expenses (id bigint identity not null, created_at date not null, created_by varchar(255), last_modified_by varchar(255), updated_at date not null, description varchar(255), financial_year smallint, from_date date, date_obl date, override_code varchar(255), pay_period int, seccode varchar(255), state varchar(255), to_date date, total numeric(19,2), travel_remarks varchar(255), travel_voucher_number bigint, unit_code varchar(255), activity_codefk varchar(255), budget_object_codefk bigint, categoryfk bigint, employee_profilefk bigint, payment_codefk varchar(255), primary key (id))
+Hibernate: create table job_codes (id bigint identity not null, amount numeric(10,2), description varchar(255), financial_year smallint, job_code varchar(255) not null, override_code int, primary key (id))
+Hibernate: create table monthlyiwfiausage (id bigint identity not null, cost numeric(19,2) not null, days_used smallint not null, gas smallint not null, mileage int not null, month smallint not null, oil smallint not null, year smallint not null, job_code_id bigint, operator_id bigint, vehicle bigint, primary key (id))
+Hibernate: create table payment_codes (code varchar(255) not null, name varchar(255) not null, primary key (code))
+Hibernate: create table training (id bigint identity not null, category varchar(255), description varchar(255), desired_quantity_on_hand smallint, equipment_code varchar(255), load_default bit, quantity_per_area_leader smallint, quantity_per_individual smallint, retired bit, size_color smallint, size_order smallint, date_of_training date, training_course_id bigint, valid_until date, approved_by_id bigint, employee bigint, primary key (id))
+Hibernate: create table training_course (id bigint identity not null, category varchar(255), default_years smallint, default_years_leader smallint, description varchar(255), title varchar(255), primary key (id))
+Hibernate: create table uploaded_document (id bigint identity not null, document varbinary(MAX), doc_type varchar(255), file_type varchar(255), name varchar(255), primary key (id))
+Hibernate: create table vehicle (id bigint identity not null, accessory varchar(255), city_or_location varchar(255), color varchar(255), date_aquired date, description varchar(255), disposal_date date, engine_number varchar(255), equipment_number varchar(255), keys_tool_box varchar(255), license varchar(255), make varchar(255), model_number varchar(255), model_year smallint, old_license varchar(255), ownership_type varchar(255), released_date date, replacement_date date, state varchar(255), tailgate varchar(255), tonneau varchar(255), topper varchar(255), vehicle_class_code varchar(255), vin varchar(255), assigned_operator_id bigint, primary key (id))
+Hibernate: create table vehicle_cost (id bigint identity not null, begin_month smallint, begin_year smallint, end_month smallint, end_year smallint, for_rate smallint, mileage_rate double precision, vehicle bigint, primary key (id))
+Hibernate: create table vehicle_maintenance_record (id bigint identity not null, cost numeric(19,2), current mileage int, description varchar(255), service_date date, vehicle_maintenance_category varchar(255), vendors_name varchar(255), vehicle bigint, primary key (id))
+2018-10-26 11:27:54.265  WARN 31340 --- [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL via JDBC Statement
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:440) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:424) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:315) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:155) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:312) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1765) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at us.fed.fs.boss.BossApiApplication.main(BossApiApplication.java:10) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_181]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_181]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_181]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_181]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: Incorrect syntax near the keyword 'current'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:258) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1535) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:845) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:752) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7151) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2478) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:219) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:199) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:729) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-2.7.9.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-2.7.9.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	... 39 common frames omitted
+
+Hibernate: alter table employee_profiles add constraint UK_qd04ja5a8nqauogtgv6conxlf unique (name_code)
+Hibernate: alter table certificate add constraint FK7pgdtk91st57xa35yd5vowl66 foreign key (training) references training
+Hibernate: alter table crews add constraint FK4bnyqm1xcteaak3qk6d2inih3 foreign key (employee_profilefk) references employee_profiles
+Hibernate: alter table deliberative_risk_assessment add constraint FKmes6h34vocenv3ffxja07w1e1 foreign key (employee) references employee_profiles
+Hibernate: alter table drivers_license add constraint FKlt1tc5adv7bvnn2of0vs8y6xp foreign key (employee_profile_id) references employee_profiles
+Hibernate: alter table employee_profile_photo add constraint FKl0hq1f8tw4m3qof65w4lcqroc foreign key (employee_profile_id) references employee_profiles
+Hibernate: alter table employee_profiles add constraint FKn05okcs3f63uagy3uuyjv3oqn foreign key (activity_codefk) references activity_codes
+Hibernate: alter table employee_profiles add constraint FKfhbteibf5etcaqpo2eo52bw31 foreign key (supervisor_id) references employee_profiles
+Hibernate: alter table expense_details add constraint FKgeya5pf2ajl3qyf7f48cp1lww foreign key (expense) references expenses
+Hibernate: alter table expense_details add constraint FKl9rglni0ow397ga2qsvxnmiby foreign key (expense_codefk) references expense_codes
+Hibernate: alter table expense_details add constraint FKoarx7iit2k6608ogti19v56q3 foreign key (job_codefk) references job_codes
+Hibernate: alter table expenses add constraint FKlcc1hk6ixe8xe8xfpr5afiyyw foreign key (activity_codefk) references activity_codes
+Hibernate: alter table expenses add constraint FKgomuqerno79h7n9d7s6a4mqow foreign key (budget_object_codefk) references budget_object_codes
+Hibernate: alter table expenses add constraint FK8gngebngtw1dmxhhvmdvap9ch foreign key (categoryfk) references expense_categories
+Hibernate: alter table expenses add constraint FKpc0pncwdn4wa10lf87faw0ah6 foreign key (employee_profilefk) references employee_profiles
+Hibernate: alter table expenses add constraint FKl1eqm379tim0hjo6vvuq5syfh foreign key (payment_codefk) references payment_codes
+Hibernate: alter table monthlyiwfiausage add constraint FK2g42b14kggq08790y3h6cuk0d foreign key (job_code_id) references job_codes
+Hibernate: alter table monthlyiwfiausage add constraint FK2gvcq5kuc3nac6donl0hbvvq9 foreign key (operator_id) references employee_profiles
+Hibernate: alter table monthlyiwfiausage add constraint FKkoit9qskkwbubf7dt86q1s18 foreign key (vehicle) references vehicle
+Hibernate: alter table training add constraint FK5kp19fawlukdj84ei5m81snxw foreign key (approved_by_id) references employee_profiles
+Hibernate: alter table training add constraint FK3vgambgta48dftc6j7bofe04l foreign key (employee) references employee_profiles
+Hibernate: alter table vehicle add constraint FKht3mvs9x3uff1evy55vqrg6qj foreign key (assigned_operator_id) references employee_profiles
+Hibernate: alter table vehicle_cost add constraint FKrj0ve7ema6w2kkmh84rlaav2b foreign key (vehicle) references vehicle
+Hibernate: alter table vehicle_maintenance_record add constraint FK87vn9o1l3d69ogb7nycg4gbtb foreign key (vehicle) references vehicle
+2018-10-26 11:27:54.308  WARN 31340 --- [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL via JDBC Statement
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:440) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:424) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:375) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:155) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:312) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892) [hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1765) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at us.fed.fs.boss.BossApiApplication.main(BossApiApplication.java:10) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_181]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_181]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_181]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_181]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: Cannot find the object "vehicle_maintenance_record" because it does not exist or you do not have permissions.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:258) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1535) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:845) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:752) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7151) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2478) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:219) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:199) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:729) ~[mssql-jdbc-6.2.2.jre8.jar:na]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-2.7.9.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-2.7.9.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
+	... 39 common frames omitted
+
+2018-10-26 11:27:54.310  INFO 31340 --- [  restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@5554dbbb'
+2018-10-26 11:27:54.314  INFO 31340 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-10-26 11:27:54.432  INFO 31340 --- [  restartedMain] o.s.jdbc.datasource.init.ScriptUtils     : Executing SQL script from URL [file:/C:/Users/Parker/source/repos/ConsoleBossRunner/ConsoleBossRunner/BOSS/FIA-BOSS/src/main/resources/data.sql]
+2018-10-26 11:27:54.515  INFO 31340 --- [  restartedMain] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from URL [file:/C:/Users/Parker/source/repos/ConsoleBossRunner/ConsoleBossRunner/BOSS/FIA-BOSS/src/main/resources/data.sql] in 83 ms.
+2018-10-26 11:27:55.939  WARN 31340 --- [  restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-10-26 11:27:56.057  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/jobCode/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.JobCode us.fed.fs.boss.BudgetController.updateJobCode(java.lang.Long,us.fed.fs.boss.model.JobCode)
+2018-10-26 11:27:56.058  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/expense],methods=[GET]}" onto public java.util.List<us.fed.fs.boss.model.Expense> us.fed.fs.boss.BudgetController.getAllExpenses(java.lang.Short)
+2018-10-26 11:27:56.058  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/jobCode/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.JobCode us.fed.fs.boss.BudgetController.getJobCodeById(java.lang.Long)
+2018-10-26 11:27:56.059  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/jobCode],methods=[GET]}" onto public java.util.List<us.fed.fs.boss.model.JobCode> us.fed.fs.boss.BudgetController.getAllJobCodes(java.lang.Short)
+2018-10-26 11:27:56.059  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/expense/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.Expense us.fed.fs.boss.BudgetController.getExpenseById(java.lang.Long)
+2018-10-26 11:27:56.059  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/expense/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.BudgetController.deleteExpense(java.lang.Long)
+2018-10-26 11:27:56.060  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/jobCode],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.BudgetController.createJobCode(us.fed.fs.boss.model.JobCode)
+2018-10-26 11:27:56.060  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/jobCode/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.BudgetController.deleteJobCode(java.lang.Long)
+2018-10-26 11:27:56.060  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/expense/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.Expense us.fed.fs.boss.BudgetController.updateExpense(java.lang.Long,us.fed.fs.boss.model.Expense)
+2018-10-26 11:27:56.061  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/expense],methods=[POST]}" onto public us.fed.fs.boss.model.Expense us.fed.fs.boss.BudgetController.createExpense(us.fed.fs.boss.model.Expense)
+2018-10-26 11:27:56.061  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/budgetSummary/{type}/{financialYear}/{verified}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.BudgetController.getBudgetSummary(java.lang.String,java.lang.Short,java.lang.String) throws java.lang.InterruptedException,java.io.IOException,java.util.concurrent.ExecutionException
+2018-10-26 11:27:56.061  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/expenseCode],methods=[GET]}" onto public java.util.List<us.fed.fs.boss.model.ExpenseCode> us.fed.fs.boss.BudgetController.getAllExpenseCodes()
+2018-10-26 11:27:56.062  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/paymentCode],methods=[GET]}" onto public java.util.List<us.fed.fs.boss.model.PaymentCode> us.fed.fs.boss.BudgetController.getAllPaymentCodes()
+2018-10-26 11:27:56.062  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/budgetObjectCode],methods=[GET]}" onto public java.util.List<us.fed.fs.boss.model.BudgetObjectCode> us.fed.fs.boss.BudgetController.getAllBudgetObjectCodes()
+2018-10-26 11:27:56.062  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/payrollForecast/{type}/{jobCodeId} || /payrollForecast/{type}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.BudgetController.getPayrollForecast(java.lang.String,java.util.Optional<java.lang.Long>) throws java.lang.InterruptedException,java.io.IOException,java.util.concurrent.ExecutionException
+2018-10-26 11:27:56.063  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/payrollDetails/{type}/{jobCodeId} || /payrollDetails/{type}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.BudgetController.getPayrollDetails(java.lang.String,java.util.Optional<java.lang.Long>) throws java.lang.InterruptedException,java.io.IOException,java.util.concurrent.ExecutionException
+2018-10-26 11:27:56.063  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/activityCode],methods=[GET]}" onto public java.util.List<us.fed.fs.boss.model.ActivityCode> us.fed.fs.boss.BudgetController.getAllActivityCodes()
+2018-10-26 11:27:56.068  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto public java.lang.String us.fed.fs.boss.HomeController.home()
+2018-10-26 11:27:56.069  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/unverifiedReport]}" onto public java.lang.String us.fed.fs.boss.HomeController.unverifiedReport()
+2018-10-26 11:27:56.069  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/newExpense]}" onto public java.lang.String us.fed.fs.boss.HomeController.newExpense()
+2018-10-26 11:27:56.069  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/addDraEmployee]}" onto public java.lang.String us.fed.fs.boss.HomeController.addDraEmployee()
+2018-10-26 11:27:56.069  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fleetDash]}" onto public java.lang.String us.fed.fs.boss.HomeController.fleetDash()
+2018-10-26 11:27:56.070  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/home]}" onto public java.lang.String us.fed.fs.boss.HomeController.home2()
+2018-10-26 11:27:56.070  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/budgetDash]}" onto public java.lang.String us.fed.fs.boss.HomeController.budgetDash()
+2018-10-26 11:27:56.070  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/viewExpense]}" onto public java.lang.String us.fed.fs.boss.HomeController.viewExpense()
+2018-10-26 11:27:56.071  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/newSalary]}" onto public java.lang.String us.fed.fs.boss.HomeController.newSalary()
+2018-10-26 11:27:56.072  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/viewRecordedDras]}" onto public java.lang.String us.fed.fs.boss.HomeController.viewRecordedDras()
+2018-10-26 11:27:56.073  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/assignTraining]}" onto public java.lang.String us.fed.fs.boss.HomeController.assignTraining()
+2018-10-26 11:27:56.073  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/payrollDetails]}" onto public java.lang.String us.fed.fs.boss.HomeController.payrollDetails()
+2018-10-26 11:27:56.074  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/editEmployee/{nameCode}]}" onto public java.lang.String us.fed.fs.boss.HomeController.editEmployee()
+2018-10-26 11:27:56.074  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/viewFleet]}" onto public java.lang.String us.fed.fs.boss.HomeController.viewFleet()
+2018-10-26 11:27:56.075  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/budgetSummary]}" onto public java.lang.String us.fed.fs.boss.HomeController.budgetSummary()
+2018-10-26 11:27:56.075  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/empDash]}" onto public java.lang.String us.fed.fs.boss.HomeController.empDash()
+2018-10-26 11:27:56.075  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/personnelDash]}" onto public java.lang.String us.fed.fs.boss.HomeController.personnelDash()
+2018-10-26 11:27:56.076  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/viewAllEmployees]}" onto public java.lang.String us.fed.fs.boss.HomeController.viewAllEmployees()
+2018-10-26 11:27:56.076  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/jobCodes]}" onto public java.lang.String us.fed.fs.boss.HomeController.jobCodes()
+2018-10-26 11:27:56.076  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/viewAllDras]}" onto public java.lang.String us.fed.fs.boss.HomeController.viewAllDras()
+2018-10-26 11:27:56.076  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/viewTraining]}" onto public java.lang.String us.fed.fs.boss.HomeController.viewTraining()
+2018-10-26 11:27:56.076  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/uploadTest]}" onto public java.lang.String us.fed.fs.boss.HomeController.uploadTest()
+2018-10-26 11:27:56.077  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/addNewFleet]}" onto public java.lang.String us.fed.fs.boss.HomeController.addNewFleet()
+2018-10-26 11:27:56.077  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/empPortal]}" onto public java.lang.String us.fed.fs.boss.HomeController.empPortal()
+2018-10-26 11:27:56.077  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/auxContact]}" onto public java.lang.String us.fed.fs.boss.HomeController.auxContact()
+2018-10-26 11:27:56.077  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/addNewEmployee]}" onto public java.lang.String us.fed.fs.boss.HomeController.addNewEmployee()
+2018-10-26 11:27:56.078  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/addTrainingClass]}" onto public java.lang.String us.fed.fs.boss.HomeController.addTrainingClass()
+2018-10-26 11:27:56.078  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/payrollForecast]}" onto public java.lang.String us.fed.fs.boss.HomeController.payrollForecast()
+2018-10-26 11:27:56.078  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/viewEditFleet/{id}]}" onto public java.lang.String us.fed.fs.boss.HomeController.viewEditFleet()
+2018-10-26 11:27:56.078  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/addTrainingEmployee]}" onto public java.lang.String us.fed.fs.boss.HomeController.addTrainingEmployee()
+2018-10-26 11:27:56.088  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/draCourse/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.DeliberativeRiskAssessmentCourse us.fed.fs.boss.HumanResourcesController.getDeliberativeRiskAssessmentCourseById(java.lang.Long)
+2018-10-26 11:27:56.088  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/draCourse/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.HumanResourcesController.deleteDeliberativeRiskAssessmentCourse(java.lang.Long)
+2018-10-26 11:27:56.089  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/draCourse],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.getAllDeliberativeRiskAssessmentCourses()
+2018-10-26 11:27:56.089  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/draCourse],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.createDeliberativeRiskAssessmentCourse(us.fed.fs.boss.model.DeliberativeRiskAssessmentCourse)
+2018-10-26 11:27:56.089  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/draCourse/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.DeliberativeRiskAssessmentCourse us.fed.fs.boss.HumanResourcesController.updateDeliberativeRiskAssessmentCourse(java.lang.Long,us.fed.fs.boss.model.DeliberativeRiskAssessmentCourse)
+2018-10-26 11:27:56.089  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dra],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.getAllDeliberativeRiskAssessments(java.lang.Long,java.lang.Long)
+2018-10-26 11:27:56.090  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dra/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.DeliberativeRiskAssessment us.fed.fs.boss.HumanResourcesController.getDeliberativeRiskAssessmentById(java.lang.Long)
+2018-10-26 11:27:56.090  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dutyStations],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.getDutyStations(java.lang.String)
+2018-10-26 11:27:56.090  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/training/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.Training us.fed.fs.boss.HumanResourcesController.updateTraining(java.lang.Long,us.fed.fs.boss.model.Training)
+2018-10-26 11:27:56.090  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contact/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.Contact us.fed.fs.boss.HumanResourcesController.getContactById(java.lang.Long)
+2018-10-26 11:27:56.091  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/training],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.createTraining(us.fed.fs.boss.model.Training)
+2018-10-26 11:27:56.091  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/profilePicture],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.uploadFile(org.springframework.web.multipart.MultipartFile,java.lang.Long)
+2018-10-26 11:27:56.091  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contact],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.createContact(us.fed.fs.boss.model.Contact)
+2018-10-26 11:27:56.091  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contact/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.Contact us.fed.fs.boss.HumanResourcesController.updateContact(java.lang.Long,us.fed.fs.boss.model.Contact)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/contact],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.getAllContacts()
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/training/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.Training us.fed.fs.boss.HumanResourcesController.getTrainingById(java.lang.Long)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/training],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.getAllTrainings(java.lang.Long,java.lang.Long)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/training/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.HumanResourcesController.deleteTraining(java.lang.Long)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/profilePicture/{profilePictureId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.downloadProfilePicture(java.lang.Long,javax.servlet.http.HttpServletResponse)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/employeeProfile],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.getAllEmployeeProfiles(java.lang.String)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dra],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.createDeliberativeRiskAssessment(us.fed.fs.boss.model.DeliberativeRiskAssessment)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/certificate],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.uploadCertificate(org.springframework.web.multipart.MultipartFile,java.lang.Long,java.lang.String)
+2018-10-26 11:27:56.092  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/certificate/{certificateId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.downloadCertificate(java.lang.Long,javax.servlet.http.HttpServletResponse)
+2018-10-26 11:27:56.093  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/trainingCourse],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.createTrainingCourse(us.fed.fs.boss.model.TrainingCourse)
+2018-10-26 11:27:56.093  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/certificate/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.HumanResourcesController.deleteCertificate(java.lang.Long)
+2018-10-26 11:27:56.093  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/employeeProfile/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.HumanResourcesController.deleteEmployeeProfile(java.lang.Long)
+2018-10-26 11:27:56.093  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/trainingCourse/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.TrainingCourse us.fed.fs.boss.HumanResourcesController.getTrainingCourseById(java.lang.Long)
+2018-10-26 11:27:56.094  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/trainingCourse/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.HumanResourcesController.deleteTrainingCourse(java.lang.Long)
+2018-10-26 11:27:56.094  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/employeeProfile/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.EmployeeProfile us.fed.fs.boss.HumanResourcesController.updateEmployeeProfile(java.lang.Long,us.fed.fs.boss.model.EmployeeProfile)
+2018-10-26 11:27:56.094  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/employeeProfile],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.createEmployeeProfile(us.fed.fs.boss.model.EmployeeProfile)
+2018-10-26 11:27:56.095  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/employeeProfile/{id}],methods=[GET]}" onto public us.fed.fs.boss.model.EmployeeProfile us.fed.fs.boss.HumanResourcesController.getEmployeeProfileById(java.lang.Long)
+2018-10-26 11:27:56.095  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/trainingCourse],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.HumanResourcesController.getAllTrainingCourses()
+2018-10-26 11:27:56.095  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/trainingCourse/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.TrainingCourse us.fed.fs.boss.HumanResourcesController.updateTrainingCourse(java.lang.Long,us.fed.fs.boss.model.TrainingCourse)
+2018-10-26 11:27:56.096  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dra/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.DeliberativeRiskAssessment us.fed.fs.boss.HumanResourcesController.updateDeliberativeRiskAssessment(java.lang.Long,us.fed.fs.boss.model.DeliberativeRiskAssessment)
+2018-10-26 11:27:56.096  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dra/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.HumanResourcesController.deleteDeliberativeRiskAssessment(java.lang.Long)
+2018-10-26 11:27:56.098  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vehicle/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.Vehicle us.fed.fs.boss.PropertyManagementController.updateVehicle(java.lang.Long,us.fed.fs.boss.model.Vehicle)
+2018-10-26 11:27:56.098  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vehicle],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.PropertyManagementController.createVehicle(us.fed.fs.boss.model.Vehicle)
+2018-10-26 11:27:56.099  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vehicle/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.PropertyManagementController.deleteVehicle(java.lang.Long)
+2018-10-26 11:27:56.099  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vehicle],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.PropertyManagementController.getAllVehicles()
+2018-10-26 11:27:56.099  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/captcha/{text}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.PropertyManagementController.captcha(java.lang.String)
+2018-10-26 11:27:56.099  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/vehicle/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.PropertyManagementController.getVehicle(java.lang.Long)
+2018-10-26 11:27:56.100  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fieldEquipment/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.PropertyManagementController.getFieldEquipment(java.lang.Long)
+2018-10-26 11:27:56.100  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fieldEquipment/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> us.fed.fs.boss.PropertyManagementController.deleteFieldEquipment(java.lang.Long)
+2018-10-26 11:27:56.100  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fieldEquipment],methods=[POST]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.PropertyManagementController.createFieldEquipment(us.fed.fs.boss.model.FieldEquipment)
+2018-10-26 11:27:56.100  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fieldEquipment/{id}],methods=[PUT]}" onto public us.fed.fs.boss.model.FieldEquipment us.fed.fs.boss.PropertyManagementController.updateFieldEquipment(java.lang.Long,us.fed.fs.boss.model.FieldEquipment)
+2018-10-26 11:27:56.101  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/fieldEquipment],methods=[GET]}" onto public org.springframework.http.ResponseEntity us.fed.fs.boss.PropertyManagementController.getAllFieldEquipments(java.lang.String)
+2018-10-26 11:27:56.104  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2018-10-26 11:27:56.105  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2018-10-26 11:27:56.106  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2018-10-26 11:27:56.108  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-10-26 11:27:56.109  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-10-26 11:27:56.378  INFO 31340 --- [  restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2018-10-26 11:27:56.573  INFO 31340 --- [  restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-26 11:27:56.690  INFO 31340 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@60dd655e: startup date [Fri Oct 26 11:27:47 EDT 2018]; root of context hierarchy
+2018-10-26 11:27:56.765  INFO 31340 --- [  restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-26 11:27:56.765  INFO 31340 --- [  restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-26 11:27:57.424  INFO 31340 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-10-26 11:27:57.468  INFO 31340 --- [  restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-10-26 11:27:57.470  INFO 31340 --- [  restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-10-26 11:27:57.480  INFO 31340 --- [  restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-10-26 11:27:57.490  INFO 31340 --- [  restartedMain] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-10-26 11:27:57.491  INFO 31340 --- [  restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2018-10-26 11:27:57.526  INFO 31340 --- [  restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2018-10-26 11:27:57.771  INFO 31340 --- [  restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2018-10-26 11:27:58.150  INFO 31340 --- [  restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getPayrollDetailsUsingGET_1
+2018-10-26 11:27:58.166  INFO 31340 --- [  restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getPayrollForecastUsingGET_1
+2018-10-26 11:27:58.877  INFO 31340 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2018-10-26 11:27:58.880  INFO 31340 --- [  restartedMain] us.fed.fs.boss.BossApiApplication        : Started BossApiApplication in 12.078 seconds (JVM running for 12.864)
+[INFO] ------------------------------------------------------------------------
+[INFO] B

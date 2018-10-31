@@ -1,4 +1,14 @@
 $(document).ready(function () {
+
+    $('#viewList').click(function(){
+        window.location.href = '/viewRecordedDras';
+    });
+    $('#addAnother').click(function(){
+        window.location.reload();
+    });
+    $('.close').on('click', function () {
+        window.location.reload();
+       });
     
     var max_fields = 5; //maximum input boxes allowed
     var wrapper = $(".items"); //Fields wrapper
@@ -93,7 +103,7 @@ $(document).ready(function () {
             }
         });
         if (allValid) {
-            window.location.reload();
+            $('#exampleModal').modal('show');
         }
 
         return;

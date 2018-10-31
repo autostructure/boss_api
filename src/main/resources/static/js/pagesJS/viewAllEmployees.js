@@ -51,14 +51,10 @@ $(document).ready(function () {
                     }
                 },
                 {data: "dutyStation"},
-                {data: null,
-                    "render": function(data, type, row){
-                        return '989-424-2342';
-                    }
-                },
                 {data: "satPhone"},
-                {data: "cellPhone"},
+                {data: "officePhone"},
                 {data: "fsEmail"},
+                {data: "cellPhone"},
                 {data: null,
                     "render": function (data, type, row) {
                         return `
@@ -68,6 +64,7 @@ $(document).ready(function () {
                                 <a href="/editEmployee/` + row.id + `" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit Employee</a>
                                 <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete Employee</a>
                                 <a data-toggle="modal" data-target="#myModal_contact" href="#" data-value=` + row.id + ` class="contactBtn" id="contactBtn">Contact Info</a>
+                                <a data-toggle="modal" data-target="#myModal_PrintEmgInfBtn" href="#" data-value=` + row.id + ` class="PrintEmgInfBtn" id="PrintEmgInfBtn">Print Emergency Info</a>
                             </div>
                         </div>
                     
@@ -166,6 +163,8 @@ $(document).ready(function () {
                     modal.find(".modal-body #ZipTwo").val(json.emergencyContactZip2);
                     modal.find(".modal-body #CellPhoneOne").val(json.emergencyContactCellPhone1);
                     modal.find(".modal-body #CellPhoneTwo").val(json.emergencyContactCellPhone2);
+
+
 
 
                 },

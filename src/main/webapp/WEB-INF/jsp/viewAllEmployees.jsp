@@ -267,6 +267,14 @@
                               
                             </div>
 
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										
+									</div>
+								</div>
+								
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default btn_pers_copy" data-dismiss="modal">Close</button>

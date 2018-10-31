@@ -1,0 +1,8 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< us.fed.fs:BossAPI >--------------------------
+[INFO] Building BossAPI 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:2.0.2.RELEASE:run (default-cli) > test-compile @ BossAPI >>>
+Terminate batch job (Y/N)? 

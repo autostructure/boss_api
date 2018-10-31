@@ -5,6 +5,16 @@ $(document).ready(function () {
     $('#training').addClass('show');
     $('#training > li:nth-child(1) > a').addClass('highlight'); 
     $('#imgs').hide();
+
+        $('#viewList').click(function(){
+            window.location.href = '/viewTraining';
+        });
+        $('#addAnother').click(function(){
+            window.location.reload();
+        });
+        $('.close').on('click', function () {
+            window.location.reload();
+           });
    
     $('select').attr('size','');
 
@@ -128,7 +138,7 @@ $(document).ready(function () {
         });
         
         function success(values) {
-            $('#myModal_success').modal('show');
+            $('#exampleModal').modal('show');
             //$('#myModal_result').modal('hide');
         }
         

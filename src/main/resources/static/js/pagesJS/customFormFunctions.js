@@ -19,7 +19,7 @@ CustomFormFunctions = {};
  *          }
  *          data[parentElement][row].custom = $(object) // The custom element is included between the other rows.
  */
-CustomFormFunctions.addBootstrapFields = function(data) {
+CustomFormFunctions.addBootstrapFields = function (data) {
     {
         var stateSelect = $("<select></select>")
             .append('<option value="AL">Alabama</option>')
@@ -222,13 +222,13 @@ CustomFormFunctions.addBootstrapFields = function(data) {
  * @param {function} resolved Function to call after the dropdown populates
  * @param {function} rejected Function to call if the dropdown errors
  */
-CustomFormFunctions.populateDropDown = function(element, url, valueKey, labelKey, removeExistingOptions, resolved, rejected) {
+CustomFormFunctions.populateDropDown = function (element, url, valueKey, labelKey, removeExistingOptions, resolved, rejected) {
     element = $(element).filter("select");
     if (removeExistingOptions) {
         element.find("option[value!='']").remove();
     }
-    resolved = resolved || function(data) {};
-    rejected = rejected || function(a) { console.log(a.responseJSON); };
+    resolved = resolved || function (data) { };
+    rejected = rejected || function (a) { console.log(a.responseJSON); };
     $.ajax({
         type: 'GET',
         url: url,
@@ -236,7 +236,7 @@ CustomFormFunctions.populateDropDown = function(element, url, valueKey, labelKey
         dataType: 'json',
         cache: false,
         timeout: 600000,
-        success: function(json) {
+        success: function (json) {
             for (k in json) {
                 var opt = json[k];
                 var val = opt[valueKey];
@@ -259,7 +259,7 @@ CustomFormFunctions.populateDropDown = function(element, url, valueKey, labelKey
  * @param {string} url The url of the API to populate from.
  * @param {number} entityID The id of the entity to populate from.
  */
-CustomFormFunctions.populateElements = function(elements, url, entityID) {
+CustomFormFunctions.populateElements = function (elements, url, entityID) {
     elements = $(elements);
     $.ajax({
         type: 'GET',
@@ -268,7 +268,7 @@ CustomFormFunctions.populateElements = function(elements, url, entityID) {
         dataType: 'json',
         cache: false,
         timeout: 600000,
-        success: function(json) {
+        success: function (json) {
             for (k in json) {
                 // var el = elements.filter("[name='" + k + "']");
                 // el.val(json[k]);
@@ -277,19 +277,25 @@ CustomFormFunctions.populateElements = function(elements, url, entityID) {
                 // }
                 populate(k, json[k]);
             }
-        },
+        }
     });
 
     function populate(key, value) {
+        
         if (value instanceof Object) {
             for (k in value) {
                 populate(key + "." + k, value[k]);
             }
         } else {
             var el = elements.filter("[name='" + key + "']");
-            el.val(value);
-            if (el.hasClass('datepicker')) {
-                el.val(CustomFormFunctions.formatDate(value, "mm/dd/yyyy"));
+            if (el == undefined) {
+                Console.log("control with name: '" + key + "' is no found");
+            } else {
+                el.val(value);
+
+                if (el.hasClass('datepicker')) {
+                    el.val(CustomFormFunctions.formatDate(value, "mm/dd/yyyy"));
+                }
             }
         }
     }
@@ -301,14 +307,15 @@ CustomFormFunctions.populateElements = function(elements, url, entityID) {
  * @param {string} url The url to GET to for the putPartialInfo() function
  * @param {number} entityID The id of the entity to update.  If not given, it will look at element.data('entityID').
  */
-CustomFormFunctions.setSneakySave = function(elements, url, entityID) {
+CustomFormFunctions.setSneakySave = function (elements, url, entityID) {
     elements = $(elements);
+    
     if (entityID) {
-        elements.each(function() {
+        elements.each(function () {
             $(this).attr("data-entityID", entityID);
         })
     }
-    elements.on("focusout change", function() {
+    elements.on("focusout change", function () {
         var key = this.name;
         var val = this.value;
         if ($(this).hasClass('datepicker')) {
@@ -317,10 +324,14 @@ CustomFormFunctions.setSneakySave = function(elements, url, entityID) {
         var partial = {};
         CustomFormFunctions.setNested(partial, key, val);
         var id = $(this).attr("data-entityID");
+
         if (!id) {
             console.warn("Cannot sneakily save because there is no entityID");
             return;
         }
+
+        console.log(partial);
+
         CustomFormFunctions.putPartialInfo(url, id, partial);
     });
 }
@@ -330,7 +341,7 @@ CustomFormFunctions.setSneakySave = function(elements, url, entityID) {
  * @param {Date} input: Date value, date string, milliseconds int, or jquery Object
  * @return {Date} date
  */
-CustomFormFunctions.getDateFrom = function(input) {
+CustomFormFunctions.getDateFrom = function (input) {
     var date = input;
     if (!(date instanceof Date) || isNaN(date.getTime())) {
         if (date == null) return null;
@@ -357,7 +368,7 @@ CustomFormFunctions.getDateFrom = function(input) {
  * @param {Date} date Date value, date string, milliseconds int, or jquery Object
  * @param {string} format "mm/dd/yyyy", "bootstrap" ; "yyyy/mm/dd" ; "yyyy-mm-dd", "ISO-Short", "ISO" ;
  */
-CustomFormFunctions.formatDate = function(date, format) {
+CustomFormFunctions.formatDate = function (date, format) {
     date = CustomFormFunctions.getDateFrom(date);
     if (date == null) return "";
     var year = ("0000" + date.getFullYear().toString()).substr(-4, 4);
@@ -377,9 +388,9 @@ CustomFormFunctions.formatDate = function(date, format) {
     }
 }
 
-CustomFormFunctions.putPartialInfo = function(url, id, partial, resolved, rejected) {
-    resolved = resolved || function() {}
-    rejected = rejected || function(a, b, c) {
+CustomFormFunctions.putPartialInfo = function (url, id, partial, resolved, rejected) {
+    resolved = resolved || function () { }
+    rejected = rejected || function (a, b, c) {
         console.log(a);
         console.log(a.responseJSON);
         console.log(b);
@@ -406,9 +417,26 @@ CustomFormFunctions.putPartialInfo = function(url, id, partial, resolved, reject
             dataType: 'json',
             cache: false,
             timeout: 600000,
-            success: function(json) {
+            success: function (json) {
+
                 for (k in partial) {
-                    json[k] = partial[k];
+                    var val = partial[k];
+                    
+                    if (parseInt(val) == val) {
+
+                        var obj = CustomFormFunctions.preprocessPartialPUT(val, url, k);
+                        if (obj == undefined) {
+                            json[k] = parseInt(val);
+                        } else {
+                            json[k] = obj;
+                        }
+
+                        
+                    } else if (parseFloat(val) == val) {
+                        json[k] = parseFloat(val);
+                    } else {
+                        json[k] = val;
+                    }
                 }
                 $.ajax({
                     type: 'PUT',
@@ -427,7 +455,37 @@ CustomFormFunctions.putPartialInfo = function(url, id, partial, resolved, reject
     }
 }
 
-CustomFormFunctions.getNested = function(obj, key) {
+
+CustomFormFunctions.preprocessPartialPUT = function (partialData, url, data_name) {
+    
+    if (url == '/employeeProfile') {
+        if (data_name == 'supervisor') {
+            if (parseInt(partialData) == partialData) {
+               
+                var emp;
+                $.ajax({
+                    url: '/employeeProfile/' + partialData,
+                    type: 'GET',
+                    cache: false,
+                    timeout: 600000,
+                    async: false,
+                    success: function (json) {
+                        emp = json;
+                    },
+                    error: function (a, b, c) {
+                        console.log(a);
+                        console.log(b);
+                        console.log(c);
+                    }
+                });
+                
+                return emp;
+            }
+        }
+    }
+}
+
+CustomFormFunctions.getNested = function (obj, key) {
     var keys = key.split(".");
     for (var i in keys) {
         if (!obj instanceof Object) {
@@ -439,7 +497,7 @@ CustomFormFunctions.getNested = function(obj, key) {
     return obj;
 }
 
-CustomFormFunctions.setNested = function(obj, key, value) {
+CustomFormFunctions.setNested = function (obj, key, value) {
     var keys = key.split(".");
     var lastKey = keys.pop();
     for (var i in keys) {

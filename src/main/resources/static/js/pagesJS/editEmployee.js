@@ -4,6 +4,7 @@ var empId = 0;
 $(document).ready(function() {
     var identifier = window.location.pathname.split("/")[2];
     empId = parseInt(identifier);
+    
     var afterChooseEmployeePopulates = function() { $("#chooseEmployee").val(identifier) };
     if (empId) {
         populateTheEmployee(identifier);
@@ -12,7 +13,20 @@ $(document).ready(function() {
         $(".border").hide();
         $("#chooseEmployee").parent().show();
     }
-    CustomFormFunctions.populateDropDown("#chooseEmployee", "/employeeProfile", "id", "nameCode", false, afterChooseEmployeePopulates);
+
+    $.ajax({
+        url: '/employeeProfile',
+        type: 'GET',
+        cache: false,
+        timeout: 600000,
+        success: function(json){
+            $.each(json, function(index, value){
+                $('#chooseEmployee').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
+            });
+        }
+    });
+
+    //CustomFormFunctions.populateDropDown("#chooseEmployee", "/employeeProfile", "id", "nameCode", false, afterChooseEmployeePopulates);
 
     $("select").attr("size", "");
     $('#formGeneralInfo_firstName, #formGeneralInfo_lastName').on("keyup change update", function() {
@@ -68,10 +82,10 @@ $(document).ready(function() {
 });
 
 function populateTheEmployee(employeeId) {
-    var forms = $("#formGeneralInfo, #formWorkInfo, #formEmergencyInfo, #formLegacyInfo");
+    var forms = $("#formGeneralInfo, #formWorkInfo, #formEmergencyInfo, #formMedicalInfo");
     forms.find("input, select").off("click change update");
-    CustomFormFunctions.populateElements(forms.find("input, select"), "/employeeProfile", employeeId);
-    CustomFormFunctions.setSneakySave(forms.find("input, select"), "/employeeProfile", employeeId);
+    CustomFormFunctions.populateElements(forms.find("input, select, textarea"), "/employeeProfile", employeeId);
+    CustomFormFunctions.setSneakySave(forms.find("input, select, textarea"), "/employeeProfile", employeeId);
     $(".border").show();
     $("#chooseEmployee").val(employeeId);
     updateProfilePicture();
@@ -111,20 +125,20 @@ var fields = {
                 "title": "Last Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 4,
+                "colspan": 4
             },
             {
                 "fieldName": "firstName",
                 "title": "First Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 4,
+                "colspan": 4
             },
             {
                 "fieldName": "middleInitial",
                 "title": "Middle Initial",
                 "type": "input/text",
-                "colspan": 4,
+                "colspan": 4
             },
             {
                 "fieldName": "nameCode",
@@ -132,36 +146,36 @@ var fields = {
                 "type": "input/text",
                 "required": true,
                 "placeholder": "Name Code (generated)",
-                "colspan": 4,
+                "colspan": 4
             },
             {
                 "fieldName": "preferredName",
                 "title": "Preferred Name",
                 "type": "input/text",
-                "colspan": 8,
-            },
+                "colspan": 8
+            }
         ], // end row
         [{
-                "fieldName": "gender",
-                "title": "Gender",
-                "type": "select/text",
-                "options": { "male": "Male", "female": "Female", "other": "Other" },
-                "colspan": 3,
-            },
-            {
-                "fieldName": "status",
-                "title": "Status",
-                "type": "input/text",
-                "disabled": "true",
-                "colspan": 4,
-            },
-            {
-                "fieldName": "appointment",
-                "title": "Appointment",
-                "type": "input/text",
-                "disabled": "true",
-                "colspan": 5,
-            },
+            "fieldName": "gender",
+            "title": "Gender",
+            "type": "select/text",
+            "options": { "male": "Male", "female": "Female", "other": "Other" },
+            "colspan": 3
+        },
+        {
+            "fieldName": "status",
+            "title": "Status",
+            "type": "input/text",
+            "disabled": "true",
+            "colspan": 4
+        },
+        {
+            "fieldName": "appointment",
+            "title": "Appointment",
+            "type": "input/text",
+            "disabled": "true",
+            "colspan": 5
+        },
         ], // end row
         { "custom": '<h4 class="title4">Employee\'s Contact Information</h4>' },
         [ // Contact Info
@@ -179,22 +193,21 @@ var fields = {
                 "fieldName": "personalEmail",
                 "title": "Personal Email",
                 "type": "input/email",
-            },
+            }
         ], // end row
         [ // Address Info
             {
-                "fieldName": "addressStreet",
+                "fieldName": "addressStreet1",
                 "title": "Street Address",
                 "type": "input/text",
-                "colspan": 6,
-                "disabled": true,
+                "colspan": 6
             },
             {
                 "fieldName": "addressStreet2",
                 "title": "Street Address (Line 2)",
                 "type": "input/text",
                 "colspan": 6,
-                "disabled": true,
+                "disabled": true
             },
             {
                 "fieldName": "addressCity",
@@ -209,8 +222,8 @@ var fields = {
             {
                 "fieldName": "addressZip",
                 "title": "Zip",
-                "type": "input/zipCode",
-            },
+                "type": "input/zipCode"
+            }
         ],
         [
             { "custom": $('#submitEmployeeInfo').parent() }
@@ -218,43 +231,37 @@ var fields = {
     ], // end form
     "formWorkInfo": [
         [{
-                "fieldName": "title",
-                "title": "Employee Title",
-                "type": "input/text",
-            },
-            {
-                "fieldName": "activityCode.code",
-                "title": "Activity Code",
-                "type": "select/text",
-                "selectFrom": {
-                    "url": "/activityCode",
-                    "value": "code",
-                    "label": "name",
-                },
-            },
+            "fieldName": "title",
+            "title": "Employee Title",
+            "type": "input/text",
+        },
+        {
+            "fieldName": "activityCode.code",
+            "title": "Section Code",
+            "type": "select/text",
+            "selectFrom": {
+                "url": "/activityCode",
+                "value": "code",
+                "label": "name"
+            }
+        }
         ], // end row
         [{
-                "fieldName": "stateAssigned",
-                "title": "State Assigned",
-                "type": "select/state",
+            "fieldName": "stateAssigned",
+            "title": "State Assigned",
+            "type": "select/state",
+            "colspan":4
+        },
+        {
+            "fieldName": "dutyStation",
+            "title": "Duty Station",
+            "type": "select/text",
+            "selectFrom": {
+                "url": "/dutyStations"
             },
-            {
-                "fieldName": "dutyStation",
-                "title": "Duty Station",
-                "type": "select/text",
-                "selectFrom": {
-                    "url": "/dutyStations",
-                },
-            },
+            "colspan":4
+        },
 
-            {
-                "fieldName": "roomNumber",
-                "title": "Room Number",
-                "type": "input/text",
-            },
-        ], // end row
-
-        [
             {
                 "fieldName": "supervisor",
                 "title": "Supervisor",
@@ -264,45 +271,49 @@ var fields = {
                     "value": "id",
                     "label": "nameCode",
                 },
-                "colspan": 3,
-            },            
+                "colspan": 4
+            }
+        ], // end row
+
+        [
+
             {
                 "fieldName": "officePhone",
                 "title": "Office Phone",
                 "type": "input/tel",
-                "colspan": 3,
+                "colspan": 4
             },
             {
                 "fieldName": "satPhone",
                 "title": "Satellite Phone",
                 "type": "input/tel",
-                "colspan": 3,
+                "colspan": 4
             },
             {
                 "fieldName": "fsEmail",
                 "title": "FS Email",
                 "type": "input/email",
-                "colspan": 3,
+                "colspan": 4
             },
         ],
         [ // Other
             {
                 "fieldName": "confidentialityAgreementDate",
                 "title": "Confidentiality Agreement Date",
-                "type": "input/date",
+                "type": "input/date"
             },
             {
-                "fieldName": "payPlan",
+                "fieldName": "paymentPlan",
                 "title": "Pay Plan",
                 "type": "input/text",
-                "colspan": 3,
+                "colspan": 3
             },
             {
                 "fieldName": "grade",
                 "title": "Grade",
                 "type": "select/text",
-                "options": [, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-            },
+                "options": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+            }
 
         ], // end row
         [
@@ -310,26 +321,26 @@ var fields = {
                 "fieldName": "payStatus",
                 "title": "Pay Status",
                 "type": "input/text",
-                "colspan": 3,
+                "colspan": 3
             },
             {
-                "fieldName": "startNonpayStatus",
+                "fieldName": "startNonPayStatus",
                 "title": "Start Nonpay Status",
                 "type": "input/date",
-                "colspan": 3,
+                "colspan": 3
             },
             {
                 "fieldName": "returnToPayStatus",
                 "title": "Return To Pay Status",
                 "type": "input/date",
-                "colspan": 3,
+                "colspan": 3
             },
             {
                 "fieldName": "terminationDate",
                 "title": "Termination Date",
                 "type": "input/date",
-                "colspan": 3,
-            },
+                "colspan": 3
+            }
         ],
         [ // Pay information
             {
@@ -342,68 +353,63 @@ var fields = {
                 "title": "pwp Salary",
                 "type": "input/number",
                 "step": 0.01,
-                "disabled": true,
+                "disabled": true
             },
             {
                 "fieldName": "regPayPerPayPeriod",
                 "title": "Regular Pay Per Pay Period",
                 "type": "input/number",
                 "step": 0.01,
-                "disabled": true,
+                "disabled": true
             },
             {
                 "fieldName": "overtimeHourlyWage",
                 "title": "Overtime Hourly Wage",
                 "type": "input/number",
                 "step": 0.01,
-                "disabled": true,
+                "disabled": true
             },
             {
                 "fieldName": "payPeriodsLeft",
                 "title": "Pay Periods Left",
                 "type": "input/number",
                 "step": 0.01,
-                "disabled": true,
-            },
+                "disabled": true
+            }
         ], // end row
         [
             {
                 "fieldName": "masterNumber",
                 "title": "Master Number",
-                "type": "input/text",
+                "type": "input/text"
             },
             {
-                "fieldName": "startNonpayStatus",
+                "fieldName": "ipNumber",
                 "title": "IP Number",
-                "type": "input/text",
-            },
+                "type": "input/text"
+            }
         ],
-        [{
-                "fieldName": "section",
-                "title": "Section",
-                "type": "input/text",
-                "colspan": 3,
-            },
+        [
             {
                 "fieldName": "employeePosition",
                 "title": "Employee Position",
                 "type": "select/text",
                 "options": { "S": "Supervisor", "E": "Employee" },
-                "colspan": 3,
+                "colspan": 4
             },
             {
                 "fieldName": "fieldStatus",
                 "title": "Field Status",
                 "type": "select/text",
                 "options": { "O": "Office", "F": "Field" },
-                "colspan": 3,
+                "colspan": 4
             },
             {
                 "fieldName": "crewPosition",
                 "title": "Crew Position",
                 "type": "select/text",
                 "options": { "CM": "Crew Member", "CL": "Crew Leader" },
-                "colspan": 3,
+                "colspan": 4
             },
         ], // end row
         [
@@ -413,76 +419,76 @@ var fields = {
     "formEmergencyInfo": [
         { "custom": '<h4 class="title4">Identifying Info</h4>' },
         [{
-                "fieldName": "eyeColor",
-                "title": "Eye Color",
-                "type": "input/text",
-                "placeholder": "hazel",
-            },
-            {
-                "fieldName": "hairColor",
-                "title": "Hair Color",
-                "type": "input/text",
-                "placeholder": "Auburn",
-            },
+            "fieldName": "eyeColor",
+            "title": "Eye Color",
+            "type": "input/text",
+            "placeholder": "hazel",
+        },
+        {
+            "fieldName": "hairColor",
+            "title": "Hair Color",
+            "type": "input/text",
+            "placeholder": "Auburn",
+        },
         ],
         [{
-                "fieldName": "heightFeet",
-                "title": "Height<small>(Feet)</small>",
-                "type": "input/number",
-                "placeholder": "5",
-                "min": 2,
-                "max": 9,
-                "colspan": 3,
-            },
-            {
-                "fieldName": "heightInches",
-                "title": "Height<small>(Inches)</small>",
-                "type": "input/number",
-                "placeholder": "11",
-                "min": '0',
-                "max": 11,
-                "colspan": 3,
-            },
-            {
-                "fieldName": "weight",
-                "title": "Weight (Pounds)",
-                "type": "input/number",
-                "placeholder": "160",
-            },
+            "fieldName": "heightFeet",
+            "title": "Height<small>(Feet)</small>",
+            "type": "input/number",
+            "placeholder": "5",
+            "min": 2,
+            "max": 9,
+            "colspan": 3
+        },
+        {
+            "fieldName": "heightInches",
+            "title": "Height<small>(Inches)</small>",
+            "type": "input/number",
+            "placeholder": "11",
+            "min": '0',
+            "max": 11,
+            "colspan": 3
+        },
+        {
+            "fieldName": "weightPounds",
+            "title": "Weight (Pounds)",
+            "type": "input/number",
+            "placeholder": "160"
+        }
         ],
         [{
-                "fieldName": "dateOfBirth",
-                "title": "Date of Birth",
-                "type": "input/date",
-                "colspan": 3,
+            "fieldName": "dateOfBirth",
+            "title": "Date of Birth",
+            "type": "input/date",
+            "colspan": 3
+        },
+        {
+            "fieldName": "gender",
+            "title": "Gender",
+            "type": "select",
+            "options": {
+                "male": "Male",
+                "female": "Female",
+                "other": "Other (explain below)",
             },
-            {
-                "fieldName": "gender",
-                "title": "Gender",
-                "type": "select",
-                "options": {
-                    "male": "Male",
-                    "female": "Female",
-                    "other": "Other (explain below)",
-                },
-                "colspan": 3,
-            },
-            {
-                "fieldName": "race",
-                "title": "Race",
-                "type": "select/text",
-                "placeholder": "",
-                "options": {
-                    "Hispanic": "Hispanic/Latino",
-                    "Native": "American Indian or Alaska Native",
-                    "EastAsian": "East Asian",
-                    "SouthAsian": "South Asian (Desi)",
-                    "African": "Black or African American",
-                    "Hawaiian": "Native Hawaiian or Other Pacific Islander",
-                    "White": "White or Caucasian",
-                    "Other": "Two or more races or other",
-                }
-            },
+            "colspan": 3
+        },
+        {
+            "fieldName": "race",
+            "title": "Race",
+            "type": "select/text",
+            "placeholder": "",
+            "options": {
+                "Hispanic": "Hispanic/Latino",
+                "Native": "American Indian or Alaska Native",
+                "EastAsian": "East Asian",
+                "SouthAsian": "South Asian (Desi)",
+                "African": "Black or African American",
+                "Hawaiian": "Native Hawaiian or Other Pacific Islander",
+                "White": "White or Caucasian",
+                "Other": "Two or more races or other",
+            }
+        }
         ],
         [
             { "custom": $("#colEmployeePhoto2") },
@@ -491,7 +497,7 @@ var fields = {
                 "title": "Other Identifying Features",
                 "type": "textarea",
                 "placeholder": "Dragon Tattoo on Left Shoulder\n\rBirthmark in the shape of Louisiana on Right Hand\n\r... Any obvious distinguishing features.",
-            },
+            }
         ],
         { "custom": '<h4 class="title3">Emergency Contact Information</h4>' },
         { "custom": '<h4 class="title4">First Contact</h4>' },
@@ -507,7 +513,7 @@ var fields = {
                 "title": "Last Name",
                 "type": "input/text",
                 "required": true
-            },
+            }
         ], // end row
         [ // Address Info
             {
@@ -515,13 +521,13 @@ var fields = {
                 "title": "Street Address",
                 "type": "input/text",
                 "required": true,
-                "colspan": 12,
+                "colspan": 12
             },
             {
                 "fieldName": "emergencyContactCity1",
                 "title": "City",
                 "type": "input/text",
-                "required": true,
+                "required": true
             },
             {
                 "fieldName": "emergencyContactState1",
@@ -534,7 +540,7 @@ var fields = {
                 "title": "Zip",
                 "type": "input/zipCode",
                 "required": true
-            },
+            }
         ], // end row
         [ // Phone Numbers and Relationship
             {
@@ -542,26 +548,26 @@ var fields = {
                 "title": "Primary Phone",
                 "type": "input/tel",
                 "required": true,
-                "colspan": 6,
+                "colspan": 6
             },
             {
                 "fieldName": "emergencyContactRelationship1",
                 "title": "Relationship",
                 "type": "input/text",
                 "required": true,
-                "colspan": 6,
+                "colspan": 6
             },
             {
                 "fieldName": "emergencyContactCellPhone1",
                 "title": "Secondary Phone",
                 "type": "input/tel",
-                "colspan": 6,
+                "colspan": 6
             },
             {
                 "fieldName": "emergencyContactWorkPhone1",
                 "title": "Work Phone",
                 "type": "input/tel",
-                "colspan": 6,
+                "colspan": 6
             },
         ], // end row
         { "custom": '<h4 class="title4">Second Contact</h4>' },
@@ -569,61 +575,61 @@ var fields = {
             {
                 "fieldName": "emergencyContactFirstName2",
                 "title": "First Name",
-                "type": "input/text",
+                "type": "input/text"
             },
             {
                 "fieldName": "emergencyContactLastName2",
                 "title": "Last Name",
-                "type": "input/text",
-            },
+                "type": "input/text"
+            }
         ], // end row
         [ // Address Info
             {
                 "fieldName": "emergencyContactStreetAddress2",
                 "title": "Street Address",
                 "type": "input/text",
-                "colspan": 12,
+                "colspan": 12
             },
             {
                 "fieldName": "emergencyContactCity2",
                 "title": "City",
-                "type": "input/text",
+                "type": "input/text"
             },
             {
                 "fieldName": "emergencyContactState2",
                 "title": "State",
-                "type": "select/state",
+                "type": "select/state"
             },
             {
                 "fieldName": "emergencyContactZip2",
                 "title": "Zip",
-                "type": "input/zipCode",
-            },
+                "type": "input/zipCode"
+            }
         ], // end row
         [ // Phone Numbers and Relationship
             {
                 "fieldName": "emergencyContactHomePhone2",
                 "title": "Primary Phone",
                 "type": "input/tel",
-                "colspan": 6,
+                "colspan": 6
             },
             {
                 "fieldName": "emergencyContactRelationship2",
                 "title": "Relationship",
                 "type": "input/text",
-                "colspan": 6,
+                "colspan": 6
             },
             {
                 "fieldName": "emergencyContactCellPhone2",
                 "title": "Secondary Phone",
                 "type": "input/tel",
-                "colspan": 6,
+                "colspan": 6
             },
             {
                 "fieldName": "emergencyContactWorkPhone2",
                 "title": "Work Phone",
                 "type": "input/tel",
-                "colspan": 6,
+                "colspan": 6
             },
         ], // end row
         [
@@ -632,61 +638,93 @@ var fields = {
     ],
     "formMedicalInfo": [
         [{
-                "fieldName": "insuranceName",
-                "title": "Name of Health Insurance",
-                "type": "input/text",
-            },
-            {
-                "fieldName": "insuranceGroup",
-                "title": "Group Number",
-                "type": "input/text",
-            },
-            {
-                "fieldName": "insuranceId",
-                "title": "ID Number",
-                "type": "input/text",
-            },
-            {
-                "fieldName": "insurancePhone",
-                "title": "Insurance Phone",
-                "type": "input/text",
-            }
+            "fieldName": "insuranceName",
+            "title": "Name of Health Insurance",
+            "type": "input/text"
+        },
+        {
+            "fieldName": "groupNumber",
+            "title": "Group Number",
+            "type": "input/text"
+        },
+        {
+            "fieldName": "idNumber",
+            "title": "ID Number",
+            "type": "input/text"
+        },
+        {
+            "fieldName": "insurancePhone",
+            "title": "Insurance Phone",
+            "type": "input/tel"
+        }
         ], // end row
         [{
-                "fieldName": "allergies",
-                "title": "Allergies",
-                "type": "input/text",
-                "colspan": 12,
-            },
+            "fieldName": "allergies",
+            "title": "Allergies",
+            "type": "input/text",
+            "colspan": 12
+        },
+        {
+            "fieldName": "doctorsName",
+            "title": "Doctor's Name",
+            "type": "input/text"
+        },
+        {
+            "fieldName": "doctorsStreetAddress",
+            "title": "Doctor's Address",
+            "type": "input/text"
+        },
+           
             {
-                "fieldName": "doctorName",
-                "title": "Doctor's Name",
-                "type": "input/text",
-            },
-            {
-                "fieldName": "doctorAddress",
-                "title": "Doctor's Address",
-                "type": "input/text"
-            },
-            {
-                "fieldName": "doctorPhone",
+                "fieldName": "doctorsPhone",
                 "title": "Doctor's Phone",
+                "type": "input/tel"
+            }],[
+            {
+                "fieldName": "doctorsZip",
+                "title": "Doctor's ZipCode",
+                "type": "input/zipCode"
+            },
+            {
+                "fieldName": "doctorsState",
+                "title": "Doctors State",
+                "type": "select/state"
+            },
+            {
+                "fieldName": "doctorsCity",
+                "title": "Doctor's City",
                 "type": "input/text"
             }
         ], // end row
         [{
-                "fieldName": "dentistName",
-                "title": "Dentist's Name",
-                "type": "input/text",
+            "fieldName": "dentistsName",
+            "title": "Dentist's Name",
+            "type": "input/text"
+        },
+        {
+            "fieldName": "dentistsStreetAddress",
+            "title": "Dentist's Address",
+            "type": "input/text"
+        },
+        {
+            "fieldName": "dentistsPhone",
+            "title": "Dentist's Phone",
+            "type": "input/tel"
+        }], [
+           
+            {
+                "fieldName": "dentistsZip",
+                "title": "Dentist's ZipCode",
+                "type": "input/zipCode"
             },
             {
-                "fieldName": "dentistAddress",
-                "title": "Dentist's Address",
-                "type": "input/text"
+                "fieldName": "dentistsState",
+                "title": "Dentist's State",
+                "type": "select/state"
             },
             {
-                "fieldName": "dentistPhone",
-                "title": "Dentist's Phone",
+                "fieldName": "dentistsCity",
+                "title": "Dentist's City",
                 "type": "input/text"
             }
         ], // end row
@@ -695,5 +733,5 @@ var fields = {
         ]
     ]
 
-}
+};
 CustomFormFunctions.addBootstrapFields(fields);
