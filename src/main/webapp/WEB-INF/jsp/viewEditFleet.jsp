@@ -63,13 +63,13 @@
                                     <button class="btn btn-success bottomButton" id="monthlyUsage">Monthly IWFIA Usage</button>
                                 </div>
                                 <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Maintenance</button>
+                                    <button class="btn btn-success bottomButton" id="maintenance">Maintenance</button>
                                 </div>
                                 <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Monthly Costs</button>
+                                    <button class="btn btn-success bottomButton" id="monthlyCosts">Monthly Costs</button>
                                 </div>
                                 <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Out of Service</button>
+                                    <button class="btn btn-success bottomButton" id="outOfService">Out of Service</button>
                                 </div>                                                                                                
                                                                                                
                             </div>

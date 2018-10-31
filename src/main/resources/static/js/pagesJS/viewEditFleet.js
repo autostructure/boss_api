@@ -139,6 +139,9 @@ forms.find('input:not([disabled]):not([type=submit]), textarea, select').each(fu
     }
 });
 
+$('#monthlyUsage').on('click', function(){
+    window.location.assign('/viewEditFleet/'+ id + '/iwfia');
+})
 
 // generating the fields w/ bootstrap field writer
 var fields = {
