@@ -134,7 +134,7 @@ public class HomeController {
         return "auxContact";
     }          
 
-    @RequestMapping("/viewEditFleet/{id}/iwfia")
+    @RequestMapping("/iwfia")
     public String iwfia() {
         return "iwfia";
     }      

@@ -32,8 +32,8 @@
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/auxContact">Supplemental Phone Numbers</a>
+                                <a class="breadcrumbLink"href="/fleetDash">Fleet Dashboard |</a>
+                                <a class="breadcrumbLinkMainFleet"href="/iwfia">Monthly IWFIA</a>
                             </p>
                         </div>
                     </div>
@@ -50,11 +50,45 @@
                         <div id="error" class="alert alert-danger" role="alert">
                             Error: <span id='errorText'></span>
                         </div>
-                        <form id="formGeneralInfo"></form>
+                        <!-- <form id="formGeneralInfo"></form> -->
+                        <div class="row">
+                            <div class="col inputCol">
+                                <label for="pLicense">Vehicle License</label>
+                                <p class="input" id="pLicense">
+                                    A32903292
+                                </p>
+                            </div>
+                            <div class="col inputCol">
+                                <label for="pVin">VIN</label>
+                                <p class="input" id="pVin">
+                                        WBAWL135X7PX13209
+                                </p>
+                            </div>     
+                            <div class="col inputCol">
+                                <label for="pYear">Year</label>
+                                <p class="input" id="pYear">
+                                    2016
+                                </p>
+                            </div>                                                                                                                       
+                            <div class="col inputCol">
+                                <label for="pMake">Model</label>
+                                <p class="input" id="pMake">
+                                    Dodge
+                                </p>
+                            </div>  
+                            <div class="col inputCol">
+                                <label for="pModel">Model</label>
+                                <p class="input" id="pModel">
+                                    2500
+                                </p>
+                            </div>                             
+                                                                               
+                        </div>
                         <div class="container trainBG padTop">
                             <table id="auxTable">
                                 <thead>
                                     <tr>
+                                        <th>Vehicle License</th>
                                         <th>Month</th>
                                         <th>Year</th>
                                         <th>Operator</th>
@@ -68,7 +102,7 @@
                                 </thead>
                             </table>
         
-                                <h1 class="title5">Add New Months Usage</h1>
+                                <h1 class="padTop title5">Add New Months Usage</h1>
         
                             <form role="form" id="auxForm" data-toggle="validator">
                             </form>

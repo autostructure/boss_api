@@ -13,6 +13,9 @@
 .breadcrumbLinkMainFleet{
     color: #ff6200 !important;
 }
+.breadcrumb{
+    margin-right: 40px;
+}
 label{
     font-size: 1.1em;
     margin-top: 1.5rem !important;
@@ -282,4 +285,52 @@ td, th{
 .fleetBtn:hover{
     background-color: white;
     color: #ff6200;
+}
+.input{
+    font-size: 1.5em;
+}
+.inputCol{
+    padding-left: 20px;
+}
+
+#auxTable_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+#auxTable > thead> tr > th, #auxTable > tbody > tr > td{
+    border-right: 0px solid gray;
+    border-left: 0px solid gray;
+}
+#auxTable{
+    min-width: 100%;
+}
+#auxTable_wrapper{
+    border-radius: 10px;
+    /* border: 1px solid gray; */
+}
+
+#auxTable_filter, #auxTable_paginate, #auxTable_length, #auxTable_info{
+    padding: 20px 20px;
+}
+#auxTable_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
+}
+
+#auxTable_filter > label{
+    font-size: 1.5em;
+}
+#auxTable_wrapper{
+    background-color: white;
+}
+#btn_add_aux{
+    margin: auto;
+    margin-top: 40px;
+    font-size: 1.4em;
+}
+.padTop{
+    margin-top: 50px;
 }
