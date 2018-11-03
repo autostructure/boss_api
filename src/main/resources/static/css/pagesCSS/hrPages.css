@@ -434,6 +434,10 @@ td, th{
 .padTop{
     margin-top: 50px;
 }
+.btnPrint{
+    color: white !important;
+    font-size: .8em !important;
+}
 .card{
     box-shadow: 5px 10px 15px rgba(33,33,33,0.2);
     border: 1px solid rgba(33, 33, 33, 0.2);
@@ -479,4 +483,48 @@ td, th{
 }
 #form_add_description{
     font-size: 1.4em;
+}
+
+#myModal_print > div > div > div.modal-body > div > div > div > label{
+    font-size: .9em !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+#EmployeePrintTable_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+#EmployeePrintTable > thead> tr > th, #EmployeePrintTable > tbody > tr > td{
+    border-right: 0px solid gray;
+    border-left: 0px solid gray;
+}
+#EmployeePrintTable{
+    min-width: 100%;
+    margin-top: 50px;
+}
+#EmployeePrintTable_wrapper{
+    border-radius: 10px;
+    /* border: 1px solid gray; */
+}
+
+#EmployeePrintTable_filter, #EmployeePrintTable_paginate, #EmployeePrintTable_length, #EmployeePrintTable_info{
+    padding: 20px 20px;
+}
+#EmployeePrintTable_filter{
+    position: absolute;
+    top: -85px;
+    left: 10px;
+    padding: 0px;
+}
+
+#EmployeePrintTable_filter > label{
+    font-size: 1.5em;
+}
+#EmployeePrintTable_wrapper{
+    background-color: white;
+}
+table.dataTable.no-footer {
+    border-bottom: 0px solid rgb(148, 148, 148);
 }

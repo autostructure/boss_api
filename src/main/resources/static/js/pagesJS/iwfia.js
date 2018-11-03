@@ -1,19 +1,56 @@
+    var testData = [{
+        "vLicense": "A3827",
+        "vMonth": "March",
+        "vYear": "2018",
+        "vOperator": "Kells, Bethany",
+        "vMileage": "12,378",
+        "vGas": "22",
+        "vOil": "0",
+        "vDaysUsed": "12",
+        "vCost": "0",
+        "vJobCode": "JRB1231"
+    }
+    ];
     api = 'http://localhost:8090'
     $(document).ready(function () {
     
         // populating the jquery datatable from api using ajax
+        // $.ajax({
+        //     type: 'GET',
+        //     url: api + '/contact',
+        //     success: function (json) {
+        //         populateDataTable(json);
+        //     }
+        // });
+
         $.ajax({
+            url: '/employeeProfile',
             type: 'GET',
-            url: api + '/contact',
-            success: function (json) {
-                populateDataTable(json);
+            cache: false,
+            timeout: 600000,
+            success: function(json){
+                $.each(json, function(index, value){
+                    $('#iwfiaForm_operator').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
+                });
             }
-        });
+        });    
+        
+        $.ajax({
+            url: '/activityCode',
+            type: 'GET',
+            cache: false,
+            timeout: 600000,
+            success: function(json){
+                $.each(json, function(index, value){
+                    $('#iwfiaForm_activityCode_code').append('<option value="' + value.id + '">' + value.code + ', ' + value.name + '</option>');
+                });
+            }
+        });           
     
         // function to populate the table
-        function populateDataTable(jsonData) {
-            var table = $('#auxTable').DataTable({
-                data: jsonData,
+        function populateDataTable(testData) {
+            var table = $('#iwfia').DataTable({
+                data: testData,
                 bProcessing: true,
                 bPaginate: false,
                 dom: 'Brtip',
@@ -22,12 +59,16 @@
                     "orderable": false
                 }],
                 columns: [
-                    {data: "description"},
-                    {data: "streetAddress"},
-                    {data: "city"},
-                    {data: "state"},
-                    {data: "phone1"},
-                    {data: "phone2"}
+                    {data: "vLicense"},
+                    {data: "vMonth"},
+                    {data: "vYear"},
+                    {data: "vOperator"},
+                    {data: "vMileage"},
+                    {data: "vGas"},
+                    {data: "vOil"},
+                    {data: "vDaysUsed"},
+                    {data: "vCost"},
+                    {data: "vJobCode"}                                                                                
     
                 ],
                 buttons: [
@@ -50,7 +91,7 @@
                     {
                         text: 'Add <i class="fa fa-lg fa-plus"></i>',
                         action: function () {
-                            $('html,body').animate({scrollTop: $("#auxForm").offset().top}, 'slow');
+                            $('html,body').animate({scrollTop: $("#iwfia").offset().top}, 'slow');
                         },
                         className: 'table-btns add-btn'
                     },
@@ -73,14 +114,14 @@
         // submitting data for new aux contacts
         $('input[type=submit]').on("click", function (e) {
             // checking form validity
-            if ($('#auxForm:valid').length == 0) {
+            if ($('#iwfiaForm:valid').length == 0) {
                 showError("Please ensure all fields are filled out correctly");
                 return false;
             } else {
                 e.preventDefault();
             }
             // creating vars to submit to ajax
-            var form = $('#auxForm');
+            var form = $('#iwfiaForm');
             var method = "POST";
             var url = "/contact";
             var data = {
@@ -126,53 +167,54 @@
     
     // using bootstrap field writer to populate the form
     var fields = {
-        "auxForm": [
+        "iwfiaForm": [
             [//aux info row
                 {"fieldName": "month",
                     "title": "Month",
-                    "type": "input/text",
-                    "required": true,
+                    "type": "select/vmonth",
+                    "required": false,
                     "colspan": 2,
                     "placeholder": "Enter Month",
                 },
                 {"fieldName": "year",
                     "title": "Year",
-                    "type": "input/text",
+                    "type": "select/vyear",
                     "colspan": 2,
                     "placeholder": "Enter Year",
                 },                
                 {"fieldName": "operator",
                     "title": "Operator",
-                    "type": "input/text",
+                    "type": "select/text",
                     "colspan": 2,
-                    "placeholder": "Enter Operator",
-                    "required": true,
+                    "required": false,
                 },
                 {"fieldName": "mileage",
                     "title": "Mileage",
-                    "type": "select/state",
+                    "type": "input/text",
                     "placeholder": "Enter Mileage",
-                    "required": true,
+                    "required": false,
                     "colspan": 2
                 },
                 {"fieldName": "gas",
                     "title": "Gas",
-                    "type": "input/tel",
+                    "type": "input/text",
                     "placeholder": "Gallons of Gas",
-                    "required": true,
+                    "required": false,
                 },
                 {"fieldName": "oil",
                     "title": "Oil",
-                    "type": "input/tel",
+                    "type": "input/text",
                     "placeholder": "Oil",
                     "required": false
                 },
-                {"fieldName": "jobCode",
-                    "title": "Job Code",
-                    "type": "input/tel",
-                    "placeholder": "Job Code",
-                    "required": false
-                }                
+                {
+                    "fieldName": "activityCode.code",
+                    "title": "Section Code",
+                    "type": "select/text",
+                    "colspan": 2,
+                    "required": false,
+
+                }              
             ], // end row
             [
                 {   "custom": '<input type="submit" class="btn fleetBtn" id="btn_add_aux" value="Add IWFIA Usage">' }

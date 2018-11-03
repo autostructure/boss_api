@@ -128,14 +128,23 @@ public class HomeController {
     @RequestMapping("/viewEditFleet/{id}")
     public String viewEditFleet() {
         return "viewEditFleet";
-    }         
-    @RequestMapping("/auxContact")
-    public String auxContact() {
-        return "auxContact";
-    }          
-
+    }       
     @RequestMapping("/iwfia")
     public String iwfia() {
         return "iwfia";
-    }      
+    }        
+    @RequestMapping("/auxContact")
+    public String auxContact() {
+        return "auxContact";
+    }           
+
+	@RequestMapping("/employeePrint")
+    public String employeePrint() {
+        return "employeePrint";
+    }  
+
+	@RequestMapping("/print/{id}")
+    public String print() {
+        return "print";
+    }  
 }

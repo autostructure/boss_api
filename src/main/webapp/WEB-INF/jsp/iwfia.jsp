@@ -85,7 +85,7 @@
                                                                                
                         </div>
                         <div class="container trainBG padTop">
-                            <table id="auxTable">
+                            <table id="iwfia">
                                 <thead>
                                     <tr>
                                         <th>Vehicle License</th>
@@ -104,7 +104,7 @@
         
                                 <h1 class="padTop title5">Add New Months Usage</h1>
         
-                            <form role="form" id="auxForm" data-toggle="validator">
+                            <form role="form" id="iwfiaForm" data-toggle="validator">
                             </form>
                                                                                                                                                         
                         </div>                    
@@ -129,6 +129,7 @@
         <script src="/js/ead.min.js"></script>
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
+        <script src="/js/pagesJS/customFormFunctions.js"></script>
         <script src="/js/pagesJS/iwfia.js"></script>
         <script src="/js/pagesJS/mainFleetPages.js"></script>
 

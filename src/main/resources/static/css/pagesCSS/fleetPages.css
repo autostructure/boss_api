@@ -293,37 +293,37 @@ td, th{
     padding-left: 20px;
 }
 
-#auxTable_wrapper > div.dt-buttons{
+#iwfia_wrapper > div.dt-buttons{
     position: absolute;
     top: -55px;
     right: 10px;
 }
-#auxTable > thead> tr > th, #auxTable > tbody > tr > td{
+#iwfia > thead> tr > th, #iwfia > tbody > tr > td{
     border-right: 0px solid gray;
     border-left: 0px solid gray;
 }
-#auxTable{
+#iwfia{
     min-width: 100%;
 }
-#auxTable_wrapper{
+#iwfia_wrapper{
     border-radius: 10px;
     /* border: 1px solid gray; */
 }
 
-#auxTable_filter, #auxTable_paginate, #auxTable_length, #auxTable_info{
+#iwfia_filter, #iwfia_paginate, #iwfia_length, #iwfia_info{
     padding: 20px 20px;
 }
-#auxTable_filter{
+#iwfia_filter{
     position: absolute;
     top: -75px;
     left: 10px;
     padding: 0px;
 }
 
-#auxTable_filter > label{
+#iwfia_filter > label{
     font-size: 1.5em;
 }
-#auxTable_wrapper{
+#iwfia_wrapper{
     background-color: white;
 }
 #btn_add_aux{

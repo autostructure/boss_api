@@ -1,131 +1,165 @@
 $(document).ready(function () {
     
-    var max_fields = 5; //maximum input boxes allowed
-    var wrapper = $(".items"); //Fields wrapper
-    var add_button = $(".add_field_button"); //Add button ID
-    var x = 1; //initlal text box count
-    var draCourses = {};
+   /* $.ajax({
+        url: "/employeeProfile",
+        type: "GET",
+        cache: false,
+        timeout: 60000,
+        succes: function (json) {
+            debugger;
+            populateTable(json);
+        },
+        error: function (a, b, c) {
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+    });*/
 
-    $(add_button).click(function (e) { //on add input button click
-        e.preventDefault();
-        var row = $(".template.dra-entry").clone().attr("id", "nth_row_"+x).removeClass("template");
-        console.log($(".template.dra-entry").find("select").clone());
-        row.find("input, select").val("");
-        row.appendTo(wrapper).attr("hidden", false);
-    }).click();
-    $('.items').on("click", ".remove_field", function (e) { //user click on remove field
-        e.preventDefault();
-        $(this).closest('.mainAdd').remove();
-        x--;
-    });
-    $('.items').on("click", ".copy_field", function (e) { //user click on remove field
-        e.preventDefault();
-        var row = $(this).closest('.mainAdd');
-        var row2 = row.clone();
-        row.find("select, input").each(function(){
-            row2.find("[name='"+this.name+"']").val($(this).val());
-        });
-        x++;
-        $('.items').append(row2);
-    });
-    $('.items').on("click update change", "[name=dateOfAssessment]", function(){
-        var date = CustomFormFunctions.getDateFrom($(this));
-        date.setFullYear(date.getFullYear() + 1)
-        $("[name=dateDue]").val(CustomFormFunctions.formatDate(date, "bootstrap"));
-    });
-
-    CustomFormFunctions.populateDropDown($("select#draTitle_OG"), "/draCourse", "id", "title", false, function(){onAJAXSuccess("employees")});
-    CustomFormFunctions.populateDropDown($("select#dStation_OG"), "/employeeProfile", "id", "nameCode", false, function(){onAJAXSuccess("titles")});
-    $.ajax({
-        "url":"/draCourse",
-        "method":"GET",
-        "success":function(data) {
-            for (var k in data) {
-                var course = data[k];
-                draCourses[course.id] = course;
+    makeAjaxCall("/employeeProfile", "GET", null).then(
+        function (json) {
+            var employees = [];
+            for (k in json) {
+                employees[json[k].id] = json[k];
             }
-            onAJAXSuccess("courseList");
+            populateTable(json, employees);
+            //populateDataTable(tempData);
         }
-    })
+    );
 
-    var ajaxWaits = {"employees":false, "titles":false, "courseList":false};
-    function onAJAXSuccess(key) {
-        ajaxWaits[key] = true;
-        allReturned = true;
-        for (k in ajaxWaits) {
-            if (ajaxWaits[k] == false) allReturned = false;
-        }
-        if (allReturned) {
-            //$(".add_field_button").click();
+    function populateTable(json) {
+        var table = $('#EmployeePrintTable').DataTable({
+            'order': [
+                [4, "asc"]
+            ],
+            'bPaginate': false,
+            'data': json,
+            'dom': 'Bfti',
+            'columns': [{
+                'data': null,
+                'render': function (data, type, row) {
+                    
+                    return data.lastName + ', ' + data.firstName;
+                }
+            },
+            // { 'data': 'supervisor' },
+
+            {
+                'data': "title"
+            },
+            {
+                'data': "employeePosition"
+            },
+            {
+                'data': 'fieldStatus'
+            },
+            {
+                'data': "dutyStation"
+            },
+            {
+                'data': "stateAssigned"
+            },
+            {
+                data: null,
+                "render": function (data, type, row) {
+                    return `
+                                <a data-toggle="modal" data-target="#myModal_print" href="#" data-value=` + data.id+ ` class="btn btnPrint btn_pers_copy" id="btnPrint">View / Print</a>
+                    
+                    `;
+                }
+            }
+                
+            ],
+            'buttons': [
+            {
+                text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
+                action: function () {
+                    window.location.reload();
+                },
+                className: 'table-btns refresh-btn'
+            }
+            ]
+        });
+
+        $('.btnPrint').click(function () {
+            var _val = $(this).attr("data-value");
+            selected_row = parseInt(_val);
+        });
+
+        //printElement(document.getElementById("printThis"));
+        $('#myModal_print').on('shown.bs.modal', function () {
+
+            var modal = $(this);
+            
+            $.ajax({
+                url: "/employeeProfile/" + selected_row,
+                type: 'GET',
+                success: function (json) {
+                    modal.find(".modal-body #PrimaryPhone").val(json.homePhone);
+                    modal.find(".modal-body #SecondaryPhone").val(json.cellPhone);
+                    modal.find(".modal-body #PersonalEmail").val(json.personalEmail);
+                    modal.find(".modal-body #CityTwo").val(json.emergencyContactCity2);
+                    modal.find(".modal-body #FirstNameOne").val(json.emergencyContactFirstName1);
+                    modal.find(".modal-body #FirstNameTwo").val(json.emergencyContactFirstName2);
+                    modal.find(".modal-body #HomePhoneOne").val(json.emergencyContactHomePhone1);
+                    modal.find(".modal-body #HomePhoneTwo").val(json.emergencyContactHomePhone2);
+                    modal.find(".modal-body #LastNameOne").val(json.emergencyContactLastName1);
+                    modal.find(".modal-body #LastNameTwo").val(json.emergencyContactLastName2);
+                    modal.find(".modal-body #FirstRelationship").val(json.emergencyContactRelationship1);
+                    modal.find(".modal-body #SecondRelationship").val(json.emergencyContactRelationship2);
+                    modal.find(".modal-body #StateOne").val(json.emergencyContactState1);
+                    modal.find(".modal-body #StateTwo").val(json.emergencyContactState2);
+                    modal.find(".modal-body #AddressOne").val(json.emergencyContactStreetAddress1);
+                    modal.find(".modal-body #AddressTwo").val(json.emergencyContactStreetAddress2);
+                    modal.find(".modal-body #WorkPhoneOne").val(json.emergencyContactWorkPhone1);
+                    modal.find(".modal-body #WorkPhoneTwo").val(json.emergencyContactWorkPhone2);
+                    modal.find(".modal-body #ZipOne").val(json.emergencyContactZip1);
+                    modal.find(".modal-body #ZipTwo").val(json.emergencyContactZip2);
+                    modal.find(".modal-body #CellPhoneOne").val(json.emergencyContactCellPhone1);
+                    modal.find(".modal-body #CellPhoneTwo").val(json.emergencyContactCellPhone2);
+                    modal.find(".modal-body #gender").val(json.gender);
+                    modal.find(".modal-body #race").val(json.race);
+                    modal.find(".modal-body #eyeColor").val(json.eyeColor);
+                    modal.find(".modal-body #hairColor").val(json.hairColor);
+                    modal.find(".modal-body #heightFeet").val(json.heightFeet);
+                    modal.find(".modal-body #heightInches").val(json.heightInches);
+                    modal.find(".modal-body #weight").val(json.weightPounds);
+                    modal.find(".modal-body #otherID").val(json.otherIdentifyingFeatures);
+
+                },
+                error: function (xhr, status, error) {
+                    console.log("error getting employe profile in modal contact: " + selected_row);
+                },
+                async: false
+            });
+
+        });
+
+        $('#myModal_print').on('click', '.btn_pers_print', function (e) {
+            window.location.href = "/print/" + selected_row;
+        });
+
+        function printElement() {
+
+            /*var modal = $("#myModal_print");
+            var row = $(modal).find('.modal-body');
+            var row2 = row.clone();
+            row.find("select, input").each(function () {
+                row2.find("[name='" + this.name + "']").val($(this).val());
+            });
+
+            
+            $(".printable").html(
+                row2.html()
+            );
+            var htnm = $(".printable").html();
+            debugger;*/
+            //fire the print method
+            window.print();
         }
     }
-    $("#submitV").click(function (e) {
-        e.preventDefault();
-        var allValid = true;
-        var inProgress = 0;
-        $(".items .mainAdd").each(function(){
-            e.preventDefault();
-            var entry = $(this);
-            inProgress ++;
-            var valid = true;
-            entry.find("select, input").each(function(){
-                valid = valid && this.validity.valid;
-            });
-            if (valid) {
-                var data = {
-                    "employee" : {"id":parseInt(entry.find("[name='employee.id']").val())},
-                    "deliberativeRiskAssessmentCourseId" : parseInt(entry.find("[name='deliberativeRiskAssessmentCourseId']").val()),
-                    "dateOfAssessment" : CustomFormFunctions.formatDate(entry.find("[name='dateOfAssessment']").val(), "ISO-Short"),
-                    "dateDue" : CustomFormFunctions.formatDate(entry.find("[name='dateDue']").val(), "ISO-Short"),
-                }
-                CustomFormFunctions.putPartialInfo("/dra", 0, data, 
-                    function(){
-                        inProgress--;
-                        console.log(entry.find(".remove_field"));
-                        entry.find(".remove_field").click();
-                    }
-                );
-                $(this).find(".remove_field").click(); // remove row.
-            } else {
-                // DIsplay Errors
-                allValid = false;
-                console.log("Problem");
-            }
-        });
-        if (allValid) {
-            window.location.reload();
-        }
-
-        return;
-
-        $('#myModal_success').on('hidden.bs.modal', function () {
-            location.reload();
-        });
-
-        $('#myModal_error').on('shown.bs.modal', function () {
-            var modal = $(this);
-            var div = "";
-            $.each(employee_errors, function (index, value) {
-                div = div + '<div class="row"><div class="col">Employee Name: ' + value.lastName + ", " + value.firstName + '</div></div>';
-            });
-
-            $(modal).find('.modal-body .employees_error').append(div);
-
-        });
-    });
 });
 
-
-var dra_var = {
-
-    "dateOfAssessment": "2018-10-11T17:40:01.320Z",
-    "employeeProfile": {
-    },
-    "id": 0,
-    "title": "string",
-    "yearsValid": 0
-
-};
 
 function getCorrectDateFormat(date_str) {
     var date = new Date(date_str);

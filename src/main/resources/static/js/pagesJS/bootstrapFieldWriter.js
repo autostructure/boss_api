@@ -136,6 +136,21 @@ function addBootstrapFields(data) {
             .append('<option value="2020">2020</option>')
             .append('<option value="2021">2021</option>');
     }
+    { //year fleet section
+        var vehMonth = $("<select></select>")
+            .append('<option value="Jan">January</option>')
+            .append('<option value="Feb">February</option>')
+            .append('<option value="Mar">March</option>')
+            .append('<option value="Apr">April</option>')
+            .append('<option value="May">May</option>')
+            .append('<option value="Jun">June</option>')
+            .append('<option value="Jul">July</option>')
+            .append('<option value="Aug">August</option>')
+            .append('<option value="Sep">September</option>')
+            .append('<option value="Oct">October</option>')
+            .append('<option value="Nov">November</option>')
+            .append('<option value="Dec">December</option>');
+    }    
     
     function formColumn(col) {
         var colEl;
@@ -181,6 +196,9 @@ function addBootstrapFields(data) {
                 if (types[1] == "vyear") {
                     input.append(vehYear.find("option").clone());
                 }
+                if (types[1] == "vmonth") {
+                    input.append(vehMonth.find("option").clone());
+                }                
                 if (col.options) {
                     for (var val in col.options) {
                         name = col.options[val];
