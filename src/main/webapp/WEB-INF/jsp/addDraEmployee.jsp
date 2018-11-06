@@ -52,7 +52,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="dStation_OG">Select Employee Namecode<span class="reqClass"> *</span></label>
+                                            <label for="dStation_OG">Select Employee <span class="reqClass"> *</span></label>
                                             <select name="employee.id" required id="dStation_OG" class="form-control">
                                                 <option value="">Select an Employee</option>
                                             </select>
