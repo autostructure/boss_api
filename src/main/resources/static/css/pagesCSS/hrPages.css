@@ -182,12 +182,23 @@ hr:after {
     left: 10px;
     padding: 0px;
 }
+#tblDRA_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
+}
 #tblTraining_filter > label{
     font-size: 1.5em;
 }
 #tblTraining_wrapper > div.dt-buttons{
     position: absolute;
-    top: -115px;
+    top: -120px;
+    right: 10px;
+}
+#tblDRA_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -100px;
     right: 10px;
 }
 /* view all dra table css */
@@ -528,3 +539,24 @@ td, th{
 table.dataTable.no-footer {
     border-bottom: 0px solid rgb(148, 148, 148);
 }
+.btn-modal-upload{
+    color: white !important;
+    font-size: 0.8em;
+}
+
+.btn-modal-upload:active, .btn-modal-upload:hover, .btn-modal-upload:visited{
+    color: white !important;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+#otherID{
+    font-size: 1.2em !important;
+}
+#formEmergencyInfo_otherIdentifyingFeatures, #formIdentificationInfo_employeePhoto{
+    font-size: 1.2em !important;
+}
+#submitWorkInfo, #submitEmergencyInfo, #submitMedicalInfo, #submitEmployeeInfo{
+    min-width: 20%;
+    margin-top: 40px;
+    font-size: 1.2em;
+};

@@ -23,7 +23,7 @@
             <section class="usa-section bgImg">
                 <div class="usa-grid usa-buffer-top">
                     <nav id="sidebar" hidden></nav>
-                    <div class="usa-width-one-whole faded">
+                    <div class="usa-width-one-whole faded" style="margin-bottom: 50px">
                         <div class="border">
                             <ul class="nav nav-tabs" id="myTab" role="tablist"> <!-- start of tabs list -->
                                 <li class="nav-item">
@@ -75,12 +75,15 @@
                                 <div id="templateButtonList" class="dropdown1">
                                     <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                                     <div id="dropList" class="dropdown-content1">
-                                        <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
+                                        <!-- <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a> -->
                                         <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
-                                        <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a>
+                                        <!-- <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a> -->
                                         <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
                                     </div>
                                 </div>
+                                <div id="templateButtonList2" class="dropdown1">
+                                    <button class="btn btn_pers_copy"><a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload</a></button>
+                                </div>                                
                             </div>
                             <!--  START OF GENERAL TAB      -->
                             <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="generalInfo">
@@ -131,6 +134,7 @@
                                             <th scope="col">Date Completed</th>
                                             <th scope="col">Valid Until</th>
                                             <th scope="col">Approved By</th>
+                                            <th scope="col">Upload Certificates (Optional) </th>
                                             <th id="stop"></th>
                                         </tr></thead>
                                         <tbody></tbody>

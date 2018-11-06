@@ -211,6 +211,7 @@ $(document).ready(function() {
                         }
                     }
                 },
+
                 {'data': "approvedBy.nameCode",
                     "render": function (data, type, row) {
                         if (!data) {
@@ -218,6 +219,18 @@ $(document).ready(function() {
                         }
                         return data;
                     }
+                },
+                {
+                    'data': null,
+                    "render": function (data, type, row) {
+                        if (type == 'filter') {
+                            return data ? "isLatest" : "";
+                        }
+                        var buttonList = $("#templateButtonList2").clone().attr('id','');
+                        buttonList.find("a").attr("data-training", JSON.stringify(row));
+                        return buttonList.prop('outerHTML');
+                    },
+                    "orderable": false,                                          
                 },
                 {'data': "isLatest",
                     "render": function (data, type, row) {
@@ -232,22 +245,6 @@ $(document).ready(function() {
                 },
             ],
             'buttons': [
-                // {
-                //     text: 'Print <i class="fa fa-lg fa-print"></i>',
-                //     extend: 'print',
-                //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                //     },
-                //     className: 'table-btns print-btn'
-                // },
-                // {
-                //     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
-                //     extend: 'excel',
-                //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                //     },
-                //     className: 'table-btns excel-btn'
-                // },
                 {
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function () {
@@ -263,7 +260,7 @@ $(document).ready(function() {
                     className: 'table-btns refresh-btn'
                 },
                 {
-                    text: '<label for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
+                    text: '<label class="viewLabel" for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
                     action: function() {
                         $("#viewOld").click();
                         var show = $("#viewOld")[0].checked;
@@ -432,29 +429,7 @@ $(document).ready(function() {
                 },
             ],
             'buttons': [
-                // {
-                //     text: 'Print <i class="fa fa-lg fa-print"></i>',
-                //     extend: 'print',
-                //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                //     },
-                //     className: 'table-btns print-btn'
-                // },
-                // {
-                //     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
-                //     extend: 'excel',
-                //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                //     },
-                //     className: 'table-btns excel-btn'
-                // },
-                // {
-                //     text: 'Add <i class="fa fa-lg fa-plus"></i>',
-                //     action: function () {
-                //         window.location.href = '/addTrainingEmployee';
-                //     },
-                //     className: 'table-btns add-btn'
-                // },
+
                 {
                     text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
                     action: function() {
@@ -463,7 +438,7 @@ $(document).ready(function() {
                     className: 'table-btns refresh-btn'
                 },
                 {
-                    text: '<label for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
+                    text: '<label class="viewLabel" for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
                     action: function() {
                         $("#viewOld").click();
                         var show = $("#viewOld")[0].checked;
@@ -663,37 +638,32 @@ var fields = {
                     {   "fieldName":"firstName",
                         "title":"First Name",
                         "type":"input/text",
-                        "placeholder":"Jane",
+                        "placeholder":"Enter First Name",
                         "required":true,
-                        "disabled":true,
                         "colspan":4,
                     },
                     {   "fieldName":"lastName",
                         "title":"Last Name",
                         "type":"input/text",
                         "required":true,
-                        "placeholder":"Smith",
-                        "disabled":true,
+                        "placeholder":"Enter Last Name",
                         "colspan":4,                        
                     },
                     {   "fieldName":"nameCode",
                         "title":"Name Code",
                         "type":"input/text",
                         "required":true,
-                        "placeholder":"JSmith",
-                        "disabled":true,
+                        "placeholder":"Auto Generated",
                         "colspan":4,
                     },
                     {   "fieldName":"middleInitial",
                         "title":"Middle Initial",
                         "type":"input/text",
-                        "placeholder":"Q",
                         "colspan":6
                     },
                     {   "fieldName":"preferredName",
                         "title":"Preferred Name",
                         "type":"input/text",
-                        "placeholder":"Janey",
                         "colspan":6
                     },
                 ],
@@ -709,7 +679,6 @@ var fields = {
                 "selectFrom":{
                     "url":"/dutyStations"
                 },
-                "disabled":true,
             },
             {   "fieldName":"activityCode.code",
                 "title":"Activity Code",
@@ -744,32 +713,29 @@ var fields = {
             },
         ], // end row
         [ // Address Info
-            {   "fieldName":"addressStreet",
-                "title":"Street Address",
+            {   "fieldName":"addressStreet1",
+                "title":"Street Address (Home)",
                 "type":"input/text",
                 "required":true,
                 "colspan":6,
-                "disabled":true,
             },
             {   "fieldName":"addressStreet2",
-                "title":"Street Address (Line 2)",
+                "title":"Home Street Address (Home Line 2)",
                 "type":"input/text",
-                "required":true,
                 "colspan":6,
-                "disabled":true,
             },
             {   "fieldName":"addressCity",
-                "title":"City",
+                "title":"City (Home)",
                 "type":"input/text",
                 "required":true,
             },
             {   "fieldName":"addressState",
-                "title":"State",
+                "title":"State (Home)",
                 "type":"select/state",
                 "required":true
             },
             {   "fieldName":"addressZip",
-                "title":"Zip",
+                "title":"Zip (Home)",
                 "type":"input/zipCode",
                 "required":true
             },
@@ -789,44 +755,41 @@ var fields = {
         ], // end row
         [ // Address Info
             {   "fieldName":"emergencyContactStreetAddress1",
-                "title":"Street Address",
+                "title":"Street Address (Contact)",
                 "type":"input/text",
                 "required":true,
                 "colspan":12,
             },
             {   "fieldName":"emergencyContactCity1",
-                "title":"City",
+                "title":"City (Contact)",
                 "type":"input/text",
                 "required":true,
             },
             {   "fieldName":"emergencyContactState1",
-                "title":"State",
+                "title":"State (Contact)",
                 "type":"select/state",
                 "required":true
             },
             {   "fieldName":"emergencyContactZip1",
-                "title":"Zip",
+                "title":"Zip (Contact)",
                 "type":"input/zipCode",
                 "required":true
             },
         ], // end row
         [ // Phone Numbers and Relationship
             {   "fieldName":"emergencyContactHomePhone1",
-                "title":"Home Phone",
+                "title":"Home Phone (Contact)",
                 "type":"input/tel",
-                "required":true,
                 "colspan":6,
             },
             {   "fieldName":"emergencyContactCellPhone1",
-                "title":"Cell Phone",
+                "title":"Cell Phone (Contact)",
                 "type":"input/tel",
-                "required":true,
                 "colspan":6,
             },
             {   "fieldName":"emergencyContactWorkPhone1",
-                "title":"Work Phone",
+                "title":"Work Phone (Contact)",
                 "type":"input/tel",
-                "required":true,
                 "colspan":6,
             },
             {   "fieldName":"emergencyContactRelationship1",
@@ -849,36 +812,36 @@ var fields = {
         ], // end row
         [ // Address Info
             {   "fieldName":"emergencyContactStreetAddress2",
-                "title":"Street Address",
+                "title":"Street Address (Contact 2)",
                 "type":"input/text",
                 "colspan":12,
             },
             {   "fieldName":"emergencyContactCity2",
-                "title":"City",
+                "title":"City (Contact 2)",
                 "type":"input/text",
             },
             {   "fieldName":"emergencyContactState2",
-                "title":"State",
+                "title":"State (Contact 2)",
                 "type":"select/state",
             },
             {   "fieldName":"emergencyContactZip2",
-                "title":"Zip",
+                "title":"Zip (Contact 2)",
                 "type":"input/zipCode",
             },
         ], // end row
         [ // Phone Numbers and Relationship
             {   "fieldName":"emergencyContactHomePhone2",
-                "title":"Home Phone",
+                "title":"Home Phone (Contact 2)",
                 "type":"input/tel",
                 "colspan":6,
             },
             {   "fieldName":"emergencyContactCellPhone2",
-                "title":"Cell Phone",
+                "title":"Cell Phone (Contact 2)",
                 "type":"input/tel",
                 "colspan":6,
             },
             {   "fieldName":"emergencyContactWorkPhone2",
-                "title":"Work Phone",
+                "title":"Work Phone (Contact 2)",
                 "type":"input/tel",
                 "colspan":6,
             },
@@ -895,17 +858,15 @@ var fields = {
             {   "fieldName":"eyeColor",
                 "title":"Eye Color",
                 "type":"input/text",
-                "placeholder":"hazel",
             },
             {   "fieldName":"hairColor",
                 "title":"Hair Color",
                 "type":"input/text",
-                "placeholder":"Auburn",
             },
             {   "fieldName":"heightFeet",
                 "title":"Height<small>(Feet)</small>",
                 "type":"input/number",
-                "placeholder":"5",
+                "placeholder":"Feet",
                 "min":2,
                 "max":9,
                 colspan:1,
@@ -913,15 +874,15 @@ var fields = {
             {   "fieldName":"heightInches",
                 "title":"Height<small>(Inches)</small>",
                 "type":"input/number",
-                "placeholder":"11",
+                "placeholder":"Inches",
                 "min":'0',
                 "max":11,
                 colspan:1,
             },
-            {   "fieldName":"weight",
+            {   "fieldName":"weightPounds",
                 "title":"Weight (Pounds)",
                 "type":"input/number",
-                "placeholder":"160",
+                "placeholder":"Pounds",
             },
         ],
         [
@@ -961,7 +922,7 @@ var fields = {
             {   "fieldName":"otherIdentifyingFeatures",
                 "title":"Other Identifying Features",
                 "type":"textarea",
-                "placeholder":"Dragon Tattoo on Left Shoulder\n\rBirthmark in the shape of Louisiana on Right Hand\n\r... Any obvious distinguishing features.",
+                "placeholder":"I.E. Dragon Tattoo on Left Shoulder\n\rBirthmark in the shape of Louisiana on Right Hand\n\rAny obvious distinguishing features.",
             },
         ]
     ],

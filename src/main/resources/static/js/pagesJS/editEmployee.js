@@ -50,11 +50,17 @@ $(document).ready(function() {
             case '#submitEmergencyInfo':
                 $("#medical-tab").trigger("click");
                 break;
-            case '#submitMedicalInfo':
-                $("#legacy-tab").trigger("click");
-                break;
+
         }
     });
+    $('input[value=Done]').on("click", function(e) {
+        var id = '#' + $(this).attr('id');
+        switch (id) {
+            case '#submitMedicalInfo':
+                window.location.replace('/viewAllEmployees');
+                break;
+        }
+    });    
     $("#chooseEmployee").on("update change", function() {
         var empId = $(this).val();
         populateTheEmployee(empId);
@@ -181,12 +187,12 @@ var fields = {
         [ // Contact Info
             {
                 "fieldName": "homePhone",
-                "title": "Primary Phone",
+                "title": "Home Phone",
                 "type": "input/tel",
             },
             {
                 "fieldName": "cellPhone",
-                "title": "Secondary Phone",
+                "title": "Cell Phone",
                 "type": "input/tel",
             },
             {
@@ -198,30 +204,29 @@ var fields = {
         [ // Address Info
             {
                 "fieldName": "addressStreet1",
-                "title": "Street Address",
+                "title": "Street Address (Home)",
                 "type": "input/text",
                 "colspan": 6
             },
             {
                 "fieldName": "addressStreet2",
-                "title": "Street Address (Line 2)",
+                "title": "Street Address (Home Line 2)",
                 "type": "input/text",
                 "colspan": 6,
-                "disabled": true
             },
             {
                 "fieldName": "addressCity",
-                "title": "City",
+                "title": "City (Home)",
                 "type": "input/text",
             },
             {
                 "fieldName": "addressState",
-                "title": "State",
+                "title": "State (Home)",
                 "type": "select/state",
             },
             {
                 "fieldName": "addressZip",
-                "title": "Zip",
+                "title": "Zip (Home)",
                 "type": "input/zipCode"
             }
         ],
@@ -342,41 +347,41 @@ var fields = {
                 "colspan": 3
             }
         ],
-        [ // Pay information
-            {
-                "fieldName": "series",
-                "title": "Series",
-                "type": "input/text",
-            },
-            {
-                "fieldName": "pwpSalary",
-                "title": "pwp Salary",
-                "type": "input/number",
-                "step": 0.01,
-                "disabled": true
-            },
-            {
-                "fieldName": "regPayPerPayPeriod",
-                "title": "Regular Pay Per Pay Period",
-                "type": "input/number",
-                "step": 0.01,
-                "disabled": true
-            },
-            {
-                "fieldName": "overtimeHourlyWage",
-                "title": "Overtime Hourly Wage",
-                "type": "input/number",
-                "step": 0.01,
-                "disabled": true
-            },
-            {
-                "fieldName": "payPeriodsLeft",
-                "title": "Pay Periods Left",
-                "type": "input/number",
-                "step": 0.01,
-                "disabled": true
-            }
-        ], // end row
+       // [ // Pay information
+            // {
+            //     "fieldName": "series",
+            //     "title": "Series",
+            //     "type": "input/text",
+            // },
+            // {
+            //     "fieldName": "pwpSalary",
+            //     "title": "pwp Salary",
+            //     "type": "input/number",
+            //     "step": 0.01,
+            //     "disabled": true
+            // },
+            // {
+            //     "fieldName": "regPayPerPayPeriod",
+            //     "title": "Regular Pay Per Pay Period",
+            //     "type": "input/number",
+            //     "step": 0.01,
+            //     "disabled": true
+            // },
+            // {
+            //     "fieldName": "overtimeHourlyWage",
+            //     "title": "Overtime Hourly Wage",
+            //     "type": "input/number",
+            //     "step": 0.01,
+            //     "disabled": true
+            // },
+            // {
+            //     "fieldName": "payPeriodsLeft",
+            //     "title": "Pay Periods Left",
+            //     "type": "input/number",
+            //     "step": 0.01,
+            //     "disabled": true
+            // }
+       // ], // end row
         [
             {
                 "fieldName": "masterNumber",
@@ -518,26 +523,27 @@ var fields = {
         [ // Address Info
             {
                 "fieldName": "emergencyContactStreetAddress1",
-                "title": "Street Address",
+                "title": "Street Address (Contact)",
                 "type": "input/text",
                 "required": true,
                 "colspan": 12
             },
+         
             {
                 "fieldName": "emergencyContactCity1",
-                "title": "City",
+                "title": "City (Contact)",
                 "type": "input/text",
                 "required": true
             },
             {
                 "fieldName": "emergencyContactState1",
-                "title": "State",
+                "title": "State (Contact)",
                 "type": "select/state",
                 "required": true
             },
             {
                 "fieldName": "emergencyContactZip1",
-                "title": "Zip",
+                "title": "Zip (Contact)",
                 "type": "input/zipCode",
                 "required": true
             }
@@ -545,9 +551,21 @@ var fields = {
         [ // Phone Numbers and Relationship
             {
                 "fieldName": "emergencyContactHomePhone1",
-                "title": "Primary Phone",
+                "title": "Home Phone (Contact)",
                 "type": "input/tel",
-                "required": true,
+                "colspan": 6
+            },
+
+            {
+                "fieldName": "emergencyContactCellPhone1",
+                "title": "Cell Phone (Contact)",
+                "type": "input/tel",
+                "colspan": 6
+            },
+            {
+                "fieldName": "emergencyContactWorkPhone1",
+                "title": "Work Phone (Contact)",
+                "type": "input/tel",
                 "colspan": 6
             },
             {
@@ -556,19 +574,7 @@ var fields = {
                 "type": "input/text",
                 "required": true,
                 "colspan": 6
-            },
-            {
-                "fieldName": "emergencyContactCellPhone1",
-                "title": "Secondary Phone",
-                "type": "input/tel",
-                "colspan": 6
-            },
-            {
-                "fieldName": "emergencyContactWorkPhone1",
-                "title": "Work Phone",
-                "type": "input/tel",
-                "colspan": 6
-            },
+            },            
         ], // end row
         { "custom": '<h4 class="title4">Second Contact</h4>' },
         [ // Name
@@ -586,30 +592,43 @@ var fields = {
         [ // Address Info
             {
                 "fieldName": "emergencyContactStreetAddress2",
-                "title": "Street Address",
+                "title": "Street Address (Contact 2)",
                 "type": "input/text",
                 "colspan": 12
             },
             {
                 "fieldName": "emergencyContactCity2",
-                "title": "City",
+                "title": "City (Contact 2)",
                 "type": "input/text"
             },
             {
                 "fieldName": "emergencyContactState2",
-                "title": "State",
+                "title": "State (Contact 2)",
                 "type": "select/state"
             },
             {
                 "fieldName": "emergencyContactZip2",
-                "title": "Zip",
+                "title": "Zip (Contact 2)",
                 "type": "input/zipCode"
             }
         ], // end row
         [ // Phone Numbers and Relationship
             {
                 "fieldName": "emergencyContactHomePhone2",
-                "title": "Primary Phone",
+                "title": "Home Phone (Contact 2)",
+                "type": "input/tel",
+                "colspan": 6
+            },
+
+            {
+                "fieldName": "emergencyContactCellPhone2",
+                "title": "Cell Phone (Contact 2)",
+                "type": "input/tel",
+                "colspan": 6
+            },
+            {
+                "fieldName": "emergencyContactWorkPhone2",
+                "title": "Work Phone (Contact 2)",
                 "type": "input/tel",
                 "colspan": 6
             },
@@ -618,19 +637,7 @@ var fields = {
                 "title": "Relationship",
                 "type": "input/text",
                 "colspan": 6
-            },
-            {
-                "fieldName": "emergencyContactCellPhone2",
-                "title": "Secondary Phone",
-                "type": "input/tel",
-                "colspan": 6
-            },
-            {
-                "fieldName": "emergencyContactWorkPhone2",
-                "title": "Work Phone",
-                "type": "input/tel",
-                "colspan": 6
-            },
+            },            
         ], // end row
         [
             { "custom": $("#submitEmergencyInfo").parent() } // Submit Button
@@ -682,7 +689,7 @@ var fields = {
             }],[
             {
                 "fieldName": "doctorsZip",
-                "title": "Doctor's ZipCode",
+                "title": "Doctor's Zip Code",
                 "type": "input/zipCode"
             },
             {
@@ -714,7 +721,7 @@ var fields = {
            
             {
                 "fieldName": "dentistsZip",
-                "title": "Dentist's ZipCode",
+                "title": "Dentist's Zip Code",
                 "type": "input/zipCode"
             },
             {

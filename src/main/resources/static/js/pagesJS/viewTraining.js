@@ -132,6 +132,12 @@ $(document).ready(function() {
                         return data;
                     }
                 },
+                // {
+                //     'data': "buttonUpload",
+                //     "render": function(data, type, row){
+                //        ' <button><a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a></button>'
+                //     }
+                // },
                 {
                     'data': "isLatest",
                     "render": function(data, type, row) {

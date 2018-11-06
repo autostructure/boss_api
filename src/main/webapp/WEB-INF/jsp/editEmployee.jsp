@@ -97,8 +97,8 @@
                                         <form role="form" data-toggle="validator" class="generalInfo" id="formGeneralInfo" action="javascript:0" method="POST">
                                             <input hidden id="employeeId" name="id" value="0">
                                             <div class="row">
-                                                <div class="col col-md-4 offset-md-4">
-                                                    <input type="button" id="submitEmployeeInfo" class="btn btn-success" value="Next">
+                                                    <div class="col col-md-12 text-center">
+                                                    <input type="button" id="submitEmployeeInfo" class="btn btn-lg btn_pers_copy" value="Next">
                                                 </div>
                                             </div>
                                         </form>
@@ -110,8 +110,8 @@
                                         <form role="form" data-toggle="validator" class="workInfo" id="formWorkInfo">
                                             <h4 class="title3">Employee Work Information</h4>
                                             <div class="row">
-                                                <div class="col col-md-4 offset-md-4">
-                                                    <input type="button" id="submitWorkInfo" class="btn btn-success" value="Next">
+                                                <div class="col col-md-12 text-center">
+                                                    <input type="button" id="submitWorkInfo" class="btn btn-lg btn_pers_copy" value="Next">
                                                 </div>
                                             </div>
                                         </form>
@@ -122,8 +122,8 @@
                                     <div class="tab-pane fade" id="emergency" role="tabpanel" aria-labelledby="emergencyInfo">
                                         <form role="form" data-toggle="validator" class="emergencyInfo" id="formEmergencyInfo">
                                             <div class="row">
-                                                <div class="col col-md-4 offset-md-4">
-                                                    <input type="button" id="submitEmergencyInfo" class="btn btn-success" value="Next">
+                                                    <div class="col col-md-12 text-center">
+                                                    <input type="button" id="submitEmergencyInfo" class="btn btn-lg btn_pers_copy" value="Next">
                                                 </div>
                                             </div>
 
@@ -136,8 +136,8 @@
                                         <form role="form" data-toggle="validator" class="medicalInfo" id="formMedicalInfo">
                                             <h4 class="title3">Medical Information</h4>
                                             <div class="row">
-                                                <div class="col col-md-4 offset-md-4">
-                                                    <input type="button" id="submitMedicalInfo" class="btn btn-success" value="Next">
+                                                <div class="col col-md-12 text-center">
+                                                    <input type="button" id="submitMedicalInfo" class="btn btn-lg btn_pers_copy" value="Done">
                                                 </div>
                                             </div>
 
