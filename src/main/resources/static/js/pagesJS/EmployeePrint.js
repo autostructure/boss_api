@@ -98,6 +98,7 @@ $(document).ready(function () {
                     modal.find(".modal-body #PrimaryPhone").val(json.homePhone);
                     modal.find(".modal-body #SecondaryPhone").val(json.cellPhone);
                     modal.find(".modal-body #PersonalEmail").val(json.personalEmail);
+                    modal.find(".modal-body #CityOne").val(json.emergencyContactCity1);
                     modal.find(".modal-body #CityTwo").val(json.emergencyContactCity2);
                     modal.find(".modal-body #FirstNameOne").val(json.emergencyContactFirstName1);
                     modal.find(".modal-body #FirstNameTwo").val(json.emergencyContactFirstName2);

@@ -8,6 +8,7 @@ $(document).ready(function () {
             modal.find("#PrimaryPhone").val(json.homePhone);
             modal.find("#SecondaryPhone").val(json.cellPhone);
             modal.find("#PersonalEmail").val(json.personalEmail);
+            modal.find("#CityOne").val(json.emergencyContactCity1);
             modal.find("#CityTwo").val(json.emergencyContactCity2);
             modal.find("#FirstNameOne").val(json.emergencyContactFirstName1);
             modal.find("#FirstNameTwo").val(json.emergencyContactFirstName2);
@@ -45,8 +46,7 @@ $(document).ready(function () {
 
     window.print();
     window.onafterprint = function () {
-        debugger;
-        this.window.location.href = "/EmployeePrint";
+        this.window.location.href = "/employeePrint";
     };
 
 
