@@ -720,7 +720,7 @@ var fields = {
                 "colspan":6,
             },
             {   "fieldName":"addressStreet2",
-                "title":"Home Street Address (Home Line 2)",
+                "title":"Street Address (Home Line 2)",
                 "type":"input/text",
                 "colspan":6,
             },
