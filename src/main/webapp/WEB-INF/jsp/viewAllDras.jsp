@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
-                                    <button type="button" id="myModal_editConfirm" data-dismiss="modal" class="btn">Confirm Edit</button>
+                                    <button type="button" id="myModal_editConfirm" data-dismiss="modal" class="btn btn_pers_copy">Confirm Edit</button>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +158,8 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
-                                    <button type="button" id="myModal_addYes" data-dismiss="modal" class="btn">Add</button>
+                                    <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Cancel</button>
+                                    <button type="button" id="myModal_addYes" data-dismiss="modal" class="btn btn_pers_copy">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -169,15 +169,15 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Add Dra Course</h4>
+                                    <h4 class="modal-title">Remove Dra Course</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
                                 <div class="modal-body">
                                     <p>Are you sure you want to delete this Dra Course?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" id="cancel" class="btn" data-dismiss="modal">No</button>
-                                    <button type="button" id="myModal_del" data-dismiss="modal" class="btn">Yes</button>
+                                    <button type="button" id="cancel" class="btn btn_pers_copy" data-dismiss="modal">No</button>
+                                    <button type="button" id="myModal_del" data-dismiss="modal" class="btn btn_pers_remove">Yes</button>
                                 </div>
                             </div>
                         </div>

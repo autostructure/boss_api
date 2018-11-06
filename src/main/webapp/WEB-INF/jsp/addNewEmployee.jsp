@@ -105,11 +105,11 @@
                                    <form role="form" data-toggle="validator" class="generalInfo" id="formGeneralInfo" action="javascript:0" method="POST">
                                         <input hidden id="employeeId" name="id" value="0">
                                         <div class="row">
-                                            <div class="col col-md-6">
-                                                <input type="submit" id="submitAndAddAnother" class="btn btn-success" value="Submit and Add Another">
+                                            <div class="col col-md-6 text-center">
+                                                <input type="submit" id="submitAndAddAnother" class="btn btn_pers_copy" value="Submit and Add Another">
                                             </div>
-                                            <div class="col col-md-6">
-                                                <input type="submit" id="submitAndEdit" class="btn btn-success" value="Submit and Edit Info">
+                                            <div class="col col-md-6 text-center">
+                                                <input type="submit" id="submitAndEdit" class="btn btn_pers_copy" value="Submit and Edit Info">
                                             </div>
                                         </div>
                                     </form>

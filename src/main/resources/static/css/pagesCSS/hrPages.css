@@ -560,3 +560,14 @@ table.dataTable.no-footer {
     margin-top: 40px;
     font-size: 1.2em;
 };
+#submitAndAddAnother, #submitAndEdit{
+    margin-top: 45px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-width: 20%;
+}
+form [type=submit] {
+    display: inline-block;
+    margin-bottom: 1.5em;
+    margin-top: 2.5rem;
+}
