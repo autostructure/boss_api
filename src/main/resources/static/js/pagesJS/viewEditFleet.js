@@ -140,7 +140,8 @@ forms.find('input:not([disabled]):not([type=submit]), textarea, select').each(fu
 });
 
 $('#monthlyUsage').on('click', function(){
-    window.location.assign('/viewEditFleet/'+ id + '/iwfia');
+    // window.location.assign('/viewEditFleet/'+ id + '/iwfia');
+    window.location.assign('/iwfia');
 })
 
 // generating the fields w/ bootstrap field writer
@@ -209,6 +210,42 @@ var fields = {
             "title":"Vehicle Class Code",
             "type":"select/vclass",
             "colspan":4,
+        }
+    ],
+    [
+        {
+            "fieldName":"accessory",
+            "title":"Accessory",
+            "type":"select",
+            "options": {
+                "topper": "Topper",
+                "hardTop": "Hard Top",
+                "tonneau": "Tonneau",
+                "toolbox": "Toolbox",  
+                "gasBumper": "Gas Bumper",                                              
+            }
+        },
+        {
+            "fieldName":"accessory2",
+            "title":"Second Accessory",
+            "type":"select",
+            "options": {
+                "topper": "Topper",
+                "hardTop": "Hard Top",
+                "tonneau": "Tonneau",
+                "toolbox": "Toolbox",  
+                "gasBumper": "Gas Bumper",                                              
+            }            
+        },
+        {
+            "fieldName":"camera",
+            "title":"Back Up Camera",
+            "type": "select",
+            "options": {
+                "factory": "Factory",
+                "afterMarket": "After Market",
+                "none": "None"
+            },         
         }
     ],
     [

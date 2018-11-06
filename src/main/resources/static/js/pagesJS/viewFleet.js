@@ -31,11 +31,16 @@ $(document).ready(function () {
           "paging": false,
           data: jsonData,
           columns: [
+              {data: "equipmentNumber"},
+              {data: "license"},
               {data: "modelYear"},
-              {data: "make"},
               {data: "modelNumber"},
-              {data: "description"},
-              {data: "vin"},
+              {data: "assignedOperator"},
+              {data: "cityOrLocation"},
+              {data: "state"},
+              {data: "accessory"},
+              {data: "accessory2"},
+              {data: "camera"},
               {data: null,
                   "render": function (data, type, row) {
                       return `

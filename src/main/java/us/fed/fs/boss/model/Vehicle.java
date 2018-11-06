@@ -32,6 +32,9 @@ public class Vehicle implements Serializable {
     @Column(name = "VIN")
     private String vin;
 
+    @Column(name = "Camera")
+    private String camera;    
+
     @Column(name = "License")
     private String license;
 
@@ -77,11 +80,8 @@ public class Vehicle implements Serializable {
     @Column(name = "KeysToolBox")
     private String keysToolBox;
 
-    @Column(name = "Tailgate")
-    private String tailgate;
-
-    @Column(name = "Topper")
-    private String topper;
+    @Column(name = "Accessory2")
+    private String accessory2;
 
     @Column(name = "Tonneau")
     private String tonneau;
@@ -289,6 +289,21 @@ public class Vehicle implements Serializable {
         this.ownershipType = ownershipType;
     }
 
+ /**
+     * @return the camera
+     */
+    public String getCamera() {
+        return camera;
+    }
+
+    /**
+     * @param camera the camera to set
+     */
+    public void setCamera(String camera) {
+        this.camera = camera;
+    }
+
+
     /**
      * @return the vehicleClassCose
      */
@@ -331,32 +346,19 @@ public class Vehicle implements Serializable {
         this.keysToolBox = keysToolBox;
     }
 
+
     /**
-     * @return the tailgate
+     * @return the accessory2
      */
-    public String getTailgate() {
-        return tailgate;
+    public String getAccessory2() {
+        return accessory2;
     }
 
     /**
-     * @param tailgate the tailgate to set
+     * @param accessory2 the accessory2 to set
      */
-    public void setTailgate(String tailgate) {
-        this.tailgate = tailgate;
-    }
-
-    /**
-     * @return the topper
-     */
-    public String getTopper() {
-        return topper;
-    }
-
-    /**
-     * @param topper the topper to set
-     */
-    public void setTopper(String topper) {
-        this.topper = topper;
+    public void setAccessory2(String accessory2) {
+        this.accessory2 = accessory2;
     }
 
     /**

@@ -84,7 +84,10 @@
                             </div>                             
                                                                                
                         </div>
-                        <div class="container trainBG padTop">
+                        <div class="container trainBG ">
+                                <h1 class="title5">Add New Months Usage</h1>
+                                <form role="form" id="iwfiaForm" data-toggle="validator">
+                                    </form>
                             <table id="iwfia">
                                 <thead>
                                     <tr>
@@ -100,12 +103,73 @@
                                         <th>Job Code</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>A32903292</td> 
+                                        <td>July</td>
+                                        <td>2018</td>
+                                        <td>Wortley, Dane</td>
+                                        <td>13,433</td>
+                                        <td>19</td>
+                                        <td>6</td>
+                                        <td>28</td>
+                                        <td>0</td>
+                                        <td>BOI, Boise Basin</td>
+                                    </tr>                                     
+                                    <tr>
+                                        <td>A32903292</td> 
+                                        <td>June</td>
+                                        <td>2018</td>
+                                        <td></td>
+                                        <td>13,193</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>BOI, Boise Basin</td>
+                                    </tr>                                           
+                                    <tr>
+                                        <td>A32903292</td> 
+                                        <td>May</td>
+                                        <td>2018</td>
+                                        <td>Wortley, Dane</td>
+                                        <td>13,193</td>
+                                        <td>20</td>
+                                        <td>0</td>
+                                        <td>28</td>
+                                        <td>0</td>
+                                        <td>BOI, Boise Basin</td>
+                                    </tr>                                     
+                                    <tr>
+                                        <td>A32903292</td> 
+                                        <td>April</td>
+                                        <td>2018</td>
+                                        <td>Wortley, Dane</td>
+                                        <td>12,793</td>
+                                        <td>20</td>
+                                        <td>0</td>
+                                        <td>28</td>
+                                        <td>0</td>
+                                        <td>BOI, Boise Basin</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>A32903292</td> 
+                                        <td>March</td>
+                                        <td>2018</td>
+                                        <td>Wortley, Dane</td>
+                                        <td>12,399</td>
+                                        <td>32</td>
+                                        <td>4</td>
+                                        <td>29</td>
+                                        <td>0</td>
+                                        <td>BOI, Boise Basin</td>
+                                    </tr>
+                                </tbody>
                             </table>
         
-                                <h1 class="padTop title5">Add New Months Usage</h1>
+
         
-                            <form role="form" id="iwfiaForm" data-toggle="validator">
-                            </form>
+
                                                                                                                                                         
                         </div>                    
         

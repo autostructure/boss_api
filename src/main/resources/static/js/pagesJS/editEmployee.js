@@ -427,20 +427,18 @@ var fields = {
             "fieldName": "eyeColor",
             "title": "Eye Color",
             "type": "input/text",
-            "placeholder": "hazel",
         },
         {
             "fieldName": "hairColor",
             "title": "Hair Color",
             "type": "input/text",
-            "placeholder": "Auburn",
         },
         ],
         [{
             "fieldName": "heightFeet",
             "title": "Height<small>(Feet)</small>",
             "type": "input/number",
-            "placeholder": "5",
+            "placeholder": "Feet",
             "min": 2,
             "max": 9,
             "colspan": 3
@@ -449,7 +447,7 @@ var fields = {
             "fieldName": "heightInches",
             "title": "Height<small>(Inches)</small>",
             "type": "input/number",
-            "placeholder": "11",
+            "placeholder": "Inches",
             "min": '0',
             "max": 11,
             "colspan": 3
@@ -458,7 +456,7 @@ var fields = {
             "fieldName": "weightPounds",
             "title": "Weight (Pounds)",
             "type": "input/number",
-            "placeholder": "160"
+            "placeholder": "Pounds"
         }
         ],
         [{
