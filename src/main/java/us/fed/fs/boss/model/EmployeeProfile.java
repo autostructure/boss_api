@@ -186,8 +186,7 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "WeightPounds")
     private Short weightPounds;
 
-   
-    @Column(name = "FsEmail")
+    @Column(name = "FsEmail", unique = true, nullable = false)
     private String fsEmail;
     
     @Column(name = "SatPhone")
