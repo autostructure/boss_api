@@ -83,7 +83,7 @@ $(document).ready(function() {
                 {
                     'data': "course.title",
                     'render': function(data, type, row) {
-                        return "<span data-toggle='tooltip' data-placement='top' title='" + row.description + "'>" + data + "</span>";
+                        return "<span data-toggle='tooltip' data-placement='top' title='" + row.course.description + "'>" + data + "</span>";
                     }
                 },
                 {
@@ -106,13 +106,17 @@ $(document).ready(function() {
                 {
                     'data': "validUntil",
                     "render": function(data, type, row) {
-                        var date = CustomFormFunctions.getDateFrom(data);
-                        if (type != 'display') return date.getTime();
+                        var dueDate = CustomFormFunctions.getDateFrom(data);
+                        var trainingDate = CustomFormFunctions.getDateFrom(row.dateOfTraining);
+                        if (type != 'display') return dueDate.getTime();
                         var one_day = 1000 * 60 * 60 * 24;
-                        var dateStr = CustomFormFunctions.formatDate(date, "bootstrap");
-                        var daysUntilDue = (date - new Date()) / one_day;
+                        var dateStr = CustomFormFunctions.formatDate(dueDate, "bootstrap");
+                        var daysUntilDue = (dueDate - new Date()) / one_day;
+                        var notRequired = (dueDate - trainingDate) < 0;
                         if (!row.isLatest) {
                             return "<span class='text-success'>Already Renewed</span>";
+                        } else if (notRequired) {
+                            return "<span class='text-muted'>No Longer Required</span>";
                         } else if (daysUntilDue < 1) {
                             return "<span class='bg-danger text-white'>" + dateStr + "</span><br>Overdue";
                         } else if (daysUntilDue < training_config.dueWithinDays) {
@@ -122,22 +126,6 @@ $(document).ready(function() {
                         }
                     }
                 },
-                {
-                    'data': "approvedBy.nameCode",
-                    'visible': false,
-                    "render": function(data, type, row) {
-                        if (!data) {
-                            return "<span class='text-danger'>Unapproved</span>";
-                        }
-                        return data;
-                    }
-                },
-                // {
-                //     'data': "buttonUpload",
-                //     "render": function(data, type, row){
-                //        ' <button><a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a></button>'
-                //     }
-                // },
                 {
                     'data': "isLatest",
                     "render": function(data, type, row) {
@@ -174,11 +162,11 @@ $(document).ready(function() {
                         console.log(show);
                         var eye = $('label[for="viewOld"] i');
                         if (show) {
-                            table.columns(6).search('').draw();
+                            table.columns(5).search('').draw();
                             eye.addClass("fa-eye");
                             eye.removeClass("fa-eye-slash");
                         } else {
-                            table.columns(6).search('isLatest').draw();
+                            table.columns(5).search('isLatest').draw();
                             eye.addClass("fa-eye-slash");
                             eye.removeClass("fa-eye");
                         }
@@ -188,7 +176,7 @@ $(document).ready(function() {
                     text: 'Print <i class="fa fa-lg fa-print"></i>',
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4]
                     },
                     className: 'table-btns print-btn'
                 },
@@ -196,21 +184,21 @@ $(document).ready(function() {
                     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                     extend: 'excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4]
                     },
                     className: 'table-btns excel-btn'
                 }
             ],
         });
         table.button('2').trigger();
-        table.button('3').trigger();
+        table.button('2').trigger();
 
         $('[data-toggle="tooltip"]').tooltip();
 
         $(".btn-modal").on("click", function() {
             var info = $(this).data("training");
             $(".trainingId").val(info.id);
-            $(".trainingCourse").text(info.title);
+            $(".trainingCourse").text(info.course.title);
             $(".employeeName").text(info.employee.nameCode);
             populateCertificateList();
         });
@@ -279,6 +267,10 @@ $(document).ready(function() {
                     console.log(a.responseJSON);
                 }
             });
+        });
+        $("#btn_unrequire_training").on("click", function() {
+            var id = $(this).closest("form").find(".trainingId").val();
+            CustomFormFunctions.putPartialInfo("/training", id, {validUntil: new Date(0,0)}, ()=>{window.location.reload();}, ()=>console.log("Error!"));
         });
     }
 

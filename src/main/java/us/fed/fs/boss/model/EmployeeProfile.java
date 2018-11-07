@@ -403,6 +403,15 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
     
+    @Column(name = "IsAdmin")
+    private Boolean admin;
+    
+    @Column(name = "IsTeamLead")
+    private Boolean teamLead;
+    
+    @Column(name = "IsCrewLead")
+    private Boolean crewLead;
+    
     public EmployeeProfile() {
         this.employees = new ArrayList<>();
     }
@@ -1644,5 +1653,47 @@ public class EmployeeProfile implements Serializable {
      */
     public void setterminationDate(Date terminationDate) {
         this.terminationDate = terminationDate;
-    }         
+    }
+
+    /**
+     * @return the admin
+     */
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    /**
+     * @param admin the admin to set
+     */
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
+    /**
+     * @return the teamLead
+     */
+    public Boolean getTeamLead() {
+        return teamLead;
+    }
+
+    /**
+     * @param teamLead the teamLead to set
+     */
+    public void setTeamLead(Boolean teamLead) {
+        this.teamLead = teamLead;
+    }
+
+    /**
+     * @return the crewLead
+     */
+    public Boolean getCrewLead() {
+        return crewLead;
+    }
+
+    /**
+     * @param crewLead the crewLead to set
+     */
+    public void setCrewLead(Boolean crewLead) {
+        this.crewLead = crewLead;
+    }
 }

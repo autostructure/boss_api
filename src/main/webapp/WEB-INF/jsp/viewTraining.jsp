@@ -67,6 +67,7 @@
                                     <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
                                     <!-- <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a> -->
                                     <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
+                                    <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_unrequire" href="#">Mark Training as Unrequired</a>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +179,6 @@
                                         <div class="modal-header">
                                             <h4 class="modal-title">Remove Training</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
                                         </div>
                                         <div class="modal-body">
                                             <p>Remove the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
@@ -187,6 +187,28 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
                                             <button type="button" class="btn btn_pers_remove" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myModal_unrequire" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form id="form_training_unrequire">
+                                        <input name='id' class='trainingId' hidden>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Mark as Unrequired</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Mark the class "<span class='trainingCourse'></span>" as unnecessary for the employee <span class='employeeName'></span>?</p>
+                                            <p>If you confirm this, this course will never be marked as overdue or up for renewal for this employee until they take the class again and get a new valid-until date.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn_pers_unrequire" data-dismiss="modal" id="btn_unrequire_training">Yes, Unrequire Training</button>
                                         </div>
                                     </form>
                                 </div>

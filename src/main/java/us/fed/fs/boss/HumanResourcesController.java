@@ -84,7 +84,6 @@ public class HumanResourcesController {
     @Autowired
     DeliberativeRiskAssessmentCourseRepository deliberativeRiskAssessmentCourseRepository;
 
-    
     @Autowired
     UploadedDocumentRepository uploadedDocumentRepository;
 
@@ -92,13 +91,13 @@ public class HumanResourcesController {
     UploadService uploadService;
     
     @GetMapping("/userEmail")
-    public ResponseEntity getUserEmail(@SAMLUser Auth0SAMLUserDetails user) {
-        return new ResponseEntity<>(user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"), HttpStatus.OK);
+    public ResponseEntity getUserEmailEndpoint(@SAMLUser Auth0SAMLUserDetails user) {
+        return new ResponseEntity<>(getUserEmail(user), HttpStatus.OK);
     }
     
     @GetMapping("/myProfile")
     public ResponseEntity getMyUserProfile(@SAMLUser Auth0SAMLUserDetails user) {
-        EmployeeProfile p = employeeProfileRepository.findByFsEmail(user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"));
+        EmployeeProfile p = employeeProfileRepository.findByFsEmail(getUserEmail(user));
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
@@ -603,5 +602,9 @@ public class HumanResourcesController {
         
         return ResponseEntity.ok().build();
 
+    }
+    
+    private String getUserEmail(@SAMLUser Auth0SAMLUserDetails user) {
+        return user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
     }
 }
