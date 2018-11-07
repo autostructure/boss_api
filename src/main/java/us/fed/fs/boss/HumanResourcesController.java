@@ -1,6 +1,8 @@
 package us.fed.fs.boss;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.github.ulisesbocchio.spring.boot.security.saml.annotation.SAMLUser;
+import com.github.ulisesbocchio.spring.boot.security.saml.user.SAMLUserDetails;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -88,6 +90,11 @@ public class HumanResourcesController {
 
     @Autowired
     UploadService uploadService;
+    
+    @GetMapping("/userInfo")
+    public ResponseEntity getUserInfo(@SAMLUser Auth0SAMLUserDetails user) {
+        return new ResponseEntity<>(user.getAttributes(), HttpStatus.OK);
+    }
 
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -138,6 +145,14 @@ public class HumanResourcesController {
         } else {
             return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0), HttpStatus.OK);
         }
+
+    }
+    
+    @GetMapping("/userDetails")
+    public ResponseEntity home(@SAMLUser SAMLUserDetails user) {
+        // user.getUsername();
+        // user.getAttributes();
+        return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
 
     }
 
