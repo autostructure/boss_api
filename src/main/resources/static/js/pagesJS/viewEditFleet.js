@@ -72,7 +72,8 @@ url = '/vehicle/' + id;
             'color':form.find('[name=color]').val(),
             'engineNumber':form.find('[name=engineNumber]').val(),
             'accessory':form.find('[name=accessory]').val(),
-            'oldLicense':form.find('[name=oldLicense]').val(),
+            'accessory2':form.find('[name=accessory2]').val(),
+            'camera':form.find('[name=camera]').val(),
             'ownershipType':form.find('[name=ownershipType]').val(),
             'equipmentNumber':form.find('[name=equipmentNumber]').val(),
             'vehicleClassCode':form.find('[name=vehicleClassCode]').val(),
@@ -218,11 +219,11 @@ var fields = {
             "title":"Accessory",
             "type":"select",
             "options": {
-                "topper": "Topper",
-                "hardTop": "Hard Top",
-                "tonneau": "Tonneau",
-                "toolbox": "Toolbox",  
-                "gasBumper": "Gas Bumper",                                              
+                "Topper": "Topper",
+                "Hard Top": "Hard Top",
+                "Tonneau": "Tonneau",
+                "Toolbox": "Toolbox",  
+                "Gas Bumper": "Gas Bumper",                                              
             }
         },
         {
@@ -230,11 +231,11 @@ var fields = {
             "title":"Second Accessory",
             "type":"select",
             "options": {
-                "topper": "Topper",
-                "hardTop": "Hard Top",
-                "tonneau": "Tonneau",
-                "toolbox": "Toolbox",  
-                "gasBumper": "Gas Bumper",                                              
+                "Topper": "Topper",
+                "Hard Top": "Hard Top",
+                "Tonneau": "Tonneau",
+                "Toolbox": "Toolbox",  
+                "Gas Bumper": "Gas Bumper",                                             
             }            
         },
         {
@@ -242,9 +243,9 @@ var fields = {
             "title":"Back Up Camera",
             "type": "select",
             "options": {
-                "factory": "Factory",
-                "afterMarket": "After Market",
-                "none": "None"
+                "Factory": "Factory",
+                "After Market": "After Market",
+                "None": "None"
             },         
         }
     ],
