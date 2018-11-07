@@ -22,27 +22,13 @@ public class BossApiApplication {
     }
     
     @Configuration
-    public static class MvcConfig extends WebMvcConfigurerAdapter {
-
-        @Override
-        public void addViewControllers(ViewControllerRegistry registry) {
-            registry.addViewController("/").setViewName("index");
-            registry.addViewController("/protected").setViewName("protected");
-            registry.addViewController("/unprotected/help").setViewName("help");
-
-        }
-    }
-
-    @Configuration
     public static class MyServiceProviderConfig extends ServiceProviderConfigurerAdapter {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers("/unprotected/**")
-            .permitAll()
-        .and()
-            .anonymous();
+        http.authorizeRequests().antMatchers("/").authenticated();
+           // .antMatchers("/unprotected/**")
+           // .permitAll()
         }
 
         @Override
@@ -60,7 +46,7 @@ public class BossApiApplication {
             .and()
                 .sso()
                 .profileOptions(profileOptions)
-                .defaultSuccessURL("/home")
+                .defaultSuccessURL("/")
             .and()
                 .metadataManager()
                 .metadataLocations("classpath:/auth0-metadata.xml")

@@ -91,9 +91,15 @@ public class HumanResourcesController {
     @Autowired
     UploadService uploadService;
     
-    @GetMapping("/userInfo")
-    public ResponseEntity getUserInfo(@SAMLUser Auth0SAMLUserDetails user) {
-        return new ResponseEntity<>(user.getAttributes(), HttpStatus.OK);
+    @GetMapping("/userEmail")
+    public ResponseEntity getUserEmail(@SAMLUser Auth0SAMLUserDetails user) {
+        return new ResponseEntity<>(user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"), HttpStatus.OK);
+    }
+    
+    @GetMapping("/myProfile")
+    public ResponseEntity getMyUserProfile(@SAMLUser Auth0SAMLUserDetails user) {
+        EmployeeProfile p = employeeProfileRepository.findByFsEmail(user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"));
+        return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
     @PostMapping("/employeeProfile")
