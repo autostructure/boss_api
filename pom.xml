@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>us.fed.fs</groupId>
+    <groupId>gov.usda.fs.ead</groupId>
     <artifactId>BossAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -28,7 +28,7 @@
         <profile>
             <id>profile1</id>
             <properties>
-                <spring.boot.mainclass>us.fed.fs.boss.BossApiApplication</spring.boot.mainclass>
+                <spring.boot.mainclass>gov.usda.fs.ead.boss.BossApiApplication</spring.boot.mainclass>
             </properties>
         </profile>
     </profiles>
