@@ -83,7 +83,7 @@ $(document).ready(function() {
                 {
                     'data': "course.title",
                     'render': function(data, type, row) {
-                        return "<span data-toggle='tooltip' data-placement='top' title='" + row.description + "'>" + data + "</span>";
+                        return "<span data-toggle='tooltip' data-placement='top' title='" + row.course.description + "'>" + data + "</span>";
                     }
                 },
                 {
@@ -132,12 +132,6 @@ $(document).ready(function() {
                         return data;
                     }
                 },
-                // {
-                //     'data': "buttonUpload",
-                //     "render": function(data, type, row){
-                //        ' <button><a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a></button>'
-                //     }
-                // },
                 {
                     'data': "isLatest",
                     "render": function(data, type, row) {
@@ -188,7 +182,7 @@ $(document).ready(function() {
                     text: 'Print <i class="fa fa-lg fa-print"></i>',
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4]
                     },
                     className: 'table-btns print-btn'
                 },
@@ -196,21 +190,21 @@ $(document).ready(function() {
                     text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                     extend: 'excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4]
                     },
                     className: 'table-btns excel-btn'
                 }
             ],
         });
         table.button('2').trigger();
-        table.button('3').trigger();
+        table.button('2').trigger();
 
         $('[data-toggle="tooltip"]').tooltip();
 
         $(".btn-modal").on("click", function() {
             var info = $(this).data("training");
             $(".trainingId").val(info.id);
-            $(".trainingCourse").text(info.title);
+            $(".trainingCourse").text(info.course.title);
             $(".employeeName").text(info.employee.nameCode);
             populateCertificateList();
         });
