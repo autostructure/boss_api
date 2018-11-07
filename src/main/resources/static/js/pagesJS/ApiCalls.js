@@ -26,6 +26,7 @@ function makeAjaxCall(_url, methodType, _data) {
                 type: methodType,
                 url: _url,
                 data: _data,
+                contentType: "application/json",
                 success: function (json) {
 
                     resolve(json);
@@ -195,6 +196,20 @@ function postJobCodeApiCall(resolved, rejected, data) {
     try {
 
         var endpoint = "/employeeProfile";
+        var url = api + endpoint;
+        makeAjaxCall(url, "POST", data).then(resolved, rejected);
+
+    } catch (e) {
+        console.log(e);
+        return "";
+
+    }
+}
+
+function postAuxContact(resolved, rejected, data) {
+    try {
+
+        var endpoint = "/contact";
         var url = api + endpoint;
         makeAjaxCall(url, "POST", data).then(resolved, rejected);
 

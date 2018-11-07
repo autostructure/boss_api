@@ -15,11 +15,11 @@ $(document).ready(function () {
             'data': jsonData,
             'dom':'Bfti',
             'columns': [
-                {'data':'category'},
+                {'data':'category', visible:false},
                 {'data':'title'},
                 {'data':'description'},
                 {'data':'defaultYears'},
-                {'data':'defaultYearsLeader'},
+                {'data':'defaultYearsLeader', "visible": false},
                 {'data':null,
                     'render':function(data, type, row) {
                         var buttonList = $("#templateButtonList").clone().attr('id','');
@@ -63,32 +63,32 @@ $(document).ready(function () {
             ]
         });
 
-        selCat = $("select[name='selCategory']")
-        selCat.append("<option value=''>Choose a Category</option>");
-        for (k in categories) {
-            selCat.append("<option value='"+k+"'>"+k+"</option>");
-        }
-        selCat.append("<option value='addNewCategory'>Create a new category</option>");
+        // selCat = $("select[name='selCategory']")
+        // selCat.append("<option value=''>Choose a Category</option>");
+        // for (k in categories) {
+        //     selCat.append("<option value='"+k+"'>"+k+"</option>");
+        // }
+        // selCat.append("<option value='addNewCategory'>Create a new category</option>");
 
-        selCat.on("change update click", function() {
-            if ($(this).val() == 'addNewCategory') {
-                $("[name=category]").closest(".col").show();
-            } else {
-                $("[name=category]").closest(".col").hide();
-                $("[name=selCategory], [name=category]").val($(this).val());
-            }
-        });
+        // selCat.on("change update click", function() {
+        //     if ($(this).val() == 'addNewCategory') {
+        //         $("[name=category]").closest(".col").show();
+        //     } else {
+        //         $("[name=category]").closest(".col").hide();
+        //         $("[name=selCategory], [name=category]").val($(this).val());
+        //     }
+        // });
         $(".btn-modal").on("click", function() {
             var info = $(this).data('training');
             var id = info.id;
             $(".trainingId").val(id);
-            $(".category").text(dataWithIds[id].category);
+            // $(".category").text(dataWithIds[id].category);
             $(".courseTitle").text(dataWithIds[id].title);
         });
         $(".btn-modal-edit").on("click", function() {
             var info = $(this).data('training');
             var form = $("#form_edit");
-            form.find("[name=category], [name=selCategory]").val(info.category);
+            // form.find("[name=category], [name=selCategory]").val(info.category);
             form.find("[name=title]").val(info.title);
             form.find("[name=description]").val(info.description);
             form.find("[name=defaultYears]").val(info.defaultYears);
@@ -119,7 +119,8 @@ $(document).ready(function () {
                 return false;
             }
             var data = {
-                'category':form.find('[name=category]').val(),
+                //'category':form.find('[name=category]').val(),
+                'category':null,
                 'title':form.find('[name=title]').val(),
                 'description':form.find('[name=description]').val(),
                 'defaultYears':form.find('[name=defaultYears]').val(),
@@ -152,7 +153,8 @@ var fields = {
                 "title":"Category",
                 "placeholder":"Select Category",
                 "type":"select/text",
-                "required":true,
+                "required":false,
+                "hidden":true,
                 "colspan": 6,
             },
             {   "fieldName":"category",

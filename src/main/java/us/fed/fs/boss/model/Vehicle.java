@@ -1,6 +1,5 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
@@ -32,6 +31,9 @@ public class Vehicle implements Serializable {
 
     @Column(name = "VIN")
     private String vin;
+
+    @Column(name = "Camera")
+    private String camera;    
 
     @Column(name = "License")
     private String license;
@@ -78,43 +80,32 @@ public class Vehicle implements Serializable {
     @Column(name = "KeysToolBox")
     private String keysToolBox;
 
-    @Column(name = "Tailgate")
-    private String tailgate;
-
-    @Column(name = "Topper")
-    private String topper;
+    @Column(name = "Accessory2")
+    private String accessory2;
 
     @Column(name = "Tonneau")
     private String tonneau;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DateAquired")
     private Date dateAquired;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ReplacementDate")
     private Date replacementDate;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DisposalDate")
     private Date disposalDate;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ReleasedDate")
     private Date releasedDate;
-    
+
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "assigned_operator_id")
     @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
     private EmployeeProfile assignedOperator;
-    
-    @OneToMany(
-            mappedBy = "vehicle",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonManagedReference(value = "monthlyIWFIAUsages")
-    private List<MonthlyIWFIAUsage> monthlyIWFIAUsages;
 
     /**
      * @return the id
@@ -298,6 +289,21 @@ public class Vehicle implements Serializable {
         this.ownershipType = ownershipType;
     }
 
+ /**
+     * @return the camera
+     */
+    public String getCamera() {
+        return camera;
+    }
+
+    /**
+     * @param camera the camera to set
+     */
+    public void setCamera(String camera) {
+        this.camera = camera;
+    }
+
+
     /**
      * @return the vehicleClassCose
      */
@@ -340,32 +346,19 @@ public class Vehicle implements Serializable {
         this.keysToolBox = keysToolBox;
     }
 
+
     /**
-     * @return the tailgate
+     * @return the accessory2
      */
-    public String getTailgate() {
-        return tailgate;
+    public String getAccessory2() {
+        return accessory2;
     }
 
     /**
-     * @param tailgate the tailgate to set
+     * @param accessory2 the accessory2 to set
      */
-    public void setTailgate(String tailgate) {
-        this.tailgate = tailgate;
-    }
-
-    /**
-     * @return the topper
-     */
-    public String getTopper() {
-        return topper;
-    }
-
-    /**
-     * @param topper the topper to set
-     */
-    public void setTopper(String topper) {
-        this.topper = topper;
+    public void setAccessory2(String accessory2) {
+        this.accessory2 = accessory2;
     }
 
     /**
@@ -464,20 +457,6 @@ public class Vehicle implements Serializable {
      */
     public void setAssignedOperator(EmployeeProfile assignedOperator) {
         this.assignedOperator = assignedOperator;
-    }
-
-    /**
-     * @return the monthlyIWFIAUsages
-     */
-    public List<MonthlyIWFIAUsage> getMonthlyIWFIAUsages() {
-        return monthlyIWFIAUsages;
-    }
-
-    /**
-     * @param monthlyIWFIAUsages the monthlyIWFIAUsages to set
-     */
-    public void setMonthlyIWFIAUsages(List<MonthlyIWFIAUsage> monthlyIWFIAUsages) {
-        this.monthlyIWFIAUsages = monthlyIWFIAUsages;
     }
 
 }

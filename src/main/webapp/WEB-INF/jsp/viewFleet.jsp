@@ -47,15 +47,19 @@
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">View Fleet</h2>
                                 <table id="expense" class="usa-table-borderless display" style="width:100%">
-
                                     <thead>
                                         <tr>
+                                            <th scope="col">#</th>
                                             <th scope="col">License</th>
-                                            <th scope="col">Owner</th>
-                                            <th scope="col">Make</th>
+                                            <th scope="col">Year</th>
                                             <th scope="col">Model</th>
-                                            <th scope="col">VIN</th>
-                                            <th scope="col">Active</th>
+                                            <th scope="col">Operator</th>
+                                            <th scope="col">City</th>
+                                            <th scope="col">State</th>
+                                            <th scope="col">Accessory</th>
+                                            <th scope="col">Accessory 2</th>
+                                            <th scope="col">Camera</th>
+                                            <th scope="col"></th>                                                                                                                                                                                 
                                         </tr>
                                     </thead>
                                     <tbody  id="investmentTable">

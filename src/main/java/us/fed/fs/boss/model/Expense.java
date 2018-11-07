@@ -106,7 +106,6 @@ public class Expense extends Auditable<String> implements Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonManagedReference(value = "expenseDetails")
     private List<ExpenseDetail> expenseDetails;
 
     /**

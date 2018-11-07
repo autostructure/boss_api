@@ -13,6 +13,9 @@
 .breadcrumbLinkMainFleet{
     color: #ff6200 !important;
 }
+.breadcrumb{
+    margin-right: 40px;
+}
 label{
     font-size: 1.1em;
     margin-top: 1.5rem !important;
@@ -128,6 +131,9 @@ label{
 .list-group-item > a{
     color: #913a04;
 }
+#error, #success {
+    display: none;
+}
 .trainBG{
     border: 1px solid rgba(106, 106, 106, 0.981);
     background-color: #b7c6f252;
@@ -228,4 +234,106 @@ td, th{
     width: 100%;
     text-align: center;
     font-size: .9em;
+}
+.addNewFleetBtn{
+    margin: auto;
+    margin-top: 30px !important;
+    min-width: 20% !important;
+    font-size: 2.0em !important;
+}
+
+/* fleet modals */
+.modal-content{
+    padding: 0px;
+}
+.modal-header{
+    color: white;
+    background-color: #ff6200;
+    text-align: center;
+    font-size: 1.5em;
+}
+.modal-body{
+    padding: 20px;
+    text-align: center;
+}
+.modal-title{
+    font-size: 2.0em;
+}
+.close{
+    color: white;
+    font-size: 1.5em;
+    opacity: 1;
+    margin-right: 3px;
+}
+.close:hover{
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    color: rgb(174, 174, 174);
+}
+.modal-footer{
+    margin: auto;
+}
+.btn{
+    font-size: 1.4em;
+}
+.fleetBtn{
+    background-color: #ff6200;
+    color: white;
+}
+.fleetBtn:hover{
+    background-color: white;
+    color: #ff6200;
+}
+.input{
+    font-size: 1.5em;
+}
+.inputCol{
+    padding-left: 20px;
+}
+
+#iwfia_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+#iwfia > thead> tr > th, #iwfia > tbody > tr > td{
+    border-right: 0px solid gray;
+    border-left: 0px solid gray;
+}
+#iwfia{
+    min-width: 100%;
+    margin-top: 45px;
+}
+#iwfia_wrapper{
+    border-radius: 10px;
+    /* border: 1px solid gray; */
+}
+
+#iwfia_filter, #iwfia_paginate, #iwfia_length, #iwfia_info{
+    padding: 20px 20px;
+}
+#iwfia_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
+}
+#iwfia{
+    background-color: white;
+}
+#iwfia_filter > label{
+    font-size: 1.5em;
+}
+#iwfia_wrapper{
+    background-color: white;
+}
+#btn_add_aux{
+    margin: auto;
+    margin-top: 40px;
+    font-size: 1.4em;
+}
+.padTop{
+    margin-top: 50px;
 }

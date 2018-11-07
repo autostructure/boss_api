@@ -1,6 +1,8 @@
 package us.fed.fs.boss;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.github.ulisesbocchio.spring.boot.security.saml.annotation.SAMLUser;
+import com.github.ulisesbocchio.spring.boot.security.saml.user.SAMLUserDetails;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,6 +34,7 @@ import us.fed.fs.boss.exception.ResourceNotFoundException;
 import us.fed.fs.boss.model.Certificate;
 import us.fed.fs.boss.model.Contact;
 import us.fed.fs.boss.model.DeliberativeRiskAssessment;
+import us.fed.fs.boss.model.DeliberativeRiskAssessmentCourse;
 import us.fed.fs.boss.model.DutyStation;
 import us.fed.fs.boss.model.EmployeeProfile;
 import us.fed.fs.boss.model.UploadedDocument;
@@ -41,6 +44,7 @@ import us.fed.fs.boss.model.Views;
 import us.fed.fs.boss.repository.CertificateRepository;
 import us.fed.fs.boss.repository.ContactRepository;
 import us.fed.fs.boss.repository.CrewsRepository;
+import us.fed.fs.boss.repository.DeliberativeRiskAssessmentCourseRepository;
 import us.fed.fs.boss.repository.DeliberativeRiskAssessmentRepository;
 import us.fed.fs.boss.repository.DutyStationRepository;
 import us.fed.fs.boss.repository.EmployeeProfileRepository;
@@ -78,10 +82,24 @@ public class HumanResourcesController {
     DeliberativeRiskAssessmentRepository deliberativeRiskAssessmentRepository;
 
     @Autowired
+    DeliberativeRiskAssessmentCourseRepository deliberativeRiskAssessmentCourseRepository;
+
+    @Autowired
     UploadedDocumentRepository uploadedDocumentRepository;
 
     @Autowired
     UploadService uploadService;
+    
+    @GetMapping("/userEmail")
+    public ResponseEntity getUserEmailEndpoint(@SAMLUser Auth0SAMLUserDetails user) {
+        return new ResponseEntity<>(getUserEmail(user), HttpStatus.OK);
+    }
+    
+    @GetMapping("/myProfile")
+    public ResponseEntity getMyUserProfile(@SAMLUser Auth0SAMLUserDetails user) {
+        EmployeeProfile p = employeeProfileRepository.findByFsEmail(getUserEmail(user));
+        return new ResponseEntity<>(p, HttpStatus.OK);
+    }
 
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
@@ -132,6 +150,14 @@ public class HumanResourcesController {
         } else {
             return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0), HttpStatus.OK);
         }
+
+    }
+    
+    @GetMapping("/userDetails")
+    public ResponseEntity home(@SAMLUser SAMLUserDetails user) {
+        // user.getUsername();
+        // user.getAttributes();
+        return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
 
     }
 
@@ -292,13 +318,26 @@ public class HumanResourcesController {
 
     }
 
+       // DeliberativeRiskAssessment 
     @GetMapping("/dra")
-    public ResponseEntity getAllDeliberativeRiskAssessments(@RequestParam(value = "employee", required = false) final Long employeeProfileId) {
-        if (employeeProfileId == null) {
-            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity getAllDeliberativeRiskAssessments(
+            @RequestParam(value = "employeeId", required = false) final Long employeeId,
+            @RequestParam(value = "deliberativeRiskAssessmentCourseId", required = false) final Long deliberativeRiskAssessmentCourseId) {
+
+        boolean justEmployee = employeeId != null && deliberativeRiskAssessmentCourseId == null;
+        boolean justCourse = employeeId == null && deliberativeRiskAssessmentCourseId != null;
+        boolean both = employeeId != null && deliberativeRiskAssessmentCourseId != null;
+
+        if (justCourse) {
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByDeliberativeRiskAssessmentCourseId(deliberativeRiskAssessmentCourseId), HttpStatus.OK);
+        } else if (justEmployee) {
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByEmployeeId(employeeId), HttpStatus.OK);
+        } else if (both) {
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByEmployeeIdAndDeliberativeRiskAssessmentCourseId(employeeId, employeeId), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAllByEmployeeProfileId(employeeProfileId), HttpStatus.OK);
+            return new ResponseEntity<>(deliberativeRiskAssessmentRepository.findAll(), HttpStatus.OK);
         }
+
     }
 
     @GetMapping("/dra/{id}")
@@ -317,14 +356,13 @@ public class HumanResourcesController {
     }
 
     @PutMapping("/dra/{id}")
-    public DeliberativeRiskAssessment updateDeliberativeRiskAssessmentId(@PathVariable(value = "id") Long deliberativeRiskAssessmentId,
+    public DeliberativeRiskAssessment updateDeliberativeRiskAssessment(@PathVariable(value = "id") Long deliberativeRiskAssessmentId,
             @RequestBody DeliberativeRiskAssessment deliberativeRiskAssessment) {
 
-        deliberativeRiskAssessmentRepository.findById(deliberativeRiskAssessmentId)
+        employeeProfileRepository.findById(deliberativeRiskAssessmentId)
                 .orElseThrow(() -> {
                     return new ResourceNotFoundException("DeliberativeRiskAssessment", "id", deliberativeRiskAssessmentId);
                 });
-
         DeliberativeRiskAssessment updatedDeliberativeRiskAssessment = deliberativeRiskAssessmentRepository.save(deliberativeRiskAssessment);
         return updatedDeliberativeRiskAssessment;
 
@@ -333,13 +371,59 @@ public class HumanResourcesController {
     @DeleteMapping("/dra/{id}")
     public ResponseEntity<?> deleteDeliberativeRiskAssessment(@PathVariable(value = "id") Long deliberativeRiskAssessmentId) {
 
-        DeliberativeRiskAssessment dra = deliberativeRiskAssessmentRepository.findById(deliberativeRiskAssessmentId)
+        DeliberativeRiskAssessment pfile = deliberativeRiskAssessmentRepository.findById(deliberativeRiskAssessmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("DeliberativeRiskAssessment", "id", deliberativeRiskAssessmentId));
-        deliberativeRiskAssessmentRepository.delete(dra);
+        deliberativeRiskAssessmentRepository.delete(pfile);
         return ResponseEntity.ok().build();
 
     }
 
+    // DeliberativeRiskAssessment Courses 
+    @GetMapping("/draCourse")
+    public ResponseEntity getAllDeliberativeRiskAssessmentCourses() {
+
+        return new ResponseEntity<>(deliberativeRiskAssessmentCourseRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/draCourse/{id}")
+    public DeliberativeRiskAssessmentCourse getDeliberativeRiskAssessmentCourseById(@PathVariable(value = "id") Long deliberativeRiskAssessmentCourseId) {
+        return deliberativeRiskAssessmentCourseRepository.findById(deliberativeRiskAssessmentCourseId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("DeliberativeRiskAssessmentCourse", "id", deliberativeRiskAssessmentCourseId);
+                });
+    }
+
+    @PostMapping("/draCourse")
+    public ResponseEntity createDeliberativeRiskAssessmentCourse(@Valid @RequestBody DeliberativeRiskAssessmentCourse deliberativeRiskAssessmentCourse) {
+        deliberativeRiskAssessmentCourse = deliberativeRiskAssessmentCourseRepository.save(deliberativeRiskAssessmentCourse);
+        return new ResponseEntity<>(deliberativeRiskAssessmentCourse, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/draCourse/{id}")
+    public DeliberativeRiskAssessmentCourse updateDeliberativeRiskAssessmentCourse(@PathVariable(value = "id") Long deliberativeRiskAssessmentCourseId,
+            @RequestBody DeliberativeRiskAssessmentCourse deliberativeRiskAssessmentCourse) {
+
+        employeeProfileRepository.findById(deliberativeRiskAssessmentCourseId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("DeliberativeRiskAssessmentCourse", "id", deliberativeRiskAssessmentCourseId);
+                });
+        DeliberativeRiskAssessmentCourse updatedDeliberativeRiskAssessmentCourse = deliberativeRiskAssessmentCourseRepository.save(deliberativeRiskAssessmentCourse);
+        return updatedDeliberativeRiskAssessmentCourse;
+
+    }
+
+    @DeleteMapping("/draCourse/{id}")
+    public ResponseEntity<?> deleteDeliberativeRiskAssessmentCourse(@PathVariable(value = "id") Long deliberativeRiskAssessmentCourseId) {
+
+        DeliberativeRiskAssessmentCourse pfile = deliberativeRiskAssessmentCourseRepository.findById(deliberativeRiskAssessmentCourseId)
+                .orElseThrow(() -> new ResourceNotFoundException("DeliberativeRiskAssessmentCourse", "id", deliberativeRiskAssessmentCourseId));
+        deliberativeRiskAssessmentCourseRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
+    
     @PostMapping("/profilePicture")
     public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = true) final Long employeeProfileId) {
 
@@ -518,5 +602,9 @@ public class HumanResourcesController {
         
         return ResponseEntity.ok().build();
 
+    }
+    
+    private String getUserEmail(@SAMLUser Auth0SAMLUserDetails user) {
+        return user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
     }
 }

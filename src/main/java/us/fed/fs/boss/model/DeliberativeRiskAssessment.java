@@ -1,13 +1,10 @@
 package us.fed.fs.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Cacheable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -16,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,9 +30,6 @@ public class DeliberativeRiskAssessment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "Title")
-    private String title;
     
     @Column(name = "YearsValid")
     private Short yearsValid;
@@ -44,11 +37,18 @@ public class DeliberativeRiskAssessment implements Serializable {
     @Column(name = "DateOfAssessment")
     @Temporal(TemporalType.DATE)
     private Date dateOfAssessment;
+    
+    @Column(name = "DateDue")
+    @Temporal(TemporalType.DATE)
+    private Date dateDue;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "employee_id")
-    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
-    private EmployeeProfile employeeProfile;
+    @JoinColumn(name = "employee")
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
+    private EmployeeProfile employee;
+    
+    @Column(name="DeliberativeRiskAssessmentCourseId")
+    private Long deliberativeRiskAssessmentCourseId;
 
     /**
      * @return the id
@@ -62,20 +62,6 @@ public class DeliberativeRiskAssessment implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     /**
@@ -107,17 +93,45 @@ public class DeliberativeRiskAssessment implements Serializable {
     }
 
     /**
-     * @return the employeeProfile
+     * @return the deliberativeRiskAssessmentCourseId
      */
-    public EmployeeProfile getEmployeeProfile() {
-        return employeeProfile;
+    public Long getDeliberativeRiskAssessmentCourseId() {
+        return deliberativeRiskAssessmentCourseId;
     }
 
     /**
-     * @param employeeProfile the employeeProfile to set
+     * @param deliberativeRiskAssessmentCourseId the deliberativeRiskAssessmentCourseId to set
      */
-    public void setEmployeeProfile(EmployeeProfile employeeProfile) {
-        this.employeeProfile = employeeProfile;
+    public void setDeliberativeRiskAssessmentCourseId(Long deliberativeRiskAssessmentCourseId) {
+        this.deliberativeRiskAssessmentCourseId = deliberativeRiskAssessmentCourseId;
+    }
+
+    /**
+     * @return the employee
+     */
+    public EmployeeProfile getEmployee() {
+        return employee;
+    }
+
+    /**
+     * @param employee the employee to set
+     */
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
+    }
+
+    /**
+     * @return the dateDue
+     */
+    public Date getDateDue() {
+        return dateDue;
+    }
+
+    /**
+     * @param dateDue the dateDue to set
+     */
+    public void setDateDue(Date dateDue) {
+        this.dateDue = dateDue;
     }
 
 }

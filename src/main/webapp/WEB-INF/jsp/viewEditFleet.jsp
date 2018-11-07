@@ -4,13 +4,13 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="img/favicons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
         <title>FIA-BOSS</title>
-        <link rel="stylesheet" href="css/ead.min.css">
-        <link rel="stylesheet" href="css/pagesCSS/all.css">
+        <link rel="stylesheet" href="/css/ead.min.css">
+        <link rel="stylesheet" href="/css/pagesCSS/all.css">
         <!-- <link rel="stylesheet" href="css/pagesCSS/hrDash.css"> -->
         <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
-        <link rel="stylesheet" href="css/pagesCSS/fleetPages.css">
+        <link rel="stylesheet" href="/css/pagesCSS/fleetPages.css">
     </head>
 
     <body class="layout-demo">
@@ -63,13 +63,13 @@
                                     <button class="btn btn-success bottomButton" id="monthlyUsage">Monthly IWFIA Usage</button>
                                 </div>
                                 <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Maintenance</button>
+                                    <button class="btn btn-success bottomButton" id="maintenance">Maintenance</button>
                                 </div>
                                 <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Monthly Costs</button>
+                                    <button class="btn btn-success bottomButton" id="monthlyCosts">Monthly Costs</button>
                                 </div>
                                 <div class="col col-md-3 text-center">
-                                    <button class="btn btn-success bottomButton" id="monthlyUsage">Out of Service</button>
+                                    <button class="btn btn-success bottomButton" id="outOfService">Out of Service</button>
                                 </div>                                                                                                
                                                                                                
                             </div>
@@ -96,11 +96,11 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="js/ead.min.js"></script>
+        <script src="/js/ead.min.js"></script>
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
-        <script src="js/pagesJS/viewEditFleet.js"></script>
-        <script src="js/pagesJS/mainFleetPages.js"></script>
+        <script src="/js/pagesJS/viewEditFleet.js"></script>
+        <script src="/js/pagesJS/mainFleetPages.js"></script>
 
 
 

@@ -1,0 +1,15 @@
+View Training Bugs
+    Approve / Renew is not working
+    Print / Export to Excel is not working
+
+
+Edit Employee   
+    Info not storing:
+    Street address is still grayed out 
+    Emergency Info not storing - Weight, Other Identifying Features, Contact (Street, City, State)
+    Work Info fields not storing - Supervisor, Master Number, IP Number
+
+Change all instances of address to read home / work / contact etc
+Give option on employee personal cell phone to share with team, than display on view all employees page
+
+Add Section Code to Training Table and View All Employees Table.

@@ -15,6 +15,8 @@ public interface EmployeeProfileRepository extends JpaRepository<EmployeeProfile
     List<EmployeeProfile> findAll();
 
     List<EmployeeProfile> findByNameCode(String nameCode);
+    
+    EmployeeProfile findByFsEmail(String fsEmail);
 
     @Override
     void delete(EmployeeProfile employeeProfile);

@@ -25,7 +25,7 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image"/>
+                        <img data-toggle="tooltip" data-html="true" title="Insect and Disease Training at start of field season. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Wyoming. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/employees.jpg" alt="Banner Image"/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
@@ -62,11 +62,12 @@
                             <div id="templateButtonList" class="dropdown1">
                                 <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                                 <div id="dropList" class="dropdown-content1">
-                                    <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
+                                    <a class="btn-modal btn-modal-upload1" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
                                     <a class="btn-modal btn-modal-approve" data-toggle="modal" data-target="#myModal_approve" href="#">Approve Training</a>
                                     <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
-                                    <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a>
+                                    <!-- <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a> -->
                                     <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
+                                    <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_unrequire" href="#">Mark Training as Unrequired</a>
                                 </div>
                             </div>
                         </div>
@@ -80,10 +81,10 @@
                                     </div>
                                     <table id="tblTraining" class="usa-table-borderless display" style="width:100%">
                                         <thead><tr>
-                                            <th scope="col">Employee NameCode</th>
-                                            <th scope="col">Category</th>
+                                            <th scope="col">Employee Name</th>
                                             <th scope="col">Training Title</th>
                                             <th scope="col">Date Completed</th>
+                                            <th scope="col">Supervisor</th>
                                             <th scope="col">Valid Until</th>
                                             <th scope="col">Approved By</th>
                                             <th id="stop"></th>
@@ -97,21 +98,22 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
+                                            <h4 class="modal-title">Renew Training</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Renew Training</h4>
+
                                     </div>
                                     <div class="modal-body">
                                         <form id="form_training_renew">
                                             <p>Renew this class for <span class='employeeName'></span>?</p>
-                                            <p><span class='category'></span> - <span class='trainingCourse'></span></p>
+                                            <p><span class='trainingCourse'></span></p>
                                             <p><span class='description'></span></p>
                                             <input hidden name='employee.id'>
                                             <input hidden name='trainingCourseId'>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn" data-dismiss="modal" id="btn_renew_training">Renew</button>
+                                        <button type="button" class="btn btn_pers_remove " data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn_pers_copy" data-dismiss="modal" id="btn_renew_training">Renew</button>
                                     </div>
                                 </div>
                             </div>
@@ -120,8 +122,9 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
+                                            <h4 class="modal-title">Add Documents and Certifications</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Add Documents and Certifications</h4>
+
                                     </div>
                                     <div class="modal-body">
                                         <span id="certificate_list"></span>
@@ -136,12 +139,12 @@
                                                 Description
                                                 <input type="text" name="description" id="form_training_upload_description">
                                             </label>
-                                            <br>
-                                            <button type="button" class="btn" id="btn_add_training_docs">Add</button>
+                                            
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn_pers_copy" id="btn_add_training_docs">Add</button>
                                     </div>
                                 </div>
                             </div>
@@ -152,16 +155,17 @@
                                     <form id="form_training_approve">
                                         <input name='id' class='trainingId' hidden>
                                         <div class="modal-header">
+                                                <h4 class="modal-title">Approve Training</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Approve Training</h4>
+
                                         </div>
                                         <div class="modal-body">
                                             <p>Approve the training "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
                                             
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn" data-dismiss="modal" id="btn_approve_training">Approve</button>
+                                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal" id="btn_approve_training">Approve</button>
                                         </div>
                                     </form>
                                 </div>
@@ -173,16 +177,38 @@
                                     <form id="form_training_remove">
                                         <input name='id' class='trainingId' hidden>
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title">Remove Training</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             <p>Remove the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
                                             <p>If you Confirm this, you will have to re-add it.</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn text-danger" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
+                                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myModal_unrequire" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form id="form_training_unrequire">
+                                        <input name='id' class='trainingId' hidden>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Mark as Unrequired</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Mark the class "<span class='trainingCourse'></span>" as unnecessary for the employee <span class='employeeName'></span>?</p>
+                                            <p>If you confirm this, this course will never be marked as overdue or up for renewal for this employee until they take the class again and get a new valid-until date.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn_pers_unrequire" data-dismiss="modal" id="btn_unrequire_training">Yes, Unrequire Training</button>
                                         </div>
                                     </form>
                                 </div>
@@ -197,7 +223,6 @@
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
         <script src="js/ead.min.js"></script>
-
         <script src="/js/pagesJS/customFormFunctions.js"></script>
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/pagesJS/ApiCalls.js"></script>

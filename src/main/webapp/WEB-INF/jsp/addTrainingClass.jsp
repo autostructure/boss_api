@@ -77,8 +77,8 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
+                                                    <h4 class="modal-title">Add Training Course</h4>                                                    
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title">Add Training Course</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Add a new course</p>
@@ -87,8 +87,8 @@
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn" data-dismiss="modal" id="btn_add">Add Course</button>
+                                                    <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn_pers_copy" data-dismiss="modal" id="btn_add">Add Course</button>
                                                 </div>
                                             </div>
                                         </div>

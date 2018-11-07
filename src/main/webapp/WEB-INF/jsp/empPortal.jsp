@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/css/pagesCSS/all.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/css/pagesCSS/empPortal.css">
-    <link rel="stylesheet" href="/css/pagesCSS/viewTraining.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
 
 </head>
 
@@ -22,7 +23,7 @@
             <section class="usa-section bgImg">
                 <div class="usa-grid usa-buffer-top">
                     <nav id="sidebar" hidden></nav>
-                    <div class="usa-width-one-whole faded">
+                    <div class="usa-width-one-whole faded" style="margin-bottom: 50px">
                         <div class="border">
                             <ul class="nav nav-tabs" id="myTab" role="tablist"> <!-- start of tabs list -->
                                 <li class="nav-item">
@@ -41,7 +42,7 @@
                                     <a class="nav-link" id="property-tab" data-toggle="tab" href="#property" role="tab" aria-controls="property" >Fleet Usage</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#trainingCerts" role="tab" aria-controls="trainingCerts" >Training/Certs</a>
+                                    <a class="nav-link" id="training-tab" data-toggle="tab" href="#trainingCerts" role="tab" aria-controls="trainingCerts" >Training/DRA</a>
                                 </li>
 
                                                             
@@ -53,7 +54,7 @@
                                 <div class="row submitChangesTemplate" hidden>
                                     <div class="col col-md-6 offset-md-3">
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-lg btn-success submitChanges" value="Save Changes">
+                                            <!--input type="submit" class="btn btn-lg btn-success submitChanges" value="Save Changes"-->
                                         </div>
                                     </div>
                                 </div>
@@ -74,12 +75,15 @@
                                 <div id="templateButtonList" class="dropdown1">
                                     <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                                     <div id="dropList" class="dropdown-content1">
-                                        <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a>
+                                        <!-- <a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload Documents</a> -->
                                         <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
-                                        <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a>
+                                        <!-- <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a> -->
                                         <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
                                     </div>
                                 </div>
+                                <div id="templateButtonList2" class="dropdown1">
+                                    <button class="btn btn_pers_copy"><a class="btn-modal btn-modal-upload" data-toggle="modal" data-target="#myModal_upload" href="#">Upload</a></button>
+                                </div>                                
                             </div>
                             <!--  START OF GENERAL TAB      -->
                             <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="generalInfo">
@@ -126,11 +130,28 @@
                                     <table id="tblTraining" class="usa-table-borderless display" style="width:100%">
                                         <thead><tr>
                                             <th scope="col">Employee Namecode</th>
-                                            <th scope="col">Category</th>
                                             <th scope="col">Training Title</th>
                                             <th scope="col">Date Completed</th>
                                             <th scope="col">Valid Until</th>
                                             <th scope="col">Approved By</th>
+                                            <th scope="col">Upload Certificates (Optional) </th>
+                                            <th id="stop"></th>
+                                        </tr></thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <h2 class="title2">DRA List</h2>
+                                <div id="showHide">
+                                    <div class="form-check" id="viewOldCheckbox">
+                                        <input type="checkbox" id="viewOld_dra" class="form-check-input">
+                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
+                                    </div>
+                                    <table id="tblDRA" class="usa-table-borderless display" style="width:100%">
+                                        <thead><tr>
+                                            <th scope="col">Employee Namecode</th>
+                                            <th scope="col">Training Title</th>
+                                            <th scope="col">Date Completed</th>
+                                            <th scope="col">Valid Until</th>
                                             <th id="stop"></th>
                                         </tr></thead>
                                         <tbody></tbody>
@@ -141,8 +162,9 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
+                                                <h4 class="modal-title">Renew Training</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Renew Training</h4>
+                                            
                                         </div>
                                         <div class="modal-body">
                                             <form id="form_training_renew">
@@ -154,8 +176,8 @@
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn" data-dismiss="modal" id="btn_renew_training">Renew</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal" id="btn_renew_training">Renew</button>
                                         </div>
                                     </div>
                                 </div>
@@ -164,8 +186,9 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
+                                                <h4 class="modal-title">Add Documents and Certifications</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Add Documents and Certifications</h4>
+
                                         </div>
                                         <div class="modal-body">
                                             <span id="certificate_list"></span>
@@ -181,11 +204,12 @@
                                                     <input type="text" name="description" id="form_training_upload_description">
                                                 </label>
                                                 <br>
-                                                <button type="button" class="btn" id="btn_add_training_docs">Add</button>
+                                                
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                                <button type="button" class="btn" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn_pers_copy" id="btn_add_training_docs">Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -196,16 +220,17 @@
                                         <form id="form_training_remove">
                                             <input name='id' class='trainingId' hidden>
                                             <div class="modal-header">
+                                                    <h4 class="modal-title">Remove Training</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Remove Training</h4>
+                                                
                                             </div>
                                             <div class="modal-body">
                                                 <p>Remove the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
                                                 <p>If you Confirm this, you will have to re-add it.</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                                                <button type="button" class="btn text-danger" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
+                                                <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn_pers_remove" data-dismiss="modal" id="btn_remove_training">Yes, Remove</button>
                                             </div>
                                         </form>
                                     </div>
@@ -214,7 +239,7 @@
                             <!-- END OF TRAINING TAB    -->    
 
                             <!--  START OF INVENTORY TAB  -->
-                            <div class="tab-pane fade" id="inventory" role="tabpanel" aria-labelledby="inventory">
+                            <div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="inventory">
                                 <form role="form" data-toggle="validator" class="inventoryInfo">
                                     <h4 class="title3">Monthly Vehicle Usage</h4>
                                     <div class="row">

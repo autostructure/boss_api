@@ -8,7 +8,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home() {
-        return "home";
+        return "redirect:/home";
     }
 
     @RequestMapping("/home")
@@ -25,7 +25,7 @@ public class HomeController {
     public String budgetSummary() {
         return "budgetSummary";
     }
-
+    
     @RequestMapping("/jobCodes")
     public String jobCodes() {
         return "jobCodes";
@@ -81,6 +81,14 @@ public class HomeController {
     public String addTrainingClass(){
         return "addTrainingClass";
     }
+    @RequestMapping("/viewAllDras")
+    public String viewAllDras(){
+        return "viewAllDras";
+    }    
+    @RequestMapping("/viewRecordedDras")
+    public String viewRecordedDras(){
+        return "viewRecordedDras";
+    }      
     @RequestMapping("/assignTraining")
     public String assignTraining(){
         return "assignTraining";
@@ -92,7 +100,7 @@ public class HomeController {
     @RequestMapping("/addDraEmployee")
     public String addDraEmployee(){
         return "addDraEmployee";
-    }         
+    }        
     @RequestMapping("/payrollForecast")
     public String payrollForecast() {
         return "payrollForecast";
@@ -117,8 +125,26 @@ public class HomeController {
     public String viewFleet() {
         return "viewFleet";
     }      
-    @RequestMapping("/viewEditFleet")
+    @RequestMapping("/viewEditFleet/{id}")
     public String viewEditFleet() {
         return "viewEditFleet";
-    }         
+    }       
+    @RequestMapping("/iwfia")
+    public String iwfia() {
+        return "iwfia";
+    }        
+    @RequestMapping("/auxContact")
+    public String auxContact() {
+        return "auxContact";
+    }           
+
+	@RequestMapping("/employeePrint")
+    public String employeePrint() {
+        return "employeePrint";
+    }  
+
+	@RequestMapping("/print/{id}")
+    public String print() {
+        return "print";
+    }  
 }

@@ -92,9 +92,7 @@ input, select{
 .title3{
     margin-top: 30px;
     font-size: 2.2em;
-}
-.noUline{
-    color: #39679b !important;
+    border-bottom: 1px solid #39679b;
 }
 .title4{
     margin-top: 30px;
@@ -103,6 +101,15 @@ input, select{
     font-size: 1.7em;
     color: #39679b;
 }
+.title5{
+    margin-top: 30px;
+    font-size: 2.0em;
+    border-bottom: 1px solid #39679b;
+}
+.noUline{
+    color: #39679b !important;
+}
+
 .alert {
     font-size: 1.8em;
     display: none;
@@ -114,7 +121,6 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     right: 20px;
     font-family: 'FontAwesome';
     font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.00)
 }
 .trainBG{
     border: 1px solid rgba(106, 106, 106, 0.981);
@@ -176,17 +182,48 @@ hr:after {
     left: 10px;
     padding: 0px;
 }
-td, th{
-    text-align: center;
+#tblDRA_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
 }
 #tblTraining_filter > label{
     font-size: 1.5em;
 }
 #tblTraining_wrapper > div.dt-buttons{
     position: absolute;
+    top: -120px;
+    right: 10px;
+}
+#tblDRA_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -100px;
+    right: 10px;
+}
+/* view all dra table css */
+#allDrasCourses_filter, #allDrasCourses_paginate, #allDrasCourses_length, #allDrasCourses_info, #tblDras_filter, #tblDras_paginate, #tblDras_length, #tblDras_info{
+    padding: 20px 20px;
+}
+#allDrasCourses_filter, #tblDras_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
+}
+#allDrasCourses_filter > label, #tblDras_filter > label{
+    font-size: 1.5em;
+}
+#allDrasCourses_wrapper > div.dt-buttons, #tblDras_wrapper > div.dt-buttons {
+    position: absolute;
     top: -115px;
     right: 10px;
 }
+
+td, th{
+    text-align: center;
+}
+
 .table-btns{
     background-color: white !important;
     border: none !important;
@@ -250,7 +287,7 @@ td, th{
 /* all employees table */
 #allEmployees_wrapper > div.dt-buttons{
     position: absolute;
-    top: -55px;
+    top: -115px;
     right: 10px;
 }
 #myModal_delete > div > div > div.modal-body{
@@ -272,8 +309,9 @@ td, th{
 }
 #allEmployees_filter{
     position: absolute;
-    top: -85px;
-    right: 10px;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
 }
 /* training courses table */
 #tblCourse_filter, #tblCourse_paginate, #tblCourse_length, #tblCourse_info{
@@ -293,6 +331,39 @@ td, th{
     position: absolute;
     top: -115px;
     right: 10px;
+}
+#auxTable_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+#auxTable > thead> tr > th, #auxTable > tbody > tr > td{
+    border-right: 0px solid gray;
+    border-left: 0px solid gray;
+}
+#auxTable{
+    min-width: 100%;
+}
+#auxTable_wrapper{
+    border-radius: 10px;
+    /* border: 1px solid gray; */
+}
+
+#auxTable_filter, #auxTable_paginate, #auxTable_length, #auxTable_info{
+    padding: 20px 20px;
+}
+#auxTable_filter{
+    position: absolute;
+    top: -75px;
+    left: 10px;
+    padding: 0px;
+}
+
+#auxTable_filter > label{
+    font-size: 1.5em;
+}
+#auxTable_wrapper{
+    background-color: white;
 }
 
 /* modals */
@@ -374,6 +445,10 @@ td, th{
 .padTop{
     margin-top: 50px;
 }
+.btnPrint{
+    color: white !important;
+    font-size: .8em !important;
+}
 .card{
     box-shadow: 5px 10px 15px rgba(33,33,33,0.2);
     border: 1px solid rgba(33, 33, 33, 0.2);
@@ -387,4 +462,112 @@ td, th{
 }
 .list-group-item > a{
     color: #39679b;
+}
+
+#btn_add_aux{
+    margin: auto;
+    margin-top: 40px;
+    font-size: 1.4em;
+}
+
+#form_training_upload, #form_training_renew, #form_add, #form_edit{
+    font-size: 12px !important;
+}
+#form_training_upload_file{
+    font-size: 12px !important;
+}
+.modal-title{
+    font-size: 26px !important; 
+    text-align: center;
+}
+#myModal_contact > div > div > div.modal-body{
+    font-size: 12px !important;
+}
+.contactClass{
+    font-size: 1.3em;
+    margin-top: 25px;
+    border-bottom: 1px solid #39679b;
+    padding-bottom: 5px;
+}
+#myModal_contact > div > div > div.modal-body > label{
+    margin-top: 3px !important;
+}
+#form_add_description{
+    font-size: 1.4em;
+}
+
+#myModal_print > div > div > div.modal-body > div > div > div > label{
+    font-size: .9em !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+#EmployeePrintTable_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+#EmployeePrintTable > thead> tr > th, #EmployeePrintTable > tbody > tr > td{
+    border-right: 0px solid gray;
+    border-left: 0px solid gray;
+}
+#EmployeePrintTable{
+    min-width: 100%;
+    margin-top: 50px;
+}
+#EmployeePrintTable_wrapper{
+    border-radius: 10px;
+    /* border: 1px solid gray; */
+}
+
+#EmployeePrintTable_filter, #EmployeePrintTable_paginate, #EmployeePrintTable_length, #EmployeePrintTable_info{
+    padding: 20px 20px;
+}
+#EmployeePrintTable_filter{
+    position: absolute;
+    top: -85px;
+    left: 10px;
+    padding: 0px;
+}
+
+#EmployeePrintTable_filter > label{
+    font-size: 1.5em;
+}
+#EmployeePrintTable_wrapper{
+    background-color: white;
+}
+table.dataTable.no-footer {
+    border-bottom: 0px solid rgb(148, 148, 148);
+}
+.btn-modal-upload{
+    color: white !important;
+    font-size: 0.8em;
+}
+
+.btn-modal-upload:active, .btn-modal-upload:hover, .btn-modal-upload:visited{
+    color: white !important;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+#otherID{
+    font-size: 1.2em !important;
+}
+#formEmergencyInfo_otherIdentifyingFeatures, #formIdentificationInfo_employeePhoto{
+    font-size: 1.2em !important;
+}
+#submitWorkInfo, #submitEmergencyInfo, #submitMedicalInfo, #submitEmployeeInfo{
+    min-width: 20%;
+    margin-top: 40px;
+    font-size: 1.2em;
+};
+#submitAndAddAnother, #submitAndEdit{
+    margin-top: 45px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-width: 20%;
+}
+form [type=submit] {
+    display: inline-block;
+    margin-bottom: 1.5em;
+    margin-top: 2.5rem;
 }

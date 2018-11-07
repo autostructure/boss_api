@@ -2,8 +2,10 @@ package us.fed.fs.boss.model;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+
 import java.io.IOException;
 
 public class EmployeeProfileMinimalSerializer extends StdSerializer<EmployeeProfile> {
@@ -22,13 +24,8 @@ public class EmployeeProfileMinimalSerializer extends StdSerializer<EmployeeProf
             JsonGenerator generator,
             SerializerProvider provider)
             throws IOException, JsonProcessingException {
-
-
         Supervisor sup = new Supervisor(item.getId(), item.getNameCode());
-
         generator.writeObject(sup);
-
     }
 
-  
 }
