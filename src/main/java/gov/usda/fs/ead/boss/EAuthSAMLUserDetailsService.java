@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * {@link UserDetails} implementation.
  */
 @Service
-public class Auth0SAMLUserDetailsService implements SAMLUserDetailsService {
+public class EAuthSAMLUserDetailsService implements SAMLUserDetailsService {
 
     @Autowired
     EmployeeProfileRepository employeeProfileRepository;
@@ -31,6 +31,8 @@ public class Auth0SAMLUserDetailsService implements SAMLUserDetailsService {
         List<String> roles = new ArrayList<>();
         String email = getUserEmail(credential);
         EmployeeProfile p = employeeProfileRepository.findByFsEmail(email);
+        
+        roles.add("User");
         if(p.getAdmin()) {
             roles.add("Admin");
         }
@@ -40,7 +42,8 @@ public class Auth0SAMLUserDetailsService implements SAMLUserDetailsService {
         if(p.getTeamLead()) {
             roles.add("TeamLead");
         }
-        Auth0SAMLUserDetails userDetails = new Auth0SAMLUserDetails(credential, roles);
+        
+        EAuthSAMLUserDetails userDetails = new EAuthSAMLUserDetails(credential, roles);
         userDetails.setEmployeeProfile(p);
         return userDetails;
     }

@@ -52,6 +52,10 @@ import gov.usda.fs.ead.boss.repository.TrainingRepository;
 import gov.usda.fs.ead.boss.repository.UploadedDocumentRepository;
 import gov.usda.fs.ead.boss.upload.UploadFileResponse;
 import gov.usda.fs.ead.boss.upload.UploadService;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import org.springframework.security.core.GrantedAuthority;
 
 @RestController
 public class HumanResourcesController {
@@ -90,12 +94,22 @@ public class HumanResourcesController {
     UploadService uploadService;
     
     @GetMapping("/userEmail")
-    public ResponseEntity getUserEmailEndpoint(@SAMLUser Auth0SAMLUserDetails user) {
+    public ResponseEntity getUserEmailEndpoint(@SAMLUser EAuthSAMLUserDetails user) {
         return new ResponseEntity<>(user.getEmployeeProfile().getFsEmail(), HttpStatus.OK);
     }
     
+    @GetMapping("/myRoles")
+    public ResponseEntity getMyRoles(@SAMLUser EAuthSAMLUserDetails user) {
+        List<GrantedAuthority> authorities = (List<GrantedAuthority>) user.getAuthorities();
+        List<String> roles = new ArrayList<>();
+        for (GrantedAuthority auth : authorities) {
+            roles.add(auth.getAuthority());
+        }
+        return new ResponseEntity<>(roles, HttpStatus.OK);
+    }
+    
     @GetMapping("/myProfile")
-    public ResponseEntity getMyUserProfile(@SAMLUser Auth0SAMLUserDetails user) {
+    public ResponseEntity getMyUserProfile(@SAMLUser EAuthSAMLUserDetails user) {
         return new ResponseEntity<>(user.getEmployeeProfile(), HttpStatus.OK);
     }
 
@@ -602,7 +616,7 @@ public class HumanResourcesController {
 
     }
     
-    private String getUserEmail(@SAMLUser Auth0SAMLUserDetails user) {
+    private String getUserEmail(@SAMLUser EAuthSAMLUserDetails user) {
         return user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
     }
 }

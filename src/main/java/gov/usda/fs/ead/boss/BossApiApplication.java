@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableSAMLSSO
 public class BossApiApplication {
     
-    @Autowired Auth0SAMLUserDetailsService auth0SAMLUserDetailsService;
+    @Autowired EAuthSAMLUserDetailsService auth0SAMLUserDetailsService;
 
     public static void main(String[] args) {
         SpringApplication.run(BossApiApplication.class, args);

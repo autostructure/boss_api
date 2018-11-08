@@ -14,7 +14,7 @@ import org.springframework.security.saml.SAMLCredential;
 
 import java.util.stream.Collectors;
 
-public class Auth0SAMLUserDetails implements UserDetails {
+public class EAuthSAMLUserDetails implements UserDetails {
 
     private final SAMLCredential samlCredential;
     
@@ -22,7 +22,7 @@ public class Auth0SAMLUserDetails implements UserDetails {
     
     private final List<String> roles;
 
-    public Auth0SAMLUserDetails(SAMLCredential samlCredential, List<String> roles) {
+    public EAuthSAMLUserDetails(SAMLCredential samlCredential, List<String> roles) {
         this.samlCredential = samlCredential;
         this.roles = roles;
     }
