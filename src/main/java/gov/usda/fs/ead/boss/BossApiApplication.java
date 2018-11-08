@@ -5,6 +5,7 @@ import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProv
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderBuilder;
 
 import org.opensaml.common.xml.SAMLConstants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
@@ -16,13 +17,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication(scanBasePackages = {"gov.usda.fs.ead.boss", "gov.usda.fs.ead.boss.repository"})
 @EnableSAMLSSO
 public class BossApiApplication {
+    
+    @Autowired Auth0SAMLUserDetailsService auth0SAMLUserDetailsService;
 
     public static void main(String[] args) {
         SpringApplication.run(BossApiApplication.class, args);
     }
     
     @Configuration
-    public static class MyServiceProviderConfig extends ServiceProviderConfigurerAdapter {
+    public class MyServiceProviderConfig extends ServiceProviderConfigurerAdapter {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
@@ -38,7 +41,7 @@ public class BossApiApplication {
           profileOptions.setBinding(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
             serviceProvider
                 .authenticationProvider()
-                .userDetailsService(new Auth0SAMLUserDetailsService())
+                .userDetailsService(auth0SAMLUserDetailsService)
             .and()
                 .metadataGenerator()
                 .entityId("urn:auth0:localhost-boss:localhostdev")

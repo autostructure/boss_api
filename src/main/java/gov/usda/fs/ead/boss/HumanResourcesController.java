@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -92,13 +91,12 @@ public class HumanResourcesController {
     
     @GetMapping("/userEmail")
     public ResponseEntity getUserEmailEndpoint(@SAMLUser Auth0SAMLUserDetails user) {
-        return new ResponseEntity<>(getUserEmail(user), HttpStatus.OK);
+        return new ResponseEntity<>(user.getEmployeeProfile().getFsEmail(), HttpStatus.OK);
     }
     
     @GetMapping("/myProfile")
     public ResponseEntity getMyUserProfile(@SAMLUser Auth0SAMLUserDetails user) {
-        EmployeeProfile p = employeeProfileRepository.findByFsEmail(getUserEmail(user));
-        return new ResponseEntity<>(p, HttpStatus.OK);
+        return new ResponseEntity<>(user.getEmployeeProfile(), HttpStatus.OK);
     }
 
     @PostMapping("/employeeProfile")

@@ -1,32 +1,39 @@
 package gov.usda.fs.ead.boss;
 
+import gov.usda.fs.ead.boss.model.EmployeeProfile;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.opensaml.saml2.core.Attribute;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.saml.SAMLCredential;
-import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 
-import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * A default Implementation of {@link UserDetails} for Spring Boot Security SAML. This simple implementation hardly
- * covers all security aspects since it's mostly hardcoded. I.E. accounts are never locked, expired, or disabled, and
- * always eturn the same granted authority "ROLE_USER".
- * Consider implementing your own {@link UserDetails} and {@link SAMLUserDetailsService}.
- */
 public class Auth0SAMLUserDetails implements UserDetails {
 
-    private SAMLCredential samlCredential;
+    private final SAMLCredential samlCredential;
+    
+    private EmployeeProfile employeeProfile;
+    
+    private final List<String> roles;
 
-    public Auth0SAMLUserDetails(SAMLCredential samlCredential) {
+    public Auth0SAMLUserDetails(SAMLCredential samlCredential, List<String> roles) {
         this.samlCredential = samlCredential;
+        this.roles = roles;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        roles.forEach((role) -> {
+            authorities.add(new SimpleGrantedAuthority(role));
+        });
+        return authorities;
     }
 
     @Override
@@ -104,5 +111,19 @@ public class Auth0SAMLUserDetails implements UserDetails {
 
     private String[] getValueArray(Attribute attribute) {
         return getAttributeArray(attribute.getName());
+    }
+
+    /**
+     * @return the employeeProfile
+     */
+    public EmployeeProfile getEmployeeProfile() {
+        return employeeProfile;
+    }
+
+    /**
+     * @param employeeProfile the employeeProfile to set
+     */
+    public void setEmployeeProfile(EmployeeProfile employeeProfile) {
+        this.employeeProfile = employeeProfile;
     }
 }
