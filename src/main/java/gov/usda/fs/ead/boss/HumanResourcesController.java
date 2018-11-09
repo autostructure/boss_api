@@ -1,8 +1,7 @@
 package gov.usda.fs.ead.boss;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.github.ulisesbocchio.spring.boot.security.saml.annotation.SAMLUser;
-import com.github.ulisesbocchio.spring.boot.security.saml.user.SAMLUserDetails;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,6 +35,7 @@ import gov.usda.fs.ead.boss.model.DeliberativeRiskAssessment;
 import gov.usda.fs.ead.boss.model.DeliberativeRiskAssessmentCourse;
 import gov.usda.fs.ead.boss.model.DutyStation;
 import gov.usda.fs.ead.boss.model.EmployeeProfile;
+import gov.usda.fs.ead.boss.model.EmployeeProfileListMinimalSerializer;
 import gov.usda.fs.ead.boss.model.UploadedDocument;
 import gov.usda.fs.ead.boss.model.Training;
 import gov.usda.fs.ead.boss.model.TrainingCourse;
@@ -52,10 +52,6 @@ import gov.usda.fs.ead.boss.repository.TrainingRepository;
 import gov.usda.fs.ead.boss.repository.UploadedDocumentRepository;
 import gov.usda.fs.ead.boss.upload.UploadFileResponse;
 import gov.usda.fs.ead.boss.upload.UploadService;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import org.springframework.security.core.GrantedAuthority;
 
 @RestController
 public class HumanResourcesController {
@@ -77,7 +73,7 @@ public class HumanResourcesController {
 
     @Autowired
     TrainingCourseRepository trainingCourseRepository;
-    
+
     @Autowired
     CertificateRepository certificateRepository;
 
@@ -93,24 +89,25 @@ public class HumanResourcesController {
     @Autowired
     UploadService uploadService;
     
+    @Autowired
+    private IAuthenticationFacade authenticationFacade;
+
     @GetMapping("/userEmail")
-    public ResponseEntity getUserEmailEndpoint(@SAMLUser EAuthSAMLUserDetails user) {
-        return new ResponseEntity<>(user.getEmployeeProfile().getFsEmail(), HttpStatus.OK);
+    public ResponseEntity getUserEmailEndpoint() {
+        String email = AuthUtils.getProfile(authenticationFacade).getFsEmail();
+        return new ResponseEntity<>(email, HttpStatus.OK);
     }
-    
+
     @GetMapping("/myRoles")
-    public ResponseEntity getMyRoles(@SAMLUser EAuthSAMLUserDetails user) {
-        List<GrantedAuthority> authorities = (List<GrantedAuthority>) user.getAuthorities();
-        List<String> roles = new ArrayList<>();
-        for (GrantedAuthority auth : authorities) {
-            roles.add(auth.getAuthority());
-        }
+    public ResponseEntity getMyRoles() {
+        List<String> roles = AuthUtils.getRoles(authenticationFacade);
         return new ResponseEntity<>(roles, HttpStatus.OK);
     }
-    
+
     @GetMapping("/myProfile")
-    public ResponseEntity getMyUserProfile(@SAMLUser EAuthSAMLUserDetails user) {
-        return new ResponseEntity<>(user.getEmployeeProfile(), HttpStatus.OK);
+    public ResponseEntity getMyUserProfile() {
+        EmployeeProfile p = AuthUtils.getProfile(authenticationFacade);
+        return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
     @PostMapping("/employeeProfile")
@@ -153,23 +150,11 @@ public class HumanResourcesController {
     }
 
     // Get All Employee Profiles
-    @JsonView(Views.Internal.class)
     @GetMapping("/employeeProfile")
+    @JsonSerialize(using = EmployeeProfileListMinimalSerializer.class)
     public ResponseEntity getAllEmployeeProfiles(@RequestParam(value = "nameCode", required = false) final String nameCode) {
-
-        if (nameCode == null) {
-            return new ResponseEntity<>(employeeProfileRepository.findAll(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(employeeProfileRepository.findByNameCode(nameCode).get(0), HttpStatus.OK);
-        }
-
-    }
-    
-    @GetMapping("/userDetails")
-    public ResponseEntity home(@SAMLUser SAMLUserDetails user) {
-        // user.getUsername();
-        // user.getAttributes();
-        return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
+        List<EmployeeProfile> ps = employeeProfileRepository.findAll();
+        return new ResponseEntity<>(ps, HttpStatus.OK);
 
     }
 
@@ -330,7 +315,7 @@ public class HumanResourcesController {
 
     }
 
-       // DeliberativeRiskAssessment 
+    // DeliberativeRiskAssessment 
     @GetMapping("/dra")
     public ResponseEntity getAllDeliberativeRiskAssessments(
             @RequestParam(value = "employeeId", required = false) final Long employeeId,
@@ -435,7 +420,7 @@ public class HumanResourcesController {
         return ResponseEntity.ok().build();
 
     }
-    
+
     @PostMapping("/profilePicture")
     public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = true) final Long employeeProfileId) {
 
@@ -548,7 +533,6 @@ public class HumanResourcesController {
                     cert.setDescription(description != null ? description : "");
                     certs.add(cert);
                     training.setCertificates(certs);
-                    
 
                     trainingRepository.save(training);
 
@@ -602,21 +586,17 @@ public class HumanResourcesController {
 
         }
     }
-    
+
     @DeleteMapping("/certificate/{id}")
     public ResponseEntity<?> deleteCertificate(@PathVariable(value = "id") Long certificateId) {
 
         Certificate cert = certificateRepository.findById(certificateId)
                 .orElseThrow(() -> new ResourceNotFoundException("Certificate", "id", certificateId));
-        
+
         uploadedDocumentRepository.deleteById(cert.getDocumentId());
         certificateRepository.delete(cert);
-        
+
         return ResponseEntity.ok().build();
 
-    }
-    
-    private String getUserEmail(@SAMLUser EAuthSAMLUserDetails user) {
-        return user.getAttributes().get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
     }
 }
