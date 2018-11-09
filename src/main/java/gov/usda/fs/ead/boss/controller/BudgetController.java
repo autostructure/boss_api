@@ -50,6 +50,7 @@ import gov.usda.fs.ead.boss.repository.ExpenseCodeRepository;
 import gov.usda.fs.ead.boss.repository.ExpenseRepository;
 import gov.usda.fs.ead.boss.repository.JobCodeRepository;
 import gov.usda.fs.ead.boss.repository.PaymentCodeRepository;
+import gov.usda.fs.ead.boss.saml.IAuthenticationFacade;
 
 @RestController
 public class BudgetController {
@@ -77,6 +78,9 @@ public class BudgetController {
 
     @Autowired
     private ServletContext servletContext;
+    
+    @Autowired
+    private IAuthenticationFacade authenticationFacade;
 
     // Get All Expenses
     @GetMapping("/expense")
