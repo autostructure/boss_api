@@ -208,7 +208,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn_pers_unrequire" data-dismiss="modal" id="btn_unrequire_training">Yes, Unrequire Training</button>
+                                            <button type="button" class="btn btn_pers_remove" data-dismiss="modal" id="btn_unrequire_training">Yes, Unrequire Training</button>
                                         </div>
                                     </form>
                                 </div>
