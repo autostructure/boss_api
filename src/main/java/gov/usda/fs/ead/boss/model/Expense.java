@@ -1,7 +1,5 @@
 package gov.usda.fs.ead.boss.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -262,7 +262,7 @@ INSERT INTO dbo.job_codes (financial_year, job_code, description, amount) VALUES
 (2017, 'FRFI4717', 'LAB (FRRE4717)', 508341),
 (2017, 'FRFI3817', 'PROGRAM (FRRE3817)', 11999623);
 
-INSERT INTO dbo.employee_profiles (first_name, last_name, name_code, activity_codefk, reg_pay_per_pay_period, pay_periods_left, fs_email, is_admin, is_crew_lead, is_team_lead) VALUES 
+INSERT INTO dbo.employee_profiles (first_name, last_name, name_code, activity_codefk, reg_pay_per_pay_period, pay_periods_left, fs_email, is_admin, is_crew_lead, is_office) VALUES 
   ('Ben', 'Howden', 'BHowden', 'AD', 1000, 10, 'bhowden83@gmail.com', 1, 0, 0),
   ('Parker', 'Bidigare', 'PBidigare', 'AD', 1000, 10, 'pbidigare@cynerge.com', 1, 0, 0),
   ('Shelby', 'Kauth', 'SKauth', 'AD', 1000, 10, 'skauth@cynerge.com', 1, 0, 0),

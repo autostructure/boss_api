@@ -403,14 +403,23 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Internal.class)
     private DriversLicense driversLicense;
     
-    @Column(name = "IsAdmin")
+    @Column(name = "IsAdmin", columnDefinition="tinyint default 0")
     private Boolean admin;
     
-    @Column(name = "IsTeamLead")
-    private Boolean teamLead;
+    @Column(name = "IsOffice", columnDefinition="tinyint default 0")
+    private Boolean office;
     
-    @Column(name = "IsCrewLead")
+    @Column(name = "IsCrewLead", columnDefinition="tinyint default 0")
     private Boolean crewLead;
+    
+    @Column(name = "IsSupport", columnDefinition="tinyint default 0")
+    private Boolean support;
+    
+    @Column(name = "IsField", columnDefinition="tinyint default 0")
+    private Boolean field;
+    
+    @Column(name = "IsOwner", columnDefinition="tinyint default 0")
+    private Boolean owner;
     
     public EmployeeProfile() {
         this.employees = new ArrayList<>();
@@ -1670,17 +1679,17 @@ public class EmployeeProfile implements Serializable {
     }
 
     /**
-     * @return the teamLead
+     * @return the office
      */
-    public Boolean getTeamLead() {
-        return teamLead;
+    public Boolean getOffice() {
+        return office;
     }
 
     /**
-     * @param teamLead the teamLead to set
+     * @param office the office to set
      */
-    public void setTeamLead(Boolean teamLead) {
-        this.teamLead = teamLead;
+    public void setOffice(Boolean office) {
+        this.office = office;
     }
 
     /**
@@ -1695,5 +1704,47 @@ public class EmployeeProfile implements Serializable {
      */
     public void setCrewLead(Boolean crewLead) {
         this.crewLead = crewLead;
+    }
+
+    /**
+     * @return the support
+     */
+    public Boolean getSupport() {
+        return support;
+    }
+
+    /**
+     * @param support the support to set
+     */
+    public void setSupport(Boolean support) {
+        this.support = support;
+    }
+
+    /**
+     * @return the field
+     */
+    public Boolean getField() {
+        return field;
+    }
+
+    /**
+     * @param field the field to set
+     */
+    public void setField(Boolean field) {
+        this.field = field;
+    }
+
+    /**
+     * @return the owner
+     */
+    public Boolean getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(Boolean owner) {
+        this.owner = owner;
     }
 }

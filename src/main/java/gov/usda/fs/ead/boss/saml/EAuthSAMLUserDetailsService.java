@@ -25,15 +25,26 @@ public class EAuthSAMLUserDetailsService implements SAMLUserDetailsService {
 
         if (p != null) {
             
+            // Support, Owner, Field, Office, CrewLead, Supervisor
+            
             roles.add("ROLE_APP_USER");
             if (p.getAdmin()) {
-                roles.add("ROLE_ADMIN");
+                roles.add("ROLE_SUPERVISOR");
             }
             if (p.getCrewLead()) {
                 roles.add("ROLE_CREW_LEAD");
             }
-            if (p.getTeamLead()) {
-                roles.add("ROLE_TEAM_LEAD");
+            if (p.getOffice()) {
+                roles.add("ROLE_OFFICE");
+            }
+            if (p.getSupport()) {
+                roles.add("ROLE_SUPPORT");
+            }
+            if (p.getField()) {
+                roles.add("ROLE_FIELD");
+            }
+            if (p.getOwner()) {
+                roles.add("ROLE_OWNER");
             }
 
             EAuthSAMLUserDetails userDetails = new EAuthSAMLUserDetails(credential, roles);
