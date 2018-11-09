@@ -1,4 +1,4 @@
-package gov.usda.fs.ead.boss;
+package gov.usda.fs.ead.boss.saml;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

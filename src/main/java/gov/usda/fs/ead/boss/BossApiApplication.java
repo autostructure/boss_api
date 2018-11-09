@@ -1,5 +1,6 @@
 package gov.usda.fs.ead.boss;
 
+import gov.usda.fs.ead.boss.saml.EAuthSAMLUserDetailsService;
 import com.github.ulisesbocchio.spring.boot.security.saml.annotation.EnableSAMLSSO;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderConfigurerAdapter;
 import com.github.ulisesbocchio.spring.boot.security.saml.configurer.ServiceProviderBuilder;

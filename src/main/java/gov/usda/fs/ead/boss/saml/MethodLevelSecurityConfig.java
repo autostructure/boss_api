@@ -1,4 +1,4 @@
-package gov.usda.fs.ead.boss;
+package gov.usda.fs.ead.boss.saml;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

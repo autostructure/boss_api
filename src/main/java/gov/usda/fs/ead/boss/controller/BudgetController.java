@@ -1,4 +1,4 @@
-package gov.usda.fs.ead.boss;
+package gov.usda.fs.ead.boss.controller;
 
 import java.io.File;
 import java.io.FileInputStream;

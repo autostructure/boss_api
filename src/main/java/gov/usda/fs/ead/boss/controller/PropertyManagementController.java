@@ -1,6 +1,7 @@
-package gov.usda.fs.ead.boss;
+package gov.usda.fs.ead.boss.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import gov.usda.fs.ead.boss.CaptchaService;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
