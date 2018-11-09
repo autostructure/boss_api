@@ -72,8 +72,6 @@ url = '/vehicle/' + id;
             'color': form.find('[name=color]').val(),
             'engineNumber': form.find('[name=engineNumber]').val(),
             'accessory': form.find('[name=accessory]').val(),
-            'accessory2': form.find('[name=accessory2]').val(),
-            'camera': form.find('[name=camera]').val(),
             'oldLicense': form.find('[name=oldLicense]').val(),
             'ownershipType': form.find('[name=ownershipType]').val(),
             'equipmentNumber': form.find('[name=equipmentNumber]').val(),
@@ -219,42 +217,6 @@ var fields = {
             "type":"select/vclass",
             "colspan":4,
         }
-    ],
-    [
-        {
-            "fieldName":"accessory",
-            "title":"Accessory",
-            "type":"select",
-            "options": {
-                "Topper": "Topper",
-                "Hard Top": "Hard Top",
-                "Tonneau": "Tonneau",
-                "Toolbox": "Toolbox",  
-                "Gas Bumper": "Gas Bumper",                                              
-            }
-        },
-        {
-            "fieldName":"accessory2",
-            "title":"Second Accessory",
-            "type":"select",
-            "options": {
-                "Topper": "Topper",
-                "Hard Top": "Hard Top",
-                "Tonneau": "Tonneau",
-                "Toolbox": "Toolbox",  
-                "Gas Bumper": "Gas Bumper",                                             
-            }            
-        },
-        {
-            "fieldName":"camera",
-            "title":"Back Up Camera",
-            "type": "select",
-            "options": {
-                "Factory": "Factory",
-                "After Market": "After Market",
-                "None": "None"
-            },         
-        }        
     ],
     [
         {
