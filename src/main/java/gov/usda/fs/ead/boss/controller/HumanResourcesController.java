@@ -52,6 +52,7 @@ import gov.usda.fs.ead.boss.repository.EmployeeProfileRepository;
 import gov.usda.fs.ead.boss.repository.TrainingCourseRepository;
 import gov.usda.fs.ead.boss.repository.TrainingRepository;
 import gov.usda.fs.ead.boss.repository.UploadedDocumentRepository;
+import gov.usda.fs.ead.boss.saml.IsSupervisor;
 import gov.usda.fs.ead.boss.upload.UploadFileResponse;
 import gov.usda.fs.ead.boss.upload.UploadService;
 
@@ -118,6 +119,7 @@ public class HumanResourcesController {
         return new ResponseEntity<>(employeeProfileDetails, HttpStatus.OK);
     }
 
+    @IsSupervisor
     @DeleteMapping("/employeeProfile/{id}")
     public ResponseEntity<?> deleteEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId) {
 
