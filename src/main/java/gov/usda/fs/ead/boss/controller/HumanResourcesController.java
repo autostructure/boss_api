@@ -53,6 +53,7 @@ import gov.usda.fs.ead.boss.repository.TrainingCourseRepository;
 import gov.usda.fs.ead.boss.repository.TrainingRepository;
 import gov.usda.fs.ead.boss.repository.UploadedDocumentRepository;
 import gov.usda.fs.ead.boss.saml.IsSupervisor;
+import gov.usda.fs.ead.boss.saml.IsSupervisorOrOffice;
 import gov.usda.fs.ead.boss.upload.UploadFileResponse;
 import gov.usda.fs.ead.boss.upload.UploadService;
 
@@ -113,6 +114,7 @@ public class HumanResourcesController {
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
+    @IsSupervisor
     @PostMapping("/employeeProfile")
     public ResponseEntity createEmployeeProfile(@Valid @RequestBody EmployeeProfile employeeProfileDetails) {
         employeeProfileDetails = employeeProfileRepository.save(employeeProfileDetails);
@@ -130,6 +132,7 @@ public class HumanResourcesController {
 
     }
 
+    @IsSupervisorOrOffice
     @JsonView(Views.Internal.class)
     @PutMapping("/employeeProfile/{id}")
     public EmployeeProfile updateEmployeeProfile(@PathVariable(value = "id") Long employeeProfileId,
@@ -256,6 +259,7 @@ public class HumanResourcesController {
                 });
     }
 
+    @IsSupervisorOrOffice
     @PostMapping("/trainingCourse")
     public ResponseEntity createTrainingCourse(@Valid @RequestBody TrainingCourse trainingCourse) {
         trainingCourse = trainingCourseRepository.save(trainingCourse);
@@ -276,6 +280,7 @@ public class HumanResourcesController {
 
     }
 
+    @IsSupervisorOrOffice
     @DeleteMapping("/trainingCourse/{id}")
     public ResponseEntity<?> deleteTrainingCourse(@PathVariable(value = "id") Long trainingCourseId) {
 
@@ -300,12 +305,15 @@ public class HumanResourcesController {
                 });
     }
 
+    
+    @IsSupervisorOrOffice
     @PostMapping("/contact")
     public ResponseEntity createContact(@Valid @RequestBody Contact contact) {
         contact = contactRepository.save(contact);
         return new ResponseEntity<>(contact, HttpStatus.OK);
     }
 
+    @IsSupervisorOrOffice
     @PutMapping("/contact/{id}")
     public Contact updateContact(@PathVariable(value = "id") Long contactId,
             @RequestBody Contact contact) {
@@ -395,6 +403,7 @@ public class HumanResourcesController {
                 });
     }
 
+    @IsSupervisorOrOffice
     @PostMapping("/draCourse")
     public ResponseEntity createDeliberativeRiskAssessmentCourse(@Valid @RequestBody DeliberativeRiskAssessmentCourse deliberativeRiskAssessmentCourse) {
         deliberativeRiskAssessmentCourse = deliberativeRiskAssessmentCourseRepository.save(deliberativeRiskAssessmentCourse);
@@ -415,6 +424,7 @@ public class HumanResourcesController {
 
     }
 
+    @IsSupervisorOrOffice
     @DeleteMapping("/draCourse/{id}")
     public ResponseEntity<?> deleteDeliberativeRiskAssessmentCourse(@PathVariable(value = "id") Long deliberativeRiskAssessmentCourseId) {
 
@@ -425,6 +435,7 @@ public class HumanResourcesController {
 
     }
 
+    
     @PostMapping("/profilePicture")
     public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "employeeId", required = true) final Long employeeProfileId) {
 
