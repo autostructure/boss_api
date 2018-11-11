@@ -148,10 +148,10 @@ var fields = {
             },
             {
                 "fieldName": "nameCode",
-                "title": "Name Code",
+                "title": "System ID (Auto - Generated)",
                 "type": "input/text",
                 "required": true,
-                "placeholder": "Name Code (generated)",
+                "placeholder": "System ID (Auto - Generated)",
                 "colspan": 4
             },
             {

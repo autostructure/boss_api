@@ -80,6 +80,7 @@ function showError(msg) {
     $("#error").show();
     $('html,body').animate({scrollTop: $(".bannerImg").offset().top}, 'slow');
 }
+
 var fields = {
     "formGeneralInfo": [
         {"custom": '<h4 class="title3">Employee Information</h4>'},
@@ -101,12 +102,13 @@ var fields = {
                 "required": true,
                 "colspan": 5,
             },
-            {"fieldName": "nameCode",
-                "title": "Name Code",
-                "type": "input/text",
-                "required": true,
-                "placeholder": "Name Code (generated)",
-                "colspan": 4,
+            {
+            "fieldName": "nameCode",
+            "title": "System ID (Auto - Generated)",
+            "type": "input/text",
+            "required": true,
+            "placeholder": "System ID (Auto - Generated)",
+            "colspan": 4
             },
             {"fieldName": "preferredName",
                 "title": "Preferred Name",
