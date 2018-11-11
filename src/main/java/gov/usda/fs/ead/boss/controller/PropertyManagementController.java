@@ -1,6 +1,7 @@
-package gov.usda.fs.ead.boss;
+package gov.usda.fs.ead.boss.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import gov.usda.fs.ead.boss.CaptchaService;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ import gov.usda.fs.ead.boss.model.Vehicle;
 import gov.usda.fs.ead.boss.model.Views;
 import gov.usda.fs.ead.boss.repository.FieldEquipmentRepository;
 import gov.usda.fs.ead.boss.repository.VehicleRepository;
+import gov.usda.fs.ead.boss.saml.IAuthenticationFacade;
 
 @RestController
 public class PropertyManagementController {
@@ -36,6 +38,9 @@ public class PropertyManagementController {
     
     @Autowired
     FieldEquipmentRepository fieldEquipmentRepository;
+    
+    @Autowired
+    private IAuthenticationFacade authenticationFacade;
 
     @PostMapping("/vehicle")
     public ResponseEntity createVehicle(@Valid @RequestBody Vehicle vehicleDetails) {

@@ -1,4 +1,4 @@
-package gov.usda.fs.ead.boss;
+package gov.usda.fs.ead.boss.saml;
 
 import gov.usda.fs.ead.boss.model.EmployeeProfile;
 import java.util.ArrayList;

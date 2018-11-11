@@ -25,11 +25,11 @@ public class EmployeeProfileListMinimalSerializer extends StdSerializer<List<Emp
             SerializerProvider provider)
             throws IOException, JsonProcessingException {
 
-        List<Supervisor> supes = new ArrayList<>();
+        List<EmployeeProfileMinimal> supes = new ArrayList<>();
 
         items.forEach(
                 (item) -> {
-                    supes.add(new Supervisor(item.getId(), item.getNameCode()));
+                    supes.add(new EmployeeProfileMinimal(item.getId(), item.getFsEmail()));
                 }
         );
 

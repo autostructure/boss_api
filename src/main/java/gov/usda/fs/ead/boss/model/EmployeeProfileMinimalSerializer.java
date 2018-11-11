@@ -24,7 +24,7 @@ public class EmployeeProfileMinimalSerializer extends StdSerializer<EmployeeProf
             JsonGenerator generator,
             SerializerProvider provider)
             throws IOException, JsonProcessingException {
-        Supervisor sup = new Supervisor(item.getId(), item.getNameCode());
+        EmployeeProfileMinimal sup = new EmployeeProfileMinimal(item.getId(), item.getNameCode());
         generator.writeObject(sup);
     }
 
