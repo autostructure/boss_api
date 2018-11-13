@@ -229,8 +229,7 @@ public class BudgetController {
                 case "json":
                     CompletableFuture<BudgetSummary> summaryFutureJSON
                             = reportService.getBudgetSummaryJSON(financialYear, verified);
-                    BudgetSummary report = summaryFutureJSON.get();
-                    return new ResponseEntity<BudgetSummary>(report, HttpStatus.OK);
+                    return new ResponseEntity<>(summaryFutureJSON.get(), HttpStatus.OK);
                 case "csv":
                 case "pdf":
                 case "xlsx":

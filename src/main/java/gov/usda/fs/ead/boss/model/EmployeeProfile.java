@@ -410,6 +410,9 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "IsAdmin", columnDefinition="tinyint default 0")
     private Boolean admin;
     
+    @Column(name = "ShowPersonalCellPhone", columnDefinition="tinyint default 0")
+    private Boolean showPersonalCellPhone;
+    
     @Column(name = "IsOffice", columnDefinition="tinyint default 0")
     private Boolean office;
     
@@ -1764,5 +1767,19 @@ public class EmployeeProfile implements Serializable {
      */
     public void setFsCellPhone(String fsCellPhone) {
         this.fsCellPhone = fsCellPhone;
+    }
+
+    /**
+     * @return the showPersonalCellPhone
+     */
+    public Boolean getShowPersonalCellPhone() {
+        return showPersonalCellPhone;
+    }
+
+    /**
+     * @param showPersonalCellPhone the showPersonalCellPhone to set
+     */
+    public void setShowPersonalCellPhone(Boolean showPersonalCellPhone) {
+        this.showPersonalCellPhone = showPersonalCellPhone;
     }
 }
