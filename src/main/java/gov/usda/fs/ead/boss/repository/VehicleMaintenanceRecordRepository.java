@@ -1,5 +1,6 @@
 package gov.usda.fs.ead.boss.repository;
 
+import gov.usda.fs.ead.boss.model.VehicleCost;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,8 @@ public interface VehicleMaintenanceRecordRepository extends JpaRepository<Vehicl
 
     @Override
     List<VehicleMaintenanceRecord> findAll();
+    
+    List<VehicleCost> findAllByVehicleId(Long vehicleId);
 
     @Override
     void delete(VehicleMaintenanceRecord vehicleMaintenanceRecord);

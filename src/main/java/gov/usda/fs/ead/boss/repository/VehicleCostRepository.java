@@ -14,7 +14,7 @@ public interface VehicleCostRepository extends JpaRepository<VehicleCost, Long> 
     @Override
     List<VehicleCost> findAll();
     
-    List<VehicleCost> findAllByVehicleId(long vehicleId);
+    List<VehicleCost> findAllByVehicleId(Long vehicleId);
 
     @Override
     void delete(VehicleCost vehicleCost);

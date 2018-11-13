@@ -1,15 +1,9 @@
 package gov.usda.fs.ead.boss.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import gov.usda.fs.ead.boss.CaptchaService;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +19,13 @@ import gov.usda.fs.ead.boss.model.MonthlyIWFIAUsage;
 import gov.usda.fs.ead.boss.model.Vehicle;
 import gov.usda.fs.ead.boss.model.VehicleCost;
 import gov.usda.fs.ead.boss.model.VehicleMaintenanceRecord;
-import gov.usda.fs.ead.boss.model.Views;
 import gov.usda.fs.ead.boss.repository.FieldEquipmentRepository;
 import gov.usda.fs.ead.boss.repository.MonthlyIWFIAUsageRepository;
 import gov.usda.fs.ead.boss.repository.VehicleCostRepository;
 import gov.usda.fs.ead.boss.repository.VehicleMaintenanceRecordRepository;
 import gov.usda.fs.ead.boss.repository.VehicleRepository;
-import gov.usda.fs.ead.boss.saml.IAuthenticationFacade;
+import gov.usda.fs.ead.boss.saml.IsAppUser;
+import gov.usda.fs.ead.boss.saml.IsOwner;
 
 @RestController
 public class PropertyManagementController {
@@ -53,10 +47,8 @@ public class PropertyManagementController {
     
     @Autowired
     MonthlyIWFIAUsageRepository monthlyIWFIAUsageRepository;
-    
-    @Autowired
-    private IAuthenticationFacade authenticationFacade;
 
+    @IsOwner
     @PostMapping("/vehicle")
     public ResponseEntity createVehicle(@Valid @RequestBody Vehicle vehicleDetails) {
 
@@ -65,8 +57,7 @@ public class PropertyManagementController {
 
     }
 
-    // Get All Employee Profiles
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @GetMapping("/vehicle")
     public ResponseEntity getAllVehicles() {
 
@@ -74,6 +65,7 @@ public class PropertyManagementController {
 
     }
 
+    @IsOwner
     @GetMapping("/vehicle/{id}")
     public ResponseEntity getVehicle(@PathVariable(value = "id") Long vehicleId) {
 
@@ -83,7 +75,7 @@ public class PropertyManagementController {
 
     }
 
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @PutMapping("/vehicle/{id}")
     public Vehicle updateVehicle(@PathVariable(value = "id") Long vehicleId,
             @RequestBody Vehicle vehicleDetails) {
@@ -98,6 +90,7 @@ public class PropertyManagementController {
 
     }
 
+    @IsOwner
     @DeleteMapping("/vehicle/{id}")
     public ResponseEntity<?> deleteVehicle(@PathVariable(value = "id") Long vehicleId) {
 
@@ -116,15 +109,19 @@ public class PropertyManagementController {
 
     }
 
-    // Get All Employee Profiles
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @GetMapping("/vehicleMaintenanceRecord")
-    public ResponseEntity getAllVehicleMaintenanceRecords() {
+    public ResponseEntity getAllVehicleMaintenanceRecords(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
-        return new ResponseEntity<>(vehicleMaintenanceRecordRepository.findAll(), HttpStatus.OK);
+        if(vehicleId!= null) {
+            return new ResponseEntity<>(vehicleMaintenanceRecordRepository.findAllByVehicleId(vehicleId), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(vehicleMaintenanceRecordRepository.findAll(), HttpStatus.OK);
+        }
 
     }
 
+    @IsOwner
     @GetMapping("/vehicleMaintenanceRecord/{id}")
     public ResponseEntity getVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
 
@@ -134,7 +131,7 @@ public class PropertyManagementController {
 
     }
 
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @PutMapping("/vehicleMaintenanceRecord/{id}")
     public VehicleMaintenanceRecord updateVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId,
             @RequestBody VehicleMaintenanceRecord vehicleMaintenanceRecordDetails) {
@@ -149,6 +146,7 @@ public class PropertyManagementController {
 
     }
 
+    @IsOwner
     @DeleteMapping("/vehicleMaintenanceRecord/{id}")
     public ResponseEntity<?> deleteVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
 
@@ -159,15 +157,19 @@ public class PropertyManagementController {
 
     }
     
-     // Get All Employee Profiles
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @GetMapping("/vehicleCost")
-    public ResponseEntity getAllVehicleCosts() {
+    public ResponseEntity getAllVehicleCosts(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
-        return new ResponseEntity<>(vehicleCostRepository.findAll(), HttpStatus.OK);
+        if(vehicleId!= null) {
+            return new ResponseEntity<>(vehicleCostRepository.findAllByVehicleId(vehicleId), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(vehicleCostRepository.findAll(), HttpStatus.OK);
+        }
 
     }
 
+    @IsOwner
     @GetMapping("/vehicleCost/{id}")
     public ResponseEntity getVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
 
@@ -177,7 +179,7 @@ public class PropertyManagementController {
 
     }
 
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @PutMapping("/vehicleCost/{id}")
     public VehicleCost updateVehicleCost(@PathVariable(value = "id") Long vehicleCostId,
             @RequestBody VehicleCost vehicleCostDetails) {
@@ -202,19 +204,19 @@ public class PropertyManagementController {
 
     }
     
-    //
-    //
-    // MonthlyIWFIAUsageRepository
-    
-     // Get All Employee Profiles
-    @JsonView(Views.Internal.class)
+    @IsAppUser
     @GetMapping("/monthlyIWFIAUsage")
-    public ResponseEntity getAllMonthlyIWFIAUsages() {
+    public ResponseEntity getAllMonthlyIWFIAUsages(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
-        return new ResponseEntity<>(monthlyIWFIAUsageRepository.findAll(), HttpStatus.OK);
+        if(vehicleId!= null) {
+            return new ResponseEntity<>(monthlyIWFIAUsageRepository.findAllByVehicleId(vehicleId), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(monthlyIWFIAUsageRepository.findAll(), HttpStatus.OK);
+        }
 
     }
 
+    @IsAppUser
     @GetMapping("/monthlyIWFIAUsage/{id}")
     public ResponseEntity getMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
 
@@ -224,7 +226,7 @@ public class PropertyManagementController {
 
     }
 
-    @JsonView(Views.Internal.class)
+    @IsAppUser
     @PutMapping("/monthlyIWFIAUsage/{id}")
     public MonthlyIWFIAUsage updateMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId,
             @RequestBody MonthlyIWFIAUsage monthlyIWFIAUsageDetails) {
@@ -239,6 +241,7 @@ public class PropertyManagementController {
 
     }
 
+    @IsAppUser
     @DeleteMapping("/monthlyIWFIAUsage/{id}")
     public ResponseEntity<?> deleteMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
 
@@ -248,25 +251,8 @@ public class PropertyManagementController {
         return ResponseEntity.ok().build();
 
     }
-
-    @GetMapping("/captcha/{text}")
-    public ResponseEntity captcha(@PathVariable(value = "text") String text) {
-
-        try {
-            byte[] imgData = captchaService.getCaptchaImageBytes(text).get();
-            HttpHeaders headers = new HttpHeaders();
-            for (int i = 0; i < 10; i++) {
-                System.out.println(Integer.toString(imgData.length) + " bytes");
-            }
-            headers.setContentType(MediaType.IMAGE_PNG);
-            return new ResponseEntity<byte[]>(imgData, headers, HttpStatus.CREATED);
-        } catch (InterruptedException | ExecutionException ex) {
-            Logger.getLogger(PropertyManagementController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-    }
     
+    @IsOwner
     @PostMapping("/fieldEquipment")
     public ResponseEntity createFieldEquipment(@Valid @RequestBody FieldEquipment fieldEquipmentDetails) {
 
@@ -275,8 +261,7 @@ public class PropertyManagementController {
 
     }
 
-    // Get All Employee Profiles
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @GetMapping("/fieldEquipment")
     public ResponseEntity getAllFieldEquipments(@RequestParam(value = "nameCode", required = false) final String nameCode) {
 
@@ -284,6 +269,7 @@ public class PropertyManagementController {
 
     }
 
+    @IsOwner
     @GetMapping("/fieldEquipment/{id}")
     public ResponseEntity getFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
 
@@ -293,7 +279,7 @@ public class PropertyManagementController {
 
     }
 
-    @JsonView(Views.Internal.class)
+    @IsOwner
     @PutMapping("/fieldEquipment/{id}")
     public FieldEquipment updateFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId,
             @RequestBody FieldEquipment fieldEquipmentDetails) {
@@ -308,6 +294,7 @@ public class PropertyManagementController {
 
     }
 
+    @IsOwner
     @DeleteMapping("/fieldEquipment/{id}")
     public ResponseEntity<?> deleteFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
 
