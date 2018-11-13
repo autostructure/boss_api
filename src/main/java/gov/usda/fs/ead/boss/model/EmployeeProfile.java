@@ -79,6 +79,10 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "CellPhone")
     @JsonView(Views.Internal.class)
     private String cellPhone;
+    
+    @Column(name = "FSCellPhone")
+    @JsonView(Views.Internal.class)
+    private String fsCellPhone;
 
     @Column(name = "OfficePhone")
     @JsonView(Views.Internal.class)
@@ -1746,5 +1750,19 @@ public class EmployeeProfile implements Serializable {
      */
     public void setOwner(Boolean owner) {
         this.owner = owner;
+    }
+
+    /**
+     * @return the fsCellPhone
+     */
+    public String getFsCellPhone() {
+        return fsCellPhone;
+    }
+
+    /**
+     * @param fsCellPhone the fsCellPhone to set
+     */
+    public void setFsCellPhone(String fsCellPhone) {
+        this.fsCellPhone = fsCellPhone;
     }
 }
