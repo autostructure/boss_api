@@ -21,9 +21,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import gov.usda.fs.ead.boss.exception.ResourceNotFoundException;
 import gov.usda.fs.ead.boss.model.FieldEquipment;
+import gov.usda.fs.ead.boss.model.MonthlyIWFIAUsage;
 import gov.usda.fs.ead.boss.model.Vehicle;
+import gov.usda.fs.ead.boss.model.VehicleCost;
+import gov.usda.fs.ead.boss.model.VehicleMaintenanceRecord;
 import gov.usda.fs.ead.boss.model.Views;
 import gov.usda.fs.ead.boss.repository.FieldEquipmentRepository;
+import gov.usda.fs.ead.boss.repository.MonthlyIWFIAUsageRepository;
+import gov.usda.fs.ead.boss.repository.VehicleCostRepository;
+import gov.usda.fs.ead.boss.repository.VehicleMaintenanceRecordRepository;
 import gov.usda.fs.ead.boss.repository.VehicleRepository;
 import gov.usda.fs.ead.boss.saml.IAuthenticationFacade;
 
@@ -32,12 +38,21 @@ public class PropertyManagementController {
 
     @Autowired
     VehicleRepository vehicleRepository;
+    
+    @Autowired
+    VehicleMaintenanceRecordRepository vehicleMaintenanceRecordRepository;
 
     @Autowired
     CaptchaService captchaService;
     
     @Autowired
     FieldEquipmentRepository fieldEquipmentRepository;
+    
+    @Autowired
+    VehicleCostRepository vehicleCostRepository;
+    
+    @Autowired
+    MonthlyIWFIAUsageRepository monthlyIWFIAUsageRepository;
     
     @Autowired
     private IAuthenticationFacade authenticationFacade;
@@ -89,6 +104,147 @@ public class PropertyManagementController {
         Vehicle pfile = vehicleRepository.findById(vehicleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle", "id", vehicleId));
         vehicleRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
+    
+     @PostMapping("/vehicleMaintenanceRecord")
+    public ResponseEntity createVehicleMaintenanceRecord(@Valid @RequestBody VehicleMaintenanceRecord vehicleMaintenanceRecordDetails) {
+
+        vehicleMaintenanceRecordDetails = vehicleMaintenanceRecordRepository.save(vehicleMaintenanceRecordDetails);
+        return new ResponseEntity<>(vehicleMaintenanceRecordDetails, HttpStatus.OK);
+
+    }
+
+    // Get All Employee Profiles
+    @JsonView(Views.Internal.class)
+    @GetMapping("/vehicleMaintenanceRecord")
+    public ResponseEntity getAllVehicleMaintenanceRecords() {
+
+        return new ResponseEntity<>(vehicleMaintenanceRecordRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/vehicleMaintenanceRecord/{id}")
+    public ResponseEntity getVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
+
+        VehicleMaintenanceRecord vehicleMaintenanceRecord = vehicleMaintenanceRecordRepository.findById(vehicleMaintenanceRecordId)
+                .orElseThrow(() -> new ResourceNotFoundException("VehicleMaintenanceRecord", "id", vehicleMaintenanceRecordId));
+        return new ResponseEntity<>(vehicleMaintenanceRecord, HttpStatus.OK);
+
+    }
+
+    @JsonView(Views.Internal.class)
+    @PutMapping("/vehicleMaintenanceRecord/{id}")
+    public VehicleMaintenanceRecord updateVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId,
+            @RequestBody VehicleMaintenanceRecord vehicleMaintenanceRecordDetails) {
+
+        vehicleMaintenanceRecordRepository.findById(vehicleMaintenanceRecordId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("VehicleMaintenanceRecord", "id", vehicleMaintenanceRecordId);
+                });
+
+        VehicleMaintenanceRecord updated = vehicleMaintenanceRecordRepository.save(vehicleMaintenanceRecordDetails);
+        return updated;
+
+    }
+
+    @DeleteMapping("/vehicleMaintenanceRecord/{id}")
+    public ResponseEntity<?> deleteVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
+
+        VehicleMaintenanceRecord pfile = vehicleMaintenanceRecordRepository.findById(vehicleMaintenanceRecordId)
+                .orElseThrow(() -> new ResourceNotFoundException("VehicleMaintenanceRecord", "id", vehicleMaintenanceRecordId));
+        vehicleMaintenanceRecordRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
+    
+     // Get All Employee Profiles
+    @JsonView(Views.Internal.class)
+    @GetMapping("/vehicleCost")
+    public ResponseEntity getAllVehicleCosts() {
+
+        return new ResponseEntity<>(vehicleCostRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/vehicleCost/{id}")
+    public ResponseEntity getVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
+
+        VehicleCost vehicleCost = vehicleCostRepository.findById(vehicleCostId)
+                .orElseThrow(() -> new ResourceNotFoundException("VehicleCost", "id", vehicleCostId));
+        return new ResponseEntity<>(vehicleCost, HttpStatus.OK);
+
+    }
+
+    @JsonView(Views.Internal.class)
+    @PutMapping("/vehicleCost/{id}")
+    public VehicleCost updateVehicleCost(@PathVariable(value = "id") Long vehicleCostId,
+            @RequestBody VehicleCost vehicleCostDetails) {
+
+        vehicleCostRepository.findById(vehicleCostId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("VehicleCost", "id", vehicleCostId);
+                });
+
+        VehicleCost updated = vehicleCostRepository.save(vehicleCostDetails);
+        return updated;
+
+    }
+
+    @DeleteMapping("/vehicleCost/{id}")
+    public ResponseEntity<?> deleteVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
+
+        VehicleCost pfile = vehicleCostRepository.findById(vehicleCostId)
+                .orElseThrow(() -> new ResourceNotFoundException("VehicleCost", "id", vehicleCostId));
+        vehicleCostRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
+    
+    //
+    //
+    // MonthlyIWFIAUsageRepository
+    
+     // Get All Employee Profiles
+    @JsonView(Views.Internal.class)
+    @GetMapping("/monthlyIWFIAUsage")
+    public ResponseEntity getAllMonthlyIWFIAUsages() {
+
+        return new ResponseEntity<>(monthlyIWFIAUsageRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/monthlyIWFIAUsage/{id}")
+    public ResponseEntity getMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
+
+        MonthlyIWFIAUsage monthlyIWFIAUsage = monthlyIWFIAUsageRepository.findById(monthlyIWFIAUsageId)
+                .orElseThrow(() -> new ResourceNotFoundException("MonthlyIWFIAUsage", "id", monthlyIWFIAUsageId));
+        return new ResponseEntity<>(monthlyIWFIAUsage, HttpStatus.OK);
+
+    }
+
+    @JsonView(Views.Internal.class)
+    @PutMapping("/monthlyIWFIAUsage/{id}")
+    public MonthlyIWFIAUsage updateMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId,
+            @RequestBody MonthlyIWFIAUsage monthlyIWFIAUsageDetails) {
+
+        monthlyIWFIAUsageRepository.findById(monthlyIWFIAUsageId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("MonthlyIWFIAUsage", "id", monthlyIWFIAUsageId);
+                });
+
+        MonthlyIWFIAUsage updated = monthlyIWFIAUsageRepository.save(monthlyIWFIAUsageDetails);
+        return updated;
+
+    }
+
+    @DeleteMapping("/monthlyIWFIAUsage/{id}")
+    public ResponseEntity<?> deleteMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
+
+        MonthlyIWFIAUsage pfile = monthlyIWFIAUsageRepository.findById(monthlyIWFIAUsageId)
+                .orElseThrow(() -> new ResourceNotFoundException("MonthlyIWFIAUsage", "id", monthlyIWFIAUsageId));
+        monthlyIWFIAUsageRepository.delete(pfile);
         return ResponseEntity.ok().build();
 
     }
