@@ -1,6 +1,5 @@
 package gov.usda.fs.ead.boss.controller;
 
-import gov.usda.fs.ead.boss.CaptchaService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,9 +34,6 @@ public class PropertyManagementController {
     
     @Autowired
     VehicleMaintenanceRecordRepository vehicleMaintenanceRecordRepository;
-
-    @Autowired
-    CaptchaService captchaService;
     
     @Autowired
     FieldEquipmentRepository fieldEquipmentRepository;
@@ -194,6 +190,7 @@ public class PropertyManagementController {
 
     }
 
+    @IsOwner
     @DeleteMapping("/vehicleCost/{id}")
     public ResponseEntity<?> deleteVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
 
