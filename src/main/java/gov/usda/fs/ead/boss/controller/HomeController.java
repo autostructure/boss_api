@@ -136,7 +136,11 @@ public class HomeController {
     @RequestMapping("/auxContact")
     public String auxContact() {
         return "auxContact";
-    }           
+    }
+	@RequestMapping("/FleetMaintenaceList")
+    public String FleetMaintenaceList() {
+        return "FleetMaintenaceList";
+    }         
 
 	@RequestMapping("/employeePrint")
     public String employeePrint() {

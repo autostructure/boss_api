@@ -106,6 +106,13 @@ public class Vehicle implements Serializable {
     @JoinColumn(name = "assigned_operator_id")
     @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
     private EmployeeProfile assignedOperator;
+    
+    @OneToMany(
+            mappedBy = "vehicle",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<VehicleMaintenanceRecord> maintenanceRecords;
 
     /**
      * @return the id
@@ -457,6 +464,20 @@ public class Vehicle implements Serializable {
      */
     public void setAssignedOperator(EmployeeProfile assignedOperator) {
         this.assignedOperator = assignedOperator;
+    }
+
+    /**
+     * @return the maintenanceRecords
+     */
+    public List<VehicleMaintenanceRecord> getMaintenanceRecords() {
+        return maintenanceRecords;
+    }
+
+    /**
+     * @param maintenanceRecords the maintenanceRecords to set
+     */
+    public void setMaintenanceRecords(List<VehicleMaintenanceRecord> maintenanceRecords) {
+        this.maintenanceRecords = maintenanceRecords;
     }
 
 }

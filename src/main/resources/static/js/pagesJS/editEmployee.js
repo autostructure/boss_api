@@ -463,7 +463,6 @@ var fields = {
             "fieldName": "dateOfBirth",
             "title": "Date of Birth",
             "type": "input/date",
-            "colspan": 3
         },
         {
             "fieldName": "gender",
@@ -474,32 +473,30 @@ var fields = {
                 "female": "Female",
                 "other": "Other (explain below)",
             },
-            "colspan": 3
         },
-        {
-            "fieldName": "race",
-            "title": "Race",
-            "type": "select/text",
-            "placeholder": "",
-            "options": {
-                "Hispanic": "Hispanic/Latino",
-                "Native": "American Indian or Alaska Native",
-                "EastAsian": "East Asian",
-                "SouthAsian": "South Asian (Desi)",
-                "African": "Black or African American",
-                "Hawaiian": "Native Hawaiian or Other Pacific Islander",
-                "White": "White or Caucasian",
-                "Other": "Two or more races or other",
-            }
-        }
+        // {
+        //     "fieldName": "race",
+        //     "title": "Race",
+        //     "type": "select/text",
+        //     "placeholder": "",
+        //     "options": {
+        //         "Hispanic": "Hispanic/Latino",
+        //         "Native": "American Indian or Alaska Native",
+        //         "EastAsian": "East Asian",
+        //         "SouthAsian": "South Asian (Desi)",
+        //         "African": "Black or African American",
+        //         "Hawaiian": "Native Hawaiian or Other Pacific Islander",
+        //         "White": "White or Caucasian",
+        //         "Other": "Two or more races or other",
+        //     }
+        // }
         ],
         [
             { "custom": $("#colEmployeePhoto2") },
             {
                 "fieldName": "otherIdentifyingFeatures",
-                "title": "Other Identifying Features",
+                "title": "Other Information",
                 "type": "textarea",
-                "placeholder": "Dragon Tattoo on Left Shoulder\n\rBirthmark in the shape of Louisiana on Right Hand\n\r... Any obvious distinguishing features.",
             }
         ],
         { "custom": '<h4 class="title3">Emergency Contact Information</h4>' },
