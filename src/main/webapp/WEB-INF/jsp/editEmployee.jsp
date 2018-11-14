@@ -67,10 +67,6 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="emergency-tab" data-toggle="tab" href="#emergency" role="tab" aria-controls="emergencyInfo">Emergency Info</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="medical-tab" data-toggle="tab" href="#medical" role="tab" aria-controls="medicalInfo">Medical Info</a>
-                                    </li>
-
 
                                 </ul>
                                 <!-- end of tabs list -->
@@ -123,7 +119,7 @@
                                         <form role="form" data-toggle="validator" class="emergencyInfo" id="formEmergencyInfo">
                                             <div class="row">
                                                     <div class="col col-md-12 text-center">
-                                                    <input type="button" id="submitEmergencyInfo" class="btn btn-lg btn_pers_copy" value="Next">
+                                                    <input type="button" id="submitEmergencyInfo" class="btn btn-lg btn_pers_copy" value="Done">
                                                 </div>
                                             </div>
 
@@ -131,19 +127,6 @@
                                     </div>
                                     <!--    END OF EMERGENCY TAB    -->
 
-                                    <!--    START OF MEDICAL TAB  -->
-                                    <div class="tab-pane fade" id="medical" role="tabpanel" aria-labelledby="medicalInfo">
-                                        <form role="form" data-toggle="validator" class="medicalInfo" id="formMedicalInfo">
-                                            <h4 class="title3">Medical Information</h4>
-                                            <div class="row">
-                                                <div class="col col-md-12 text-center">
-                                                    <input type="button" id="submitMedicalInfo" class="btn btn-lg btn_pers_copy" value="Done">
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                    <!--    END OF MEDICAL TAB    -->
 
 
                                     <!--    START OF TRAINING TAB   -->

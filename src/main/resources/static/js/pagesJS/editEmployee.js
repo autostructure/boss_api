@@ -47,16 +47,12 @@ $(document).ready(function() {
             case '#submitWorkInfo':
                 $("#emergency-tab").trigger("click");
                 break;
-            case '#submitEmergencyInfo':
-                $("#medical-tab").trigger("click");
-                break;
-
-        }
+        };
     });
     $('input[value=Done]').on("click", function(e) {
         var id = '#' + $(this).attr('id');
         switch (id) {
-            case '#submitMedicalInfo':
+            case '#submitEmergencyInfo':
                 window.location.replace('/viewAllEmployees');
                 break;
         }
@@ -433,6 +429,12 @@ var fields = {
             "title": "Hair Color",
             "type": "input/text",
         },
+        {
+            "fieldName": "allergies",
+            "title": "Allergies",
+            "type": "input/text",
+            "colspan": 12
+        },        
         ],
         [{
             "fieldName": "heightFeet",
@@ -637,103 +639,8 @@ var fields = {
         [
             { "custom": $("#submitEmergencyInfo").parent() } // Submit Button
         ]
-    ],
-    "formMedicalInfo": [
-        [{
-            "fieldName": "insuranceName",
-            "title": "Name of Health Insurance",
-            "type": "input/text"
-        },
-        {
-            "fieldName": "groupNumber",
-            "title": "Group Number",
-            "type": "input/text"
-        },
-        {
-            "fieldName": "idNumber",
-            "title": "ID Number",
-            "type": "input/text"
-        },
-        {
-            "fieldName": "insurancePhone",
-            "title": "Insurance Phone",
-            "type": "input/tel"
-        }
-        ], // end row
-        [{
-            "fieldName": "allergies",
-            "title": "Allergies",
-            "type": "input/text",
-            "colspan": 12
-        },
-        {
-            "fieldName": "doctorsName",
-            "title": "Doctor's Name",
-            "type": "input/text"
-        },
-        {
-            "fieldName": "doctorsStreetAddress",
-            "title": "Doctor's Address",
-            "type": "input/text"
-        },
-           
-            {
-                "fieldName": "doctorsPhone",
-                "title": "Doctor's Phone",
-                "type": "input/tel"
-            }],[
-            {
-                "fieldName": "doctorsZip",
-                "title": "Doctor's Zip Code",
-                "type": "input/zipCode"
-            },
-            {
-                "fieldName": "doctorsState",
-                "title": "Doctors State",
-                "type": "select/state"
-            },
-            {
-                "fieldName": "doctorsCity",
-                "title": "Doctor's City",
-                "type": "input/text"
-            }
-        ], // end row
-        [{
-            "fieldName": "dentistsName",
-            "title": "Dentist's Name",
-            "type": "input/text"
-        },
-        {
-            "fieldName": "dentistsStreetAddress",
-            "title": "Dentist's Address",
-            "type": "input/text"
-        },
-        {
-            "fieldName": "dentistsPhone",
-            "title": "Dentist's Phone",
-            "type": "input/tel"
-        }], [
-           
-            {
-                "fieldName": "dentistsZip",
-                "title": "Dentist's Zip Code",
-                "type": "input/zipCode"
-            },
-            {
-                "fieldName": "dentistsState",
-                "title": "Dentist's State",
-                "type": "select/state"
-            },
-            {
-                "fieldName": "dentistsCity",
-                "title": "Dentist's City",
-                "type": "input/text"
-            }
-        ], // end row
-        [
-            { "custom": $("#submitMedicalInfo").parent() } // Submit Button
-        ]
     ]
+
 
 };
 CustomFormFunctions.addBootstrapFields(fields);
