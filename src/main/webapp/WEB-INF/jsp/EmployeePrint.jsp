@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
     <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
-	<link rel="stylesheet" href="css/pageCSS/EmployeePrint.css">
+
 
 </head>
 
@@ -215,21 +215,15 @@
 									<div class="form-group">
 										<label class="control-label">Hair Color:</label><input class="form-control" type="text" id="hairColor" readonly></input>
 									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col">
+                                </div>
+                                <div class="col">
 									<div class="form-group">
 										<label class="control-label">Gender:</label><input class="form-control" type="text" id="gender" readonly></input>			
 									</div>
 								</div>
-								<div class="col">
-									<div class="form-group">
-										<label class="control-label">Race:</label><input class="form-control" type="text" id="race" readonly></input>
-									</div>
-								</div>
 							</div>
+
+
 
 							<div class="row">
 								<div class="col">
@@ -248,7 +242,7 @@
 									</div>
 								</div>
                             </div>
-                            <p class="contactClass">Other Identifying Features</p>  
+                            <p class="contactClass">Other Information</p>  
                                 <div class="row">
 								<div class="col">
 									<div class="form-group">
@@ -288,7 +282,7 @@
     <script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/pagesJS/ApiCalls.js"></script>
     <script src="js/pagesJS/customFormFunctions.js"></script>
-    <script src="js/pagesJS/EmployeePrint.js"></script>
+    <script src="js/pagesJS/employeePrint.js"></script>
     <script src="js/pagesJS/personnelPages.js"></script>
 
 </body>
