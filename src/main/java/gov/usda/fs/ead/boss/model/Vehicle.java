@@ -101,6 +101,9 @@ public class Vehicle implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "ReleasedDate")
     private Date releasedDate;
+    
+    @Column(name = "MonthsNotUsed")
+    private Short monthsNotUsed;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "assigned_operator_id")
@@ -113,6 +116,20 @@ public class Vehicle implements Serializable {
             orphanRemoval = true
     )
     private List<VehicleMaintenanceRecord> maintenanceRecords;
+    
+    @OneToMany(
+            mappedBy = "vehicle",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<MonthlyIWFIAUsage> monthlyIWFIAUsage;
+    
+    @OneToMany(
+            mappedBy = "vehicle",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<VehicleCost> vehicleCost;
 
     /**
      * @return the id
@@ -478,6 +495,48 @@ public class Vehicle implements Serializable {
      */
     public void setMaintenanceRecords(List<VehicleMaintenanceRecord> maintenanceRecords) {
         this.maintenanceRecords = maintenanceRecords;
+    }
+
+    /**
+     * @return the monthsNotUsed
+     */
+    public Short getMonthsNotUsed() {
+        return monthsNotUsed;
+    }
+
+    /**
+     * @param monthsNotUsed the monthsNotUsed to set
+     */
+    public void setMonthsNotUsed(Short monthsNotUsed) {
+        this.monthsNotUsed = monthsNotUsed;
+    }
+
+    /**
+     * @return the monthlyIWFIAUsage
+     */
+    public List<MonthlyIWFIAUsage> getMonthlyIWFIAUsage() {
+        return monthlyIWFIAUsage;
+    }
+
+    /**
+     * @param monthlyIWFIAUsage the monthlyIWFIAUsage to set
+     */
+    public void setMonthlyIWFIAUsage(List<MonthlyIWFIAUsage> monthlyIWFIAUsage) {
+        this.monthlyIWFIAUsage = monthlyIWFIAUsage;
+    }
+
+    /**
+     * @return the vehicleCost
+     */
+    public List<VehicleCost> getVehicleCost() {
+        return vehicleCost;
+    }
+
+    /**
+     * @param vehicleCost the vehicleCost to set
+     */
+    public void setVehicleCost(List<VehicleCost> vehicleCost) {
+        this.vehicleCost = vehicleCost;
     }
 
 }
