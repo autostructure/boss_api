@@ -34,45 +34,41 @@ public class VehicleMaintenanceRecord implements Serializable {
 
     @Column(name = "Description")
     private String description;
-    
+
     @Column(name = "Current Mileage")
     private Integer currentMileage;
-    
+
     @Column(name = "VendorsName")
     private String vendorsName;
-    
+
     @Column(name = "Cost")
     private BigDecimal cost;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ServiceDate")
     private Date serviceDate;
-    
+
     @Column(name = "Billback")
     private String billback;
-    
-    @Column(name = "Warranty", columnDefinition="tinyint default 0")
+
+    @Column(name = "Warranty", columnDefinition = "tinyint default 0")
     private Boolean warranty;
-    
-    @Column(name = "ProjectFund", columnDefinition="tinyint default 0")
+
+    @Column(name = "ProjectFund", columnDefinition = "tinyint default 0")
     private Boolean projectFund;
-    
-    @Column(name = "ReceiptOnFile", columnDefinition="tinyint default 0")
+
+    @Column(name = "ReceiptOnFile", columnDefinition = "tinyint default 0")
     private Boolean receiptOnFile;
-    
-    @Column(name = "SafteyInspection", columnDefinition="tinyint default 0")
+
+    @Column(name = "SafteyInspection", columnDefinition = "tinyint default 0")
     private Boolean safteyInspection;
 
-     @Column(name = "VMEmission", columnDefinition="tinyint default 0")
+    @Column(name = "VMEmission", columnDefinition = "tinyint default 0")
     private Boolean vmEmission;
-     
-      @Column(name = "OilChange", columnDefinition="tinyint default 0")
+
+    @Column(name = "OilChange", columnDefinition = "tinyint default 0")
     private Boolean oilChange;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name = "VehicleMaintenanceCategory")
-    private VehicleMaintenanceCategory vehicleMaintenanceCategory;
-    
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle")
@@ -163,20 +159,6 @@ public class VehicleMaintenanceRecord implements Serializable {
     }
 
     /**
-     * @return the vehicleMaintenanceCategory
-     */
-    public VehicleMaintenanceCategory getVehicleMaintenanceCategory() {
-        return vehicleMaintenanceCategory;
-    }
-
-    /**
-     * @param vehicleMaintenanceCategory the vehicleMaintenanceCategory to set
-     */
-    public void setVehicleMaintenanceCategory(VehicleMaintenanceCategory vehicleMaintenanceCategory) {
-        this.vehicleMaintenanceCategory = vehicleMaintenanceCategory;
-    }
-
-    /**
      * @return the vehicle
      */
     public Vehicle getVehicle() {
@@ -188,5 +170,103 @@ public class VehicleMaintenanceRecord implements Serializable {
      */
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    /**
+     * @return the billback
+     */
+    public String getBillback() {
+        return billback;
+    }
+
+    /**
+     * @param billback the billback to set
+     */
+    public void setBillback(String billback) {
+        this.billback = billback;
+    }
+
+    /**
+     * @return the warranty
+     */
+    public Boolean getWarranty() {
+        return warranty;
+    }
+
+    /**
+     * @param warranty the warranty to set
+     */
+    public void setWarranty(Boolean warranty) {
+        this.warranty = warranty;
+    }
+
+    /**
+     * @return the projectFund
+     */
+    public Boolean getProjectFund() {
+        return projectFund;
+    }
+
+    /**
+     * @param projectFund the projectFund to set
+     */
+    public void setProjectFund(Boolean projectFund) {
+        this.projectFund = projectFund;
+    }
+
+    /**
+     * @return the receiptOnFile
+     */
+    public Boolean getReceiptOnFile() {
+        return receiptOnFile;
+    }
+
+    /**
+     * @param receiptOnFile the receiptOnFile to set
+     */
+    public void setReceiptOnFile(Boolean receiptOnFile) {
+        this.receiptOnFile = receiptOnFile;
+    }
+
+    /**
+     * @return the safteyInspection
+     */
+    public Boolean getSafteyInspection() {
+        return safteyInspection;
+    }
+
+    /**
+     * @param safteyInspection the safteyInspection to set
+     */
+    public void setSafteyInspection(Boolean safteyInspection) {
+        this.safteyInspection = safteyInspection;
+    }
+
+    /**
+     * @return the vmEmission
+     */
+    public Boolean getVmEmission() {
+        return vmEmission;
+    }
+
+    /**
+     * @param vmEmission the vmEmission to set
+     */
+    public void setVmEmission(Boolean vmEmission) {
+        this.vmEmission = vmEmission;
+    }
+
+    /**
+     * @return the oilChange
+     */
+    public Boolean getOilChange() {
+        return oilChange;
+    }
+
+    /**
+     * @param oilChange the oilChange to set
+     */
+    public void setOilChange(Boolean oilChange) {
+        this.oilChange = oilChange;
     }
 }
