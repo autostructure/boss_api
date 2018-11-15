@@ -48,6 +48,27 @@ public class VehicleMaintenanceRecord implements Serializable {
     @Column(name = "ServiceDate")
     private Date serviceDate;
     
+    @Column(name = "Billback")
+    private String billback;
+    
+    @Column(name = "Warranty", columnDefinition="tinyint default 0")
+    private Boolean warranty;
+    
+    @Column(name = "ProjectFund", columnDefinition="tinyint default 0")
+    private Boolean projectFund;
+    
+    @Column(name = "ReceiptOnFile", columnDefinition="tinyint default 0")
+    private Boolean receiptOnFile;
+    
+    @Column(name = "SafteyInspection", columnDefinition="tinyint default 0")
+    private Boolean safteyInspection;
+
+     @Column(name = "VMEmission", columnDefinition="tinyint default 0")
+    private Boolean vmEmission;
+     
+      @Column(name = "OilChange", columnDefinition="tinyint default 0")
+    private Boolean oilChange;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "VehicleMaintenanceCategory")
     private VehicleMaintenanceCategory vehicleMaintenanceCategory;

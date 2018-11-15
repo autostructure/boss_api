@@ -224,6 +224,10 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "addressCity")
     @JsonView(Views.Internal.class)
     private String addressCity;
+    
+    @Column(name = "step")
+    @JsonView(Views.Internal.class)
+    private String step;
 
     @Column(name = "series")
     @JsonView(Views.Internal.class)
@@ -1781,5 +1785,19 @@ public class EmployeeProfile implements Serializable {
      */
     public void setShowPersonalCellPhone(Boolean showPersonalCellPhone) {
         this.showPersonalCellPhone = showPersonalCellPhone;
+    }
+
+    /**
+     * @return the step
+     */
+    public String getStep() {
+        return step;
+    }
+
+    /**
+     * @param step the step to set
+     */
+    public void setStep(String step) {
+        this.step = step;
     }
 }
