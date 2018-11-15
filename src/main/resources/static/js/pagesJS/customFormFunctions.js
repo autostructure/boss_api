@@ -148,6 +148,12 @@ CustomFormFunctions.addBootstrapFields = function (data) {
             if (col.type == "input/tel") {
                 input.attr("pattern", "\\(?\\d{3}\\)? ?-?\\d{3} ?-?\\d{4}");
             }
+            if (col.type == "input/series") {
+                input.attr("pattern", "[0-9]{4}");
+            }
+            if (col.type == "input/payplan") {
+                input.attr("value", "GS");
+            }
             if (col.type == "input/zipCode") {
                 input.attr("pattern", "(\\d{5}([\\-]\\d{4})?)");
                 input.attr("placeHolder", "12345 or 12345-6789");

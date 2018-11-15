@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+
+
+
     $('#formGeneralInfo_firstName, #formGeneralInfo_lastName').on("keyup change update", function () {
         var nc = $("#formGeneralInfo_firstName").val()[0] || "";
         nc += $("#formGeneralInfo_lastName").val() || "";
@@ -9,6 +13,7 @@ $(document).ready(function () {
         var num = this.value.replace(/\D/g, "");
         //this.value = "(" + num.substring(0,3) + ") " + num.substring(3,6) + "-" + num.substring(6,10);
     });
+
     $.ajax({
         type: 'GET',
         url: '/activityCode',
@@ -44,6 +49,18 @@ $(document).ready(function () {
                 };
                 break;
         }
+        // $('input[type=radio]').on("change", function(){
+        //     var btnId = $('input[name=radioS]:checked').attr('id');
+        //     var btnV = $('input[name=radioS]:checked').val();
+        //     console.log(btnId + ', ' + btnV);
+        //     var btnName = $('input[name=radioS]:checked').attr('name');
+    
+        //     console.log(btnName);
+        //     btnName = btnId;
+        //     console.log(btnName);
+        // })        
+
+
         var data = {};
         $('#formGeneralInfo input:not([disabled]):not([type=submit]), textarea, select').each(function () {
             if (this.name) {
@@ -57,6 +74,13 @@ $(document).ready(function () {
                 if ($(this).attr("data-provide") == "datepicker") {
                     obj[path[i]] = new Date(this.value).getTime();
                 }
+                // dumb bit of code i'm working on because I'm a dummy
+                // if ($(this).attr("name") == "radioS") {
+                //     var bdn = $(this).attr("name");
+                //     var idn = $(this).attr("id")
+                //     this.attr("name") = idn;
+                    // ($(this).attr("name") == $(this).attr("id"));
+                // }                
                 //data[this.name] = this.value;
                 if (obj[path[i]] == NaN)
                     obj[path[i]] = null;
@@ -81,6 +105,9 @@ function showError(msg) {
     $('html,body').animate({scrollTop: $(".bannerImg").offset().top}, 'slow');
 }
 
+
+
+
 var fields = {
     "formGeneralInfo": [
         {"custom": '<h4 class="title3">Employee Information</h4>'},
@@ -89,32 +116,63 @@ var fields = {
                 "title": "First Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 4,
             },
             {"fieldName": "middleInitial",
                 "title": "Middle Initial",
                 "type": "input/text",
-                "colspan": 3,
             },
             {"fieldName": "lastName",
                 "title": "Last Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 5,
             },
+            {"fieldName": "preferredName",
+                "title": "Preferred Name",
+                "type": "input/text",
+        },
+        ],
+
+            {"custom": "<hr/>"},
+            {"custom": '<h4 class="title3">System Access Level</h4>'},
+
+        [          
+        //     {
+        //      "custom" :`
+        //     <div class="form-check form-check-inline">
+        //      <input class="form-check-input" type="radio" name="radioS" id="admin" value="true">
+        //      <label class="form-check-label" for="admin">Admin</label>
+        //    </div>
+        //    <div class="form-check form-check-inline">
+        //      <input class="form-check-input" name="radioS" type="radio" id="office" value="true">
+        //      <label class="form-check-label" for="office">Office</label>
+        //    </div>   
+        //    <div class="form-check form-check-inline">
+        //      <input class="form-check-input" name="radioS" type="radio" id="crewLead" value="true">
+        //      <label class="form-check-label" for="crewLead">Crew Lead</label>
+        //    </div>                       
+        //    <div class="form-check form-check-inline">
+        //      <input class="form-check-input" name="radioS" type="radio" id="support" value="true">
+        //      <label class="form-check-label" for="support">Support</label>
+        //    </div>
+        //    <div class="form-check form-check-inline">
+        //      <input class="form-check-input" name="radioS" type="radio" id="field" value="true">
+        //      <label class="form-check-label" for="field">Field</label>
+        //    </div>           
+        //    <div class="form-check form-check-inline">
+        //      <input class="form-check-input" name="radioS" type="radio" id="owner" value="true">
+        //      <label class="form-check-label" for="owner">Owner</label>
+        //    </div> `                                                          
+        //     } 
+        ],
+        [
             {
             "fieldName": "nameCode",
             "title": "System ID (Auto - Generated)",
             "type": "input/text",
             "required": true,
             "placeholder": "System ID (Auto - Generated)",
-            "colspan": 4
             },
-            {"fieldName": "preferredName",
-                "title": "Preferred Name",
-                "type": "input/text",
-                "colspan": 8,
-            },
+
         ], // end row
         {"custom": "<hr/>"},
         {"custom": '<h4 class="title3">Contact Information</h4>'},

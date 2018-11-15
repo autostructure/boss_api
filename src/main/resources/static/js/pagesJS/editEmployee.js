@@ -49,6 +49,7 @@ $(document).ready(function() {
                 break;
         };
     });
+
     $('input[value=Done]').on("click", function(e) {
         var id = '#' + $(this).attr('id');
         switch (id) {
@@ -83,6 +84,8 @@ $(document).ready(function() {
     });
 });
 
+
+
 function populateTheEmployee(employeeId) {
     var forms = $("#formGeneralInfo, #formWorkInfo, #formEmergencyInfo, #formMedicalInfo");
     forms.find("input, select").off("click change update");
@@ -92,6 +95,7 @@ function populateTheEmployee(employeeId) {
     $("#chooseEmployee").val(employeeId);
     updateProfilePicture();
     console.log($("#chooseEmployee option"), employeeId);
+
 }
 
 function updateProfilePicture() {
@@ -167,16 +171,17 @@ var fields = {
         {
             "fieldName": "status",
             "title": "Status",
-            "type": "input/text",
-            "disabled": "true",
-            "colspan": 4
+            "type": "select/text",
+            "colspan": 4,
+            "options": {"P": "Permanent", "PS": "Permanent / Seasonal", "T": "Temporary"}
         },
         {
             "fieldName": "appointment",
             "title": "Appointment",
-            "type": "input/text",
-            "disabled": "true",
-            "colspan": 5
+            "type": "select/text",
+            "colspan": 5,
+            "options": ["1039", "13/13", "18/8"],
+            "placeholder": "Only applies to Seasonal and Temps"
         },
         ], // end row
         { "custom": '<h4 class="title4">Employee\'s Contact Information</h4>' },
@@ -282,65 +287,93 @@ var fields = {
                 "fieldName": "officePhone",
                 "title": "Office Phone",
                 "type": "input/tel",
-                "colspan": 4
+
             },
+            {
+                "fieldName": "fsCellPhone",
+                "title": "FS Cell Phone",
+                "type": "input/tel",
+
+            },            
+
+            
             {
                 "fieldName": "satPhone",
                 "title": "Satellite Phone",
                 "type": "input/tel",
-                "colspan": 4
+
             },
             {
                 "fieldName": "fsEmail",
                 "title": "FS Email",
                 "type": "input/email",
-                "colspan": 4
+
             },
         ],
         [ // Other
-            {
-                "fieldName": "confidentialityAgreementDate",
-                "title": "Confidentiality Agreement Date",
-                "type": "input/date"
-            },
+            // {
+            //     "fieldName": "confidentialityAgreementDate",
+            //     "title": "Confidentiality Agreement Date",
+            //     "type": "input/date"
+            // },
             {
                 "fieldName": "paymentPlan",
                 "title": "Pay Plan",
-                "type": "input/text",
-                "colspan": 3
+                "type": "input/payplan",
+                "placeholder": 'Enter "GS"',
+                "colspan": 4,
             },
             {
                 "fieldName": "grade",
                 "title": "Grade",
                 "type": "select/text",
+                "colspan": 4,
                 "options": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-            }
-
-        ], // end row
-        [
+            },
             {
                 "fieldName": "payStatus",
                 "title": "Pay Status",
-                "type": "input/text",
-                "colspan": 3
-            },
+                "type": "select/text",
+                "colspan": 4,
+                "options": ["Pay", "Non-Pay"]
+            }            
+
+        ], // end row
+        [
+
             {
                 "fieldName": "startNonPayStatus",
                 "title": "Start Nonpay Status",
                 "type": "input/date",
-                "colspan": 3
+                "colspan": 4
             },
             {
                 "fieldName": "returnToPayStatus",
                 "title": "Return To Pay Status",
                 "type": "input/date",
-                "colspan": 3
+                "colspan": 4
             },
             {
                 "fieldName": "terminationDate",
                 "title": "Termination Date",
                 "type": "input/date",
-                "colspan": 3
+                "colspan": 4
+            }
+        ],
+        [
+            {
+                "fieldName": "series",
+                "title": "Series",
+                "type": "input/series",
+                "max": 4,
+                "min": 4,
+                "placeholder": "i.e. 0301"                
+            },
+            {
+                "fieldName": "step",
+                "title": "Step",
+                "type": "select/text",
+                "options": ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
             }
         ],
        // [ // Pay information
@@ -378,18 +411,18 @@ var fields = {
             //     "disabled": true
             // }
        // ], // end row
-        [
-            {
-                "fieldName": "masterNumber",
-                "title": "Master Number",
-                "type": "input/text"
-            },
-            {
-                "fieldName": "ipNumber",
-                "title": "IP Number",
-                "type": "input/text"
-            }
-        ],
+        // [
+        //     {
+        //         "fieldName": "masterNumber",
+        //         "title": "Master Number",
+        //         "type": "input/text"
+        //     },
+        //     {
+        //         "fieldName": "ipNumber",
+        //         "title": "IP Number",
+        //         "type": "input/text"
+        //     }
+        // ],
         [
             {
                 "fieldName": "employeePosition",
@@ -644,3 +677,4 @@ var fields = {
 
 };
 CustomFormFunctions.addBootstrapFields(fields);
+// $('#formWorkInfo_paymentPlan').val("GS");

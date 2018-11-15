@@ -119,7 +119,7 @@ $(document).ready(function () {
                     modal.find(".modal-body #CellPhoneOne").val(json.emergencyContactCellPhone1);
                     modal.find(".modal-body #CellPhoneTwo").val(json.emergencyContactCellPhone2);
                     modal.find(".modal-body #gender").val(json.gender);
-                    modal.find(".modal-body #race").val(json.race);
+                    // modal.find(".modal-body #race").val(json.race);
                     modal.find(".modal-body #eyeColor").val(json.eyeColor);
                     modal.find(".modal-body #hairColor").val(json.hairColor);
                     modal.find(".modal-body #heightFeet").val(json.heightFeet);
