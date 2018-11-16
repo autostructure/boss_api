@@ -31,6 +31,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicUpdate;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -383,10 +384,8 @@ public class EmployeeProfile implements Serializable {
 
     @Temporal(TemporalType.DATE)
     @JsonView(Views.Internal.class)
-    private Date terminationDate;   
-    // end of new infor for edit employee                                   
-         
-
+    private Date terminationDate;
+    
     @Temporal(TemporalType.DATE)
     @JsonView(Views.Internal.class)
     private Date confidentialityAgreementDate;

@@ -35,7 +35,7 @@ public class VehicleMaintenanceRecord implements Serializable {
     @Column(name = "Description")
     private String description;
 
-    @Column(name = "Current Mileage")
+    @Column(name = "CurrentMileage")
     private Integer currentMileage;
 
     @Column(name = "VendorsName")

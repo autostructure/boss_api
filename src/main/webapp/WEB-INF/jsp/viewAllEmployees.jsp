@@ -63,6 +63,7 @@
                                                 <th scope="col">Supervisor</th>
                                                 <th scope="col">Duty Station</th>
                                                 <th scope="col">Satellite Phone</th>
+												<th scope="col">Fs Cell Phone</th>
                                                 <th scope="col">Office Phone </th>                                        
                                                 <th scope="col">FS Email</th>
                                                 <th scope="col">Cell Phone</th>

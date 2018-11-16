@@ -4,7 +4,10 @@ var empId = 0;
 $(document).ready(function() {
     var identifier = window.location.pathname.split("/")[2];
     empId = parseInt(identifier);
-    
+    $("#formGeneralInfo_Secondary").prop('disabled', true);
+    $("#formGeneralInfo_Primary").prop('disabled', true);
+    $("#formGeneralInfo_shareNum_lbl").hide();
+    $("#formGeneralInfo_shareNum").hide();
     var afterChooseEmployeePopulates = function() { $("#chooseEmployee").val(identifier) };
     if (empId) {
         populateTheEmployee(identifier);
@@ -80,6 +83,83 @@ $(document).ready(function() {
                 console.log(e.responseJSON);
             }
         });
+    });
+
+    $.ajax({
+        url: "/employeeProfile/" + empId,
+        type: "GET",
+        cache: false,
+        success: function (json) {
+            $('#formGeneralInfo_Primary').val(json.homePhone);
+            $('#formGeneralInfo_Secondary').val(json.cellPhone);
+            if (json.homePhone != undefined && json.homePhone != null) {
+                $('#formGeneralInfo_PrimaryType').val('home');
+                $('#formGeneralInfo_Pimary').prop("disabled", false);
+            }
+
+            if (json.cellPhone != undefined && json.cellPhone != null) {
+                $('#formGeneralInfo_secondType').val('cells');
+                $('#formGeneralInfo_shareNum').show();
+                $('#formGeneralInfo_shareNum_lbl').show();
+                $('#formGeneralInfo_Secondary').prop("disabled", false);
+                var v = json.showPersonalCellPhone;
+                if (v == true) {
+                    $('#formGeneralInfo_shareNum').val('true');
+                } else {
+                    $('#formGeneralInfo_shareNum').val('false');
+                }
+
+
+            }
+            
+
+        },
+        error: function (a, b, c) {
+            console.log(a.responseJSON);
+            console.log(b);
+            console.log(c);
+        }
+    });
+
+    $('#formGeneralInfo_PrimaryType').on("change update", function () {
+        var primary = $('#formGeneralInfo_PrimaryType :selected').val();
+        if (primary == "Cell") {
+            $('#formGeneralInfo_shareNum').show();
+            $('#formGeneralInfo_shareNum_lbl').show();
+            $("#formGeneralInfo_Primary").attr('name', 'cellPhone');
+            $("#formGeneralInfo_Primary").prop('disabled', false);
+        }
+        else {
+            $("#formGeneralInfo_Primary").attr('name', 'homePhone');
+            $("#formGeneralInfo_Primary").prop('disabled', false);
+        }
+    });
+
+    $('#formGeneralInfo_secondType').on("change update", function () {
+        var secondary = $('#formGeneralInfo_secondType :selected').val();
+
+        if (secondary == "cells") {
+            $('#formGeneralInfo_shareNum').show();
+            $('#formGeneralInfo_shareNum_lbl').show();
+            $("#formGeneralInfo_Secondary").attr('name', 'cellPhone');
+            $("#formGeneralInfo_Secondary").prop('disabled', false);
+        } else {
+            $("#formGeneralInfo_Secondary").attr('name', 'homePhone');
+            $("#formGeneralInfo_Secondary").prop('disabled', false);
+        }
+    });
+
+    $('#formGeneralInfo_shareNum').on("change update", function () {
+        var partial = { "showPersonalCellPhone": false };
+        var shareNumVal = $('#formGeneralInfo_shareNum :selected').val();
+
+        if (shareNumVal == 'true') {
+            partial.showPersonalCellPhone = true;
+        } else {
+            partial.showPersonalCellPhone = false;
+        }
+
+        CustomFormFunctions.putPartialInfo("/employeeProfile", empId, partial);
     });
 });
 
@@ -182,21 +262,44 @@ var fields = {
         { "custom": '<h4 class="title4">Employee\'s Contact Information</h4>' },
         [ // Contact Info
             {
-                "fieldName": "homePhone",
-                "title": "Home Phone",
-                "type": "input/tel",
+                "fieldName": "Primary", //Home Phone
+                "title": "Primary Phone",
+                "name": "Primary",
+                "type": "input/tel"
             },
             {
-                "fieldName": "cellPhone",
-                "title": "Cell Phone",
-                "type": "input/tel",
+                "fieldName": "PrimaryType",
+                "title": "Primary Phone Type",
+                "type": "select/text",
+                "placeholder": "Select type",
+                "options": { "Cell": "Cell Phone", "home": "Home Phone" }
+            },
+            {
+                "fieldName": "Secondary", //cell phone
+                "name": "Secondary",
+                "title": "Secondary Phone",
+                "type": "input/tel"
+            },
+            {
+                "fieldName": "secondType",
+                "title": "Secondary Phone Type",
+                "type": "select/text",
+                "placeholder": "Select type",
+                "options": { "cells": "Cell Phone", "homes": "Home Phone" }
+            },
+            {
+                "fieldName": "shareNum",
+                "title": "share your cell phone?",
+                "type": "select/text",
+                "placeholder": "Select Response",
+                "options": { "true": "Yes", "false": "No" }
+
             },
             {
                 "fieldName": "personalEmail",
                 "title": "Personal Email",
-                "type": "input/email",
-            }
-        ], // end row
+                "type": "input/email"
+            }],
         [ // Address Info
             {
                 "fieldName": "addressStreet1",
@@ -285,17 +388,26 @@ var fields = {
                 "colspan": 4
             },
             {
-                "fieldName": "satPhone",
-                "title": "Satellite Phone",
-                "type": "input/tel",
-                "colspan": 4
+                "fieldName": "fsCellPhone",
+                "title": "FS Cell Phone",
+                "type": "input/tel"
             },
             {
                 "fieldName": "fsEmail",
                 "title": "FS Email",
                 "type": "input/email",
                 "colspan": 4
+            }, {
+                "fieldName": "series",
+                "title": "series",
+                "type": "input/series"
             },
+            {
+                "fieldName": "step",
+                "title": "Step",
+                "type": "select/text",
+                "options": { "00": "00", "10": "10" }
+            }
         ],
         [ // Other
             {

@@ -52,9 +52,21 @@ $(document).ready(function () {
                 },
                 {data: "dutyStation"},
                 {data: "satPhone"},
+                {data: "fsCellPhone"},
                 {data: "officePhone"},
                 {data: "fsEmail"},
-                {data: "cellPhone"},
+                {
+                    data: "cellPhone",
+                    "render": function (data, type, row) {
+              
+                        var check_shown = row.showPersonalCellPhone;
+                        if (check_shown == true) {
+                            return row.cellPhone;
+                        } else {
+                            return "";
+                        }
+                    }
+                },
                 {data: null,
                     "render": function (data, type, row) {
                         return `
