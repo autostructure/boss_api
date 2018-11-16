@@ -247,16 +247,17 @@ var fields = {
         {
             "fieldName": "status",
             "title": "Status",
-            "type": "input/text",
-            "disabled": "true",
-            "colspan": 4
+            "type": "select/text",
+            "colspan": 4,
+            "options": {"P": "Permanent", "PS": "Permanent / Seasonal", "T": "Temporary"}
         },
         {
             "fieldName": "appointment",
             "title": "Appointment",
-            "type": "input/text",
-            "disabled": "true",
-            "colspan": 5
+            "type": "select/text",
+            "colspan": 5,
+            "options": ["1039", "13/13", "18/8"],
+            "placeholder": "Only applies to Seasonal and Temps"
         },
         ], // end row
         { "custom": '<h4 class="title4">Employee\'s Contact Information</h4>' },
@@ -295,24 +296,25 @@ var fields = {
                 "options": { "true": "Yes", "false": "No" }
 
             },
-            {
-                "fieldName": "personalEmail",
-                "title": "Personal Email",
-                "type": "input/email"
-            }],
+        ],
         [ // Address Info
             {
                 "fieldName": "addressStreet1",
                 "title": "Street Address (Home)",
                 "type": "input/text",
-                "colspan": 6
             },
             {
                 "fieldName": "addressStreet2",
                 "title": "Street Address (Home Line 2)",
                 "type": "input/text",
-                "colspan": 6,
             },
+            {
+                "fieldName": "personalEmail",
+                "title": "Personal Email",
+                "type": "input/email"
+            }
+        ],
+        [
             {
                 "fieldName": "addressCity",
                 "title": "City (Home)",
@@ -348,6 +350,16 @@ var fields = {
                 "value": "code",
                 "label": "name"
             }
+        },
+        {
+            "fieldName": "supervisor",
+            "title": "Supervisor",
+            "type": "select/text",
+            "selectFrom": {
+                "url": "/employeeProfile",
+                "value": "id",
+                "label": "nameCode",
+            },
         }
         ], // end row
         [{
@@ -365,28 +377,21 @@ var fields = {
             },
             "colspan":4
         },
-
-            {
-                "fieldName": "supervisor",
-                "title": "Supervisor",
-                "type": "select/text",
-                "selectFrom": {
-                    "url": "/employeeProfile",
-                    "value": "id",
-                    "label": "nameCode",
-                },
-                "colspan": 4
-            }
+        {
+            "fieldName": "officePhone",
+            "title": "Office Phone",
+            "type": "input/tel",
+            "colspan": 4
+        }
         ], // end row
 
         [
-
             {
-                "fieldName": "officePhone",
-                "title": "Office Phone",
-                "type": "input/tel",
-                "colspan": 4
+                "fieldName": "satPhone",
+                "title": "Sat Phone",
+                "type": "input/tel"
             },
+
             {
                 "fieldName": "fsCellPhone",
                 "title": "FS Cell Phone",
@@ -397,62 +402,60 @@ var fields = {
                 "title": "FS Email",
                 "type": "input/email",
                 "colspan": 4
-            }, {
+            }, 
+        ],
+        [
+            {
                 "fieldName": "series",
-                "title": "series",
-                "type": "input/series"
+                "title": "Series",
+                "type": "input/series",
+                "max": 4,
+                "min": 4,
+                "placeholder": "i.e. 0301"                
             },
             {
                 "fieldName": "step",
                 "title": "Step",
                 "type": "select/text",
-                "options": { "00": "00", "10": "10" }
+                "options": ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
             }
         ],
         [ // Other
             {
-                "fieldName": "confidentialityAgreementDate",
-                "title": "Confidentiality Agreement Date",
-                "type": "input/date"
-            },
-            {
                 "fieldName": "paymentPlan",
                 "title": "Pay Plan",
-                "type": "input/text",
-                "colspan": 3
+                "type": "input/payplan",
+                "placeholder": 'Enter "GS'
             },
             {
                 "fieldName": "grade",
                 "title": "Grade",
                 "type": "select/text",
                 "options": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-            }
+            },
+            {
+                "fieldName": "payStatus",
+                "title": "Pay Status",
+                "type": "select/text",
+                "options": ["Pay", "Non-Pay"]
+            }   
 
         ], // end row
         [
             {
-                "fieldName": "payStatus",
-                "title": "Pay Status",
-                "type": "input/text",
-                "colspan": 3
-            },
-            {
                 "fieldName": "startNonPayStatus",
                 "title": "Start Nonpay Status",
                 "type": "input/date",
-                "colspan": 3
             },
             {
                 "fieldName": "returnToPayStatus",
                 "title": "Return To Pay Status",
                 "type": "input/date",
-                "colspan": 3
             },
             {
                 "fieldName": "terminationDate",
                 "title": "Termination Date",
                 "type": "input/date",
-                "colspan": 3
             }
         ],
        // [ // Pay information
@@ -490,39 +493,25 @@ var fields = {
             //     "disabled": true
             // }
        // ], // end row
-        [
-            {
-                "fieldName": "masterNumber",
-                "title": "Master Number",
-                "type": "input/text"
-            },
-            {
-                "fieldName": "ipNumber",
-                "title": "IP Number",
-                "type": "input/text"
-            }
-        ],
+
         [
             {
                 "fieldName": "employeePosition",
                 "title": "Employee Position",
                 "type": "select/text",
                 "options": { "S": "Supervisor", "E": "Employee" },
-                "colspan": 4
             },
             {
                 "fieldName": "fieldStatus",
                 "title": "Field Status",
                 "type": "select/text",
                 "options": { "O": "Office", "F": "Field" },
-                "colspan": 4
             },
             {
                 "fieldName": "crewPosition",
                 "title": "Crew Position",
                 "type": "select/text",
                 "options": { "CM": "Crew Member", "CL": "Crew Leader" },
-                "colspan": 4
             },
         ], // end row
         [
