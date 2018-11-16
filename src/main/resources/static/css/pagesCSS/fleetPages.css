@@ -293,40 +293,45 @@ td, th{
     padding-left: 20px;
 }
 
-#iwfia_wrapper > div.dt-buttons{
+#iwfia_wrapper > div.dt-buttons,
+#monthlyCosts_wrapper > div.dt-buttons{
     position: absolute;
     top: -55px;
     right: 10px;
 }
-#iwfia > thead> tr > th, #iwfia > tbody > tr > td{
+#iwfia > thead> tr > th, #iwfia > tbody > tr > td,
+#monthlyCosts > thead> tr > th, #monthlyCosts > tbody > tr > td
+{
     border-right: 0px solid gray;
     border-left: 0px solid gray;
 }
-#iwfia{
+#iwfia, #monthlyCosts{
     min-width: 100%;
     margin-top: 45px;
 }
-#iwfia_wrapper{
+#iwfia_wrapper, #monthlyCosts_wrapper{
     border-radius: 10px;
     /* border: 1px solid gray; */
 }
 
-#iwfia_filter, #iwfia_paginate, #iwfia_length, #iwfia_info{
+#iwfia_filter, #iwfia_paginate, #iwfia_length, #iwfia_info,
+#monthlyCosts_filter, #monthlyCosts_paginate, #monthlyCosts_length, #monthlyCosts_info
+{
     padding: 20px 20px;
 }
-#iwfia_filter{
+#iwfia_filter, #monthlyCosts_filter{
     position: absolute;
     top: -75px;
     left: 10px;
     padding: 0px;
 }
-#iwfia{
+#iwfia, #monthlyCosts{
     background-color: white;
 }
-#iwfia_filter > label{
+#iwfia_filter > label, #monthlyCosts_filter > label{
     font-size: 1.5em;
 }
-#iwfia_wrapper{
+#iwfia_wrapper, #monthlyCosts_wrapper{
     background-color: white;
 }
 #btn_add_aux{

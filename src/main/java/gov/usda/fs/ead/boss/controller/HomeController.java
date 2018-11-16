@@ -209,4 +209,10 @@ public class HomeController {
     public String print() {
         return "print";
     }
+
+    @IsAppUser
+    @RequestMapping("/monthlyCosts")
+    public String monthlyCosts() {
+        return "monthlyCosts";
+    }    
 }
