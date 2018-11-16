@@ -50,7 +50,7 @@ import gov.usda.fs.ead.boss.repository.ExpenseCodeRepository;
 import gov.usda.fs.ead.boss.repository.ExpenseRepository;
 import gov.usda.fs.ead.boss.repository.JobCodeRepository;
 import gov.usda.fs.ead.boss.repository.PaymentCodeRepository;
-import gov.usda.fs.ead.boss.saml.IsOwnerOrSupervisor;
+// import gov.usda.fs.ead.boss.saml.IsOwnerOrSupervisor;
 
 @RestController
 public class BudgetController {
@@ -79,7 +79,7 @@ public class BudgetController {
     @Autowired
     private ServletContext servletContext;
     
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/expense")
     public List<Expense> getAllExpenses(@RequestParam(value = "financialYear", required = false) Short financialYear) {
         if (financialYear == null) {
@@ -89,20 +89,20 @@ public class BudgetController {
         }
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/expense/{id}")
     public Expense getExpenseById(@PathVariable(value = "id") Long expenseId) {
         return expenseRepository.findById(expenseId)
                 .orElseThrow(() -> new ResourceNotFoundException("Expense", "id", expenseId));
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @PostMapping("/expense")
     public Expense createExpense(@Valid @RequestBody Expense expenseDetails) {
         return expenseRepository.save(expenseDetails);
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @PutMapping("/expense/{id}")
     public Expense updateExpense(@PathVariable(value = "id") Long expenseId,
             @Valid @RequestBody Expense expenseDetails) {
@@ -114,7 +114,7 @@ public class BudgetController {
         return updatedExpense;
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @DeleteMapping("/expense/{id}")
     public ResponseEntity<?> deleteExpense(@PathVariable(value = "id") Long expenseId) {
 
@@ -126,7 +126,7 @@ public class BudgetController {
     }
 
     // Get All JobCodes
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/jobCode")
     public List<JobCode> getAllJobCodes(@RequestParam(value = "financialYear", required = false) Short financialYear) {
         if (financialYear == null) {
@@ -136,18 +136,18 @@ public class BudgetController {
         }
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/jobCode/{id}")
     public JobCode getJobCodeById(@PathVariable(value = "id") Long jobCodeId) {
         return jobCodeRepository.findById(jobCodeId)
                 .orElseThrow(() -> new ResourceNotFoundException("JobCode", "id", jobCodeId));
     }
 
-    // @IsOwnerOrSupervisor @PostMapping("/jobCode")
+    //@IsOwnerOrSupervisor @PostMapping("/jobCode")
     // public JobCode createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
     //     return jobCodeRepository.save(jobCodeDetails);
     // }
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @PostMapping("/jobCode")
     public ResponseEntity createJobCode(@Valid @RequestBody JobCode jobCodeDetails) {
         jobCodeDetails = jobCodeRepository.save(jobCodeDetails);
@@ -155,7 +155,7 @@ public class BudgetController {
 
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @PutMapping("/jobCode/{id}")
     public JobCode updateJobCode(@PathVariable(value = "id") Long jobCodeId,
             @Valid @RequestBody JobCode jobCodeDetails) {
@@ -167,7 +167,7 @@ public class BudgetController {
         return updatedJobCode;
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @DeleteMapping("/jobCode/{id}")
     public ResponseEntity<?> deleteJobCode(@PathVariable(value = "id") Long jobCodeId) {
         JobCode jobCode = jobCodeRepository.findById(jobCodeId)
@@ -177,35 +177,35 @@ public class BudgetController {
     }
 
     // Get All Activity Codes
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/activityCode")
     public List<ActivityCode> getAllActivityCodes() {
         return activityCodeRepository.findAll();
     }
 
     // Get All Budget Object Codes
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/budgetObjectCode")
     public List<BudgetObjectCode> getAllBudgetObjectCodes() {
         return budgetObjectCodeRepository.findAll();
     }
 
     // Get All Expense Codes
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/expenseCode")
     public List<ExpenseCode> getAllExpenseCodes() {
         return expenseCodeRepository.findAll();
     }
 
     // Get All Payment Codes
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/paymentCode")
     public List<PaymentCode> getAllPaymentCodes() {
         return paymentCodeRepository.findAll();
     }
 
     // Get Budget Summary JSON
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @GetMapping("/budgetSummary/{type}/{financialYear}/{verified}")
     public ResponseEntity getBudgetSummary(
             @PathVariable("type") String type,
@@ -253,7 +253,7 @@ public class BudgetController {
 
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @RequestMapping(value = {"/payrollDetails/{type}/{jobCodeId}", "/payrollDetails/{type}"}, method = RequestMethod.GET)
     public ResponseEntity getPayrollDetails(
             @PathVariable("type") String type,
@@ -292,7 +292,7 @@ public class BudgetController {
 
     }
 
-    @IsOwnerOrSupervisor
+    //@IsOwnerOrSupervisor
     @RequestMapping(value = {"/payrollForecast/{type}/{jobCodeId}", "/payrollForecast/{type}"}, method = RequestMethod.GET)
     public ResponseEntity getPayrollForecast(
             @PathVariable("type") String type,

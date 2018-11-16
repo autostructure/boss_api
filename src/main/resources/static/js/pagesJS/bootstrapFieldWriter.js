@@ -219,10 +219,17 @@ function addBootstrapFields(data) {
             if (col.type == "input/vin"){
                 input.attr("pattern", "[A-HJ-NPR-Z0-9]{17}");
             }
+            if (col.type == "input/series"){
+                input.attr("pattern", "[0-9]{4}");
+            }
             if (col.type == "input/zipCode") {
                 input.attr("pattern", "(\\d{5}([\\-]\\d{4})?)");
                 input.attr("placeHolder", "12345 or 12345-6789");
             }
+            // if (col.type == "input/role") {
+            //     input.attr("type", "radio");
+            //     input.attr("pattern", "(\\d{5}([\\-]\\d{4})?)");
+            // }
             if (col.type == "input/date") {
                 input.attr("type", "text");
                 input.attr("data-date-format", "MMM DD YYYY");

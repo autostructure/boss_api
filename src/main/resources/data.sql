@@ -362,7 +362,8 @@ INSERT INTO dbo.training_course(category, title, default_years, default_years_le
 ('Heavy Equipment', 'Chainsaw Handling', 5, 1, ''),
 ('Heavy Equipment', 'Motorcycle training', 5, 1, ''),
 ('Heavy Equipment', 'Hovercraft training', 5, 1, ''),
-('Heavy Equipment', 'Bear Trap setting', 5, 1, '');
+('Heavy Equipment', 'Bear Trap setting', 5, 1, ''),
+('Confidentiality Agreement Date', 'Confidentiality Agreement Date', 50, 50, '');
 
 INSERT INTO dbo.training(training_course_id, date_of_training, valid_until, approved_by_id, employee) VALUES
 (3, '2015-11-03', '2018-11-03', 1, 47),
@@ -376,7 +377,11 @@ INSERT INTO dbo.training(training_course_id, date_of_training, valid_until, appr
 (4, '2018-06-03', '2021-06-03', null, 47),
 (4, '2018-06-03', '2021-06-03', null, 46),
 (7, '2018-09-03', '2021-09-03', null, 47),
-(7, '2018-09-03', '2021-09-03', null, 46);
+(6, '2017-06-03', '2020-06-03', 2, 46),
+(4, '2018-06-03', '2021-06-03', null, 47),
+(12, '2018-06-03', '2050-12-31', 1, 46),
+(12, '2018-09-03', '2050-12-31', 3, 47),
+(12, '2018-09-03', '2050-12-31', 2, 45);
 
 INSERT INTO dbo.deliberative_risk_assessment_course(category, title, description, complete_by, wiggle_room) VALUES
 ('Machines', 'Aircraft', 'Must be completed before participation', '1969-12-31', 0),
