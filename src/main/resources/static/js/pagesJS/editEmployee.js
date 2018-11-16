@@ -1,4 +1,4 @@
-var TestData = { "id": "47", "lastName": "Barrs", "firstName": "Karisa", "middleInitial": "", "nameCode": "KBarrs", "preferredName": "", "driversLicense.expiration": '2018-09-12', "driversLicense.state": 'MI', "driversLicense.number": 'dsfsd', "addressStreet": "465", "dateOfBirth": "2018-09-12", "addressCity": "fds", "addressZip": "12345", "homePhone": "", "cellPhone": "(546) 654-8646", "personalEmail": "asdf@sadf", "roomNumber": "", "title": "", "confidentialityAgreementDate": "", "series": "", "emergencyContactFirstName1": "", "emergencyContactStreetAddress1": "", "emergencyContactCity1": "", "emergencyContactZip1": "", "emergencyContactHomePhone1": "", "emergencyContactCellPhone1": "", "emergencyContactWorkPhone1": "", "emergencyContactRelationship1": "", "emergencyContactFirstName2": "", "emergencyContactStreetAddress2": "", "emergencyContactCity2": "", "emergencyContactZip2": "", "emergencyContactHomePhone2": "", "emergencyContactCellPhone2": "", "emergencyContactWorkPhone2": "", "emergencyContactRelationship2": "", "driversLicense.state": "DE", "addressState": "SC", "stateAssigned": "Choose State Assigned", "dutyStation": "", "activityCode": { "name": "Administration", "code": "AD" }, "grade": "Choose Grade", "emergencyContactState1": "Choose State", "emergencyContactState2": "Choose State" }
+// var TestData = { "id": "47", "lastName": "Barrs", "firstName": "Karisa", "middleInitial": "", "nameCode": "KBarrs", "preferredName": "", "driversLicense.expiration": '2018-09-12', "driversLicense.state": 'MI', "driversLicense.number": 'dsfsd', "addressStreet": "465", "dateOfBirth": "2018-09-12", "addressCity": "fds", "addressZip": "12345", "homePhone": "", "cellPhone": "(546) 654-8646", "personalEmail": "asdf@sadf", "roomNumber": "", "title": "", "confidentialityAgreementDate": "", "series": "", "emergencyContactFirstName1": "", "emergencyContactStreetAddress1": "", "emergencyContactCity1": "", "emergencyContactZip1": "", "emergencyContactHomePhone1": "", "emergencyContactCellPhone1": "", "emergencyContactWorkPhone1": "", "emergencyContactRelationship1": "", "emergencyContactFirstName2": "", "emergencyContactStreetAddress2": "", "emergencyContactCity2": "", "emergencyContactZip2": "", "emergencyContactHomePhone2": "", "emergencyContactCellPhone2": "", "emergencyContactWorkPhone2": "", "emergencyContactRelationship2": "", "driversLicense.state": "DE", "addressState": "SC", "stateAssigned": "Choose State Assigned", "dutyStation": "", "activityCode": { "name": "Administration", "code": "AD" }, "grade": "Choose Grade", "emergencyContactState1": "Choose State", "emergencyContactState2": "Choose State" }
 var testing = false;
 var empId = 0;
 $(document).ready(function() {
@@ -94,7 +94,7 @@ $(document).ready(function() {
             $('#formGeneralInfo_Secondary').val(json.cellPhone);
             if (json.homePhone != undefined && json.homePhone != null) {
                 $('#formGeneralInfo_PrimaryType').val('home');
-                $('#formGeneralInfo_Pimary').prop("disabled", false);
+                $('#formGeneralInfo_Primary').prop("disabled", false);
             }
 
             if (json.cellPhone != undefined && json.cellPhone != null) {
@@ -120,6 +120,7 @@ $(document).ready(function() {
             console.log(c);
         }
     });
+
 
     $('#formGeneralInfo_PrimaryType').on("change update", function () {
         var primary = $('#formGeneralInfo_PrimaryType :selected').val();
@@ -207,20 +208,20 @@ var fields = {
                 "title": "Last Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 4
+                "colspan": 3
             },
             {
                 "fieldName": "firstName",
                 "title": "First Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 4
+                "colspan": 3
             },
             {
                 "fieldName": "middleInitial",
                 "title": "Middle Initial",
                 "type": "input/text",
-                "colspan": 4
+                "colspan": 3
             },
             {
                 "fieldName": "nameCode",
@@ -228,57 +229,54 @@ var fields = {
                 "type": "input/text",
                 "required": true,
                 "placeholder": "System ID (Auto - Generated)",
-                "colspan": 4
+                "colspan": 3
             },
+        ],
+        [
             {
                 "fieldName": "preferredName",
                 "title": "Preferred Name",
                 "type": "input/text",
-                "colspan": 8
+                "colspan": 3
+            },
+            {
+                "fieldName": "gender",
+                "title": "Gender",
+                "type": "select/text",
+                "options": { "male": "Male", "female": "Female", "other": "Other" },
+                "colspan": 3
+            },
+            {
+                "fieldName": "status",
+                "title": "Status",
+                "type": "select/text",
+                "colspan": 3,
+                "options": {"P": "Permanent", "PS": "Permanent / Seasonal", "T": "Temporary"}
+            },
+            {
+                "fieldName": "appointment",
+                "title": "Appointment",
+                "type": "select/text",
+                "colspan": 3,
+                "options": ["1039", "13/13", "18/8"],
+                "placeholder": "Only applies to Seasonal and Temps"
             }
-        ], // end row
-        [{
-            "fieldName": "gender",
-            "title": "Gender",
-            "type": "select/text",
-            "options": { "male": "Male", "female": "Female", "other": "Other" },
-            "colspan": 3
-        },
-        {
-            "fieldName": "status",
-            "title": "Status",
-            "type": "select/text",
-            "colspan": 4,
-            "options": {"P": "Permanent", "PS": "Permanent / Seasonal", "T": "Temporary"}
-        },
-        {
-            "fieldName": "appointment",
-            "title": "Appointment",
-            "type": "select/text",
-            "colspan": 5,
-            "options": ["1039", "13/13", "18/8"],
-            "placeholder": "Only applies to Seasonal and Temps"
-        },
         ], // end row
         { "custom": '<h4 class="title4">Employee\'s Contact Information</h4>' },
         [ // Contact Info
-            {
-                "fieldName": "Primary", //Home Phone
-                "title": "Primary Phone",
-                "name": "Primary",
-                "type": "input/tel"
-            },
             {
                 "fieldName": "PrimaryType",
                 "title": "Primary Phone Type",
                 "type": "select/text",
                 "placeholder": "Select type",
+                "required": true,
                 "options": { "Cell": "Cell Phone", "home": "Home Phone" }
             },
             {
-                "fieldName": "Secondary", //cell phone
-                "name": "Secondary",
-                "title": "Secondary Phone",
+                "fieldName": "Primary", //Home Phone
+                "title": "Primary Phone",
+                "name": "Primary",
+                "required": true,
                 "type": "input/tel"
             },
             {
@@ -289,8 +287,15 @@ var fields = {
                 "options": { "cells": "Cell Phone", "homes": "Home Phone" }
             },
             {
+                "fieldName": "Secondary", //cell phone
+                "name": "Secondary",
+                "title": "Secondary Phone",
+                "type": "input/tel"
+            },
+
+            {
                 "fieldName": "shareNum",
-                "title": "share your cell phone?",
+                "title": "Share Cell Phone?",
                 "type": "select/text",
                 "placeholder": "Select Response",
                 "options": { "true": "Yes", "false": "No" }
@@ -311,7 +316,7 @@ var fields = {
             {
                 "fieldName": "personalEmail",
                 "title": "Personal Email",
-                "type": "input/email"
+                "type": "input/text"
             }
         ],
         [
@@ -400,7 +405,7 @@ var fields = {
             {
                 "fieldName": "fsEmail",
                 "title": "FS Email",
-                "type": "input/email",
+                "type": "input/text",
                 "colspan": 4
             }, 
         ],
@@ -418,14 +423,12 @@ var fields = {
                 "title": "Step",
                 "type": "select/text",
                 "options": ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
-            }
-        ],
-        [ // Other
+            },
             {
                 "fieldName": "paymentPlan",
                 "title": "Pay Plan",
                 "type": "input/payplan",
-                "placeholder": 'Enter "GS'
+                "placeholder": 'Enter "GS"'
             },
             {
                 "fieldName": "grade",
@@ -458,41 +461,6 @@ var fields = {
                 "type": "input/date",
             }
         ],
-       // [ // Pay information
-            // {
-            //     "fieldName": "series",
-            //     "title": "Series",
-            //     "type": "input/text",
-            // },
-            // {
-            //     "fieldName": "pwpSalary",
-            //     "title": "pwp Salary",
-            //     "type": "input/number",
-            //     "step": 0.01,
-            //     "disabled": true
-            // },
-            // {
-            //     "fieldName": "regPayPerPayPeriod",
-            //     "title": "Regular Pay Per Pay Period",
-            //     "type": "input/number",
-            //     "step": 0.01,
-            //     "disabled": true
-            // },
-            // {
-            //     "fieldName": "overtimeHourlyWage",
-            //     "title": "Overtime Hourly Wage",
-            //     "type": "input/number",
-            //     "step": 0.01,
-            //     "disabled": true
-            // },
-            // {
-            //     "fieldName": "payPeriodsLeft",
-            //     "title": "Pay Periods Left",
-            //     "type": "input/number",
-            //     "step": 0.01,
-            //     "disabled": true
-            // }
-       // ], // end row
 
         [
             {
@@ -530,12 +498,18 @@ var fields = {
             "title": "Hair Color",
             "type": "input/text",
         },
+        ],
+        [
         {
             "fieldName": "allergies",
             "title": "Allergies",
             "type": "input/text",
-            "colspan": 12
-        },        
+        },    
+        {
+            "fieldName": "dateOfBirth",
+            "title": "Date of Birth",
+            "type": "input/date",
+        }    
         ],
         [{
             "fieldName": "heightFeet",
@@ -562,21 +536,8 @@ var fields = {
             "placeholder": "Pounds"
         }
         ],
-        [{
-            "fieldName": "dateOfBirth",
-            "title": "Date of Birth",
-            "type": "input/date",
-        },
-        {
-            "fieldName": "gender",
-            "title": "Gender",
-            "type": "select",
-            "options": {
-                "male": "Male",
-                "female": "Female",
-                "other": "Other (explain below)",
-            },
-        },
+        [
+
         // {
         //     "fieldName": "race",
         //     "title": "Race",
