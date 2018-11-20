@@ -1,9 +1,9 @@
 ---
 docker_tomcat_module::environment_vars: []
 
-docker_tomcat_module::setenv_entries: {}
-#  CATALINA_OPTS:
-#    - '"-Xmx2048m $CATALINA_OPTS"'
+docker_tomcat_module::setenv_entries:
+  CATALINA_OPTS:
+    - '"-Xmx2048m $CATALINA_OPTS"'
 
 docker_tomcat_module::tomcat_libraries:
   - http://artifactory.fdc.fs.usda.gov/artifactory/ext-release-local/com/oracle/ojdbc6/1.0.0/ojdbc6-1.0.0.jar
