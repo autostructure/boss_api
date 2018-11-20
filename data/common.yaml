@@ -1,10 +1,7 @@
 ---
-docker_tomcat_module::environment_vars:
-  - DATABASE_USERNAME
-  - DATABASE_PASSWORD
-  - DATABASE_URL
+docker_tomcat_module::environment_vars: []
 
-docker_tomcat_module::setenv_entries:
+docker_tomcat_module::setenv_entries: {}
 #  CATALINA_OPTS:
 #    - '"-Xmx2048m $CATALINA_OPTS"'
 
