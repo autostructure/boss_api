@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: boss
-        image: docker.fs.usda.gov/ead/boss_dev:$POM_VERSION
+        image: docker.fs.usda.gov/ead/boss_api_development:$POM_VERSION
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
