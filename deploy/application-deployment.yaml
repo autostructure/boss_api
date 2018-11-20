@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: boss
-  namespace: fia
+  namespace: ead
 spec:
   replicas: 1
   template:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: boss
-        image: docker.fs.usda.gov/fia/boss_development:$POM_VERSION
+        image: docker.fs.usda.gov/ead/boss_api_development:$POM_VERSION
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -52,7 +52,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: boss-svc
-  namespace: <org-name>
+  namespace: ead
 spec:
   # In a production setup, we recommend accessing Grafana through an external Loadbalancer
   # or through a public IP.
@@ -63,7 +63,7 @@ spec:
   - name: http
     protocol: TCP
     port: 8080
-    nodePort: <assigned NodePort>
+    nodePort: 32905
   selector:
     app: boss
     tier: frontend
