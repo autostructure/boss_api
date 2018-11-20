@@ -26,7 +26,7 @@ public class ReportsFileBuilder {
         CSV, XLSX, PDF
     };
 
-    private FileType fileType;
+    private final FileType fileType;
 
     public ReportsFileBuilder(FileType fileType) {
         this.fileType = fileType;
@@ -55,17 +55,16 @@ public class ReportsFileBuilder {
                 // CSV Report
                 csvsb.append(headers).append(newline);
 
-                for (BudgetSummaryRow summaryRow : reportList) {
-                    String csvrow = String.join(",", Arrays.asList(
-                            summaryRow.getJobCode(),
-                            summaryRow.getFiscalYear(),
-                            summaryRow.getDescription(),
-                            summaryRow.getOperating(),
-                            summaryRow.getObligated(),
-                            summaryRow.getBalance()
-                    ));
+                reportList.stream().map((summaryRow) -> String.join(",", Arrays.asList(
+                        summaryRow.getJobCode(),
+                        summaryRow.getFiscalYear(),
+                        summaryRow.getDescription(),
+                        summaryRow.getOperating(),
+                        summaryRow.getObligated(),
+                        summaryRow.getBalance()
+                ))).forEachOrdered((csvrow) -> {
                     csvsb.append(csvrow).append(newline);
-                }
+            });
 
                 String csvrow = String.join(",", Arrays.asList(
                         "Totals",
@@ -86,6 +85,7 @@ public class ReportsFileBuilder {
                 File fileCSV = new File(fileNameCSV);
 
                 return fileCSV;
+
 
             case PDF:
 
@@ -111,18 +111,18 @@ public class ReportsFileBuilder {
                 
                 List<BudgetSummaryRow> rows = report.getRows();
 
-                for(BudgetSummaryRow r : rows) {
+                rows.stream().map((r) -> {
                     List<String> rl = new ArrayList<>();
-
                     rl.add(r.getJobCode());
                     rl.add(r.getFiscalYear());
                     rl.add(r.getDescription());
                     rl.add(r.getOperating());
                     rl.add(r.getObligated());
                     rl.add(r.getBalance());
-
-                    pdfdata.add(rl);
-                }
+                return rl;
+            }).forEachOrdered((rl) -> {
+                pdfdata.add(rl);
+            });
 
                 List<String> totals = new ArrayList<>();
 
@@ -146,6 +146,7 @@ public class ReportsFileBuilder {
                 doc.close();
 
                 return pdf;
+
 
             case XLSX:
 
@@ -258,19 +259,17 @@ public class ReportsFileBuilder {
                 // CSV Report
                 csvsb.append(headers).append(newline);
 
-                for (PayrollDetailsRow detailsRow : reportList) {
-                    String csvrow = String.join(",", Arrays.asList(
-                            detailsRow.getSection(),
-                            detailsRow.getName(),
-                            Integer.valueOf(detailsRow.getPpLeft()).toString(),
-                            NumberFormat.getCurrencyInstance().format(detailsRow.getRegPayPerPP()),
-                            NumberFormat.getCurrencyInstance().format(detailsRow.getRegPayToDate()),
-                            NumberFormat.getCurrencyInstance().format(detailsRow.getOvertimeToDate()),
-                            NumberFormat.getCurrencyInstance().format(detailsRow.getRegPayForecast()),
-                            NumberFormat.getCurrencyInstance().format(detailsRow.getTotalFYForecast())
-                    ));
+                reportList.stream().map((detailsRow) -> String.join(",", Arrays.asList(detailsRow.getSection(),
+                        detailsRow.getName(),
+                        Integer.toString(detailsRow.getPpLeft()),
+                        NumberFormat.getCurrencyInstance().format(detailsRow.getRegPayPerPP()),
+                        NumberFormat.getCurrencyInstance().format(detailsRow.getRegPayToDate()),
+                        NumberFormat.getCurrencyInstance().format(detailsRow.getOvertimeToDate()),
+                        NumberFormat.getCurrencyInstance().format(detailsRow.getRegPayForecast()),
+                        NumberFormat.getCurrencyInstance().format(detailsRow.getTotalFYForecast())
+                ))).forEachOrdered((csvrow) -> {
                     csvsb.append(csvrow).append(newline);
-                }
+            });
 
                 String csvrow = String.join(",", Arrays.asList(
                         "Totals",
@@ -294,6 +293,7 @@ public class ReportsFileBuilder {
 
                 return fileCSV;
 
+
             case PDF:
 
                 //Initialize Document
@@ -315,13 +315,15 @@ public class ReportsFileBuilder {
 
                 List<List> pdfdata = new ArrayList<>();
                 pdfdata.add(headers);
+                
+                List<PayrollDetailsRow> rows = report.getRows();
 
                 report.getRows().forEach(r -> {
                     List<String> rl = new ArrayList<>();
 
                     rl.add(r.getSection());
                     rl.add(r.getName());
-                    rl.add(Integer.valueOf(r.getPpLeft()).toString());
+                    rl.add(Integer.toString(r.getPpLeft()));
                     rl.add(NumberFormat.getCurrencyInstance().format(r.getRegPayPerPP()));
                     rl.add(NumberFormat.getCurrencyInstance().format(r.getRegPayToDate()));
                     rl.add(NumberFormat.getCurrencyInstance().format(r.getOvertimeToDate()));
@@ -385,7 +387,7 @@ public class ReportsFileBuilder {
                                     cell.setCellValue(reportList.get(i).getName());
                                     break;
                                 case 2:
-                                    cell.setCellValue(Integer.valueOf(reportList.get(i).getPpLeft()).toString());
+                                    cell.setCellValue(Integer.toString(reportList.get(i).getPpLeft()));
                                     break;
                                 case 3:
                                     cell.setCellValue(NumberFormat.getCurrencyInstance().format(reportList.get(i).getRegPayPerPP()));
