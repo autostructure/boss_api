@@ -36,7 +36,7 @@ node {
   stage('Build Container') {
     docker.withRegistry('https://docker.fs.usda.gov', 'docker_registry') {
 
-      def image = docker.build("docker.fs.usda.gov/fia/boss_dev:${env.POM_VERSION}", '--no-cache --pull .')
+      def image = docker.build("docker.fs.usda.gov/ead/boss_dev:${env.POM_VERSION}", '--no-cache --pull .')
 
       image.push()
     }
@@ -44,7 +44,7 @@ node {
 
   stage('Push to cluster') {
      //sh "/usr/local/bin/kubectl set image deployment/boss boss=docker.fs.usda.gov/fia/boss:${env.BUILD_NUMBER}"
-     kubernetesDeploy configs: 'deploy/dev-boss.yaml', kubeConfig: [path: ''], kubeconfigId: 'kube_config', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+     kubernetesDeploy configs: 'deploy/application-deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kube_config_ead', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
   }
 
   stage('Cleanup Docker') {
