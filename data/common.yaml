@@ -1,12 +1,9 @@
 ---
-docker_tomcat_module::environment_vars:
-  - DATABASE_USERNAME
-  - DATABASE_PASSWORD
-  - DATABASE_URL
+docker_tomcat_module::environment_vars: []
 
 docker_tomcat_module::setenv_entries:
-#  CATALINA_OPTS:
-#    - '"-Xmx2048m $CATALINA_OPTS"'
+  CATALINA_OPTS:
+    - '"-Xmx2048m $CATALINA_OPTS"'
 
 docker_tomcat_module::tomcat_libraries:
   - http://artifactory.fdc.fs.usda.gov/artifactory/ext-release-local/com/oracle/ojdbc6/1.0.0/ojdbc6-1.0.0.jar
@@ -69,7 +66,7 @@ docker_tomcat_module::context_resources: {}
 
 docker_tomcat_module::context_resourcelinks: {}
 
-docker_tomcat_module::wars: {}
+docker_tomcat_module::wars:
   boss.war:
     catalina_base: *catalina_home
-    war_source: https://artifactory.fdc.fs.usda.gov/artifactory/libs-snapshot-local/gov/usda/fs/fia/boss/snapshot_version/boss-snapshot_version.war
+    war_source: https://artifactory.fdc.fs.usda.gov/artifactory/libs-snapshot-local/gov/usda/fs/ead/boss_api/snapshot_version/boss_api-snapshot_version.war

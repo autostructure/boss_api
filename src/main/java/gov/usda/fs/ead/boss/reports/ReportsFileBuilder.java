@@ -108,8 +108,10 @@ public class ReportsFileBuilder {
 
                 List<List> pdfdata = new ArrayList<>();
                 pdfdata.add(headers);
+                
+                List<BudgetSummaryRow> rows = report.getRows();
 
-                report.getRows().forEach(r -> {
+                for(BudgetSummaryRow r : rows) {
                     List<String> rl = new ArrayList<>();
 
                     rl.add(r.getJobCode());
@@ -120,7 +122,7 @@ public class ReportsFileBuilder {
                     rl.add(r.getBalance());
 
                     pdfdata.add(rl);
-                });
+                }
 
                 List<String> totals = new ArrayList<>();
 

@@ -21,7 +21,7 @@ node {
 
   stage('Package') {
     // Run Maven:
-    def buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean package checkstyle:checkstyle findbugs:findbugs cobertura:cobertura pmd:pmd install'
+    def buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean package checkstyle:checkstyle findbugs:findbugs pmd:pmd install'
 
     buildInfo.append(buildInfoInstall)
 
