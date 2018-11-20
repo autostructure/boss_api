@@ -63,7 +63,7 @@ spec:
   - name: http
     protocol: TCP
     port: 8080
-    nodePort: 32906
+    nodePort: 32905
   selector:
     app: boss
     tier: frontend
