@@ -17,36 +17,8 @@ spec:
         image: docker.fs.usda.gov/ead/boss_api_development:$BUILD_NUMBER
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 8090
           protocol: TCP
-        volumeMounts:
-        - mountPath: /usr/local/tomcat/logs
-          name: boss-logs
-          readOnly: false
-        - mountPath: /usr/local/tomcat/work
-          name: boss-work
-          readOnly: false
-        env:
-        - name: DATABASE_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: boss-db-secret
-              key: username
-        - name: DATABASE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: boss-db-secret
-              key: password
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: boss-db-secret
-              key: connection-string
-      volumes:
-        - name: boss-logs
-          emptyDir: {}
-        - name: boss-work
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
@@ -62,7 +34,7 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8080
+    port: 8090
     nodePort: 32908
   selector:
     app: boss
