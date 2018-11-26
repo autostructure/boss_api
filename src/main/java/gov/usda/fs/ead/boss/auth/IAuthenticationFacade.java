@@ -1,4 +1,4 @@
-package gov.usda.fs.ead.boss.saml;
+package gov.usda.fs.ead.boss.auth;
 
 import org.springframework.security.core.Authentication;
 

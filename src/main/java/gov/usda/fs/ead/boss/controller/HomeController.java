@@ -1,6 +1,6 @@
 package gov.usda.fs.ead.boss.controller;
 
-import gov.usda.fs.ead.boss.saml.IsAppUser;
+import gov.usda.fs.ead.boss.auth.IsAppUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

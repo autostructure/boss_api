@@ -1,4 +1,4 @@
-package gov.usda.fs.ead.boss.saml;
+package gov.usda.fs.ead.boss.auth;
 
 import gov.usda.fs.ead.boss.model.EmployeeProfile;
 import gov.usda.fs.ead.boss.repository.EmployeeProfileRepository;
