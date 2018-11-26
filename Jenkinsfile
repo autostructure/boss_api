@@ -36,7 +36,7 @@ node {
   stage('Build Container') {
     docker.withRegistry('https://docker.fs.usda.gov', 'docker_registry') {
 
-      def image = docker.build("docker.fs.usda.gov/ead/boss_api_development:${env.POM_VERSION}", '--no-cache --pull .')
+      def image = docker.build("docker.fs.usda.gov/ead/boss_api_development:${env.BUILD_NUMBER}", '--no-cache --pull .')
 
       image.push()
     }
