@@ -17,7 +17,7 @@ spec:
         image: docker.fs.usda.gov/ead/boss_api_development:$BUILD_NUMBER
         imagePullPolicy: Always
         ports:
-        - containerPort: 8090
+        - containerPort: 8080
           protocol: TCP
 ---
 apiVersion: v1
@@ -34,7 +34,7 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8090
+    port: 8080
     nodePort: 32908
   selector:
     app: boss
