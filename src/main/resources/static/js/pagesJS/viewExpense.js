@@ -1,4 +1,4 @@
-var api = "localhost:8090/expense";
+var api = "localhost:8080/expense";
 
 // ONCE WE LOAD SOME DATA, NEED TO TURN AJAX URL AND REMOVE VAR
 

@@ -11,7 +11,7 @@ var testData = [{
     "vJobCode": "JRB1231"
 }
 ];
-api = 'http://localhost:8090'
+api = 'http://localhost:8080'
 $(document).ready(function () {
 
     // populating the jquery datatable from api using ajax
