@@ -25,14 +25,14 @@
 
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img data-toggle="tooltip" data-html="true" title="Insect and Disease Training at start of field season. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Wyoming. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/employees.jpg" alt="Banner Image"/>
+                                    <img data-toggle="tooltip" data-html="true" title="Insect and Disease Training at start of field season. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Wyoming. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/employees.jpg" alt="Banner Image/boss/>
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLink"href="/hrDash">HR Dashboard |</a>
-                                                <a class="breadcrumbLinkMain"href="/addTrainingEmployee">Add Training by Employee</a>
+                                                <a class="breadcrumbLink"href=/boss/home">Dashboard |</a>
+                                                <a class="breadcrumbLink"href=/boss/hrDash">HR Dashboard |</a>
+                                                <a class="breadcrumbLinkMain"href=/boss/addTrainingEmployee">Add Training by Employee</a>
                                             </p>
                                         </div>
                                     </div>

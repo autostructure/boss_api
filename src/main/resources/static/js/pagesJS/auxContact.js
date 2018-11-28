@@ -1,4 +1,4 @@
-api = 'http://localhost:8080'
+api = '/boss/'
 $(document).ready(function () {
 
     // populating the jquery datatable from api using ajax

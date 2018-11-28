@@ -21,7 +21,7 @@ $(document).ready(function() {
     
     function updateProfilePicture() {
         $.ajax({
-            'url': 'employeeProfile/' + userId,
+            'url': '/boss/employeeProfile/' + userId,
             'type': 'GET',
             'success': function(json) {
                 var photoId = json.profilePicture;

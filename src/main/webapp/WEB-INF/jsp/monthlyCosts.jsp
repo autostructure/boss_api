@@ -4,13 +4,13 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href=/boss/img/favicons/favicon.ico" type="image/x-icon">
         <title>FIA-BOSS</title>
-        <link rel="stylesheet" href="/css/ead.min.css">
-        <link rel="stylesheet" href="/css/pagesCSS/all.css">
+        <link rel="stylesheet" href=/boss/css/ead.min.css">
+        <link rel="stylesheet" href=/boss/css/pagesCSS/all.css">
         <!-- <link rel="stylesheet" href="css/pagesCSS/hrDash.css"> -->
-        <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
-        <link rel="stylesheet" href="/css/pagesCSS/fleetPages.css">
+        <link rel="stylesheet" href=/boss/css/bootstrap-datepicker3.css">
+        <link rel="stylesheet" href=/boss/css/pagesCSS/fleetPages.css">
     </head>
 
     <body class="layout-demo">
@@ -26,15 +26,15 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <!-- <img data-toggle="tooltip" data-html="true" title="An aspen stand in Utah. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/birch.jpg" alt="Banner Image"/> -->
-                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image"/>
+                        <!-- <img data-toggle="tooltip" data-html="true" title="An aspen stand in Utah. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/birch.jpg" alt="Banner Image/boss/> -->
+                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image/boss/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLink"href="/fleetDash">Fleet Dashboard |</a>
-                                <a class="breadcrumbLinkMainFleet"href="/monthlyCosts">Monthly Costs</a>
+                                <a class="breadcrumbLink"href=/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLink"href=/boss/fleetDash">Fleet Dashboard |</a>
+                                <a class="breadcrumbLinkMainFleet"href=/boss/monthlyCosts">Monthly Costs</a>
                             </p>
                         </div>
                     </div>
@@ -155,12 +155,12 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="/js/ead.min.js"></script>
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
-        <script src="/js/pagesJS/customFormFunctions.js"></script>
-        <script src="/js/pagesJS/monthlyCosts.js"></script>
-        <script src="/js/pagesJS/mainFleetPages.js"></script>
+        <script src=/boss/js/ead.min.js"></script>
+        <script src=/boss/js/bootstrap-datepicker.js"></script>
+        <script src=/boss/js/pagesJS/bootstrapFieldWriter.js"></script>
+        <script src=/boss/js/pagesJS/customFormFunctions.js"></script>
+        <script src=/boss/js/pagesJS/monthlyCosts.js"></script>
+        <script src=/boss/js/pagesJS/mainFleetPages.js"></script>
 
 
 

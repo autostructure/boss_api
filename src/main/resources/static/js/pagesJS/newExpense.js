@@ -3,7 +3,7 @@
 
 
 
-var api = 'http://localhost:8080';
+var api = '/boss/';
 $(document).ready(function () {
 
 

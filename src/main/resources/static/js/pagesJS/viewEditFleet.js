@@ -148,19 +148,19 @@ forms.find('input:not([disabled]):not([type=submit]), textarea, select').each(fu
 
 $('#monthlyUsage').on('click', function(){
     window.location.assign('/boss/iwfia/'+ id);
-})
+});
 
 $('#maintenance').on('click', function(){
     window.location.assign('/boss/FleetMaintenaceList');
-})
+});
 
 $('#monthlyCostss').on('click', function(){
     window.location.assign('/boss/monthlyCosts/' + id);
-})
+});
 
 $('#outOfService').on('click', function(){
     window.location.assign('/boss/monthsNotUsed/' + id);
-})
+});
 
 
 
@@ -271,19 +271,19 @@ var fields = {
             "fieldName":"fcpin", //missing from api
             "title":"Card Pin Number",
             "type":"input/text",
-            "colspan":3,
+            "colspan":3
         },
         {
             "fieldName":"fccexp", //missing from api
             "title":"Expiration Date",
             "type":"input/date",
-            "colspan":3,
+            "colspan":3
         },
         {
             "fieldName":"fjobcode",  //missing from api
             "title":"Default Job Code",
             "type":"input/text",
-            "colspan":3,
+            "colspan":3
         }
 
     ],

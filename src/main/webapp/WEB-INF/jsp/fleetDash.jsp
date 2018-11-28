@@ -24,13 +24,13 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image"/>
+                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image/boss/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLinkMainFleet"href="/fleetDash">Property Management Dashboard</a>
+                                <a class="breadcrumbLink"href=/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLinkMainFleet"href=/boss/fleetDash">Property Management Dashboard</a>
                             </p>
                         </div>
                     </div>
@@ -52,10 +52,10 @@
                                         <div class="card-body">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <a href="/addNewFleet">Add New Fleet</a>                                  
+                                                    <a href=/boss/addNewFleet">Add New Fleet</a>                                  
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href="/viewFleet">View / Edit Fleet</a>  
+                                                    <a href=/boss/viewFleet">View / Edit Fleet</a>  
                                                 </li>
                                                 <li class="list-group-item">
                                                     <a href="#">Fleet Reports</a>  

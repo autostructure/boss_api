@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href=/boss/img/favicons/favicon.ico" type="image/x-icon">
     <title>FIA-BOSS</title>
-    <link rel="stylesheet" href="/css/ead.min.css">
-    <link rel="stylesheet" href="/css/pagesCSS/all.css">
-    <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
-    <link rel="stylesheet" href="/css/pagesCSS/empPortal.css">
-    <link rel="stylesheet" href="/css/modal.css">
-    <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
+    <link rel="stylesheet" href=/boss/css/ead.min.css">
+    <link rel="stylesheet" href=/boss/css/pagesCSS/all.css">
+    <link rel="stylesheet" href=/boss/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href=/boss/css/pagesCSS/empPortal.css">
+    <link rel="stylesheet" href=/boss/css/modal.css">
+    <link rel="stylesheet" href=/boss/css/pagesCSS/hrPages.css">
 
 </head>
 
@@ -60,15 +60,15 @@
                                 </div>
                                 <div class="col col-md-3" id="colEmployeePhoto">
                                     <a href="#Identification">
-                                        <img src="/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
+                                        <img src=/boss/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
                                         <p class="photoText">My Photo, Click to Edit</p>
                                     </a>
                                 </div>
                                 <div class="col col-md-4" id="colEmployeePhoto2">
-                                    <form method="POST" enctype="multipart/form-data" action="/profilePicture?employeeId=">
+                                    <form method="POST" enctype="multipart/form-data" action=/boss/profilePicture?employeeId=">
                                     <label for="formIdentificationInfo_employeePhoto">
                                         <input type="file" name="file" id="formIdentificationInfo_employeePhoto">
-                                        <img src="/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
+                                        <img src=/boss/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
                                     </label>
                                     </form>
                                 </div>
@@ -194,7 +194,7 @@
                                             <span id="certificate_list"></span>
                                             <hr>
                                             <p>Add a document for the class "<span class='trainingCourse'></span>" for the employee <span class='employeeName'></span>?</p>
-                                            <form id="form_training_upload" method="POST" enctype="multipart/form-data" action="/certificate?trainingId=">
+                                            <form id="form_training_upload" method="POST" enctype="multipart/form-data" action=/boss/certificate?trainingId=">
                                                 <input name='id' class='trainingId' hidden>
                                                 <label for="form_training_upload_file">
                                                     <input type="file" name="file" id="form_training_upload_file">
@@ -328,12 +328,12 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="/js/ead.min.js"></script>
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/pagesJS/customFormFunctions.js"></script>
-        <script src="/js/pagesJS/empPortal.js"></script>
-        <script src="/js/pagesJS/personnelPages.js"></script>
-        <script src="/js/pagesJS/ApiCalls.js"></script>
+        <script src=/boss/js/ead.min.js"></script>
+        <script src=/boss/js/bootstrap-datepicker.js"></script>
+        <script src=/boss/js/pagesJS/customFormFunctions.js"></script>
+        <script src=/boss/js/pagesJS/empPortal.js"></script>
+        <script src=/boss/js/pagesJS/personnelPages.js"></script>
+        <script src=/boss/js/pagesJS/ApiCalls.js"></script>
 </body>
 
 </html>

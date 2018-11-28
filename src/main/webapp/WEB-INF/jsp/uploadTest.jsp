@@ -168,12 +168,12 @@
             });
 
         </script>
-        <script src="/js/ead.min.js"></script>
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/pagesJS/customFormFunctions.js"></script>
-        <script src="/js/pagesJS/editEmployee.js"></script>
-        <script src="/js/pagesJS/uploadTest.js"></script>
-        <script src="/js/pagesJS/ApiCalls.js"></script>
+        <script src=/boss/js/ead.min.js"></script>
+        <script src=/boss/js/bootstrap-datepicker.js"></script>
+        <script src=/boss/js/pagesJS/customFormFunctions.js"></script>
+        <script src=/boss/js/pagesJS/editEmployee.js"></script>
+        <script src=/boss/js/pagesJS/uploadTest.js"></script>
+        <script src=/boss/js/pagesJS/ApiCalls.js"></script>
     </body>
 
 </html>

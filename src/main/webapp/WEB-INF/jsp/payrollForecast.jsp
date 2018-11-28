@@ -20,7 +20,7 @@
                 <nav id="sidebar"></nav>
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img src="../../img/mountain.jpg" alt="Banner Image"/>
+                        <img src="../../img/mountain.jpg" alt="Banner Image/boss/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">

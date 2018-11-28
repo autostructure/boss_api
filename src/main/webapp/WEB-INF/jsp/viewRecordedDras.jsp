@@ -4,12 +4,12 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href=/boss/img/favicons/favicon.ico" type="image/x-icon">
         <title>FIA-BOSS</title>
-        <link rel="stylesheet" href="/css/ead.min.css">
-        <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
-        <link rel="stylesheet" href="/css/pagesCSS/all.css">
-        <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
+        <link rel="stylesheet" href=/boss/css/ead.min.css">
+        <link rel="stylesheet" href=/boss/css/bootstrap-datepicker3.css">
+        <link rel="stylesheet" href=/boss/css/pagesCSS/all.css">
+        <link rel="stylesheet" href=/boss/css/pagesCSS/hrPages.css">
     </head>
 
     <body class="layout-demo">
@@ -32,9 +32,9 @@
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/viewRecordedDras">View All DRAs</a>
+                                <a class="breadcrumbLink"href=/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLink"href=/boss/personnelDash">Personnel Dashboard |</a>
+                                <a class="breadcrumbLinkMain"href=/boss/viewRecordedDras">View All DRAs</a>
                             </p>
                         </div>
                     </div>
@@ -147,11 +147,11 @@
         </footer>
         <script src="js/ead.min.js"></script>
 
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/pagesJS/customFormFunctions.js"></script>
-        <script src="/js/pagesJS/ApiCalls.js"></script>
-        <script src="/js/pagesJS/ViewRecordedDras.js"></script>
-        <script src="/js/pagesJS/personnelPages.js"></script>
+        <script src=/boss/js/bootstrap-datepicker.js"></script>
+        <script src=/boss/js/pagesJS/customFormFunctions.js"></script>
+        <script src=/boss/js/pagesJS/ApiCalls.js"></script>
+        <script src=/boss/js/pagesJS/ViewRecordedDras.js"></script>
+        <script src=/boss/js/pagesJS/personnelPages.js"></script>
 
     </body>
 

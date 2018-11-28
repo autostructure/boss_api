@@ -1,4 +1,4 @@
-var api = "http://localhost:8080";
+var api = "/boss/";
 
 function makeAjaxCall(_url, methodType, _data) {
     var promiseObj = new Promise(function (resolve, reject) {

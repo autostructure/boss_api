@@ -11,7 +11,7 @@ var testData = [{
     "vJobCode": "JRB1231"
 }
 ];
-api = 'http://localhost:8090'
+api = '/boss';
 
 // displaying the current vehicle information on IWFIA page
 var id = window.location.pathname.split("/")[2];

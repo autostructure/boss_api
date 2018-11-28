@@ -24,13 +24,13 @@
 
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img class="bannerImg" src="../../img/employees.jpg" alt="Banner Image"/>
+                                    <img class="bannerImg" src="../../img/employees.jpg" alt="Banner Image/boss/>
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLinkMain"href="/personnelDash">Personnel Dashboard</a>
+                                                <a class="breadcrumbLink"href=/boss/home">Dashboard |</a>
+                                                <a class="breadcrumbLinkMain"href=/boss/personnelDash">Personnel Dashboard</a>
                                             </p>
                                         </div>
                                     </div>
@@ -52,13 +52,13 @@
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="/viewAllEmployees">View All Employees</a>                                
+                                                              <a href=/boss/viewAllEmployees">View All Employees</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/addNewEmployee">Add New Employee</a>
+                                                              <a href=/boss/addNewEmployee">Add New Employee</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/auxContact">Supplemental Phone Numbers</a>
+                                                              <a href=/boss/auxContact">Supplemental Phone Numbers</a>
                                                           </li>                                                          
                                                       </ul>
                                                     </div>
@@ -72,9 +72,9 @@
                                                     </div>                                                    
                                                     <div class="card-body">
                                                       <ul class="list-group">
-                                                        <li class="list-group-item"><a href="/addTrainingEmployee">Record Employee Training</a></li>
-                                                        <li class="list-group-item"><a href="/viewTraining">View All Training</a></li>
-                                                        <li class="list-group-item"><a href="/addTrainingClass">Training Courses</a></li>
+                                                        <li class="list-group-item"><a href=/boss/addTrainingEmployee">Record Employee Training</a></li>
+                                                        <li class="list-group-item"><a href=/boss/viewTraining">View All Training</a></li>
+                                                        <li class="list-group-item"><a href=/boss/addTrainingClass">Training Courses</a></li>
                                                       </ul>
                                                     </div>
                                                 </div>
@@ -88,13 +88,13 @@
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="/addDraEmployee">Record Employee DRA</a>                                
+                                                              <a href=/boss/addDraEmployee">Record Employee DRA</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/viewRecordedDras">View All DRA</a>
+                                                              <a href=/boss/viewRecordedDras">View All DRA</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                            <a href="/viewAllDras">DRA Courses</a>
+                                                            <a href=/boss/viewAllDras">DRA Courses</a>
                                                         </li>
                                                       </ul>
                                                     </div>

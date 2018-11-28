@@ -30,20 +30,20 @@
                                 <img src="img/budgetBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <a class="btn btn-link" href="/budgetDash">
+                                    <a class="btn btn-link" href=/boss/budgetDash">
                                         <h5 class="card-title">Budget</h5>
                                     </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseOne">
-                                    <p class="card-text"><a href="/newExpense">Create New Expense</a></p>
-                                    <p class="card-text"><a href="/viewExpense">View Expenses</a></p>
-                                    <p class="card-text"><a href="/jobCodes">Job Codes</a></p>
-                                    <p class="card-text"><a href="/budgetSummary">Budget Summary</a></p>
-                                    <p class="card-text"><a href="/payrollDetails">Payroll</a></p>
-                                    <p class="card-text"><a href="/unverifiedReport">Verification Report</a></p>
+                                    <p class="card-text"><a href=/boss/newExpense">Create New Expense</a></p>
+                                    <p class="card-text"><a href=/boss/viewExpense">View Expenses</a></p>
+                                    <p class="card-text"><a href=/boss/jobCodes">Job Codes</a></p>
+                                    <p class="card-text"><a href=/boss/budgetSummary">Budget Summary</a></p>
+                                    <p class="card-text"><a href=/boss/payrollDetails">Payroll</a></p>
+                                    <p class="card-text"><a href=/boss/unverifiedReport">Verification Report</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href=/boss/budgetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -54,19 +54,19 @@
                                 <img src="img/propBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <a class="btn btn-link" href="/fleetDash">
+                                    <a class="btn btn-link" href=/boss/fleetDash">
                                         <h5 class="card-title">Property<br>Mgmt</h5>
                                     </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseTwo">
-                                    <p class="card-text"><a href="/addNewFleet">Add New Fleet Vehicle</a></p>
-                                    <p class="card-text"><a href="/viewFleet">View / Edit Fleet</a></p>
+                                    <p class="card-text"><a href=/boss/addNewFleet">Add New Fleet Vehicle</a></p>
+                                    <p class="card-text"><a href=/boss/viewFleet">View / Edit Fleet</a></p>
                                     <p class="card-text"><a href="#">Field Equip Electronic</a></p>
                                     <p class="card-text"><a href="#">ID Cards/Keys</a></p>
                                     <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/fleetDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href=/boss/fleetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -77,21 +77,21 @@
                                 <img src="img/hrBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <a class="btn btn-link" href="/personnelDash">
+                                    <a class="btn btn-link" href=/boss/personnelDash">
                                         <h5 class="card-title">Personnel<br></h5>
                                     </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseThree">
-                                    <p class="card-text"><a href="/viewAllEmployees">View All Employees</a></p>
-                                    <p class="card-text"><a href="/addNewEmployee">Add New Employee</a></p>
-                                    <p class="card-text"><a href="/addTrainingEmployee">Record Employee Training</a></p>
-                                    <p class="card-text"><a href="/viewTraining">View All Training</a></p>
-                                    <p class="card-text"><a href="/addTrainingClass">Training Courses</a></p>
-                                    <p class="card-text"><a href="/addDraEmployee">Record Employee DRA</a></p>
-                                    <p class="card-text"><a href="/auxContact">Auxiliary Contact List</a></p>
+                                    <p class="card-text"><a href=/boss/viewAllEmployees">View All Employees</a></p>
+                                    <p class="card-text"><a href=/boss/addNewEmployee">Add New Employee</a></p>
+                                    <p class="card-text"><a href=/boss/addTrainingEmployee">Record Employee Training</a></p>
+                                    <p class="card-text"><a href=/boss/viewTraining">View All Training</a></p>
+                                    <p class="card-text"><a href=/boss/addTrainingClass">Training Courses</a></p>
+                                    <p class="card-text"><a href=/boss/addDraEmployee">Record Employee DRA</a></p>
+                                    <p class="card-text"><a href=/boss/auxContact">Auxiliary Contact List</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/personnelDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href=/boss/personnelDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                                     <p class="card-text"><a href="#">Reports</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/budgetDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href=/boss/budgetDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>
@@ -125,19 +125,19 @@
                                 <img src="img/empBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <a class="btn btn-link" href="/empDash">
+                                    <a class="btn btn-link" href=/boss/empDash">
                                         <h5 class="card-title">Employee<br>Portal</h5>
                                     </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseFive">
-                                    <p class="card-text"><a href="/empPortal">My Profile</a></p>
-                                    <p class="card-text"><a href="/empPortal">Emergency Contact</a></p>
-                                    <p class="card-text"><a href="/empPortal">Check In / Check Out</a></p>
-                                    <p class="card-text"><a href="/empPortal">Vehicle</a></p>
-                                    <p class="card-text"><a href="/empPortal">Training / Certs</a></p>
+                                    <p class="card-text"><a href=/boss/empPortal">My Profile</a></p>
+                                    <p class="card-text"><a href=/boss/empPortal">Emergency Contact</a></p>
+                                    <p class="card-text"><a href=/boss/empPortal">Check In / Check Out</a></p>
+                                    <p class="card-text"><a href=/boss/empPortal">Vehicle</a></p>
+                                    <p class="card-text"><a href=/boss/empPortal">Training / Certs</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/empDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href=/boss/empDash">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>

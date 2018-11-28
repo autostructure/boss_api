@@ -25,7 +25,7 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image"/>
+                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image/boss/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">

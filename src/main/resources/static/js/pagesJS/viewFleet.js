@@ -1,6 +1,6 @@
        
 var url = '/boss/vehicle';
-var API = 'http://localhost:8080';
+var API = '/boss/';
 
 $(document).ready(function () {
 

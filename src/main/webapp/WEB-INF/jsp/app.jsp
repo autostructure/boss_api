@@ -61,7 +61,7 @@
                                                 <c:forEach var="attribute" items="${credential.attributes}">
                                                     <tr>
                                                         <td width="200">
-                                                            <strong><c:out value="${attribute.name}"/></strong><c:if test="${not empty attribute.friendlyName}"> (<c:out value="${attribute.friendlyName}"/>)</c:if>
+                                                            <strong><c:out value="${attribute.name}/boss/></strong><c:if test="${not empty attribute.friendlyName}"> (<c:out value="${attribute.friendlyName}/boss/>)</c:if>
                                                             </td>
                                                             <td>
                                                             <%
@@ -70,7 +70,7 @@
                                                                 pageContext.setAttribute("attributeValues", attributeValues);
                                                             %>
                                                             <c:forEach var="attributeValue" items="${attributeValues}">
-                                                                <c:out value="${attributeValue}"/>&nbsp;
+                                                                <c:out value="${attributeValue}/boss/>&nbsp;
                                                             </c:forEach>
                                                         </td>
                                                     </tr>
@@ -85,17 +85,17 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <textarea style="height: 400px" disabled="disabled"><c:out value="${assertion}"/></textarea>
+                                                            <textarea style="height: 400px" disabled="disabled"><c:out value="${assertion}/boss/></textarea>
                                                         </td>
                                                     </tr>
                                                 </table>
                                                 <div>
-                                                    <form class="left" action="<c:url value="/saml/logout"/>" method="get">
-                                                        <input type="submit" value="Global Logout" class="button"/>
+                                                    <form class="left" action="<c:url value=/boss/saml/logout/boss/>" method="get">
+                                                        <input type="submit" value="Global Logout" class="button/boss/>
                                                     </form>
-                                                    <form class="left" action="<c:url value="/saml/logout"/>" method="get">
-                                                        <input type="hidden" name="local" value="true"/>
-                                                        <input type="submit" value="Local Logout" class="button"/>
+                                                    <form class="left" action="<c:url value=/boss/saml/logout/boss/>" method="get">
+                                                        <input type="hidden" name="local" value="true/boss/>
+                                                        <input type="submit" value="Local Logout" class="button/boss/>
                                                     </form>
                                                 </div>
                                                 </div>
