@@ -24,13 +24,13 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image/boss/>
+                        <img class="bannerImg" src="/boss/img/fleetBG.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href=/boss/home">Dashboard |</a>
-                                <a class="breadcrumbLinkMainFleet"href=/boss/fleetDash">Property Management Dashboard</a>
+                                <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLinkMainFleet" href="/boss/fleetDash">Property Management Dashboard</a>
                             </p>
                         </div>
                     </div>
@@ -45,17 +45,17 @@
                             <div class="row padTop">
                                 <div class="col">
                                     <div class="card">
-                                        <img class="card-img-top" src="../../img/fleet1.jpg" alt="Card image cap">
+                                        <img class="card-img-top" src="/boss/img/fleet1.jpg" alt="Card image cap">
                                         <div class="card-header">
                                             <h5 class="card-header-title">Fleet</h5>
                                         </div>
                                         <div class="card-body">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <a href=/boss/addNewFleet">Add New Fleet</a>                                  
+                                                    <a href="/boss/addNewFleet">Add New Fleet</a>                                  
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href=/boss/viewFleet">View / Edit Fleet</a>  
+                                                    <a href="/boss/viewFleet">View / Edit Fleet</a>  
                                                 </li>
                                                 <li class="list-group-item">
                                                     <a href="#">Fleet Reports</a>  
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="card">
-                                        <img class="card-img-top" src="../../img/oper1.jpg" alt="Card image cap">
+                                        <img class="card-img-top" src="/boss/img/oper1.jpg" alt="Card image cap">
                                         <div class="card-header">
                                             <h5 class="card-header-title">Operator Licenses</h5>
                                         </div>                                                    
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="card">
-                                        <img class="card-img-top" src="../../img/equip1.jpg" alt="Card image cap">
+                                        <img class="card-img-top" src="/boss/img/equip1.jpg" alt="Card image cap">
                                         <div class="card-header">
                                             <h5 class="card-header-title">Equipment</h5>
                                         </div>                                                    
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="card">
-                                        <img class="card-img-top" src="../../img/phone1.jpg" alt="Card image cap">
+                                        <img class="card-img-top" src="/boss/img/phone1.jpg" alt="Card image cap">
                                         <div class="card-header">
                                             <h5 class="card-header-title">Phones</h5>
                                         </div>                                                    
@@ -158,8 +158,8 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="js/ead.min.js"></script>
-        <script src="js/pagesJS/mainFleetPages.js"></script>
+        <script src="/boss/js/ead.min.js"></script>
+        <script src="/boss/js/pagesJS/mainFleetPages.js"></script>
 
     </body>
 

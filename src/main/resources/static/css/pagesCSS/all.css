@@ -1,11 +1,11 @@
 /* GENERAL STYLES */
 @font-face {
     font-family: mainFont;
-    src: url("../../fonts/Roboto-Regular.ttf");
+    src: url("/boss/fonts/Roboto-Regular.ttf");
 }
 @font-face {
     font-family: lightFont;
-    src: url("../../fonts/Roboto-Light.ttf");
+    src: url("/boss/fonts/Roboto-Light.ttf");
 }
 *{
     font-family: mainFont;

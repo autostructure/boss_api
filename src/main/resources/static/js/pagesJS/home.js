@@ -1,5 +1,5 @@
-$(mainHeader).load("../../templates/budgetHeader.html");
-$(mainFooter).load("../../templates/budgetFooter.html");
+$(mainHeader).load("/boss/templates/budgetHeader.html");
+$(mainFooter).load("/boss/templates/budgetFooter.html");
 
 // $('#collapseOne').addClass('show', $(window).width() > 800);
 if ($(window).width() < 960) {

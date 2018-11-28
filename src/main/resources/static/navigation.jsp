@@ -2,11 +2,11 @@
 <div id="header">
      <div id="top">
         <div class="left" id="logo">
-            <a href="<c:url value=/boss//boss/>"><img src="<c:url value=/boss/images/logo.png/boss/>" alt="" /></a>
+            <a href="<c:url value=/boss/>"><img src="<c:url value=/boss/images/logo.png/>" alt="" /></a>
         </div>
         <div class="left navigation" id="main-nav">
             <ul class="tabbed">
-                <li class="current-tab"><a href="<c:url value=/boss//boss/>">U.S. Forest Service Applications</a></li>
+                <li class="current-tab"><a href="<c:url value=/boss/>">U.S. Forest Service Applications</a></li>
             </ul>
             <div class="clearer">&nbsp;</div>
         </div>

@@ -1,6 +1,4 @@
 
-api = 'http://localhost:8090'
-
 // displaying the current vehicle information on IWFIA page
 var id = window.location.pathname.split("/")[2];
 if (id) {

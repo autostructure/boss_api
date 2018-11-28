@@ -24,14 +24,14 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img src="../../img/mountain.jpg" alt="Banner Image/boss/>
+                        <img src="/boss/img/mountain.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
-                                <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
-                                <a class="breadcrumbLinkMain"href="../payrollDetails.html">Employee Payroll Forecast</a>
+                                <a class="breadcrumbLink" href="../home/home.html">Dashboard |</a>
+                                <a class="breadcrumbLink" href="../budget/budgetDash.html">Budget |</a>
+                                <a class="breadcrumbLinkMain" href="../payrollDetails.html">Employee Payroll Forecast</a>
                             </p>
                         </div>
                     </div>
@@ -173,9 +173,9 @@
         </footer>
 
 
-        <script src="js/ead.min.js"></script>
-        <script src="js/pagesJS/mainPages.js"></script>
-        <script src="js/pagesJS/payrollDetails.js"></script>
+        <script src="/boss/js/ead.min.js"></script>
+        <script src="/boss/js/pagesJS/mainPages.js"></script>
+        <script src="/boss/js/pagesJS/payrollDetails.js"></script>
 
     </body>
 
