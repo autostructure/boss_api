@@ -45,7 +45,7 @@ public class EAuthFilter implements Filter {
         Object inProgress = servletRequest.getSession(true).getAttribute(EAuth.IN_PROGRESS);
         String reqURI = servletRequest.getRequestURI();
 
-        if (reqURI.endsWith("login") || reqURI.contains("simUser")) {
+        if (shallPass(reqURI)) {
             chain.doFilter(request, response);
             return;
         }
@@ -57,7 +57,7 @@ public class EAuthFilter implements Filter {
                 servletResponse.sendRedirect(redirect);
             } else {
                 reqURI = getMyUrl(servletRequest);
-                if (reqURI.endsWith("login") || reqURI.contains("simUser")) {
+                if (shallPass(reqURI)) {
                     // ...
                 } else {
                     servletRequest.getSession().setAttribute("javax.servlet.error.status_code", "403");
@@ -72,13 +72,18 @@ public class EAuthFilter implements Filter {
 
     private String getMyUrl(HttpServletRequest req) {
         String path = req.getContextPath();
-        LOG.info("Path======" + path);
         String xUrl = req.getRequestURL().toString();
-        LOG.info("xURL======" + xUrl);
         int i = xUrl.indexOf(path);
         path += "/auth/login";
-        String url = xUrl.substring(0, i) + path;
-        LOG.info("URL=======" + url);
-        return url;
+        return xUrl.substring(0, i) + path;
+    }
+
+    private boolean shallPass(String reqURI) {
+        return reqURI.endsWith("login") 
+                || reqURI.contains("simUser") 
+                || reqURI.contains("/css/")
+                || reqURI.contains("/js/ead.min.js")
+                || reqURI.endsWith("register")
+                || reqURI.endsWith("register/profile");
     }
 }

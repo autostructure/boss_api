@@ -16,6 +16,11 @@ public class HomeController {
     public String home2() {
         return "home";
     }
+    
+    @RequestMapping("/register")
+    public String register() {
+        return "register";
+    }
 
     
     @RequestMapping("/budgetDash")
