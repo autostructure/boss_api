@@ -181,9 +181,15 @@ public class HomeController {
     }
 
     @IsAppUser
-    @RequestMapping("/iwfia")
+    @RequestMapping("/iwfia/{id}")
     public String iwfia() {
         return "iwfia";
+    }
+
+    @IsAppUser
+    @RequestMapping("/monthsNotUsed/{id}")
+    public String monthsNotUsed() {
+        return "monthsNotUsed";
     }
 
     @IsAppUser
@@ -211,7 +217,7 @@ public class HomeController {
     }
 
     @IsAppUser
-    @RequestMapping("/monthlyCosts")
+    @RequestMapping("/monthlyCosts/{id}")
     public String monthlyCosts() {
         return "monthlyCosts";
     }    

@@ -138,18 +138,18 @@ function addBootstrapFields(data) {
     }
     { //year fleet section
         var vehMonth = $("<select></select>")
-            .append('<option value="Jan">January</option>')
-            .append('<option value="Feb">February</option>')
-            .append('<option value="Mar">March</option>')
-            .append('<option value="Apr">April</option>')
-            .append('<option value="May">May</option>')
-            .append('<option value="Jun">June</option>')
-            .append('<option value="Jul">July</option>')
-            .append('<option value="Aug">August</option>')
-            .append('<option value="Sep">September</option>')
-            .append('<option value="Oct">October</option>')
-            .append('<option value="Nov">November</option>')
-            .append('<option value="Dec">December</option>');
+            .append('<option value="01">January</option>')
+            .append('<option value="02">February</option>')
+            .append('<option value="03">March</option>')
+            .append('<option value="04">April</option>')
+            .append('<option value="05">May</option>')
+            .append('<option value="06">June</option>')
+            .append('<option value="07">July</option>')
+            .append('<option value="08">August</option>')
+            .append('<option value="09">September</option>')
+            .append('<option value="10">October</option>')
+            .append('<option value="11">November</option>')
+            .append('<option value="12">December</option>');
     }    
     
     function formColumn(col) {

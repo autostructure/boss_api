@@ -26,7 +26,7 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img data-toggle="tooltip" data-html="true" title="An aspen stand in Utah. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/birch.jpg" alt="Banner Image"/>
+                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image"/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
@@ -55,31 +55,31 @@
                             <div class="col inputCol">
                                 <label for="pLicense">Vehicle License</label>
                                 <p class="input" id="pLicense">
-                                    A32903292
+                                    
                                 </p>
                             </div>
                             <div class="col inputCol">
                                 <label for="pVin">VIN</label>
                                 <p class="input" id="pVin">
-                                        WBAWL135X7PX13209
+                                        
                                 </p>
                             </div>     
                             <div class="col inputCol">
                                 <label for="pYear">Year</label>
                                 <p class="input" id="pYear">
-                                    2016
+                                    
                                 </p>
                             </div>                                                                                                                       
                             <div class="col inputCol">
                                 <label for="pMake">Model</label>
                                 <p class="input" id="pMake">
-                                    Dodge
+                                    
                                 </p>
                             </div>  
                             <div class="col inputCol">
                                 <label for="pModel">Model</label>
                                 <p class="input" id="pModel">
-                                    2500
+                                    
                                 </p>
                             </div>                             
                                                                                

@@ -1,16 +1,4 @@
-var testData = [{
-    "vLicense": "A3827",
-    "vMonth": "March",
-    "vYear": "2018",
-    "vOperator": "Kells, Bethany",
-    "vMileage": "12,378",
-    "vGas": "22",
-    "vOil": "0",
-    "vDaysUsed": "12",
-    "vCost": "0",
-    "vJobCode": "JRB1231"
-}
-];
+
 api = 'http://localhost:8090'
 
 // displaying the current vehicle information on IWFIA page
@@ -46,39 +34,7 @@ if (id) {
 
 $(document).ready(function () {
 
-    // populating the jquery datatable from api using ajax
-    // $.ajax({
-    //     type: 'GET',
-    //     url: api + '/contact',
-    //     success: function (json) {
-    //         populateDataTable(json);
-    //     }
-    // });
-
-    $.ajax({
-        url: '/employeeProfile',
-        type: 'GET',
-        cache: false,
-        timeout: 600000,
-        success: function(json){
-            $.each(json, function(index, value){
-                $('#monthlyCostsForm_operator').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
-            });
-        }
-    });    
-    
-    $.ajax({
-        url: '/activityCode',
-        type: 'GET',
-        cache: false,
-        timeout: 600000,
-        success: function(json){
-            $.each(json, function(index, value){
-                $('#monthlyCostsForm_activityCode_code').append('<option value="' + value.id + '">' + value.code + ', ' + value.name + '</option>');
-            });
-        }
-    });           
-
+        
     // function to populate the table
     function populateDataTable(testData) {
         var table = $('#monthlyCosts').DataTable({
@@ -202,38 +158,19 @@ var fields = {
     "monthlyCostsForm": [
         [//aux info row
             {"fieldName": "beginMonth",
-                "title": "Start Month",
+                "title": "Out of Service Month",
                 "type": "select/vmonth",
                 "placeholder": "Enter Month",
             },
             {"fieldName": "beginYear",
-                "title": "Start Year",
+                "title": "Out of Service Year",
                 "type": "select/vyear",
                 "placeholder": "Enter Year",
             },        
-            {"fieldName": "endMonth",
-                "title": "End Month",
-                "type": "select/vmonth",
-                "placeholder": "Enter Month",
-            },
-            {"fieldName": "endYear",
-                "title": "End Year",
-                "type": "select/vyear",
-                "placeholder": "Enter Year",
-            },                     
-            {"fieldName": "forRate",
-                "title": "For Rate",
-                "type": "input/text",
-            },
-            {"fieldName": "mileageRate",
-                "title": "Mileage Rate",
-                "type": "input/text",
-                "placeholder": "Enter Mileage Rate",
-            },
              
         ], // end row
         [
-            {   "custom": '<input type="submit" class="btn fleetBtn" id="btn_add_aux" value="Add Vehicle Cost">' }
+            {   "custom": '<input type="submit" class="btn fleetBtn" id="btn_add_aux" value="Add Month Out of Service">' }
         ]
     ]
 }

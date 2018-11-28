@@ -34,7 +34,7 @@
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
                                 <a class="breadcrumbLink"href="/fleetDash">Fleet Dashboard |</a>
-                                <a class="breadcrumbLinkMainFleet"href="/monthlyCosts">Monthly Costs</a>
+                                <a class="breadcrumbLinkMainFleet"href="/monthsNotUsed">Out of Service</a>
                             </p>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
         
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Monthly Costs</h1>
+                                <h1 id="title">Months Out of Service</h1>
                             </div>
                         </div>
                         <div id="success" class="alert alert-success" role="alert">
@@ -86,48 +86,28 @@
                                                                                
                         </div>
                         <div class="container trainBG ">
-                                <h1 class="title5">Add New Cost</h1>
+                                <h1 class="title5">Add Months Out of Service</h1>
                                 <form role="form" id="monthlyCostsForm" data-toggle="validator">
                                     </form>
                             <table id="monthlyCosts">
                                 <thead>
                                     <tr>
-                                        <th>Vehicle License</th>
-                                        <th>Start Month</th>
-                                        <th>Start Year</th>
-                                        <th>End Month</th>
-                                        <th>End Year</th>
-                                        <th>For Rate</th>
-                                        <th>Mileage Rate</th>
+                                        <th>Year</th>
+                                        <th>Month</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>A32903292</td> 
+                                        <td>2018</td> 
                                         <td>July</td>
-                                        <td>2018</td>
-                                        <td>July</td>
-                                        <td>2019</td>
-                                        <td>433</td>
-                                        <td>.23</td>
                                     </tr>                                     
                                     <tr>
-                                        <td>A32903292</td> 
-                                        <td>July</td>
-                                        <td>2017</td>
-                                        <td>July</td>
-                                        <td>2018</td>
-                                        <td>413</td>
-                                        <td>.21</td>
+                                        <td>2018</td> 
+                                        <td>June</td>
                                     </tr>   
                                     <tr>
-                                        <td>A32903292</td> 
-                                        <td>July</td>
-                                        <td>2016</td>
-                                        <td>July</td>
-                                        <td>2017</td>
-                                        <td>398</td>
-                                        <td>.18</td>
+                                        <td>2018</td> 
+                                        <td>May</td>
                                     </tr>                                                                          
                                 </tbody>
                             </table>
@@ -159,7 +139,7 @@
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
         <script src="/js/pagesJS/customFormFunctions.js"></script>
-        <script src="/js/pagesJS/monthlyCosts.js"></script>
+        <script src="/js/pagesJS/monthsNotUsed.js"></script>
         <script src="/js/pagesJS/mainFleetPages.js"></script>
 
 

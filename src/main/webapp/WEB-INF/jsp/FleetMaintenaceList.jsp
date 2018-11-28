@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/css/ead.min.css">
         <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
         <link rel="stylesheet" href="/css/pagesCSS/all.css">
-        <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
+        <link rel="stylesheet" href="/css/pagesCSS/fleetPages.css">
     </head>
 
     <body class="layout-demo">
