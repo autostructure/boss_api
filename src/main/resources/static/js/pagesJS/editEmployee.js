@@ -18,7 +18,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
-        url: '/employeeProfile',
+        url: '/boss/employeeProfile',
         type: 'GET',
         cache: false,
         timeout: 600000,
@@ -56,7 +56,7 @@ $(document).ready(function() {
         var id = '#' + $(this).attr('id');
         switch (id) {
             case '#submitEmergencyInfo':
-                window.location.replace('/viewAllEmployees');
+                window.location.replace('/boss/viewAllEmployees');
                 break;
         }
     });    
@@ -68,7 +68,7 @@ $(document).ready(function() {
         var form = this.closest('form');
         var data = new FormData(form);
         $.ajax({
-            url: "/profilePicture/?employeeId=" + empId,
+            url: "/boss/profilePicture/?employeeId=" + empId,
             type: "POST",
             enctype: 'multipart/form-data',
             data: data,
@@ -86,7 +86,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "/employeeProfile/" + empId,
+        url: "/boss/employeeProfile/" + empId,
         type: "GET",
         cache: false,
         success: function (json) {
@@ -177,15 +177,15 @@ function populateTheEmployee(employeeId) {
 
 function updateProfilePicture() {
     $.ajax({
-        'url': '/employeeProfile/' + empId,
+        'url': '/boss/employeeProfile/' + empId,
         'type': 'GET',
         'success': function(json) {
             var photoId = json.profilePicture;
-            $('.empPhoto').attr('src', photoId ? ("/profilePicture/" + photoId) : "/img/person.jpg");
+            $('.empPhoto').attr('src', photoId ? ("/boss/profilePicture/" + photoId) : "/boss/img/person.jpg");
             if (photoId) {
-                $('.empPhoto').attr('src', "/profilePicture/" + photoId);
+                $('.empPhoto').attr('src', "/boss/profilePicture/" + photoId);
             } else {
-                $('.empPhoto').attr('src', "/img/person.jpg");
+                $('.empPhoto').attr('src', "/boss/img/person.jpg");
             }
         },
         'error': function(e) {
@@ -351,7 +351,7 @@ var fields = {
             "title": "Section Code",
             "type": "select/text",
             "selectFrom": {
-                "url": "/activityCode",
+                "url": "/boss/activityCode",
                 "value": "code",
                 "label": "name"
             }
@@ -361,7 +361,7 @@ var fields = {
             "title": "Supervisor",
             "type": "select/text",
             "selectFrom": {
-                "url": "/employeeProfile",
+                "url": "/boss/employeeProfile",
                 "value": "id",
                 "label": "nameCode",
             },
@@ -378,7 +378,7 @@ var fields = {
             "title": "Duty Station",
             "type": "select/text",
             "selectFrom": {
-                "url": "/dutyStations"
+                "url": "/boss/dutyStations"
             },
             "colspan":4
         },

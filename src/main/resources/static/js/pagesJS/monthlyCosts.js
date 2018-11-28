@@ -11,16 +11,16 @@ var testData = [{
     "vJobCode": "JRB1231"
 }
 ];
-api = 'http://localhost:8090'
+api = '/boss';
 
 // displaying the current vehicle information on IWFIA page
 var id = window.location.pathname.split("/")[2];
 if (id) {
-    var url = '/vehicle?id=' + id;
+    var url = '/boss/vehicle?id=' + id;
     if (parseInt(id)) {
-        url = '/vehicle/' + id;
+        url = '/boss/vehicle/' + id;
     }
-    var url = '/vehicle/' + id;
+    var url = '/boss/vehicle/' + id;
     console.log(url);
     console.log(id);
     $.ajax({
@@ -49,14 +49,14 @@ $(document).ready(function () {
     // populating the jquery datatable from api using ajax
     // $.ajax({
     //     type: 'GET',
-    //     url: api + '/contact',
+    //     url: api + '/boss/contact',
     //     success: function (json) {
     //         populateDataTable(json);
     //     }
     // });
 
     $.ajax({
-        url: '/employeeProfile',
+        url: '/boss/employeeProfile',
         type: 'GET',
         cache: false,
         timeout: 600000,
@@ -68,7 +68,7 @@ $(document).ready(function () {
     });    
     
     $.ajax({
-        url: '/activityCode',
+        url: '/boss/activityCode',
         type: 'GET',
         cache: false,
         timeout: 600000,
@@ -155,7 +155,7 @@ $(document).ready(function () {
         // creating vars to submit to ajax
         var form = $('#monthlyCostsForm');
         var method = "POST";
-        var url = "/contact";
+        var url = "/boss/contact";
         var data = {
             'city':form.find('[name=city]').val(),
             'description':form.find('[name=description]').val(),

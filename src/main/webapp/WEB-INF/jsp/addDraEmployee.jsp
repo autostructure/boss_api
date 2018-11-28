@@ -28,14 +28,14 @@
                 <header class="main-header" role="banner">
                     <img data-toggle="tooltip" data-html="true" title="Bucks in velvet on the edge of an aspen stand. Photo captured during data collection efforts for the 
                     Interior West Forest Inventory and Analysis (IWFIA) Program in Utah. (Forest Service photo by Scott Dickson)"
-                    class="bannerImg" src="../../img/birch.jpg" alt="Banner Image" />
+                    class="bannerImg" src="/boss/img/birch.jpg" alt="Banner Image" />
                 </header>
                 <div class="usa-grid">
                     <div class="usa-width-one-whole">
                         <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                            <a class="breadcrumbLink" href="/home">Dashboard |</a>
-                            <a class="breadcrumbLink" href="/personnelDash">Personnel Dashboard |</a>
-                            <a class="breadcrumbLinkMain" href="/addDraEmployee">Add DRA by Employee</a>
+                            <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
+                            <a class="breadcrumbLink" href="/boss/personnelDash">Personnel Dashboard |</a>
+                            <a class="breadcrumbLinkMain" href="/boss/addDraEmployee">Add DRA by Employee</a>
                         </p>
                     </div>
                 </div>
@@ -191,11 +191,11 @@
 
     <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
     </footer>
-    <script src="js/ead.min.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/pagesJS/customFormFunctions.js"></script>
-    <script src="js/pagesJS/addDraEmployee.js"></script>
-    <script src="js/pagesJS/personnelPages.js"></script>
+    <script src="/boss/js/ead.min.js"></script>
+    <script src="/boss/js/bootstrap-datepicker.js"></script>
+    <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
+    <script src="/boss/js/pagesJS/addDraEmployee.js"></script>
+    <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
 </body>
 

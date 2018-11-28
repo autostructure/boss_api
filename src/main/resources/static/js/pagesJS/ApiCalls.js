@@ -1,4 +1,4 @@
-var api = "http://localhost:8080";
+var api = "/boss/";
 
 function makeAjaxCall(_url, methodType, _data) {
     var promiseObj = new Promise(function (resolve, reject) {
@@ -46,7 +46,7 @@ function makeAjaxCall(_url, methodType, _data) {
 function getErrorApiCall(resolved, rejected) {
     try {
 
-        var endpoint = "/error";
+        var endpoint = "/boss/error";
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -62,7 +62,7 @@ function getErrorApiCall(resolved, rejected) {
 function getActivityCodeApiCall(resolved, rejected) {
     try {
 
-        var endpoint = "/activityCode";
+        var endpoint = "/boss/activityCode";
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -77,7 +77,7 @@ function getActivityCodeApiCall(resolved, rejected) {
 function getbudgetObjectCodeApiCall(resolved, rejected) {
     try {
 
-        var endpoint = "/budgetObjectCode";
+        var endpoint = "/boss/budgetObjectCode";
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -92,7 +92,7 @@ function getbudgetObjectCodeApiCall(resolved, rejected) {
 function getBudgetSummaryApiCall(type, financialYear, verified, resolved, rejected) {
     try {
 
-        var endpoint = "/budgetSummary";
+        var endpoint = "/boss/budgetSummary";
         var url = api + endpoint + "/" + type + "/" + financialYear + "/" + verified;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -107,7 +107,7 @@ function getBudgetSummaryApiCall(type, financialYear, verified, resolved, reject
 function getEmployeeProfileApiCall(resolved, rejected) {
     try {
 
-        var endpoint = "/employeeProfile";
+        var endpoint = "/boss/employeeProfile";
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -121,7 +121,7 @@ function getEmployeeProfileApiCall(resolved, rejected) {
 
 function postExpense(resolved, rejected, data) {
     try {
-        var endpoint = "/expense";
+        var endpoint = "/boss/expense";
         var url = api + endpoint;
         makeAjaxCall(url, "POST", data).then(resolved, rejected);
     } catch (e) {
@@ -133,7 +133,7 @@ function getExpenseCodeApiCall(financialYear, resolved, rejected) {
 
     try {
 
-        var endpoint = "/expenseCode";
+        var endpoint = "/boss/expenseCode";
         if (financialYear != null) {
             url = api + endpoint + "?financialYear=" + financialYear;
         } else {
@@ -153,7 +153,7 @@ function getExpenseCodeApiCall(financialYear, resolved, rejected) {
 function deleteExpenseWithIDApiCall(id, resolved, rejected) {
     try {
 
-        var endpoint = "/expense";
+        var endpoint = "/boss/expense";
         var url = api + endpoint + "/" + id;
         makeAjaxCall(url, "DELETE", null).then(resolved, rejected);
 
@@ -168,7 +168,7 @@ function deleteExpenseWithIDApiCall(id, resolved, rejected) {
 function putExpenseWithIDApiCall(resolved, rejected, data, id) {
     try {
 
-        var endpoint = "/expense";
+        var endpoint = "/boss/expense";
         var url = api + endpoint + "/" + id;
         makeAjaxCall(url, "PUT", data).then(resolved, rejected);
 
@@ -182,7 +182,7 @@ function putExpenseWithIDApiCall(resolved, rejected, data, id) {
 
 function getJobCodeApiCall(resolved, rejected, financialYear) {
 
-    var endpoint = "/jobCode";
+    var endpoint = "/boss/jobCode";
     var url = "";
     if (financialYear !== null) {
         url = api + endpoint;
@@ -195,7 +195,7 @@ function getJobCodeApiCall(resolved, rejected, financialYear) {
 function postJobCodeApiCall(resolved, rejected, data) {
     try {
 
-        var endpoint = "/employeeProfile";
+        var endpoint = "/boss/employeeProfile";
         var url = api + endpoint;
         makeAjaxCall(url, "POST", data).then(resolved, rejected);
 
@@ -209,7 +209,7 @@ function postJobCodeApiCall(resolved, rejected, data) {
 function postAuxContact(resolved, rejected, data) {
     try {
 
-        var endpoint = "/contact";
+        var endpoint = "/boss/contact";
         var url = api + endpoint;
         makeAjaxCall(url, "POST", data).then(resolved, rejected);
 
@@ -223,7 +223,7 @@ function postAuxContact(resolved, rejected, data) {
 function deleteJobCodeEithIDApiCall(resolved, rejected, id) {
     try {
 
-        var endpoint = "/jobCode";
+        var endpoint = "/boss/jobCode";
         var url = api + endpoint + "/" + id;
         makeAjaxCall(url, "DELETE", null).then(resolved, rejected);
 
@@ -237,7 +237,7 @@ function deleteJobCodeEithIDApiCall(resolved, rejected, id) {
 function getJobCodeWithIDApiCall(resolved, rejected, id) {
     try {
 
-        var endpoint = "/jobCode";
+        var endpoint = "/boss/jobCode";
         var url = api + endpoint + "/" + id;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -251,7 +251,7 @@ function getJobCodeWithIDApiCall(resolved, rejected, id) {
 function getPaymentCodeApiCall(resolved, rejected) {
     try {
 
-        var endpoint = "/paymentCode";
+        var endpoint = "/boss/paymentCode";
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -267,7 +267,7 @@ function getPaymentCodeApiCall(resolved, rejected) {
 function getPayrollDetailsWithType(resolved, rejected, type) {
     try {
 
-        var endpoint = "/payrollDetails/" + type;
+        var endpoint = "/boss/payrollDetails/" + type;
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -282,7 +282,7 @@ function getPayrollDetailsWithType(resolved, rejected, type) {
 function getPayrollDetailsWithTypeAndJobCodeId(resolved, rejected, type, jobCodeId) {
     try {
 
-        var endpoint = "/payrollDetails/" + type + "/" + jobCodeId;
+        var endpoint = "/boss/payrollDetails/" + type + "/" + jobCodeId;
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -297,7 +297,7 @@ function getPayrollDetailsWithTypeAndJobCodeId(resolved, rejected, type, jobCode
 function getPayrollForecastWithType(resolved, rejected, type) {
     try {
 
-        var endpoint = "/payrollForecast/" + type;
+        var endpoint = "/boss/payrollForecast/" + type;
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 
@@ -312,7 +312,7 @@ function getPayrollForecastWithType(resolved, rejected, type) {
 function getPayrollForecastWithTypeAndJobCodeId(resolved, rejected, type, jobCodeId) {
     try {
 
-        var endpoint = "/payrollForecast/" + type + "/" + jobCodeId;
+        var endpoint = "/boss/payrollForecast/" + type + "/" + jobCodeId;
         var url = api + endpoint;
         makeAjaxCall(url, "GET", null).then(resolved, rejected);
 

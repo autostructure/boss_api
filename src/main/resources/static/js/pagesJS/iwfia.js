@@ -1,11 +1,11 @@
 // displaying the current vehicle information on IWFIA page
 var id = window.location.pathname.split("/")[2];
 if (id) {
-    var url = '/vehicle?id=' + id;
+    var url = '/boss/vehicle?id=' + id;
     if (parseInt(id)) {
-        url = '/vehicle/' + id;
+        url = '/boss/vehicle/' + id;
     }
-    var url = '/vehicle/' + id;
+    var url = '/boss/vehicle/' + id;
     console.log(url);
     console.log(id);
     $.ajax({
@@ -34,7 +34,7 @@ if (id) {
 $(document).ready(function () {
     // getting choices for operators and activity code
     $.ajax({
-        url: '/employeeProfile',
+        url: '/boss/employeeProfile',
         type: 'GET',
         cache: false,
         timeout: 600000,
@@ -46,7 +46,7 @@ $(document).ready(function () {
     });    
     
     $.ajax({
-        url: '/activityCode',
+        url: '/boss/activityCode',
         type: 'GET',
         cache: false,
         timeout: 600000,
@@ -68,7 +68,7 @@ $(document).ready(function () {
         }
         var form = $('#iwfiaForm');
         var method = "PUT";
-        var url = "/vehicle/" + id;
+        var url = "/boss/vehicle/" + id;
         console.log(id);
         console.log(url);
         var monthlyUsage = {                    

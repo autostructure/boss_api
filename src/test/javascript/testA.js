@@ -97,7 +97,7 @@ describe("Check customFormFunctions: Nested Objects", function() {
 });
 
 $.ajax({
-    "url":"/empProfile",
+    "url":"/boss/empProfile",
     "method":"GET",
     "success":function(data) {
         describe("Ajax Test Alpha", function() {

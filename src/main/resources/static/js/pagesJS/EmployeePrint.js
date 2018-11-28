@@ -1,7 +1,7 @@
 $(document).ready(function () {
     
    /* $.ajax({
-        url: "/employeeProfile",
+        url: "/boss/employeeProfile",
         type: "GET",
         cache: false,
         timeout: 60000,
@@ -16,7 +16,7 @@ $(document).ready(function () {
         }
     });*/
 
-    makeAjaxCall("/employeeProfile", "GET", null).then(
+    makeAjaxCall("/boss/employeeProfile", "GET", null).then(
         function (json) {
             var employees = [];
             for (k in json) {
@@ -92,7 +92,7 @@ $(document).ready(function () {
             var modal = $(this);
             
             $.ajax({
-                url: "/employeeProfile/" + selected_row,
+                url: "/boss/employeeProfile/" + selected_row,
                 type: 'GET',
                 success: function (json) {
                     modal.find(".modal-body #PrimaryPhone").val(json.homePhone);
@@ -137,7 +137,7 @@ $(document).ready(function () {
         });
 
         $('#myModal_print').on('click', '.btn_pers_print', function (e) {
-            window.location.href = "/print/" + selected_row;
+            window.location.href = "/boss/print/" + selected_row;
         });
 
         function printElement() {

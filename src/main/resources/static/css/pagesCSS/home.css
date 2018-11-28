@@ -1,12 +1,12 @@
 @font-face {
     font-family: titleFont;
-    src: url("../../fonts/Roboto-Regular.ttf");
+    src: url("/boss/fonts/Roboto-Regular.ttf");
 }
 .usa-nav{
     display: none;
 }
 #background{
-    background-image: url("../../img/homeBG.jpg");
+    background-image: url("/boss/img/homeBG.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 100%;

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var identifier = window.location.pathname.split("/")[2];
     $.ajax({
-        url: "/employeeProfile/" + identifier,
+        url: "/boss/employeeProfile/" + identifier,
         type: 'GET',
         success: function (json) {
             var modal = $('div.mainAdd');
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     window.print();
     window.onafterprint = function () {
-        this.window.location.href = "/employeePrint";
+        this.window.location.href = "/boss/employeePrint";
     };
 
 

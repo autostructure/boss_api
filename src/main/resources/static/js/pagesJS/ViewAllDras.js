@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "/draCourse",
+        url: "/boss/draCourse",
         contentType: "application/json",
         dataType: 'json',
         cache: false,
@@ -144,7 +144,7 @@ $(document).ready(function() {
             //draCourseObj.wiggleRoom = parseInt(dra_wiggleRoom);
 
             $.ajax({
-                url: '/draCourse',
+                url: '/boss/draCourse',
                 type: 'POST',
                 cache: false,
                 contentType: "application/json",
@@ -163,7 +163,7 @@ $(document).ready(function() {
         //$('#myModal_edit').on('shown.bs.model', function() {
         function populateEdit_modal() {
             $.ajax({
-                url: '/draCourse/' + selected_row,
+                url: '/boss/draCourse/' + selected_row,
                 type: 'GET',
                 cache: false,
                 timeout: 600000,
@@ -201,7 +201,7 @@ $(document).ready(function() {
 
 
             $.ajax({
-                url: '/draCourse/' + selected_row,
+                url: '/boss/draCourse/' + selected_row,
                 type: 'PUT',
                 cache: false,
                 timeout: 600000,
@@ -220,7 +220,7 @@ $(document).ready(function() {
 
         $('#myModal_delete').on('click', '#myModal_del', function(e) {
             $.ajax({
-                'url': "/draCourse/" + selected_row,
+                'url': "/boss/draCourse/" + selected_row,
                 'type': 'DELETE',
                 'success': function() { window.location.reload() },
                 'error': function(a, b, c) {

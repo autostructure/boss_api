@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    makeAjaxCall("/trainingCourse", "GET", null).then(populateDataTable, null);
+    makeAjaxCall("/boss/trainingCourse", "GET", null).then(populateDataTable, null);
 
 
 
@@ -96,7 +96,7 @@ $(document).ready(function () {
         });
         
         $("#btn_remove").on("click", function() {
-            var url = "/trainingCourse/" + $(".trainingId").val();
+            var url = "/boss/trainingCourse/" + $(".trainingId").val();
             makeAjaxCall(url, "DELETE", null).then(
                 function(){window.location.reload();},
                 function(e){console.log(e.responseJSON);}
@@ -105,13 +105,13 @@ $(document).ready(function () {
         $("#btn_add, #btn_edit").on("click", function() {
             var form;
             var method;
-            var url = "/trainingCourse";
+            var url = "/boss/trainingCourse";
             if (this.id == "btn_add") {
-                url = "/trainingCourse";
+                url = "/boss/trainingCourse";
                 method = "POST";
                 form = $("#form_add");
             } else if (this.id == "btn_edit") {
-                url = "/trainingCourse/" + $(".trainingId").val();
+                url = "/boss/trainingCourse/" + $(".trainingId").val();
                 method = "PUT";
                 form = $("#form_edit");
             } else {

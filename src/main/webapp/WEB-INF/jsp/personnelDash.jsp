@@ -24,13 +24,13 @@
 
                          <section class="usa-section1">
                                 <header class="main-header" role="banner">
-                                    <img class="bannerImg" src="../../img/employees.jpg" alt="Banner Image"/>
+                                    <img class="bannerImg" src="/boss/img/employees.jpg" alt="Banner Image">
                                 </header>
                                 <div class="usa-grid">
                                         <div class="usa-width-one-whole">
                                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                                <a class="breadcrumbLinkMain"href="/personnelDash">Personnel Dashboard</a>
+                                                <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
+                                                <a class="breadcrumbLinkMain" href="/boss/personnelDash">Personnel Dashboard</a>
                                             </p>
                                         </div>
                                     </div>
@@ -45,20 +45,20 @@
                                         <div class="row padTop">
                                             <div class="col">
                                                 <div class="card">
-                                                    <img class="card-img-top" src="../../img/blueMountains.jpg" alt="Card image cap">
+                                                    <img class="card-img-top" src="/boss/img/blueMountains.jpg" alt="Card image cap">
                                                     <div class="card-header">
                                                         <h5 class="card-header-title">Employees</h5>
                                                     </div>
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="/viewAllEmployees">View All Employees</a>                                
+                                                              <a href="/boss/viewAllEmployees">View All Employees</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/addNewEmployee">Add New Employee</a>
+                                                              <a href="/boss/addNewEmployee">Add New Employee</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/auxContact">Supplemental Phone Numbers</a>
+                                                              <a href="/boss/auxContact">Supplemental Phone Numbers</a>
                                                           </li>                                                          
                                                       </ul>
                                                     </div>
@@ -66,35 +66,35 @@
                                             </div>
                                             <div class="col">
                                                 <div class="card">
-                                                    <img class="card-img-top" src="../../img/greenTrees.jpg" alt="Card image cap">
+                                                    <img class="card-img-top" src="/boss/img/greenTrees.jpg" alt="Card image cap">
                                                     <div class="card-header">
                                                         <h5 class="card-header-title">Training</h5>
                                                     </div>                                                    
                                                     <div class="card-body">
                                                       <ul class="list-group">
-                                                        <li class="list-group-item"><a href="/addTrainingEmployee">Record Employee Training</a></li>
-                                                        <li class="list-group-item"><a href="/viewTraining">View All Training</a></li>
-                                                        <li class="list-group-item"><a href="/addTrainingClass">Training Courses</a></li>
+                                                        <li class="list-group-item"><a href="/boss/addTrainingEmployee">Record Employee Training</a></li>
+                                                        <li class="list-group-item"><a href="/boss/viewTraining">View All Training</a></li>
+                                                        <li class="list-group-item"><a href="/boss/addTrainingClass">Training Courses</a></li>
                                                       </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="card">
-                                                    <img class="card-img-top" src="../../img/fireExt.jpg" alt="Card image cap">
+                                                    <img class="card-img-top" src="/boss/img/fireExt.jpg" alt="Card image cap">
                                                     <div class="card-header">
                                                         <h5 class="card-header-title">DRA's</h5>
                                                     </div>                                                    
                                                     <div class="card-body">
                                                       <ul class="list-group">
                                                           <li class="list-group-item">
-                                                              <a href="/addDraEmployee">Record Employee DRA</a>                                
+                                                              <a href="/boss/addDraEmployee">Record Employee DRA</a>                                
                                                           </li>
                                                           <li class="list-group-item">
-                                                              <a href="/viewRecordedDras">View All DRA</a>
+                                                              <a href="/boss/viewRecordedDras">View All DRA</a>
                                                           </li>
                                                           <li class="list-group-item">
-                                                            <a href="/viewAllDras">DRA Courses</a>
+                                                            <a href="/boss/viewAllDras">DRA Courses</a>
                                                         </li>
                                                       </ul>
                                                     </div>
@@ -122,9 +122,9 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="js/ead.min.js"></script>
-        <script src="js/pagesJS/personnelDash.js"></script>
-        <script src="js/pagesJS/personnelPages.js"></script>
+        <script src="/boss/js/ead.min.js"></script>
+        <script src="/boss/js/pagesJS/personnelDash.js"></script>
+        <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
 </body>
 

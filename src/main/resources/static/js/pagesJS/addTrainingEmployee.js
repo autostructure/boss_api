@@ -1,4 +1,4 @@
-var api = "http://localhost:8080";
+var api = "/boss/";
 
 
 $(document).ready(function () {
@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#imgs').hide();
 
         $('#viewList').click(function(){
-            window.location.href = '/viewTraining';
+            window.location.href = '/boss/viewTraining';
         });
         $('#addAnother').click(function(){
             window.location.reload();
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     $('#tName').append('<option value="' + '-1' + '">' + 'Please Select a Name ' + ' </oprion>');
     $.ajax({
-        url: api + "/employeeProfile",
+        url: api + "/boss/employeeProfile",
         type: "GET",
         success: function (json) {
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('#tTitle').append('<option value="' + '-1' + '">' + 'Please enter a training Course Title' + ' </oprion>');
   
         $.ajax({
-            url: api + "/trainingCourse",
+            url: api + "/boss/trainingCourse",
             type: "GET",
             success: function (json) {
                 //debugger;
@@ -132,7 +132,7 @@ $(document).ready(function () {
                 "validUntil": CustomFormFunctions.formatDate(group.find("#tDate").val(), "ISO"),
                 "dateOfTraining": CustomFormFunctions.formatDate(group.find("#tValidUntil").val(), "ISO"),
             }
-            var prom = makeAjaxCall("/training", "POST", JSON.stringify(data));
+            var prom = makeAjaxCall("/boss/training", "POST", JSON.stringify(data));
             prom.then(function(a){console.log(a)}, function(a, b, c){console.log(a, b, c, JSON.stringify(data))});
             promises.push(prom);
         });

@@ -3,7 +3,7 @@
 
 
 
-var api = 'http://localhost:8080';
+var api = '/boss/';
 $(document).ready(function () {
 
 
@@ -125,7 +125,7 @@ $('#fy, #tfy, #vfy, #ofy').each(function () {
 // auto selecting the job codes unit and description based off job code selected
 $('#jobcode').on('change', function () {
     var key = (this.value);
-    $.get(api + '/jobCode/' + key, function (data, status) {
+    $.get(api + '/boss/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
         $('#jobcodedesc').val(data.description.replace(/\"/g, ""));
         if (data.description.length < 0) {
@@ -136,7 +136,7 @@ $('#jobcode').on('change', function () {
 $('#tjobcode').on('change', function () {
     var key = (this.value);
     //debugger;
-    $.get(api + '/jobCode/' + key, function (data, status) {
+    $.get(api + '/boss/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
         $('#tjobcodedesc').val(data.description.replace(/\"/g, ""));
         if (data.description.length < 0) {
@@ -146,7 +146,7 @@ $('#tjobcode').on('change', function () {
 });
 $('#vjobcode').on('change', function () {
     var key = (this.value);
-    $.get(api + '/jobCode/' + key, function (data, status) {
+    $.get(api + '/boss/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
         $('#vjobcodedesc').val(data.description.replace(/\"/g, ""));
         if (data.description.length < 0) {
@@ -156,7 +156,7 @@ $('#vjobcode').on('change', function () {
 });
 $('#ojobcode').on('change', function () {
     var key = (this.value);
-    $.get(api + '/jobCode/' + key, function (data, status) {
+    $.get(api + '/boss/jobCode/' + key, function (data, status) {
         JSON.stringify(data);
         $('#ojobcodedesc').val(data.description.replace(/\"/g, ""));
         if (data.description.length < 0) {
@@ -371,7 +371,7 @@ $("#timeSubmit").click(function () {
 
         $.ajax({
             type: "GET",
-            url: api + "/budgetObjectCode",
+            url: api + "/boss/budgetObjectCode",
             success: function (json) {
 
                 $.each(json, function (value, key) {
@@ -404,7 +404,7 @@ $("#timeSubmit").click(function () {
         timeDataV2.description = desc;
 
         $.ajax({
-            url: api + "/employeeProfile?nameCode=" + namecode,
+            url: api + "/boss/employeeProfile?nameCode=" + namecode,
             type: "GET",
             success: function (key) {
 
@@ -706,7 +706,7 @@ $("#timeSubmit").click(function () {
                 var exp_code = value.tableExp;
                 var check = false;
                 $.ajax({
-                    url: api + "/expenseCode",
+                    url: api + "/boss/expenseCode",
                     type: "GET",
                     success: function (json) {
 
@@ -740,7 +740,7 @@ $("#timeSubmit").click(function () {
 
 
                 $.ajax({
-                    url: api + "/jobCode/" + value.tableJobCode,
+                    url: api + "/boss/jobCode/" + value.tableJobCode,
                     type: "GET",
                     success: function (json) {
 
@@ -789,7 +789,7 @@ $("#timeSubmit").click(function () {
         timeDataV2.payPeriod = 0;
 
         $.ajax({
-            url: api + "/paymentCode",
+            url: api + "/boss/paymentCode",
             type: "GET",
             success: function (json) {
 
@@ -828,7 +828,7 @@ $("#timeSubmit").click(function () {
 
         // debugger;
         $.ajax({
-            url: api + "/expense",
+            url: api + "/boss/expense",
             data: j,
             type: "POST",
             contentType: "application/json",
@@ -930,7 +930,7 @@ $("#travelSubmit").click(function () {
         timeDataV2.activityCode.code = actcode_id;
         $.ajax({
             type: "GET",
-            url: api + "/budgetObjectCode",
+            url: api + "/boss/budgetObjectCode",
             success: function (json) {
 
                 $.each(json, function (value, key) {
@@ -963,7 +963,7 @@ $("#travelSubmit").click(function () {
         //timeDataV2. = jobcode;
 
         $.ajax({
-            url: api + "/employeeProfile?nameCode=" + namecode,
+            url: api + "/boss/employeeProfile?nameCode=" + namecode,
             type: "GET",
             success: function (key) {
 
@@ -1257,7 +1257,7 @@ $("#travelSubmit").click(function () {
                 var exp_code = value.ttableExp;
                 var check = false;
                 $.ajax({
-                    url: api + "/expenseCode",
+                    url: api + "/boss/expenseCode",
                     type: "GET",
                     success: function (json) {
 
@@ -1285,7 +1285,7 @@ $("#travelSubmit").click(function () {
 
 
                 $.ajax({
-                    url: api + "/jobCode/" + value.ttableJobCode,
+                    url: api + "/boss/jobCode/" + value.ttableJobCode,
                     type: "GET",
                     success: function (json) {
 
@@ -1337,7 +1337,7 @@ $("#travelSubmit").click(function () {
         //timeDataV2.stateAsigned = stateAssigned;
 
         $.ajax({
-            url: api + "/paymentCode",
+            url: api + "/boss/paymentCode",
             type: "GET",
             success: function (json) {
 
@@ -1375,7 +1375,7 @@ $("#travelSubmit").click(function () {
 
         // debugger;
         $.ajax({
-            url: api + "/expense",
+            url: api + "/boss/expense",
             data: j,
             type: "POST",
             contentType: "application/json",
@@ -1480,7 +1480,7 @@ $("#visaSubmit").click(function () {
         timeDataV2.description = desc;
 
         $.ajax({
-            url: api + "/employeeProfile?nameCode=" + namecode,
+            url: api + "/boss/employeeProfile?nameCode=" + namecode,
             type: "GET",
             success: function (key) {
 
@@ -1773,7 +1773,7 @@ $("#visaSubmit").click(function () {
                 var exp_code = value.vtableExp;
                 var check = false;
                 $.ajax({
-                    url: api + "/expenseCode",
+                    url: api + "/boss/expenseCode",
                     type: "GET",
                     success: function (json) {
 
@@ -1801,7 +1801,7 @@ $("#visaSubmit").click(function () {
 
 
                 $.ajax({
-                    url: api + "/jobCode/" + value.vtableJobCode,
+                    url: api + "/boss/jobCode/" + value.vtableJobCode,
                     type: "GET",
                     success: function (json) {
 
@@ -1858,7 +1858,7 @@ $("#visaSubmit").click(function () {
         timeDataV2.payPeriod = 0;
 
         $.ajax({
-            url: api + "/paymentCode",
+            url: api + "/boss/paymentCode",
             type: "GET",
             success: function (json) {
 
@@ -1896,7 +1896,7 @@ $("#visaSubmit").click(function () {
 
         // debugger;
         $.ajax({
-            url: api + "/expense",
+            url: api + "/boss/expense",
             data: j,
             type: "POST",
             contentType: "application/json",
@@ -1997,7 +1997,7 @@ $("#otherSubmit").click(function () {
         timeDataV2.description = desc;
 
         $.ajax({
-            url: api + "/employeeProfile?nameCode=" + namecode,
+            url: api + "/boss/employeeProfile?nameCode=" + namecode,
             type: "GET",
             success: function (key) {
 
@@ -2292,7 +2292,7 @@ $("#otherSubmit").click(function () {
                 var exp_code = value.otableExp;
                 var check = false;
                 $.ajax({
-                    url: api + "/expenseCode",
+                    url: api + "/boss/expenseCode",
                     type: "GET",
                     success: function (json) {
 
@@ -2320,7 +2320,7 @@ $("#otherSubmit").click(function () {
 
 
                 $.ajax({
-                    url: api + "/jobCode/" + value.otableJobCode,
+                    url: api + "/boss/jobCode/" + value.otableJobCode,
                     type: "GET",
                     success: function (json) {
 
@@ -2371,7 +2371,7 @@ $("#otherSubmit").click(function () {
         timeDataV2.payPeriod = 0;
 
         $.ajax({
-            url: api + "/paymentCode",
+            url: api + "/boss/paymentCode",
             type: "GET",
             success: function (json) {
 
@@ -2410,7 +2410,7 @@ $("#otherSubmit").click(function () {
 
         // debugger;
         $.ajax({
-            url: api + "/expense",
+            url: api + "/boss/expense",
             data: j,
             type: "POST",
             contentType: "application/json",

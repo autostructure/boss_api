@@ -26,14 +26,14 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img src="../../img/birch.jpg" alt="Banner Image"/>
+                        <img src="/boss/img/birch.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="../home/home.html">Dashboard |</a>
-                                <a class="breadcrumbLink"href="../budget/budgetDash.html">Budget |</a>
-                                <a class="breadcrumbLinkMain"href="../jobCode.html">Job Code Management</a>
+                                <a class="breadcrumbLink" href="../home/home.html">Dashboard |</a>
+                                <a class="breadcrumbLink" href="../budget/budgetDash.html">Budget |</a>
+                                <a class="breadcrumbLinkMain" href="../jobCode.html">Job Code Management</a>
                             </p>
                         </div>
                     </div>
@@ -306,12 +306,12 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="js/ead.min.js"></script>
+        <script src="/boss/js/ead.min.js"></script>
 
-        <script src="js/pagesJS/ApiCalls.js"></script>
+        <script src="/boss/js/pagesJS/ApiCalls.js"></script>
 
-        <script src="js/pagesJS/mainPages.js"></script>
-        <script src="js/pagesJS/jobCode.js"></script>
+        <script src="/boss/js/pagesJS/mainPages.js"></script>
+        <script src="/boss/js/pagesJS/jobCode.js"></script>
     </body>
 
 </html>

@@ -4,13 +4,13 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/boss/img/favicons/favicon.ico" type="image/x-icon">
         <title>FIA-BOSS</title>
-        <link rel="stylesheet" href="/css/ead.min.css">
-        <link rel="stylesheet" href="/css/pagesCSS/all.css">
+        <link rel="stylesheet" href="/boss/css/ead.min.css">
+        <link rel="stylesheet" href="/boss/css/pagesCSS/all.css">
         <!-- <link rel="stylesheet" href="css/pagesCSS/hrDash.css"> -->
-        <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
-        <link rel="stylesheet" href="/css/pagesCSS/fleetPages.css">
+        <link rel="stylesheet" href="/boss/css/bootstrap-datepicker3.css">
+        <link rel="stylesheet" href="/boss/css/pagesCSS/fleetPages.css">
     </head>
 
     <body class="layout-demo">
@@ -26,14 +26,14 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img class="bannerImg" src="../../img/fleetBG.jpg" alt="Banner Image"/>
+                        <img class="bannerImg" src="/boss/img/fleetBG.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLink"href="/fleetDash">Fleet Dashboard |</a>
-                                <a class="breadcrumbLinkMainFleet"href="/iwfia">Monthly IWFIA</a>
+                                <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLink" href="/boss/fleetDash">Fleet Dashboard |</a>
+                                <a class="breadcrumbLinkMainFleet" href="/boss/iwfia">Monthly IWFIA</a>
                             </p>
                         </div>
                     </div>

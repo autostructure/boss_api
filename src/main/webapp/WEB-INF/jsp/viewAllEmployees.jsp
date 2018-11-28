@@ -25,14 +25,14 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="../../img/foggyMountain.jpg" alt="Banner Image"/>
+                        <img data-toggle="tooltip" data-html="true" title="Photo Credit: JDShaw" class="bannerImg" src="/boss/img/foggyMountain.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/viewAllEmployees">View All Employees</a>
+                                <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLink" href="/boss/personnelDash">Personnel Dashboard |</a>
+                                <a class="breadcrumbLinkMain" href="/boss/viewAllEmployees">View All Employees</a>
 
                             </p>
                         </div>
@@ -293,11 +293,11 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="js/ead.min.js"></script>
+        <script src="/boss/js/ead.min.js"></script>
 
-        <script src="js/pagesJS/ApiCalls.js"></script>
-        <script src="js/pagesJS/viewAllEmployees.js"></script>
-        <script src="js/pagesJS/personnelPages.js"></script>
+        <script src="/boss/js/pagesJS/ApiCalls.js"></script>
+        <script src="/boss/js/pagesJS/viewAllEmployees.js"></script>
+        <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
     </body>
 

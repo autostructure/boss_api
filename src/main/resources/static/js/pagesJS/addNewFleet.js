@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('#viewList').click(function(){
-        window.location.href = '/viewFleet';
+        window.location.href = '/boss/viewFleet';
     });
     $('#addAnother').click(function(){
         window.location.reload();
@@ -30,7 +30,7 @@ $(document).ready(function () {
         // creating vars to submit to ajax
         var form = $('#newFleet');
         var method = "POST";
-        var url =  "/vehicle";
+        var url =  "/boss/vehicle";
         var data = {
             'license':form.find('[name=license]').val(),
             'vin':form.find('[name=vin]').val(),

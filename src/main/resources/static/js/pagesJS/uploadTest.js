@@ -251,7 +251,7 @@ var sampleJSON = [
         "perm":"Put",
         "endpoints": [
             {
-                "endpoint":"/employeeProfile/1",
+                "endpoint":"/boss/employeeProfile/1",
                 "fields":{
                     "firstName":true,
                     "lastName":true,
@@ -264,7 +264,7 @@ var sampleJSON = [
         "perm":"Put",
         "endpoints": [
             {
-                "endpoint":"/employeeProfile/1",
+                "endpoint":"/boss/employeeProfile/1",
                 "fields":{
                     "firstName":false,
                     "lastName":false,

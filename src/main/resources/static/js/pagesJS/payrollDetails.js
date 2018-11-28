@@ -44,7 +44,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        url: api + '/jobCode',
+        url: api + '/boss/jobCode',
         success: function (json) {
             $('#jobcode').append(json.map(function (jc) {
                 var selected = "";
@@ -58,7 +58,7 @@ $(document).ready(function () {
     }); //end of get jobcode ajax call
     $.ajax({
         type: 'GET',
-        url: api + '/payrollDetails/json',
+        url: api + '/boss/payrollDetails/json',
         success: function (json) {
             console.log(json);
             populateDataTable(useTestData ? testData : json); // test data vs live data
@@ -173,7 +173,7 @@ $(document).ready(function () {
         var employeeID = $(this).data("id");
         $.ajax({
             type: 'GET',
-            url: api + '/employeeProfile/' + employeeID,
+            url: api + '/boss/employeeProfile/' + employeeID,
             success: function (data) {
                 $('#myModal #empFirstName').val(data.firstName);
                 $('#myModal #empLastName').val(data.lastName);
@@ -199,7 +199,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/employeeProfile",
+            url: "/boss/employeeProfile",
             data: JSON.stringify(pd),
             dataType: 'json',
             cache: false,
@@ -208,14 +208,14 @@ $(document).ready(function () {
                 $('#myModal').modal('hide');
                 $('#success').show();
                 $('#success').delay(5000).fadeOut();
-                window.location.href = api + '/payrollDetails';
+                window.location.href = api + '/boss/payrollDetails';
             },
             error: function (request, status, error) {
                 console.log(request.responseJSON);
                 $('#myModal').modal('hide');
                 $('#error').show()
                 $('#error').delay(5000).fadeOut();
-                //window.location.href = api + '/payrollDetails';
+                //window.location.href = api + '/boss/payrollDetails';
             }
         });
         return false;
