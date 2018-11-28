@@ -32,9 +32,9 @@ navigate to the API directory <install_dir>/BOSSAPI/BossAPI and type
 
 ```mvn spring-boot:run```
 
-this will compile and run on localhost:8090.
+this will compile and run on localhost:8080.
 
-Navigate to http://localhost:8090/swagger-ui.html
+Navigate to http://localhost:8080/swagger-ui.html
 to view a list of available endpoints.
 
 ### Testing

@@ -2,8 +2,8 @@ package gov.usda.fs.ead.boss.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import gov.usda.fs.ead.boss.saml.AuthUtils;
-import gov.usda.fs.ead.boss.saml.IAuthenticationFacade;
+import gov.usda.fs.ead.boss.auth.AuthUtils;
+import gov.usda.fs.ead.boss.auth.IAuthenticationFacade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -52,8 +52,8 @@ import gov.usda.fs.ead.boss.repository.EmployeeProfileRepository;
 import gov.usda.fs.ead.boss.repository.TrainingCourseRepository;
 import gov.usda.fs.ead.boss.repository.TrainingRepository;
 import gov.usda.fs.ead.boss.repository.UploadedDocumentRepository;
-import gov.usda.fs.ead.boss.saml.IsSupervisor;
-import gov.usda.fs.ead.boss.saml.IsSupervisorOrOffice;
+import gov.usda.fs.ead.boss.auth.IsSupervisor;
+import gov.usda.fs.ead.boss.auth.IsSupervisorOrOffice;
 import gov.usda.fs.ead.boss.upload.UploadFileResponse;
 import gov.usda.fs.ead.boss.upload.UploadService;
 

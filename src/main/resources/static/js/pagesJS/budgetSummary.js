@@ -31,7 +31,7 @@ $(document).ready(function () {
     $('#budget thead tr:nth-child(1) th:nth-child(1)').each(function () {
         $(this).html('<label class="headLabel" for="jcode">Job Code</label><input type="text" id="jcode" class="headSearch" placeholder="Search Job Code" />');
     });
-    var api = "http://localhost:8090/budgetSummary/json/";
+    var api = "http://localhost:8080/budgetSummary/json/";
     var slash = "/";
     $('#selectForm').submit(function (e) {
         $('#showHide').css('visibility', 'visible');

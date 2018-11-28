@@ -23,8 +23,8 @@ import gov.usda.fs.ead.boss.repository.MonthlyIWFIAUsageRepository;
 import gov.usda.fs.ead.boss.repository.VehicleCostRepository;
 import gov.usda.fs.ead.boss.repository.VehicleMaintenanceRecordRepository;
 import gov.usda.fs.ead.boss.repository.VehicleRepository;
-import gov.usda.fs.ead.boss.saml.IsAppUser;
-import gov.usda.fs.ead.boss.saml.IsOwner;
+import gov.usda.fs.ead.boss.auth.IsAppUser;
+import gov.usda.fs.ead.boss.auth.IsOwner;
 
 @RestController
 public class PropertyManagementController {

@@ -1,5 +1,5 @@
 var fy = $('#fy').val();
-var tempAPI = 'http://localhost:8090/jobCode';
+var tempAPI = 'http://localhost:8080/jobCode';
 
 var dat = [{id: 1, overrideCode: "a", financialYear: 2000, jobCode: "SPIX", description: "soils", amount: 223},
     {id: 1, overrideCode: "b", financialYear: 2000, jobCode: "SPIX2", description: "soils2", amount: 334}];

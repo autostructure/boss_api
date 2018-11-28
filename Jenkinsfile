@@ -21,7 +21,7 @@ node {
 
   stage('Package') {
     // Run Maven:
-    def buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean package checkstyle:checkstyle findbugs:findbugs pmd:pmd install'
+    def buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean package checkstyle:checkstyle findbugs:findbugs pmd:pmd install spring-boot:repackage'
 
     buildInfo.append(buildInfoInstall)
 
@@ -36,7 +36,7 @@ node {
   stage('Build Container') {
     docker.withRegistry('https://docker.fs.usda.gov', 'docker_registry') {
 
-      def image = docker.build("docker.fs.usda.gov/ead/boss_api_development:${env.POM_VERSION}", '--no-cache --pull .')
+      def image = docker.build("docker.fs.usda.gov/ead/boss_api_development:${env.BUILD_NUMBER}", '--no-cache --pull .')
 
       image.push()
     }
