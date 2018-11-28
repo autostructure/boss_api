@@ -13,9 +13,9 @@ var tempData = [
 
 $(document).ready(function () {
     $('#employees').addClass('show');
-    $('#employees a[href="/viewAllEmployees"]').addClass('highlight');
+    $('#employees a[href="/boss/viewAllEmployees"]').addClass('highlight');
 
-    makeAjaxCall("/employeeProfile", "GET", null).then(
+    makeAjaxCall("/boss/employeeProfile", "GET", null).then(
         function (json) {
             var employees = [];
             for (k in json) {
@@ -73,7 +73,7 @@ $(document).ready(function () {
                         <div class="dropdown1">
                             <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                             <div id="dropList" class="dropdown-content1">
-                                <a href="/editEmployee/` + row.id + `" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit Employee</a>
+                                <a href="/boss/editEmployee/` + row.id + `" data-value=` + row.id + ` class="editBtn" id="editBtn">Edit Employee</a>
                                 <a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=` + row.id + ` class="deleteBtn" id="deleteBtn">Delete Employee</a>
                             </div>
                         </div>
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 {
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function () {
-                        window.location = "/addNewEmployee";
+                        window.location = "/boss/addNewEmployee";
                     },
                     className: 'table-btns add-btn'
                 },
@@ -148,7 +148,7 @@ $(document).ready(function () {
 
             var modal = $(this);
             $.ajax({
-                url: API + "/employeeProfile/" + selected_row,
+                url: API + "/boss/employeeProfile/" + selected_row,
                 type: 'GET',
                 success: function (json) {
                     modal.find(".modal-body #PrimaryPhone").val(json.homePhone);
@@ -190,7 +190,7 @@ $(document).ready(function () {
         $('#myModal_delete').on('click', '#deleteModal_delete', function () {
 
             $.ajax({
-                url: API + "/employeeProfile/" + selected_row,
+                url: API + "/boss/employeeProfile/" + selected_row,
                 type: "DELETE",
                 success: function (data) {
                     $.ajax({

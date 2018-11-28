@@ -1,5 +1,5 @@
        
-var url = 'http://localhost:8080/vehicle';
+var url = '/boss/vehicle';
 var API = 'http://localhost:8080';
 
 $(document).ready(function () {
@@ -76,7 +76,7 @@ $(document).ready(function () {
               {
                   text: 'Add <i class="fa fa-lg fa-plus"></i>',
                   action: function () {
-                      window.location.replace('/addNewFleet');
+                      window.location.replace('/boss/addNewFleet');
                   },
                   className: 'table-btns add-btn'
               },

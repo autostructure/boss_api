@@ -4,11 +4,11 @@ api = 'http://localhost:8090'
 // displaying the current vehicle information on IWFIA page
 var id = window.location.pathname.split("/")[2];
 if (id) {
-    var url = '/vehicle?id=' + id;
+    var url = '/boss/vehicle?id=' + id;
     if (parseInt(id)) {
-        url = '/vehicle/' + id;
+        url = '/boss/vehicle/' + id;
     }
-    var url = '/vehicle/' + id;
+    var url = '/boss/vehicle/' + id;
     console.log(url);
     console.log(id);
     $.ajax({
@@ -111,7 +111,7 @@ $(document).ready(function () {
         // creating vars to submit to ajax
         var form = $('#monthlyCostsForm');
         var method = "POST";
-        var url = "/contact";
+        var url = "/boss/contact";
         var data = {
             'city':form.find('[name=city]').val(),
             'description':form.find('[name=description]').val(),

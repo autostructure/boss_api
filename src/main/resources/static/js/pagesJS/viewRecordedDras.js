@@ -94,9 +94,9 @@ $(document).ready(function () {
         }
     });
     if (!debug) {
-        var promiseDRAs = makeAjaxCall("/dra", "GET", null);
-        var promiseEmployees = makeAjaxCall("/employeeProfile", "GET", null);
-        var promiseDRACourses = makeAjaxCall("/draCourse", "GET", null);
+        var promiseDRAs = makeAjaxCall("/boss/dra", "GET", null);
+        var promiseEmployees = makeAjaxCall("/boss/employeeProfile", "GET", null);
+        var promiseDRACourses = makeAjaxCall("/boss/draCourse", "GET", null);
         Promise.all([promiseDRAs, promiseDRACourses, promiseEmployees]).then(function(values) {
             var dras = values[0];
             var employees = {};
@@ -192,7 +192,7 @@ $(document).ready(function () {
                 {
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function () {
-                        window.location.href = '/addDraEmployee';
+                        window.location.href = '/boss/addDraEmployee';
                     },
                     className: 'table-btns add-btn'
                 },
@@ -236,7 +236,7 @@ $(document).ready(function () {
                 "employee":{"id":$("input[name='employee.id']").val()},
                 "deliberativeRiskAssessmentCourseId":$("input[name='deliberativeRiskAssessmentCourseId']").val(),
             }
-            CustomFormFunctions.putPartialInfo("/dra", 0, data, ()=>{window.location.reload();});
+            CustomFormFunctions.putPartialInfo("/boss/dra", 0, data, ()=>{window.location.reload();});
         });
 
         $("#form_Dra_renew_dateOfAssessment").on("change click focusin", function() {

@@ -20,9 +20,9 @@ $(document).ready(function() {
         }
     });
     
-    var p0 = makeAjaxCall("/training", "GET", null);
-    var p1 = makeAjaxCall("/trainingCourse", "GET", null);
-    var p2 = makeAjaxCall("/employeeProfile", "GET", null);
+    var p0 = makeAjaxCall("/boss/training", "GET", null);
+    var p1 = makeAjaxCall("/boss/trainingCourse", "GET", null);
+    var p2 = makeAjaxCall("/boss/employeeProfile", "GET", null);
     Promise.all([p0,p1,p2]).then(function(results){
         var trainings = results[0];
         var CourseRes = results[1];
@@ -142,7 +142,7 @@ $(document).ready(function() {
             'buttons': [{
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function() {
-                        window.location.href = '/addTrainingEmployee';
+                        window.location.href = '/boss/addTrainingEmployee';
                     },
                     className: 'table-btns add-btn'
                 },
@@ -207,7 +207,7 @@ $(document).ready(function() {
         });
         $("#btn_approve_training").on("click", function() {
             var id = $(this).closest("form").find(".trainingId").val();
-            CustomFormFunctions.putPartialInfo("/training", id, { 'approvedBy': { 'id': userId } }, function() { window.location.reload() });
+            CustomFormFunctions.putPartialInfo("/boss/training", id, { 'approvedBy': { 'id': userId } }, function() { window.location.reload() });
         });
         $("#form_training_upload_file").on("change update", function() {
             $("#form_training_upload_description").val(this.files[0].name);
@@ -217,7 +217,7 @@ $(document).ready(function() {
             var data = new FormData(form[0]);
             var id = form.find('.trainingId').val();
             $.ajax({
-                url: "/certificate?trainingId=" + id,
+                url: "/boss/certificate?trainingId=" + id,
                 type: "POST",
                 enctype: 'multipart/form-data',
                 data: data,
@@ -237,7 +237,7 @@ $(document).ready(function() {
         $("#btn_remove_training").on("click", function() {
             var id = $(this).closest("form").find(".trainingId").val();
             $.ajax({
-                'url': "/training/" + id,
+                'url': "/boss/training/" + id,
                 'type': 'DELETE',
                 'success': function() { window.location.reload() },
                 'error': function(a, b, c) {
@@ -256,7 +256,7 @@ $(document).ready(function() {
             }
             console.log(JSON.stringify(data));
             $.ajax({
-                'url': '/training',
+                'url': '/boss/training',
                 'type': 'POST',
                 'contentType': "application/json",
                 'data': JSON.stringify(data),
@@ -270,7 +270,7 @@ $(document).ready(function() {
         });
         $("#btn_unrequire_training").on("click", function() {
             var id = $(this).closest("form").find(".trainingId").val();
-            CustomFormFunctions.putPartialInfo("/training", id, {validUntil: new Date(0,0)}, ()=>{window.location.reload();}, ()=>console.log("Error!"));
+            CustomFormFunctions.putPartialInfo("/boss/training", id, {validUntil: new Date(0,0)}, ()=>{window.location.reload();}, ()=>console.log("Error!"));
         });
     }
 
@@ -288,12 +288,12 @@ $(document).ready(function() {
 function populateCertificateList() {
     console.log("PopulatingList");
     $.ajax({
-        url: "/training/" + $(".trainingId").val(),
+        url: "/boss/training/" + $(".trainingId").val(),
         type: "GET",
         success: function(data) {
             var cert = data.certificates;
             var list = cert.map(function(v) {
-                var previewLink = "<a target='_blank' href='/certificate/" + v.documentId + "'>" + v.description + "</a>";
+                var previewLink = "<a target='_blank' href='/boss/certificate/" + v.documentId + "'>" + v.description + "</a>";
                 var deleteLink = "<a href='#' onclick='showDeleteCertificate(" + v.documentId + ")' class='small text-danger'>Remove</a>"
                 var confirmDeleteLink = "<a href='#' id='delete_certificate_" + v.documentId + "' onclick='deleteCertificate(" + v.documentId + ")' class='hide small text-danger'>Are you sure?  You can't get the file back once deleted.</a>"
                 return deleteLink + " " + confirmDeleteLink + " " + previewLink;
@@ -316,7 +316,7 @@ function showDeleteCertificate(id) {
 
 function deleteCertificate(id) {
     $.ajax({
-        url: "/certificate/" + id,
+        url: "/boss/certificate/" + id,
         type: "DELETE",
         success: populateCertificateList
     });
@@ -325,7 +325,7 @@ function deleteCertificate(id) {
 function populateRenewFields(training) {
     var courseId = training.trainingCourseId;
     $.ajax({
-        url: "/trainingCourse/" + courseId,
+        url: "/boss/trainingCourse/" + courseId,
         type: "GET",
         success: function(course) {
             var form = $("#form_training_renew");

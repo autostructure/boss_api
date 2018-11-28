@@ -464,13 +464,13 @@ CustomFormFunctions.putPartialInfo = function (url, id, partial, resolved, rejec
 
 CustomFormFunctions.preprocessPartialPUT = function (partialData, url, data_name) {
     
-    if (url == '/employeeProfile') {
+    if (url == '/boss/employeeProfile') {
         if (data_name == 'supervisor') {
             if (parseInt(partialData) == partialData) {
                
                 var emp;
                 $.ajax({
-                    url: '/employeeProfile/' + partialData,
+                    url: '/boss/employeeProfile/' + partialData,
                     type: 'GET',
                     cache: false,
                     timeout: 600000,

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     
         $('#viewList').click(function(){
-            window.location.href = '/viewRecordedDras';
+            window.location.href = '/boss/viewRecordedDras';
         });
         $('#addAnother').click(function(){
             window.location.reload();
@@ -44,10 +44,10 @@ $(document).ready(function () {
             $("[name=dateDue]").val(CustomFormFunctions.formatDate(date, "bootstrap"));
         });
     
-        CustomFormFunctions.populateDropDown($("select#draTitle_OG"), "/draCourse", "id", "title", false, function(){onAJAXSuccess("employees")});
-        //CustomFormFunctions.populateDropDown($("select#dStation_OG"), "/employeeProfile", "id", "lastName", false, function(){onAJAXSuccess("titles")});
+        CustomFormFunctions.populateDropDown($("select#draTitle_OG"), "/boss/draCourse", "id", "title", false, function(){onAJAXSuccess("employees")});
+        //CustomFormFunctions.populateDropDown($("select#dStation_OG"), "/boss/employeeProfile", "id", "lastName", false, function(){onAJAXSuccess("titles")});
         $.ajax({
-            url: '/employeeProfile',
+            url: '/boss/employeeProfile',
             type: 'GET',
             cache: false,
             timeout: 6000000,
@@ -64,7 +64,7 @@ $(document).ready(function () {
         });
     
         $.ajax({
-            "url":"/draCourse",
+            "url":"/boss/draCourse",
             "method":"GET",
             "success":function(data) {
                 for (var k in data) {
@@ -105,7 +105,7 @@ $(document).ready(function () {
                         "dateOfAssessment" : CustomFormFunctions.formatDate(entry.find("[name='dateOfAssessment']").val(), "ISO-Short"),
                         "dateDue" : CustomFormFunctions.formatDate(entry.find("[name='dateDue']").val(), "ISO-Short"),
                     }
-                    CustomFormFunctions.putPartialInfo("/dra", 0, data, 
+                    CustomFormFunctions.putPartialInfo("/boss/dra", 0, data, 
                         function(){
                             inProgress--;
                             console.log(entry.find(".remove_field"));

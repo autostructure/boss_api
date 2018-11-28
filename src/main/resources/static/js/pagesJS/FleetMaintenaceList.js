@@ -231,7 +231,7 @@ $(document).ready(function () {
             'buttons': [/*{
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
                 action: function () {
-                    window.location.href = '/addTrainingEmployee';
+                    window.location.href = '/boss/addTrainingEmployee';
                 },
                 className: 'table-btns add-btn'
             },*/
@@ -267,7 +267,7 @@ $(document).ready(function () {
         $("#myModal_fullRecord").on("show.bs.modal", function (e) {
             var modal = $(this);
             $.ajax({
-                url: "/vehicle", //+ id,
+                url: "/boss/vehicle", //+ id,
                 type: "GET",
                 cache: false,
                 success: function (json) {
@@ -356,7 +356,7 @@ $(document).ready(function () {
                 //add once maitenace is added to vehicle
                 /*
                  * $.ajax({
-                 * url: "/vehicle/" + ID,
+                 * url: "/boss/vehicle/" + ID,
                  * type: "PUT",
                  * chache: false,
                  * success: function(){},

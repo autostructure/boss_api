@@ -4,7 +4,7 @@ $(document).ready(function () {
     // populating the jquery datatable from api using ajax
     $.ajax({
         type: 'GET',
-        url: api + '/contact',
+        url: api + '/boss/contact',
         success: function (json) {
             populateDataTable(json);
         }
@@ -82,7 +82,7 @@ $(document).ready(function () {
         // creating vars to submit to ajax
         var form = $('#auxForm');
         var method = "POST";
-        var url = "/contact";
+        var url = "/boss/contact";
         var data = {
             'city':form.find('[name=city]').val(),
             'description':form.find('[name=description]').val(),

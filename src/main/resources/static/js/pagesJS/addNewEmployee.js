@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        url: '/activityCode',
+        url: '/boss/activityCode',
         contentType: "application/json",
         dataType: 'json',
         cache: false,
@@ -40,12 +40,12 @@ $(document).ready(function () {
         switch (id) {
             case '#submitAndAddAnother':
                 callback = function (json) {
-                    window.location = "/addNewEmployee";
+                    window.location = "/boss/addNewEmployee";
                 };
                 break;
             case '#submitAndEdit':
                 callback = function (json) {
-                    window.location = "/editEmployee/" + json.id;
+                    window.location = "/boss/editEmployee/" + json.id;
                 };
                 break;
         }
@@ -96,7 +96,7 @@ $(document).ready(function () {
             e.preventDefault();
         }
         //console.log(data);
-        putPartialInfo('/employeeProfile', 0, data, callback);
+        putPartialInfo('/boss/employeeProfile', 0, data, callback);
     });
 });
 function showError(msg) {

@@ -1,5 +1,5 @@
 var fy = $('#fy').val();
-var tempAPI = 'http://localhost:8080/jobCode';
+var tempAPI = '/boss/jobCode';
 
 var dat = [{id: 1, overrideCode: "a", financialYear: 2000, jobCode: "SPIX", description: "soils", amount: 223},
     {id: 1, overrideCode: "b", financialYear: 2000, jobCode: "SPIX2", description: "soils2", amount: 334}];
@@ -46,7 +46,7 @@ $(document).ready(function () {
     var inf = "";
     $.ajax({
         type: 'GET',
-        url: api + '/jobCode?financialYear=' + fy,
+        url: api + '/boss/jobCode?financialYear=' + fy,
         success: function (json) {
             populateDataTable(json);
         }
@@ -161,7 +161,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/jobCode",
+            url: "/boss/jobCode",
             data: JSON.stringify(jc),
             dataType: 'json',
             cache: false,
@@ -195,12 +195,12 @@ $(document).ready(function () {
         var id = parseInt($('#emid').val());
 
         console.log(jc);
-        console.log("/jobcode/" + id);
+        console.log("/boss/jobcode/" + id);
 
         $.ajax({
             type: "PUT",
             contentType: "application/json",
-            url: "/jobCode/" + id,
+            url: "/boss/jobCode/" + id,
             data: JSON.stringify(jc),
             dataType: 'json',
             cache: false,
@@ -235,11 +235,11 @@ $(document).ready(function () {
         var id = parseInt($('#dmid').val());
 
 
-        console.log("/jobcode/" + id);
+        console.log("/boss/jobcode/" + id);
         $.ajax({
             type: "DELETE",
             contentType: "application/json",
-            url: "/jobCode/" + id,
+            url: "/boss/jobCode/" + id,
             data: JSON.stringify(jc),
             dataType: 'json',
             cache: false,
