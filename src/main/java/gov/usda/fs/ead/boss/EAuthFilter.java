@@ -17,8 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-//@Component
-//@Order(1)
+@Component
+@Order(1)
 public class EAuthFilter implements Filter {
 
     private final static Logger LOG = LoggerFactory.getLogger(EAuthFilter.class);
@@ -58,6 +58,7 @@ public class EAuthFilter implements Filter {
             } else {
                 reqURI = getMyUrl(servletRequest);
                 if (reqURI.endsWith("login") || reqURI.contains("simUser")) {
+                    // ...
                 } else {
                     servletRequest.getSession().setAttribute("javax.servlet.error.status_code", "403");
                     servletRequest.getSession().setAttribute("javax.servlet.error.message", "Unable to Authenticate User");

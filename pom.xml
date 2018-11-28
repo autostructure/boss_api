@@ -142,11 +142,7 @@
         </dependency>
         -->
         <!-- https://mvnrepository.com/artifact/com.github.ulisesbocchio/spring-boot-security-saml -->
-        <dependency>
-            <groupId>com.github.ulisesbocchio</groupId>
-            <artifactId>spring-boot-security-saml</artifactId>
-            <version>1.16</version>
-        </dependency>
+      
 
         <dependency>
             <groupId>org.apache.commons</groupId>

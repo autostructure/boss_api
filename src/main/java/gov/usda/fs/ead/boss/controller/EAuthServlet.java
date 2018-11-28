@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *      firstname
  *      lastname
  */
-public class TestServlet extends HttpServlet {
+public class EAuthServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -79,6 +79,8 @@ public class TestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        System.out.println("Hello POST");
        
         String authid = request.getParameter("authid");
         String authid1 = request.getParameter("usdaeauthid");

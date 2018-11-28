@@ -23,8 +23,6 @@ import gov.usda.fs.ead.boss.repository.MonthlyIWFIAUsageRepository;
 import gov.usda.fs.ead.boss.repository.VehicleCostRepository;
 import gov.usda.fs.ead.boss.repository.VehicleMaintenanceRecordRepository;
 import gov.usda.fs.ead.boss.repository.VehicleRepository;
-import gov.usda.fs.ead.boss.auth.IsAppUser;
-import gov.usda.fs.ead.boss.auth.IsOwner;
 
 @RestController
 public class PropertyManagementController {
@@ -44,7 +42,7 @@ public class PropertyManagementController {
     @Autowired
     MonthlyIWFIAUsageRepository monthlyIWFIAUsageRepository;
 
-    @IsOwner
+    
     @PostMapping("/vehicle")
     public ResponseEntity createVehicle(@Valid @RequestBody Vehicle vehicleDetails) {
 
@@ -53,7 +51,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @GetMapping("/vehicle")
     public ResponseEntity getAllVehicles() {
 
@@ -61,7 +59,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @GetMapping("/vehicle/{id}")
     public ResponseEntity getVehicle(@PathVariable(value = "id") Long vehicleId) {
 
@@ -71,7 +69,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @PutMapping("/vehicle/{id}")
     public Vehicle updateVehicle(@PathVariable(value = "id") Long vehicleId,
             @RequestBody Vehicle vehicleDetails) {
@@ -86,7 +84,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @DeleteMapping("/vehicle/{id}")
     public ResponseEntity<?> deleteVehicle(@PathVariable(value = "id") Long vehicleId) {
 
@@ -105,7 +103,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @GetMapping("/vehicleMaintenanceRecord")
     public ResponseEntity getAllVehicleMaintenanceRecords(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
@@ -117,7 +115,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @GetMapping("/vehicleMaintenanceRecord/{id}")
     public ResponseEntity getVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
 
@@ -127,7 +125,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @PutMapping("/vehicleMaintenanceRecord/{id}")
     public VehicleMaintenanceRecord updateVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId,
             @RequestBody VehicleMaintenanceRecord vehicleMaintenanceRecordDetails) {
@@ -142,7 +140,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @DeleteMapping("/vehicleMaintenanceRecord/{id}")
     public ResponseEntity<?> deleteVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
 
@@ -153,7 +151,7 @@ public class PropertyManagementController {
 
     }
     
-    @IsOwner
+    
     @GetMapping("/vehicleCost")
     public ResponseEntity getAllVehicleCosts(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
@@ -165,7 +163,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @GetMapping("/vehicleCost/{id}")
     public ResponseEntity getVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
 
@@ -175,7 +173,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @PutMapping("/vehicleCost/{id}")
     public VehicleCost updateVehicleCost(@PathVariable(value = "id") Long vehicleCostId,
             @RequestBody VehicleCost vehicleCostDetails) {
@@ -190,7 +188,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @DeleteMapping("/vehicleCost/{id}")
     public ResponseEntity<?> deleteVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
 
@@ -201,7 +199,7 @@ public class PropertyManagementController {
 
     }
     
-    @IsAppUser
+    
     @GetMapping("/monthlyIWFIAUsage")
     public ResponseEntity getAllMonthlyIWFIAUsages(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
@@ -213,7 +211,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsAppUser
+    
     @GetMapping("/monthlyIWFIAUsage/{id}")
     public ResponseEntity getMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
 
@@ -223,7 +221,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsAppUser
+    
     @PutMapping("/monthlyIWFIAUsage/{id}")
     public MonthlyIWFIAUsage updateMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId,
             @RequestBody MonthlyIWFIAUsage monthlyIWFIAUsageDetails) {
@@ -238,7 +236,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsAppUser
+    
     @DeleteMapping("/monthlyIWFIAUsage/{id}")
     public ResponseEntity<?> deleteMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
 
@@ -249,7 +247,7 @@ public class PropertyManagementController {
 
     }
     
-    @IsOwner
+    
     @PostMapping("/fieldEquipment")
     public ResponseEntity createFieldEquipment(@Valid @RequestBody FieldEquipment fieldEquipmentDetails) {
 
@@ -258,7 +256,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @GetMapping("/fieldEquipment")
     public ResponseEntity getAllFieldEquipments(@RequestParam(value = "nameCode", required = false) final String nameCode) {
 
@@ -266,7 +264,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @GetMapping("/fieldEquipment/{id}")
     public ResponseEntity getFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
 
@@ -276,7 +274,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @PutMapping("/fieldEquipment/{id}")
     public FieldEquipment updateFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId,
             @RequestBody FieldEquipment fieldEquipmentDetails) {
@@ -291,7 +289,7 @@ public class PropertyManagementController {
 
     }
 
-    @IsOwner
+    
     @DeleteMapping("/fieldEquipment/{id}")
     public ResponseEntity<?> deleteFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
 

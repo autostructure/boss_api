@@ -14,4 +14,5 @@ public class JacksonConfiguration {
                 .enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)
                 .enable(DeserializationFeature.FAIL_ON_READING_DUP_TREE_KEY);
     }
+    
 }
