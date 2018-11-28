@@ -417,3 +417,7 @@ INSERT INTO dbo.deliberative_risk_assessment(deliberative_risk_assessment_course
 (2, '2018-06-03', '2019-06-03', 46),
 (2, '2018-09-03', '2019-09-03', 47),
 (2, '2018-09-03', '2019-09-03', 46);
+
+INSERT INTO dbo.vehicle(equipment_number, license, model_year, model_number, assigned_operator_id, city_or_location, state, accessory, accessory2, camera)  VALUES
+('ABE32', 'L32023829032', '2017', 'Jeep', 46, 'Memphis', 'TN', 'Topper', '', 'Factory'),
+('B329A', 'L4837AJ93208', '2016', 'Dodge', 47, 'Ogden', 'UT', 'ToolBox', 'Topper', 'Aftermarket');

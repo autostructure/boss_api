@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="card-tbody show" id="collapseTwo">
                                     <p class="card-text"><a href="/addNewFleet">Add New Fleet Vehicle</a></p>
-                                    <p class="card-text"><a href="#">View / Edit Fleet</a></p>
+                                    <p class="card-text"><a href="/viewFleet">View / Edit Fleet</a></p>
                                     <p class="card-text"><a href="#">Field Equip Electronic</a></p>
                                     <p class="card-text"><a href="#">ID Cards/Keys</a></p>
                                     <p class="card-text"><a href="#">Reports</a></p>

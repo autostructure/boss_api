@@ -147,8 +147,22 @@ forms.find('input:not([disabled]):not([type=submit]), textarea, select').each(fu
 });
 
 $('#monthlyUsage').on('click', function(){
-    window.location.assign('/viewEditFleet/'+ id + '/iwfia');
+    window.location.assign('/iwfia/'+ id);
 })
+
+$('#maintenance').on('click', function(){
+    window.location.assign('/FleetMaintenaceList');
+})
+
+$('#monthlyCostss').on('click', function(){
+    window.location.assign('/monthlyCosts/' + id);
+})
+
+$('#outOfService').on('click', function(){
+    window.location.assign('/monthsNotUsed/' + id);
+})
+
+
 
 // generating the fields w/ bootstrap field writer
 var fields = {

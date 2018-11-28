@@ -179,13 +179,16 @@ public class HomeController {
         return "viewEditFleet";
     }
 
-    
-    @RequestMapping("/iwfia")
+    @RequestMapping("/iwfia/{id}")
     public String iwfia() {
         return "iwfia";
     }
-
     
+    @RequestMapping("/monthsNotUsed/{id}")
+    public String monthsNotUsed() {
+        return "monthsNotUsed";
+    }
+
     @RequestMapping("/auxContact")
     public String auxContact() {
         return "auxContact";
@@ -209,8 +212,7 @@ public class HomeController {
         return "print";
     }
 
-    
-    @RequestMapping("/monthlyCosts")
+    @RequestMapping("/monthlyCosts/{id}")
     public String monthlyCosts() {
         return "monthlyCosts";
     }    

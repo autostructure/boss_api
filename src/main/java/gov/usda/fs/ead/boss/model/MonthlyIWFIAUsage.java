@@ -37,11 +37,11 @@ public class MonthlyIWFIAUsage {
     @Column(name = "Oil", nullable = false)
     private Short oil;
     
-    @Column(name = "DaysUsed", nullable = false)
+    @Column(name = "DaysUsed")
     private Short daysUsed;
     
-    @Column(name = "Cost", nullable = false)
-    private BigDecimal cost;
+    // @Column(name = "Cost")
+    // private BigDecimal cost;
     
     @Column(name = "Mileage", nullable = false)
     private Integer mileage;
@@ -186,19 +186,19 @@ public class MonthlyIWFIAUsage {
         this.daysUsed = daysUsed;
     }
 
-    /**
-     * @return the cost
-     */
-    public BigDecimal getCost() {
-        return cost;
-    }
+    // /**
+    //  * @return the cost
+    //  */
+    // public BigDecimal getCost() {
+    //     return cost;
+    // }
 
-    /**
-     * @param cost the cost to set
-     */
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
-    }
+    // /**
+    //  * @param cost the cost to set
+    //  */
+    // public void setCost(BigDecimal cost) {
+    //     this.cost = cost;
+    // }
 
     /**
      * @return the vehicle
