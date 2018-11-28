@@ -195,6 +195,7 @@
         <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
         <script src="/js/pagesJS/customFormFunctions.js"></script>
         <script src="/js/pagesJS/iwfia.js"></script>
+        <script src="/js/pagesJS/ApiCalls.js"></script>
         <script src="/js/pagesJS/mainFleetPages.js"></script>
 
 
