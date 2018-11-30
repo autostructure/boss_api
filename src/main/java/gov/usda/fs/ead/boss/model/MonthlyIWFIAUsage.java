@@ -57,7 +57,7 @@ public class MonthlyIWFIAUsage {
     
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle")
+    @JoinColumn(name = "vehicle", nullable=false)
     private Vehicle vehicle;
 
     /**

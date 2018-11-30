@@ -23,35 +23,46 @@ import gov.usda.fs.ead.boss.repository.MonthlyIWFIAUsageRepository;
 import gov.usda.fs.ead.boss.repository.VehicleCostRepository;
 import gov.usda.fs.ead.boss.repository.VehicleMaintenanceRecordRepository;
 import gov.usda.fs.ead.boss.repository.VehicleRepository;
+import java.util.List;
 
 @RestController
 public class PropertyManagementController {
 
     @Autowired
     VehicleRepository vehicleRepository;
-    
+
     @Autowired
     VehicleMaintenanceRecordRepository vehicleMaintenanceRecordRepository;
-    
+
     @Autowired
     FieldEquipmentRepository fieldEquipmentRepository;
-    
+
     @Autowired
     VehicleCostRepository vehicleCostRepository;
-    
+
     @Autowired
     MonthlyIWFIAUsageRepository monthlyIWFIAUsageRepository;
 
-    
     @PostMapping("/vehicle")
-    public ResponseEntity createVehicle(@Valid @RequestBody Vehicle vehicleDetails) {
+    public ResponseEntity createVehicle(@Valid @RequestBody final Vehicle vehicleDetails) {
 
-        vehicleDetails = vehicleRepository.save(vehicleDetails);
-        return new ResponseEntity<>(vehicleDetails, HttpStatus.OK);
+        List<VehicleMaintenanceRecord> recs1 = vehicleDetails.getMaintenanceRecords();
+        recs1.forEach(rec -> {
+            rec.setVehicle(vehicleDetails);
+        });
+
+        List<MonthlyIWFIAUsage> recs2 = vehicleDetails.getMonthlyIWFIAUsage();
+        recs2.forEach(rec -> {
+            rec.setVehicle(vehicleDetails);
+        });
+
+        vehicleDetails.setMaintenanceRecords(recs1);
+        vehicleDetails.setMonthlyIWFIAUsage(recs2);
+
+        return new ResponseEntity<>(vehicleRepository.save(vehicleDetails), HttpStatus.OK);
 
     }
 
-    
     @GetMapping("/vehicle")
     public ResponseEntity getAllVehicles() {
 
@@ -59,7 +70,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @GetMapping("/vehicle/{id}")
     public ResponseEntity getVehicle(@PathVariable(value = "id") Long vehicleId) {
 
@@ -69,7 +79,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @PutMapping("/vehicle/{id}")
     public Vehicle updateVehicle(@PathVariable(value = "id") Long vehicleId,
             @RequestBody Vehicle vehicleDetails) {
@@ -84,7 +93,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @DeleteMapping("/vehicle/{id}")
     public ResponseEntity<?> deleteVehicle(@PathVariable(value = "id") Long vehicleId) {
 
@@ -94,8 +102,8 @@ public class PropertyManagementController {
         return ResponseEntity.ok().build();
 
     }
-    
-     @PostMapping("/vehicleMaintenanceRecord")
+
+    @PostMapping("/vehicleMaintenanceRecord")
     public ResponseEntity createVehicleMaintenanceRecord(@Valid @RequestBody VehicleMaintenanceRecord vehicleMaintenanceRecordDetails) {
 
         vehicleMaintenanceRecordDetails = vehicleMaintenanceRecordRepository.save(vehicleMaintenanceRecordDetails);
@@ -103,11 +111,10 @@ public class PropertyManagementController {
 
     }
 
-    
     @GetMapping("/vehicleMaintenanceRecord")
     public ResponseEntity getAllVehicleMaintenanceRecords(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
-        if(vehicleId!= null) {
+        if (vehicleId != null) {
             return new ResponseEntity<>(vehicleMaintenanceRecordRepository.findAllByVehicleId(vehicleId), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(vehicleMaintenanceRecordRepository.findAll(), HttpStatus.OK);
@@ -115,7 +122,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @GetMapping("/vehicleMaintenanceRecord/{id}")
     public ResponseEntity getVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
 
@@ -125,7 +131,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @PutMapping("/vehicleMaintenanceRecord/{id}")
     public VehicleMaintenanceRecord updateVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId,
             @RequestBody VehicleMaintenanceRecord vehicleMaintenanceRecordDetails) {
@@ -140,7 +145,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @DeleteMapping("/vehicleMaintenanceRecord/{id}")
     public ResponseEntity<?> deleteVehicleMaintenanceRecord(@PathVariable(value = "id") Long vehicleMaintenanceRecordId) {
 
@@ -150,12 +154,11 @@ public class PropertyManagementController {
         return ResponseEntity.ok().build();
 
     }
-    
-    
+
     @GetMapping("/vehicleCost")
     public ResponseEntity getAllVehicleCosts(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
-        if(vehicleId!= null) {
+        if (vehicleId != null) {
             return new ResponseEntity<>(vehicleCostRepository.findAllByVehicleId(vehicleId), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(vehicleCostRepository.findAll(), HttpStatus.OK);
@@ -163,7 +166,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @GetMapping("/vehicleCost/{id}")
     public ResponseEntity getVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
 
@@ -173,7 +175,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @PutMapping("/vehicleCost/{id}")
     public VehicleCost updateVehicleCost(@PathVariable(value = "id") Long vehicleCostId,
             @RequestBody VehicleCost vehicleCostDetails) {
@@ -188,7 +189,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @DeleteMapping("/vehicleCost/{id}")
     public ResponseEntity<?> deleteVehicleCost(@PathVariable(value = "id") Long vehicleCostId) {
 
@@ -198,12 +198,11 @@ public class PropertyManagementController {
         return ResponseEntity.ok().build();
 
     }
-    
-    
+
     @GetMapping("/monthlyIWFIAUsage")
     public ResponseEntity getAllMonthlyIWFIAUsages(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
 
-        if(vehicleId!= null) {
+        if (vehicleId != null) {
             return new ResponseEntity<>(monthlyIWFIAUsageRepository.findAllByVehicleId(vehicleId), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(monthlyIWFIAUsageRepository.findAll(), HttpStatus.OK);
@@ -211,7 +210,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @GetMapping("/monthlyIWFIAUsage/{id}")
     public ResponseEntity getMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
 
@@ -221,7 +219,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @PutMapping("/monthlyIWFIAUsage/{id}")
     public MonthlyIWFIAUsage updateMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId,
             @RequestBody MonthlyIWFIAUsage monthlyIWFIAUsageDetails) {
@@ -236,7 +233,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @DeleteMapping("/monthlyIWFIAUsage/{id}")
     public ResponseEntity<?> deleteMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
 
@@ -246,8 +242,7 @@ public class PropertyManagementController {
         return ResponseEntity.ok().build();
 
     }
-    
-    
+
     @PostMapping("/fieldEquipment")
     public ResponseEntity createFieldEquipment(@Valid @RequestBody FieldEquipment fieldEquipmentDetails) {
 
@@ -256,7 +251,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @GetMapping("/fieldEquipment")
     public ResponseEntity getAllFieldEquipments(@RequestParam(value = "nameCode", required = false) final String nameCode) {
 
@@ -264,7 +258,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @GetMapping("/fieldEquipment/{id}")
     public ResponseEntity getFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
 
@@ -274,7 +267,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @PutMapping("/fieldEquipment/{id}")
     public FieldEquipment updateFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId,
             @RequestBody FieldEquipment fieldEquipmentDetails) {
@@ -289,7 +281,6 @@ public class PropertyManagementController {
 
     }
 
-    
     @DeleteMapping("/fieldEquipment/{id}")
     public ResponseEntity<?> deleteFieldEquipment(@PathVariable(value = "id") Long fieldEquipmentId) {
 

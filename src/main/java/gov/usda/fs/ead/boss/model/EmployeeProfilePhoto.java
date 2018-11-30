@@ -1,5 +1,6 @@
 package gov.usda.fs.ead.boss.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EmployeeProfilePhoto")
-public class EmployeeProfilePhoto {
+public class EmployeeProfilePhoto  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

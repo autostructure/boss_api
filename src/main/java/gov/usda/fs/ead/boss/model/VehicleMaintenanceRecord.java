@@ -71,7 +71,7 @@ public class VehicleMaintenanceRecord implements Serializable {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle")
+    @JoinColumn(name = "vehicle", nullable=false)
     private Vehicle vehicle;
 
     /**

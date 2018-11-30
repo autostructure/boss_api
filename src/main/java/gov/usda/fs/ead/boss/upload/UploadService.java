@@ -27,23 +27,13 @@ public class UploadService {
         doc.setFileType(fileType);
         doc.setName(f.getName());
         
-        System.out.println("upload " + f.getName());
-        System.out.println("upload");
-        System.out.println("upload");
-        System.out.println("upload");
-        System.out.println("upload");
-        
         uploadedDocumentRepository.save(doc);
         
-        System.out.println("uploaded");
-        System.out.println("uploaded");
-        System.out.println("uploaded");
-        System.out.println("uploaded");
-        System.out.println("uploaded");
-        
-        f.delete();
-        
-        return CompletableFuture.completedFuture(doc.getId());
+        if(!f.delete()) {
+            throw new RuntimeException("Failes to delete file " + f.getName());
+        } else {
+            return CompletableFuture.completedFuture(doc.getId());
+        }
     }
 
     @Async
