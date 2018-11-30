@@ -12,16 +12,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
 @Order(1)
 public class EAuthFilter implements Filter {
-
-    private final static Logger LOG = LoggerFactory.getLogger(EAuthFilter.class);
 
     protected FilterConfig filterConfig = null;
 
@@ -35,6 +31,8 @@ public class EAuthFilter implements Filter {
             ServletRequest request,
             ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
+        
+        System.out.println("ayyyyy");
 
         HttpServletRequest servletRequest = (HttpServletRequest) request;
         HttpServletResponse servletResponse = (HttpServletResponse) response;

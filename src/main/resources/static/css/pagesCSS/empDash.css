@@ -26,28 +26,28 @@
     vertical-align: middle;
 }
 .tile.empCheckOut {
-    background-image: url('/img/crewBG.jpg');
+    background-image: url('/boss/img/crewBG.jpg');
     border-color: #f0ac4e;
 }
 .tile.empCheckOut .tile-title {
     background-color: #f0ac4ecc;
 }
 .tile.empVehicle {
-    background-image: url('/img/propBG.jpg');
+    background-image: url('/boss/img/propBG.jpg');
     border-color: #0275d8;
 }
 .tile.empVehicle .tile-title {
     background-color: #0275d8cc;
 }
 .tile.empTraining {
-    background-image: url('/img/hrBG.jpg');
+    background-image: url('/boss/img/hrBG.jpg');
     border-color: #d9534f;
 }
 .tile.empTraining .tile-title {
     background-color: #d9534fcc;
 }
 .tile.empInfo {
-    background-image: url('/img/empBG.jpg');
+    background-image: url('/boss/img/empBG.jpg');
     border-color: #5cb85c;
 }
 .tile.empInfo .tile-title {
@@ -57,7 +57,7 @@
 section.bgImg {
     min-width: 100%;
     padding: 5%;
-    background-image: url('/img/empPortal.jpg');
+    background-image: url('/boss/img/empPortal.jpg');
     background-size: cover;
 }
 
