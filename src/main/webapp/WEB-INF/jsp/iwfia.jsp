@@ -190,12 +190,13 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="/boss/js/ead.min.js"></script>
-        <script src="/boss/js/bootstrap-datepicker.js"></script>
-        <script src="/boss/js/pagesJS/bootstrapFieldWriter.js"></script>
-        <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
-        <script src="/boss/js/pagesJS/iwfia.js"></script>
-        <script src="/boss/js/pagesJS/mainFleetPages.js"></script>
+        <script src="/js/ead.min.js"></script>
+        <script src="/js/bootstrap-datepicker.js"></script>
+        <script src="/js/pagesJS/bootstrapFieldWriter.js"></script>
+        <script src="/js/pagesJS/customFormFunctions.js"></script>
+        <script src="/js/pagesJS/iwfia.js"></script>
+        <script src="/js/pagesJS/ApiCalls.js"></script>
+        <script src="/js/pagesJS/mainFleetPages.js"></script>
 
 
 

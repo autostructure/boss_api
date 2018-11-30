@@ -11,7 +11,8 @@
 }
 .usa-section1{
     padding-top: 0px !important;
-    width: 100%;
+    min-width: 80%;
+    max-width: 100%;
     background-color: rgba(193, 193, 193, 0.02);
 }
 .usa-grid{

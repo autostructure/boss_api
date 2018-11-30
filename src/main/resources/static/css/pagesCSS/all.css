@@ -155,8 +155,8 @@ a.noUline{
     text-decoration: none;
 }
 #sidebar {
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 20%;
+    max-width: 20%;
     min-height: 100%;
     background: rgb(255, 255, 255);
     color: rgb(43, 43, 43);

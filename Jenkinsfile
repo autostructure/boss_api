@@ -21,17 +21,29 @@ node {
 
   stage('Package') {
     // Run Maven:
-    def buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean package checkstyle:checkstyle findbugs:findbugs pmd:pmd install spring-boot:repackage'
+    def buildInfoInstall
+
+    withSonarQubeEnv('Sonatype Server') {
+      // requires SonarQube Scanner for Maven 3.2+
+      buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean package spring-boot:repackage spotbugs:spotbugs pmd:pmd checkstyle:checkstyle sonar:sonar'
+    }
 
     buildInfo.append(buildInfoInstall)
-
-    step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/target/checkstyle-result.xml', unstableTotalAll:'0',unhealthy:'100', healthy:'100'])
-    step([$class: 'PmdPublisher', pattern: '**/target/pmd.xml'])
-    step([$class: 'FindBugsPublisher', pattern: '**/findbugsXml.xml'])
 
     // Publish the build-info to Artifactory:
     server.publishBuildInfo buildInfo
   }
+
+  // stage("Quality Gate") {
+//
+  //   timeout(time: 10, unit: 'MINUTES') { // Just in case something goes wrong, pipeline will be killed after a timeout
+  //     def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+//
+  //     if (qg.status != 'OK') {
+  //       error "Pipeline aborted due to quality gate failure: ${qg.status}"
+  //     }
+  //   }
+  // }
 
   stage('Build Container') {
     docker.withRegistry('https://docker.fs.usda.gov', 'docker_registry') {

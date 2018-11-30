@@ -56,8 +56,7 @@ $(document).ready(function () {
             });
         }
     });  
-    // end         
-   
+    // end
     // submitting data for new IWFIA
     $('input[type=submit]').on("click", function (e) {
         // checking form validity
@@ -72,21 +71,41 @@ $(document).ready(function () {
         var url = "/boss/vehicle/" + id;
         console.log(id);
         console.log(url);
-        var data = {
-            'monthlyIWFIAUsage': [{                    
-                'gas':form.find('[name=gas]').val(),
-                'mileage':form.find('[name=mileage]').val(),
-                'month':form.find('[name=month]').val(),
-                'oil':form.find('[name=oil]').val(),
+        var monthlyUsage = {                    
+                'gas':parseInt(form.find('[name=gas]').val()),
+                'mileage':parseInt(form.find('[name=mileage]').val()),
+                'month':parseInt(form.find('[name=month]').val()),
+                'oil':parseInt(form.find('[name=oil]').val()),
                 "operator": {
                     "activityCode": {
                         "code":form.find('[name=activityCode]').val(),
                         },
-                    'id':form.find('[name=operator]').val(),
+                    'id':parseInt(form.find('[name=operator]').val()),
                     },
-                'year':form.find('[name=year]').val(),
-                }]                    
-            };              
+                'year':parseInt(form.find('[name=year]').val()),
+                };
+        makeAjaxCall("/vehicle/"+id, "GET", null).then(function(dataIn) {
+            console.log(dataIn);
+            //dataIn = JSON.parse(dataIn);
+            dataIn.monthlyIWFIAUsage.push(monthlyUsage);
+            dataIn.assignedOperator = {id:46}
+            dataOut = JSON.stringify(dataIn);
+            console.log(dataIn);
+            console.log(dataOut);
+            return makeAjaxCall("/vehicle/"+id, "PUT", dataOut);
+        }, function(error) {
+            console.log("Error", error);
+            console.log(error.responseJSON);
+        }).then(function(data){
+            console.log("successfully updated");
+            console.log(data);
+        }, function(error) {
+            console.log("Error", error);
+            console.log(error.responseJSON);
+            return false;
+        });
+        return;
+
         // stringifying the data ajax
         data = JSON.stringify(data);
         console.log(data);    
@@ -99,7 +118,7 @@ $(document).ready(function () {
             cache: false,
             timeout: 600000,
             success: function(response){
-                e.preventDefault();
+                // e.preventDefault();
                 console.log("successfully updated");
                 console.log(data);
                 // window.location.reload();
@@ -246,4 +265,4 @@ function showError(msg) {
     }
     
     // calling bootstrap field writer function
-    addBootstrapFields(fields);    
+    addBootstrapFields(fields);
