@@ -34,7 +34,9 @@ node {
     server.publishBuildInfo buildInfo
   }
 
-  // stage("Quality Gate") {
+  stage("Sonatype Check") {
+    nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: selectedApplication('sandbox-application'), iqStage: 'build', jobCredentialsId: ''
+  }
 //
   //   timeout(time: 10, unit: 'MINUTES') { // Just in case something goes wrong, pipeline will be killed after a timeout
   //     def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
