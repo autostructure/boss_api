@@ -76,6 +76,7 @@ $(document).ready(function() {
                 type: 'GET',
                 timeout: 600000,
                 success: function (json) {
+                    // console.log(json);
                     var trainingCourses = {};
                     for (k in json) {
                         trainingCourses[json[k].id] = json[k];
@@ -157,8 +158,8 @@ $(document).ready(function() {
     });
 
     function populateTrainingTable(jsonData) {
-        console.log('populateDataTable');
-        console.log(jsonData);
+        // console.log('populateDataTable');
+        // console.log(jsonData);
         var latestTraining = {};
         for (k in jsonData) {
             var v = jsonData[k];
@@ -181,7 +182,7 @@ $(document).ready(function() {
             'data': jsonData,
             'dom':'Bfti',
             'columns': [
-                {'data': "employee.nameCode", "visible":false},
+                {'data': "employee.id", "visible":false},
                 {'data': "title",
                     'render':function(data, type, row) {
                         return "<span data-toggle='tooltip' data-placement='top' title='"+row.description+"'>"+data+"</span>";
@@ -287,9 +288,11 @@ $(document).ready(function() {
 
         $(".btn-modal").on("click", function() {
             var info = $(this).data("training");
+            // console.log(info);
             $(".trainingId").val(info.id);
             $(".trainingCourse").text(info.title);
-            $(".employeeName").text(info.employee.nameCode);
+            $(".employeeName").text(info.employee.email);
+
             populateCertificateList();
         });
         $(".btn-modal-renew").on("click", function(){
@@ -385,7 +388,7 @@ $(document).ready(function() {
             'data': jsonData,
             'dom': 'Bfti',
             'columns': [
-                { 'data': "employee.nameCode", "visible": false },
+                { 'data': "employee.id", "visible": false },
                 {
                     'data': "title",
                     'render': function(data, type, row) {
@@ -465,9 +468,10 @@ $(document).ready(function() {
 
         $(".btn-modal").on("click", function() {
             var info = $(this).data("training");
+            // console.log(info);
             $(".trainingId").val(info.id);
             $(".trainingCourse").text(info.title);
-            $(".employeeName").text(info.employee.nameCode);
+            $(".employeeName").text(info.employee.email);
             populateCertificateList();
         });
         $(".btn-modal-renew").on("click", function() {

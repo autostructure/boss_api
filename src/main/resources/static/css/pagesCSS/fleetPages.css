@@ -197,7 +197,8 @@ td, th{
 
 .usa-section1{
     padding-top: 0px !important;
-    width: 100%;
+    max-width: 100%;
+    min-width: 80%;
 }
 #expense{
     margin-top: 40px;

@@ -4,6 +4,7 @@ import gov.usda.fs.ead.boss.auth.EAuth;
 import gov.usda.fs.ead.boss.model.EmployeeProfile;
 import gov.usda.fs.ead.boss.repository.EmployeeProfileRepository;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,14 @@ public class AuthController {
 
         String authid = request.getParameter("authid");
         String authid1 = request.getParameter("usdaeauthid");
-        String email = request.getParameter("email");
+        String email = java.net.URLDecoder.decode(request.getParameter("email"), "UTF-8");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
+        
 
         EmployeeProfile p = employeeProfileRepository.findByFsEmail(email);
+        
+        // System.out.println(p.getFsEmail());
 
         if (p != null) {
 
@@ -45,6 +49,7 @@ public class AuthController {
             }
             
         } else {
+            System.out.println("p == null");
             response.sendRedirect(request.getContextPath() + "/register");
         }
 
