@@ -47,7 +47,7 @@ $(document).ready(function () {
                       <div class="dropdown1">
                           <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                           <div id="dropList" class="dropdown-content1">
-                              <a href="` + API + `/viewEditFleet/` + row.id + `" data-value=` + row.id + ` class="editBtn" id="editBtn">View | Edit Vehicle Details</a>
+                              <a href="` + API + `viewEditFleet/` + row.id + `" data-value=` + row.id + ` class="editBtn" id="editBtn">View | Edit Vehicle Details</a>
                           </div>
                       </div>
                   

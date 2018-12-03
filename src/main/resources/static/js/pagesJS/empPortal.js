@@ -894,7 +894,6 @@ var fields = {
                 "options":{
                     "male":"Male",
                     "female":"Female",
-                    "other":"Other (explain below)",
                 },
             },
             // {   "fieldName":"race",

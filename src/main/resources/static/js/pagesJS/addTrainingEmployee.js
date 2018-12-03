@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     $('#tName').append('<option value="' + '-1' + '">' + 'Please Select a Name ' + ' </oprion>');
     $.ajax({
-        url: api + "/boss/employeeProfile",
+        url: api + "employeeProfile",
         type: "GET",
         success: function (json) {
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('#tTitle').append('<option value="' + '-1' + '">' + 'Please enter a training Course Title' + ' </oprion>');
   
         $.ajax({
-            url: api + "/boss/trainingCourse",
+            url: api + "trainingCourse",
             type: "GET",
             success: function (json) {
                 //debugger;

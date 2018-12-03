@@ -32,7 +32,7 @@
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
                                 <a class="breadcrumbLink" href="/boss/hrDash">HR Dashboard |</a>
-                                <a class="breadcrumbLinkMain" href="/boss/addTrainingEmployee">Add Training by Employee</a>
+                                <a class="breadcrumbLinkMain" href="/boss/addTrainingEmployee">Record Employee Training</a>
                             </p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Add Training by Employee</h1>
+                                <h1 id="title">Record Employee Training</h1>
                             </div>
                         </div>
                         <!-- data-toggle="validator"-->

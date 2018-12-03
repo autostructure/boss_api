@@ -35,7 +35,7 @@
                         <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                             <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
                             <a class="breadcrumbLink" href="/boss/personnelDash">Personnel Dashboard |</a>
-                            <a class="breadcrumbLinkMain" href="/boss/addDraEmployee">Add DRA by Employee</a>
+                            <a class="breadcrumbLinkMain" href="/boss/addDraEmployee">Record Employee DRA</a>
                         </p>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
 
                     <div class="usa-grid usa-buffer-top">
                         <div class="usa-width-one-whole title-div">
-                            <h1 id="title">Add DRA by Employee</h1>
+                            <h1 id="title">Record Employee DRA</h1>
                         </div>
                     </div>
                     <div class="container trainBG padTop">
