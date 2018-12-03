@@ -5,6 +5,8 @@ var training_config = {
     "dueWithinDays": 180, // 6 months
 }
 
+$('#menuOpen').css("display", "none");
+
 $(document).ready(function() {
     // $("#checkIn-tab").on("click",function(){location.hash = "#CheckIn"});
     $("#property-tab").on("click",function(){location.hash = "#Property"});

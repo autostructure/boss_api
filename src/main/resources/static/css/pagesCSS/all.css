@@ -165,7 +165,7 @@ a.noUline{
 }
 
 #sidebar.active {
-    margin-left: -300px;
+    margin-left: -20%;
 }
 a[data-toggle="collapse"] {
     position: relative;

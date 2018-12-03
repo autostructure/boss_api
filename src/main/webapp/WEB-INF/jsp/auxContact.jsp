@@ -56,7 +56,8 @@
                                 <th>City</th>
                                 <th>State</th>
                                 <th>Phone</th>
-                                <th>Alternate Phone</th>
+                                <th>Additional Phone</th>
+                                <th>Notes</th>
                             </tr>
                         </thead>
                     </table>

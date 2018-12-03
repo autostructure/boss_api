@@ -38,6 +38,9 @@ public class Contact implements Serializable {
     @Column(name = "Phone2")
     private String phone2;
 
+    @Column(name = "Notes")
+    private String notes;    
+
     /**
      * @return the id
      */
@@ -64,6 +67,20 @@ public class Contact implements Serializable {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the notes
+     */
+    public String getNotes() {
+        return notes;
+    }
+
+    /**
+     * @param notes the notes to set
+     */
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     /**

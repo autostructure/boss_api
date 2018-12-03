@@ -4,7 +4,7 @@ $(document).ready(function () {
     // populating the jquery datatable from api using ajax
     $.ajax({
         type: 'GET',
-        url: api + '/boss/contact',
+        url: api + 'contact',
         success: function (json) {
             populateDataTable(json);
         }
@@ -27,7 +27,8 @@ $(document).ready(function () {
                 {data: "city"},
                 {data: "state"},
                 {data: "phone1"},
-                {data: "phone2"}
+                {data: "phone2"},
+                {data: "notes"}
 
             ],
             buttons: [
@@ -89,6 +90,7 @@ $(document).ready(function () {
             'phone1':form.find('[name=phone1]').val(),
             'phone2':form.find('[name=phone2]').val(),
             'state':form.find('[name=state]').val(),
+            'notes':form.find('[name=notes]').val(),
             'streetAddress':form.find('[name=streetAddress]').val()
         }
         // stringifying the data for ajax
@@ -131,42 +133,49 @@ var fields = {
             {"fieldName": "description",
                 "title": "Description",
                 "type": "input/text",
-                "required": true,
-                "colspan": 2,
+                "colspan": 3,
                 "placeholder": "Enter Description",
             },
             {"fieldName": "streetAddress",
                 "title": "Street Address",
                 "type": "input/text",
-                "colspan": 2,
+                "colspan": 3,
                 "placeholder": "Enter Street Address",
             },                
             {"fieldName": "city",
                 "title": "City",
                 "type": "input/text",
-                "colspan": 2,
+                "colspan": 3,
                 "placeholder": "Enter City",
-                "required": true,
             },
             {"fieldName": "state",
                 "title": "State",
                 "type": "select/state",
-                "required": true,
-                "colspan": 2
+                "colspan": 3
             },
+        ],
+        [
             {"fieldName": "phone1",
                 "title": "Phone Number",
+                "colspan": 3,
                 "type": "input/tel",
                 "required": true,
             },
             {"fieldName": "phone2",
                 "title": "Additional Phone",
+                "colspan": 3,
                 "type": "input/tel",
                 "required": false
-            }
+            },
+            {"fieldName": "notes",
+                "title": "Notes",
+                "colspan": 6,
+                "type": "input/text",
+                "required": false
+        }
         ], // end row
         [
-            {   "custom": '<input type="submit" class="btn btn_pers_copy" id="btn_add_aux" value="Add Auxilary Contact">' }
+            {   "custom": '<input type="submit" class="btn btn_pers_copy" id="btn_add_aux" value="Add Supplemental Contact">' }
         ]
     ]
 }
