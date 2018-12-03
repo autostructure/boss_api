@@ -28,34 +28,35 @@ if (id) {
     });
 };
 // end
+$.ajax({
+    url: '/boss/employeeProfile',
+    type: 'GET',
+    cache: false,
+    timeout: 600000,
+    success: function(json){
+        $.each(json, function(index, value){
+            $('#iwfiaForm_operator').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
+        });
+    }
+});    
+
+$.ajax({
+    url: '/boss/activityCode',
+    type: 'GET',
+    cache: false,
+    timeout: 600000,
+    success: function(json){
+        $.each(json, function(index, value){
+            $('#iwfiaForm_activityCode').append('<option value="' + value.code + '">' + value.code + ', ' + value.name + '</option>');
+        });
+    }
+}); 
     
 
 
 $(document).ready(function () {
     // getting choices for operators and activity code
-    $.ajax({
-        url: '/boss/employeeProfile',
-        type: 'GET',
-        cache: false,
-        timeout: 600000,
-        success: function(json){
-            $.each(json, function(index, value){
-                $('#iwfiaForm_operator').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
-            });
-        }
-    });    
-    
-    $.ajax({
-        url: '/boss/activityCode',
-        type: 'GET',
-        cache: false,
-        timeout: 600000,
-        success: function(json){
-            $.each(json, function(index, value){
-                $('#iwfiaForm_activityCode').append('<option value="' + value.code + '">' + value.code + ', ' + value.name + '</option>');
-            });
-        }
-    });  
+ 
     // end
     // submitting data for new IWFIA
     $('input[type=submit]').on("click", function (e) {
@@ -76,6 +77,7 @@ $(document).ready(function () {
                 'mileage':parseInt(form.find('[name=mileage]').val()),
                 'month':parseInt(form.find('[name=month]').val()),
                 'oil':parseInt(form.find('[name=oil]').val()),
+                'vehicle': parseInt(id),
                 "operator": {
                     "activityCode": {
                         "code":form.find('[name=activityCode]').val(),
@@ -84,7 +86,7 @@ $(document).ready(function () {
                     },
                 'year':parseInt(form.find('[name=year]').val()),
                 };
-        makeAjaxCall("/vehicle/"+id, "GET", null).then(function(dataIn) {
+        makeAjaxCall("/boss/vehicle/"+id, "GET", null).then(function(dataIn) {
             console.log(dataIn);
             //dataIn = JSON.parse(dataIn);
             dataIn.monthlyIWFIAUsage.push(monthlyUsage);
@@ -92,7 +94,7 @@ $(document).ready(function () {
             dataOut = JSON.stringify(dataIn);
             console.log(dataIn);
             console.log(dataOut);
-            return makeAjaxCall("/vehicle/"+id, "PUT", dataOut);
+            return makeAjaxCall("/boss/vehicle/"+id, "PUT", dataOut);
         }, function(error) {
             console.log("Error", error);
             console.log(error.responseJSON);
@@ -107,29 +109,29 @@ $(document).ready(function () {
         return;
 
         // stringifying the data ajax
-        data = JSON.stringify(data);
-        console.log(data);    
+        // data = JSON.stringify(data);
+        // console.log(data);    
         // ajax PUT call
-        $.ajax({
-            url: url,
-            type: method,
-            data: data,
-            contentType: "application/json",
-            cache: false,
-            timeout: 600000,
-            success: function(response){
-                // e.preventDefault();
-                console.log("successfully updated");
-                console.log(data);
+        // $.ajax({
+        //     url: url,
+        //     type: method,
+        //     data: data,
+        //     contentType: "application/json",
+        //     cache: false,
+        //     timeout: 600000,
+        //     success: function(response){
+        //         // e.preventDefault();
+        //         console.log("successfully updated");
+        //         console.log(data);
                 // window.location.reload();
-            },
-            error: function(error){
-                return false;
-                e.preventDefault();
-                console.log("Error" + error);
-                console.log(a.responseJSON);
-            }
-        });
+        //     },
+        //     error: function(error){
+        //         return false;
+        //         e.preventDefault();
+        //         console.log("Error" + error);
+        //         console.log(a.responseJSON);
+        //     }
+        // });
     });
 
     // function to populate the table
