@@ -32,7 +32,7 @@
                                         <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                             <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
                                             <a class="breadcrumbLink" href="/boss/personnelDash">Personnel Dashboard |</a>
-                                            <a class="breadcrumbLinkMain" href="/boss/addTrainingClass">Add Training Class</a>
+                                            <a class="breadcrumbLinkMain" href="/boss/addTrainingClass">Training Courses Available</a>
                                         </p>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="usa-width-one-whole title-div">
-                                            <h1 id="title">Edit Training Courses Available</h1>
+                                            <h1 id="title">Training Courses Available</h1>
                                         </div>
                                     </div>
                                     <div class="usa-grid usa-buffer-top">

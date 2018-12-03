@@ -39,7 +39,7 @@
                 <section class="usa-section">
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Edit DRA Courses Available</h1>
+                                <h1 id="title">DRA Courses Available</h1>
                             </div>
                         </div>                    
                     <div class="usa-grid usa-buffer-top">
