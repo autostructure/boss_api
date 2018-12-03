@@ -125,19 +125,19 @@
                                 <img src="img/empBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <!-- <h4 class="hTitle">Budget</h4> -->
-                                    <a class="btn btn-link" href="/boss/empDash">
+                                    <a class="btn btn-link" href="/boss/empPortal">
                                         <h5 class="card-title">Employee<br>Portal</h5>
                                     </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseFive">
                                     <p class="card-text"><a href="/boss/empPortal">My Profile</a></p>
-                                    <p class="card-text"><a href="/boss/empPortal">Emergency Contact</a></p>
-                                    <p class="card-text"><a href="/boss/empPortal">Check In / Check Out</a></p>
-                                    <p class="card-text"><a href="/boss/empPortal">Vehicle</a></p>
-                                    <p class="card-text"><a href="/boss/empPortal">Training / Certs</a></p>
+                                    <p class="card-text"><a href="/boss/empPortal#Emergency">Emergency Contact</a></p>
+                                    <!-- <p class="card-text"><a href="/boss/empPortal">Check In / Check Out</a></p> -->
+                                    <p class="card-text"><a href="/boss/empPortal#Property">Vehicle Usage</a></p>
+                                    <p class="card-text"><a href="/boss/empPortal#Training">Training / Certs</a></p>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <p class="card-text dashboard"><a href="/boss/empDash">Visit Dashboard</a></p>
+                                    <p class="card-text dashboard"><a href="/boss/empPortal">Visit Dashboard</a></p>
                                 </div>
                             </div>
                         </div>

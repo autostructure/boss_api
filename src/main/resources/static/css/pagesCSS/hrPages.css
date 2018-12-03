@@ -539,7 +539,11 @@ td, th{
 }
 table.dataTable.no-footer {
     border-bottom: 0px solid rgb(148, 148, 148);
+    table-layout: fixed;
+    overflow: scroll;
 }
+
+
 .btn-modal-upload{
     color: white !important;
     font-size: 0.8em;

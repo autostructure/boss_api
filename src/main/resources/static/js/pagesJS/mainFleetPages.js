@@ -1,4 +1,4 @@
-$(mainHeader).load("/boss/templates/budgetHeader.html");
+$(mainHeader).load("/boss/templates/header.html");
 $(mainFooter).load("/boss/templates/budgetFooter.html");
 $(sidebar).load("/boss/templates/propsidebar.html");
 $(document).ready(function () {

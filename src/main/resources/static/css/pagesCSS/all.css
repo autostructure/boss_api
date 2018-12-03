@@ -145,11 +145,18 @@ a.active span{
 /* ---------------------------------------------------------------------END OF FOOTER STYLES------------------------------------------------------------ */
 
 
+/* fixing ead toolbox stuff */
+header, footer{
+    display: unset !important;
+}
+#footRight{
+    padding-right: 20px !important;
+}
 
 
 /* ---------------------------------------------------------------------START OF SIDENAV STYLES------------------------------------------------------------ */
 .wrapper {
-    display: flex;
+    display: inline-flex;
 }
 a.noUline{
     text-decoration: none;
@@ -188,9 +195,9 @@ a[aria-expanded="true"]::before {
     font-family: 'FontAwesome';
     font-size: 0.8em;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     #sidebar {
-        margin-left: -300px;
+        display: none;
     }
     #sidebar.active {
         margin-left: 0;
