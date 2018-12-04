@@ -88,7 +88,7 @@
                                     <p class="card-text"><a href="/boss/viewTraining">View All Training</a></p>
                                     <p class="card-text"><a href="/boss/addTrainingClass">Training Courses</a></p>
                                     <p class="card-text"><a href="/boss/addDraEmployee">Record Employee DRA</a></p>
-                                    <p class="card-text"><a href="/boss/auxContact">Auxiliary Contact List</a></p>
+                                    <p class="card-text"><a href="/boss/auxContact">Supplemental Phone Numbers</a></p>
                                 </div>
                                 <div class="card-footer text-right">
                                     <p class="card-text dashboard"><a href="/boss/personnelDash">Visit Dashboard</a></p>
