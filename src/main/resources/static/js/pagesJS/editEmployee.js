@@ -2,7 +2,7 @@
 var testing = false;
 var empId = 0;
 $(document).ready(function() {
-    var identifier = window.location.pathname.split("/")[2];
+    var identifier = window.location.pathname.split("/")[3];
     empId = parseInt(identifier);
     $("#formGeneralInfo_Secondary").prop('disabled', true);
     $("#formGeneralInfo_Primary").prop('disabled', true);
@@ -160,15 +160,15 @@ $(document).ready(function() {
             partial.showPersonalCellPhone = false;
         }
 
-        CustomFormFunctions.putPartialInfo("/employeeProfile", empId, partial);
+        CustomFormFunctions.putPartialInfo("/boss/employeeProfile", empId, partial);
     });
 });
 
 function populateTheEmployee(employeeId) {
     var forms = $("#formGeneralInfo, #formWorkInfo, #formEmergencyInfo, #formMedicalInfo");
     forms.find("input, select").off("click change update");
-    CustomFormFunctions.populateElements(forms.find("input, select, textarea"), "/employeeProfile", employeeId);
-    CustomFormFunctions.setSneakySave(forms.find("input, select, textarea"), "/employeeProfile", employeeId);
+    CustomFormFunctions.populateElements(forms.find("input, select, textarea"), "/boss/employeeProfile", employeeId);
+    CustomFormFunctions.setSneakySave(forms.find("input, select, textarea"), "/boss/employeeProfile", employeeId);
     $(".border").show();
     $("#chooseEmployee").val(employeeId);
     updateProfilePicture();
@@ -208,28 +208,20 @@ var fields = {
                 "title": "Last Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 3
+                "colspan": 4
             },
             {
                 "fieldName": "firstName",
                 "title": "First Name",
                 "type": "input/text",
                 "required": true,
-                "colspan": 3
+                "colspan": 4
             },
             {
                 "fieldName": "middleInitial",
                 "title": "Middle Initial",
                 "type": "input/text",
-                "colspan": 3
-            },
-            {
-                "fieldName": "nameCode",
-                "title": "System ID (Auto - Generated)",
-                "type": "input/text",
-                "required": true,
-                "placeholder": "System ID (Auto - Generated)",
-                "colspan": 3
+                "colspan": 4
             },
         ],
         [
