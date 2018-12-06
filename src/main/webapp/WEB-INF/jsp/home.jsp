@@ -50,7 +50,7 @@
                         </div
                     </div>
                     -->
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 offset-lg-2">
                         <div class="card">
                             <div class="card-block">
                                 <img src="img/propBG.jpg" alt="budget mountain picture" class="img-fluid">
