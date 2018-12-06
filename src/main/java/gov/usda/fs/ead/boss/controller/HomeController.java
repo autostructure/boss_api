@@ -10,6 +10,11 @@ public class HomeController {
     public String home() {
         return "redirect:/home";
     }
+    
+    @RequestMapping("/register")
+    public String register() {
+        return "register";
+    }
 
     
     @RequestMapping("/home")

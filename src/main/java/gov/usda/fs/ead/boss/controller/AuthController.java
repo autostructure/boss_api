@@ -4,6 +4,7 @@ import gov.usda.fs.ead.boss.auth.EAuth;
 import gov.usda.fs.ead.boss.model.EmployeeProfile;
 import gov.usda.fs.ead.boss.repository.EmployeeProfileRepository;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,7 @@ public class AuthController {
 
     @Autowired
     EmployeeProfileRepository employeeProfileRepository;
-    
+
     @GetMapping("/auth/login")
     public ResponseEntity doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         return doPost(request, response);
@@ -29,15 +30,16 @@ public class AuthController {
     public ResponseEntity doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String authid = request.getParameter("authid");
-        String authid1 = request.getParameter("usdaeauthid");
         String email = java.net.URLDecoder.decode(request.getParameter("email"), "UTF-8");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
-        
 
-        EmployeeProfile p = employeeProfileRepository.findByFsEmail(email);
-        
+        EmployeeProfile p = employeeProfileRepository.findByFsEmail(email.trim());
+
         // System.out.println(p.getFsEmail());
+        for (int i = 0; i < 100; i++) {
+            System.out.println(email);
+        }
 
         if (p != null) {
 
@@ -47,9 +49,12 @@ public class AuthController {
                 request.getSession(true).setAttribute(EAuth.IN_PROGRESS, null);
                 response.sendRedirect(request.getContextPath() + "/");
             }
-            
+
         } else {
-            System.out.println("p == null");
+            for (int i = 0; i < 100; i++) {
+                System.out.println("p == null");
+            }
+
             response.sendRedirect(request.getContextPath() + "/register");
         }
 
