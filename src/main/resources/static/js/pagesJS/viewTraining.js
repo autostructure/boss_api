@@ -12,7 +12,7 @@ var supervisor = false;
 $(document).ready(function () {
 
     $.ajax({
-        url: "/myProfile",
+        url: "/boss/myProfile",
         type: "GET",
         async: false,
         cache: false,
@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
 
     $.ajax({
-        url: "/myRoles",
+        url: "/boss/myRoles",
         type: "GET",
         async: false,
         cache: false,
@@ -247,7 +247,7 @@ $(document).ready(function () {
                 var id = $(this).closest("form").find(".trainingId").val();
                 var emp;
                 $.ajax({
-                    url: "/employeeProfile/" + userId,
+                    url: "/boss/employeeProfile/" + userId,
                     type: "GET",
                     cache: false,
                     success: function(json) {
@@ -256,7 +256,7 @@ $(document).ready(function () {
                         emp = json;
 
                         $.ajax({
-                            url: "/training/" + id,
+                            url: "/boss/training/" + id,
                             type: "GET",
                             cache: false,
                             success: function(jsonn) {
@@ -265,7 +265,7 @@ $(document).ready(function () {
 
                                 var emp2;
                                 $.ajax({
-                                    url: "/employeeProfile/" + jsonn.employee.id,
+                                    url: "/boss/employeeProfile/" + jsonn.employee.id,
                                     type: "GET",
                                     async: false,
                                     success: function(jj) {
@@ -280,7 +280,7 @@ $(document).ready(function () {
 
 
                                 $.ajax({
-                                    url: "/training/" + id,
+                                    url: "/boss/training/" + id,
                                     type: "PUT",
                                     contentType: "application/json",
                                     data: JSON.stringify(jsonn),
@@ -322,7 +322,7 @@ $(document).ready(function () {
             var data = new FormData(form[0]);
             var id = form.find('.trainingId').val();
             $.ajax({
-                url: "/certificate?trainingId=" + id,
+                url: "/boss/certificate?trainingId=" + id,
                 type: "POST",
                 enctype: 'multipart/form-data',
                 data: data,
@@ -401,7 +401,7 @@ $(document).ready(function () {
 function populateCertificateList() {
     console.log("PopulatingList");
     $.ajax({
-        url: "/training/" + $(".trainingId").val(),
+        url: "/boss/training/" + $(".trainingId").val(),
         type: "GET",
         success: function (data) {
             var cert = data.certificates;
@@ -429,7 +429,7 @@ function showDeleteCertificate(id) {
 
 function deleteCertificate(id) {
     $.ajax({
-        url: "/certificate/" + id,
+        url: "/boss/certificate/" + id,
         type: "DELETE",
         success: populateCertificateList
     });
@@ -438,7 +438,7 @@ function deleteCertificate(id) {
 function populateRenewFields(training) {
     var courseId = training.trainingCourseId;
     $.ajax({
-        url: "/trainingCourse/" + courseId,
+        url: "/boss/trainingCourse/" + courseId,
         type: "GET",
         success: function (course) {
             var form = $("#form_training_renew");
@@ -731,7 +731,7 @@ CustomFormFunctions.addBootstrapFields(trainingRenewFields);
 //                var data = new FormData(form[0]);
 //                var id = form.find(".trainingId").val();
 //                $.ajax({
-//                    url: "/certificate?trainingId=" + id,
+//                    url: "/boss/certificate?trainingId=" + id,
 //                    type: "POST",
 //                    enctype: "multipart/form-data",
 //                    data: data,
@@ -809,7 +809,7 @@ CustomFormFunctions.addBootstrapFields(trainingRenewFields);
 //function populateCertificateList() {
 //    console.log("PopulatingList");
 //    $.ajax({
-//        url: "/training/" + $(".trainingId").val(),
+//        url: "/boss/training/" + $(".trainingId").val(),
 //        type: "GET",
 //        success: function(data) {
 //            var cert = data.certificates;
@@ -847,7 +847,7 @@ CustomFormFunctions.addBootstrapFields(trainingRenewFields);
 
 //function deleteCertificate(id) {
 //    $.ajax({
-//        url: "/certificate/" + id,
+//        url: "/boss/certificate/" + id,
 //        type: "DELETE",
 //        success: populateCertificateList
 //    });
@@ -856,7 +856,7 @@ CustomFormFunctions.addBootstrapFields(trainingRenewFields);
 //function populateRenewFields(training) {
 //    var courseId = training.trainingCourseId;
 //    $.ajax({
-//        url: "/trainingCourse/" + courseId,
+//        url: "/boss/trainingCourse/" + courseId,
 //        type: "GET",
 //        success: function(course) {
 //            var form = $("#form_training_renew");
