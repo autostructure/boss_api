@@ -87,6 +87,20 @@ public class PropertyManagementController {
                 .orElseThrow(() -> {
                     return new ResourceNotFoundException("Vehicle", "id", vehicleId);
                 });
+        
+        List<VehicleMaintenanceRecord> recs1 = vehicleDetails.getMaintenanceRecords();
+        recs1.forEach(rec -> {
+            rec.setVehicle(vehicleDetails);
+        });
+
+        List<MonthlyIWFIAUsage> recs2 = vehicleDetails.getMonthlyIWFIAUsage();
+        recs2.forEach(rec -> {
+            rec.setVehicle(vehicleDetails);
+        });
+
+        vehicleDetails.setMaintenanceRecords(recs1);
+        vehicleDetails.setMonthlyIWFIAUsage(recs2);
+
 
         Vehicle updated = vehicleRepository.save(vehicleDetails);
         return updated;

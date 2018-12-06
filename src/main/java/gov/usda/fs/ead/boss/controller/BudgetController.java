@@ -50,6 +50,7 @@ import gov.usda.fs.ead.boss.repository.ExpenseCodeRepository;
 import gov.usda.fs.ead.boss.repository.ExpenseRepository;
 import gov.usda.fs.ead.boss.repository.JobCodeRepository;
 import gov.usda.fs.ead.boss.repository.PaymentCodeRepository;
+import org.modelmapper.ModelMapper;
 // import gov.usda.fs.ead.boss.saml.IsOwnerOrSupervisor;
 
 @RestController
@@ -78,6 +79,9 @@ public class BudgetController {
 
     @Autowired
     private ServletContext servletContext;
+    
+    @Autowired
+    private ModelMapper modelMapper;
     
     //@IsOwnerOrSupervisor
     @GetMapping("/expense")
