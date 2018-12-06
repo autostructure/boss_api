@@ -421,3 +421,11 @@ INSERT INTO dbo.deliberative_risk_assessment(deliberative_risk_assessment_course
 INSERT INTO dbo.vehicle(equipment_number, license, model_year, model_number, assigned_operator_id, city_or_location, state, accessory, accessory2, camera)  VALUES
 ('ABE32', 'L32023829032', '2017', 'Jeep', 46, 'Memphis', 'TN', 'Topper', '', 'Factory'),
 ('B329A', 'L4837AJ93208', '2016', 'Dodge', 47, 'Ogden', 'UT', 'ToolBox', 'Topper', 'Aftermarket');
+
+INSERT INTO dbo.contacts(description, city, state, phone1, phone2, notes) VALUES
+('Biz Hub Room', '', '', '801-625-5723', '801-625-5129', 'MailRoom and Biz Hub'),
+('Conference Room', '', '', '801-625-5221', '', '3rd Floor'),
+('Ogden Lab Security', 'Ogden', 'UT', '801-386-4899', '', 'Guard Shack'),
+('Denver FSP Guard Service', 'Denver', 'CO', '877-437-7411', '', 'Homeland Security'),
+('Apollo Call Center', '', '', '800-379-4828', '801-263-4258', '');
+

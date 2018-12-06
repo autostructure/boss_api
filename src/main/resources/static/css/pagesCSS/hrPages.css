@@ -153,11 +153,6 @@ hr:after {
     margin-bottom: 35px !important;
 }
 
-.usa-section1 {
-    padding-top: 0px !important;
-    width: 100%;
-    background-color: rgba(193, 193, 193, 0.02);
-}
 .card {
     box-shadow: 5px 10px 15px rgba(33,33,33,0.2);
     border: 1px solid rgba(33, 33, 33, 0.2);

@@ -48,7 +48,8 @@
                 </div>
 
                 <div class="container trainBG padTop">
-                    <table id="auxTable">
+                    <!-- <table id="auxTable"> -->
+                        <table id="auxTable" class="usa-table-borderless display" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Description</th>
