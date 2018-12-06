@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
         <title>FIA-BOSS</title>
-        <link rel="stylesheet" href="/css/ead.min.css">
-        <link rel="stylesheet" href="/css/bootstrap-datepicker3.css">
-        <link rel="stylesheet" href="/css/pagesCSS/all.css">
-        <link rel="stylesheet" href="/css/pagesCSS/hrPages.css">
+        <link rel="stylesheet" href="/boss/css/ead.min.css">
+        <link rel="stylesheet" href="/boss/css/bootstrap-datepicker3.css">
+        <link rel="stylesheet" href="/boss/css/pagesCSS/all.css">
+        <link rel="stylesheet" href="/boss/css/pagesCSS/hrPages.css">
     </head>
 
     <body class="layout-demo">
@@ -25,7 +25,7 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img data-toggle="tooltip" data-html="true" title="Insect and Disease Training at start of field season. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Wyoming. (Forest Service photo by IWFIA staff)" class="bannerImg" src="../../img/employees.jpg" alt="Banner Image"/>
+                        <img data-toggle="tooltip" data-html="true" title="Insect and Disease Training at start of field season. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Wyoming. (Forest Service photo by IWFIA staff)" class="bannerImg" src="/boss/img/employees.jpg" alt="Banner Image"/>
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
@@ -294,12 +294,12 @@
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">
         </footer>
-        <script src="/js/ead.min.js"></script>
-        <script src="/js/pagesJS/customFormFunctions.js"></script>
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/pagesJS/ApiCalls.js"></script>
-        <script src="/js/pagesJS/fleetMaintenaceList.js"></script>
-        <script src="/js/pagesJS/personnelPages.js"></script>
+        <script src="/boss/js/ead.min.js"></script>
+        <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
+        <script src="/boss/js/bootstrap-datepicker.js"></script>
+        <script src="/boss/js/pagesJS/ApiCalls.js"></script>
+        <script src="/boss/js/pagesJS/fleetMaintenaceList.js"></script>
+        <script src="/boss/js/pagesJS/mainFleetPages.js"></script>
 
     </body>
 

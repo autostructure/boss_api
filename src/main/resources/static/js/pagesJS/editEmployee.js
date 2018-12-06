@@ -225,6 +225,14 @@ var fields = {
             },
         ],
         [
+            {"fieldName": "role",
+                "title": "User Role / Access",
+                "type": "select/text",
+                "required": true,
+                "options": ["Support Admin", "Supervisor", "Fleet / Vehicle", "Budget", "Basic Access"]
+            }
+        ],
+        [
             {
                 "fieldName": "preferredName",
                 "title": "Preferred Name",

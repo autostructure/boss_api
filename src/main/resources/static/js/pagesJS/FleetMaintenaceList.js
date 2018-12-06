@@ -1,8 +1,15 @@
 $(document).ready(function() {
 
-
-    var identifier = window.location.pathname.split("/")[2];
-    vehId = parseInt(identifier);
+    var id = window.location.pathname.split("/")[3];
+    if (id) {
+        var url = '/boss/vehicle?id=' + id;
+        if (parseInt(id)) {
+            url = '/boss/vehicle/' + id;
+        }
+        var url = '/boss/vehicle/' + id;
+    // var identifier = window.location.pathname.split("/")[3];
+    // console.log(identifier)
+    // vehId = parseInt(identifier);
     var selected_row = "";
 
     
@@ -10,7 +17,7 @@ $(document).ready(function() {
 
     if (!debug) {
         $.ajax({
-            url: "/vehicle/" + vehId,
+            url: url,
             type: "GET",
             cache: false,
             success: function(json) {
@@ -503,9 +510,10 @@ $(document).ready(function() {
 
 
     }*/
-});
+// });
 
-function getCorrectDateFormat(date_str) {
-    var date = new Date(date_str);
-    return date.toISOString();
-}
+    function getCorrectDateFormat(date_str) {
+        var date = new Date(date_str);
+        return date.toISOString();
+    }
+}});

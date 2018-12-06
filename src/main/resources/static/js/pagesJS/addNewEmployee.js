@@ -165,15 +165,13 @@ var fields = {
         //     } 
         ],
         [
-            {
-            "fieldName": "nameCode",
-            "title": "System ID (Auto - Generated)",
-            "type": "input/text",
-            "required": true,
-            "placeholder": "System ID (Auto - Generated)",
-            },
-
-        ], // end row
+            {"fieldName": "role",
+                "title": "User Role / Access",
+                "type": "select/text",
+                "required": true,
+                "options": ["Support Admin", "Supervisor", "Fleet / Vehicle", "Budget", "Basic Access"]
+            }
+        ],
         {"custom": "<hr/>"},
         {"custom": '<h4 class="title3">Contact Information</h4>'},
         [// Contact Info
@@ -192,6 +190,7 @@ var fields = {
                 "required": false
             },
         ], // end row
+
         [// Address Info
             {"fieldName": "addressStreet1",
                 "title": "Street Address (Home)",
