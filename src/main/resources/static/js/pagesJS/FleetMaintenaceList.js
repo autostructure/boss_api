@@ -30,7 +30,7 @@ $(document).ready(function() {
 
                 //var debug_veh = init();
                 //$.ajax({
-                //    url: "/vehicle/1", // + empId,
+                //    url: "/boss/vehicle/1", // + empId,
                 //    type: "GET",
                 //    cache: false,
                 //    success: function(json) {
@@ -187,7 +187,7 @@ $(document).ready(function() {
                 //take out when api supports maitenace
                 
                 $.ajax({
-                    url: "/vehicle/" + id,
+                    url: "/boss/vehicle/" + id,
                     type: "GET",
                     cache: false,
                     success: function(json) {
@@ -299,7 +299,7 @@ $(document).ready(function() {
 
                 var info;
                 $.ajax({
-                    url: "/vehicle/" + selected_row,
+                    url: "/boss/vehicle/" + selected_row,
                     type: "GET",
                     cache: false,
                     async: false,
@@ -359,7 +359,7 @@ $(document).ready(function() {
 
 
                 $.ajax({
-                    url: "/employeeProfile/" + info.assignedOperator.id,
+                    url: "/boss/employeeProfile/" + info.assignedOperator.id,
                     type: "GET",
                     cache: false,
                     async: false,
@@ -386,7 +386,7 @@ $(document).ready(function() {
 
                 try {
                     $.ajax({
-                        url: "/vehicle/" + selected_row,
+                        url: "/boss/vehicle/" + selected_row,
                         type: "PUT",
                         contentType: "application/json",
                         data: JSON.stringify(info),
@@ -429,7 +429,7 @@ $(document).ready(function() {
 
         var employee;
         $.ajax({
-            url: "/employeeProfile/47",
+            url: "/boss/employeeProfile/47",
             type: "GET",
             cache: false,
             async: false,
@@ -494,7 +494,7 @@ $(document).ready(function() {
         console.log(JSON.stringify(veh));
 
         $.ajax({
-            url: "/vehicle",
+            url: "/boss/vehicle",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(veh),
