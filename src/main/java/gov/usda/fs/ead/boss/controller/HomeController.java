@@ -16,11 +16,6 @@ public class HomeController {
     public String home2() {
         return "home";
     }
-    
-    @RequestMapping("/register")
-    public String register() {
-        return "register";
-    }
 
     
     @RequestMapping("/budgetDash")
@@ -184,23 +179,20 @@ public class HomeController {
         return "viewEditFleet";
     }
 
+    
     @RequestMapping("/iwfia/{id}")
     public String iwfia() {
         return "iwfia";
     }
-    
-    @RequestMapping("/monthsNotUsed/{id}")
-    public String monthsNotUsed() {
-        return "monthsNotUsed";
-    }
 
+    
     @RequestMapping("/auxContact")
     public String auxContact() {
         return "auxContact";
     }
 
     
-    @RequestMapping("/FleetMaintenaceList")
+    @RequestMapping("/FleetMaintenaceList/{id}")
     public String FleetMaintenaceList() {
         return "FleetMaintenaceList";
     }
@@ -217,8 +209,18 @@ public class HomeController {
         return "print";
     }
 
-    @RequestMapping("/monthlyCosts/{id}")
+    
+    @RequestMapping("/monthlyCosts")
     public String monthlyCosts() {
         return "monthlyCosts";
-    }    
+    }
+
+    
+    @RequestMapping("/DebugInfo")
+    public String DebugInfo() {
+        return "DebugInfo";
+    }
+
+
+	    
 }

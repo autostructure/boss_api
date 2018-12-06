@@ -52,6 +52,7 @@ import gov.usda.fs.ead.boss.repository.TrainingRepository;
 import gov.usda.fs.ead.boss.repository.UploadedDocumentRepository;
 import gov.usda.fs.ead.boss.upload.UploadFileResponse;
 import gov.usda.fs.ead.boss.upload.UploadService;
+import org.modelmapper.ModelMapper;
 
 @RestController
 public class HumanResourcesController {
@@ -88,6 +89,9 @@ public class HumanResourcesController {
 
     @Autowired
     UploadService uploadService;
+    
+    @Autowired
+    private ModelMapper modelMapper;
 
     /*
     @GetMapping("/userEmail")

@@ -4,7 +4,7 @@ import gov.usda.fs.ead.boss.auth.EAuth;
 import gov.usda.fs.ead.boss.model.EmployeeProfile;
 import gov.usda.fs.ead.boss.repository.EmployeeProfileRepository;
 import java.io.IOException;
-import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class AuthController {
 
     @Autowired
     EmployeeProfileRepository employeeProfileRepository;
-
+    
     @GetMapping("/auth/login")
     public ResponseEntity doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         return doPost(request, response);
