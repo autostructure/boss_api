@@ -55,9 +55,9 @@ $(document).ready(function () {
         }
     });
 
-    var p0 = makeAjaxCall("/training", "GET", null);
-    var p1 = makeAjaxCall("/trainingCourse", "GET", null);
-    var p2 = makeAjaxCall("/employeeProfile", "GET", null);
+    var p0 = makeAjaxCall("/boss/training", "GET", null);
+    var p1 = makeAjaxCall("/boss/trainingCourse", "GET", null);
+    var p2 = makeAjaxCall("/boss/employeeProfile", "GET", null);
     Promise.all([p0, p1, p2]).then(function (results) {
         var trainings = results[0];
         var CourseRes = results[1];
