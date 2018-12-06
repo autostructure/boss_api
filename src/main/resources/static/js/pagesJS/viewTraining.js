@@ -310,6 +310,8 @@ $(document).ready(function () {
                         console.log(a.responseText);
                     }
                 });
+            } else {
+                $('#myModal_notSuper').modal('toggle');
             }
         });
         $("#form_training_upload_file").on("change update", function () {
@@ -348,30 +350,36 @@ $(document).ready(function () {
                         console.log(a.responseJSON);
                     }
                 });
+            } else {
+                $('#myModal_notSuper').modal('toggle');
             }
         });
         $("#btn_renew_training").on("click", function () {
-            var data = {
-                'employee': {
-                    'id': $("#form_training_renew [name='employee.id']").val(),
-                },
-                'trainingCourseId': $("#form_training_renew [name='trainingCourseId']").val(),
-                'validUntil': CustomFormFunctions.formatDate("#form_training_renew [name='validUntil']"),
-                'dateOfTraining': CustomFormFunctions.formatDate("#form_training_renew [name='dateOfTraining']"),
-            }
-            console.log(JSON.stringify(data));
-            $.ajax({
-                'url': '/training',
-                'type': 'POST',
-                'contentType': "application/json",
-                'data': JSON.stringify(data),
-                'success': function () {
-                    window.location.reload();
-                },
-                'error': function (a, b, c) {
-                    console.log(a.responseJSON);
+            if (supervisor == true) {
+                var data = {
+                    'employee': {
+                        'id': $("#form_training_renew [name='employee.id']").val(),
+                    },
+                    'trainingCourseId': $("#form_training_renew [name='trainingCourseId']").val(),
+                    'validUntil': CustomFormFunctions.formatDate("#form_training_renew [name='validUntil']"),
+                    'dateOfTraining': CustomFormFunctions.formatDate("#form_training_renew [name='dateOfTraining']"),
                 }
-            });
+                console.log(JSON.stringify(data));
+                $.ajax({
+                    'url': '/training',
+                    'type': 'POST',
+                    'contentType': "application/json",
+                    'data': JSON.stringify(data),
+                    'success': function() {
+                        window.location.reload();
+                    },
+                    'error': function(a, b, c) {
+                        console.log(a.responseJSON);
+                    }
+                });
+            } else {
+                $('#myModal_notSuper').modal('toggle');
+            }
         });
         $("#btn_unrequire_training").on("click", function () {
             var id = $(this).closest("form").find(".trainingId").val();

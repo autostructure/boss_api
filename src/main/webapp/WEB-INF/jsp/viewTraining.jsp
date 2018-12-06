@@ -74,6 +74,7 @@
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">Training List</h2>
+								
                                 <div id="showHide">
                                     <div class="form-check" id="viewOldCheckbox">
                                         <input type="checkbox" id="viewOld" class="form-check-input">
@@ -94,6 +95,28 @@
                                 </div>
                             </div>
                         </div>
+
+						<div id="myModal_notSuper" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                            <h4 class="modal-title">Can Not Perform Action</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                    </div>
+                                    <div class="modal-body">
+
+											<p>I am sorry you are not registered as a supervisor, only a supervvisor can renew, approve or remove training</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn_pers_remove " data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div id="myModal_renew" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
