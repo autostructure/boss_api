@@ -37,10 +37,7 @@ public class AuthController {
         EmployeeProfile p = employeeProfileRepository.findByFsEmail(email.trim());
 
         // System.out.println(p.getFsEmail());
-        for (int i = 0; i < 100; i++) {
-            System.out.println(email);
-        }
-
+        
         if (p != null) {
 
             if (authid != null) {
@@ -51,10 +48,6 @@ public class AuthController {
             }
 
         } else {
-            for (int i = 0; i < 100; i++) {
-                System.out.println("p == null");
-            }
-
             response.sendRedirect(request.getContextPath() + "/register");
         }
 

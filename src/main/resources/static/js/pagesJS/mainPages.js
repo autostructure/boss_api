@@ -1,6 +1,6 @@
 $(mainHeader).load("/boss/templates/header.html");
 $(mainFooter).load("/boss/templates/budgetFooter.html");
-$(sidebar).load("/boss/templates/sidebar.html");
+// $(sidebar).load("/boss/templates/sidebar.html");
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         // open or close navbar
