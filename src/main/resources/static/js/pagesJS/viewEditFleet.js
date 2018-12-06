@@ -151,7 +151,7 @@ $('#monthlyUsage').on('click', function(){
 });
 
 $('#maintenance').on('click', function(){
-    window.location.assign('/boss/FleetMaintenaceList');
+    window.location.assign('/boss/FleetMaintenaceList/' + id);
 });
 
 $('#monthlyCostss').on('click', function(){

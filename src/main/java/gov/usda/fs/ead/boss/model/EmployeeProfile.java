@@ -64,8 +64,12 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "PreferredName")
     @JsonView(Views.Internal.class)
     private String preferredName;
+    
+    @Column(name = "Role")
+    @JsonView(Views.Public.class)
+    private String role;
 
-    @Column(name = "NameCode", unique = true, nullable = false)
+    @Column(name = "NameCode", unique = true, nullable = true)
     @JsonView(Views.Minimal.class)
     private String nameCode;
 
@@ -73,7 +77,7 @@ public class EmployeeProfile implements Serializable {
     @JsonView(Views.Minimal.class)
     private Long profilePicture;
 
-    @Column(name = "HomePhone")
+    @Column(name = "Primary_Type")
     @JsonView(Views.Internal.class)
     private String homePhone;
 
@@ -191,7 +195,7 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "WeightPounds")
     private Short weightPounds;
 
-    @Column(name = "FsEmail", unique = true, nullable = false)
+    @Column(name = "FsEmail", unique = true, nullable = true)
     private String fsEmail;
     
     @Column(name = "SatPhone")
@@ -483,6 +487,20 @@ public class EmployeeProfile implements Serializable {
      */
     public void setNameCode(String nameCode) {
         this.nameCode = nameCode;
+    }
+
+        /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
     }
 
     /**
