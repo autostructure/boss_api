@@ -150,7 +150,7 @@
         <script src="/boss/js/bootstrap-datepicker.js"></script>
         <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
         <script src="/boss/js/pagesJS/ApiCalls.js"></script>
-        <script src="/boss/js/pagesJS/ViewRecordedDras.js"></script>
+        <script src="/boss/js/pagesJS/viewRecordedDras.js"></script>
         <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
     </body>

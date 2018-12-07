@@ -32,7 +32,7 @@
                         <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                             <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
                             <a class="breadcrumbLink" href="/boss/personnelDash">Personnel Dashboard |</a>
-                            <a class="breadcrumbLinkMain" href="/boss/viewAllDras">View All DRAs</a>
+                            <a class="breadcrumbLinkMain" href="/boss/ViewAllDras">View All DRAs</a>
                         </p>
                     </div>
                 </div>
@@ -197,7 +197,7 @@
     <script src="/boss/js/bootstrap-datepicker.js"></script>
     <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
     <script src="/boss/js/pagesJS/bootstrapFieldWriter.js"></script>
-    <script src="/boss/js/pagesJS/viewAllDras.js"></script>
+    <script src="/boss/js/pagesJS/ViewAllDras.js"></script>
     <script src="/boss/js/pagesJS/personnelPages.js"></script>
     <script src="/boss/js/pagesJS/ApiCalls.js"></script>
 
