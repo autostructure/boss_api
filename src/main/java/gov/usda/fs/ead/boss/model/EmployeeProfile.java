@@ -198,6 +198,12 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "FsEmail", unique = true, nullable = true)
     private String fsEmail;
     
+    @Column(name = "CellPhoneTypeIs", nullable = true)
+    private String cellPhoneTypeIs;
+    
+    @Column(name = "HomePhoneTypeIs", nullable = true)
+    private String homePhoneTypeIs;
+    
     @Column(name = "SatPhone")
     private String satPhone;
 
@@ -1816,5 +1822,33 @@ public class EmployeeProfile implements Serializable {
      */
     public void setStep(String step) {
         this.step = step;
+    }
+
+    /**
+     * @return the cellPhoneTypeIs
+     */
+    public String getCellPhoneTypeIs() {
+        return cellPhoneTypeIs;
+    }
+
+    /**
+     * @param cellPhoneTypeIs the cellPhoneTypeIs to set
+     */
+    public void setCellPhoneTypeIs(String cellPhoneTypeIs) {
+        this.cellPhoneTypeIs = cellPhoneTypeIs;
+    }
+
+    /**
+     * @return the homePhoneTypeIs
+     */
+    public String getHomePhoneTypeIs() {
+        return homePhoneTypeIs;
+    }
+
+    /**
+     * @param homePhoneTypeIs the homePhoneTypeIs to set
+     */
+    public void setHomePhoneTypeIs(String homePhoneTypeIs) {
+        this.homePhoneTypeIs = homePhoneTypeIs;
     }
 }
