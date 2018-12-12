@@ -29,7 +29,7 @@ public class EmployeeProfileListMinimalSerializer extends StdSerializer<List<Emp
 
         items.forEach(
                 (item) -> {
-                    supes.add(new EmployeeProfileMinimal(item.getId(), item.getFsEmail()));
+                    supes.add(new EmployeeProfileMinimal(item.getId()));
                 }
         );
 
