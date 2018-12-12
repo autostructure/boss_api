@@ -3,11 +3,11 @@ package gov.usda.fs.ead.boss.model;
 public class EmployeeProfileMinimalTeamLead {
 
     private Long id;
-    private String email;
+    private String fsEmail;
 
-    public EmployeeProfileMinimalTeamLead(Long id, String email) {
+    public EmployeeProfileMinimalTeamLead(Long id, String fsEmail) {
         this.id = id;
-        this.email = email;
+        this.fsEmail = fsEmail;
     }
 
     /**
@@ -25,16 +25,18 @@ public class EmployeeProfileMinimalTeamLead {
     }
 
     /**
-     * @return the email
+     * @return the fsEmail
      */
-    public String getEmail() {
-        return email;
+    public String getFsEmail() {
+        return fsEmail;
     }
 
     /**
-     * @param email the email to set
+     * @param fsEmail the fsEmail to set
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFsEmail(String fsEmail) {
+        this.fsEmail = fsEmail;
     }
+
+  
 }
