@@ -87,7 +87,7 @@ public class PropertyManagementController {
                 .orElseThrow(() -> {
                     return new ResourceNotFoundException("Vehicle", "id", vehicleId);
                 });
-        
+
         List<VehicleMaintenanceRecord> recs1 = vehicleDetails.getMaintenanceRecords();
         recs1.forEach(rec -> {
             rec.setVehicle(vehicleDetails);
@@ -100,7 +100,6 @@ public class PropertyManagementController {
 
         vehicleDetails.setMaintenanceRecords(recs1);
         vehicleDetails.setMonthlyIWFIAUsage(recs2);
-
 
         Vehicle updated = vehicleRepository.save(vehicleDetails);
         return updated;
@@ -223,7 +222,7 @@ public class PropertyManagementController {
         }
 
     }
-
+    
     @GetMapping("/monthlyIWFIAUsage/{id}")
     public ResponseEntity getMonthlyIWFIAUsage(@PathVariable(value = "id") Long monthlyIWFIAUsageId) {
 

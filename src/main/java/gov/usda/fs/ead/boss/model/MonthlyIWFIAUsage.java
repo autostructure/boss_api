@@ -131,6 +131,20 @@ public class MonthlyIWFIAUsage {
     }
 
     /**
+     * @return the daysUsed
+     */
+    public Short getDaysUsed() {
+        return daysUsed;
+    }
+
+    /**
+     * @param daysUsed the daysUsed to set
+     */
+    public void setDaysUsed(Short daysUsed) {
+        this.daysUsed = daysUsed;
+    }
+
+    /**
      * @return the mileage
      */
     public Integer getMileage() {
@@ -142,20 +156,6 @@ public class MonthlyIWFIAUsage {
      */
     public void setMileage(Integer mileage) {
         this.mileage = mileage;
-    }
-
-    /**
-     * @return the operator
-     */
-    public EmployeeProfile getOperator() {
-        return operator;
-    }
-
-    /**
-     * @param operator the operator to set
-     */
-    public void setOperator(EmployeeProfile operator) {
-        this.operator = operator;
     }
 
     /**
@@ -173,32 +173,18 @@ public class MonthlyIWFIAUsage {
     }
 
     /**
-     * @return the daysUsed
+     * @return the operator
      */
-    public Short getDaysUsed() {
-        return daysUsed;
+    public EmployeeProfile getOperator() {
+        return operator;
     }
 
     /**
-     * @param daysUsed the daysUsed to set
+     * @param operator the operator to set
      */
-    public void setDaysUsed(Short daysUsed) {
-        this.daysUsed = daysUsed;
+    public void setOperator(EmployeeProfile operator) {
+        this.operator = operator;
     }
-
-    // /**
-    //  * @return the cost
-    //  */
-    // public BigDecimal getCost() {
-    //     return cost;
-    // }
-
-    // /**
-    //  * @param cost the cost to set
-    //  */
-    // public void setCost(BigDecimal cost) {
-    //     this.cost = cost;
-    // }
 
     /**
      * @return the vehicle
@@ -213,4 +199,5 @@ public class MonthlyIWFIAUsage {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
+
 }
