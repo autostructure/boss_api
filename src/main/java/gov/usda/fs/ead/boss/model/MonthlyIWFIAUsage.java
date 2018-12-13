@@ -1,6 +1,7 @@
 package gov.usda.fs.ead.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "MonthlyIWFIAUsage")
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class MonthlyIWFIAUsage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

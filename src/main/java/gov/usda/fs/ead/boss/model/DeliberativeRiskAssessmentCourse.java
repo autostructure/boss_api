@@ -1,6 +1,7 @@
 package gov.usda.fs.ead.boss.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "DeliberativeRiskAssessmentCourse")
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class DeliberativeRiskAssessmentCourse implements Serializable {
 
     @Id

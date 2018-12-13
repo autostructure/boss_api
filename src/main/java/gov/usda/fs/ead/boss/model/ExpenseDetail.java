@@ -1,6 +1,7 @@
 package gov.usda.fs.ead.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -25,7 +26,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "ExpenseDetails")
 @EntityListeners(AuditingEntityListener.class)
-@Cacheable
+@Cacheable 
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ExpenseDetail implements Serializable {
 

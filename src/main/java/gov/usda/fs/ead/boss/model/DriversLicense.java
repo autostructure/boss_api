@@ -1,6 +1,7 @@
 package gov.usda.fs.ead.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "DriversLicense")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class DriversLicense {
 
     @Id

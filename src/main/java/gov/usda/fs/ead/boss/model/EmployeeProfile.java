@@ -37,10 +37,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "EmployeeProfiles")
 @EntityListeners(AuditingEntityListener.class)
-@Cacheable
+@Cacheable 
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @DynamicUpdate
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EmployeeProfile implements Serializable {
 
     @Id

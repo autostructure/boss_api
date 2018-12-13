@@ -1,5 +1,6 @@
 package gov.usda.fs.ead.boss.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EmployeeProfilePhoto")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class EmployeeProfilePhoto  implements Serializable {
 
     @Id
