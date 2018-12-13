@@ -1,13 +1,13 @@
 // displaying the current vehicle information on IWFIA page
-var id = window.location.pathname.split("/")[3];
-if (id) {
-    var url = '/boss/vehicle?id=' + id;
-    if (parseInt(id)) {
-        url = '/boss/vehicle/' + id;
+var vehicleId = window.location.pathname.split("/")[3];
+if (vehicleId) {
+    var url = '/boss/vehicle?id=' + vehicleId;
+    if (parseInt(vehicleId)) {
+        url = '/boss/vehicle/' + vehicleId;
     }
-    var url = '/boss/vehicle/' + id;
+    var url = '/boss/vehicle/' + vehicleId;
     console.log(url);
-    console.log(id);
+    console.log(vehicleId);
     $.ajax({
         type: 'GET',
         url: url,
@@ -28,32 +28,6 @@ if (id) {
     });
 };
 // end
-$.ajax({
-    url: '/boss/employeeProfile',
-    type: 'GET',
-    cache: false,
-    timeout: 600000,
-    success: function(json){
-        $.each(json, function(index, value){
-            $('#iwfiaForm_operator').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
-        });
-    }
-});    
-
-$.ajax({
-    url: '/boss/activityCode',
-    type: 'GET',
-    cache: false,
-    timeout: 600000,
-    success: function(json){
-        $.each(json, function(index, value){
-            $('#iwfiaForm_activityCode').append('<option value="' + value.code + '">' + value.code + ', ' + value.name + '</option>');
-        });
-    }
-}); 
-    
-
-
 $(document).ready(function () {
     // getting choices for operators and activity code
  
@@ -69,37 +43,37 @@ $(document).ready(function () {
         }
         var form = $('#iwfiaForm');
         var method = "PUT";
-        var url = "/boss/vehicle/" + id;
-        console.log(id);
+        var url = "/boss/vehicle/" + vehicleId;
+        console.log(vehicleId);
         console.log(url);
         var monthlyUsage = {                    
                 'gas':parseInt(form.find('[name=gas]').val()),
                 'mileage':parseInt(form.find('[name=mileage]').val()),
                 'month':parseInt(form.find('[name=month]').val()),
                 'oil':parseInt(form.find('[name=oil]').val()),
-                'vehicle': parseInt(id),
+                'vehicle': parseInt(vehicleId),
+                // "jobCode": {
+                //     "id": parseInt(form.find('[name=jobCode]').val()),
+                // },
                 "operator": {
-                    "activityCode": {
-                        "code":form.find('[name=activityCode]').val(),
-                        },
                     'id':parseInt(form.find('[name=operator]').val()),
-                    },
+                },
                 'year':parseInt(form.find('[name=year]').val()),
                 };
-        makeAjaxCall("/boss/vehicle/"+id, "GET", null).then(function(dataIn) {
+        makeAjaxCall("/boss/vehicle/"+vehicleId, "GET", null).then(function(dataIn) {
             console.log(dataIn);
             //dataIn = JSON.parse(dataIn);
             dataIn.monthlyIWFIAUsage.push(monthlyUsage);
-            dataIn.assignedOperator = {id:46}
             dataOut = JSON.stringify(dataIn);
             console.log(dataIn);
             console.log(dataOut);
-            return makeAjaxCall("/boss/vehicle/"+id, "PUT", dataOut);
+            return makeAjaxCall("/boss/vehicle/"+vehicleId, "PUT", dataOut);
         }, function(error) {
             console.log("Error", error);
             console.log(error.responseJSON);
         }).then(function(data){
             console.log("successfully updated");
+            populateDataTable();
             console.log(data);
         }, function(error) {
             console.log("Error", error);
@@ -108,54 +82,194 @@ $(document).ready(function () {
         });
         return;
 
-        // stringifying the data ajax
-        // data = JSON.stringify(data);
-        // console.log(data);    
-        // ajax PUT call
-        // $.ajax({
-        //     url: url,
-        //     type: method,
-        //     data: data,
-        //     contentType: "application/json",
-        //     cache: false,
-        //     timeout: 600000,
-        //     success: function(response){
-        //         // e.preventDefault();
-        //         console.log("successfully updated");
-        //         console.log(data);
-                // window.location.reload();
-        //     },
-        //     error: function(error){
-        //         return false;
-        //         e.preventDefault();
-        //         console.log("Error" + error);
-        //         console.log(a.responseJSON);
-        //     }
-        // });
+    });
+    function populateModals(formSel) {
+        var id = $("#modal_usage_id").val();
+        if (!id) return false;
+        var formSel = formSel ? formSel+" " : "";
+        makeAjaxCall("/boss/monthlyIWFIAUsage/"+id, "GET", null).then(function(usage){
+            $(formSel + "[name='month']").val(usage.month);
+            $(formSel + "[name='year']").val(usage.year);
+            $(formSel + "[name='operator']").val(usage.operator ? usage.operator.id : "");
+            $(formSel + "[name='jobCode']").val(usage.jobCode ? usage.jobCode.id : "");
+            $(formSel + "[name='mileage']").val(usage.mileage);
+            $(formSel + "[name='gas']").val(usage.gas);
+            $(formSel + "[name='oil']").val(usage.oil);
+        }, function(error){
+            $(".btn[data-dismiss='modal']").trigger("click");
+            console.log("ERROR", error);
+        });
+    }
+    /**
+     * 
+     * @param {('add'|'edit'|'delete')} mode What change are we making?
+     * @param {Object} data
+     * @param {number} data.id Required for edit and delete modes
+     */
+    function changeUsage(mode, data) {
+        var getUrl = "/boss/vehicle/"+vehicleId;
+        var promise = null;
+        switch (mode) {
+            case "add":
+                promise = makeAjaxCall(getUrl, "GET", null).then(function(vehicleData){
+                    var usage = vehicleData.monthlyIWFIAUsage;
+                    usage.push(data);
+                    // for (i in usage) {
+                    //     delete usage[i].jobCode.hibernateLazyInitializer;
+                    // }
+                    return makeAjaxCall(getUrl, "PUT", JSON.stringify(vehicleData));
+                },function(error){
+                    console.error(error);
+                });
+            break;
+            case "edit":
+                promise = makeAjaxCall(getUrl, "GET", null).then(function(vehicleData){
+                    var usage = vehicleData.monthlyIWFIAUsage;
+                    for (i in usage) {
+                        // delete usage[i].jobCode.hibernateLazyInitializer;
+                        if (usage[i].id == data.id) {
+                            usage[i] = data;
+                        }
+                    }
+                    return makeAjaxCall(getUrl, "PUT", JSON.stringify(vehicleData));
+                },function(error){
+                    console.error(error);
+                });
+            break;
+            case "delete":
+                promise = makeAjaxCall("/boss/monthlyIWFIAUsage/" + data.id, "DELETE", null);
+            break;
+            default:
+                promise = new Promise(function(resolve, reject){
+                    reject("Incorrect Mode '"+mode+"'");
+                });
+            break;
+        }
+        promise.then(function(){
+            populateDataTable();
+        }, function(error) {
+            console.log(error);
+        });
+    }
+    function getData(formSel) {
+        var data = {
+            "month":$(formSel + " [name='month']").val(),
+            "year":$(formSel + " [name='year']").val(),
+            "operator":{id:$(formSel + " [name='operator']").val()},
+            "jobCode":{id:$(formSel + " [name='jobCode']").val()},
+            "mileage":$(formSel + " [name='mileage']").val(),
+            "gas":$(formSel + " [name='gas']").val(),
+            "oil":$(formSel + " [name='oil']").val(),
+        };
+        var invalid = $("formSel :not(:valid)");
+        if (invalid.length) {
+            data.error = invalid;
+        }
+        return data;
+    }
+
+    $('body').on("click", "#deleteModal_delete", function(){
+        var id = $("#modal_usage_id").val();
+        changeUsage("delete",{id:id});
+    }).on("click", "#addModal_add", function(){
+        var data = (getData("#modalForm_add"));
+        console.log(data);
+        if (!data.error) {
+            changeUsage("add", data);
+        }
+    }).on("click", "#editModal_save", function(){
+        var data = (getData("#modalForm_edit"));
+        if (!data.error) {
+            data.id = $("#modal_usage_id").val();
+            changeUsage("edit", data);
+        }
+    }).on("click", "#editModal_undo", function(){
+        populateModals("#modalForm_edit");
+    }).on("click", ".editBtn, .deleteBtn", function(){
+        // var row = $(this).data("row");
+        // $("#modal_usage_id").val(row.id);
+        // populateModals();
+    }).on("click", ".add-btn", function() {
+        $("#modalForm_add [name]").val("");
+    }).on("click", ".editBtn", function() {
+        var row = $(this).data("row");
+        $("#modal_usage_id").val(row.id);
+        populateModals("#modalForm_edit");
+    }).on("click", ".deleteBtn", function() {
+        var row = $(this).data("row");
+        $("#modal_usage_id").val(row.id);
+        populateModals("#modalForm_delete");
     });
 
+
+    var table = null;
     // function to populate the table
-    function populateDataTable(testData) {
-        var table = $('#iwfia').DataTable({
-            data: testData,
+    function populateDataTable(theData) {
+        console.log(theData);
+        if (!theData) {
+            var promUsage = makeAjaxCall("/boss/vehicle/"+vehicleId, "GET", null);
+            var promEmp = makeAjaxCall("/boss/employeeProfile", "GET", null);
+            Promise.all([promUsage, promEmp]).then(function(values) {
+                var usageData = values[0].monthlyIWFIAUsage;
+                var empData = values[1];
+                var employees = [];
+                for (i in empData) {
+                    emp = empData[i];
+                    emp.displayName = emp.lastName + ", " + emp.firstName;
+                    employees[emp.id] = emp;
+                }
+                for (i in usageData) {
+                    usageData[i].operator = employees[usageData[i].operator.id];
+                }
+                populateDataTable(usageData);
+                console.log(usageData);
+            }, function(reason){
+                console.log("AJAX Error: ", reason);
+            })
+
+            promUsage.then(function(){}, function(a,b,c){
+                console.log(a,b,c);
+            })
+            return "Waiting";
+        }
+        var el = $('#iwfia');
+        if (table) {
+            table.clear();
+            table.rows.add(theData);
+            table.draw();
+            return;
+        }
+        table = el.DataTable({
+            data: theData,
             bProcessing: true,
             bPaginate: false,
             dom: 'Brtip',
-            columnDefs: [{
-                "targets": [4, 5],
-                "orderable": false
-            }],
+            order: [[0, 'desc']],
             columns: [
-                {data: "vLicense"},
-                {data: "vMonth"},
-                {data: "vYear"},
-                {data: "vOperator"},
-                {data: "vMileage"},
-                {data: "vGas"},
-                {data: "vOil"},
-                {data: "vDaysUsed"},
-                {data: "vCost"},
-                {data: "vJobCode"}                                                                                
+                {data: "null",
+                    render:function (data, type, row) {
+                        if (type == "display") {
+                            return CustomFormFunctions.OptionSets.MONTHS[row.month] + " " + row.year;
+                        } else {
+                            var val = new Date();
+                            val.setFullYear(row.year);
+                            val.setMonth(row.month);
+                            return val;
+                        }
+                    }
+                },
+                {data: "operator.displayName"},
+                {data: "mileage"},
+                {data: "gas"},
+                {data: "oil"},
+                {data: "jobCode.description"},
+                {data: null, orderable:false,
+                    render: function(data, type, row) {
+                        var buttonList = $("#templates .dropdown1").clone();
+                        buttonList.find("a").attr('data-row', JSON.stringify(row));
+                        return buttonList.prop('outerHTML');
+                    }
+                },                                                                       
 
             ],
             buttons: [
@@ -178,14 +292,15 @@ $(document).ready(function () {
                 {
                     text: 'Add <i class="fa fa-lg fa-plus"></i>',
                     action: function () {
-                        $('html,body').animate({scrollTop: $("#iwfia").offset().top}, 'slow');
+                        //$('html,body').animate({scrollTop: $("#iwfia").offset().top}, 'slow');
+                        $("#myModal_add").modal("toggle");
                     },
                     className: 'table-btns add-btn'
                 },
                 {
                     text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
                     action: function () {
-                        window.location.reload();
+                        populateDataTable();
                     },
                     className: 'table-btns refresh-btn'
                 }
@@ -199,7 +314,7 @@ $(document).ready(function () {
     });
 
     
-
+    populateDataTable();
 });
     
 // showing error message if form is not valid
@@ -210,27 +325,38 @@ function showError(msg) {
 }  
     
     // using bootstrap field writer to populate the form
+    var thisYear = new Date().getFullYear();
+    var yearOptions = [];
+    for (var i = thisYear - 5; i < thisYear + 2; i++) {
+        yearOptions[i] = i;
+    }
     var fields = {
         "iwfiaForm": [
             [//aux info row
                 {"fieldName": "month",
                     "title": "Month",
-                    "type": "select/vmonth",
+                    "type": "select/month",
                     "required": false,
                     "colspan": 2,
                     "placeholder": "Enter Month",
                 },
                 {"fieldName": "year",
                     "title": "Year",
-                    "type": "select/vyear",
+                    "type": "select/year",
                     "colspan": 2,
                     "placeholder": "Enter Year",
+                    "options": yearOptions,
                 },                
                 {"fieldName": "operator",
                     "title": "Operator",
                     "type": "select/text",
                     "colspan": 2,
                     "required": false,
+                    "selectFrom": {
+                        url: "/boss/employeeProfile",
+                        value: "id",
+                        label: ["lastName",", ","firstName"],
+                    }
                 },
                 {"fieldName": "mileage",
                     "title": "Mileage",
@@ -252,19 +378,82 @@ function showError(msg) {
                     "required": false
                 },
                 {
-                    "fieldName": "activityCode",
-                    "title": "Section Code",
+                    "fieldName": "jobCode",
+                    "title": "Job Code",
                     "type": "select/text",
                     "colspan": 2,
                     "required": false,
-
+                    "selectFrom": {
+                        url: "/boss/jobCode",
+                        value: "id",
+                        label: "description",
+                    },
                 }              
             ], // end row
             [
-                {   "custom": '<input type="submit" class="btn fleetBtn" id="btn_add_aux" value="Add IWFIA Usage">' }
+                {   "custom": '<input type="submit" class="btn fleetBtn btn_add" id="btn_add_aux" value="Add IWFIA Usage">' }
             ]
-        ]
+        ],
+        "modalForm_edit": [
+            [//aux info row
+                {"fieldName": "month",
+                    "title": "Month",
+                    "type": "select/month",
+                    "required": false,
+                    "placeholder": "Enter Month",
+                },
+                {"fieldName": "year",
+                    "title": "Year",
+                    "type": "select/year",
+                    "placeholder": "Enter Year",
+                    "options": yearOptions,
+                },
+            ],
+            [             
+                {"fieldName": "operator",
+                    "title": "Operator",
+                    "type": "select/text",
+                    "required": false,
+                    "selectFrom": {
+                        url: "/boss/employeeProfile",
+                        value: "id",
+                        label: ["lastName",", ","firstName"],
+                    }
+                },
+                {
+                    "fieldName": "jobCode",
+                    "title": "Job Code",
+                    "type": "select/text",
+                    "required": false,
+                    "selectFrom": {
+                        url: "/boss/jobCode",
+                        value: "id",
+                        label: "description",
+                    },
+                },
+            ],//end row
+            [
+                {"fieldName": "mileage",
+                    "title": "Mileage",
+                    "type": "input/text",
+                    "placeholder": "Enter Mileage",
+                    "required": false,
+                },
+                {"fieldName": "gas",
+                    "title": "Gas",
+                    "type": "input/text",
+                    "placeholder": "Gallons of Gas",
+                    "required": false,
+                },
+                {"fieldName": "oil",
+                    "title": "Oil",
+                    "type": "input/text",
+                    "placeholder": "Oil",
+                    "required": false
+                },
+            ], // end row
+        ],
     }
-    
+    fields.modalForm_delete = fields.modalForm_add = fields.modalForm_edit;
     // calling bootstrap field writer function
-    addBootstrapFields(fields);
+    CustomFormFunctions.addBootstrapFields(fields);

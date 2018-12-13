@@ -71,7 +71,7 @@
                                 </p>
                             </div>                                                                                                                       
                             <div class="col inputCol">
-                                <label for="pMake">Model</label>
+                                <label for="pMake">Make</label>
                                 <p class="input" id="pMake">
                                     
                                 </p>
@@ -86,84 +86,21 @@
                         </div>
                         <div class="container trainBG ">
                                 <h1 class="title5">Add New Months Usage</h1>
-                                <form role="form" id="iwfiaForm" data-toggle="validator">
-                                    </form>
+                                <!-- <form role="form" id="iwfiaForm" data-toggle="validator">
+                                    </form> -->
                             <table id="iwfia">
                                 <thead>
                                     <tr>
-                                        <th>Vehicle License</th>
-                                        <th>Month</th>
-                                        <th>Year</th>
+                                        <th>Month/Year</th>
                                         <th>Operator</th>
                                         <th>Mileage</th>
                                         <th>Gas</th>
                                         <th>Oil</th>
-                                        <th>Days Used</th>
-                                        <th>Cost</th>
                                         <th>Job Code</th>
+                                        <th id="stop"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>A32903292</td> 
-                                        <td>July</td>
-                                        <td>2018</td>
-                                        <td>Wortley, Dane</td>
-                                        <td>13,433</td>
-                                        <td>19</td>
-                                        <td>6</td>
-                                        <td>28</td>
-                                        <td>0</td>
-                                        <td>BOI, Boise Basin</td>
-                                    </tr>                                     
-                                    <tr>
-                                        <td>A32903292</td> 
-                                        <td>June</td>
-                                        <td>2018</td>
-                                        <td></td>
-                                        <td>13,193</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>BOI, Boise Basin</td>
-                                    </tr>                                           
-                                    <tr>
-                                        <td>A32903292</td> 
-                                        <td>May</td>
-                                        <td>2018</td>
-                                        <td>Wortley, Dane</td>
-                                        <td>13,193</td>
-                                        <td>20</td>
-                                        <td>0</td>
-                                        <td>28</td>
-                                        <td>0</td>
-                                        <td>BOI, Boise Basin</td>
-                                    </tr>                                     
-                                    <tr>
-                                        <td>A32903292</td> 
-                                        <td>April</td>
-                                        <td>2018</td>
-                                        <td>Wortley, Dane</td>
-                                        <td>12,793</td>
-                                        <td>20</td>
-                                        <td>0</td>
-                                        <td>28</td>
-                                        <td>0</td>
-                                        <td>BOI, Boise Basin</td>
-                                    </tr>                                    
-                                    <tr>
-                                        <td>A32903292</td> 
-                                        <td>March</td>
-                                        <td>2018</td>
-                                        <td>Wortley, Dane</td>
-                                        <td>12,399</td>
-                                        <td>32</td>
-                                        <td>4</td>
-                                        <td>29</td>
-                                        <td>0</td>
-                                        <td>BOI, Boise Basin</td>
-                                    </tr>
                                 </tbody>
                             </table>
         
@@ -180,12 +117,69 @@
 
             </div><!-- end of sidenav wrapper div -->
 
-
-
-
-
-
-
+            <div id="templates" style="display:none;">
+                <div class="dropdown1">
+                    <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                    <div id="dropList" class="dropdown-content1">
+                        <a data-toggle="modal" data-target="#myModal_edit" href="#" class="editBtn">Edit Usage</a>
+                        <a data-toggle="modal" data-target="#myModal_delete" href="#" class="deleteBtn">Delete Usage</a>
+                    </div>
+                </div>
+            </div>
+            <input hidden id="modal_usage_id" />
+            <div id="myModal_add" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add IWFIA Usage</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="modalForm_add" class="container"></form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                            <button type="button" id="addModal_add" data-dismiss="modal" class="btn btn_add">Add IWFIA Usage</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myModal_edit" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Usage</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="modalForm_edit" class="container"></form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                            <button type="button" id="editModal_undo" class="btn editModal_undo">Undo Changes</button>
+                            <button type="button" id="editModal_save" data-dismiss="modal" class="btn editModal_save">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myModal_delete" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirmation</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this usage data?</p>
+                            <form id="modalForm_delete" class="container"></form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">No</button>
+                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn btn_delete">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer class="usa-footer usa-footer-medium" role="contentinfo" id="mainFooter">

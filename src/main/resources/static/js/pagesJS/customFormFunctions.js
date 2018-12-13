@@ -3,6 +3,67 @@
  */
 CustomFormFunctions = {};
 
+CustomFormFunctions.OptionSets = {};
+CustomFormFunctions.OptionSets.MONTHS = [
+    "January", "February", "March",
+    "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December",
+]
+CustomFormFunctions.OptionSets.STATES = {
+    "AL":"Alabama",
+    "AK":"Alaska",
+    "AZ":"Arizona",
+    "AR":"Arkansas",
+    "CA":"California",
+    "CO":"Colorado",
+    "CT":"Connecticut",
+    "DE":"Delaware",
+    "DC":"District",
+    "FL":"Florida",
+    "GA":"Georgia",
+    "HI":"Hawaii",
+    "ID":"Idaho",
+    "IL":"Illinois",
+    "IN":"Indiana",
+    "IA":"Iowa",
+    "KS":"Kansas",
+    "KY":"Kentucky",
+    "LA":"Louisiana",
+    "ME":"Maine",
+    "MD":"Maryland",
+    "MA":"Massachusetts",
+    "MI":"Michigan",
+    "MN":"Minnesota",
+    "MS":"Mississippi",
+    "MO":"Missouri",
+    "MT":"Montana",
+    "NE":"Nebraska",
+    "NV":"Nevada",
+    "NH":"New",
+    "NJ":"New",
+    "NM":"New",
+    "NY":"New",
+    "NC":"North",
+    "ND":"North",
+    "OH":"Ohio",
+    "OK":"Oklahoma",
+    "OR":"Oregon",
+    "PA":"Pennsylvania",
+    "RI":"Rhode",
+    "SC":"South",
+    "SD":"South",
+    "TN":"Tennessee",
+    "TX":"Texas",
+    "UT":"Utah",
+    "VT":"Vermont",
+    "VA":"Virginia",
+    "WA":"Washington",
+    "WV":"West",
+    "WI":"Wisconsin",
+    "WY":"Wyoming",
+}
+
 /**
  * This function takes readable data and writes a Bootstrap Grid-layout Form, attaching it to the elements specified.
  * @param {object} data A specifically formatted object
@@ -112,7 +173,10 @@ CustomFormFunctions.addBootstrapFields = function (data) {
                 var input = $("<select>");
                 input.append($("<option value=''>" + (col.placeholder || "Choose " + col.title) + "</option>"));
                 if (types[1] == "state") {
-                    input.append(stateSelect.find("option").clone());
+                    col.options = CustomFormFunctions.OptionSets.STATES;
+                }
+                if (types[1] == "month") {
+                    col.options = CustomFormFunctions.OptionSets.MONTHS;
                 }
                 if (col.options) {
                     for (var val in col.options) {
@@ -247,6 +311,12 @@ CustomFormFunctions.populateDropDown = function (element, url, valueKey, labelKe
                 var opt = json[k];
                 var val = opt[valueKey];
                 var name = opt[labelKey];
+                if (typeof(labelKey) == "object") {
+                    name = "";
+                    for (i in labelKey) {
+                        name += (opt[labelKey[i]] ? opt[labelKey[i]] : labelKey[i]);
+                    }
+                }
                 if (typeof opt === "string") {
                     val = opt;
                     name = opt;

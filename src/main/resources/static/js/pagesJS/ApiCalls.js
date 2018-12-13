@@ -17,7 +17,7 @@ function makeAjaxCall(_url, methodType, _data) {
 
                 },
                 error: function (xhr, status, error) {
-                    reject(xhr.responseText);
+                    reject(xhr, status, error);
                 }
 
             });
@@ -33,7 +33,7 @@ function makeAjaxCall(_url, methodType, _data) {
                 },
                 error: function (xhr, status, error) {
 
-                    reject(error);
+                    reject(xhr, status, error);
                 }
             });
         }
