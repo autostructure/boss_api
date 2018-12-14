@@ -42,9 +42,6 @@ public class MonthlyIWFIAUsage {
     @Column(name = "DaysUsed")
     private Short daysUsed;
     
-    // @Column(name = "Cost")
-    // private BigDecimal cost;
-    
     @Column(name = "Mileage", nullable = false)
     private Integer mileage;
     
