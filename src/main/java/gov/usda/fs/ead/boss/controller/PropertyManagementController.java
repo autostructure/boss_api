@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.usda.fs.ead.boss.exception.ResourceNotFoundException;
 import gov.usda.fs.ead.boss.model.FieldEquipment;
 import gov.usda.fs.ead.boss.model.MonthlyIWFIAUsage;
+import gov.usda.fs.ead.boss.model.MonthsNotUsed;
 import gov.usda.fs.ead.boss.model.Vehicle;
 import gov.usda.fs.ead.boss.model.VehicleCost;
 import gov.usda.fs.ead.boss.model.VehicleMaintenanceRecord;
@@ -55,9 +56,15 @@ public class PropertyManagementController {
         recs2.forEach(rec -> {
             rec.setVehicle(vehicleDetails);
         });
+        
+        List<MonthsNotUsed> recs4 = vehicleDetails.getMonthsNotUsed();
+        recs4.forEach(rec -> {
+            rec.setVehicle(vehicleDetails);
+        });
 
         vehicleDetails.setMaintenanceRecords(recs1);
         vehicleDetails.setMonthlyIWFIAUsage(recs2);
+        vehicleDetails.setMonthsNotUsed(recs4);
 
         return new ResponseEntity<>(vehicleRepository.save(vehicleDetails), HttpStatus.OK);
 
@@ -98,8 +105,16 @@ public class PropertyManagementController {
             rec.setVehicle(vehicleDetails);
         });
 
+         List<MonthsNotUsed> recs4 = vehicleDetails.getMonthsNotUsed();
+        recs4.forEach(rec -> {
+            rec.setVehicle(vehicleDetails);
+        });
+
         vehicleDetails.setMaintenanceRecords(recs1);
         vehicleDetails.setMonthlyIWFIAUsage(recs2);
+        vehicleDetails.setMonthsNotUsed(recs4);
+        
+        
 
         Vehicle updated = vehicleRepository.save(vehicleDetails);
         return updated;

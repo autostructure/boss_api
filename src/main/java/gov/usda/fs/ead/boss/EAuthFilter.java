@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
-@Order(1)
+//@Component
+//@Order(1)
 public class EAuthFilter implements Filter {
 
     protected FilterConfig filterConfig = null;
