@@ -163,13 +163,6 @@
             <version>0.7.5</version>
             <type>jar</type>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
-        <dependency>
-            <groupId>com.vladmihalcea</groupId>
-            <artifactId>hibernate-types-52</artifactId>
-            <version>2.3.5</version>
-        </dependency>
-
     </dependencies>
     <build>
         <resources>
