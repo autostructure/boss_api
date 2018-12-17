@@ -225,3 +225,14 @@ td, th{
 #formIdentificationInfo_employeePhoto, #form_training_upload_file{
     font-size: 1.0em !important;
 }
+
+
+
+
+
+.btn-big {
+    width: 50%;
+    height: 30%;
+    font-size: 2.0em !important;
+    margin: 50px auto;
+}

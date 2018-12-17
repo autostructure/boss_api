@@ -65,7 +65,7 @@
                                     </a>
                                 </div>
                                 <div class="col col-md-4" id="colEmployeePhoto2">
-                                    <form method="POST" enctype="multipart/form-data" action=/boss/profilePicture?employeeId=">
+                                    <form method="POST" enctype="multipart/form-data" action="/boss/profilePicture?employeeId=">
                                     <label for="formIdentificationInfo_employeePhoto">
                                         <input type="file" name="file" id="formIdentificationInfo_employeePhoto">
                                         <img src="/boss/img/person.jpg" alt="..." class=" img-thumbnail empPhoto">
@@ -240,76 +240,16 @@
 
                             <!--  START OF INVENTORY TAB  -->
                             <div class="tab-pane fade" id="property" role="tabpanel" aria-labelledby="inventory">
-                                <form role="form" data-toggle="validator" class="inventoryInfo">
-                                    <h4 class="title3">Monthly Vehicle Usage</h4>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vMonth">Current Month<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="vMonth" required placeholder="Enter Current Month" aria-label="Current Month">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vYear">Current Year<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="vYear" required placeholder="Enter Current Year" aria-label="Current Year">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vLicense">Vehicle License<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="vLicense" required placeholder="Enter Vehicle License" aria-label="Vehicle License">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vOpCrew">Operator Crew Number</label>
-                                                <input type="text" class="form-control" id="vOpCrew" required placeholder="Operator Crew Number" aria-label="Operator Crew Number">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>                                                                                                
-                                    </div>
-                                    <h4 class="title4">Last Month</h4>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vEndMileage">Ending Mileage<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="vEndMileage" required placeholder="Enter Ending Mileage" aria-label="Ending Mileage">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vTotalGas">Total Gallons of Gas Used<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="vTotalGas" required placeholder="Enter Total Gallons of Gas Used" aria-label="Total Gallons of Gas Used">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vTotalOil">Total Quarts of Oil Used<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="vTotalOil" required placeholder="Enter Quarts of Oil Used" aria-label="Total Quarts of Oil Used">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class="" for="vDaysUsed">Total of Days Used<span class="reqClass"> *</span></label>
-                                                <input type="text" class="form-control" id="vDaysUsed" required placeholder="Enter Number of Days Used" aria-label="Total of Days Used">
-                                                <div class="help-block with-errors"></div>
-                                            </div>                                                     
-                                        </div>                                                                                                                                                
-                                    </div>
-                                    <div class="row">
+                                <form role="form" id="form_vehicle_usage" data-toggle="validator" class="inventoryInfo">
+                                    <h4 class="title3" id="headerVehicleUsage">Monthly Vehicle Usage</h4>
+                                    
+                                    <div class="row" id="property_submitRow">
 
-                                            <div class="col col-md-6">
-                                                <input type="submit" id="submitV" class="btn btn-success">    
+                                            <div class="col col-md-6 text-center">
+                                                <button id="submitVehicleUsage" name="submit" class="btn btn-success btn-big">Submit</button>
                                             </div>   
                                             <div class="col col-md-6 text-center">
-                                                <button id="viewReports" class="btn btn-info">View My Vehicle Reports</button> 
+                                                <button id="viewVehicleReports" class="btn btn-info btn-big">View My Vehicle Reports</button> 
                                             </div>                                                                                                          
 
                                     </div>

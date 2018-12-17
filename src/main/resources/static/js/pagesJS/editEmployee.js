@@ -4,8 +4,8 @@ var empId = 0;
 $(document).ready(function() {
     var identifier = window.location.pathname.split("/")[3];
     empId = parseInt(identifier);
-    $("#formGeneralInfo_Secondary").prop('disabled', true);
-    $("#formGeneralInfo_Primary").prop('disabled', true);
+    $("#formGeneralInfo_Secondary").prop("disabled", true);
+    $("#formGeneralInfo_Primary").prop("disabled", true);
     $("#formGeneralInfo_shareNum_lbl").hide();
     $("#formGeneralInfo_shareNum").hide();
     var afterChooseEmployeePopulates = function() { $("#chooseEmployee").val(identifier) };
@@ -18,103 +18,161 @@ $(document).ready(function() {
     }
 
     $.ajax({
-        url: '/boss/employeeProfile',
-        type: 'GET',
+        url: "/boss/employeeProfile",
+        type: "GET",
         cache: false,
         timeout: 600000,
-        success: function(json){
-            $.each(json, function(index, value){
-                $('#chooseEmployee').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
-            });
+        success: function(json) {
+            $.each(json,
+                function(index, value) {
+                    $("#chooseEmployee").append('<option value="' +
+                        value.id +
+                        '">' +
+                        value.lastName +
+                        ", " +
+                        value.firstName +
+                        "</option>");
+                });
         }
     });
 
     //CustomFormFunctions.populateDropDown("#chooseEmployee", "/employeeProfile", "id", "nameCode", false, afterChooseEmployeePopulates);
 
     $("select").attr("size", "");
-    $('#formGeneralInfo_firstName, #formGeneralInfo_lastName').on("keyup change update", function() {
-        var nc = $("#formGeneralInfo_firstName").val()[0] || "";
-        nc += $("#formGeneralInfo_lastName").val() || "";
-        nc = nc.replace(/[^A-Za-z]/g, "");
-        $("#formGeneralInfo_nameCode").val(nc);
-    });
-    $('form').on('click focus', function() {
-        $('#error, #success').hide();
-    });
-    $('input[value=Next]').on("click", function(e) {
-        var id = '#' + $(this).attr('id');
-        switch (id) {
-            case '#submitEmployeeInfo':
+    $("#formGeneralInfo_firstName, #formGeneralInfo_lastName").on("keyup change update",
+        function() {
+            var nc = $("#formGeneralInfo_firstName").val()[0] || "";
+            nc += $("#formGeneralInfo_lastName").val() || "";
+            nc = nc.replace(/[^A-Za-z]/g, "");
+            $("#formGeneralInfo_nameCode").val(nc);
+        });
+    $("form").on("click focus",
+        function() {
+            $("#error, #success").hide();
+        });
+    $("input[value=Next]").on("click",
+        function(e) {
+            var id = "#" + $(this).attr("id");
+            switch (id) {
+            case "#submitEmployeeInfo":
                 $("#work-tab").trigger("click");
                 break;
-            case '#submitWorkInfo':
+            case "#submitWorkInfo":
                 $("#emergency-tab").trigger("click");
                 break;
-        };
-    });
-    $('input[value=Done]').on("click", function(e) {
-        var id = '#' + $(this).attr('id');
-        switch (id) {
-            case '#submitEmergencyInfo':
-                window.location.replace('/boss/viewAllEmployees');
+            };
+        });
+    $("input[value=Done]").on("click",
+        function(e) {
+            var id = "#" + $(this).attr("id");
+            switch (id) {
+            case "#submitEmergencyInfo":
+                window.location.replace("/boss/viewAllEmployees");
                 break;
-        }
-    });    
-    $("#chooseEmployee").on("update change", function() {
-        var empId = $(this).val();
-        populateTheEmployee(empId);
-    });
-    $("#formIdentificationInfo_employeePhoto").on("change update", function() {
-        var form = this.closest('form');
-        var data = new FormData(form);
-        $.ajax({
-            url: "/boss/profilePicture/?employeeId=" + empId,
-            type: "POST",
-            enctype: 'multipart/form-data',
-            data: data,
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 600000,
-            success: function(data) {
-                $(".empPhoto").attr("src", data.fileDownloadUri);
-            },
-            error: function(e) {
-                console.log(e.responseJSON);
             }
         });
-    });
+    $("#chooseEmployee").on("update change",
+        function() {
+            var empId = $(this).val();
+            populateTheEmployee(empId);
+        });
+    $("#formIdentificationInfo_employeePhoto").on("change update",
+        function() {
+            var form = this.closest("form");
+            var data = new FormData(form);
+            $.ajax({
+                url: "/boss/profilePicture/?employeeId=" + empId,
+                type: "POST",
+                enctype: "multipart/form-data",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function(data) {
+                    $(".empPhoto").attr("src", data.fileDownloadUri);
+                },
+                error: function(e) {
+                    console.log(e.responseJSON);
+                }
+            });
+        });
 
     $.ajax({
         url: "/boss/employeeProfile/" + empId,
         type: "GET",
         cache: false,
         success: function (json) {
-            $('#formGeneralInfo_Primary').val(json.homePhone);
-            $('#formGeneralInfo_Secondary').val(json.cellPhone);
+
+            if (json.homePhoneTypeIs == "primary" && json.homePhone != undefined) {
+                $('#formGeneralInfo_PrimaryType option[value=home]').attr("selected","selected");
+                $('#formGeneralInfo_Primary').val(json.homePhone);
+                $("#formGeneralInfo_Primary").prop("disabled", false);
+
+            }
+
+            if (json.homePhoneTypeIs == "secondary" && json.homePhone != undefined) {
+                $('#formGeneralInfo_secondaryType option[value=home]').attr("selected", "selected");
+                $('#formGeneralInfo_Secondary').val(json.homePhone);
+                $("#formGeneralInfo_Secondary").prop("disabled", false);
+            }
+
+            if (json.cellPhoneTypeIs == "primary" && json.cellPhone != undefined) {
+                $('#formGeneralInfo_PrimaryType option[value=cell]').attr("selected", "selected");
+                $("#formGeneralInfo_shareNum").show();
+                $("#formGeneralInfo_shareNum_lbl").show();
+                $('#formGeneralInfo_Primary').val(json.cellPhone);
+                $("#formGeneralInfo_Primary").prop("disabled", false);
+                var v = json.showPersonalCellPhone;
+                if (v == true) {
+                    $("#formGeneralInfo_shareNum").val("true");
+                } else {
+                    $("#formGeneralInfo_shareNum").val("false");
+                }
+            }
+
+            if (json.cellPhoneTypeIs == "secondary" && json.cellPhone != undefined) {
+                $('#formGeneralInfo_secondaryType option[value=cell]').attr("selected", "selected");
+
+                $("#formGeneralInfo_shareNum").show();
+                $("#formGeneralInfo_shareNum_lbl").show();
+                $('#formGeneralInfo_Secondary').val(json.cellPhone);
+                $("#formGeneralInfo_Secondary").prop("disabled", false);
+                var v = json.showPersonalCellPhone;
+                if (v == true) {
+                    $("#formGeneralInfo_shareNum").val("true");
+                } else {
+                    $("#formGeneralInfo_shareNum").val("false");
+                }
+            }
+
+            
+
+            /*$("#formGeneralInfo_Primary").val(json.homePhone);
+            $("#formGeneralInfo_Secondary").val(json.cellPhone);
             if (json.homePhone != undefined && json.homePhone != null) {
-                $('#formGeneralInfo_PrimaryType').val('home');
-                $('#formGeneralInfo_Primary').prop("disabled", false);
+                $("#formGeneralInfo_PrimaryType").val("home");
+                $("#formGeneralInfo_Primary").prop("disabled", false);
             }
 
             if (json.cellPhone != undefined && json.cellPhone != null) {
-                $('#formGeneralInfo_secondType').val('cells');
-                $('#formGeneralInfo_shareNum').show();
-                $('#formGeneralInfo_shareNum_lbl').show();
-                $('#formGeneralInfo_Secondary').prop("disabled", false);
+                $("#formGeneralInfo_secondType").val("cells");
+                $("#formGeneralInfo_shareNum").show();
+                $("#formGeneralInfo_shareNum_lbl").show();
+                $("#formGeneralInfo_Secondary").prop("disabled", false);
                 var v = json.showPersonalCellPhone;
                 if (v == true) {
-                    $('#formGeneralInfo_shareNum').val('true');
+                    $("#formGeneralInfo_shareNum").val("true");
                 } else {
-                    $('#formGeneralInfo_shareNum').val('false');
+                    $("#formGeneralInfo_shareNum").val("false");
                 }
 
 
-            }
-            
+            }*/
+
 
         },
-        error: function (a, b, c) {
+        error: function(a, b, c) {
             console.log(a.responseJSON);
             console.log(b);
             console.log(c);
@@ -122,46 +180,54 @@ $(document).ready(function() {
     });
 
 
-    $('#formGeneralInfo_PrimaryType').on("change update", function () {
-        var primary = $('#formGeneralInfo_PrimaryType :selected').val();
-        if (primary == "Cell") {
-            $('#formGeneralInfo_shareNum').show();
-            $('#formGeneralInfo_shareNum_lbl').show();
-            $("#formGeneralInfo_Primary").attr('name', 'cellPhone');
-            $("#formGeneralInfo_Primary").prop('disabled', false);
-        }
-        else {
-            $("#formGeneralInfo_Primary").attr('name', 'homePhone');
-            $("#formGeneralInfo_Primary").prop('disabled', false);
-        }
-    });
+    $("#formGeneralInfo_PrimaryType").on("change update",
+        function () {
 
-    $('#formGeneralInfo_secondType').on("change update", function () {
-        var secondary = $('#formGeneralInfo_secondType :selected').val();
+            var primary = $("#formGeneralInfo_PrimaryType :selected").val();
+            if (primary == "cell") {
+                $("#formGeneralInfo_shareNum").show();
+                $("#formGeneralInfo_shareNum_lbl").show();
+                $("#formGeneralInfo_Primary").attr("name", "cellPhone");
+                $("#formGeneralInfo_Primary").prop("disabled", false);
+                setCellPhoneType("primary", empId);
+            } else {
+                $("#formGeneralInfo_Primary").attr("name", "homePhone");
+                $("#formGeneralInfo_Primary").prop("disabled", false);
+                setHomePhoneType("primary", empId);
+            }
+        });
 
-        if (secondary == "cells") {
-            $('#formGeneralInfo_shareNum').show();
-            $('#formGeneralInfo_shareNum_lbl').show();
-            $("#formGeneralInfo_Secondary").attr('name', 'cellPhone');
-            $("#formGeneralInfo_Secondary").prop('disabled', false);
-        } else {
-            $("#formGeneralInfo_Secondary").attr('name', 'homePhone');
-            $("#formGeneralInfo_Secondary").prop('disabled', false);
-        }
-    });
+    $("#formGeneralInfo_secondaryType").on("change update",
+        function () {
 
-    $('#formGeneralInfo_shareNum').on("change update", function () {
-        var partial = { "showPersonalCellPhone": false };
-        var shareNumVal = $('#formGeneralInfo_shareNum :selected').val();
+            var secondary = $("#formGeneralInfo_secondaryType :selected").val();
+            
+            if (secondary == "cell") {
+                $("#formGeneralInfo_shareNum").show();
+                $("#formGeneralInfo_shareNum_lbl").show();
+                $("#formGeneralInfo_Secondary").attr("name", "cellPhone");
+                $("#formGeneralInfo_Secondary").prop("disabled", false);
+                setCellPhoneType("secondary", empId);
+            } else {
+                $("#formGeneralInfo_Secondary").attr("name", "homePhone");
+                $("#formGeneralInfo_Secondary").prop("disabled", false);
+                setHomePhoneType("secondary", empId);
+            }
+        });
 
-        if (shareNumVal == 'true') {
-            partial.showPersonalCellPhone = true;
-        } else {
-            partial.showPersonalCellPhone = false;
-        }
+    $("#formGeneralInfo_shareNum").on("change update",
+        function() {
+            var partial = { "showPersonalCellPhone": false };
+            var shareNumVal = $("#formGeneralInfo_shareNum :selected").val();
 
-        CustomFormFunctions.putPartialInfo("/boss/employeeProfile", empId, partial);
-    });
+            if (shareNumVal == "true") {
+                partial.showPersonalCellPhone = true;
+            } else {
+                partial.showPersonalCellPhone = false;
+            }
+
+            CustomFormFunctions.putPartialInfo("/boss/employeeProfile", empId, partial);
+        });
 });
 
 function populateTheEmployee(employeeId) {
@@ -177,15 +243,15 @@ function populateTheEmployee(employeeId) {
 
 function updateProfilePicture() {
     $.ajax({
-        'url': '/boss/employeeProfile/' + empId,
-        'type': 'GET',
+        'url': "/boss/employeeProfile/" + empId,
+        'type': "GET",
         'success': function(json) {
             var photoId = json.profilePicture;
-            $('.empPhoto').attr('src', photoId ? ("/boss/profilePicture/" + photoId) : "/boss/img/person.jpg");
+            $(".empPhoto").attr("src", photoId ? ("/boss/profilePicture/" + photoId) : "/boss/img/person.jpg");
             if (photoId) {
-                $('.empPhoto').attr('src', "/boss/profilePicture/" + photoId);
+                $(".empPhoto").attr("src", "/boss/profilePicture/" + photoId);
             } else {
-                $('.empPhoto').attr('src', "/boss/img/person.jpg");
+                $(".empPhoto").attr("src", "/boss/img/person.jpg");
             }
         },
         'error': function(e) {
@@ -197,12 +263,13 @@ function updateProfilePicture() {
 function showError(msg) {
     $("#errorText").html(msg);
     $("#error").show();
-    $('html,body').animate({ scrollTop: $(".bannerImg").offset().top }, 'slow');
+    $("html,body").animate({ scrollTop: $(".bannerImg").offset().top }, "slow");
 }
+
 var fields = {
     "formGeneralInfo": [
         { "custom": '<h4 class="title3">Employee Information</h4>' },
-        [ //Name Info
+        [//Name Info
             {
                 "fieldName": "lastName",
                 "title": "Last Name",
@@ -225,7 +292,8 @@ var fields = {
             },
         ],
         [
-            {"fieldName": "role",
+            {
+                "fieldName": "role",
                 "title": "User Role / Access",
                 "type": "select/text",
                 "required": true,
@@ -251,7 +319,7 @@ var fields = {
                 "title": "Status",
                 "type": "select/text",
                 "colspan": 3,
-                "options": {"P": "Permanent", "PS": "Permanent / Seasonal", "T": "Temporary"}
+                "options": { "P": "Permanent", "PS": "Permanent / Seasonal", "T": "Temporary" }
             },
             {
                 "fieldName": "appointment",
@@ -263,14 +331,14 @@ var fields = {
             }
         ], // end row
         { "custom": '<h4 class="title4">Employee\'s Contact Information</h4>' },
-        [ // Contact Info
+        [// Contact Info
             {
                 "fieldName": "PrimaryType",
                 "title": "Primary Phone Type",
                 "type": "select/text",
                 "placeholder": "Select type",
                 "required": true,
-                "options": { "Cell": "Cell Phone", "home": "Home Phone" }
+                "options": { "cell": "Cell Phone", "home": "Home Phone" }
             },
             {
                 "fieldName": "Primary", //Home Phone
@@ -280,11 +348,11 @@ var fields = {
                 "type": "input/tel"
             },
             {
-                "fieldName": "secondType",
+                "fieldName": "secondaryType",
                 "title": "Secondary Phone Type",
                 "type": "select/text",
                 "placeholder": "Select type",
-                "options": { "cells": "Cell Phone", "homes": "Home Phone" }
+                "options": { "cell": "Cell Phone", "home": "Home Phone" }
             },
             {
                 "fieldName": "Secondary", //cell phone
@@ -292,7 +360,6 @@ var fields = {
                 "title": "Secondary Phone",
                 "type": "input/tel"
             },
-
             {
                 "fieldName": "shareNum",
                 "title": "Share Cell Phone?",
@@ -300,9 +367,9 @@ var fields = {
                 "placeholder": "Select Response",
                 "options": { "true": "Yes", "false": "No" }
 
-            },
+            }
         ],
-        [ // Address Info
+        [// Address Info
             {
                 "fieldName": "addressStreet1",
                 "title": "Street Address (Home)",
@@ -337,66 +404,66 @@ var fields = {
             }
         ],
         [
-            { "custom": $('#submitEmployeeInfo').parent() }
+            { "custom": $("#submitEmployeeInfo").parent() }
         ]
     ], // end form
     "formWorkInfo": [
-        [{
-            "fieldName": "title",
-            "title": "Employee Title",
-            "type": "input/text",
-        },
-        {
-            "fieldName": "activityCode.code",
-            "title": "Section Code",
-            "type": "select/text",
-            "selectFrom": {
-                "url": "/boss/activityCode",
-                "value": "code",
-                "label": "name"
+        [
+            {
+                "fieldName": "title",
+                "title": "Employee Title",
+                "type": "input/text",
+            },
+            {
+                "fieldName": "activityCode.code",
+                "title": "Section Code",
+                "type": "select/text",
+                "selectFrom": {
+                    "url": "/boss/activityCode",
+                    "value": "code",
+                    "label": "name"
+                }
+            },
+            {
+                "fieldName": "supervisor",
+                "title": "Supervisor",
+                "type": "select/text",
+                "selectFrom": {
+                    "url": "/boss/employeeProfile",
+                    "value": "id",
+                    "label": "nameCode",
+                },
             }
-        },
-        {
-            "fieldName": "supervisor",
-            "title": "Supervisor",
-            "type": "select/text",
-            "selectFrom": {
-                "url": "/boss/employeeProfile",
-                "value": "id",
-                "label": "nameCode",
-            },
-        }
         ], // end row
-        [{
-            "fieldName": "stateAssigned",
-            "title": "State Assigned",
-            "type": "select/state",
-            "colspan":4
-        },
-        {
-            "fieldName": "dutyStation",
-            "title": "Duty Station",
-            "type": "select/text",
-            "selectFrom": {
-                "url": "/boss/dutyStations"
+        [
+            {
+                "fieldName": "stateAssigned",
+                "title": "State Assigned",
+                "type": "select/state",
+                "colspan": 4
             },
-            "colspan":4
-        },
-        {
-            "fieldName": "officePhone",
-            "title": "Office Phone",
-            "type": "input/tel",
-            "colspan": 4
-        }
+            {
+                "fieldName": "dutyStation",
+                "title": "Duty Station",
+                "type": "select/text",
+                "selectFrom": {
+                    "url": "/boss/dutyStations"
+                },
+                "colspan": 4
+            },
+            {
+                "fieldName": "officePhone",
+                "title": "Office Phone",
+                "type": "input/tel",
+                "colspan": 4
+            }
         ], // end row
-
         [
             {
                 "fieldName": "satPhone",
                 "title": "Sat Phone",
                 "type": "input/tel"
             },
-
             {
                 "fieldName": "fsCellPhone",
                 "title": "FS Cell Phone",
@@ -407,7 +474,7 @@ var fields = {
                 "title": "FS Email",
                 "type": "input/text",
                 "colspan": 4
-            }, 
+            },
         ],
         [
             {
@@ -416,7 +483,7 @@ var fields = {
                 "type": "input/series",
                 "max": 4,
                 "min": 4,
-                "placeholder": "i.e. 0301"                
+                "placeholder": "i.e. 0301"
             },
             {
                 "fieldName": "step",
@@ -441,8 +508,7 @@ var fields = {
                 "title": "Pay Status",
                 "type": "select/text",
                 "options": ["Pay", "Non-Pay"]
-            }   
-
+            }
         ], // end row
         [
             {
@@ -461,7 +527,6 @@ var fields = {
                 "type": "input/date",
             }
         ],
-
         [
             {
                 "fieldName": "employeePosition",
@@ -488,72 +553,74 @@ var fields = {
     ],
     "formEmergencyInfo": [
         { "custom": '<h4 class="title4">Identifying Info</h4>' },
-        [{
-            "fieldName": "eyeColor",
-            "title": "Eye Color",
-            "type": "input/text",
-        },
-        {
-            "fieldName": "hairColor",
-            "title": "Hair Color",
-            "type": "input/text",
-        },
+        [
+            {
+                "fieldName": "eyeColor",
+                "title": "Eye Color",
+                "type": "input/text",
+            },
+            {
+                "fieldName": "hairColor",
+                "title": "Hair Color",
+                "type": "input/text",
+            },
         ],
         [
-        {
-            "fieldName": "allergies",
-            "title": "Allergies",
-            "type": "input/text",
-        },    
-        {
-            "fieldName": "dateOfBirth",
-            "title": "Date of Birth",
-            "type": "input/date",
-        }    
+            {
+                "fieldName": "allergies",
+                "title": "Allergies",
+                "type": "input/text",
+            },
+            {
+                "fieldName": "dateOfBirth",
+                "title": "Date of Birth",
+                "type": "input/date",
+            }
         ],
-        [{
-            "fieldName": "heightFeet",
-            "title": "Height<small>(Feet)</small>",
-            "type": "input/number",
-            "placeholder": "Feet",
-            "min": 2,
-            "max": 9,
-            "colspan": 3
-        },
-        {
-            "fieldName": "heightInches",
-            "title": "Height<small>(Inches)</small>",
-            "type": "input/number",
-            "placeholder": "Inches",
-            "min": '0',
-            "max": 11,
-            "colspan": 3
-        },
-        {
-            "fieldName": "weightPounds",
-            "title": "Weight (Pounds)",
-            "type": "input/number",
-            "placeholder": "Pounds"
-        }
+        [
+            {
+                "fieldName": "heightFeet",
+                "title": "Height<small>(Feet)</small>",
+                "type": "input/number",
+                "placeholder": "Feet",
+                "min": 2,
+                "max": 9,
+                "colspan": 3
+            },
+            {
+                "fieldName": "heightInches",
+                "title": "Height<small>(Inches)</small>",
+                "type": "input/number",
+                "placeholder": "Inches",
+                "min": "0",
+                "max": 11,
+                "colspan": 3
+            },
+            {
+                "fieldName": "weightPounds",
+                "title": "Weight (Pounds)",
+                "type": "input/number",
+                "placeholder": "Pounds"
+            }
         ],
         [
 
-        // {
-        //     "fieldName": "race",
-        //     "title": "Race",
-        //     "type": "select/text",
-        //     "placeholder": "",
-        //     "options": {
-        //         "Hispanic": "Hispanic/Latino",
-        //         "Native": "American Indian or Alaska Native",
-        //         "EastAsian": "East Asian",
-        //         "SouthAsian": "South Asian (Desi)",
-        //         "African": "Black or African American",
-        //         "Hawaiian": "Native Hawaiian or Other Pacific Islander",
-        //         "White": "White or Caucasian",
-        //         "Other": "Two or more races or other",
-        //     }
-        // }
+            // {
+            //     "fieldName": "race",
+            //     "title": "Race",
+            //     "type": "select/text",
+            //     "placeholder": "",
+            //     "options": {
+            //         "Hispanic": "Hispanic/Latino",
+            //         "Native": "American Indian or Alaska Native",
+            //         "EastAsian": "East Asian",
+            //         "SouthAsian": "South Asian (Desi)",
+            //         "African": "Black or African American",
+            //         "Hawaiian": "Native Hawaiian or Other Pacific Islander",
+            //         "White": "White or Caucasian",
+            //         "Other": "Two or more races or other",
+            //     }
+            // }
         ],
         [
             { "custom": $("#colEmployeePhoto2") },
@@ -565,7 +632,7 @@ var fields = {
         ],
         { "custom": '<h4 class="title3">Emergency Contact Information</h4>' },
         { "custom": '<h4 class="title4">First Contact</h4>' },
-        [ // Name
+        [// Name
             {
                 "fieldName": "emergencyContactFirstName1",
                 "title": "First Name",
@@ -579,7 +646,7 @@ var fields = {
                 "required": true
             }
         ], // end row
-        [ // Address Info
+        [// Address Info
             {
                 "fieldName": "emergencyContactStreetAddress1",
                 "title": "Street Address (Contact)",
@@ -587,7 +654,6 @@ var fields = {
                 "required": true,
                 "colspan": 12
             },
-         
             {
                 "fieldName": "emergencyContactCity1",
                 "title": "City (Contact)",
@@ -607,17 +673,16 @@ var fields = {
                 "required": true
             }
         ], // end row
-        [ // Phone Numbers and Relationship
+        [// Phone Numbers and Relationship
             {
                 "fieldName": "emergencyContactHomePhone1",
-                "title": "Home Phone (Contact)",
+                "title": "Primary Phone (Contact)",
                 "type": "input/tel",
                 "colspan": 6
             },
-
             {
                 "fieldName": "emergencyContactCellPhone1",
-                "title": "Cell Phone (Contact)",
+                "title": "Secondary Phone (Contact)",
                 "type": "input/tel",
                 "colspan": 6
             },
@@ -633,10 +698,10 @@ var fields = {
                 "type": "input/text",
                 "required": true,
                 "colspan": 6
-            },            
+            },
         ], // end row
         { "custom": '<h4 class="title4">Second Contact</h4>' },
-        [ // Name
+        [// Name
             {
                 "fieldName": "emergencyContactFirstName2",
                 "title": "First Name",
@@ -648,7 +713,7 @@ var fields = {
                 "type": "input/text"
             }
         ], // end row
-        [ // Address Info
+        [// Address Info
             {
                 "fieldName": "emergencyContactStreetAddress2",
                 "title": "Street Address (Contact 2)",
@@ -671,17 +736,16 @@ var fields = {
                 "type": "input/zipCode"
             }
         ], // end row
-        [ // Phone Numbers and Relationship
+        [// Phone Numbers and Relationship
             {
                 "fieldName": "emergencyContactHomePhone2",
-                "title": "Home Phone (Contact 2)",
+                "title": "Primary Phone (Contact 2)",
                 "type": "input/tel",
                 "colspan": 6
             },
-
             {
                 "fieldName": "emergencyContactCellPhone2",
-                "title": "Cell Phone (Contact 2)",
+                "title": "Secondary Phone (Contact 2)",
                 "type": "input/tel",
                 "colspan": 6
             },
@@ -696,7 +760,7 @@ var fields = {
                 "title": "Relationship",
                 "type": "input/text",
                 "colspan": 6
-            },            
+            },
         ], // end row
         [
             { "custom": $("#submitEmergencyInfo").parent() } // Submit Button
@@ -706,3 +770,16 @@ var fields = {
 
 };
 CustomFormFunctions.addBootstrapFields(fields);
+
+
+function setCellPhoneType(type, id) {
+    CustomFormFunctions.putPartialInfo("/boss/employeeProfile", id, { "cellPhoneTypeIs": type }, function (good) { }, function (a, b, c) {
+        console.log(a.ResponseText);
+    });
+}
+
+function setHomePhoneType(type, id) {
+    CustomFormFunctions.putPartialInfo("/boss/employeeProfile", id, { "homePhoneTypeIs": type }, function (good) { }, function (a, b, c) {
+        console.log(a.ResponseText);
+    });
+}

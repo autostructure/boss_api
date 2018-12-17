@@ -127,7 +127,7 @@
     </footer>
     <script src="/boss/js/ead.min.js"></script>
     <script src="/boss/js/bootstrap-datepicker.js"></script>
-    <script src="/boss/js/pagesJS/bootstrapFieldWriter.js"></script>
+    <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
     <script src="/boss/js/pagesJS/addNewEmployee.js"></script>
     <script src="/boss/js/pagesJS/personnelPages.js"></script>
     <script src="/boss/js/pagesJS/ApiCalls.js"></script>

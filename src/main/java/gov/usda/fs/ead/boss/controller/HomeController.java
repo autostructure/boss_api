@@ -217,6 +217,12 @@ public class HomeController {
     }
 
     //@IsAppUser
+    @RequestMapping("/monthsNotUsed/{id}")
+    public String monthsNotUsed() {
+        return "monthsNotUsed";
+    }    
+
+    //@IsAppUser
     @RequestMapping("/monthlyCosts")
     public String monthlyCosts() {
         return "monthlyCosts";

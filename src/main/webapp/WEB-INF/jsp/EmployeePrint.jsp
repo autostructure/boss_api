@@ -99,12 +99,12 @@
                             <div class="row">                                
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="HomePhoneOne" readonly></input>
+                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="PrimaryPhoneOne" readonly></input>
                                     </div>
                                 </div>      
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="CellPhoneOne" readonly></input>
+                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="SecondaryPhoneOne" readonly></input>
                                     </div>
                                 </div>                                                          
                                 <div class="col">
@@ -163,12 +163,12 @@
                             <div class="row">                                                          
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="HomePhoneTwo" readonly></input>
+                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="PrimaryPhoneTwo" readonly></input>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="CellPhoneTwo" readonly></input>
+                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="SecondaryPhoneTwo" readonly></input>
                                     </div>
                                 </div> 
                                 <div class="col">

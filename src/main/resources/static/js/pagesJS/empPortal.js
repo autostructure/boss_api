@@ -14,12 +14,117 @@ $(document).ready(function() {
     $("#general-tab").on("click",function(){location.hash = "#Profile"});
     $("#emergency-tab").on("click",function(){location.hash = "#Emergency"});
     $("#identification-tab").on("click",function(){location.hash = "#Identification"});
-    $(window).trigger('hashchange');
 
     var userId = 47 //// Temporary
     var employeeForms = $("#formEmployeeInfo, #formEmergencyInfo, #formIdentificationInfo");
     CustomFormFunctions.populateElements(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
     CustomFormFunctions.setSneakySave(employeeForms.find("input, select, textarea"), "employeeProfile", userId);
+
+    $.ajax({
+        url: "/boss/employeeProfile/" + userId,
+        type: "GET",
+        cache: false,
+        success: function (json) {
+            if (json.homePhoneTypeIs == "primary" && json.homePhone != undefined) {
+                $('#formEmergencyInfo_PrimaryType option[value=home]').attr("selected", "selected");
+                $('#formEmergencyInfo_Primary').val(json.homePhone);
+                $("#formEmergencyInfo_Primary").prop("disabled", false);
+
+            }
+
+            if (json.homePhoneTypeIs == "secondary" && json.homePhone != undefined) {
+                $('#formEmergencyInfo_secondaryType option[value=home]').attr("selected", "selected");
+                $('#formEmergencyInfo_Secondary').val(json.homePhone);
+                $("#formEmergencyInfo_Secondary").prop("disabled", false);
+            }
+
+            if (json.cellPhoneTypeIs == "primary" && json.cellPhone != undefined) {
+                $('#formEmergencyInfo_PrimaryType option[value=cell]').attr("selected", "selected");
+                $("#formEmergencyInfo_shareNum").show();
+                $("#formEmergencyInfo_shareNum_lbl").show();
+                $('#formEmergencyInfo_Primary').val(json.cellPhone);
+                $("#formEmergencyInfo_Primary").prop("disabled", false);
+                var v = json.showPersonalCellPhone;
+                if (v == true) {
+                    $("#formEmergencyInfo_shareNum").val("true");
+                } else {
+                    $("#formEmergencyInfo_shareNum").val("false");
+                }
+            }
+
+            if (json.cellPhoneTypeIs == "secondary" && json.cellPhone != undefined) {
+                $('#formEmergencyInfo_secondaryType option[value=cell]').attr("selected", "selected");
+
+                $("#formEmergencyInfo_shareNum").show();
+                $("#formEmergencyInfo_shareNum_lbl").show();
+                $('#formEmergencyInfo_Secondary').val(json.cellPhone);
+                $("#formEmergencyInfo_Secondary").prop("disabled", false);
+                var v = json.showPersonalCellPhone;
+                if (v == true) {
+                    $("#formEmergencyInfo_shareNum").val("true");
+                } else {
+                    $("#formEmergencyInfo_shareNum").val("false");
+                }
+            }
+
+
+        },
+        error: function (a, b, c) {
+            console.log(a.responseJSON);
+            console.log(b);
+            console.log(c);
+        }
+    });
+
+
+    $("#formGeneralInfo_PrimaryType").on("change update",
+        function () {
+
+            var primary = $("#formEmergencyInfo_PrimaryType :selected").val();
+            if (primary == "cell") {
+                $("#formEmergencyInfo_shareNum").show();
+                $("#formEmergencyInfo_shareNum_lbl").show();
+                $("#formEmergencyInfo_Primary").attr("name", "cellPhone");
+                $("#formEmergencyInfo_Primary").prop("disabled", false);
+                setCellPhoneType("primary", empId);
+            } else {
+                $("#formEmergencyInfo_Primary").attr("name", "homePhone");
+                $("#formEmergencyInfo_Primary").prop("disabled", false);
+                setHomePhoneType("primary", empId);
+            }
+        });
+
+    $("#formEmergencyInfo_secondaryType").on("change update",
+        function () {
+
+            var secondary = $("#formEmergencyInfo_secondaryType :selected").val();
+
+            if (secondary == "cell") {
+                $("#formEmergencyInfo_shareNum").show();
+                $("#formEmergencyInfo_shareNum_lbl").show();
+                $("#formEmergencyInfo_Secondary").attr("name", "cellPhone");
+                $("#formEmergencyInfo_Secondary").prop("disabled", false);
+                setCellPhoneType("secondary", userId);
+            } else {
+                $("#formEmergencyInfo_Secondary").attr("name", "homePhone");
+                $("#formEmergencyInfo_Secondary").prop("disabled", false);
+                setHomePhoneType("secondary", userId);
+            }
+        });
+
+    $("#formGeneralInfo_shareNum").on("change update",
+        function () {
+            var partial = { "showPersonalCellPhone": false };
+            var shareNumVal = $("#formEmergencyInfo_shareNum :selected").val();
+
+            if (shareNumVal == "true") {
+                partial.showPersonalCellPhone = true;
+            } else {
+                partial.showPersonalCellPhone = false;
+            }
+
+            CustomFormFunctions.putPartialInfo("/boss/employeeProfile", userId, partial);
+        });    
     
     function updateProfilePicture() {
         $.ajax({
@@ -552,11 +657,100 @@ $(document).ready(function() {
         var date2str = CustomFormFunctions.formatDate(date2, "bootstrap");
         $("#form_training_renew [name='validUntil']").val(date2str);
     });
+
+    // Fleet //
+    function showFleetMessage(msg, permanent) {
+        $("#headerVehicleUsage").html("Monthly Vehicle Usage - <span class='small'>" + msg + "</span>");
+        if (!permanent){
+            $("#form_vehicle_usage").one("click", function() {
+                $("#headerVehicleUsage").html("Monthly Vehicle Usage");
+            })
+        }
+    }
+    makeAjaxCall("/boss/vehicle/", "GET", null).then(function(vehicles){
+        var myVehicle = null;
+        for (var i in vehicles) {
+            if (vehicles[i].assignedOperator && vehicles[i].assignedOperator.id == userId) {
+                myVehicle = vehicles[i];
+                break;
+            }
+        }
+        if (myVehicle) {
+            $("#form_vehicle_usage_vehicleId").val(myVehicle.id);
+            $("#form_vehicle_usage_vehicleLicense").val(myVehicle.license);
+            var theDate = new Date();
+            for (i = 0; i < 6; i++) {
+                var val = JSON.stringify({
+                    "month":theDate.getMonth(),
+                    "year":theDate.getFullYear(),
+                });
+                var label = CustomFormFunctions.OptionSets.MONTHS[theDate.getMonth()] + " " + theDate.getFullYear();
+                var opt = "<option value='{v}'>{l}</option>".replace("{v}", val).replace("{l}", label);
+                $("#form_vehicle_usage_monthYear").append(opt);
+                theDate.setMonth(theDate.getMonth() - 1);
+            }
+        } else {
+            throw("You don't have a vehicle in the system.");
+        }
+    }, function(error) {
+        throw("System Error - Can't get vehicle data.");
+    }).catch(function(error){
+        console.error(error);
+        $("#form_vehicle_usage [name]").attr("disabled", true);
+        showFleetMessage(error);
+    });
+    $("#viewVehicleReports").on("click", function(ev){
+        ev.preventDefault();
+    })
+    $("#submitVehicleUsage").on("click", function(ev){
+        ev.preventDefault();
+        var theMonth = JSON.parse($("#form_vehicle_usage_monthYear").val());
+        var usageData = {
+            month:theMonth.month,
+            year:theMonth.year,
+            operator:{id:userId},
+            jobCode:{id:$("#form_vehicle_usage_jobCode").val()},
+            mileage:$("#form_vehicle_usage_mileage").val(),
+            gas:$("#form_vehicle_usage_gas").val(),
+            oil:$("#form_vehicle_usage_oil").val(),
+        }
+        var vehicleId = $("#form_vehicle_usage_vehicleId").val()
+        console.log("/boss/vehicle/"+vehicleId);
+        makeAjaxCall("/boss/vehicle/"+vehicleId, "GET", null).then(function(vehicleData){
+            var usages = vehicleData.monthlyIWFIAUsage;
+            for (var i in usages) {
+                var match = true;
+                match &= usages[i].month == usageData.month;
+                match &= usages[i].year == usageData.year;
+                match &= (usages[i].jobCode && usages[i].jobCode.id) == usageData.jobCode.id;
+                match &= usages[i].operator.id == usageData.operator.id;
+                if (match) {
+                    $("#form_vehicle_usage_mileage").val(usages[i].mileage);
+                    $("#form_vehicle_usage_gas").val(usages[i].gas);
+                    $("#form_vehicle_usage_oil").val(usages[i].oil);
+                    throw("There is already a matching entry for that month and job code.  If you must edit this entry, contact support.");
+                }
+            }
+            return vehicleData;
+        }, function(){
+            throw("Error getting data.");
+        }).then(function(vehicleData){
+            vehicleData.monthlyIWFIAUsage.push(usageData);
+            data = JSON.stringify(vehicleData);
+            return makeAjaxCall("/boss/vehicle/"+vehicleId, "PUT", data);
+        }).then(function(){
+            $("#form_vehicle_usage [name]").attr("disabled", true);
+            showFleetMessage("Monthly Usage Successfully Added", true);
+        }, function(error){
+            showFleetMessage(error);
+        })
+    });
+
 });
 $(window).on('hashchange', function() {
     switch (location.hash) {
-        case "#Inventory":
-            $("#inventory-tab").trigger("click");
+        case "#Property":
+            $("#property-tab").trigger("click");
         break;
         case "#Training":
             $("#training-tab").trigger("click");
@@ -575,7 +769,7 @@ $(window).on('hashchange', function() {
         //     $("#checkIn-tab").trigger("click");
         // break;
     }
-});
+}).trigger("hashchange");
 // Training //
 
 function populateCertificateList() {
@@ -697,14 +891,41 @@ var fields = {
         {   "custom":'<h4 class="title3">Emergency Contact Information</h4>' },
         {   "custom":'<h4 class="title4">My Contact Information</h4>' },
         [ // Contact Info
-            {   "fieldName":"homePhone",
-                "title":"Home Phone",
-                "type":"input/tel",
+            {
+                "fieldName": "PrimaryType",
+                "title": "Primary Phone Type",
+                "type": "select/text",
+                "placeholder": "Select type",
+                "required": true,
+                "options": { "cell": "Cell Phone", "home": "Home Phone" }
             },
-            {   "fieldName":"cellPhone",
-                "title":"Cell Phone",
-                "type":"input/tel",
-                "required":true
+            {
+                "fieldName": "Primary", //Home Phone
+                "title": "Primary Phone",
+                "name": "Primary",
+                "required": true,
+                "type": "input/tel"
+            },
+            {
+                "fieldName": "secondaryType",
+                "title": "Secondary Phone Type",
+                "type": "select/text",
+                "placeholder": "Select type",
+                "options": { "cell": "Cell Phone", "home": "Home Phone" }
+            },
+            {
+                "fieldName": "Secondary", //cell phone
+                "name": "Secondary",
+                "title": "Secondary Phone",
+                "type": "input/tel"
+            },
+            {
+                "fieldName": "shareNum",
+                "title": "Share Cell Phone?",
+                "type": "select/text",
+                "placeholder": "Select Response",
+                "options": { "true": "Yes", "false": "No" }
+
             },
             {   "fieldName":"personalEmail",
                 "title":"Personal Email",
@@ -942,5 +1163,72 @@ var fields = {
             },
         ]
     ],
+    "form_vehicle_usage": [
+        [
+            {
+                "fieldName":"vehicleId",
+                "type":"input/number",
+                "hidden": true,
+            },
+            {   "fieldName":"vehicleLicense",
+                "title":"Vehicle License",
+                "type":"input/text",
+                "disabled": true,
+                "colspan": 4,
+            },
+            {   "fieldName":"monthYear",
+                "title":"Month/Year",
+                "type":"select/text",
+                "required": true,
+                "colspan": 4,
+            },
+            {
+                "fieldName": "jobCode",
+                "title": "Job Code",
+                "type": "select/text",
+                "selectFrom": {
+                    url: "/boss/jobCode",
+                    value: "id",
+                    label: "description",
+                },
+                "required": true,
+                "colspan": 4,
+            },
+            {   "fieldName":"mileage",
+                "title":"Mileage",
+                "type":"input/number",
+                "min":0,
+                "required": true,
+                "colspan": 4,
+            },
+            {   "fieldName":"gas",
+                "title":"Gas",
+                "type":"input/number",
+                "min":0,
+                "required": true,
+                "colspan": 4,
+            },
+            {   "fieldName":"oil",
+                "title":"Oil",
+                "type":"input/number",
+                "min":0,
+                "required": true,
+                "colspan": 4,
+            },
+        ],
+        [ { 'custom': $("#property_submitRow").children() } ],
+    ],
 }
 CustomFormFunctions.addBootstrapFields(fields);
+
+function setCellPhoneType(type, id) {
+    CustomFormFunctions.putPartialInfo("/boss/employeeProfile", id, { "cellPhoneTypeIs": type }, function (good) { }, function (a, b, c) {
+        console.log(a.ResponseText);
+    });
+}
+
+function setHomePhoneType(type, id) {
+    CustomFormFunctions.putPartialInfo("/boss/employeeProfile", id, { "homePhoneTypeIs": type }, function (good) { }, function (a, b, c) {
+        console.log(a.ResponseText);
+    });
+}

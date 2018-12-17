@@ -44,7 +44,9 @@
                         </div>
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
-                                <h2 class="title2">Maitenace List</h2>
+                                <h2 class="title2">Maitenace List</h2><br/>
+								<!--<button id="addVehTest">add veh test</button><br/>-->
+								<button id="addVehMainRec">add Record</button><br/><br/>
                                 <div id="showHide">
                                    <!-- <div class="form-check" id="viewOldCheckbox"> -->
                                         <!--<input type="checkbox" id="viewOld" class="form-check-input">-->
@@ -107,7 +109,7 @@
                                             <th scope="col">Cost</th>
                                             <th scope="col">Bill Back</th>
                                             <th id="stop"></th>
-											<th id="stop"></th>
+
                                         </tr></thead>
                                         <tbody></tbody>
                                     </table>
@@ -129,7 +131,7 @@
 
                                     </div>
                                     <div class="modal-body">
-                                        <form id="form_training_renew">
+                                        <form id="form_fullRecord" role="form">
 											<input type="text" runat="server" ID="id_hidden" hidden />
                                             <div class="row">
 												<div class="col">
@@ -181,7 +183,14 @@
 											<div class="row">
 												<div class="col">
 													<div class="form-group">
-														<label>Service Date: </label><input type="text" class="form-control fleet_serviceDate"/>
+														<label for="dra_date_OG">Service Date</label>
+														<div class="input-group date" data-provide="datepicker">
+															<input type="text" required class="form-control fleet_serviceDate">
+															<div class="input-group-addon">
+																<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+															</div>
+														</div>
+														<div class="help-block with-errors"></div>
 													</div>
 												</div>
 												<div class="col">
@@ -276,12 +285,147 @@
 													</div>
 												</div>
 											</div>
+
+
+
+
+
+										</form>
+									</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn_pers_remove " data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn_edit_maintenace" data-dismiss="modal" id="btn_edit_maintenace">Submit Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div id="myModal_addRecord" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg" style="width:100%">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                            <h4 class="modal-title">Maitenace Full Record</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_training_renew">
+											<div class="row">
+												<div class="col">
+													<div class="form-group">
+														<label for="dra_date_OG">Service Date</label>
+														<div class="input-group date" data-provide="datepicker">
+															<input type="text" required class="form-control fleet_serviceDate">
+															<div class="input-group-addon">
+																<span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span>
+															</div>
+														</div>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label>Milage: </label><input required type="text" class="form-control fleet_Milage"/>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label>Vendor Name: </label><input required type="text" class="form-control fleet_VendorName"/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<div class="form-group">
+														<label>Description: </label><input required type="text" class="form-control fleet_Desc"/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<div class="form-group">
+														<label>Cost: </label><input type="text" required class="form-control fleet_cost"/>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label>Bill Back: </label><input type="text" required class="form-control fleet_BillBack"/>
+													</div>
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col">
+													<div class="form-group">
+														<label>Warranty: </label>
+														<select class="form-control fleet_warranty">
+															<option value="true">True</option>
+															<option value="false">False</option>
+														</select>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label>Saftey Inspection: </label>
+														<select class="form-control fleet_Saftey">
+															<option value="true">True</option>
+															<option value="false">False</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<div class="form-group">
+														<label>Project Funded: </label>
+														<select class="form-control fleet_ProjectFund">
+															<option value="true">True</option>
+															<option value="false">False</option>
+														</select>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label>VM (Emission): </label>
+														<select class="form-control fleet_VM">
+															<option value="true">True</option>
+															<option value="false">False</optiion>
+														</select>
+													</div>
+												</div>
+											</div>
+												
+											<div class="row">
+												<div class="col">
+													<div class="form-group">
+														<label>Receipt on File: </label>
+														<select class="form-control fleet_ReceiptOnFile">
+															<option value="true">True</option>
+															<option value="false">False</option>
+														</select>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label>Oil Change: </label>
+														<select class="form-control fleet_oilChange">
+															<option value="true">True</option>
+															<option value="false">False</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+
+
 										
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn_pers_remove " data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn_edit_maintenace" data-dismiss="modal" id="btn_edit_maintenace">Submit Edit</button>
+                                        <button type="button" class="btn btn_add_maintenace" data-dismiss="modal" id="btn_edit_maintenace">Add Record</button>
                                     </div>
                                 </div>
                             </div>
