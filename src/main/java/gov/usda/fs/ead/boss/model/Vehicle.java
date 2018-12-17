@@ -105,7 +105,9 @@ public class Vehicle implements Serializable {
     private Date releasedDate;
     
     @Column(name = "MonthsNotUsed")
-    private Short monthsNotUsed;
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MonthsNotUsed> monthsNotUsed;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "assigned_operator_id")
@@ -499,19 +501,6 @@ public class Vehicle implements Serializable {
         this.maintenanceRecords = maintenanceRecords;
     }
 
-    /**
-     * @return the monthsNotUsed
-     */
-    public Short getMonthsNotUsed() {
-        return monthsNotUsed;
-    }
-
-    /**
-     * @param monthsNotUsed the monthsNotUsed to set
-     */
-    public void setMonthsNotUsed(Short monthsNotUsed) {
-        this.monthsNotUsed = monthsNotUsed;
-    }
 
     /**
      * @return the monthlyIWFIAUsage
@@ -539,6 +528,20 @@ public class Vehicle implements Serializable {
      */
     public void setVehicleCost(List<VehicleCost> vehicleCost) {
         this.vehicleCost = vehicleCost;
+    }
+
+    /**
+     * @return the monthsNotUsed
+     */
+    public List<MonthsNotUsed> getMonthsNotUsed() {
+        return monthsNotUsed;
+    }
+
+    /**
+     * @param monthsNotUsed the monthsNotUsed to set
+     */
+    public void setMonthsNotUsed(List<MonthsNotUsed> monthsNotUsed) {
+        this.monthsNotUsed = monthsNotUsed;
     }
 
 }
