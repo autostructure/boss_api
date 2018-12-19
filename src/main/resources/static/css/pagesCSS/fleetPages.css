@@ -166,11 +166,31 @@ label{
     background-color: #767976;
     border-color: #767976;
 }
+.btn-close{
+    background-color: white;
+    color: #ff6200;
+    border-color: #ff6200;
+}
+.btn-close:hover{
+    background-color: white;
+    color: #ff6200;
+    border-color: #ff6200;
+}
+.btn-close.disabled, .btn-close:disabled {
+    background-color: #767976;
+    border-color: #767976;
+}
 .noUline{
     color: #ff6200 !important;
 }
 #sidebar .sidebar-header {
     border-bottom: .5px solid #ff620041;
+}
+#addVehMainRec{
+    margin: 20px 20px 40px 20px;
+}
+#padOne{
+    padding: 20px;
 }
 
 /* table adjustments */

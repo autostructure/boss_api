@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/boss/css/ead.min.css">
         <link rel="stylesheet" href="/boss/css/bootstrap-datepicker3.css">
         <link rel="stylesheet" href="/boss/css/pagesCSS/all.css">
-        <link rel="stylesheet" href="/boss/css/pagesCSS/hrPages.css">
+        <link rel="stylesheet" href="/boss/css/pagesCSS/fleetPages.css">
     </head>
 
     <body class="layout-demo">
@@ -25,33 +25,35 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img data-toggle="tooltip" data-html="true" title="Insect and Disease Training at start of field season. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Wyoming. (Forest Service photo by IWFIA staff)" class="bannerImg" src="/boss/img/employees.jpg" alt="Banner Image"/>
+							<img class="bannerImg" src="/boss/img/fleetBG.jpg" alt="Banner Image">
+                        <!-- <img data-toggle="tooltip" data-html="true" title="Insect and Disease Training at start of field season. Photo captured during data collection efforts for the Interior West Forest Inventory and Analysis (IWFIA) Program in Wyoming. (Forest Service photo by IWFIA staff)" class="bannerImg" src="/boss/img/employees.jpg" alt="Banner Image"/> -->
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLink"href="/personnelDash">Personnel Dashboard |</a>
-                                <a class="breadcrumbLinkMain"href="/viewTraining">View Training</a>
+                                <a class="breadcrumbLinkMainFleet"href="/fleetDash">Property Management Dashboard</a>
+                                <!-- <a class="breadcrumbLinkMainFleet"href="/viewTraining">View Training</a> -->
                             </p>
                         </div>
                     </div>
                     <section class="usa-section">
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Maintenace List</h1>
+                                <h1 id="title">Maintenance List</h1>
                             </div>
                         </div>
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
-                                <h2 class="title2">Maitenace List</h2><br/>
+                                <h2 class="title2">Maintenance List</h2><br/>
 								<!--<button id="addVehTest">add veh test</button><br/>-->
-								<button id="addVehMainRec">add Record</button><br/><br/>
+
                                 <div id="showHide">
                                    <!-- <div class="form-check" id="viewOldCheckbox"> -->
                                         <!--<input type="checkbox" id="viewOld" class="form-check-input">-->
                                         <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
-                                   <!-- </div> -->
+								   <!-- </div> -->
+										<div id="padOne">
                                           <div class="row">
 												<div class="col">
 													<div class="form-group">
@@ -97,6 +99,11 @@
 														<label>Description: </label><input type="text" class="form-control fleet_Desc_top" readonly/>
 													</div>
 												</div>
+											</div>
+										</div>
+
+											<div class="col-md-12 text-center">	
+												<button id="addVehMainRec" class="btn-success btn-lg text-center">Add Record</button>
 											</div>
 										
 
@@ -306,7 +313,7 @@
                             <div class="modal-dialog modal-lg" style="width:100%">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                            <h4 class="modal-title">Maitenace Full Record</h4>
+                                            <h4 class="modal-title">Maintenance Full Record</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
                                     </div>
@@ -327,7 +334,7 @@
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label>Milage: </label><input required type="text" class="form-control fleet_Milage"/>
+														<label>Mileage: </label><input required type="text" class="form-control fleet_Milage"/>
 													</div>
 												</div>
 												<div class="col">
@@ -361,17 +368,19 @@
 													<div class="form-group">
 														<label>Warranty: </label>
 														<select class="form-control fleet_warranty">
-															<option value="true">True</option>
-															<option value="false">False</option>
+															<option value=""></option>
+															<option value="true">Yes</option>
+															<option value="false">No</option>
 														</select>
 													</div>
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label>Saftey Inspection: </label>
+														<label>Safety Inspection: </label>
 														<select class="form-control fleet_Saftey">
-															<option value="true">True</option>
-															<option value="false">False</option>
+															<option value=""></option>
+															<option value="true">Yes</option>
+															<option value="false">No</option>
 														</select>
 													</div>
 												</div>
@@ -381,8 +390,9 @@
 													<div class="form-group">
 														<label>Project Funded: </label>
 														<select class="form-control fleet_ProjectFund">
-															<option value="true">True</option>
-															<option value="false">False</option>
+															<option value=""></option>
+															<option value="true">Yes</option>
+															<option value="false">No</option>
 														</select>
 													</div>
 												</div>
@@ -390,8 +400,9 @@
 													<div class="form-group">
 														<label>VM (Emission): </label>
 														<select class="form-control fleet_VM">
-															<option value="true">True</option>
-															<option value="false">False</optiion>
+															<option value=""></option>
+															<option value="true">Yes</option>
+															<option value="false">No</optiion>
 														</select>
 													</div>
 												</div>
@@ -402,8 +413,9 @@
 													<div class="form-group">
 														<label>Receipt on File: </label>
 														<select class="form-control fleet_ReceiptOnFile">
-															<option value="true">True</option>
-															<option value="false">False</option>
+															<option value=""></option>
+															<option value="true">Yes</option>
+															<option value="false">No</option>
 														</select>
 													</div>
 												</div>
@@ -411,8 +423,9 @@
 													<div class="form-group">
 														<label>Oil Change: </label>
 														<select class="form-control fleet_oilChange">
-															<option value="true">True</option>
-															<option value="false">False</option>
+															<option value=""></option>
+															<option value="true">Yes</option>
+															<option value="false">No</option>
 														</select>
 													</div>
 												</div>
@@ -424,8 +437,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn_pers_remove " data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn_add_maintenace" data-dismiss="modal" id="btn_edit_maintenace">Add Record</button>
+                                        <button type="button" class="btn btn-close " data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal" id="btn_edit_maintenace">Add Record</button>
                                     </div>
                                 </div>
                             </div>
