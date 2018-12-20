@@ -223,7 +223,7 @@ public class HomeController {
     }    
 
     //@IsAppUser
-    @RequestMapping("/monthlyCosts")
+    @RequestMapping("/monthlyCosts/{id}")
     public String monthlyCosts() {
         return "monthlyCosts";
     }

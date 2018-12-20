@@ -87,28 +87,19 @@
                         </div>
                         <div class="container trainBG ">
                                 <h1 class="title5">Add Months Out of Service</h1>
-                                <form role="form" id="monthlyCostsForm" data-toggle="validator">
-                                    </form>
+                                <form role="form" id="monthlyCostsForm" data-toggle="validator">									
+
+								</form>
+								<br/><br/>
                             <table id="monthlyCosts">
                                 <thead>
-                                    <tr>
-                                        <th>Year</th>
-                                        <th>Month</th>
-                                    </tr>
+									<th>Year</th>
+									<th>Month</th>
                                 </thead>
+
                                 <tbody>
-                                    <tr>
-                                        <td>2018</td> 
-                                        <td>July</td>
-                                    </tr>                                     
-                                    <tr>
-                                        <td>2018</td> 
-                                        <td>June</td>
-                                    </tr>   
-                                    <tr>
-                                        <td>2018</td> 
-                                        <td>May</td>
-                                    </tr>                                                                          
+									<td col="vYear"></td>
+									<td col="vMonth"></td>
                                 </tbody>
                             </table>
         
@@ -138,6 +129,7 @@
         <script src="/boss/js/ead.min.js"></script>
         <script src="/boss/js/bootstrap-datepicker.js"></script>
         <script src="/boss/js/pagesJS/bootstrapFieldWriter.js"></script>
+		<script src="/boss/js/pageJS/ApiCalls.js"></script>
         <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
         <script src="/boss/js/pagesJS/monthsNotUsed.js"></script>
         <script src="/boss/js/pagesJS/mainFleetPages.js"></script>

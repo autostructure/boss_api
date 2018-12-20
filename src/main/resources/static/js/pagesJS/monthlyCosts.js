@@ -14,7 +14,7 @@ var testData = [{
 api = '/boss';
 
 // displaying the current vehicle information on IWFIA page
-var id = window.location.pathname.split("/")[2];
+var id = window.location.pathname.split("/")[3];
 if (id) {
     var url = '/boss/vehicle?id=' + id;
     if (parseInt(id)) {
