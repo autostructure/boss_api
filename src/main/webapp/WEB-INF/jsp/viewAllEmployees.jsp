@@ -63,7 +63,7 @@
                                                 <th scope="col">Supervisor</th>
                                                 <th scope="col">Duty Station</th>
                                                 <th scope="col">Satellite Phone</th>
-												<th scope="col">FS Cell Phone</th>
+                                                <th scope="col">FS Cell Phone</th>
                                                 <th scope="col">Office Phone </th>                                        
                                                 <th scope="col">FS Email</th>
                                                 <th scope="col">Personal Cell Phone</th>
@@ -98,7 +98,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Confirmation</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            
+
                         </div>
                         <div class="modal-body">
                             <p>Are you sure you want to delete this employee?</p>
@@ -121,11 +121,11 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
-                                <p class="contactClass">Employee Contact</p>
+                            <p class="contactClass">Employee Contact</p>
                             <div class="row">
-                                    
+
                                 <div class="col">
-                                    
+
                                     <div class="form-group">
                                         <label class="control-label">Primay Phone: </label> <input class="form-control" type="text" id="PrimryPhone" readonly></input>
                                     </div>
@@ -251,7 +251,7 @@
                                         <label class="control-label">City: </label> <input class="form-control" type="text" id="CityTwo" readonly></input>
                                     </div>
                                 </div>                                                                                                                         
-                               
+
                             </div>
 
                             <div class="row">
@@ -265,24 +265,24 @@
                                         <label class="control-label">Zip: </label> <input class="form-control" type="text" id="ZipTwo" readonly></input>
                                     </div>
                                 </div>   
-                              
+
                             </div>
 
-							<div class="row">
-								<div class="col">
-									<div class="form-group">
-										
-									</div>
-								</div>
-								
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default btn_pers_copy" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn_pers_copy" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
 
