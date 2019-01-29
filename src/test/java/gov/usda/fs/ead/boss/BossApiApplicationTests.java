@@ -51,6 +51,4 @@ import gov.usda.fs.ead.boss.reports.PayrollForecastRow;
 //@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class BossApiApplicationTests {
 
-   
-
 }

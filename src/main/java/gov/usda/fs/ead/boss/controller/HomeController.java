@@ -233,6 +233,16 @@ public class HomeController {
     public String DebugInfo() {
         return "DebugInfo";
     }
+    
+     @RequestMapping("/addCellPhone")
+    public String addCellPhone() {
+        return "addCellPhone";
+    }
+
+    @RequestMapping("/viewPhones")
+    public String viewPhones() {
+        return "viewPhones";
+    }
 
 
 	    
