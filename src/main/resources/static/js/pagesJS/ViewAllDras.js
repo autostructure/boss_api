@@ -244,27 +244,27 @@ function getCorrectDateFormat(date_str) {
 var trainingRenewFields = {
     "form_training_renew": [
         [{
-                "fieldName": "dateOfTraining",
-                "title": "Training Completed On",
-                "placeholder": "Date of Training",
-                "type": "input/date",
-                "colspan": 6,
-            },
-            {
-                "fieldName": "validUntil",
-                "title": "Valid Until",
-                "placeholder": "Valid Until",
-                "type": "input/date",
-                "colspan": 6,
-            },
-            {
-                "fieldName": "yearsValid",
-                "hidden": true,
-                "type": "input/number"
-            },
+            "fieldName": "dateOfTraining",
+            "title": "Training Completed On",
+            "placeholder": "Date of Training",
+            "type": "input/date",
+            "colspan": 6,
+        },
+        {
+            "fieldName": "validUntil",
+            "title": "Valid Until",
+            "placeholder": "Valid Until",
+            "type": "input/date",
+            "colspan": 6,
+        },
+        {
+            "fieldName": "yearsValid",
+            "hidden": true,
+            "type": "input/number"
+        },
         ]
     ]
-}
+};
 
 CustomFormFunctions.addBootstrapFields(trainingRenewFields);
 

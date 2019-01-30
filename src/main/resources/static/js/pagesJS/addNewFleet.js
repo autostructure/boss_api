@@ -2,9 +2,9 @@ $(document).ready(function(){
     $('#viewList').click(function(){
         window.location.href = '/boss/viewFleet';
     });
-    $('#addAnother').click(function(){
+    $('#addAnother').click(function () {
         window.location.reload();
-    })
+    });
 });
 
 
