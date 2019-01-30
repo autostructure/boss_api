@@ -93,6 +93,29 @@
               <p style="font-size:1.2em;">
                 <span style="color:red;">*</span> Fields are required
               </p>
+              <div id="templates" style="display:none;">
+                <div class="dropdown1">
+                  <button id="test_click" class="dropbtn1">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </button>
+                  <div id="dropList" class="dropdown-content1">
+                    <a
+                      data-toggle="modal"
+                      data-target="#myModal_edit"
+                      href="#"
+                      class="editBtn"
+                      >Edit Cost</a
+                    >
+                    <a
+                      data-toggle="modal"
+                      data-target="#myModal_delete"
+                      href="#"
+                      class="deleteBtn"
+                      >Delete Cost</a
+                    >
+                  </div>
+                </div>
+              </div>
               <form
                 role="form"
                 id="monthlyCostsForm"
@@ -101,42 +124,20 @@
               <table id="monthlyCosts">
                 <thead>
                   <tr>
-                    <th>Vehicle License</th>
-                    <th>Start Month</th>
-                    <th>Start Year</th>
-                    <th>End Month</th>
-                    <th>End Year</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th>For Rate</th>
                     <th>Mileage Rate</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>A32903292</td>
-                    <td>July</td>
-                    <td>2018</td>
-                    <td>July</td>
-                    <td>2019</td>
-                    <td>433</td>
-                    <td>.23</td>
-                  </tr>
-                  <tr>
-                    <td>A32903292</td>
-                    <td>July</td>
-                    <td>2017</td>
-                    <td>July</td>
-                    <td>2018</td>
-                    <td>413</td>
-                    <td>.21</td>
-                  </tr>
-                  <tr>
-                    <td>A32903292</td>
-                    <td>July</td>
-                    <td>2016</td>
-                    <td>July</td>
-                    <td>2017</td>
-                    <td>398</td>
-                    <td>.18</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>
@@ -147,6 +148,91 @@
         <!-- end of usa-section1 -->
       </div>
       <!-- end of sidenav wrapper div -->
+
+      <!-- start of modals -->
+      <input hidden id="modal_usage_id" />
+      <div id="myModal_edit" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Cost</h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="modalForm_edit" class="container"></form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn_pers_copy"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                id="editModal_undo"
+                class="btn editModal_undo"
+              >
+                Undo Changes
+              </button>
+              <button
+                type="button"
+                id="editModal_save"
+                data-dismiss="modal"
+                class="btn editModal_save"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="myModal_delete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Confirmation</h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete this cost?</p>
+              <form id="modalForm_delete" class="container"></form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn_pers_copy"
+                data-dismiss="modal"
+              >
+                No
+              </button>
+              <button
+                type="button"
+                id="deleteModal_delete"
+                data-dismiss="modal"
+                class="btn btn_delete"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer
