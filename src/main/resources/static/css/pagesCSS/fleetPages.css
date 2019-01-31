@@ -348,7 +348,9 @@ th {
   border-radius: 10px;
   /* border: 1px solid gray; */
 }
-
+#iwfiaForm {
+  margin-bottom: 90px;
+}
 #iwfia_filter,
 #iwfia_paginate,
 #iwfia_length,
@@ -385,4 +387,28 @@ th {
 }
 .padTop {
   margin-top: 50px;
+}
+
+.editModal_save,
+.editModal_undo,
+.btn_pers_copy {
+  background-color: #ff6200;
+  border: #ff6200;
+}
+.editModal_save:hover,
+.editModal_undo:hover,
+.btn_pers_copy:hover {
+  color: #ff6200;
+  background-color: white;
+  border: 1px solid #ff6200;
+}
+.btn_delete {
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+}
+.btn_delete:hover {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
 }

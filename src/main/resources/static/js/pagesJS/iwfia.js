@@ -51,9 +51,9 @@ $(document).ready(function() {
       month: parseInt(form.find("[name=month]").val()),
       oil: parseInt(form.find("[name=oil]").val()),
       vehicle: parseInt(vehicleId),
-      // "jobCode": {
-      //     "id": parseInt(form.find('[name=jobCode]').val()),
-      // },
+      jobCode: {
+        id: parseInt(form.find("[name=jobCode]").val())
+      },
       operator: {
         id: parseInt(form.find("[name=operator]").val())
       },
@@ -78,7 +78,7 @@ $(document).ready(function() {
       .then(
         function(data) {
           console.log("successfully updated");
-          populateDataTable();
+          window.location.reload();
           console.log(data);
         },
         function(error) {
@@ -199,13 +199,13 @@ $(document).ready(function() {
       var id = $("#modal_usage_id").val();
       changeUsage("delete", { id: id });
     })
-    .on("click", "#addModal_add", function() {
-      var data = getData("#modalForm_add");
-      console.log(data);
-      if (!data.error) {
-        changeUsage("add", data);
-      }
-    })
+    // .on("click", "#addModal_add", function() {
+    //   var data = getData("#iwfiaForm");
+    //   console.log(data);
+    //   if (!data.error) {
+    //     changeUsage("add", data);
+    //   }
+    // })
     .on("click", "#editModal_save", function() {
       var data = getData("#modalForm_edit");
       if (!data.error) {
@@ -221,9 +221,9 @@ $(document).ready(function() {
       // $("#modal_usage_id").val(row.id);
       // populateModals();
     })
-    .on("click", ".add-btn", function() {
-      $("#modalForm_add [name]").val("");
-    })
+    // .on("click", ".add-btn", function() {
+    //   $("#modalForm_add [name]").val("");
+    // })
     .on("click", ".editBtn", function() {
       var row = $(this).data("row");
       $("#modal_usage_id").val(row.id);
@@ -334,14 +334,14 @@ $(document).ready(function() {
           },
           className: "table-btns excel-btn"
         },
-        {
-          text: 'Add <i class="fa fa-lg fa-plus"></i>',
-          action: function() {
-            //$('html,body').animate({scrollTop: $("#iwfia").offset().top}, 'slow');
-            $("#myModal_add").modal("toggle");
-          },
-          className: "table-btns add-btn"
-        },
+        // {
+        //   text: 'Add <i class="fa fa-lg fa-plus"></i>',
+        //   action: function() {
+        //     //$('html,body').animate({scrollTop: $("#iwfia").offset().top}, 'slow');
+        //     $("#myModal_add").modal("toggle");
+        //   },
+        //   className: "table-btns add-btn"
+        // },
         {
           text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
           action: function() {
