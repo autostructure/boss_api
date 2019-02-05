@@ -1,4 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
+
+
+
+
   $("#viewList").click(function() {
     window.location.href = "/boss/viewFleet";
   });
@@ -7,7 +11,25 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
+
+
+    var form = $("#newFleet");
+    $.ajax({
+        url: '/boss/employeeProfile',
+        type: 'GET',
+        cahce: false,
+        async: false,
+        success: function (json) {
+            $.each(json, function (index, value) {
+
+                form.find("[name=employee]").append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
+            });
+        }, error: function (a, b, c) {
+            console.log(a.responseText);
+        }
+    });
+
   // hiding error message once we start modifying the form again
   $("form").on("click focus", function() {
     $("#error, #success").hide();
@@ -24,20 +46,80 @@ $(document).ready(function() {
       e.preventDefault();
     }
     // creating vars to submit to ajax
-    var form = $("#newFleet");
+    
     var method = "POST";
     var url = "/boss/vehicle";
-    var data = {
-      license: form.find("[name=license]").val(),
-      vin: form.find("[name=vin]").val(),
-      modelYear: form.find("[name=modelYear]").val(),
-      make: form.find("[name=make]").val(),
-      modelNumber: form.find("[name=modelNumber]").val(),
-      description: form.find("[name=description]").val()
-    };
-    // stringifying the data for ajax
-    data = JSON.stringify(data);
+      var emp;
+      $.ajax({
+          url: "/boss/employeeProfile/47",
+          type: 'GET',
+          cache: false,
+          aysnc: false,
+          success: function (json) {
+              emp = json;
+          }, error: function(a,b,c) {
+              console.log(a.responseText);
+          }
+      });
 
+
+      var vehicleData = {
+
+          "accessory": "string",
+          "accessory2": "string",
+          "assignedOperator": emp,
+          "camera": "string",
+          "cityOrLocation": "string",
+          "color": "string",
+          "dateAquired": "2019-02-05T19:44:32.540Z",
+          "description": form.find("[name=description]").val(),
+          "disposalDate": "2019-02-05T19:44:32.540Z",
+          "engineNumber": "string",
+          "equipmentNumber": "string",
+          "id": 0,
+          "keysToolBox": "string",
+          "license": form.find("[name=license]").val(),
+          "maintenanceRecords": [
+
+          ],
+          "make": form.find("[name=make]").val(),
+          "modelNumber": form.find("[name=modelYear]").val(),
+          "modelYear": parseInt(form.find("[name=modelYear]").val()),
+          "monthlyIWFIAUsage": [
+             
+          ],
+          "monthsNotUsed": [
+
+          ],
+          "oldLicense": "string",
+          "ownershipType": "string",
+          "releasedDate": "2019-02-05T19:44:32.541Z",
+          "replacementDate": "2019-02-05T19:44:32.541Z",
+          "state": "string",
+          "tonneau": "string",
+          "vehicleClassCode": "string",
+          "vehicleCost": [
+
+          ],
+          "vin": form.find("[name=vin]").val()
+      };
+
+
+
+    /*var data = {
+      //license: form.find("[name=license]").val(),
+      //vin: form.find("[name=vin]").val(),
+      //modelYear: form.find("[name=modelYear]").val(),
+      //make: ,
+      //modelNumber: ,
+      description: 
+    };
+    */
+
+    // stringifying the data for ajax
+   var data = JSON.stringify(vehicleData);
+   console.log(vehicleData);
+   debugger;
     // ajax post call
     $.ajax({
       url: url,
@@ -51,8 +133,8 @@ $(document).ready(function() {
         console.log(" *** successfully updated see data below ***");
         console.log(data);
       },
-      error: function(error) {
-        console.log(" !!! Error" + error + " !!! ");
+      error: function(e) {
+        console.log(" !!! Error" + e.responseText + " !!! ");
         return false;
       }
     });
@@ -119,7 +201,13 @@ var fields = {
         placeholder: "I.E. Crew Cab",
         required: true
       }
-    ], // end row
+      ], [{
+        fieldName: "employee",
+        title: "select employee",
+        type: "select/input",
+        colspan: 6,
+        placeholder: "select employee"
+      }], // end row
     [
       {
         custom:
