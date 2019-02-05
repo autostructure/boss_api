@@ -15,8 +15,8 @@ if (id) {
       $("#pMake").append(vehs.make);
       $("#pModel").append(vehs.modelNumber);
     },
-    function(error) {
-      console.log(error);
+    function(a,b,c) {
+      console.log(a.responseText);
     }
   );
 }
@@ -202,13 +202,26 @@ function updateCosts(form) {
         function(dataIn) {
           dataIn.vehicleCost.push(cost);
           dataOut = JSON.stringify(dataIn);
+          console.log("-------------------");
           console.log(dataIn);
-          console.log(dataOut);
-          return makeAjaxCall(url, method, dataOut);
+          console.log("-------------------");
+          
+          //return makeAjaxCall(url, method, dataOut);
+            console.log(dataIn);
+            debugger;
+          CustomFormFunctions.putPartialInfo("/boss/vehicle", id, dataOut, function (json) {
+                
+                location.reload();
+            }, function (a, b, c) {
+                
+                console.log(a.responseText);
+                
+            }); 
         },
         function(error) {
           console.log("Error", error);
           console.log(error.responseJSON);
+            
         }
       )
       .then(

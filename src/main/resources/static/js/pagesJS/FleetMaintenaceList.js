@@ -337,10 +337,10 @@ $(document).ready(function() {
                             .val(CustomFormFunctions.formatDate(value.serviceDate, "mm/dd/yyyy"));
                         modal.find(".fleet_Milage").val(value.currentMileage);
                         modal.find(".fleet_VendorName").val(value.vendorsName);
-                        modal.find(".fleet_DescBot").val(value.description);
+                        modal.find(".fleet_DescRec").val(value.description);
                         modal.find(".fleet_cost").val(value.cost);
                         modal.find(".fleet_BillBack").val(value.billback);
-
+                        
 
                         if (warrenty_check == true) {
                             modal.find(".fleet_warranty option[value=true]").attr("selected", "selected");
@@ -397,10 +397,10 @@ $(document).ready(function() {
 
 
         $("#myModal_addRecord").on("click",
-            ".btn_add_maintenace",
-            function () {
+            ".btn_addRecord",
+            function (e) {
                 
-
+                e.preventDefault();
                 //selected_row = $('#id_hidden').val();
                 var modal = $("#myModal_addRecord");
                 //var id = $modal.find("#id_hidden").val();
@@ -464,7 +464,8 @@ $(document).ready(function() {
                 maintance.vmEmission = VM;
                 maintance.warranty = warranty;
                 //maintance.id = selected_row;
-
+                
+                debugger;
 
                 $.ajax({
                     url: "/boss/employeeProfile/" + info.assignedOperator.id,
@@ -514,6 +515,8 @@ $(document).ready(function() {
                     console.log(e.message);
 
                 }
+
+
 
             });
 
@@ -727,7 +730,8 @@ $(document).ready(function() {
             data: JSON.stringify(veh),
             cache: false,
             success: function(json) {
-
+                console.log(json);
+                debugger;
             },
             error: function(a, b, c) {
                 console.log(a.responseText);

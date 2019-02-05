@@ -22,6 +22,7 @@ function makeAjaxCall(_url, methodType, _data) {
 
             });
         } else {
+            
             $.ajax({
                 type: methodType,
                 url: _url,

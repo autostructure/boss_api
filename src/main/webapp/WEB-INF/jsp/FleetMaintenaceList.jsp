@@ -214,7 +214,7 @@
 											<div class="row">
 												<div class="col">
 													<div class="form-group">
-														<label>Description: </label><input type="text" class="form-control fleet_Desc"/>
+														<label>Description: </label><input type="text" class="form-control fleet_DescRec"/>
 													</div>
 												</div>
 											</div>
@@ -346,7 +346,7 @@
 											<div class="row">
 												<div class="col">
 													<div class="form-group">
-														<label>Description: </label><input required type="text" class="form-control fleet_Desc"/>
+														<label>Description: </label><input required type="text" class="form-control fleet_DescRec"/>
 													</div>
 												</div>
 											</div>
@@ -438,7 +438,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-close " data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-success" data-dismiss="modal" id="btn_edit_maintenace">Add Record</button>
+                                        <button type="button" class="btn btn-success btn_addRecord" data-dismiss="modal" id="btn_edit_maintenace">Add Record</button>
                                     </div>
                                 </div>
                             </div>
