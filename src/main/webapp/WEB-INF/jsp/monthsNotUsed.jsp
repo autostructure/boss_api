@@ -95,8 +95,10 @@
                 id="monthlyCostsForm"
                 data-toggle="validator"
               ></form>
-              <br /><br />
-              <table id="monthlyCosts">
+              <br />
+
+            </div><br/>
+			       			<table id="monthlyCosts">
                 <thead>
                   <th>Month</th>
                   <th>Year</th>
@@ -105,10 +107,10 @@
                 <tbody>
                   <td col="vYear"></td>
                   <td col="vMonth"></td>
-				  <td col=
+				  <td id="stop"></td>
                 </tbody>
               </table>
-            </div>
+
           </section>
           <!-- end of usa section -->
         </section>
