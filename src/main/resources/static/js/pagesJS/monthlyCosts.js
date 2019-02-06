@@ -146,10 +146,21 @@ function populateModals(formSel) {
   makeAjaxCall("/boss/vehicle/" + id, "GET", null).then(
     function(usage) {
       index = usage.vehicleCost.findIndex(x => x.id == vid);
-      var x = usage.vehicleCost[index];
-      $(formSel + "[name='beginMonth']").val(x.beginMonth);
+        var x = usage.vehicleCost[index];
+        
+        var bMonth = "";
+        if (parseInt(x.beginMonth) < 10) {
+            bMonth = "0" + x.beginMonth;
+        }
+
+        var eMonth = "";
+        if (parseInt(x.endMonth) < 10) {
+            eMonth = "0" + x.endMonth;
+        }
+
+      $(formSel + "[name='beginMonth']").val(bMonth);
       $(formSel + "[name='beginYear']").val(x.beginYear);
-      $(formSel + "[name='endMonth']").val(x.endMonth);
+      $(formSel + "[name='endMonth']").val(eMonth);
       $(formSel + "[name='endYear']").val(x.endYear);
       $(formSel + "[name='forRate']").val(x.forRate);
       $(formSel + "[name='mileageRate']").val(x.mileageRate);
@@ -164,11 +175,17 @@ function populateModals(formSel) {
 function changeUsage(mode) {
   switch (mode) {
     case "edit":
-      updateCosts(modalForm_edit);
+      updateCosts(modalForm_edit,"edit");
       break;
-    case "delete":
-      promise = makeAjaxCall("/boss/vehicleCost/" + data.id, "DELETE", null);
-      window.location.reload();
+      case "delete":
+          var cost_id = $("#modal_usage_id").val();
+          promise = makeAjaxCall("/boss/vehicleCost/" + cost_id, "DELETE", null);
+          promise.then(function (json) {
+              window.location.reload();
+          }, function (a, b, c) {
+              console.log(a.responseText);
+          });
+      
       break;
     default:
       promise = new Promise(function(resolve, reject) {
@@ -180,58 +197,70 @@ function changeUsage(mode) {
 // end of populating modals
 
 // adding a new cost
-function updateCosts(form) {
+function updateCosts(form,type) {
   if ($("form:valid").length == 0) {
     showError("Please ensure all fields are filled out correctly");
     return false;
   } else {
-    // var form = $("#monthlyCostsForm");
-    var method = "PUT";
-    var url = "/boss/vehicle/" + id;
-    var cost = {
+      var _id;
+      cost_id = $("#modal_usage_id").val();
+      //var form = $("#monthlyCostsForm");
+
+      var method;
+      var url;
+      if (type == "edit") {
+          _id = cost_id;
+          method = "PUT";
+          url = "/boss/vehicle/" + id;
+      } else {
+          _id = 0;
+          method = "PUT";
+          url = "/boss/vehicle/" + id;
+      }
+      
+      
+      var cost = {
+      id: parseInt(_id),
       mileageRate: form.find("[name=mileageRate]").val(),
       forRate: parseInt(form.find("[name=forRate]").val()),
       beginMonth: parseInt(form.find("[name=beginMonth]").val()),
       beginYear: parseInt(form.find("[name=beginYear]").val()),
       endMonth: parseInt(form.find("[name=endMonth]").val()),
       endYear: parseInt(form.find("[name=endYear]").val())
-    };
+      };
+      
     console.log(cost);
     makeAjaxCall(url, "GET", null)
       .then(
-        function(dataIn) {
-          dataIn.vehicleCost.push(cost);
-          dataOut = JSON.stringify(dataIn);
-          console.log("-------------------");
-          console.log(dataIn);
-          console.log("-------------------");
-          
-          //return makeAjaxCall(url, method, dataOut);
-            console.log(dataIn);
-            debugger;
-          CustomFormFunctions.putPartialInfo("/boss/vehicle", id, dataOut, function (json) {
-                
-                location.reload();
-            }, function (a, b, c) {
-                
-                console.log(a.responseText);
-                
-            }); 
-        },
-        function(error) {
-          console.log("Error", error);
-          console.log(error.responseJSON);
+        function (dataIn) {
+            if (type == "edit") {
+                var filtered_cost = dataIn.vehicleCost.filter(function (x) {
+                    return x.id != parseInt(cost_id);
+                });
+
+                dataIn.vehicleCost = filtered_cost;
+            }
+
+            if (parseInt(cost.forRate) > 32767) {
+                showError("Rate was Too high, please select a number below 32767");
+            } else {
+
+                dataIn.vehicleCost.push(cost);
+                dataOut = JSON.stringify(dataIn);
+                console.log("-------------------");
+                console.log(dataIn);
+                console.log("-------------------");
+
+                return makeAjaxCall(url, method, dataOut).then(function (json) {
+                    location.reload();
+                }, function (a, b, c) {
+                    console.log(a.responseText);
+                    showError(a.responseText);
+
+                });
+            }
             
-        }
-      )
-      .then(
-        function(data) {
-          //   window.location.reload();
-        },
-        function(error) {
-          console.log("Error", error);
-          console.log(error.responseJSON);
-          return false;
+
         }
       );
   }
@@ -348,7 +377,12 @@ var fields = {
         type: "input/text",
         required: true,
         placeholder: "Enter Mileage Rate"
-      }
+        },
+        {
+            hidden: true,
+            fieldName: "cost_id",
+            type: "input/text"
+        }
     ] // end row
   ]
 };
@@ -361,7 +395,7 @@ addBootstrapFields(fields);
 
 // adding the update costs  and click listener to submit btn
 $("#submitV").on("click", function() {
-  updateCosts(monthlyCostsForm);
+  updateCosts(monthlyCostsForm, "POST");
 });
 
 // hiding error message once we start modifying the form again
