@@ -35,8 +35,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "EmployeeProfiles")
-@EntityListeners(AuditingEntityListener.class)
+@Table(name = "EmployeeProfiles", catalog="BOSS", schema="DBO")
 @Cacheable 
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @DynamicUpdate

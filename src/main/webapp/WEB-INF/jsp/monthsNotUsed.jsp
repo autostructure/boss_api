@@ -107,7 +107,7 @@
                 <tbody>
                   <td col="vYear"></td>
                   <td col="vMonth"></td>
-				  <td id="stop"></td>
+				<!--  <td id="stop"></td> -->
                 </tbody>
               </table>
 
@@ -127,7 +127,7 @@
     <script src="/boss/js/ead.min.js"></script>
     <script src="/boss/js/bootstrap-datepicker.js"></script>
     <script src="/boss/js/pagesJS/bootstrapFieldWriter.js"></script>
-    <script src="/boss/js/pageJS/ApiCalls.js"></script>
+    <script src="/boss/js/pagesJS/ApiCalls.js"></script>
     <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
     <script src="/boss/js/pagesJS/monthsNotUsed.js"></script>
     <script src="/boss/js/pagesJS/mainFleetPages.js"></script>
