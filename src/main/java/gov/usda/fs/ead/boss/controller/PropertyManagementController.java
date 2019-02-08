@@ -23,6 +23,7 @@ import gov.usda.fs.ead.boss.model.VehicleMaintenanceRecord;
 import gov.usda.fs.ead.boss.repository.CellPhoneRepository;
 import gov.usda.fs.ead.boss.repository.FieldEquipmentRepository;
 import gov.usda.fs.ead.boss.repository.MonthlyIWFIAUsageRepository;
+import gov.usda.fs.ead.boss.repository.MonthsNotUsedRepository;
 import gov.usda.fs.ead.boss.repository.VehicleCostRepository;
 import gov.usda.fs.ead.boss.repository.VehicleMaintenanceRecordRepository;
 import gov.usda.fs.ead.boss.repository.VehicleRepository;
@@ -48,6 +49,9 @@ public class PropertyManagementController {
     
     @Autowired
     CellPhoneRepository cellPhoneRepository;
+    
+    @Autowired
+    MonthsNotUsedRepository monthsNotUsedRepository;
     
     @PostMapping("/vehicle")
     public ResponseEntity createVehicle(@Valid @RequestBody final Vehicle vehicleDetails) {
@@ -380,6 +384,54 @@ public class PropertyManagementController {
         CellPhone pfile = cellPhoneRepository.findById(cellPhoneId)
                 .orElseThrow(() -> new ResourceNotFoundException("CellPhone", "id", cellPhoneId));
         cellPhoneRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+        
+    }
+    
+    
+    ////////////////
+    
+    @GetMapping("/monthsNotUsed")
+    public ResponseEntity getAllMonthsNotUsed(@RequestParam(value = "vehicleId", required = false) Long vehicleId) {
+        
+        if (vehicleId != null) {
+            return new ResponseEntity<>(monthsNotUsedRepository.findAllByVehicleId(vehicleId), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(monthsNotUsedRepository.findAll(), HttpStatus.OK);
+        }
+        
+    }
+    
+    
+    @GetMapping("/monthsNotUsed/{id}")
+    public ResponseEntity getMonthsNotUsed(@PathVariable(value = "id") Long monthsNotUsedId) {
+        
+        MonthsNotUsed monthsNotUsed = monthsNotUsedRepository.findById(monthsNotUsedId)
+                .orElseThrow(() -> new ResourceNotFoundException("MonthsNotUsed", "id", monthsNotUsedId));
+        return new ResponseEntity<>(monthsNotUsed, HttpStatus.OK);
+        
+    }
+    
+    @PutMapping("/monthsNotUsed/{id}")
+    public MonthsNotUsed updateMonthsNotUsed(@PathVariable(value = "id") Long monthsNotUsedId,
+            @RequestBody MonthsNotUsed monthsNotUsedDetails) {
+        
+        monthsNotUsedRepository.findById(monthsNotUsedId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("MonthsNotUsed", "id", monthsNotUsedId);
+                });
+        
+        MonthsNotUsed updated = monthsNotUsedRepository.save(monthsNotUsedDetails);
+        return updated;
+        
+    }
+    
+    @DeleteMapping("/monthsNotUsed/{id}")
+    public ResponseEntity<?> deleteMonthsNotUsed(@PathVariable(value = "id") Long monthsNotUsedId) {
+        
+        MonthsNotUsed pfile = monthsNotUsedRepository.findById(monthsNotUsedId)
+                .orElseThrow(() -> new ResourceNotFoundException("MonthsNotUsed", "id", monthsNotUsedId));
+        monthsNotUsedRepository.delete(pfile);
         return ResponseEntity.ok().build();
         
     }
