@@ -179,23 +179,26 @@ $(document).ready(function () {
                                     url: '/boss/vehicle/' + id,
                                     type: 'GET',
                                     success: function (veh) {
-                                        
-                                        veh.monthsNotUsed.push(j);
 
-                                        $.ajax({
-                                            url: '/boss/vehicle/' + id,
-                                            type: 'PUT',
-                                            contentType: 'application/json',
-                                            data: JSON.stringify(veh),
-                                            success: function (gg) {
-                                                
-                                                location.reload();
-                                            }, error: function (a, b, c) {
-                                                console.log(a.responseText);
-                                                
-                                            }
 
-                                        });
+                                            veh.monthsNotUsed.push(j);
+
+                                            
+                                            $.ajax({
+                                                url: '/boss/vehicle/' + id,
+                                                type: 'PUT',
+                                                contentType: 'application/json',
+                                                data: JSON.stringify(veh),
+                                                success: function (gg) {
+
+                                                    location.reload();
+                                                }, error: function (a, b, c) {
+                                                    console.log(a.responseText);
+
+                                                }
+
+                                            });
+   
                                     }, error: function (a, b, c) {
                                         console.log(a.responseText);
                                     }
@@ -296,42 +299,7 @@ $(document).ready(function () {
                             }
                         });
 
-                       /* $.ajax({
-                            url: '/boss/monthsNotUsed',
-                            type: 'GET',
-                            success: function (ll) {
 
-                                $.each(j, function (index, value) {
-
-                                    if (value.year == year) {
-
-                                        var monthExists = value.months.filter(function (y) {
-                                            debugger;
-                                            return y == month;
-                                        });
-
-                                        if (monthExists.length == 0) {
-                                            value.months.push(month);
-                                            $.ajax({
-                                                url: '/boss/monthsNotUsed/' + value.id,
-                                                type: 'PUT',
-                                                contentType: "application/json",
-                                                cache: false,
-                                                data: Json.stringify(value),
-                                                success: function (s) {
-                                                    debugger;
-                                                    location.reload();
-                                                }, error: function (a, b, c) {
-                                                    console.log(a.responseText);
-                                                }
-                                            });
-                                        }
-                                    }
-                                });
-                            }, error: function (a, b, c) {
-                                console.log(a.responseText);
-                            }
-                        });*/
 
                     }
 
@@ -397,6 +365,7 @@ $(document).ready(function () {
 
         var monthNotUsedvars = vveh.monthsNotUsed;
         var data;
+        var check_dup = true;
 
         var monthOfYear = monthNotUsedvars.filter(function (x) {
             return x.year == $("#monthlyCostsForm_beginYear").val();
@@ -422,47 +391,62 @@ $(document).ready(function () {
             var upd_month = $("#monthlyCostsForm_beginMonth").val();
 
             var month_check = false;
-            for (m in monthOfYear[0].months) {
-                if (upd_month == m) {
+            /*for (m in monthOfYear[0].months) {
+                debugger;
+                var m_check = monthOfYear[0].months[m];
+                if (upd_month == m_check) {
                     month_check == true;
+                    break;
                 }
-            }
-            
-            if (month_check == true) {
+            }*/
+
+            var fil = monthOfYear[0].months.filter(function (x) {
+                return x == upd_month;
+            });
+            debugger;
+            if (fil.length > 0) {
                 error = "Month Already Exists";
+                check_dup = false;
             } else {
-                
                 monthOfYear[0].months.push(upd_month);
                 og_months.push(monthOfYear[0]);
-                
+                vveh.monthsNotUsed = og_months;
+                data = vveh;
+                check_dup = true;
             }
             
-            vveh.monthsNotUsed = og_months;
-            data = vveh;
-        }
-        // stringifying the data for ajax
-        data = JSON.stringify(data);
-        
 
-        // ajax post call
-        $.ajax({
-            url: url + "/" + id,
-            type: method,
-            data: data,
-            contentType: "application/json",
-            cache: false,
-            timeout: 600000,
-            success: function (response) {
-                console.log("successfully updated");
-                console.log(data);
-                window.location.reload();
-            },
-            error: function (a, b, c) {
-                //e.preventDefault();
-                //console.log("Error" + error);
-                console.log(a.responseText);
-            }
-        });
+        }
+        if (check_dup) {
+            // stringifying the data for ajax
+            data = JSON.stringify(data);
+
+
+            // ajax post call
+            $.ajax({
+                url: url + "/" + id,
+                type: method,
+                data: data,
+                contentType: "application/json",
+                cache: false,
+                timeout: 600000,
+                success: function (response) {
+                    console.log("successfully updated");
+                    console.log(data);
+                    window.location.reload();
+                },
+                error: function (a, b, c) {
+                    //e.preventDefault();
+                    //console.log("Error" + error);
+                    console.log(a.responseText);
+                }
+            });
+        } else {
+            
+            $("#errorText").html('that year and month already exist');
+            $("#error").show();
+            $("html,body").animate({ scrollTop: "100px" });
+        }
     });
 });
 
