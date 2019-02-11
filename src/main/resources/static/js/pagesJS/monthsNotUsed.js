@@ -7,8 +7,7 @@ $(document).ready(function () {
             url = "/boss/vehicle/" + id;
         }
         var url = "/boss/vehicle/" + id;
-        console.log(url);
-        console.log(id);
+
         $.ajax({
             type: "GET",
             url: url,
@@ -17,7 +16,7 @@ $(document).ready(function () {
             cache: false,
             timeout: 600000,
             success: function (vehs) {
-                console.log(vehs);
+
                 $("#pLicense").append(vehs.license);
                 $("#pVin").append(vehs.vin);
                 $("#pYear").append(vehs.modelYear);
@@ -30,20 +29,21 @@ $(document).ready(function () {
 
 
                         var mm = monthsNotUsedVar[x];
-                        
+
                         if (mm.year == undefined || mm.year == "") {
                             mm.year = "NaN";
                         }
                         var year = mm.year;
+                        var id = mm.id;
                         for (y in mm.months) {
                             var month = mm.months[y];
-                            if (month == undefined || month == ""){
-                                month = "NaN";
+                            if (month != undefined || month != "") {
+                                tbDat.push({ id: id, vYear: year, vMonth: month });
                             }
-                            tbDat.push({ vYear: year, vMonth: month });
+                            
                         }
                     }
-                    debugger;
+
                 } catch (e) {
                     console.log(e);
                 }
@@ -60,16 +60,34 @@ $(document).ready(function () {
 
     // function to populate the table
     function populateDataTable(testData) {
-        try {
-            var test = JSON.stringify(testData);
-            debugger;
+
+        var test = JSON.stringify(testData);
+
+        if (test != '[]') {
             var table = $("#monthlyCosts").DataTable({
                 data: testData,
                 bProcessing: true,
                 bPaginate: false,
                 dom: "Brtip",
-                columns: [{ data: "vMonth" }, { data: "vYear" }],
-                /* buttons: [
+                columns: [{ data: "vMonth" }, { data: "vYear" },
+                {
+                    data: null,
+                    "render": function (data, type, row) {
+
+                        return `
+                      <div class="dropdown1">
+                          <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
+                          <div id="dropList" class="dropdown-content1">
+                              <a href="#" data-toggle="modal" data-target="myModal_edit" data-value=` + data.id + `_` + row.vMonth + `_` + row.vYear + ` class="editBtn" id="editBtn">Edit Month or Year</a>
+                              <a href="#" data-toggle="modal" data-target="myModal_delete" data-value=` + data.id + `_` + row.vMonth + `_` + row.vYear + ` class="delBtn" id="delbtn">Delete Month and Year</a>
+                          </div>
+                      </div>
+                  `;
+
+                    }
+                }
+                ],
+                buttons: [
                     {
                         text: 'Print <i class="fa fa-lg fa-print"></i>',
                         extend: "print",
@@ -94,18 +112,260 @@ $(document).ready(function () {
                         },
                         className: "table-btns refresh-btn"
                     }
-                ]*/
+                ]
             });
-        } catch (e) {
-            console.log(e);
-
+        } else {
+            $("#monthlyCosts").find('tbody').append('<th colspan="3">No Records Available</th>');
         }
-    } //end of populating the table function
+        var selected;
+        var edit_id;
+        $('.editBtn').on('click', function (x) {
+            selected = $(this).attr('data-value');
+            var arr = selected.split("_");
+            var modal = $('#myModal_edit');
+
+            modal.find('[name=beginMonth]').val(arr[1]);
+            modal.find('[name=beginYear]').val(arr[2]);
+            modal.find('[name=oldMonth]').val(arr[1]);
+            modal.find('[name=oldYear]').val(arr[2]);
+            modal.find('[name=hiddenID]').val(arr[0]);
+            $('#myModal_edit').modal('toggle');
+        });
+
+        $('.delBtn').on('click', function (x) {
+            selected = $(this).attr('data-value');
+            $('#myModal_delete').modal('toggle');
+        });
+
+        $('#myModal_edit').on('click', '.editModal_save', function (x) {
+            var modal = $('#myModal_edit');
+            var year = modal.find('[name=beginYear]').val();
+
+            var month = modal.find('[name=beginMonth]').val();
+
+            var old_year = modal.find('[name=oldYear]').val();
+            var old_month = modal.find('[name=oldMonth]').val();
+
+            var monthNotUsedId = modal.find('[name=hiddenID]').val();
+
+            //makeAjaxCall('/boss/monthsNotUsed/' + monthNotUsedId, 'GET', null).then(function (json) {
+            $.ajax({
+                url: '/boss/monthsNotUsed/' + monthNotUsedId,
+                type: 'GET',
+                async: false,
+                success: function (json) {
+                    var j = json;
+                    if (old_year == year && old_month != month) {
+
+
+                        var monthWithoutOldMonth = j.months.filter(function (x) {
+                            
+                            return x != old_month;
+                        });
+
+                        monthWithoutOldMonth.push(month);
+
+                        j.months = [];
+                        j.months = monthWithoutOldMonth;
+
+                        var j_str = JSON.stringify(j);
+
+                        $.ajax({
+                            url: '/boss/monthsNotUsed/' + j.id,
+                            type: 'DELETE',
+                            success: function (jjj) {
+                                
+                                $.ajax({
+                                    url: '/boss/vehicle/' + id,
+                                    type: 'GET',
+                                    success: function (veh) {
+                                        
+                                        veh.monthsNotUsed.push(j);
+
+                                        $.ajax({
+                                            url: '/boss/vehicle/' + id,
+                                            type: 'PUT',
+                                            contentType: 'application/json',
+                                            data: JSON.stringify(veh),
+                                            success: function (gg) {
+                                                
+                                                location.reload();
+                                            }, error: function (a, b, c) {
+                                                console.log(a.responseText);
+                                                
+                                            }
+
+                                        });
+                                    }, error: function (a, b, c) {
+                                        console.log(a.responseText);
+                                    }
+                                });
+                            }, error: function (a, b, c) {
+                                console.log(a.responseText);
+                            }
+                        });
+
+
+                    }
+
+
+                    if (old_year != year && old_month == month) {
+                        $.ajax({
+                            url: '/boss/monthsNotUsed',
+                            type: 'GET',
+                            success: function (jj) {
+
+                                $.each(jj, function (index, value) {
+
+                                    if (value.year == old_year) {
+                                        if (value.months.length > 1) {
+
+                                            var months = value.months.filter(function (x) {
+                                                
+                                                return x != month;
+                                            });
+
+                                            value.months = [];
+                                            value.months = months;
+
+                                            $.ajax({
+                                                url: '/boss/monthsNotUsed' / + value.id,
+                                                type: 'PUT',
+                                                cache: false,
+                                                async: false,
+                                                success: function (d) {
+                                                    
+                                                }, function(a, b, c) {
+                                                    console.log(a.responseText);
+                                                }
+                                            });
+                                        }
+                                        else {
+                                            if (value.months.length == 1) {
+
+                                                $.ajax({
+                                                    url: '/boss/monthsNotUsed/' + value.id,
+                                                    type: 'DELETE',
+                                                    cache: false,
+                                                    async: false,
+                                                    success: function (s) {
+                                                        
+                                                    }, error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                    }
+                                                });
+                                                $.ajax({
+                                                    url: '/boss/vehicle/' + id,
+                                                    type: 'GET',
+                                                    success: function (veh) {
+                                                        
+                                                        var mnu = {
+                                                            id: 0,
+                                                            year: year,
+                                                            months: []
+                                                        };
+
+                                                        mnu.months.push(month);
+                                                        veh.monthsNotUsed.push(mnu);
+                                                        
+                                                        $.ajax({
+                                                            url: '/boss/vehicle/' + id,
+                                                            type: 'PUT',
+                                                            contentType: 'application/json',
+                                                            data: JSON.stringify(veh),
+                                                            success: function (gg) {
+                                                                
+                                                                location.reload();
+                                                            }, error: function (a, b, c) {
+                                                                console.log(a.responseText);
+                                                            }
+
+                                                        });
+                                                    }, error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                    }
+                                                });
+
+                                            }
+                                        }
+                                    }
+                                });
+
+                            }, error: function (a, b, c) {
+                                console.log(a.responseText);
+                            }
+                        });
+
+                       /* $.ajax({
+                            url: '/boss/monthsNotUsed',
+                            type: 'GET',
+                            success: function (ll) {
+
+                                $.each(j, function (index, value) {
+
+                                    if (value.year == year) {
+
+                                        var monthExists = value.months.filter(function (y) {
+                                            debugger;
+                                            return y == month;
+                                        });
+
+                                        if (monthExists.length == 0) {
+                                            value.months.push(month);
+                                            $.ajax({
+                                                url: '/boss/monthsNotUsed/' + value.id,
+                                                type: 'PUT',
+                                                contentType: "application/json",
+                                                cache: false,
+                                                data: Json.stringify(value),
+                                                success: function (s) {
+                                                    debugger;
+                                                    location.reload();
+                                                }, error: function (a, b, c) {
+                                                    console.log(a.responseText);
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                            }, error: function (a, b, c) {
+                                console.log(a.responseText);
+                            }
+                        });*/
+
+                    }
+
+
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+        }); //end of populating the table function
+
+        $('#myModal_delete').on('click', '.deleteModal_del', function (x) {
+            var arr = selected.split('_')[0];
+            $.ajax({
+                url: '/boss/monthsNotUsed/' + arr,
+                type: 'DELETE',
+                success: function (jjj) {
+                    location.reload();
+                },
+                error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+        });
+
+
+    }
 
     // hiding error message once we start modifying the form again
     $("form").on("click focus", function () {
         $("#error, #success").hide();
     });
+
+
+
 
     // submitting data for new aux contacts
     $("input[type=submit]").on("click", function (e) {
@@ -127,7 +387,7 @@ $(document).ready(function () {
             cache: false,
             async: false,
             success: function (json) {
-                debugger;
+
                 vveh = json;
             },
             error: function (a, b, c) {
@@ -155,31 +415,34 @@ $(document).ready(function () {
             data = vveh;
         } else {
             var og_months = monthNotUsedvars.filter(function (x) {
-                return x.id != monthOfYear.id;
+                
+                return x.id != monthOfYear[0].id;
             });
 
             var upd_month = $("#monthlyCostsForm_beginMonth").val();
 
             var month_check = false;
-            for (m in monthOfYear.months) {
+            for (m in monthOfYear[0].months) {
                 if (upd_month == m) {
                     month_check == true;
                 }
             }
-
+            
             if (month_check == true) {
                 error = "Month Already Exists";
             } else {
-                debugger;
-                monthOfYear.months.push(upd_month);
-                og_months.push(monthOfYear);
+                
+                monthOfYear[0].months.push(upd_month);
+                og_months.push(monthOfYear[0]);
+                
             }
-
+            
             vveh.monthsNotUsed = og_months;
             data = vveh;
         }
         // stringifying the data for ajax
         data = JSON.stringify(data);
+        
 
         // ajax post call
         $.ajax({
@@ -205,13 +468,44 @@ $(document).ready(function () {
 
 // showing error message if form is not valid
 function showError(msg) {
-  $("#errorText").html(msg);
-  $("#error").show();
-  $("html,body").animate({ scrollTop: "100px" });
+    $("#errorText").html(msg);
+    $("#error").show();
+    $("html,body").animate({ scrollTop: "100px" });
 }
 
 // using bootstrap field writer to populate the form
 var fields = {
+    modalForm_edit: [
+        [{
+            fieldName: "beginMonth",
+            title: "Out of Service Month",
+            type: "select/vmonth",
+            placeholder: "Enter Month"
+        }],
+        [{
+            fieldName: "beginYear",
+            title: "Out of Service Year",
+            type: "select/vyear",
+            placeholder: "Enter Year"
+        }],
+        [{
+            fieldName: "oldMonth",
+            hidden: true,
+            type: "input/text"
+        },
+        {
+            fieldName: "oldYear",
+            hidden: true,
+            type: "input/text"
+        },
+        {
+                fieldName: 'hiddenID',
+                hidden: true,
+                type: "input/text"
+        }
+        ]
+    ],
+
     monthlyCostsForm: [
         [
             //aux info row

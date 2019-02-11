@@ -95,21 +95,75 @@
                 id="monthlyCostsForm"
                 data-toggle="validator"
               ></form>
-              <br />
-
-            </div><br/>
-			       			<table id="monthlyCosts">
+              <br /><br/>
+				<table id="monthlyCosts">
                 <thead>
                   <th>Month</th>
                   <th>Year</th>
+				  <th></th>
                 </thead>
 
                 <tbody>
                   <td col="vYear"></td>
                   <td col="vMonth"></td>
+				  <td scope="col"></td>
 				<!--  <td id="stop"></td> -->
                 </tbody>
               </table>
+            </div>
+
+			<div id="myModal_edit" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Edit Cost</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						  &times;
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="modalForm_edit" class="container"></form>
+					</div>
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn_pers_copy"
+							data-dismiss="modal">		
+							Cancel
+						</button>
+						<button type="button" id="editModal_save" data-dismiss="modal" class="btn editModal_save">
+							Save Changes
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="myModal_delete" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Edit Cost</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						  &times;
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Do you Want to delete The Month Not Used?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn_pers_copy"
+							data-dismiss="modal">		
+							No
+						</button>
+						<button type="button" id="deleteModal_del" data-dismiss="modal" class="btn deleteModal_del">
+							Yes
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
           </section>
           <!-- end of usa section -->

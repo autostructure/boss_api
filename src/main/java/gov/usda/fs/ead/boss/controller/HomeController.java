@@ -217,9 +217,9 @@ public class HomeController {
     }
 
     //@IsAppUser
-    @RequestMapping("/monthsNotUsed/{id}")
+    @RequestMapping("/monthsNotUsedPage/{id}")
     public String monthsNotUsed() {
-        return "monthsNotUsed";
+        return "monthsNotUsedPage";
     }    
 
     //@IsAppUser
