@@ -326,7 +326,8 @@ th {
 }
 
 #iwfia_wrapper > div.dt-buttons,
-#monthlyCosts_wrapper > div.dt-buttons {
+#monthlyCosts_wrapper > div.dt-buttons,
+#tblFleetMaitenace_wrapper > div.dt-buttons {
   position: absolute;
   top: -55px;
   right: 10px;
@@ -334,17 +335,21 @@ th {
 #iwfia > thead > tr > th,
 #iwfia > tbody > tr > td,
 #monthlyCosts > thead > tr > th,
-#monthlyCosts > tbody > tr > td {
+#monthlyCosts > tbody > tr > td,
+#tblFleetMaitenace > thead > tr > th,
+#tblFleetMaitenace > tbody > tr > td, {
   border-right: 0px solid gray;
   border-left: 0px solid gray;
 }
 #iwfia,
-#monthlyCosts {
+#monthlyCosts,
+#tblFleetMaitenace {
   min-width: 100%;
   margin-top: 45px;
 }
 #iwfia_wrapper,
-#monthlyCosts_wrapper {
+#monthlyCosts_wrapper,
+#tblFleetMaitenace_wrapper {
   border-radius: 10px;
   /* border: 1px solid gray; */
 }
@@ -358,26 +363,34 @@ th {
 #monthlyCosts_filter,
 #monthlyCosts_paginate,
 #monthlyCosts_length,
-#monthlyCosts_info {
+#monthlyCosts_info,
+#tblFleetMaitenace_filter,
+#tblFleetMaitenace_paginate,
+#tblFleetMaitenace_length,
+#tblFleetMaitenace_info {
   padding: 20px 20px;
 }
 #iwfia_filter,
-#monthlyCosts_filter {
+#monthlyCosts_filter,
+#tblFleetMaitenace_filter {
   position: absolute;
-  top: -75px;
+  top: -65px;
   left: 10px;
   padding: 0px;
 }
 #iwfia,
-#monthlyCosts {
+#monthlyCosts,
+#tblFleetMaitenace {
   background-color: white;
 }
 #iwfia_filter > label,
-#monthlyCosts_filter > label {
+#monthlyCosts_filter > label,
+#tblFleetMaitenace_filter > label {
   font-size: 1.5em;
 }
 #iwfia_wrapper,
-#monthlyCosts_wrapper {
+#monthlyCosts_wrapper,
+#tblFleetMaitenace_wrapper {
   background-color: white;
 }
 #btn_add_aux {

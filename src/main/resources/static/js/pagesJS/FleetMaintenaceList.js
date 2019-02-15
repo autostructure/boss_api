@@ -1,5 +1,32 @@
 $(document).ready(function() {
+    var vehicleId = window.location.pathname.split("/")[3];
+    if (vehicleId) {
+      var url = "/boss/vehicle?id=" + vehicleId;
+      if (parseInt(vehicleId)) {
+        url = "/boss/vehicle/" + vehicleId;
+      }
+      var url = "/boss/vehicle/" + vehicleId;
+      console.log(url);
+      console.log(vehicleId);
+      $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        cache: false,
+        timeout: 600000,
+        success: function(vehs) {
 
+          console.log(vehs);
+          $("#pLicense").append(vehs.license);
+          $("#pVin").append(vehs.vin);
+          $("#pYear").append(vehs.modelYear);
+          $("#pMake").append(vehs.make);
+          $("#pModel").append(vehs.modelNumber);
+        },
+        error: function(json) {}
+      });
+    }
 
     var identifier = window.location.pathname.split("/")[3];
     vehId = parseInt(identifier);
@@ -187,10 +214,10 @@ $(document).ready(function() {
                             <div id="dropList" class="dropdown-content1">
                                 <a href="#" data-toggle="modal" data-target="#myModal_fullRecord" data-value="` +
                                 data.id +
-                                `" class="viewFullRecord" id="editBtn">View Full Record</a>
+                                `" class="viewFullRecord" id="editBtn">View / Edit Full Record</a>
                             <a href="#" id="deletebtn" data-value="` +
                                 data.id +
-                                `">delete Record</a>
+                                `">Delete Record</a>
                             </div>
                         </div>   
                     `;
@@ -465,7 +492,7 @@ $(document).ready(function() {
                 maintance.warranty = warranty;
                 //maintance.id = selected_row;
                 
-                debugger;
+                // debugger;
 
                 $.ajax({
                     url: "/boss/employeeProfile/" + info.assignedOperator.id,

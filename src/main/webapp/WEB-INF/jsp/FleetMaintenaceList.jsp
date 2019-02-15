@@ -31,104 +31,68 @@
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink"href="/home">Dashboard |</a>
-                                <a class="breadcrumbLinkMainFleet"href="/fleetDash">Property Management Dashboard</a>
-                                <!-- <a class="breadcrumbLinkMainFleet"href="/viewTraining">View Training</a> -->
+                                <a class="breadcrumbLink"href="/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLink"href="/boss/fleetDash">Property Management Dashboard |</a>
+                                <a class="breadcrumbLinkMainFleet"href="/boss/viewFleet">View Fleet</a>
                             </p>
                         </div>
-                    </div>
-                    <section class="usa-section">
-                        <div class="usa-grid usa-buffer-top">
-                            <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Maintenance List</h1>
-                            </div>
-                        </div>
-                        <div class="usa-grid usa-buffer-top">
-                            <div class="use-width-one-whole content-div">
-                                <h2 class="title2">Maintenance List</h2><br/>
-								<!--<button id="addVehTest">add veh test</button><br/>-->
+					</div>
+					<section class="usa-section">
+						<div class="usa-grid usa-buffer-top">
+						  <div class="usa-width-one-whole title-div">
+							<h1 id="title">Vehicle Maintenance</h1>
+						  </div>
+						</div>
+						<div id="success" class="alert alert-success" role="alert">
+						  Update Successfull!
+						</div>
+						<div id="error" class="alert alert-danger" role="alert">
+						  Error: <span id="errorText"></span>
+						</div>
+						<!-- <form id="formGeneralInfo"></form> -->
+						<div class="row">
+						  <div class="col inputCol">
+							<label for="pLicense">Vehicle License</label>
+							<p class="input" id="pLicense"></p>
+						  </div>
+						  <div class="col inputCol">
+							<label for="pVin">VIN</label>
+							<p class="input" id="pVin"></p>
+						  </div>
+						  <div class="col inputCol">
+							<label for="pYear">Year</label>
+							<p class="input" id="pYear"></p>
+						  </div>
+						  <div class="col inputCol">
+							<label for="pMake">Make</label>
+							<p class="input" id="pMake"></p>
+						  </div>
+						  <div class="col inputCol">
+							<label for="pModel">Model</label>
+							<p class="input" id="pModel"></p>
+						  </div>
+						</div>
+						<div class="col-md-12 text-center">	
+							<button id="addVehMainRec" class="btn-success btn-lg text-center">Add Maintenance Record</button>
+						</div>
+						<div class="container trainBG ">
+							<!-- add table here -->
+							<table id="tblFleetMaitenace" class="usa-table-borderless display" style="width:100%">
+								<thead><tr>
+									<th scope="col">Service Date</th>
+									<th scope="col">Milage</th>
+									<th scope="col">Vendor Maker</th>
+									<th scope="col">Description</th>
+									<th scope="col">Cost</th>
+									<th scope="col">Bill Back</th>
+									<th id="stop"></th>
 
-                                <div id="showHide">
-                                   <!-- <div class="form-check" id="viewOldCheckbox"> -->
-                                        <!--<input type="checkbox" id="viewOld" class="form-check-input">-->
-                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
-								   <!-- </div> -->
-										<div id="padOne">
-                                          <div class="row">
-												<div class="col">
-													<div class="form-group">
-														<label>License: </label><input id="fleet_license_top" type="text" class="form-control fleet_license_top" readonly/>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label>Equipment Number: </label><input type="text" class="form-control fleet_EquipNum_top" readonly/>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label>VIN: </label><input type="text" class="form-control fleet_VIN_top" readonly/>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col">
-													<div class="form-group">
-														<label>Model Year: </label><input type="text" class="form-control fleet_ModelYear_top" readonly/>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label>Make: </label><input type="text" class="form-control fleet_Make_top" readonly/>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label>Model: </label><input type="text" class="form-control fleet_Model_top" readonly/>
-													</div>
-												</div>
-												<div class="col">
-													<div class="form-group">
-														<label>color</label><input type="text" class="form-control fleet_color_top" readonly/>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col">
-													<div class="form-group">
-														<label>Description: </label><input type="text" class="form-control fleet_Desc_top" readonly/>
-													</div>
-												</div>
-											</div>
-										</div>
+								</tr></thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					  </section>
 
-											<div class="col-md-12 text-center">	
-												<button id="addVehMainRec" class="btn-success btn-lg text-center">Add Record</button>
-											</div>
-										
-
-                                    <table id="tblFleetMaitenace" class="usa-table-borderless display" style="width:100%">
-                                        <thead><tr>
-                                            <th scope="col">Service Date</th>
-                                            <th scope="col">Milage</th>
-                                            <th scope="col">Vendor Maker</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Cost</th>
-                                            <th scope="col">Bill Back</th>
-                                            <th id="stop"></th>
-
-                                        </tr></thead>
-                                        <tbody></tbody>
-                                    </table>
-									<br/>
-									<div id="error_div" style="text-align: center">
-										<h1 style="display: inline-block">
-											<label id="error_msg"></label>
-										</h1>
-									</div>
-                                </div>
-                            </div>
-                        </div>
                         <div id="myModal_fullRecord" class="modal fade" role="dialog">
                             <div class="modal-dialog modal-lg" style="width:100%">
                                 <div class="modal-content">
@@ -444,7 +408,6 @@
                             </div>
                         </div>
                     </section>
-                </section>                         
 
             </div><!-- end of sidenav wrapper div -->
         </main>
