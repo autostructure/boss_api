@@ -48,10 +48,12 @@ $(document).ready(function () {
     // creating vars to submit to ajax
     
     var method = "POST";
-    var url = "/boss/vehicle";
+      var url = "/boss/vehicle";
+      var test_employee = $('[name=employee]').val();
+      
       var emp;
       $.ajax({
-          url: "/boss/employeeProfile/47",
+          url: "/boss/employeeProfile/" + $('[name=employee]').val(),
           type: 'GET',
           cache: false,
           aysnc: false,
@@ -62,28 +64,28 @@ $(document).ready(function () {
           }
       });
 
-
+      
       var vehicleData = {
 
-          "accessory": "string",
-          "accessory2": "string",
-          "assignedOperator": emp,
-          "camera": "string",
-          "cityOrLocation": "string",
-          "color": "string",
+          "accessory": " ",
+          "accessory2": " ",
+          "assignedOperator": { "id": test_employee },
+          "camera": " ",
+          "cityOrLocation": " ",
+          "color": " ",
           "dateAquired": "2019-02-05T19:44:32.540Z",
           "description": form.find("[name=description]").val(),
           "disposalDate": "2019-02-05T19:44:32.540Z",
-          "engineNumber": "string",
-          "equipmentNumber": "string",
+          "engineNumber": " ",
+          "equipmentNumber": " ",
           "id": 0,
-          "keysToolBox": "string",
+          "keysToolBox": " ",
           "license": form.find("[name=license]").val(),
           "maintenanceRecords": [
 
           ],
           "make": form.find("[name=make]").val(),
-          "modelNumber": form.find("[name=modelYear]").val(),
+          "modelNumber": form.find("[name=modelNumber]").val(),
           "modelYear": parseInt(form.find("[name=modelYear]").val()),
           "monthlyIWFIAUsage": [
              
@@ -91,19 +93,19 @@ $(document).ready(function () {
           "monthsNotUsed": [
 
           ],
-          "oldLicense": "string",
-          "ownershipType": "string",
+          "oldLicense": " ",
+          "ownershipType": " ",
           "releasedDate": "2019-02-05T19:44:32.541Z",
           "replacementDate": "2019-02-05T19:44:32.541Z",
-          "state": "string",
-          "tonneau": "string",
-          "vehicleClassCode": "string",
+          "state": " ",
+          "tonneau": " ",
+          "vehicleClassCode": " ",
           "vehicleCost": [
 
           ],
           "vin": form.find("[name=vin]").val()
       };
-
+      
 
 
     /*var data = {
@@ -118,8 +120,8 @@ $(document).ready(function () {
 
     // stringifying the data for ajax
    var data = JSON.stringify(vehicleData);
-   console.log(vehicleData);
-   debugger;
+   console.log(data);
+   
     // ajax post call
     $.ajax({
       url: url,

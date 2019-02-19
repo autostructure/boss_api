@@ -16,26 +16,68 @@ $(document).ready(function () {
       },
       error: function (a, b, c) {
           console.log(a.responseText);
-      },
-      async: false
+      }
   });
 
   function populateDataTable(jsonData) {
 
       console.log('populateDataTable');
-      console.log(jsonData);
+      var newJsonDat = [];
+      
+      for (x in jsonData) {
+          var empID = jsonData[x];
+          var emp_id = empID.assignedOperator;
+          $.ajax({
+              url: '/boss/employeeProfile/' + emp_id.id,
+              type: 'GET',
+              cache: false,
+              async: false,
+              success: function (json) {
+                  
+                  empID.assignedOperator = json;
+                  newJsonDat.push(empID);
+              }, error: function (a, b, c) {
+                  
+                  console.log(a.responseText);
+              }
+          });
+         /* makeAjaxCall('/boss/employeeProfile', 'GET', null).then(function (json) {
+              $.each(json, function (index, value) {
+                  
+                  if (emp_id.id == value.id) {
+                      debugger;
+                      empID.assignedOperator = value;
+                      
+                      newJsonDat.push(empID);
+                  }
+              });
 
+          }, function (a, b, c) {
+                  debugger;
+                  console.log(a.responseText);
+          });*/
+      }
+
+      console.log(newJsonDat);
+      
       var table = $('#expense').DataTable({
           dom: "Brtip",
           destroy: true,
           "paging": false,
-          data: jsonData,
+          data: newJsonDat,
           columns: [
               {data: "equipmentNumber"},
               {data: "license"},
               {data: "modelYear"},
               {data: "modelNumber"},
-              {data: "assignedOperator"},
+              {
+                  data: "assignedOperator",
+                  render: function (data, type, row) {
+                      
+                      return row.assignedOperator.lastName + ", " + row.assignedOperator.firstName;
+                      
+                  }
+              },
               {data: "cityOrLocation"},
               {data: "state"},
               {data: "accessory"},
