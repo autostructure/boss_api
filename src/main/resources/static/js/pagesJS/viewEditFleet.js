@@ -15,7 +15,30 @@ url = '/boss/vehicle/' + id;
     dataType: 'json',
     cache: false,
     timeout: 600000,
-    success: function(json){
+        success: function (json) {
+
+            $.ajax({
+                url: '/boss/employeeProfile',
+                type: 'GET',
+                cache: false,
+                async: false,
+                success: function (jj) {
+                    $.each(jj, function (index, value) {
+                        
+                        $('[name=assignedOperator]').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
+                    });
+
+                    $('[name=assignedOperator]').val(json.assignedOperator.id);
+
+                    
+                    
+                },error: function(a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+
+
+
     console.log(json);
         for (var key in json) {
         fill(key, json[key]);
@@ -27,6 +50,9 @@ url = '/boss/vehicle/' + id;
         };
     } else {
         var input = $("input[name='" + key + "'], select[name='" + key + "']");
+
+            
+
             if (input.attr("data-provide") == 'datepicker' && value != null) {
                 date = new Date(value);
                 value = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
@@ -57,6 +83,9 @@ url = '/boss/vehicle/' + id;
             e.preventDefault();
         }
 
+
+
+
         
         // creating vars to submit to ajax
         var form = $('#formGeneralInfo');
@@ -65,7 +94,7 @@ url = '/boss/vehicle/' + id;
         var data = {
             'license': form.find('[name=license]').val(),
             'vin': form.find('[name=vin]').val(),
-            'modelYear': form.find('[name=modelYear]').val(),
+            'modelYear': parseInt(form.find('[name=modelYear]').val()),
             'make': form.find('[name=make]').val(),
             'modelNumber': form.find('[name=modelNumber]').val(),
             'description': form.find('[name=description]').val(),
@@ -86,34 +115,22 @@ url = '/boss/vehicle/' + id;
             'replacementDate': getCorrectDateFormat(form.find('[name=replacementDate]').val()),
             'disposalDate': getCorrectDateFormat(form.find('[name=disposalDate]').val()),
             'releasedDate': getCorrectDateFormat(form.find('[name=releasedDate]').val()),
-            'assignedOperator': form.find('[name=assignedOperator]').val(),
+            'assignedOperator': { "id": parseInt(form.find('[name=assignedOperator]').val()) },
             'id': parseInt(id)
         };
-        // stringifying the data for ajax
-        data = JSON.stringify(data);
-        console.log("current put url is " + url);
-        debugger;
-        // ajax post call
-        $.ajax({
-            url: url,
-            type: method,
-            data: data,
-            contentType: "application/json",
-            cache: false,
-            timeout: 600000,
-            success: function(response){
-                $('#exampleModal').modal('show');
-                console.log(" *** successfully updated see data below ***");
-                console.log(response);
-            },
-            error: function(a,b,c){
-                
-                e.preventDefault();
-                console.log(" !!! Error" + b + " !!! ");
-                console.log(a.responseJSON);
-                console.log(c);
 
-            }
+
+        CustomFormFunctions.putPartialInfo('/boss/vehicle', id, data, function (succ) {
+            $('#myModal_done').modal('show');
+        }, function (a, b, c) {
+                console.log(a.responseText);
+                showError("Error: " + a.responseText);
+
+        });
+
+
+        $('#myModal_done').on('click', '.btn_pers_copy', function (e) {
+            location.href = '/boss/viewFleet';
         });
     });
 
@@ -173,41 +190,41 @@ var fields = {
             "fieldName":"license",
             "title":"Vehicle License",
             "type":"input/text",
-            "colspan":2,
+            "colspan":2
         },
         {
             "fieldName":"equipmentNumber",
             "title":"Equipment Number",
             "type":"input/text",
             "required":true,
-            "colspan":2,
+            "colspan":2
         },
         {
             "fieldName":"make",
             "title":"Vehicle Make",
             "type":"input/text",
             "required":true,
-            "colspan":2,
+            "colspan":2
         },
         {
             "fieldName":"modelNumber",
             "title":"Vehicle Model",
             "type":"input/text",
             "required":true,
-            "colspan":2,
+            "colspan":2
         },
         {
             "fieldName":"modelYear",
             "title":"Year",
             "type":"select/vyear",
             "required":true,
-            "colspan":2,
+            "colspan":2
         },
         {
             "fieldName":"color",
             "title":"Color",
             "type":"input/text",
-            "colspan":2,
+            "colspan":2
         }                                        
     ],
     // vehicle extended basic info
@@ -216,20 +233,20 @@ var fields = {
             "fieldName":"description",
             "title":"Description",
             "type":"input/text",
-            "colspan":4,
+            "colspan":4
         },
         {
             "fieldName":"vin",
             "title":"VIN #",
             "type":"input/vin",
             "required":true,
-            "colspan":4,
+            "colspan":4
         },
         {
             "fieldName":"vehicleClassCode",
             "title":"Vehicle Class Code",
             "type":"select/vclass",
-            "colspan":4,
+            "colspan":4
         }
     ],
     [
@@ -237,25 +254,25 @@ var fields = {
             "fieldName":"ownershipType",
             "title":"Ownership Type",
             "type":"select/vown",
-            "colspan":3,
+            "colspan":3
         },
         {
             "fieldName":"assignedOperator",
             "title":"Assigned Operator",
-            "type":"input/text",
-            "colspan":3,
+            "type":"select/input",
+            "colspan":3
         },
         {
             "fieldName":"fnfcid", //missing from api
             "title":"NFC ID",
             "type":"input/text",
-            "colspan":3,
+            "colspan":3
         },    
         {
             "fieldName":"oldLicense",
             "title":"Old License Number",
             "type":"input/text",
-            "colspan":3,
+            "colspan":3
         },                                  
     ],
     // credit card information section

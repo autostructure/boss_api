@@ -74,6 +74,27 @@
                                                                                                
                             </div>
                         </div>
+						<div id="myModal_done" class="modal fade myModal_edit" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+										<h4 class="modal-title">Edit Dra Course</h4>
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									</div>
+									<div class="modal-body">
+										<span>
+											Your Edit has been sumitted!
+										</span>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn" data-dismiss="modal">Close</button>
+										<button type="button" id="myModal_editConfirm" data-dismiss="modal" class="btn btn_pers_copy">View Fleet List</button>
+									</div>
+								</div>
+							</div>
+						</div>
+                    
+						
 
 
 
@@ -99,6 +120,7 @@
         <script src="/boss/js/ead.min.js"></script>
         <script src="/boss/js/bootstrap-datepicker.js"></script>
         <script src="/boss/js/pagesJS/bootstrapFieldWriter.js"></script>
+		<script src="/boss/js/pagesJS/customFormFunctions.js"></script>
         <script src="/boss/js/pagesJS/viewEditFleet.js"></script>
         <script src="/boss/js/pagesJS/mainFleetPages.js"></script>
 
