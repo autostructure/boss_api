@@ -1,14 +1,21 @@
 package gov.usda.fs.ead.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -43,6 +50,24 @@ public class Beacon implements Serializable {
 
     @Column(name = "BeaconPassword", nullable = true)
     private String beaconPassword;
+    
+    @Column(name = "RecordedCheckoutDate", nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date recordedCheckoutDate;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "CheckoutBy")
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
+    EmployeeProfile checkoutBy;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "AssignedEmployee")
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
+    EmployeeProfile assignedEmployee;
+    
+    @ElementCollection
+    private List<String> auxData = new ArrayList<String>();
+
 
     /**
      * @return the id
@@ -140,6 +165,34 @@ public class Beacon implements Serializable {
      */
     public void setBeaconPassword(String beaconPassword) {
         this.beaconPassword = beaconPassword;
+    }
+
+    /**
+     * @return the recordedCheckoutDate
+     */
+    public Date getRecordedCheckoutDate() {
+        return recordedCheckoutDate;
+    }
+
+    /**
+     * @param recordedCheckoutDate the recordedCheckoutDate to set
+     */
+    public void setRecordedCheckoutDate(Date recordedCheckoutDate) {
+        this.recordedCheckoutDate = recordedCheckoutDate;
+    }
+
+    /**
+     * @return the auxData
+     */
+    public List<String> getAuxData() {
+        return auxData;
+    }
+
+    /**
+     * @param auxData the auxData to set
+     */
+    public void setAuxData(List<String> auxData) {
+        this.auxData = auxData;
     }
 
 }
