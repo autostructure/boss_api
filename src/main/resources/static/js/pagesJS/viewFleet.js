@@ -80,7 +80,7 @@ $(document).ready(function () {
               },
               {data: "cityOrLocation"},
               {data: "state"},
-              {data: "accessory"},
+              {data: "accessory1"},
               {data: "accessory2"},
               {data: "camera"},
               {data: null,

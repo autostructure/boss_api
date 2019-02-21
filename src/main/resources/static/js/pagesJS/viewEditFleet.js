@@ -113,10 +113,9 @@ function logStuff(){
             'vehicleClassCode': form.find('[name=vehicleClassCode]').val(),
             'state': form.find('[name=state]').val(),
             'cityOrLocation': form.find('[name=cityOrLocation]').val(),
-            'keysToolBox': form.find('[name=keysToolBox]').val(),
-            'tailgate': form.find('[name=tailgate]').val(),
-            'topper': form.find('[name=topper]').val(),
-            'tonneau': form.find('[name=tonneau]').val(),
+            'camera': form.find('[name=camera]').val(),
+            'accessory1': form.find('[name=accessory1]').val(),
+            'accessory2': form.find('[name=accessory2]').val(),
             'dateAquired': getCorrectDateFormat(form.find('[name=dateAquired]').val()),
             'replacementDate': getCorrectDateFormat(form.find('[name=replacementDate]').val()),
             'disposalDate': getCorrectDateFormat(form.find('[name=disposalDate]').val()),
@@ -178,7 +177,7 @@ $('#monthlyCostss').on('click', function(){
 });
 
 $('#outOfService').on('click', function(){
-    window.location.assign('/boss/monthsNotUsed/' + id);
+    window.location.assign('/boss/monthsNotUsedPage/' + id);
 });
 
 
@@ -248,6 +247,26 @@ var fields = {
             "fieldName":"vehicleClassCode",
             "title":"Vehicle Class Code",
             "type":"select/vclass",
+            "colspan":4
+        }
+    ],
+    [
+        {
+            "fieldName":"camera",
+            "title":"Back Up Camera",
+            "type":"select/camera",
+            "colspan":4
+        },
+        {
+            "fieldName":"accessory1",
+            "title":"Accessory",
+            "type":"select/accessory1",
+            "colspan":4
+        },
+        {
+            "fieldName":"accessory2",
+            "title":"Accessory 2",
+            "type":"select/accessory1",
             "colspan":4
         }
     ],

@@ -154,6 +154,24 @@ function addBootstrapFields(data) {
       .append('<option value="2021">2021</option>');
   }
   {
+    var camera = $("<select></select>")
+    .append('<option value="Factory">Factory</option>')
+    .append('<option value="After Market">After Market</option>')
+    .append('<option value="None">None</option>');
+  }
+  {
+    var accessory1 = $("<select></select>")
+    .append('<option value="Toolbox">Toolbox</option>')
+    .append('<option value="Topper">Topper</option>')
+    .append('<option value="None">None</option>');
+  }
+  {
+    var camera = $("<select></select>")
+    .append('<option value="Factory">Factory</option>')
+    .append('<option value="After Market">After Market</option>')
+    .append('<option value="None">None</option>');
+  }
+  {
     //year fleet section
     var vehMonth = $("<select></select>")
       .append('<option value="01">January</option>')
@@ -214,8 +232,14 @@ function addBootstrapFields(data) {
         if (types[1] == "state") {
           input.append(stateSelect.find("option").clone());
         }
+        if (types[1] == "accessory1") {
+          input.append(accessory1.find("option").clone());
+        }
         if (types[1] == "vclass") {
           input.append(vehClass.find("option").clone());
+        }
+        if (types[1] == "camera") {
+          input.append(camera.find("option").clone());
         }
         if (types[1] == "vown") {
           input.append(vehOwner.find("option").clone());
