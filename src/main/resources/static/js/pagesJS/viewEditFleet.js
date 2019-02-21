@@ -5,6 +5,12 @@ var url = '/boss/vehicle?id=' + id;
 if (parseInt(id)) {
 url = '/boss/vehicle/' + id;
 }
+
+
+
+function logStuff(){
+    console.log(this.value);
+}
     var url = '/boss/vehicle/' + id;
     console.log(url);
     console.log(id);
@@ -135,11 +141,7 @@ url = '/boss/vehicle/' + id;
     });
 
 
-function getCorrectDateFormat(date_str) {
-    var date = new Date(date_str);
 
-    return date.toISOString();
-}
 
 // filling out data from form via get
 var data = {};
@@ -357,3 +359,9 @@ var fields = {
     ]
     ]}; // end form
     addBootstrapFields(fields);
+
+    function getCorrectDateFormat(date_str) {
+        if(date_str != ''){
+        var date = new Date(date_str);
+        return date.toISOString();
+    }};
