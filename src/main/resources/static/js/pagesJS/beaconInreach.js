@@ -24,50 +24,7 @@ $(document).ready(function () {
         type: 'GET',
         cache: false,
         success: function (json) {
-            if (json.length == 0) {
-                var emp;
-                $.ajax({
-                    url: '/boss/employeeProfile/47',
-                    type: 'GET',
-                    cache: false,
-                    async: false,
-                    success: function (j) {
-                        emp = j;
-                    }, error: function (a, b, c) {
-                        console.log(a.responseText);
-                    }
-                });
-
-
-                var temp_beacon = {
-                    "assignedEmployee": emp,
-                    "auxData": [
-                        "string","string"
-                    ],
-                    "batteryExpDate": "2019-02-22T06:09:17.444Z",
-                    "beaconPassword": "string",
-                    "checkoutBy": emp,
-                    "id": 0,
-                    "purchaseDate": "2019-02-22T06:09:17.445Z",
-                    "recordedCheckoutDate": "2019-02-22T06:09:17.445Z",
-                    "registerDate": "2019-02-22T06:09:17.445Z",
-                    "serialNumber": "string",
-                    "unitNumber": "string"
-                };
-
-                $.ajax({
-                    url: '/boss/beacon',
-                    type: 'POST',
-                    cache: false,
-                    contentType: 'application/json',
-                    data: JSON.stringify(temp_beacon),
-                    success: function (j) {
-                        location.reload();
-                    }, error: function (a, b, c) {
-                        console.log(a.responseText);
-                    }
-                });
-            }
+            
             populateDataTable(json);
         }, error: function (a, b, c) {
             console.log(a.responseText);
@@ -82,21 +39,43 @@ $(document).ready(function () {
             'data': jsonData,
            // 'dom': 'Bfti',
             'columns': [{
-                'data': "beacon"
+                'data': "unitNumber"
 
             },
             {
-                'data': 'employee',
+                'data': 'assignedEmployee',
                 'render': function (data, type, row) {
-                    
-                    return data.lastName + ', ' + data.firstName;
+                    var emp;
+                    $.ajax({
+                        url: '/boss/employeeProfile/' + data.id,
+                        type: 'GET',
+                        cache: false,
+                        async: false,
+                        success: function (j) {
+                            emp = j;
+                        }, error: function (a, b, c) {
+                            console.log(a.responseText);
+                        }
+                    });
+                    return emp.lastName + ', ' + emp.firstName;
                 }
             },
             {
-                'data': 'recordData',
+                'data': null,
                 'render': function (data, type, row) {
-                    
-                    return 'recorded on ' + data.recordedDate + ' by ' + data.recordedByEmployee.lastName + ', ' + data.recordedByEmployee.firstName;
+                    var emp;
+                    $.ajax({
+                        url: '/boss/employeeProfile/' + data.checkoutBy.id,
+                        type: 'GET',
+                        cache: false,
+                        async: false,
+                        success: function (j) {
+                            emp = j;
+                        }, error: function (a, b, c) {
+                            console.log(a.responseText);
+                        }
+                    });
+                    return 'recorded on ' + data.recordedCheckoutDate + ' by ' + emp.lastName + ', ' + emp.firstName;
                 }
 
             }, {
@@ -106,7 +85,7 @@ $(document).ready(function () {
                       <div class="dropdown1">
                           <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                           <div id="dropList" class="dropdown-content1">
-                              <a data-toggle="modal" data-target="#myModal_auxInfo" href="#" data-value=` + row.id + ` class="auxBtn">View Aux Details</a>
+                              <a data-toggle="modal" data-target="#myModal_auxInfo" href="#" data-value=` + data.id + ` class="auxBtn">View Aux Details</a>
                           </div>
                       </div>  
                   `;
@@ -150,13 +129,26 @@ $(document).ready(function () {
 
         $('.auxBtn').on('click', function (e) {
             var row = $(this).attr('data-value');
-            var modal = $('#myModal_auxInfo');
-            modal.find('[name=line_one]').val(fakeAuxData.lineOne);
-            modal.find('[name=line_two]').val(fakeAuxData.lineTwo);
-            modal.find('[name=line_three]').val(fakeAuxData.lineThree);
-            modal.find('[name=line_four]').val(fakeAuxData.lineFour);
-            modal.find('[name=line_five]').val(fakeAuxData.lineFive);
-            modal.find('[name=line_six]').val(fakeAuxData.lineSix);
+
+            $.ajax({
+                url: '/boss/beacon/' + row,
+                type: 'GET',
+                cache: false,
+                success: function (j) {
+                    var modals = $('#auxInfo');
+                    
+                    $.each(j.auxData, function (index, value) {
+                        var x = index + 1;
+                        modals.find('[name=line_' + x + ']').val(value);
+                        
+                    });
+                    
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+            
+
         });
 
 
@@ -168,7 +160,7 @@ $(document).ready(function () {
 var aux = {
     "auxInfo": [
         [{
-            "fieldName": "line_one",
+            "fieldName": "line_1",
             "title": "line one",
             "placeholder": "",
             "type": "input/text",
@@ -176,7 +168,7 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_two",
+            "fieldName": "line_2",
             "title": "Line Two",
             "placeholder": "",
             "type": "input/text",
@@ -184,14 +176,14 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_three",
+            "fieldName": "line_3",
             "title":"Line Three",
             "readonly": true,
             "type": "input/text",
             "colspan": 12
         }],
         [{
-            "fieldName": "line_four",
+            "fieldName": "line_4",
             "title": "Line Four",
             "placeholder": "",
             "type": "input/text",
@@ -199,7 +191,7 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_five",
+            "fieldName": "line_5",
             "title": "Line Five",
             "placeholder": "",
             "type": "input/text",
@@ -207,7 +199,7 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_six",
+            "fieldName": "line_6",
             "title": "Line Six",
             "placeholder": "",
             "type": "input/text",

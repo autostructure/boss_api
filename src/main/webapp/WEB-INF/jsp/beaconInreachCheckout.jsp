@@ -46,7 +46,7 @@
                         </div>
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
-                                <h2 class="title2">Field Equipment List</h2>
+                                <h2 class="title2">Beacon And Inreach checkout List</h2>
                                 <div id="showHide">
                                     <div class="form-check" id="viewOldCheckbox">
                                         <input type="checkbox" id="viewOld" class="form-check-input">
@@ -141,7 +141,7 @@
 		    <script src="/boss/js/bootstrap-datepicker.js"></script>
 
 		<script src="/boss/js/pagesJS/customFormFunctions.js"></script>
-		<script src="/boss/js/pagesJS/beaconInreachCheckout.js"></script>
+		<script src="/boss/js/pagesJS/beaconInreach.js"></script>
 
         <script src="/boss/js/pagesJS/personnelPages.js"></script>
 

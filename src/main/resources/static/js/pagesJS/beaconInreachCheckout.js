@@ -27,60 +27,7 @@ $(document).ready(function () {
         type: 'GET',
         cache: false,
         success: function (json) {
-            if (json.length == 0) {
-                debugger;
-
-                var emp;
-                $.ajax({
-                    url: '/boss/employeeProfile/47',
-                    type: 'GET',
-                    cache: false,
-                    async: false,
-                    success: function (json) {
-                        emp = json;
-                    },
-                    error: function (a, b, c) {
-                        console.log(a.responseText);
-                    }
-                });
-
-                var auxDat = [];
-                auxDat.push('line 1');
-                auxDat.push('line 2');
-                auxDat.push('line 3');
-                auxDat.push('line 4');
-                auxDat.push('line 5');
-                auxDat.push('line 6');
-
-
-                var beaconData = {
-                    "assignedEmployee": emp,
-                    "auxData": auxDat,
-                    "batteryExpDate": getCorrectDateFormat(new Date().getTime()),
-                    "beaconPassword": "12345",
-                    "checkoutBy": emp,
-                    "purchaseDate": getCorrectDateFormat(new Date().getTime()),
-                    "recordedChecoutDate": getCorrectDateFormat(new Date().getTime()),
-                    "registerDate": getCorrectDateFormat(new Date().getTime()),
-                    "serialNumber": "1234",
-                    "unitNumber": "324"
-                };
-                debugger;
-                $.ajax({
-                    url: '/boss/beacon',
-                    type: 'POST',
-                    cahce: false,
-                    contentType: 'application/json',
-                    data: beaconData,
-                    success: function (json) {
-                        location.reload();
-                    }, error: function (a, b, c) {
-                        console.log(a.responseText);
-                    }
-                });
-            } else {
-                populateDataTable(json);
-            }
+            populateDataTable(json);
         }, error: function (a, b, c) {
             console.log(a.responseText);
         }
@@ -97,20 +44,27 @@ $(document).ready(function () {
 
             },
             {
-                'data': 'employee',
-                'render': function (data, type, row) {
-                    
-                    return data.lastName + ', ' + data.firstName;
-                }
+                'data': 'id'
             },
             {
-                'data': 'recordData',
-                'render': function (data, type, row) {
-                    
-                    return 'recorded on ' + data.recordedDate + ' by ' + data.recordedByEmployee.lastName + ', ' + data.recordedByEmployee.firstName;
-                }
+                'data': 'serialNumber'
 
-            }, {
+                },
+
+                {
+                    'data': 'batteryExpDate'
+                },
+                {
+                    'data': 'purchaseDate'
+                },
+                {
+                    'data': 'beaconPassword'
+                },
+                {
+                    'data': 'registerDate'
+                }
+                /*,
+                {
                 'data': null,
                 'render': function (data, type, row) {
                     return `
@@ -121,16 +75,10 @@ $(document).ready(function () {
                           </div>
                       </div>  
                   `;
-                }
-            }
+                }*/
+            
             ],
-            'buttons': [{
-                text: 'Add <i class="fa fa-lg fa-plus"></i>',
-                action: function () {
-                    window.location.href = '/addTrainingEmployee';
-                },
-                className: 'table-btns add-btn'
-            },
+            'buttons': [
             {
                 text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
                 action: function () {
@@ -144,7 +92,7 @@ $(document).ready(function () {
                 text: 'Print <i class="fa fa-lg fa-print"></i>',
                 extend: 'print',
                 exportOptions: {
-                    columns: [0, 1, 2]
+                    columns: [0, 1, 2, 3, 4, 5]
                 },
                 className: 'table-btns print-btn'
             },
@@ -152,48 +100,14 @@ $(document).ready(function () {
                 text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
                 extend: 'excel',
                 exportOptions: {
-                    columns: [0, 1, 2]
+                    columns: [0, 1, 2, 3, 4, 5]
                 },
                 className: 'table-btns excel-btn'
             }
             ]
         });
 
-        $('.auxBtn').on('click', function (e) {
-            var row = $(this).attr('data-value');
-            $.ajax({
-                url: '/boss/beacon/' + row,
-                type: 'GET',
-                cache: false,
-                success: function (json) {
-                    var modal = $('#myModal_auxInfo');
-                    var x = 0;
-                    var auxForm = { "auxInfo": [] };
-                    $.each(json.auxData, function (index, value) {
-                        var tempAddon = [{
-                            "fieldName": "line_" + x,
-                            "title": "line " + x,
-                            "placeholder": "",
-                            "type": "input/text",
-                            "readonly": true,
-                            "colspan": 12,
-                            "value": value
-                        }];
-                        auxForm.auxInfo.push(tempAsson);
-                        debugger;
-                    });
-                    CustomFormFunctions.addBootstrapFields(auxForm);
-                    
-                    
 
-                    
-                }, error: function (a, b, c) {
-                    console.log(a.responseText);
-                }
-
-            });
-
-        });
 
 
         //$('[data-toggle="tooltip"]').tooltip();

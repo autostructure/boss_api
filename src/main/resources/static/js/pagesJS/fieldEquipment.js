@@ -6,34 +6,7 @@
 $(document).ready(function () {
 
     makeAjaxCall('/boss/fieldEquipment', 'GET', null).then(function (json) {
-        if (json.length == 0) {
 
-            var fieldEquip = {
-                equipmentCode: "123",
-                description: "desc",
-                category: "cat",
-                desiredQuantityOnHand: 1,
-                quantityPerIndividual: 3,
-                quantityPerAreaLeader: 22,
-                sizeColor: 1,
-                sizeOrder: 2,
-                loadDefault: true
-            }
-
-            $.ajax({
-                url: '/boss/fieldEquipment',
-                type: 'POST',
-                cache: false,
-                contentType: 'application/json',
-                data: JSON.stringify(fieldEquip),
-                success: function (json) {
-                    location.reload();
-                }, error: function (a, b, c) {
-                    console.log(a.responseText);
-                    debugger;
-                }
-            });
-        }
         populateDataTable(json);
     }, function (a, b, c) {
         console.log(a.responseText);

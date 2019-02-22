@@ -32,7 +32,7 @@
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
                                 <a class="breadcrumbLink" href="/boss/personnelDash">Personnel Dashboard |</a>
-                                <a class="breadcrumbLinkMain" href="/boss/viewAllEmployees"> Beacon And Inreach Checkout</a>
+                                <a class="breadcrumbLinkMain" href="/boss/beaconInreach"> Beacon And Inreach</a>
                             </p>
                         </div>
                     </div>
@@ -40,13 +40,13 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Beacon And Inreach Checkout</h1>
+                                <h1 id="title">Beacon And Inreach</h1>
                             </div>
 							
                         </div>
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
-                                <h2 class="title2">Field Equipment List</h2>
+                                <h2 class="title2">Beacon And Inreach List</h2>
                                 <div id="showHide">
                                     <div class="form-check" id="viewOldCheckbox">
                                         <input type="checkbox" id="viewOld" class="form-check-input">
@@ -56,17 +56,24 @@
 
                                         <thead>
                                             <tr>
-                                                <th>Beacon Number</th>
-                                                <th>Employee Name</th>
-                                                <th>Recorded Data</th>											
-                                                <th></th>   
+                                                <th>Unit Number</th>
+                                                <th>Unique ID</th>
+                                                <th>Serial Number</th>
+												<th>Battery Exp Date</th>
+                                                <th>Purchase Date</th>
+												<th>Beacon Password</th>
+												<th>Register Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-											<td col="beacon"></td>
-											<td col="employee"></td>
-											<td col="recordData"></td>
-											<td scope="col"></td>
+											<td col="unitNumber"></td>
+											<td col="id"></td>
+											<td col="serialNumber"></td>
+											<td col="batteryExpDate"></td>
+											<td col="purchaseDate"></td>
+											<td col="beaconPassword"></td>
+											<td col="registerDate"></td>
+											<!--<td scope="col"></td>-->
                                         </tbody>
                                     </table>
                                 </div>
@@ -141,7 +148,7 @@
 		    <script src="/boss/js/bootstrap-datepicker.js"></script>
 
 		<script src="/boss/js/pagesJS/customFormFunctions.js"></script>
-		<script src="/boss/js/pagesJS/beaconInreach.js"></script>
+		<script src="/boss/js/pagesJS/beaconInreachCheckout.js"></script>
 
         <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
