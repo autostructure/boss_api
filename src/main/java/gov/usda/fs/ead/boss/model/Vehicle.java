@@ -81,6 +81,9 @@ public class Vehicle implements Serializable {
 
     @Column(name = "KeysToolBox")
     private String keysToolBox;
+    
+    @Column(name = "Accessory1")
+    private String accessory1;
 
     @Column(name = "Accessory2")
     private String accessory2;
@@ -542,6 +545,20 @@ public class Vehicle implements Serializable {
      */
     public void setMonthsNotUsed(List<MonthsNotUsed> monthsNotUsed) {
         this.monthsNotUsed = monthsNotUsed;
+    }
+
+    /**
+     * @return the accessory1
+     */
+    public String getAccessory1() {
+        return accessory1;
+    }
+
+    /**
+     * @param accessory1 the accessory1 to set
+     */
+    public void setAccessory1(String accessory1) {
+        this.accessory1 = accessory1;
     }
 
 }

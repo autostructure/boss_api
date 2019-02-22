@@ -58,12 +58,12 @@ public class Beacon implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "CheckoutBy")
     @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
-    EmployeeProfile checkoutBy;
+    private EmployeeProfile checkoutBy;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "AssignedEmployee")
     @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
-    EmployeeProfile assignedEmployee;
+    private EmployeeProfile assignedEmployee;
     
     @ElementCollection
     private List<String> auxData = new ArrayList<String>();
@@ -193,6 +193,34 @@ public class Beacon implements Serializable {
      */
     public void setAuxData(List<String> auxData) {
         this.auxData = auxData;
+    }
+
+    /**
+     * @return the assignedEmployee
+     */
+    public EmployeeProfile getAssignedEmployee() {
+        return assignedEmployee;
+    }
+
+    /**
+     * @param assignedEmployee the assignedEmployee to set
+     */
+    public void setAssignedEmployee(EmployeeProfile assignedEmployee) {
+        this.assignedEmployee = assignedEmployee;
+    }
+
+    /**
+     * @return the checkoutBy
+     */
+    public EmployeeProfile getCheckoutBy() {
+        return checkoutBy;
+    }
+
+    /**
+     * @param checkoutBy the checkoutBy to set
+     */
+    public void setCheckoutBy(EmployeeProfile checkoutBy) {
+        this.checkoutBy = checkoutBy;
     }
 
 }

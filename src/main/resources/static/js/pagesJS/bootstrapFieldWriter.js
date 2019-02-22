@@ -21,7 +21,7 @@ function addBootstrapFields(data) {
    * @return {jquery_object} The column element
    */
   {
-    var stateSelect = $("<select></select>")
+    var stateSelect = $('<select></select>')
       .append('<option value="AL">Alabama</option>')
       .append('<option value="AK">Alaska</option>')
       .append('<option value="AZ">Arizona</option>')
@@ -76,7 +76,7 @@ function addBootstrapFields(data) {
   }
   {
     //vehicle classes for fleet section
-    var vehClass = $("<select></select>")
+    var vehClass = $('<select></select>')
       .append('<option value="105">New</option>')
       .append(
         '<option value="112">4x4 SUV, 4DR, Compact, Hard Top Wagon</option>'
@@ -130,7 +130,7 @@ function addBootstrapFields(data) {
   }
   {
     //vehicle ownership type for fleet section
-    var vehOwner = $("<select></select>")
+    var vehOwner = $('<select></select>')
       .append('<option value="ATV">All Terrain Vehicle</option>')
       .append('<option value="GSA">General Services Administration</option>')
       .append('<option value="LEASE">Leased Vehicle</option>')
@@ -140,7 +140,7 @@ function addBootstrapFields(data) {
   }
   {
     //year fleet section
-    var vehYear = $("<select></select>")
+    var vehYear = $('<select></select>')
       .append('<option value="2011">2011</option>')
       .append('<option value="2012">2012</option>')
       .append('<option value="2013">2013</option>')
@@ -154,8 +154,26 @@ function addBootstrapFields(data) {
       .append('<option value="2021">2021</option>');
   }
   {
+    var camera = $('<select></select>')
+      .append('<option value="Factory">Factory</option>')
+      .append('<option value="After Market">After Market</option>')
+      .append('<option value="None">None</option>');
+  }
+  {
+    var accessory1 = $('<select></select>')
+      .append('<option value="Toolbox">Toolbox</option>')
+      .append('<option value="Topper">Topper</option>')
+      .append('<option value="None">None</option>');
+  }
+  {
+    var camera = $('<select></select>')
+      .append('<option value="Factory">Factory</option>')
+      .append('<option value="After Market">After Market</option>')
+      .append('<option value="None">None</option>');
+  }
+  {
     //year fleet section
-    var vehMonth = $("<select></select>")
+    var vehMonth = $('<select></select>')
       .append('<option value="01">January</option>')
       .append('<option value="02">February</option>')
       .append('<option value="03">March</option>')
@@ -177,7 +195,7 @@ function addBootstrapFields(data) {
     } else if (col.nested) {
       colEl = $("<div class='col'></div>");
       if (col.colspan) {
-        colEl.addClass("col-md-" + col.colspan);
+        colEl.addClass('col-md-' + col.colspan);
       }
       var innerRow = $("<div class='row'></div>").appendTo(colEl);
       for (var i in col.nested) {
@@ -187,82 +205,88 @@ function addBootstrapFields(data) {
     } else {
       colEl = $("<div class='col'></div>"); // -El for element
       var groupEl = $("<div class='form-group'></div>").appendTo(colEl);
-      var types = col.type.split("/");
+      var types = col.type.split('/');
       if (col.colspan) {
-        colEl.addClass("col-md-" + col.colspan);
+        colEl.addClass('col-md-' + col.colspan);
       }
-      var thisID = col.fieldName.replace(/\./g, "_");
-      var labelEl = $("<label>" + col.title + "</label>").attr(
-        "for",
-        parent + "_" + thisID
+      var thisID = col.fieldName.replace(/\./g, '_');
+      var labelEl = $('<label>' + col.title + '</label>').attr(
+        'for',
+        parent + '_' + thisID
       );
       groupEl.append(labelEl);
       var input;
-      if (types[0] == "input") {
-        var input = $("<input>")
-          .attr("type", types[1])
-          .attr("placeholder", col.placeholder || "Enter " + col.title);
-      } else if (types[0] == "select") {
-        var input = $("<select>");
+      if (types[0] == 'input') {
+        var input = $('<input>')
+          .attr('type', types[1])
+          .attr('placeholder', col.placeholder || 'Enter ' + col.title);
+      } else if (types[0] == 'select') {
+        var input = $('<select>');
         input.append(
           $(
             "<option value=''>" +
-              (col.placeholder || "Choose " + col.title) +
-              "</option>"
+              (col.placeholder || 'Choose ' + col.title) +
+              '</option>'
           )
         );
-        if (types[1] == "state") {
-          input.append(stateSelect.find("option").clone());
+        if (types[1] == 'state') {
+          input.append(stateSelect.find('option').clone());
         }
-        if (types[1] == "vclass") {
-          input.append(vehClass.find("option").clone());
+        if (types[1] == 'accessory1') {
+          input.append(accessory1.find('option').clone());
         }
-        if (types[1] == "vown") {
-          input.append(vehOwner.find("option").clone());
+        if (types[1] == 'vclass') {
+          input.append(vehClass.find('option').clone());
         }
-        if (types[1] == "vyear") {
-          input.append(vehYear.find("option").clone());
+        if (types[1] == 'camera') {
+          input.append(camera.find('option').clone());
         }
-        if (types[1] == "vmonth") {
-          input.append(vehMonth.find("option").clone());
+        if (types[1] == 'vown') {
+          input.append(vehOwner.find('option').clone());
+        }
+        if (types[1] == 'vyear') {
+          input.append(vehYear.find('option').clone());
+        }
+        if (types[1] == 'vmonth') {
+          input.append(vehMonth.find('option').clone());
         }
         if (col.options) {
           for (var val in col.options) {
             name = col.options[val];
-            input.append("<option value='" + val + "'>" + name + "</option>");
+            input.append("<option value='" + val + "'>" + name + '</option>');
           }
         }
-      } else if (types[0] == "textarea") {
-        var input = $("<textarea>");
-        input.attr("placeholder", col.placeholder || "");
+      } else if (types[0] == 'textarea') {
+        var input = $('<textarea>');
+        input.attr('placeholder', col.placeholder || '');
       }
       input
-        .addClass("form-control")
-        .attr("id", parent + "_" + thisID)
-        .attr("name", col.fieldName)
-        .attr("aria-label", col.title);
-      if (col.type == "input/tel") {
-        input.attr("pattern", "\\(?\\d{3}\\)? ?-?\\d{3} ?-?\\d{4}");
+        .addClass('form-control')
+        .attr('id', parent + '_' + thisID)
+        .attr('name', col.fieldName)
+        .attr('aria-label', col.title);
+      if (col.type == 'input/tel') {
+        input.attr('pattern', '\\(?\\d{3}\\)? ?-?\\d{3} ?-?\\d{4}');
       }
-      if (col.type == "input/vin") {
-        input.attr("pattern", "[A-HJ-NPR-Z0-9]{17}");
+      if (col.type == 'input/vin') {
+        input.attr('pattern', '[A-HJ-NPR-Z0-9]{17}');
       }
-      if (col.type == "input/series") {
-        input.attr("pattern", "[0-9]{4}");
+      if (col.type == 'input/series') {
+        input.attr('pattern', '[0-9]{4}');
       }
-      if (col.type == "input/zipCode") {
-        input.attr("pattern", "(\\d{5}([\\-]\\d{4})?)");
-        input.attr("placeHolder", "12345 or 12345-6789");
+      if (col.type == 'input/zipCode') {
+        input.attr('pattern', '(\\d{5}([\\-]\\d{4})?)');
+        input.attr('placeHolder', '12345 or 12345-6789');
       }
       // if (col.type == "input/role") {
       //     input.attr("type", "radio");
       //     input.attr("pattern", "(\\d{5}([\\-]\\d{4})?)");
       // }
-      if (col.type == "input/date") {
-        input.attr("type", "text");
-        input.attr("data-date-format", "MMM DD YYYY");
-        input.attr("data-provide", "datepicker");
-        input.addClass("datepicker");
+      if (col.type == 'input/date') {
+        input.attr('type', 'text');
+        input.attr('data-date-format', 'MMM DD YYYY');
+        input.attr('data-provide', 'datepicker');
+        input.addClass('datepicker');
         var inputGroup = $(
           '<div class="input-group date" data-provide="datepicker">'
         );
@@ -271,25 +295,25 @@ function addBootstrapFields(data) {
           '<div class="input-group-addon"><span class="glyphicon glyphicon-th"><i class="fa fa-2x fa-calendar"></i></span></div>'
         );
         groupEl.append(inputGroup);
-        input.datepicker({ format: "MMM DD YYYY" });
+        input.datepicker({ format: 'MMM DD YYYY' });
       }
       if (col.required) {
-        input.attr("required", true);
+        input.attr('required', true);
         labelEl.html(labelEl.html() + "<span class='reqClass'> *</span>");
       }
       if (col.disabled) {
-        input.attr("required", false);
-        input.attr("disabled", true);
+        input.attr('required', false);
+        input.attr('disabled', true);
       }
       if (col.pattern) {
-        input.attr("pattern", col.pattern);
+        input.attr('pattern', col.pattern);
       }
-      if (col.type == "input/number") {
-        if (col.step) input.attr("step", col.step);
-        if (col.min) input.attr("min", col.min);
-        if (col.max) input.attr("max", col.max);
+      if (col.type == 'input/number') {
+        if (col.step) input.attr('step', col.step);
+        if (col.min) input.attr('min', col.min);
+        if (col.max) input.attr('max', col.max);
       }
-      if (col.type != "input/date") {
+      if (col.type != 'input/date') {
         groupEl.append(input);
       }
       groupEl.append('<div class="help-block with-errors"></div>');
@@ -301,13 +325,13 @@ function addBootstrapFields(data) {
   }
   for (var parent in data) {
     var rows = data[parent];
-    var rowEls = $("");
+    var rowEls = $('');
     for (var i = 0; i < rows.length; i++) {
       var row = rows[i];
       if (row.custom) {
         rowEls = rowEls.add(row.custom);
       } else {
-        var rowEl = $("<div class=row></div>");
+        var rowEl = $('<div class=row></div>');
         for (var j = 0; j < row.length; j++) {
           var col = row[j];
           rowEl.append(formColumn(col));
@@ -315,6 +339,6 @@ function addBootstrapFields(data) {
         rowEls = rowEls.add(rowEl);
       }
     }
-    $("#" + parent).append($(rowEls));
+    $('#' + parent).append($(rowEls));
   }
 }

@@ -475,6 +475,7 @@ public class PropertyManagementController {
                 .orElseThrow(() -> {
                     return new ResourceNotFoundException("Beacon", "id", beaconId);
                 });
+        
 
         Beacon updated = beaconRepository.save(beaconDetails);
         return updated;
