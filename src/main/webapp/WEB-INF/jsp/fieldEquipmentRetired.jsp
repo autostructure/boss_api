@@ -156,7 +156,7 @@
 		<script src="/boss/js/bootstrap-datepicker.js"></script>
 		<script src="/boss/js/pagesJS/customFormFunctions.js"></script>
         <script src="/boss/js/pagesJS/ApiCalls.js"></script>
-        <script src="/boss/js/pagesJS/fieldEquipment.js"></script>
+        <script src="/boss/js/pagesJS/fieldEquipmentRetire.js"></script>
         <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
     </body>

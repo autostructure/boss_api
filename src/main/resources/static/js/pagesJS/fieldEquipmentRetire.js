@@ -15,8 +15,11 @@ $(document).ready(function () {
         //console.log('populateDataTable');
         console.log(jsonData);
         var retired_equip = jsonData.filter(function (e) {
+            
             return e.retired == true;
         });
+
+        
 
         var table = $('#fieldEquip').DataTable({
             'bPaginate': false,
@@ -158,23 +161,9 @@ $(document).ready(function () {
                     modal.find('[name=sizeColor]').val(json.sizeColor);
                     modal.find('[name=sizeOrder]').val(json.sizeOrder);
 
-                    var lDefault = "";
-                    if (json.loadDefault == true) {
-                        lDeafault = "true";
-                    } else {
-                        lDefault = "false";
-                    }
-
-                    var retiredStr = "";
-                    if (json.retired == true) {
-                        retiredStr = "true";
-                    } else {
-                        retiredStr = "false";
-                    }
-
-                    debugger;
-                    modal.find('[name=loadDefault]').val(lDefault);
-                    modal.find('[name=retired]').val(retiredStr);
+                    
+                    modal.find("[name=retired] option[value=" + json.retired + "]").attr('selected', 'selected');
+                    modal.find("[name=loadDefault] option[value=" + json.loadDefault + "]").attr('selected', 'selected');
 
                     $('#myModal_edit').modal('toggle'); 
 
@@ -186,15 +175,15 @@ $(document).ready(function () {
 
         $('#myModal_edit').on('click','#btn_edit', function (e) {
             var modal = $('#editForm');
-            var retired_str = modal.find('[name=retired]').val();
+            var retired_str = modal.find('[name=retired] :selected').val();
             var retired = true;
-            if (retired_str == false) {
+            if (retired_str == "false") {
                 retired = false;
             }
 
-            var loadDef = modal.find('[name=loadDefault]').val();
+            var loadDef = modal.find('[name=loadDefault] :selected').val();
             var load = true;
-            if (loadDef == false) {
+            if (loadDef == "false") {
                 load = false;
             }
 
@@ -290,15 +279,15 @@ var ed = {
             "title": "Size Order",
             "required": true,
             "type": "input/text"
-        },
+        }],[
         {
             "fieldName": "loadDefault",
             "title": "Load Default",
             "required": true,
             "type": "select/text",
             "options": { "true": "yes", "false": "No" }
-        }
-        ], [
+        },
+        
         {
                 "fieldName": "retired",
                 "title": "retired",
