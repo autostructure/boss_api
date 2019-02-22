@@ -1,39 +1,14 @@
+var fakeData = [
+    { "employeeId": 47, "category": "blah", "title": "blah", "yearsValid": 5, "dateOfTraining": "2018-09-26T14:03:16.183Z", "approvedBy": null }
+
+];
 
 //var userId = 3; // Temporary Spoofing
 //var supervisor = false;
 
 
 $(document).ready(function () {
-
-    makeAjaxCall('/boss/fieldEquipment', 'GET', null).then(function (json) {
-        if (json.length == 0) {
-
-            var fieldEquip = {
-                equipmentCode: "123",
-                description: "desc",
-                category: "cat",
-                desiredQuantityOnHand: 1,
-                quantityPerIndividual: 3,
-                quantityPerAreaLeader: 22,
-                sizeColor: 1,
-                sizeOrder: 2,
-                loadDefault: true
-            }
-
-            $.ajax({
-                url: '/boss/fieldEquipment',
-                type: 'POST',
-                cache: false,
-                contentType: 'application/json',
-                data: JSON.stringify(fieldEquip),
-                success: function (json) {
-                    location.reload();
-                }, error: function (a, b, c) {
-                    console.log(a.responseText);
-                    debugger;
-                }
-            });
-        }
+    makeAjaxCall('/boss/itEquipment', 'GET', null).then(function (json) {
         populateDataTable(json);
     }, function (a, b, c) {
         console.log(a.responseText);
@@ -42,64 +17,49 @@ $(document).ready(function () {
     function populateDataTable(jsonData) {
         //console.log('populateDataTable');
         console.log(jsonData);
-
-        var table = $('#fieldEquip').DataTable({
+        
+        var table = $('#ITEquip').DataTable({
             'bPaginate': false,
             'data': jsonData,
             'dom': 'Bfti',
             'columns': [{
-                'data': "equipmentCode"
+                'data': "equipmentName"
             },
             // { 'data': 'supervisor' },
 
             {
-                'data': "description"
-            },
-            {
                 'data': "category"
             },
             {
-                'data': 'desiredQuantityOnHand'
+                'data': "make"
             },
             {
-                'data': "quantityPerIndividual"
+                'data': 'modelNumber'
             },
             {
-                'data': "quantityPerAreaLeader"
+                'data': "serialNumber"
             },
             {
-                'data': 'sizeColor'
+                'data': "type"
             },
             {
-                'data': 'sizeOrder'
-            },
-            {
-                'data': 'loadDefault',
-                'render': function (data, type, row) {
-                    if (data == true) {
-                        return 'X';
-                    } else {
-                        return ' ';
-                    }
-                }
+                'data':'acquisitionDate'
             },
             {
                 'data': null,
                 'render': function (data, type, row) {
-
                     return `
                       <div class="dropdown1">
                           <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                           <div id="dropList" class="dropdown-content1">
-                              <a href="#" data-toggle="modal" data-target="myModal_edit" data-value="` + data.id + `" class="editBtn" id="editBtn">Edit field Equipment</a>
-                              <a href="#" data-toggle="modal" data-target="myModal_delete" data-value="` + data.id + `|` + data.equipmentCode + `" class="deleteBtn" id="deleteBtn">Delete field Equipment</a>
+                              <a href="#" data-toggle="modal" data-target="myModal_edit" data-value="` + data.id + `" class="editBtn" id="editBtn">Edit IT Equipment</a>
+                              <a href="#" data-toggle="modal" data-target="myModal_delete" data-value="` + data.id + `|` + data.equipmentName + `" class="deleteBtn" id="deleteBtn">Delete IT Equipment</a>
                           </div>
                       </div>
                   
                   `;
                 }
             }
-
             ],
             'buttons': [/*{
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
@@ -108,34 +68,33 @@ $(document).ready(function () {
                 },
                 className: 'table-btns add-btn'
             },*/
-                {
-                    text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
-                    action: function () {
-                        window.location.reload();
-                    },
-                    className: 'table-btns refresh-btn'
+            {
+                text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
+                action: function () {
+                    window.location.reload();
                 },
-                {
-                    text: 'Print <i class="fa fa-lg fa-print"></i>',
-                    extend: 'print',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-                    },
-                    className: 'table-btns print-btn'
+                className: 'table-btns refresh-btn'
+            },
+               {
+                text: 'Print <i class="fa fa-lg fa-print"></i>',
+                extend: 'print',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 },
-                {
-                    text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
-                    extend: 'excel',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-                    },
-                    className: 'table-btns excel-btn'
-                }
+                className: 'table-btns print-btn'
+            },
+            {
+                text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
+                extend: 'excel',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6]
+                },
+                className: 'table-btns excel-btn'
+            }
             ]
         });
 
         var selected_row;
-        
         $('#deleteBtn').on('click', function (e) {
             selected_row = $(this).attr('data-value');
             var equip = selected_row.split('|')[1];
@@ -144,88 +103,64 @@ $(document).ready(function () {
             $('#myModal_delete').find('.IT_equip_name').text(equip);
             $('#myModal_delete').find('.hidden_id').val(id);
             $('#myModal_delete').modal('toggle');
-            
         });
 
-        $('#myModal_delete').on('click', '.btn_pers_remove', function (e) {
+        $('#myModal_delete').on('click', '#deleteModal_delete', function (e) {
             var id = $('#myModal_delete').find('.hidden_id').val();
             $.ajax({
-                url: '/boss/fieldEquipment/' + id,
+                url: '/boss/itEquipment/' + id,
                 type: 'DELETE',
                 cache: false,
-                success: function (json) {
+                success: function (jj) {
                     location.reload();
-                },
-                error: function (a, b, c) {
+                }, error: function (a, b, c) {
                     console.log(a.responseText);
                 }
             });
         });
 
         $('#editBtn').on('click', function (e) {
-
             selected_row = $(this).attr('data-value');
-
+            
             $.ajax({
-                url: '/boss/fieldEquipment/' + selected_row,
+                url: '/boss/itEquipment/' + selected_row,
                 type: 'GET',
                 cache: false,
                 success: function (json) {
                     var modal = $('#editForm');
-
-
-                    modal.find('[name=equipmentCode]').val(json.equipmentCode);
-                    modal.find('[name=description]').val(json.description);
-                    modal.find('[name=category]').val(json.category);
-                    modal.find('[name=desiredQuantityOnHand]').val(json.desiredQuantityOnHand);
-                    modal.find('[name=quantityPerIndividual]').val(json.quantityPerIndividual);
-                    modal.find('[name=quantityPerAreaLeader]').val(json.quantityPerAreaLeader);
-                    modal.find('[name=sizeColor]').val(json.sizeColor);
-                    modal.find('[name=sizeOrder]').val(json.sizeOrder);
-                    modal.find('[name=loadDefault]').val(json.loadDefault);
-                    
-                    $('#myModal_edit').modal('toggle'); 
-
+                    modal.find('[name=Category]').val(json.category);
+                    modal.find('[name=Make]').val(json.make);
+                    modal.find('[name=Type]').val(json.type);
+                    modal.find('[name=EquipmentName]').val(json.equipmentName);
+                    modal.find('[name=ModelNum]').val(json.modelNumber);
+                    modal.find('[name=serialNum]').val(json.serialNumber);
+                    modal.find('[name=AcquisitionDate]').val(json.acquistionDate);
+                    $('#myModal_edit').modal('toggle');
                 }, error: function (a, b, c) {
                     console.log(a.responseText);
                 }
             });
         });
 
-        $('#myModal_edit').on('click','#btn_edit', function (e) {
-            var modal = $('#editForm');
-            var load = modal.find('[name=loadDefault]').val();
-            var loady = true;
-            if (load == false) {
-                loady = false;
-            }
-
-            var retired = modal.find('[name=sizeOrder]').val();
-            var retired_bool = true;
-            if (retired == false) {
-                retired_bool = false;
-            }
-
-            var data = {
-                equipmentCode: modal.find('[name=equipmentCode]').val(),
-                description: modal.find('[name=description]').val(),
-                category: modal.find('[name=category]').val(),
-                desiredQuantityOnHand: parseInt(modal.find('[name=desiredQuantityOnHand]').val()),
-                quantityPerIndividual: parseInt(modal.find('[name=quantityPerIndividual]').val()),
-                quantityPerAreaLeader: parseInt(modal.find('[name=quantityPerAreaLeader]').val()),
-                sizeColor: parseInt(modal.find('[name=sizeColor]').val()),
-                sizeOrder: parseInt(modal.find('[name=sizeOrder]').val()),
-                loadDefault: loady,
-                retired: retired_bool,
-                id: parseInt(selected_row)
+        $('#myModal_edit').on('click', '#deleteModal_edit', function (e) {
+            var modal = $('#myModal_edit');
+            var IT = {
+                'acquisitionDate': getCorrectDateFormat(modal.find('[name=AcquisitionDate]').val()),
+                'category': modal.find('[name=Category]').val(),
+                'equipmentName': modal.find('[name=EquipmentName]').val(),
+                'make': modal.find('[name=Make]').val(),
+                'modelNumber': modal.find('[name=ModelNum]').val(),
+                'serialNumber': modal.find('[name=serialNum]').val(),
+                'type': modal.find('[name=Type]').val(),
+                'id': selected_row
             };
-            
+            debugger;
             $.ajax({
-                url: '/boss/fieldEquipment/' + selected_row,
+                url: '/boss/itEquipment/' + selected_row,
                 type: 'PUT',
                 cache: false,
                 contentType: 'application/json',
-                data: JSON.stringify(data),
+                data: JSON.stringify(IT),
                 success: function (json) {
                     location.reload();
                 }, error: function (a, b, c) {
@@ -233,7 +168,47 @@ $(document).ready(function () {
                 }
             });
         });
+
+
+        
     }
+
+    $('.addEquip').on('click', function (e) {
+        var category_ = $('[name=Category]').val();
+        var make_ = $('[name=Make]').val();
+        var equipmentName = $('[name=EquipmentName]').val();
+        var modelNum = $('[name=ModelNum]').val();
+        var serialNum = $('[name=serialNum]').val();
+        var acquisDate = $('[name=AcquisitionDate]').val();
+        var _type = $('[name=Type]').val();
+
+        var IT = {
+            'acquisitionDate': getCorrectDateFormat(acquisDate),
+            'category': category_,
+            'equipmentName': equipmentName,
+            'make': make_,
+            'modelNumber': modelNum,
+            'serialNumber': serialNum,
+            'type': _type
+        };
+
+        $.ajax({
+            url: '/boss/itEquipment',
+            type: 'POST',
+            cache: false,
+            contentType: 'application/json',
+            data: JSON.stringify(IT),
+            success: function (json) {
+                
+                location.reload();
+            },
+            error(a, b, c) {
+                
+                console.log(a.responseText);
+            }
+        });
+    });
+
 });
 
 
@@ -247,63 +222,97 @@ function getCorrectDateFormat(date_str) {
 
 
 var addEquip = {
-"editForm":[
+    "addEquip": [
         [{
-            "fieldName": "equipmentCode",
-            "title": "Equipment Code",
+            "fieldName": "Category",
+            "title": "Category",
+            "placeholder": "",
+            "type": "input/Text"
+        },
+        {
+            "fieldName": "Make",
+            "title": "Make",
             "placeholder": "",
             "required": true,
+            "type": "input/text"
+        },
+        {
+            "fieldName": "Type",
+            "title": "Type",
+            "required": true,
+            "type": "input/text"
+        }],
+        [{
+            "fieldName": "EquipmentName",
+            "title": "Equipment Name",
+            "required": true,
+            "type": "input/text"
+        },
+        {
+            "fieldName": "ModelNum",
+            "title": "Model Num",
+            "required": true,
+            "type": "input/text"
+        },
+        {
+            "fieldName": "serialNum",
+            "title": "serial Num",
+            "required": true,
+            "type": "input/text"
+        }],
+        [
+            {
+                "fieldName": "AcquisitionDate",
+                "title": "Acquisition Date",
+                "required": true,
+                "type": "input/date"
+            }
+        ]
+
+    ], "editForm":[
+        [{
+            "fieldName": "Category",
+            "title": "Category",
+            "placeholder": "",
             "type": "input/Text"
         },
             {
-                "fieldName": "description",
-                "title": "Description",
+                "fieldName": "Make",
+                "title": "Make",
                 "placeholder": "",
                 "required": true,
                 "type": "input/text"
             },
             {
-                "fieldName": "category",
-                "title": "Category",
+                "fieldName": "Type",
+                "title": "Type",
                 "required": true,
                 "type": "input/text"
             }],
     [{
-        "fieldName": "desiredQuantityOnHand",
-        "title": "Desired Quantity On Hand",
+        "fieldName": "EquipmentName",
+        "title": "Equipment Name",
         "required": true,
         "type": "input/text"
     },
         {
-            "fieldName": "quantityPerIndividual",
-            "title": "Quantity Per Individual",
+            "fieldName": "ModelNum",
+            "title": "Model Num",
             "required": true,
             "type": "input/text"
         },
         {
-            "fieldName": "quantityPerAreaLeader",
-            "title": "Quantity Per Area Leader",
+            "fieldName": "serialNum",
+            "title": "serial Num",
             "required": true,
             "type": "input/text"
         }],
     [
         {
-            "fieldName": "sizeColor",
+            "fieldName": "AcquisitionDate",
             "title": "Acquisition Date",
             "required": true,
-            "type": "input/text"
-        },
-        {
-            "fieldName": "sizeOrder",
-            "title": "Size Order",
-            "required": true,
-            "type": "input/text"
-        },
-        {
-            "fieldName": "retired",
-            "title": "retired",
-            "required": true,
-            "type": "select/text"
+            "type": "input/date"
         }
     ]
     ]

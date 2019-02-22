@@ -6,34 +6,6 @@
 $(document).ready(function () {
 
     makeAjaxCall('/boss/fieldEquipment', 'GET', null).then(function (json) {
-        if (json.length == 0) {
-
-            var fieldEquip = {
-                equipmentCode: "123",
-                description: "desc",
-                category: "cat",
-                desiredQuantityOnHand: 1,
-                quantityPerIndividual: 3,
-                quantityPerAreaLeader: 22,
-                sizeColor: 1,
-                sizeOrder: 2,
-                loadDefault: true
-            }
-
-            $.ajax({
-                url: '/boss/fieldEquipment',
-                type: 'POST',
-                cache: false,
-                contentType: 'application/json',
-                data: JSON.stringify(fieldEquip),
-                success: function (json) {
-                    location.reload();
-                }, error: function (a, b, c) {
-                    console.log(a.responseText);
-                    debugger;
-                }
-            });
-        }
         populateDataTable(json);
     }, function (a, b, c) {
         console.log(a.responseText);
@@ -42,10 +14,13 @@ $(document).ready(function () {
     function populateDataTable(jsonData) {
         //console.log('populateDataTable');
         console.log(jsonData);
+        var retired_equip = jsonData.filter(function (e) {
+            return e.retired == true;
+        });
 
         var table = $('#fieldEquip').DataTable({
             'bPaginate': false,
-            'data': jsonData,
+            'data': retired_equip,
             'dom': 'Bfti',
             'columns': [{
                 'data': "equipmentCode"
@@ -182,8 +157,25 @@ $(document).ready(function () {
                     modal.find('[name=quantityPerAreaLeader]').val(json.quantityPerAreaLeader);
                     modal.find('[name=sizeColor]').val(json.sizeColor);
                     modal.find('[name=sizeOrder]').val(json.sizeOrder);
-                    modal.find('[name=loadDefault]').val(json.loadDefault);
-                    
+
+                    var lDefault = "";
+                    if (json.loadDefault == true) {
+                        lDeafault = "true";
+                    } else {
+                        lDefault = "false";
+                    }
+
+                    var retiredStr = "";
+                    if (json.retired == true) {
+                        retiredStr = "true";
+                    } else {
+                        retiredStr = "false";
+                    }
+
+                    debugger;
+                    modal.find('[name=loadDefault]').val(lDefault);
+                    modal.find('[name=retired]').val(retiredStr);
+
                     $('#myModal_edit').modal('toggle'); 
 
                 }, error: function (a, b, c) {
@@ -194,16 +186,16 @@ $(document).ready(function () {
 
         $('#myModal_edit').on('click','#btn_edit', function (e) {
             var modal = $('#editForm');
-            var load = modal.find('[name=loadDefault]').val();
-            var loady = true;
-            if (load == false) {
-                loady = false;
+            var retired_str = modal.find('[name=retired]').val();
+            var retired = true;
+            if (retired_str == false) {
+                retired = false;
             }
 
-            var retired = modal.find('[name=sizeOrder]').val();
-            var retired_bool = true;
-            if (retired == false) {
-                retired_bool = false;
+            var loadDef = modal.find('[name=loadDefault]').val();
+            var load = true;
+            if (loadDef == false) {
+                load = false;
             }
 
             var data = {
@@ -215,8 +207,8 @@ $(document).ready(function () {
                 quantityPerAreaLeader: parseInt(modal.find('[name=quantityPerAreaLeader]').val()),
                 sizeColor: parseInt(modal.find('[name=sizeColor]').val()),
                 sizeOrder: parseInt(modal.find('[name=sizeOrder]').val()),
-                loadDefault: loady,
-                retired: retired_bool,
+                loadDefault: load,
+                retired: retired,
                 id: parseInt(selected_row)
             };
             
@@ -246,7 +238,7 @@ function getCorrectDateFormat(date_str) {
 
 
 
-var addEquip = {
+var ed = {
 "editForm":[
         [{
             "fieldName": "equipmentCode",
@@ -300,16 +292,25 @@ var addEquip = {
             "type": "input/text"
         },
         {
-            "fieldName": "retired",
-            "title": "retired",
+            "fieldName": "loadDefault",
+            "title": "Load Default",
             "required": true,
-            "type": "select/text"
+            "type": "select/text",
+            "options": { "true": "yes", "false": "No" }
         }
-    ]
+        ], [
+        {
+                "fieldName": "retired",
+                "title": "retired",
+                "required": true,
+                "type": "select/text",
+                "options": {"true":"yes","false":"No"}
+        }
+        ]
     ]
 };
 
-CustomFormFunctions.addBootstrapFields(addEquip);
+CustomFormFunctions.addBootstrapFields(ed);
 
 
 

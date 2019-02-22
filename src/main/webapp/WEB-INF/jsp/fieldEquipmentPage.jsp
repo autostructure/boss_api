@@ -41,7 +41,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Card Keys Checked Out</h1>
+                                <h1 id="title">Field Equipment</h1>
                             </div>
 							
                         </div>
@@ -50,12 +50,7 @@
                                 <h2 class="title2">Field Equipment List</h2>
                                 <div id="showHide">
 
-									<form id="addEquip"></form><br/>
-									<button id="addEquip" value="Add Equipment" class="btn">Add Equipment</button><br/>
-                                    <div class="form-check" id="viewOldCheckbox">
-                                        <input type="checkbox" id="viewOld" class="form-check-input">
-                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
-                                    </div>       
+        
 									
 
 
@@ -64,38 +59,80 @@
                                         <thead>
                                             <tr>
 
+                                                <th>Equipment Code</th>
+                                                <th>Description</th>                                                
                                                 <th>Category</th>
-                                                <th>Equipment Num</th>
-                                                <th>employee</th>
-                                                <th>Type</th>
-                                                <th>model Num</th>
-                                                <th>Serial Num</th>                                        
-                                                <th>acquistion Date</th>
-                                                <th>make</th>
-												<th>location</th>
-												<th>comments</th>
+                                                <th>Desired Quantity Onhand</th>                                        
+                                                <th>Quantity Per Individual</th>
+                                                <th>Quantity Per Area Leader</th>
+												<th>Size/Color</th>
+												<th>Size Order</th>
+												<th>Load Default</th>
 												<th></th>
 
 
                                             </tr>
                                         </thead>
                                         <tbody>
+											<td col="equipmentCode"></td>
+											<td col="description"></td>
 											<td col="category"></td>
-											<td col="EquipNum"></td>
-											<td col="make"></td>
-											<td col="type"></td>
-											<td col="modelNum"></td>
-											<td col="serialNum"></td>
-											<td col="acquistionDate"></td>
-											<td col="employee"></td>
-											<td col="location"></td>
-											<td col="comments"></td>
+											<td col="desiredQuantOnhand"></td>
+											<td col="quantityPerIndividual"></td>
+											<td col="quantityPerAreaLeader"></td>
+											<td col="sizeColor"></td>
+											<td col="sizeOrder"></td>
+											<td col="loadDefault"></td>
 											<td scope="col"></td>
                                         </tbody>
                                     </table>
+
+
+
+
                                 </div>
                             </div>
                         </div> 
+
+			<div id="myModal_delete" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirmation</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+							<input type="text" hidden=true class="hidden_id" id="hidden_id"></input>
+                            <p>Are you sure you want to delete this field equipment?</p>
+                            <p id="IT_equip_name" class="IT_equip_name"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">No</button>
+                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn btn_pers_remove">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div id="myModal_edit" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirmation</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+							<form id="editForm"></form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">cancel</button>
+                            <button type="button" id="btn_edit" data-dismiss="modal" class="btn btn_edits">Submit Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -109,25 +146,7 @@
 
 
 
-            <div id="myModal_delete" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Confirmation</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure you want to delete this employee?</p>
-                            <p id="employeeName_deleteModal"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">No</button>
-                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn btn_pers_remove">Yes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </main>
 

@@ -19,18 +19,81 @@ var supervisor = false;
 
 
 $(document).ready(function () {
-    populateDataTable(fakeData);
 
+
+
+    $.ajax({
+        url: '/boss/beacon',
+        type: 'GET',
+        cache: false,
+        success: function (json) {
+            if (json.length == 0) {
+                debugger;
+
+                var emp;
+                $.ajax({
+                    url: '/boss/employeeProfile/47',
+                    type: 'GET',
+                    cache: false,
+                    async: false,
+                    success: function (json) {
+                        emp = json;
+                    },
+                    error: function (a, b, c) {
+                        console.log(a.responseText);
+                    }
+                });
+
+                var auxDat = [];
+                auxDat.push('line 1');
+                auxDat.push('line 2');
+                auxDat.push('line 3');
+                auxDat.push('line 4');
+                auxDat.push('line 5');
+                auxDat.push('line 6');
+
+
+                var beaconData = {
+                    "assignedEmployee": emp,
+                    "auxData": auxDat,
+                    "batteryExpDate": getCorrectDateFormat(new Date().getTime()),
+                    "beaconPassword": "12345",
+                    "checkoutBy": emp,
+                    "purchaseDate": getCorrectDateFormat(new Date().getTime()),
+                    "recordedChecoutDate": getCorrectDateFormat(new Date().getTime()),
+                    "registerDate": getCorrectDateFormat(new Date().getTime()),
+                    "serialNumber": "1234",
+                    "unitNumber": "324"
+                };
+                debugger;
+                $.ajax({
+                    url: '/boss/beacon',
+                    type: 'POST',
+                    cahce: false,
+                    contentType: 'application/json',
+                    data: beaconData,
+                    success: function (json) {
+                        location.reload();
+                    }, error: function (a, b, c) {
+                        console.log(a.responseText);
+                    }
+                });
+            } else {
+                populateDataTable(json);
+            }
+        }, error: function (a, b, c) {
+            console.log(a.responseText);
+        }
+    });
 
     function populateDataTable(jsonData) {
-        console.log(jsonData);
-
+        
         var table = $('#fieldEquip').DataTable({
            // 'bPaginate': false,
             'data': jsonData,
            // 'dom': 'Bfti',
             'columns': [{
-                'data': "beacon"
+                'data': "unitNumber"
 
             },
             {
@@ -98,13 +161,38 @@ $(document).ready(function () {
 
         $('.auxBtn').on('click', function (e) {
             var row = $(this).attr('data-value');
-            var modal = $('#myModal_auxInfo');
-            modal.find('[name=line_one]').val(fakeAuxData.lineOne);
-            modal.find('[name=line_two]').val(fakeAuxData.lineTwo);
-            modal.find('[name=line_three]').val(fakeAuxData.lineThree);
-            modal.find('[name=line_four]').val(fakeAuxData.lineFour);
-            modal.find('[name=line_five]').val(fakeAuxData.lineFive);
-            modal.find('[name=line_six]').val(fakeAuxData.lineSix);
+            $.ajax({
+                url: '/boss/beacon/' + row,
+                type: 'GET',
+                cache: false,
+                success: function (json) {
+                    var modal = $('#myModal_auxInfo');
+                    var x = 0;
+                    var auxForm = { "auxInfo": [] };
+                    $.each(json.auxData, function (index, value) {
+                        var tempAddon = [{
+                            "fieldName": "line_" + x,
+                            "title": "line " + x,
+                            "placeholder": "",
+                            "type": "input/text",
+                            "readonly": true,
+                            "colspan": 12,
+                            "value": value
+                        }];
+                        auxForm.auxInfo.push(tempAsson);
+                        debugger;
+                    });
+                    CustomFormFunctions.addBootstrapFields(auxForm);
+                    
+                    
+
+                    
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+
+            });
+
         });
 
 
@@ -112,11 +200,16 @@ $(document).ready(function () {
     }
 });
 
+function getCorrectDateFormat(date_str) {
+    var date = new Date(date_str);
+    return date.toISOString();
+}
 
-var aux = {
+
+/*var aux = {
     "auxInfo": [
         [{
-            "fieldName": "line_one",
+            "fieldName": "line_1",
             "title": "line one",
             "placeholder": "",
             "type": "input/text",
@@ -124,7 +217,7 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_two",
+            "fieldName": "line_2",
             "title": "Line Two",
             "placeholder": "",
             "type": "input/text",
@@ -132,14 +225,14 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_three",
+            "fieldName": "line_3",
             "title":"Line Three",
             "readonly": true,
             "type": "input/text",
             "colspan": 12
         }],
         [{
-            "fieldName": "line_four",
+            "fieldName": "line_4",
             "title": "Line Four",
             "placeholder": "",
             "type": "input/text",
@@ -147,7 +240,7 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_five",
+            "fieldName": "line_5",
             "title": "Line Five",
             "placeholder": "",
             "type": "input/text",
@@ -155,7 +248,7 @@ var aux = {
             "colspan": 12
         }],
         [{
-            "fieldName": "line_six",
+            "fieldName": "line_6",
             "title": "Line Six",
             "placeholder": "",
             "type": "input/text",
@@ -165,7 +258,7 @@ var aux = {
     ]
 }
 
-CustomFormFunctions.addBootstrapFields(aux);
+CustomFormFunctions.addBootstrapFields(aux);*/
 
 
 

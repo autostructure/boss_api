@@ -19,8 +19,60 @@ var supervisor = false;
 
 
 $(document).ready(function () {
-    populateDataTable(fakeData);
+    $.ajax({
+        url: '/boss/beacon',
+        type: 'GET',
+        cache: false,
+        success: function (json) {
+            if (json.length == 0) {
+                var emp;
+                $.ajax({
+                    url: '/boss/employeeProfile/47',
+                    type: 'GET',
+                    cache: false,
+                    async: false,
+                    success: function (j) {
+                        emp = j;
+                    }, error: function (a, b, c) {
+                        console.log(a.responseText);
+                    }
+                });
 
+
+                var temp_beacon = {
+                    "assignedEmployee": emp,
+                    "auxData": [
+                        "string","string"
+                    ],
+                    "batteryExpDate": "2019-02-22T06:09:17.444Z",
+                    "beaconPassword": "string",
+                    "checkoutBy": emp,
+                    "id": 0,
+                    "purchaseDate": "2019-02-22T06:09:17.445Z",
+                    "recordedCheckoutDate": "2019-02-22T06:09:17.445Z",
+                    "registerDate": "2019-02-22T06:09:17.445Z",
+                    "serialNumber": "string",
+                    "unitNumber": "string"
+                };
+
+                $.ajax({
+                    url: '/boss/beacon',
+                    type: 'POST',
+                    cache: false,
+                    contentType: 'application/json',
+                    data: JSON.stringify(temp_beacon),
+                    success: function (j) {
+                        location.reload();
+                    }, error: function (a, b, c) {
+                        console.log(a.responseText);
+                    }
+                });
+            }
+            populateDataTable(json);
+        }, error: function (a, b, c) {
+            console.log(a.responseText);
+        }
+    });
 
     function populateDataTable(jsonData) {
         console.log(jsonData);

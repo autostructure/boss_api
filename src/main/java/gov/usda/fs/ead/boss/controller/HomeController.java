@@ -244,6 +244,43 @@ public class HomeController {
         return "viewPhones";
     }
 
+	@RequestMapping("/beaconInreach")
+    public String beaconInreach() {
+        return "beaconInreach";
+    }
+
+	@RequestMapping("/beaconInreachCheckout")
+    public String beaconInreachCheckout() {
+        return "beaconInreachCheckout";
+    }
+
+	@RequestMapping("/cardsAndKeysPropMgt")
+    public String cardsAndKeysPropMgt() {
+        return "cardsAndKeysPropMgt";
+    }
+
+	@RequestMapping("/ITEquipment")
+    public String ITEquipment() {
+        return "ITEquipment";
+    }
+
+	@RequestMapping("/operatorLicenses")
+    public String operatorLicenses() {
+        return "operatorLicenses";
+    }
+
+	@RequestMapping("/fieldEquipmentPage")
+    public String fieldEquipmentPage() {
+        return "fieldEquipmentPage";
+    }
+
+	@RequestMapping("/fieldEquipmentRetired")
+    public String fieldEquipmentRetired() {
+        return "fieldEquipmentRetired";
+    }
+
+
+
 
 	    
 }
