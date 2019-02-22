@@ -75,8 +75,9 @@ $(document).ready(function () {
                             console.log(a.responseText);
                         }
                     });
-                    return 'recorded on ' + data.recordedCheckoutDate + ' by ' + emp.lastName + ', ' + emp.firstName;
+                    return 'recorded on ' + CustomFormFunctions.formatDate(data.recordedCheckoutDate, 'bootstrap') + ' by ' + emp.lastName + ', ' + emp.firstName;
                 }
+        
 
             }, {
                 'data': null,

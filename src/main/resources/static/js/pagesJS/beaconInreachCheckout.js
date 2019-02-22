@@ -52,16 +52,25 @@ $(document).ready(function () {
                 },
 
                 {
-                    'data': 'batteryExpDate'
+                    'data': 'batteryExpDate',
+                    'render': function (data, type, row) {
+                        return CustomFormFunctions.formatDate(data, 'bootstrap');
+                    }
                 },
                 {
-                    'data': 'purchaseDate'
+                    'data': 'purchaseDate',
+                    'render': function (data, type, row) {
+                        return CustomFormFunctions.formatDate(data, 'bootstrap');
+                    }
                 },
                 {
                     'data': 'beaconPassword'
                 },
                 {
-                    'data': 'registerDate'
+                    'data': 'registerDate',
+                    'render': function (data, type, row) {
+                        return CustomFormFunctions.formatDate(data, 'bootstrap');
+                    }
                 }
                 /*,
                 {
