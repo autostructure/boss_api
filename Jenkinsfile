@@ -25,7 +25,7 @@ node {
 
     withSonarQubeEnv('Sonatype Server') {
       // requires SonarQube Scanner for Maven 3.2+
-      buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean package spring-boot:repackage spotbugs:spotbugs pmd:pmd checkstyle:checkstyle sonar:sonar'
+      buildInfoInstall = artifactoryMaven.run pom: 'pom.xml', goals: 'clean install spring-boot:repackage'
     }
 
     buildInfo.append(buildInfoInstall)
