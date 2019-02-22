@@ -93,13 +93,13 @@ $(document).ready(function () {
                 }
             }
             ],
-            'buttons': [{
+            'buttons': [/*{
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
                 action: function () {
                     window.location.href = '/addTrainingEmployee';
                 },
                 className: 'table-btns add-btn'
-            },
+            },*/
             {
                 text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
                 action: function () {

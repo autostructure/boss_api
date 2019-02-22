@@ -155,7 +155,10 @@ $(document).ready(function () {
                     modal.find('[name=quantityPerAreaLeader]').val(json.quantityPerAreaLeader);
                     modal.find('[name=sizeColor]').val(json.sizeColor);
                     modal.find('[name=sizeOrder]').val(json.sizeOrder);
-                    modal.find('[name=loadDefault]').val(json.loadDefault);
+                    //modal.find('[name=loadDefault]').val(json.loadDefault);
+                    //modal.find('[name=retired]').val(json.retired);
+                    modal.find("[name=retired] option[value=" + json.retired + "]").attr('selected', 'selected');
+                    modal.find("[name=loadDefault] option[value=" + json.loadDefault + "]").attr('selected', 'selected');
                     
                     $('#myModal_edit').modal('toggle'); 
 
@@ -167,15 +170,15 @@ $(document).ready(function () {
 
         $('#myModal_edit').on('click','#btn_edit', function (e) {
             var modal = $('#editForm');
-            var load = modal.find('[name=loadDefault]').val();
+            var load = modal.find('[name=loadDefault] :selected').val();
             var loady = true;
-            if (load == false) {
+            if (load == "false") {
                 loady = false;
             }
 
-            var retired = modal.find('[name=sizeOrder]').val();
+            var retired = modal.find('[name=retired] :selected').val();
             var retired_bool = true;
-            if (retired == false) {
+            if (retired == "false") {
                 retired_bool = false;
             }
 
@@ -271,12 +274,20 @@ var addEquip = {
             "title": "Size Order",
             "required": true,
             "type": "input/text"
-        },
+        }],[
         {
             "fieldName": "retired",
             "title": "retired",
             "required": true,
-            "type": "select/text"
+            "type": "select/text",
+            "options": {"true":"Yes","false":"No"}
+        },
+        {
+            "fieldName": "loadDefault",
+            "title": "Load Default",
+            "required": true,
+            "type": "select/text",
+            "options": { "true": "Yes", "false": "No" }
         }
     ]
     ]
