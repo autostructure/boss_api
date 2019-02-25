@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import gov.usda.fs.ead.boss.exception.ResourceNotFoundException;
 import gov.usda.fs.ead.boss.model.Beacon;
+import gov.usda.fs.ead.boss.model.CardOrKey;
 import gov.usda.fs.ead.boss.model.CellPhone;
 import gov.usda.fs.ead.boss.model.FieldEquipment;
 import gov.usda.fs.ead.boss.model.ITEquipment;
@@ -23,6 +24,7 @@ import gov.usda.fs.ead.boss.model.Vehicle;
 import gov.usda.fs.ead.boss.model.VehicleCost;
 import gov.usda.fs.ead.boss.model.VehicleMaintenanceRecord;
 import gov.usda.fs.ead.boss.repository.BeaconRepository;
+import gov.usda.fs.ead.boss.repository.CardOrKeyRepository;
 import gov.usda.fs.ead.boss.repository.CellPhoneRepository;
 import gov.usda.fs.ead.boss.repository.FieldEquipmentRepository;
 import gov.usda.fs.ead.boss.repository.ITEquipmentRepository;
@@ -62,6 +64,9 @@ public class PropertyManagementController {
 
     @Autowired
     ITEquipmentRepository itEquipmentRepository;
+    
+    @Autowired
+    CardOrKeyRepository cardOrKeyRepository;
 
     @PostMapping("/vehicle")
     public ResponseEntity createVehicle(@Valid @RequestBody final Vehicle vehicleDetails) {
@@ -536,6 +541,54 @@ public class PropertyManagementController {
         ITEquipment pfile = itEquipmentRepository.findById(itEquipmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("ITEquipment", "id", itEquipmentId));
         itEquipmentRepository.delete(pfile);
+        return ResponseEntity.ok().build();
+
+    }
+    
+    @PostMapping("/cardOrKey")
+    public ResponseEntity createCardOrKey(@Valid @RequestBody CardOrKey cardOrKeyDetails) {
+
+        cardOrKeyDetails = cardOrKeyRepository.save(cardOrKeyDetails);
+        return new ResponseEntity<>(cardOrKeyDetails, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/cardOrKey")
+    public ResponseEntity getAllCardOrKeys() {
+
+        return new ResponseEntity<>(cardOrKeyRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/cardOrKey/{id}")
+    public ResponseEntity getCardOrKey(@PathVariable(value = "id") Long cardOrKeyId) {
+
+        CardOrKey cardOrKey = cardOrKeyRepository.findById(cardOrKeyId)
+                .orElseThrow(() -> new ResourceNotFoundException("CardOrKey", "id", cardOrKeyId));
+        return new ResponseEntity<>(cardOrKey, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/cardOrKey/{id}")
+    public CardOrKey updateCardOrKey(@PathVariable(value = "id") Long cardOrKeyId,
+            @RequestBody CardOrKey cardOrKeyDetails) {
+
+        cardOrKeyRepository.findById(cardOrKeyId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("CardOrKey", "id", cardOrKeyId);
+                });
+
+        CardOrKey updated = cardOrKeyRepository.save(cardOrKeyDetails);
+        return updated;
+
+    }
+
+    @DeleteMapping("/cardOrKey/{id}")
+    public ResponseEntity<?> deleteCardOrKey(@PathVariable(value = "id") Long cardOrKeyId) {
+
+        CardOrKey pfile = cardOrKeyRepository.findById(cardOrKeyId)
+                .orElseThrow(() -> new ResourceNotFoundException("CardOrKey", "id", cardOrKeyId));
+        cardOrKeyRepository.delete(pfile);
         return ResponseEntity.ok().build();
 
     }
