@@ -54,18 +54,16 @@
                                     <div class="usa-grid usa-buffer-top">
                                         <div class="use-width-one-whole content-div">
                                             <h2 class="title2">Training Course List</h2>
-                                            <div id="showHide">
+                                            <div id="showHideTable">
                                                 <div class="form-check" id="viewOldCheckbox">
                                                     <input type="checkbox" id="viewOld" class="form-check-input">
                                                     <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
                                                 </div>
                                                 <table id="tblCourse" class="usa-table-borderless display" style="width:100%">
                                                     <thead><tr>
-                                                        <th scope="col">Category</th>
                                                         <th scope="col">Title</th>
                                                         <th scope="col">Description</th>
                                                         <th scope="col">Default Years Valid</th>
-                                                        <th scope="col">Years Valid For Crew Leads</th>
                                                         <th id="stop"></th>
                                                     </tr></thead>
                                                     <tbody></tbody>

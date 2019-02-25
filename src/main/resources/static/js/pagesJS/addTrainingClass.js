@@ -14,12 +14,13 @@ $(document).ready(function () {
             'bPaginate':false,
             'data': jsonData,
             'dom':'Bfti',
+            'columnDefs': [
+                { "width": "5%", "targets": 3}
+            ],
             'columns': [
-                {'data':'category', visible:false},
                 {'data':'title'},
                 {'data':'description'},
                 {'data':'defaultYears'},
-                {'data':'defaultYearsLeader', "visible": false},
                 {'data':null,
                     'render':function(data, type, row) {
                         var buttonList = $("#templateButtonList").clone().attr('id','');
@@ -174,13 +175,10 @@ var fields = {
 
             {   "fieldName":"description",
                 "title":"Description",
-                "placeholder":"Brief Description, maybe a sentance long.",
+                "placeholder":"Brief Description",
                 "type":"textarea",
-                "colspan":12,
-                "required":true,
-            }
-        ],
-        [
+                "colspan":6,
+            },
             {   "fieldName":"defaultYears",
                 "title":"Default Years Valid",
                 "placeholder":"years",
@@ -188,13 +186,6 @@ var fields = {
                 "colspan":6,
                 "required":true,
             },
-            {   "fieldName":"defaultYearsLeader",
-                "title":"Years Valid For Crew Leader",
-                "placeholder":"years",
-                "type":"input/number",
-                "colspan":6,
-                "required":true,
-            }
         ]
     ]
 }

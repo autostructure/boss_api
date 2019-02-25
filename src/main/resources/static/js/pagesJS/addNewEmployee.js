@@ -243,35 +243,6 @@ var fields = {
         { "custom": "<hr/>" },
         { "custom": '<h4 class="title3">System Access Level</h4>' },
         [
-            //     {
-            //      "custom" :`
-            //     <div class="form-check form-check-inline">
-            //      <input class="form-check-input" type="radio" name="radioS" id="admin" value="true">
-            //      <label class="form-check-label" for="admin">Admin</label>
-            //    </div>
-            //    <div class="form-check form-check-inline">
-            //      <input class="form-check-input" name="radioS" type="radio" id="office" value="true">
-            //      <label class="form-check-label" for="office">Office</label>
-            //    </div>   
-            //    <div class="form-check form-check-inline">
-            //      <input class="form-check-input" name="radioS" type="radio" id="crewLead" value="true">
-            //      <label class="form-check-label" for="crewLead">Crew Lead</label>
-            //    </div>                       
-            //    <div class="form-check form-check-inline">
-            //      <input class="form-check-input" name="radioS" type="radio" id="support" value="true">
-            //      <label class="form-check-label" for="support">Support</label>
-            //    </div>
-            //    <div class="form-check form-check-inline">
-            //      <input class="form-check-input" name="radioS" type="radio" id="field" value="true">
-            //      <label class="form-check-label" for="field">Field</label>
-            //    </div>           
-            //    <div class="form-check form-check-inline">
-            //      <input class="form-check-input" name="radioS" type="radio" id="owner" value="true">
-            //      <label class="form-check-label" for="owner">Owner</label>
-            //    </div> `                                                          
-            //     } 
-        ],
-        [
             {
                 "fieldName": "role",
                 "title": "User Role / Access",
