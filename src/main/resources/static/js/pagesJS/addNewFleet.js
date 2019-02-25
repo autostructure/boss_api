@@ -205,10 +205,10 @@ var fields = {
       }
       ], [{
         fieldName: "employee",
-        title: "select employee",
+        title: "Assign Employee",
         type: "select/input",
         colspan: 6,
-        placeholder: "select employee"
+        placeholder: "Select Employee"
       }], // end row
     [
       {

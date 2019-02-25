@@ -87,7 +87,7 @@ $('input[type=submit]').on('click', function(e) {
   e.preventDefault();
   // checking form validity
   if ($('#formGeneralInfo:valid').length == 0) {
-    showError('Please ensure all fields are filled out correctly');
+    // showError('Please ensure all fields are filled out correctly');
     return false;
   } else {
     e.preventDefault();

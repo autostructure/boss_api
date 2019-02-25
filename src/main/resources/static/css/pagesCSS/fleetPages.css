@@ -146,7 +146,7 @@ label {
 #submitEC,
 #submitV,
 #viewReports {
-  width: 50%;
+  /* width: 50%; */
   height: 30%;
   font-size: 2em !important;
   margin: 50px auto;

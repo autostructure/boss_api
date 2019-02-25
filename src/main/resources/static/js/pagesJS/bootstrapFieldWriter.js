@@ -79,53 +79,53 @@ function addBootstrapFields(data) {
     var vehClass = $('<select></select>')
       .append('<option value="105">New</option>')
       .append(
-        '<option value="112">4x4 SUV, 4DR, Compact, Hard Top Wagon</option>'
+        '<option value="112">112 | 4x4 SUV, 4DR, Compact, Hard Top Wagon</option>'
       )
-      .append('<option value="160">Pickup HD</option>')
-      .append('<option value="161">Pickup, Crew Cab</option>')
-      .append('<option value="165">Pickup, Gas 4x2</option>')
-      .append('<option value="166">Pickup, Crew Cab, Gas 4x2</option>')
-      .append('<option value="180">Pickup, Gas 4x2</option>')
-      .append('<option value="186">Pickup, Crew Cab, Gas 4x2</option>')
-      .append('<option value="188">Van 4x2</option>')
+      .append('<option value="160">160 | Pickup HD</option>')
+      .append('<option value="161">161 | Pickup, Crew Cab</option>')
+      .append('<option value="165">165 | Pickup, Gas 4x2</option>')
+      .append('<option value="166"> 166 | Pickup, Crew Cab, Gas 4x2</option>')
+      .append('<option value="180">180 | Pickup, Gas 4x2</option>')
+      .append('<option value="186">186 | Pickup, Crew Cab, Gas 4x2</option>')
+      .append('<option value="188">188 | Van 4x2</option>')
       .append(
-        '<option value="201">Utility Vehicle (Expedition, Tahoe) 4x4</option>'
-      )
-      .append(
-        '<option value="217">Utility Vehicle Excursion Diesel 4x4</option>'
-      )
-      .append('<option value="220">Utility, HD</option>')
-      .append('<option value="223">Utility, HD</option>')
-      .append('<option value="224">Carryall, AC</option>')
-      .append('<option value="241">Pickup, Compact Crew</option>')
-      .append('<option value="247">Pickup, Midsize, 4x4</option>')
-      .append(
-        '<option value="253">Utility Vehicle (Cherokee, Bronco) 4x4</option>'
+        '<option value="201">201 | Utility Vehicle (Expedition, Tahoe) 4x4</option>'
       )
       .append(
-        '<option value="255">Utility Vehicle (Expedition, Tahoe) 4x4</option>'
+        '<option value="217">217 | Utility Vehicle Excursion Diesel 4x4</option>'
       )
-      .append('<option value="257">Pickup, Gas 4x4</option>')
-      .append('<option value="261">Pickup, HD Ext Cab</option>')
-      .append('<option value="269">Pickup, HD Ext Cab</option>')
-      .append('<option value="270">Pickup, HD</option>')
-      .append('<option value="280">Pickup, Gas 4x4</option>')
-      .append('<option value="281">Pickup, Gas 4x4</option>')
-      .append('<option value="290">Pickup, Gas 4x4</option>')
+      .append('<option value="220">220 | Utility, HD</option>')
+      .append('<option value="223">223 | Utility, HD</option>')
+      .append('<option value="224">224 | Carryall, AC</option>')
+      .append('<option value="241">241 | Pickup, Compact Crew</option>')
+      .append('<option value="247">247 | Pickup, Midsize, 4x4</option>')
       .append(
-        '<option value="293">Utility Vehicle Excursion Diesel 4x4</option>'
+        '<option value="253">253 | Utility Vehicle (Cherokee, Bronco) 4x4</option>'
       )
-      .append('<option value="49C">Pickup, Gas 4x4</option>')
-      .append('<option value="50">Camp Trailer</option>')
-      .append('<option value="51">ATV Trailer</option>')
-      .append('<option value="52">Flatbed Trailer</option>')
-      .append('<option value="55">Pickup, LD, Gas 4x4</option>')
-      .append('<option value="56C">Pickup, MD, Gas 4x4</option>')
-      .append('<option value="57">Pickup, Full Size</option>')
-      .append('<option value="67E">Pickup, LD, Gas 4x4</option>')
-      .append('<option value="998">Motorcycle</option>')
       .append(
-        '<option value="999">Small 4 Wheeler All Terrain Vehicle</option>'
+        '<option value="255">255 | Utility Vehicle (Expedition, Tahoe) 4x4</option>'
+      )
+      .append('<option value="257">257 | Pickup, Gas 4x4</option>')
+      .append('<option value="261">261 | Pickup, HD Ext Cab</option>')
+      .append('<option value="269">269 | Pickup, HD Ext Cab</option>')
+      .append('<option value="270">270 | Pickup, HD</option>')
+      .append('<option value="280">280 | Pickup, Gas 4x4</option>')
+      .append('<option value="281">281 | Pickup, Gas 4x4</option>')
+      .append('<option value="290">290 | Pickup, Gas 4x4</option>')
+      .append(
+        '<option value="293">293 | Utility Vehicle Excursion Diesel 4x4</option>'
+      )
+      .append('<option value="49C">49C | Pickup, Gas 4x4</option>')
+      .append('<option value="50">50 | Camp Trailer</option>')
+      .append('<option value="51">51 | ATV Trailer</option>')
+      .append('<option value="52">52 | Flatbed Trailer</option>')
+      .append('<option value="55">55 | Pickup, LD, Gas 4x4</option>')
+      .append('<option value="56C">56C | Pickup, MD, Gas 4x4</option>')
+      .append('<option value="57">57 | Pickup, Full Size</option>')
+      .append('<option value="67E">67E | Pickup, LD, Gas 4x4</option>')
+      .append('<option value="998">998 | Motorcycle</option>')
+      .append(
+        '<option value="999">999 | Small 4 Wheeler All Terrain Vehicle</option>'
       );
   }
   {
