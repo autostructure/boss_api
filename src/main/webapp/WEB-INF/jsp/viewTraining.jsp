@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/img/favicons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="img/favicons/favicon.ico" type="image/x-icon">
         <title>FIA-BOSS</title>
         <link rel="stylesheet" href="css/ead.min.css">
         <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
@@ -75,7 +75,7 @@
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">Training List</h2>
 								
-                                <div id="showHide">
+                                <div id="showHideTable">
                                     <div class="form-check" id="viewOldCheckbox">
                                         <input type="checkbox" id="viewOld" class="form-check-input">
                                         <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->

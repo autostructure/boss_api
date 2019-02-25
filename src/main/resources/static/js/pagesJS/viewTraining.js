@@ -20,7 +20,7 @@ $(document).ready(function () {
             userId = json.id;
         },
         error: function(a, b, c) {
-            cosnole.log(a.responseText);
+            console.log(a.responseText);
         }
     });
 
@@ -177,7 +177,7 @@ $(document).ready(function () {
             'buttons': [{
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
                 action: function () {
-                    window.location.href = '/addTrainingEmployee';
+                    window.location.href = '/boss/addTrainingEmployee';
                 },
                 className: 'table-btns add-btn'
             },
