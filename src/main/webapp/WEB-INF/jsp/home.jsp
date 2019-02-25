@@ -31,7 +31,7 @@
                                 <img src="img/budgetBG.jpg" alt="budget mountain picture" class="img-fluid">
                                 <div class="card-title">
                                     <a class="btn btn-link" href="/boss/budgetDash">
-                                        <h5 class="card-title">Budget</h5>
+                                        <h5 class="card-title">Report and <br>Analysis</h5>
                                     </a>
                                 </div>
                                 <div class="card-tbody show" id="collapseOne">

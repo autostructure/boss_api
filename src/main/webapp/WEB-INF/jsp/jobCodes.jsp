@@ -31,9 +31,9 @@
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink" href="../home/home.html">Dashboard |</a>
-                                <!--<a class="breadcrumbLink" href="../budget/budgetDash.html">Budget |</a>-->
-                                <a class="breadcrumbLinkMain" href="../jobCode.html">Job Code Management</a>
+                                <a class="breadcrumbLink" href="/boss/home">Home |</a>
+                                <a class="breadcrumbLink" href="/boss/budgetDash">Report and Analysis Dash |</a>
+                                <a class="breadcrumbLinkMain" href="/boss/jobCodes">Job Code Management</a>
                             </p>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole title-div">
-                                <h1 id="title">Budget</h1>
+                                <h1 id="title">Report and Analysis</h1>
                                 <!-- Trigger the modal with a button -->
                             </div>
                             <div id="success" class="alert alert-success" role="alert">

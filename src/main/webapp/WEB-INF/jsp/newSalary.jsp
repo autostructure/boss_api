@@ -23,14 +23,14 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img src="img/mountain.jpg" alt="Banner Image">
+                        <img class="bannerImg" src="img/mountain.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink" href="../home/home.html">Dashboard |</a>
-                                <a class="breadcrumbLink" href="../budget/payrollDetails.html">Payroll |</a>
-                                <a class="breadcrumbLinkMain" href="../budget/newSalary.html">New Salary</a>
+                                <a class="breadcrumbLink" href="/boss/home">Home |</a>
+                                <a class="breadcrumbLink" href="/boss/budgetDash">Report and Analysis Dash |</a>
+                                <a class="breadcrumbLinkMain" href="/boss/newSalary">New Salary</a>
                             </p>
                         </div>
                     </div><!-- end of breadcrumbs _-->

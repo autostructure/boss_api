@@ -29,8 +29,8 @@
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
-                                <a class="breadcrumbLink" href="../home/home.html">Dashboard |</a>
-                                <a class="breadcrumbLinkMain" href="../budget/budgetDash.html">Budget Dashboard</a>
+                                <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
+                                <a class="breadcrumbLinkMain" href="/boss/budgetDash">Report and Analysis Dashboard</a>
                             </p>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole title-div">
-                                <h1 id="title">Budget Dashboard</h1>
+                                <h1 id="title">Report and Analysis Dashboard</h1>
                                 <!-- Trigger the modal with a button -->
                             </div>
                             <div class="row chartHolder">

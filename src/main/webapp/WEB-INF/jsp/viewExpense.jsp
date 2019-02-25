@@ -31,13 +31,9 @@
                 class="breadcrumb"
                 style="float: right; margin-right: 10px; font-size:1.3em;"
               >
-                <a class="breadcrumbLink" href="../home/home.html"
-                  >Dashboard |</a
-                >
-                <!--<a class="breadcrumbLink" href="../budget/budgetDash.html">Budget |</a>-->
-                <a class="breadcrumbLinkMain" href="../viewExpense.html"
-                  >View Expenses</a
-                >
+              <a class="breadcrumbLink" href="/boss/home">Home |</a>
+              <a class="breadcrumbLink" href="/boss/budgetDash">Report and Analysis Dash |</a>
+              <a class="breadcrumbLinkMain" href="/boss/viewExpense">View Expense</a>
               </p>
             </div>
           </div>
