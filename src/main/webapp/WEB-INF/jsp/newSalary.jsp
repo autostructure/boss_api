@@ -8,7 +8,7 @@
         <title>FIA-BOSS</title>
         <link rel="stylesheet" href="css/ead.min.css">
         <link rel="stylesheet" href="css/pagesCSS/all.css">
-        <link rel="stylesheet" href="css/pagesCSS/newSalary.css">
+        <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
     </head>
 
     <body class="layout-demo">

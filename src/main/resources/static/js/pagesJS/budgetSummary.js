@@ -32,7 +32,6 @@ $(document).ready(function () {
         $(this).html('<label class="headLabel" for="jcode">Job Code</label><input type="text" id="jcode" class="headSearch" placeholder="Search Job Code" />');
     });
     var api = "/boss/budgetSummary/json/";
-    var slash = "/boss/";
     $('#selectForm').submit(function (e) {
         $('#showHide').css('visibility', 'visible');
         e.preventDefault();
@@ -48,7 +47,7 @@ $(document).ready(function () {
                     "orderable": false
                 }],
             ajax: {
-                "url": api + yr + slash + "all",
+                "url": api + yr + "/all",
                 dataSrc: "rows",
             },
             bProcessing: true,

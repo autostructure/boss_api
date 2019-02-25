@@ -8,6 +8,8 @@
 }
 .usa-grid{
     padding: 0px;
+    min-width: 90%;
+    max-width: 100%;
 }
 .usa-section1{
     padding-top: 0px !important;
@@ -15,17 +17,13 @@
     max-width: 100%;
     background-color: rgba(193, 193, 193, 0.02);
 }
-.usa-grid{
-    min-width: 90%;
-    max-width: 100%;
-}
 .container{
     min-width: 90%;
     max-width: 100%;
 }
 
 .breadcrumbLinkMain{
-    color: #39679b !important;
+    color: #006633 !important;
 }
 .bannerImg{
     min-width: 100%;
@@ -37,11 +35,11 @@
 }
 .nav-tabs .nav-link.active{
     border-color: #ddd #ddd #fff;
-    border-top-color: #39679b;
+    border-top-color: #006633;
     border-right-color: rgb(221, 221, 221);
     border-bottom-color: rgb(255, 255, 255);
     border-left-color: rgb(221, 221, 221);
-    color: #39679b !important;
+    color: #006633 !important;
 }
 .nav-tabs .nav-link{
     border: 3px solid transparent;
@@ -58,9 +56,6 @@ hr.break{
 label{
     font-size: 1.3em;
 }
-input, select{
-    font-size: 1.4em !important;
-}
 #submitGen{
     margin-top: 50px;
     margin-left: 30px;
@@ -68,17 +63,14 @@ input, select{
 .reqClass{
     color: red;
 }
-.btn-success{
-    background-color: #39679b;
-    border-color: #39679b;
-}
+
 .title-div {
     margin-top: 50px !important;
 }
 #title{
     font-size: 4.0em;
     font-weight: 100;
-    border-bottom: 2px solid #39679b;
+    border-bottom: 2px solid #006633;
     font-family: lightFont;
     padding-bottom: 10px;
 }
@@ -87,28 +79,28 @@ input, select{
     font-family: mainFont;
     text-shadow: none;
     font-size: 2.5rem;
-    border-bottom: 8px solid #39679b;
+    border-bottom: 8px solid #006633;
     margin-bottom: 0px;
 }
 .title3{
     margin-top: 30px;
     font-size: 2.2em;
-    border-bottom: 1px solid #39679b;
+    border-bottom: 1px solid #006633;
 }
 .title4{
     margin-top: 30px;
-    border-bottom: 1px solid #39679b;
+    border-bottom: 1px solid #006633;
     padding-bottom: 10px;
     font-size: 1.7em;
-    color: #39679b;
+    color: #006633;
 }
 .title5{
     margin-top: 30px;
     font-size: 2.0em;
-    border-bottom: 1px solid #39679b;
+    border-bottom: 1px solid #006633;
 }
 .noUline{
-    color: #39679b !important;
+    color: #006633 !important;
 }
 
 .alert {
@@ -252,7 +244,7 @@ td, th{
 
 /* record employee training */
 .btn_pers_copy{
-    background-color: #39679b;
+    background-color: #006633;
     font-size: 1.2em;
 }
 .btn_pers_copy:hover{
@@ -276,9 +268,6 @@ td, th{
     background-color: rgba(255, 255, 255, 0.481);
     border-radius: 7px;
     border-color: rgba(255, 255, 255, 0.481);
-}
-.bannerImg{
-    min-width: 100%;
 }
 /* all employees table */
 #allEmployees_wrapper > div.dt-buttons{
@@ -368,16 +357,13 @@ td, th{
 }
 .modal-header{
     color: white;
-    background-color: #39679b;
+    background-color: #006633;
     text-align: center;
     font-size: 1.5em;
 }
 .modal-body{
     padding: 20px;
     text-align: center;
-}
-.modal-title{
-    font-size: 2.0em;
 }
 .close{
     color: white;
@@ -457,7 +443,7 @@ td, th{
     font-size: 1.4em;
 }
 .list-group-item > a{
-    color: #39679b;
+    color: #006633;
 }
 
 #btn_add_aux{
@@ -472,17 +458,14 @@ td, th{
 #form_training_upload_file{
     font-size: 12px !important;
 }
-.modal-title{
-    font-size: 26px !important; 
-    text-align: center;
-}
+
 #myModal_contact > div > div > div.modal-body{
     font-size: 12px !important;
 }
 .contactClass{
     font-size: 1.3em;
     margin-top: 25px;
-    border-bottom: 1px solid #39679b;
+    border-bottom: 1px solid #006633;
     padding-bottom: 5px;
 }
 #myModal_contact > div > div > div.modal-body > label{
@@ -570,4 +553,263 @@ form [type=submit] {
     display: inline-block;
     margin-bottom: 1.5em;
     margin-top: 2.5rem;
+}
+
+.wrapper {
+    display: flex !important;
+  }
+
+
+  /* new code below
+   */
+
+
+input[type=search] {
+    padding: 0px 10px;
+    font-size: 1.2em;
+}
+
+#expense_info, #expense_paginate, #expense_filter, #expense_length{
+    padding: 20px 20px;
+}
+#expense_filter{
+    position: absolute;
+    top: -85px;
+    right: 10px;
+}
+
+#expense{
+    margin-top: 40px;
+}
+#expense_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -95px;
+    right: 10px;
+}
+
+#expense_filter > label{
+    font-size: 1.5em;
+}
+
+.headSearch{
+    width: 100%;
+    text-align: center;
+    font-size: .9em;
+}
+
+/* newexpense below */
+
+textarea{
+    height: 8rem;
+}
+
+#travelDetails{
+    border: .5px solid rgb(202, 202, 202);
+    border-radius: 15px;
+    box-shadow: 5px 10px 10px rgba(111, 111, 111, 0.4);
+    padding: 20px;
+}
+.sequence{
+    float: right;
+    padding-top: 20px;
+    font-size: 1.5em;
+}
+
+.nav-tabs .nav-link.active{
+    border-color: #ddd #ddd #fff;
+    border-top-color: #006633;
+    border-right-color: rgb(221, 221, 221);
+    border-bottom-color: rgb(255, 255, 255);
+    border-left-color: rgb(221, 221, 221);
+    color: #006633 !important;
+}
+.nav-tabs .nav-link{
+    border: 3px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+#contact-tab a[aria-expanded="false"]::before, #contact-tab a[aria-expanded="true"]::before,
+#time-tab a[aria-expanded="false"]::before, #time-tab a[aria-expanded="true"]::before,
+#visa-tab a[aria-expanded="false"]::before, #visa-tab a[aria-expanded="true"]::before,
+#other-tab a[aria-expanded="false"]::before, #other-tab a[aria-expanded="true"]::before
+
+{
+    display: none !important;
+}
+.bottomBL{
+    border-top: 1px solid rgba(111, 111, 111, 0.4);
+    border-bottom: 1px solid rgba(111, 111, 111, 0.4);
+    border-right: 1px solid rgba(111, 111, 111, 0.4);
+}
+.bottomBR{
+    border-top: 1px solid rgba(111, 111, 111, 0.4);
+    border-bottom: 1px solid rgba(111, 111, 111, 0.4);
+    border-left: 1px solid rgba(111, 111, 111, 0.4);
+}
+#detailsTable{
+    padding: 20px;
+}
+select {
+    background-image: url('../../img/arrow-down.png') !important;
+    background-position: right 1.3rem center;
+    background-repeat: no-repeat;
+    background-size: 0.8rem !important;
+}
+input, select{
+    font-size: 1.2em;
+}
+.remarks{
+    padding: 0px 20px;
+    margin-bottom: 24px;
+    font-size: 1.4em;
+}
+.submitbtn{
+    width: 100%;
+    margin: 20px auto;
+    font-size: 2.3em;
+}
+.submitrow{
+    margin-top: 20px;
+    background-color: rgb(225, 225, 225);
+}
+.form-control{
+    font-size: 1.2em !important;
+}
+th, td{
+    border: none !important;
+    font-size: 1.3em;
+    text-align: center;
+    vertical-align: middle !important;
+}
+th{
+    color: #006633;
+}
+thead{
+    border-bottom: 2px solid #006633;
+}
+.btn-success{
+    background-color: #006633;
+    border-color: #006633;
+}
+#leftdetailcol{
+    border-right: 1px solid rgba(111, 111, 111, 0.4);
+}
+
+.addbtn{
+    margin-right: 5px;
+    box-sizing: inherit;
+    vertical-align: text-bottom;
+    font-size: 1.3em;
+}
+.topLabel{
+    margin-top: 0px !important;
+}
+
+.reqText{
+    padding: 10px 20px 0px 20px;
+    font-size: 1.3em;
+}
+.shaded{
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: 3px;
+    background-color: rgb(230, 230, 230);
+    color: black;
+    padding: 5px;
+}
+
+/* budgetsummary */
+
+#budget_info, #budget_paginate, #budget_filter, #budget_length{
+    padding: 20px 20px;
+}
+#budget_filter{
+    position: absolute;
+    top: -85px;
+    right: 10px;
+}
+
+#budget_wrapper > div.dt-buttons{
+    position: absolute;
+    top: -55px;
+    right: 10px;
+}
+.headLabel{
+    font-size: 1.0em !important;
+}
+
+#budget_filter > label{
+    font-size: 1.5em;
+}
+#showHide{
+    visibility: hidden;
+}
+
+table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+    position: absolute;
+    color: #ababab;
+    top: 25px;
+    right: 0px;
+    display: block;
+    font-family: FontAwesome;
+}
+
+form [type=submit] {
+    display: block;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.serLabel{
+    font-size: 1.2em;
+}
+
+#myModal > div > div{
+    padding: 0px !important;
+}
+#myModal > div > div > div.modal-header{
+    background-color: #006633;
+    min-height: 50px;
+}
+#myModal > div > div > div.modal-body{
+    min-height: 180px;
+}
+#myModal > div > div > div.modal-body > div > h4{
+    margin: auto;
+    font-size: 2.0em;
+    padding-top: 80px;
+}
+.modal-title{
+    margin: auto;
+    color: white;
+    font-size: 2.5em;
+}
+
+/* hrdash */
+#budget{
+    margin-top: 40px;
+}
+
+.chartHolder{
+    width: 100%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.qlinks{
+    border: 1px solid rgba(33, 33, 33, .2);
+    border-radius: 5px;
+    height: 366px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 3px 5px 15px rgba(33, 33, 33, .2);
+}
+
+.quickLinks{
+    padding: 10px;
+    font-size: 1.3em;
+}
+.titleq {
+    font-size: 1.8em;
+    border-bottom: 2px solid #ff6200;
+    padding: 15px;
 }

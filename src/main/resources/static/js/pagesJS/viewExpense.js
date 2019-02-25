@@ -1,17 +1,5 @@
 var api = "/boss/expense";
 
-// ONCE WE LOAD SOME DATA, NEED TO TURN AJAX URL AND REMOVE VAR
-
-// var dataSet = [
-// [ "FS", "HD", "LaneyM", "FEDEX", "05","2019", "FRF13818", "26", "12,000,000", "2011/07/25" ],
-// [ "SF", "TD", "LazerasS", "UPS", "05", "2019","FRF13818", "26", "1,877", "2011/07/25" ],
-// [ "DS", "GD", "RussellM", "AZ", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
-// [ "RS", "AD", "BlancD", "UPS", "05", "2019","FRF13818", "26", "100", "2011/07/25" ],
-// [ "R", "DD", "ThomH", "DISCOUNT STORAGE", "05", "2016","FRF13818", "26", "12,000", "2011/07/25" ],
-// [ "K", "D", "CharioniD", "UPS", "05", "2019","FRF13818", "26", "12,000,000", "2011/07/25" ],
-
-// ];
-
 $(document).ready(function () {
 
     try {
@@ -34,7 +22,7 @@ $(document).ready(function () {
         url: api,
         type: "GET",
         success: function (json) {
-            setJsonTable(json);
+            setJsonTable();
         },
         error(xhr, status, error) {
             setJsonTable(null);
@@ -74,7 +62,7 @@ $(document).ready(function () {
                     }
 
                 ],
-                data: expense_test,
+                data: json,
                 aoColumns: [
                     {mData: "actCode"},
                     {mData: "secCode"},
@@ -86,22 +74,6 @@ $(document).ready(function () {
                     {mData: "expCode"},
                     {mData: "total"},
                     {mData: "obligatedDate"}
-                    //{data: null,
-                    //    "render": function(){
-                    //        return `
-                    //        <div>
-                    //            <div class="dropdown1">
-                    //            <button class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
-                    //            <div class="dropdown-content1">
-                    //            <a href="#">View expense details</a>
-                    //            <a href="#">Edit expense</a>
-                    //            <a href="#">Delete expense</a>
-                    //            </div>
-                    //        </div>
-                    //      </div>
-
-                    //        `
-                    //    }
                 ]
             });
 

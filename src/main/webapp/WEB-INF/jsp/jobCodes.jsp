@@ -8,7 +8,7 @@
         <title>FIA-BOSS</title>
         <link rel="stylesheet" href="css/ead.min.css">
         <link rel="stylesheet" href="css/pagesCSS/all.css">
-        <link rel="stylesheet" href="css/pagesCSS/jobCode.css">
+        <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
 
     </head>
 
@@ -26,7 +26,7 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img src="/boss/img/birch.jpg" alt="Banner Image">
+                        <img class="bannerImg" src="/boss/img/birch.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">

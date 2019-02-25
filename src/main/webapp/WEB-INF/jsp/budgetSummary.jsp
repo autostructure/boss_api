@@ -8,7 +8,7 @@
         <title>FIA-BOSS</title>
         <link rel="stylesheet" href="css/ead.min.css">
         <link rel="stylesheet" href="css/pagesCSS/all.css">
-        <link rel="stylesheet" href="css/pagesCSS/budgetSummary.css">
+        <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
     </head>
 
     <body class="layout-demo">
@@ -24,13 +24,12 @@
 
                 <section class="usa-section1">
                     <header class="main-header" role="banner">
-                        <img src="/boss/img/wildflower.jpg" alt="Banner Image">
+                        <img class="bannerImg" src="/boss/img/wildflower.jpg" alt="Banner Image">
                     </header>
                     <div class="usa-grid">
                         <div class="usa-width-one-whole">
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink" href="../home/home.html">Dashboard |</a>
-                                <!--<a class="breadcrumbLink" href="../budget/budgetDash.html">Budget |</a>-->
                                 <a class="breadcrumbLinkMain" href="../budgetSummary.html">Budget Summary</a>
                             </p>
                         </div>
@@ -53,18 +52,6 @@
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
-                                        <!-- <div class="col">
-                                            <div class="form-group">
-                                                <label class="serLabel" for="verif">Choose Type<span class="reqClass"> *</span></label>
-                                                <select required class="form-control" name="verif" id="verif">
-                                                    <option value="">Choose Type</option>
-                                                    <option value="all">All</option>
-                                                    <option value="verified">Verified</option>
-                                                    <option value="unverified">Unverified</option>
-                                                </select>                                                                        
-                                                <div class="help-block with-errors"></div>
-                                            </div>
-                                        </div> -->
                                     </div>                                                                
                                     <div class="row">
                                         <div class="col-md-4 offset-md-4">
