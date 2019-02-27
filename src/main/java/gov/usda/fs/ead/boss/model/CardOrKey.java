@@ -34,14 +34,6 @@ public class CardOrKey implements Serializable {
     @Column(name = "GovtId")
     private String govtId;
     
-    @Temporal(TemporalType.DATE)
-    @Column(name = "LincPassExpiration")
-    private Date lincPassExpiration;
-    
-    @Temporal(TemporalType.DATE)
-    @Column(name = "LastUpdated")
-    private Date lastUpdated;
-    
     @Enumerated(EnumType.STRING)
     @Column(name="KeyType")
     private KeyType keyType;
@@ -77,34 +69,6 @@ public class CardOrKey implements Serializable {
      */
     public void setGovtId(String govtId) {
         this.govtId = govtId;
-    }
-
-    /**
-     * @return the lincPassExpiration
-     */
-    public Date getLincPassExpiration() {
-        return lincPassExpiration;
-    }
-
-    /**
-     * @param lincPassExpiration the lincPassExpiration to set
-     */
-    public void setLincPassExpiration(Date lincPassExpiration) {
-        this.lincPassExpiration = lincPassExpiration;
-    }
-
-    /**
-     * @return the lastUpdated
-     */
-    public Date getLastUpdated() {
-        return lastUpdated;
-    }
-
-    /**
-     * @param lastUpdated the lastUpdated to set
-     */
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
     }
 
     /**
