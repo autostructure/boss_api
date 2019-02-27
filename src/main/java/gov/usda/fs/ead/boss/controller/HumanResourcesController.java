@@ -36,6 +36,7 @@ import gov.usda.fs.ead.boss.model.DeliberativeRiskAssessmentCourse;
 import gov.usda.fs.ead.boss.model.DutyStation;
 import gov.usda.fs.ead.boss.model.EmployeeProfile;
 import gov.usda.fs.ead.boss.model.EmployeeProfileListMinimalSerializer;
+import gov.usda.fs.ead.boss.model.NonIwfia;
 import gov.usda.fs.ead.boss.model.UploadedDocument;
 import gov.usda.fs.ead.boss.model.Training;
 import gov.usda.fs.ead.boss.model.TrainingCourse;
@@ -50,6 +51,7 @@ import gov.usda.fs.ead.boss.repository.EmployeeProfileRepository;
 import gov.usda.fs.ead.boss.repository.TrainingCourseRepository;
 import gov.usda.fs.ead.boss.repository.TrainingRepository;
 import gov.usda.fs.ead.boss.repository.UploadedDocumentRepository;
+import gov.usda.fs.ead.boss.repository.NonIwfiaRepository;
 import gov.usda.fs.ead.boss.upload.UploadFileResponse;
 import gov.usda.fs.ead.boss.upload.UploadService;
 import org.modelmapper.ModelMapper;
@@ -89,6 +91,9 @@ public class HumanResourcesController {
 
     @Autowired
     UploadService uploadService;
+    
+    @Autowired
+    NonIwfiaRepository nonIwfiaRepository;
     
     @Autowired
     private ModelMapper modelMapper;
@@ -609,6 +614,54 @@ public class HumanResourcesController {
         uploadedDocumentRepository.deleteById(cert.getDocumentId());
         certificateRepository.delete(cert);
 
+        return ResponseEntity.ok().build();
+
+    }
+    
+    // non IWFIA Users
+    
+     @GetMapping("/nonIwfia")
+    public ResponseEntity getAllNonIwfias() {
+
+        return new ResponseEntity<>(nonIwfiaRepository.findAll(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/nonIwfia/{id}")
+    public NonIwfia getNonIwfiaById(@PathVariable(value = "id") Long nonIwfiaId) {
+        return nonIwfiaRepository.findById(nonIwfiaId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("NonIwfia", "id", nonIwfiaId);
+                });
+    }
+
+    @PostMapping("/nonIwfia")
+    public ResponseEntity createNonIwfia(@Valid @RequestBody NonIwfia nonIwfia) {
+        nonIwfia = nonIwfiaRepository.save(nonIwfia);
+        return new ResponseEntity<>(nonIwfia, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/nonIwfia/{id}")
+    public NonIwfia updateNonIwfia(@PathVariable(value = "id") Long nonIwfiaId,
+            @RequestBody NonIwfia nonIwfia) {
+
+        employeeProfileRepository.findById(nonIwfiaId)
+                .orElseThrow(() -> {
+                    return new ResourceNotFoundException("NonIwfia", "id", nonIwfiaId);
+                });
+        NonIwfia updatedNonIwfia = nonIwfiaRepository.save(nonIwfia);
+        return updatedNonIwfia;
+
+    }
+
+    
+    @DeleteMapping("/nonIwfia/{id}")
+    public ResponseEntity<?> deleteNonIwfia(@PathVariable(value = "id") Long nonIwfiaId) {
+
+        NonIwfia pfile = nonIwfiaRepository.findById(nonIwfiaId)
+                .orElseThrow(() -> new ResourceNotFoundException("NonIwfia", "id", nonIwfiaId));
+        nonIwfiaRepository.delete(pfile);
         return ResponseEntity.ok().build();
 
     }

@@ -1,14 +1,18 @@
 package gov.usda.fs.ead.boss.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -44,6 +48,11 @@ public class ITEquipment implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "AcquisitionDate", nullable = true)
     private Date acquisitionDate;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "AssignedTo")
+    @JsonSerialize(using = EmployeeProfileMinimalSerializer.class)
+    private EmployeeProfile assignedTo;
     
 
     /**
@@ -156,6 +165,20 @@ public class ITEquipment implements Serializable {
      */
     public void setAcquisitionDate(Date acquisitionDate) {
         this.acquisitionDate = acquisitionDate;
+    }
+
+    /**
+     * @return the assignedTo
+     */
+    public EmployeeProfile getAssignedTo() {
+        return assignedTo;
+    }
+
+    /**
+     * @param assignedTo the assignedTo to set
+     */
+    public void setAssignedTo(EmployeeProfile assignedTo) {
+        this.assignedTo = assignedTo;
     }
     
 }
