@@ -39,6 +39,9 @@ public class NonIwfia implements Serializable {
 
     @Column(name = "OfficePhone", nullable = false)
     private String officePhone;
+    
+    @Column(name = "Comment", nullable = false)
+    private String comment;
 
     @Column(name = "CrewNumber", nullable = true)
     private String crewNumber;
@@ -151,6 +154,20 @@ public class NonIwfia implements Serializable {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the comment
+     */
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * @param comment the comment to set
+     */
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
 }
