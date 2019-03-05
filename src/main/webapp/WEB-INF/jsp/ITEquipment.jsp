@@ -48,14 +48,13 @@
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">IT Equipment List</h2>
-                                <div id="showHide">
-
-									<form id="addEquip"></form><br/>
-									<button id="addEquip" value="Add Equipment" class="btn addEquip">Add Equipment</button><br/>
-                                    <div class="form-check" id="viewOldCheckbox">
-                                        <input type="checkbox" id="viewOld" class="form-check-input">
-                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
-                                    </div>       
+                                <div >
+									<div id="hideShowDiv" class="container trainBG">
+										<form id="addEquip"></form><br/>
+										<button id="addEquip" value="Add Equipment" class="btn addEquip">Add Equipment</button><br/>
+									</div>
+									<br/>
+    
 									
 
 
@@ -63,17 +62,15 @@
 
                                         <thead>
                                             <tr>
-
                                                 <th>Equipment Name</th>
                                                 <th>Category</th>                                                
                                                 <th>Make</th>
                                                 <th>model Number</th>                                        
                                                 <th>Serial Number</th>
                                                 <th>Type</th>
+												<th>assigned Employee</th>
 												<th>acquisition Date</th>
 												<th></th>
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -83,6 +80,7 @@
 											<td col="modelNumber"></td>
 											<td col="serialNumber"></td>
 											<td col="type"></td>
+											<td col="assignedTo"></td>
 											<td col="acquistionDate"></td>
 											<td scope="col"></td>
                                         </tbody>
@@ -138,6 +136,25 @@
                         <div class="modal-footer">
                             <button type="button" class="btn" data-dismiss="modal">cancel</button>
                             <button type="button" id="deleteModal_edit" data-dismiss="modal" class="btn btn_edit">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div id="myModal_assign" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirmation</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+							<form id="assignForm"></form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">cancel</button>
+                            <button type="button" id="deleteModal_edit" data-dismiss="modal" class="btn btn_assign">Assign</button>
                         </div>
                     </div>
                 </div>

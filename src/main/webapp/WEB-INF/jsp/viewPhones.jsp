@@ -46,8 +46,8 @@
 						<div class="dropdown1 template">
 							<button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                             <div id="dropList" class="dropdown-content1">
-								<a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=0 class="DeletePhone" id="DeletePhone_id">Delete Phone</a>
 								<a data-toggle="modal" data-target="#myModal_edit" href="#" data-value=0 class="editPhone" id="editPhone_id">Edit Phone</a>
+								<a data-toggle="modal" data-target="#myModal_delete" href="#" data-value=0 class="DeletePhone" id="DeletePhone_id">Delete Phone</a>
                             </div>
 						</div>
                     </div>
@@ -56,15 +56,16 @@
                             <h1 id="title">Recorded Cell Phones</h1>
                         </div>
                     </div>
-                    <div class="container trainBG padTop">
-                        <form role="form" data-toggle="validator" class="generalInfo">
-							<table id="tblCellPhone">
+                    <div class="container trainBG padTop usa-grid usa-buffer-top">
+						<div class="use-width-one-whole content-div">
+                        <form role="form" data-toggle="validator" class="generalInfo" >
+							<table id="tblCellPhone" class="usa-table-borderless display" style="width:100%">
 								<thead>
 									<tr>
 										<th scope="col">Assigned Employee</th>
 										<th scope="col">Make</th>
 										<th scope="col">Model</th>
-										<th scope="col">Serial Number</th>
+
 										<th scope="col">Number</th>
 										<th scope="col">Carrier</th>
 										<th scope="col">Notes</th>
@@ -72,12 +73,13 @@
 									</tr>
 								</thead>
 
-								<tbody>
+								<tbody id="investmentTable">
 									
 								</tbody>
 										
 							</table>
                         </form>
+						</div>
                     </div>
                 </section>
             </section>

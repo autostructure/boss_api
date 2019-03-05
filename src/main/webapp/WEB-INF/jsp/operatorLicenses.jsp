@@ -19,12 +19,12 @@
     <main id="main-content">
         <div class="wrapper">
 
-            <nav id="sidebar">
-            </nav>
+            <!--<nav id="sidebar">
+            </nav>-->
             <!-- end of sidenav -->
 
 
-            <section class="usa-section1">
+            <section class="">
                 <header class="main-header" role="banner">
                     <img data-toggle="tooltip" data-html="true" title="Bucks in velvet on the edge of an aspen stand. Photo captured during data collection efforts for the 
                     Interior West Forest Inventory and Analysis (IWFIA) Program in Utah. (Forest Service photo by Scott Dickson)"
@@ -39,45 +39,45 @@
                         </p>
                     </div>
                 </div>
-                <section class="usa-section">
+                <section class="">
 
                     <div class="usa-grid usa-buffer-top">
                         <div class="usa-width-one-whole title-div">
                             <h1 id="title">Add Cell Phone</h1>
                         </div>
                     </div>
-                    <div class="container trainBG padTop">
+                    <div class="trainBG">
                         <form role="form" data-toggle="validator" class="generalInfo">
 							<div class="row">
 								<div class="col">
 									<div class="form-group">
 										<label class="text">Select Employee</label><br/>
-										<input type="select" class="form-control"></input>
+										<select id="employees" class="form-control"></select>
 									</div>
 								</div>
 							</div>
-
-							<table id="operatorLicTableOne" border="1">
+							<table border="0">
+							<tr><td>
+							<table id="operatorLicTableOne" border="2">
 								<tr>
-									<td colspan="2" style="background-color:#CCCCCC">
+									<td colspan="3" style="background-color:#CCCCCC" border="2">
 										<label ID="tableOneTitle" class=""> U.S. Governement Motor Vehicle Operator's Identification Card</label></br>
 									</td>
-									<td rowspan="2">
-										<label id="nameOperator" class="text">Name of Operator / not transferable</label><br/><br/>
-										<label id="OperatorName" class="OperatorName text text-center"></label>
-									</td>
-									<td>
-										<label class="text">Date Issued:</label>&emsp;<label id="dateIssued" class="text dateIssued"></label>
-									</td>
+
 								</tr>
 								<tr>
-									<td>
+									<td class="text text-center">
+										Name of Operator / not transferable<br/>
+										<label id="operator_
+								</tr>
+								<tr>
+									<td border="2">
 										<label class="text" style="font-weight:bold">Agency & Duty Station</label><br/>
 										<label class="text address_one_location" id="address_one_location"></label><br/>
 										<label class="text address_two_street" id="address_two_street"><label<br/>
 										<label class="text address_three_state" id="text address_three_state"></label><br/>
 									</td>
-									<td>
+									<td border="2">
 										<label class="text">Defensive Driving</label><br/>
 										<table>
 											<tr>
@@ -105,7 +105,7 @@
 									</td>
 									<td>
 										<label class="text">ATV Rider Course</label><br/>
-										<table>
+										<table border="2">
 											<tr>
 												<td class="text-center">
 													<label class="text">Date of Class:</label>
@@ -134,7 +134,8 @@
 									</td>
 								</tr>
 							</table>
-							<table id="OperatorsLicTableTwo">
+							</td><td>
+							<table id="OperatorsLicTableTwo" border="2">
 								<tr>
 									<td class="text-center" style="background-color:#CCCCCC">
 										<label class="text">VOID UNLESS ACCOMPANIED BY A VAILD STATE LICENSE</label>
@@ -147,7 +148,7 @@
 								</tr>
 								<tr>
 									<td>
-										<table>
+										<table border="2">
 											<tr>
 												<td class="text-center">
 													<label class="text">Type Of Vehicle and/or Equipment</label>
@@ -160,14 +161,15 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
-													<div class="qualified_to_operate">
+												<td colspan="3">
+													<div class="qualified_to_operate text text-center">
+														placeholder for table
 													</div>
 												</td>
 											</tr>
 											<tr>
-												<td>
-													<span class="text">
+												<td colspan="3">
+													<span class="text-center text" >
 													The holder of this card is qualified to operate a U.S. Government
 													vehicle(s) and/or equipment specified, subject to the restrictions set
 													forth on this card. Card must be carried at all times when operating
@@ -179,9 +181,11 @@
 									</td>
 								</tr>
 							</table>
+							</td></tr>
+							</table>
 							<br/><br/>
 							<button id="print_lic" class="btn btn-info" style="text-align:center" value="Print">Print</button>
-
+							<button id="test" value="test">test</button>
 						</form>
 					 </div>         
                 </section>
@@ -258,7 +262,8 @@
     <script src="/boss/js/ead.min.js"></script>
     <script src="/boss/js/bootstrap-datepicker.js"></script>
     <script src="/boss/js/pagesJS/customFormFunctions.js"></script>
-    <script src="/boss/js/pagesJS/addCellPhone.js"></script>
+	<!--<script src="/boss/js/pagesJS/HTMLtableCreator.js"></scipt>-->
+    <script src="/boss/js/pagesJS/operatorLic.js"></script>
     <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
 </body>

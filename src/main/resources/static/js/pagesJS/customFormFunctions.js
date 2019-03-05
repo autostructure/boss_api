@@ -9,60 +9,60 @@ CustomFormFunctions.OptionSets.MONTHS = [
     "April", "May", "June",
     "July", "August", "September",
     "October", "November", "December",
-]
+];
 CustomFormFunctions.OptionSets.STATES = {
-    "AL":"Alabama",
-    "AK":"Alaska",
-    "AZ":"Arizona",
-    "AR":"Arkansas",
-    "CA":"California",
-    "CO":"Colorado",
-    "CT":"Connecticut",
-    "DE":"Delaware",
-    "DC":"District",
-    "FL":"Florida",
-    "GA":"Georgia",
-    "HI":"Hawaii",
-    "ID":"Idaho",
-    "IL":"Illinois",
-    "IN":"Indiana",
-    "IA":"Iowa",
-    "KS":"Kansas",
-    "KY":"Kentucky",
-    "LA":"Louisiana",
-    "ME":"Maine",
-    "MD":"Maryland",
-    "MA":"Massachusetts",
-    "MI":"Michigan",
-    "MN":"Minnesota",
-    "MS":"Mississippi",
-    "MO":"Missouri",
-    "MT":"Montana",
-    "NE":"Nebraska",
-    "NV":"Nevada",
-    "NH":"New",
-    "NJ":"New",
-    "NM":"New",
-    "NY":"New",
-    "NC":"North",
-    "ND":"North",
-    "OH":"Ohio",
-    "OK":"Oklahoma",
-    "OR":"Oregon",
-    "PA":"Pennsylvania",
-    "RI":"Rhode",
-    "SC":"South",
-    "SD":"South",
-    "TN":"Tennessee",
-    "TX":"Texas",
-    "UT":"Utah",
-    "VT":"Vermont",
-    "VA":"Virginia",
-    "WA":"Washington",
-    "WV":"West",
-    "WI":"Wisconsin",
-    "WY":"Wyoming",
-}
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "DC": "District",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New",
+    "NJ": "New",
+    "NM": "New",
+    "NY": "New",
+    "NC": "North",
+    "ND": "North",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PA": "Pennsylvania",
+    "RI": "Rhode",
+    "SC": "South",
+    "SD": "South",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West",
+    "WI": "Wisconsin",
+    "WY": "Wyoming",
+};
 
 /**
  * This function takes readable data and writes a Bootstrap Grid-layout Form, attaching it to the elements specified.
@@ -165,6 +165,7 @@ CustomFormFunctions.addBootstrapFields = function (data) {
             var labelEl = $("<label>" + col.title + "</label>")
                 .attr("for", parent + "_" + thisID);
             groupEl.append(labelEl);
+            
             var input;
             if (types[0] == "input") {
                 var input = $("<input>").attr("type", types[1])
@@ -205,6 +206,7 @@ CustomFormFunctions.addBootstrapFields = function (data) {
                 var input = $("<textarea>");
                 input.attr("placeholder", col.placeholder || "");
             }
+            
             input.addClass('form-control')
                 .attr("id", parent + "_" + thisID)
                 .attr("name", col.fieldName)
@@ -325,7 +327,7 @@ CustomFormFunctions.populateDropDown = function (element, url, valueKey, labelKe
             }
             resolved();
         },
-        error: rejected,
+        error: rejected
     });
 }
 
@@ -497,7 +499,7 @@ CustomFormFunctions.putPartialInfo = function (url, id, partial, resolved, rejec
 
                 for (k in partial) {
                     var val = partial[k];
-                    
+
                     if (parseInt(val) == val) {
 
                         var obj = CustomFormFunctions.preprocessPartialPUT(val, url, k);
@@ -507,7 +509,7 @@ CustomFormFunctions.putPartialInfo = function (url, id, partial, resolved, rejec
                             json[k] = obj;
                         }
 
-                        
+
                     } else if (parseFloat(val) == val) {
                         json[k] = parseFloat(val);
                     } else {
@@ -529,15 +531,30 @@ CustomFormFunctions.putPartialInfo = function (url, id, partial, resolved, rejec
             error: rejected
         });
     }
-}
+};
 
+CustomFormFunctions.getBrowser = function () {
+
+    if (navigator.userAgent.indexOf("Chrome") != -1) {
+        return "Chrome";
+    } else if (navigator.userAgent.indexOf("Opera") != -1) {
+        return "Opera";
+    } else if (navigator.userAgent.indexOf("MSIE") != -1) {
+        return "IE";
+    } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+        return "Firefox";
+    } else {
+        return "unknown";
+    }
+
+};
 
 CustomFormFunctions.preprocessPartialPUT = function (partialData, url, data_name) {
-    
+
     if (url == '/boss/employeeProfile') {
         if (data_name == 'supervisor') {
             if (parseInt(partialData) == partialData) {
-               
+
                 var emp;
                 $.ajax({
                     url: '/boss/employeeProfile/' + partialData,
@@ -554,12 +571,12 @@ CustomFormFunctions.preprocessPartialPUT = function (partialData, url, data_name
                         console.log(c);
                     }
                 });
-                
+
                 return emp;
             }
         }
     }
-}
+};
 
 CustomFormFunctions.getNested = function (obj, key) {
     var keys = key.split(".");
@@ -571,7 +588,7 @@ CustomFormFunctions.getNested = function (obj, key) {
         obj = obj[k];
     }
     return obj;
-}
+};
 
 CustomFormFunctions.setNested = function (obj, key, value) {
     var keys = key.split(".");
@@ -584,4 +601,4 @@ CustomFormFunctions.setNested = function (obj, key, value) {
         obj = obj[k];
     }
     obj[lastKey] = value;
-}
+};

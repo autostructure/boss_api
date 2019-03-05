@@ -69,13 +69,23 @@
 												<th scope="col">10D1</th>
 												<th scope="col">X3</th>
 												<th scope="col">Last Updated</th>
-                                                <th id="stop"></th>
+                                                <th id=""></th>
 
 
                                             </tr>
                                         </thead>
                                         <tbody>
-
+											<td col="assignedTo"></td>
+											<td col="lincPassExpiration"></td>
+											<td col="govtId"></td>
+											<td col="key10A1"></td>
+											<td col="key10A6"></td>
+											<td col="key10A7"></td>
+											<td col="key10A8"></td>
+											<td col="key10D1"></td>
+											<td col="keyX3"></td>
+											<td col="keyFS"></td>
+											<td col="lastUpdate"
                                         </tbody>
                                     </table>
                                 </div>

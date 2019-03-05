@@ -1,32 +1,14 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     $.ajax({
         url: "/boss/cellPhone",
         type: "GET",
         cache: false,
         success: function (json) {
-            if (json.length == 0) {
-                var temp = [];
-                var temp_itm = {
-                    "make": "test",
-                    "model": "test",
-                    "SerialNumber": "test",
-                    "number": "test",
-                    "carrier": "test",
-                    "assignedTo": {
-                        "lastName": "last",
-                        "firstName": "first"
-                    },
-                    "notes": "test"
-                };
-                temp.push(temp_itm);
-                populateDataTable(temp);
-            } else {
-                
-                populateDataTable(json);
-            }
-        }, error: function(a, b, c) {
+            
+            populateDataTable(json);
+        },error: function (a, b, c) {
             console.log(a.responseText);
         }
     });
@@ -72,10 +54,24 @@ $(document).ready(function() {
                                 'data': "model"
                             },
                             {
-                                'data': "serialNumber"
-                            },
-                            {
-                                'data': "number"
+                                'data': "number",
+                                'render': function (data, type, row) {
+                                    var phone = data.split('');
+                                    var finalPhone = "";
+                                    var count = 0;
+                                    for (x in phone) {
+                                        var char = phone[x];
+                                        
+                                        finalPhone = finalPhone + char;
+                                        count++;
+                                        if (count == 3 || count == 6) {
+                                            finalPhone = finalPhone + '-';
+                                        }
+                                    }
+
+                                    return finalPhone;
+                                    
+                                }
                             },
                             {
                                 'data': "carrier"
@@ -168,7 +164,7 @@ $(document).ready(function() {
                                                 $(modal).find('#edit_form_model').val(json.model);
                                                 $(modal).find('#edit_form_carrier').val(json.carrier);
                                                 $(modal).find('#edit_form_number').val(json.number);
-                                                $(modal).find('#edit_form_SerialNumber').val(json.serialNumber);
+                                                //$(modal).find('#edit_form_SerialNumber').val(json.serialNumber);
                                                 $(modal).find('#edit_form_notes').val(json.notes);
                                                 
                                             },
@@ -225,7 +221,7 @@ $(document).ready(function() {
                         var assignedTo = $(modal).find('#edit_form_assignedTo').val();
                         var carrier = $(modal).find('#edit_form_carrier').val();
                         var model = $(modal).find('#edit_form_model').val();
-                        var SerialNumber = $(modal).find('#edit_form_SerialNumber').val();
+                        //var SerialNumber = $(modal).find('#edit_form_SerialNumber').val();
                         var number = $(modal).find('#edit_form_number').val();
                         var notes = $(modal).find('#edit_form_notes').val();
                         var make = $(modal).find('#edit_form_make').val();
@@ -246,7 +242,7 @@ $(document).ready(function() {
                                     "model": model,
                                     "notes": notes,
                                     "number": number,
-                                    "serialNumber": SerialNumber
+                                    "serialNumber": " "
                                 };
                                 
 
@@ -300,13 +296,7 @@ var trainingRenewFields = {
                 "required": true
                 //"colspan": 6
             }],
-            [{
-                "fieldName": "SerialNumber",
-                "title": "Serial Number",
-                "placeholder": "Serial Number",
-                "type": "input/text",
-                "required": true
-            },
+            [
             {
                 "fieldName": "number",
                 "title": "Phone Number",

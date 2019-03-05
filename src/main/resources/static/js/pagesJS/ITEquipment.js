@@ -8,6 +8,7 @@ var fakeData = [
 
 
 $(document).ready(function () {
+    $('.wrapper').find('#hideShowDiv').hide();
     makeAjaxCall('/boss/itEquipment', 'GET', null).then(function (json) {
         populateDataTable(json);
     }, function (a, b, c) {
@@ -41,9 +42,27 @@ $(document).ready(function () {
             },
             {
                 'data': "type"
-            },
+                },
+                {
+                    'data': 'assignedTo',
+                    'render': function (data, type, row) {
+                        var emp;
+                        $.ajax({
+                            url: '/boss/employeeProfile/' + data.id,
+                            type: 'GET',
+                            async: false,
+                            success: function (name) {
+                                emp = name;
+                            }
+                        });
+                        return emp.lastName + ', ' + emp.firstName;
+                    }
+                },
             {
-                'data':'acquisitionDate'
+                'data': 'acquisitionDate',
+                'render': function (data, type, row) {
+                    return CustomFormFunctions.formatDate(data, 'mm/dd/yyyy');
+                }
             },
             {
                 'data': null,
@@ -53,6 +72,7 @@ $(document).ready(function () {
                           <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                           <div id="dropList" class="dropdown-content1">
                               <a href="#" data-toggle="modal" data-target="myModal_edit" data-value="` + data.id + `" class="editBtn" id="editBtn">Edit IT Equipment</a>
+                              <a href="#" data-toggle="modal" data-target="myModal_assign" data-value="` + data.id + `" class="assignBtn" id="assignBtn">Assign Employee</a>
                               <a href="#" data-toggle="modal" data-target="myModal_delete" data-value="` + data.id + `|` + data.equipmentName + `" class="deleteBtn" id="deleteBtn">Delete IT Equipment</a>
                           </div>
                       </div>
@@ -61,13 +81,13 @@ $(document).ready(function () {
                 }
             }
             ],
-            'buttons': [/*{
+            'buttons': [{
                 text: 'Add <i class="fa fa-lg fa-plus"></i>',
                 action: function () {
-                    window.location.href = '/addTrainingEmployee';
+                    $('.wrapper').find('#hideShowDiv').show();
                 },
                 className: 'table-btns add-btn'
-            },*/
+            },
             {
                 text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
                 action: function () {
@@ -154,7 +174,7 @@ $(document).ready(function () {
                 'type': modal.find('[name=Type]').val(),
                 'id': selected_row
             };
-            debugger;
+            
             $.ajax({
                 url: '/boss/itEquipment/' + selected_row,
                 type: 'PUT',
@@ -169,7 +189,54 @@ $(document).ready(function () {
             });
         });
 
+        $('#assignBtn').on('click', function (e) {
+            selected_row = $(this).attr('data-value');
+            $.ajax({
+                url: '/boss/employeeProfile',
+                type: 'GET',
+                cache: false,
+                async: false,
+                success: function (j) {
+                    $.each(j, function (index, value) {
+                        
+                        $('#myModal_assign').find('[name=assignedSelect]').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
+                    });
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+            $('#myModal_assign').modal('toggle');
+        });
 
+        $('#myModal_assign').on('click', '.btn_assign', function (e) {
+            var employeeID = $('[name=assignedSelect] :selected').val();
+ 
+            $.ajax({
+                url: '/boss/employeeProfile/' + employeeID,
+                type: 'GET',
+                cache: false,
+                success: function (j) {
+        
+                    var dat = {
+                        'assignedTo': j,
+                        'id': selected_row
+                    };
+               
+                    CustomFormFunctions.putPartialInfo('/boss/itEquipment', selected_row, dat, function (j) {
+                        
+                        location.reload();
+                    }, function (a, b, c) {
+
+                       console.log(a.responseText);
+                       
+                    });
+                }, error: function(a, b, c){
+                    console.log(a.responseText);
+                }
+                
+            });
+
+        });
         
     }
 
@@ -315,6 +382,16 @@ var addEquip = {
             "type": "input/date"
         }
     ]
+    ],
+    'assignForm': [
+        [
+            {
+                'fieldName': 'assignedSelect',
+                'type': 'select/input',
+                'title': 'Assigned Employee',
+                'required': true
+            }
+        ]
     ]
 };
 

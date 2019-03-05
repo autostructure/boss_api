@@ -47,94 +47,10 @@
                         </div>
                     </div>
                     <div class="container trainBG padTop">
-                        <form role="form" data-toggle="validator" class="generalInfo">
-                            <div class="mainAdd dra-entry template" hidden>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="dStation_OG">Select Employee Assigned To <span class="reqClass"> *</span></label>
-                                            <select name="employee.id" required id="dStation_OG" class="form-control">
-                                                <option value="">Select Employee</option>
-                                            </select>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="PhoneMaker_OG">Phone Maker<span class="reqClass"> *</span></label>
-                                            <input type="text" name="make_name" required id="PhoneMaker_OG" class="form-control"/>
-
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="PhoneCarrier_OG">Phone Carrier<span class="reqClass"> *</span></label>
-                                            <input type="text" name="Carrier_name" required id="PhoneCarrier_OG" class="form-control"/>
-
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<div class="form-group">
-											<label for="Model_OG">Phone Model<span class="reqClass"> *</span></label>
-											<input type="text" name="Model_name" required id="Model_OG" class="form-control"/>
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="form-group">
-											<label for="SerialNum_OG">Phone Serial Number<span class="reqClass"> *</span></label>
-											<input type="text" name="SerialNum_name" required id="SerialNum_OG" class="form-control"/>
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="form-group">
-											<label for="Number_OG">Phone Number<span class="reqClass"> *</span></label>
-											<input type="text" name="Number_name" required id="Number_OG" class="form-control"/>
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="class">
-									<div class="col">
-                                        <div class="form-group">
-                                            <label for="draTitle_OG">Notes<span class="reqClass"> *</span></label>
-                                            <input type="text" name="Notes" required id="Notes_OG" class="form-control"/>
-
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-
-                                    </div>
-                                    <div class="row">
-                                            <div class="col">
-                                                <div class="form-group text-left" >            
-                                                    <button class="btn btn-lg btn_pers_copy copy_field">Copy This Row</button>
-                                                    <button class="btn btn-lg btn_pers_remove remove_field"><i class="fa fa-trash-o" aria-hidden="true"></i></button>                                                                    
-                                                </div>
-                                            </div>
-                                    </div>
-
-                              
-
-                            </div>
-                            <div class="items" id="draRows"></div>
-                    </div>
+                        <form role="form" data-toggle="validator" id="phoneForm">
                             
-                            <div class="row">
-                                <div class="col col-md-6 text-center">
-                                    <button id="viewReports" id="add" class="btn btn-info add_field_button">Add
-                                        Additional Phones</button>
-                                </div>
-                                <div class="col col-md-6">
-                                    <input type="button" id="submitV" value="Submit" class="btn btn-success" />
-                                </div>
-                            </div>
+                            <!--<div class="items" id="draRows"></div>-->
+
                         </form>
                     </div>
                 </section>

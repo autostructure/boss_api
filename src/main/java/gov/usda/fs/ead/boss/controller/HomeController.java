@@ -244,10 +244,7 @@ public class HomeController {
         return "viewPhones";
     }
 
-	@RequestMapping("/beaconInreach")
-    public String beaconInreach() {
-        return "beaconInreach";
-    }
+
 
 	@RequestMapping("/beaconInreachCheckout")
     public String beaconInreachCheckout() {
@@ -279,8 +276,9 @@ public class HomeController {
         return "fieldEquipmentRetired";
     }
 
-
-
-
-	    
+	@RequestMapping("/nonIwfiaPage")
+    public String nonIwfiaPage() {
+        return "nonIwfiaPage";
+    }
+  
 }

@@ -32,7 +32,7 @@
                             <p class="breadcrumb" style="float: right; margin-right: 10px; font-size:1.3em;">
                                 <a class="breadcrumbLink" href="/boss/home">Dashboard |</a>
                                 <a class="breadcrumbLink" href="/boss/personnelDash">Personnel Dashboard |</a>
-                                <a class="breadcrumbLinkMain" href="/boss/viewAllEmployees"> Beacon And Inreach Checkout</a>
+                                <a class="breadcrumbLinkMain" href="/boss/beaconInreach"> Beacon And Inreach</a>
                             </p>
                         </div>
                     </div>
@@ -40,32 +40,48 @@
 
                         <div class="usa-grid usa-buffer-top">
                             <div class="usa-width-one-whole title-div">
-                                <h1 id="title">Beacon And Inreach Checkout</h1>
+                                <h1 id="title">Beacon And Inreach</h1>
                             </div>
 							
                         </div>
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
-                                <h2 class="title2">Beacon And Inreach checkout List</h2>
-                                <div id="showHide">
-                                    <div class="form-check" id="viewOldCheckbox">
-                                        <input type="checkbox" id="viewOld" class="form-check-input">
-                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
-                                    </div>                                    
+                                <h2 class="title2">Beacon And Inreach List</h2>
+                                <div id="">
+									<div class="trainBG container"> 
+										<form id="addBeaconForm">
+										</form><br/><br/>
+										<button id="submitAdd" class="btn btn-submit" value="submit">Submit</button>
+									</div>
+									<br/><br/>
+									
+									
                                     <table id="fieldEquip" class="usa-table-borderless display" style="width:100%">
 
                                         <thead>
                                             <tr>
-                                                <th>Beacon Number</th>
-                                                <th>Employee Name</th>
-                                                <th>Recorded Data</th>											
-                                                <th></th>   
+                                                <th>Unit Number</th>
+                                                <th>Unique ID</th>
+                                                <th>Serial Number</th>
+												<th>Battery Exp Date</th>
+                                                <th>Purchase Date</th>
+												<th>Beacon Password</th>
+												<th>Register Date</th>
+												<th>Assigned Employee</th>
+												<th>Recorded By</th>
+												<th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-											<td col="beacon"></td>
-											<td col="employee"></td>
-											<td col="recordData"></td>
+											<td col="unitNumber"></td>
+											<td col="id"></td>
+											<td col="serialNumber"></td>
+											<td col="batteryExpDate"></td>
+											<td col="purchaseDate"></td>
+											<td col="beaconPassword"></td>
+											<td col="registerDate"></td>
+											<td col="assignedEmployee"></td>
+											<td scope="col"></td>
 											<td scope="col"></td>
                                         </tbody>
                                     </table>
@@ -91,7 +107,6 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Confirmation</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
                         </div>
                         <div class="modal-body">
                             <p>Are you sure you want to delete this beacon?</p>
@@ -105,19 +120,38 @@
                 </div>
             </div>
 
-			<div id="myModal_auxInfo" class="modal fade" role="dialog">
+			<div id="myModal_edit" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Beacon/Inreach Auxiliary Information</h4>
+                            <h4 class="modal-title">Beacon/Inreach Edit Form</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
                         </div>
                         <div class="modal-body">
-							<form id="auxInfo"></form>
+							<form id="editForm"></form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Ok</button>
+						<button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn edit_submit" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div id="myModal_checkout" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Beacon/Inreach Checkout</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+							<form id="checkoutForm"></form>
+                        </div>
+                        <div class="modal-footer">
+							<button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btnSubmit" data-dismiss="modal">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -141,7 +175,7 @@
 		    <script src="/boss/js/bootstrap-datepicker.js"></script>
 
 		<script src="/boss/js/pagesJS/customFormFunctions.js"></script>
-		<script src="/boss/js/pagesJS/beaconInreach.js"></script>
+		<script src="/boss/js/pagesJS/beaconInreachCheckout.js"></script>
 
         <script src="/boss/js/pagesJS/personnelPages.js"></script>
 
