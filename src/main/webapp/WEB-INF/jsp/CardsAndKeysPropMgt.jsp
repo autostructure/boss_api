@@ -58,17 +58,16 @@
                                         <thead>
                                             <tr>
 
-                                                <th scope="col">Employee Name</th>
-                                                <th scope="col">Linc Pass Expiration</th>
-                                                <th scope="col">Gov ID</th>
-                                                <th scope="col">Corporate Card</th>
-                                                <th scope="col">10A1</th>
-                                                <th scope="col">10A6</th>                                        
-                                                <th scope="col">10A7</th>
-                                                <th scope="col">10A8</th>
-												<th scope="col">10D1</th>
-												<th scope="col">X3</th>
-												<th scope="col">Last Updated</th>
+                                                <th>Employee Name</th>
+                                                <th>Linc Pass Expiration</th>
+                                                <th>Gov ID</th>
+                                                <th>Corporate Card</th>
+                                                <th>10A1</th>
+                                                <th>10A6</th>                                        
+                                                <th>10A7</th>
+                                                <th>10A8</th>
+												<th>10D1</th>
+												<th>X3</th>
                                                 <th id=""></th>
 
 
@@ -85,7 +84,7 @@
 											<td col="key10D1"></td>
 											<td col="keyX3"></td>
 											<td col="keyFS"></td>
-											<td col="lastUpdate"
+											
                                         </tbody>
                                     </table>
                                 </div>

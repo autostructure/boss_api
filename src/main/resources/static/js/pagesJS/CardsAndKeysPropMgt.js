@@ -2,10 +2,76 @@
 
 
 $(document).ready(function () {
-    makeAjaxCall('/boss/itEquipment', 'GET', null).then(function (json) {
-        populateDataTable(json);
-    }, function (a, b, c) {
-        console.log(a.responseText);
+
+    var cardData = [];
+
+    var cards;
+    $.ajax({
+        url: '/boss/cardOrKey',
+        type: 'GET',
+        cache: false,
+        async: false,
+        success: function (json) {
+            cards = json;
+        }, error: function (a, b, c) {
+            console.log(a.responseText);
+        }
+    });
+
+
+    $.ajax({
+        url: '/boss/employeeProfile',
+        type: 'GET',
+        cache: false,
+        success: function (employee) {
+            $.each(employee, function (indexEmp, valueEmp) {
+                var cardDatObj = {
+                    'assignedTo': valueEmp,
+                    'lincPassExpiration': '',
+                    'govtId': '',
+                    'key10A1': ' ',
+                    'key10A6': ' ',
+                    'key10A7': ' ',
+                    'key10A8': ' ',
+                    'key10D1': ' ',
+                    'keyX3': ' ',
+                    'keyFS': false
+                };
+
+                $.each(cards, function (indexCard, valueCard) {
+                    if (valueCard.assignedTo.id == valueEmp.id) {
+                        switch (valueCard.keyType) {
+                            case 'key10A1':
+                                cardDatObj.key10A1 = valueCard.id;
+                                break;
+                            case 'key10A6':
+                                cardDatObj.key10A6 = valueCard.id;
+                                break;
+                            case 'key10A7':
+                                cardDatObj.key10A7 = valueCard.id;
+                                break;
+                            case 'key10A8':
+                                cardDatObj.key10A8 = valueCard.id;
+                                break;
+                            case 'key10D1':
+                                cardDatObj.key10D1 = valueCard.id;
+                                break;
+                            case 'keyX3':
+                                cardDatObj.keyX3 = valueCard.id;
+                                break;
+                            case 'keyFS':
+                                cardDatObj.keyFS = valueCard.id;
+                                break;
+                        }
+                        cardDatObj.govtId = valueCard.govtId;
+                    }
+                });
+                cardData.push(cardDatObj);
+            });
+            populateDataTable(cardData);
+        }, error: function (a, b, c) {
+            console.log(a.responseText);
+        }
     });
 
     function populateDataTable(jsonData) {
@@ -34,7 +100,7 @@ $(document).ready(function () {
                 'data': "govtId"
             },
             {
-                'data': 'key10A1', //10A1
+                'data': 'key10A1'
             },
             {
                 'data': "key10A6", //10A6
