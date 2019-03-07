@@ -196,9 +196,22 @@ $(document).ready(function () {
             data.showPersonalCellPhone = share_cell;
 
 
-            
+            console.log(data);
 
-            putPartialInfo("/boss/employeeProfile", 0, data, callback);
+            //putPartialInfo("/boss/employeeProfile", 0, data, callback);
+            $.ajax({
+                url: '/boss/employeeProfile',
+                type: 'POST',
+                cache: false,
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function (inf) {
+                    callback();
+                },
+                error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
         });
 
 
