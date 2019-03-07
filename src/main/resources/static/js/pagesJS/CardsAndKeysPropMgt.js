@@ -2,6 +2,125 @@
 
 
 $(document).ready(function () {
+    $.ajax({
+        url: '/boss/employeeProfile',
+        type: 'GET',
+        cache: false,
+        success: function (json) {
+            $.each(json, function (index, value) {
+                $('[name=assignedTo]').append('<option value="' + value.id + '">' + value.lastName + ', ' + value.firstName + '</option>');
+            });
+        }, error: function (a, b, c) {
+            console.log(a.responseText);
+        }
+    });
+    
+
+    $('#btn_submit').on('click', function () {
+        var cardDatPost = [];
+
+        cardDatPost.push($('[name=bool_10A1]').val());
+        cardDatPost.push($('[name=bool_10A6]').val());
+        cardDatPost.push($('[name=bool_10A7]').val());
+        cardDatPost.push($('[name=bool_10A8]').val());
+        cardDatPost.push($('[name=bool_10D1]').val());
+        cardDatPost.push($('[name=bool_X3]').val());
+        //var bool_FS = $('[name=')
+        var assignedTo_id = $('[name=assignedTo] :selected').val();
+        var emp;
+        $.ajax({
+            url: '/boss/employeeProfile/' + assignedTo_id,
+            type: 'GET',
+            cache: false,
+            async: false,
+            success: function (j) {
+                emp = j;
+            }, error: function (a, b, c) {
+                console.log(a.responseText);
+            }
+        });
+        var keyType;
+        var ids;
+        $.each(cardDatPost, function (index, value) {
+
+            switch (index) {
+                case 0:
+                    if (value != undefined && value != "") {
+                        keyType = "type10A1";
+                        ids = value;
+                    }
+                    break;
+                case 1:
+                    if (value != undefined && value != "") {
+                        keyType = "type10A6";
+                        ids = value;
+                    }
+                    break;
+                case 2:
+                    if (value != undefined && value != "") {
+                        keyType = "type10A7";
+                        ids = value;
+                    }
+                    break;
+                case 3:
+                    if (value != undefined && value != "") {
+                        keyType = "type10A8";
+                        ids = value;
+                    }
+                    break;
+                case 4:
+                    if (value != undefined && value != "") {
+                        keyType = "type10D1";
+                        ids = value;
+                    }
+                    break;
+                case 5:
+                    if (value != undefined && value != "") {
+                        keyType = "typeX3";
+                        ids = value;
+                    }
+                    break;
+                case 6:
+                    if (value != undefined && value != "") {
+                        keyType = "typeFS";
+                        ids = value;
+                    }
+                    break;
+
+
+            }
+
+
+            if (keyType != undefined) {
+                var govID = $('[name=govID]').val();
+
+                var card = {
+                    "assignedTo": emp,
+                    "govtId": govID,
+                    "keyType": keyType,
+                    "id": ids
+                };
+                
+                $.ajax({
+                    url: '/boss/cardOrKey',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(card),
+                    success: function (j) {
+                        location.reload();
+                    },
+                    error: function (a, b, c) {
+                        console.log(a.responseText);
+                    }
+                });
+            }
+        });
+        
+
+        
+
+        //location.reload();
+    });
 
     var cardData = [];
 
@@ -37,36 +156,48 @@ $(document).ready(function () {
                     'keyX3': ' ',
                     'keyFS': false
                 };
-
+                var check_cards = false;
                 $.each(cards, function (indexCard, valueCard) {
+
+
+                    
                     if (valueCard.assignedTo.id == valueEmp.id) {
                         switch (valueCard.keyType) {
-                            case 'key10A1':
+                            case 'type10A1':
                                 cardDatObj.key10A1 = valueCard.id;
+                                check_cards = true;
                                 break;
-                            case 'key10A6':
+                            case 'type10A6':
                                 cardDatObj.key10A6 = valueCard.id;
+                                check_cards = true;
                                 break;
-                            case 'key10A7':
+                            case 'type10A7':
                                 cardDatObj.key10A7 = valueCard.id;
+                                check_cards = true;
                                 break;
-                            case 'key10A8':
+                            case 'type10A8':
                                 cardDatObj.key10A8 = valueCard.id;
+                                check_cards = true;
                                 break;
-                            case 'key10D1':
+                            case 'type10D1':
                                 cardDatObj.key10D1 = valueCard.id;
+                                check_cards = true;
                                 break;
-                            case 'keyX3':
+                            case 'typeX3':
                                 cardDatObj.keyX3 = valueCard.id;
+                                check_cards = true;
                                 break;
-                            case 'keyFS':
+                            case 'typeFS':
                                 cardDatObj.keyFS = valueCard.id;
+                                check_cards = true;
                                 break;
                         }
                         cardDatObj.govtId = valueCard.govtId;
                     }
                 });
-                cardData.push(cardDatObj);
+                if (check_cards) {
+                    cardData.push(cardDatObj);
+                }
             });
             populateDataTable(cardData);
         }, error: function (a, b, c) {
@@ -77,15 +208,16 @@ $(document).ready(function () {
     function populateDataTable(jsonData) {
         //console.log('populateDataTable');
         console.log(jsonData);
-
-        var table = $('#ITEquip').DataTable({
+        
+        var table = $('#cardTable').DataTable({
             'bPaginate': false,
             'data': jsonData,
             'dom': 'Bfti',
             'columns': [{
                 'data': "assignedTo",
                 'render': function (data, type, row) {
-                    return row.lastName + ' ' + row.firstName;
+                    
+                    return data.lastName + ' ' + data.firstName;
                 }
             },
             // { 'data': 'supervisor' },
@@ -93,7 +225,13 @@ $(document).ready(function () {
             {
                 'data': 'lincPassExpiration',
                 'render': function (data, type, row) {
-                    return CustomFormFunctions.formatDate(data, 'mm/dd/yyyy');
+                    try {
+                        
+                        return CustomFormFunctions.formatDate(data, 'mm/dd/yyyy');
+                    } catch (e) {
+                        
+                        return '';
+                    }
                 }
             },
             {
@@ -103,26 +241,23 @@ $(document).ready(function () {
                 'data': 'key10A1'
             },
             {
-                'data': "key10A6", //10A6
+                'data': "key10A6" //10A6
             },
             {
-                'data': "key10A7", //10A7
+                'data': "key10A7" //10A7
             },
             {
-                'data': 'key10A8', //10A8
+                'data': 'key10A8' //10A8
             },
             {
-                'data': 'key10D1', //10D1
+                'data': 'key10D1' //10D1
             },
             {
-                'data': 'keyX3', //X3
+                'data': 'keyX3' //X3
             },
             {
-                'data': 'keyFS', //FS
-                },
-                {
-                    'data': 'lastUpdated'
-                },
+                'data': 'keyFS' //FS
+            },
             {
 
                 'data': null,
@@ -131,8 +266,9 @@ $(document).ready(function () {
                       <div class="dropdown1">
                           <button id="test_click" class="dropbtn1"><i class="fa fa-ellipsis-v"></i></button>
                           <div id="dropList" class="dropdown-content1">
-                              <a href="#" data-toggle="modal" data-target="myModal_edit" data-value="` + data.id + `" class="editBtn" id="editBtn">Edit IT Equipment</a>
-                              <a href="#" data-toggle="modal" data-target="myModal_delete" data-value="` + data.id + `|` + data.equipmentName + `" class="deleteBtn" id="deleteBtn">Delete IT Equipment</a>
+                              <a href="#" data-toggle="modal" data-target="myModal_edit" data-value="` + row.assignedTo.id + `" class="edit_btn" id="editBtn">edit card keys</a>
+                              <a href="#" data-toggle="modal" data-target="myModal_del" data-value="` + row.assignedTo.id + `" class="delete_btn" id="deleteBtn">delete card keys</a>
+
                           </div>
                       </div>
                   
@@ -140,13 +276,7 @@ $(document).ready(function () {
                 }
             }
             ],
-            'buttons': [/*{
-                text: 'Add <i class="fa fa-lg fa-plus"></i>',
-                action: function () {
-                    window.location.href = '/addTrainingEmployee';
-                },
-                className: 'table-btns add-btn'
-            },*/
+            'buttons': [
                 {
                     text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
                     action: function () {
@@ -172,426 +302,560 @@ $(document).ready(function () {
                 }
             ]
         });
+
+        var selectedRow;
+        $('.edit_btn').on('click', function () {
+            selectedRow = $(this).attr('data-value');
+            var cardKeys;
+            $.ajax({
+                url: '/boss/cardOrKey',
+                type: 'GET',
+                cache: false,
+                async: false,
+                success: function (card) {
+                    cardKeys = card;
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+
+
+           
+            $.ajax({
+                url: '/boss/employeeProfile/' + selectedRow,
+                type: 'GET',
+                cache: false,
+                success: function (j) {
+                    
+                    var filtered = cardKeys.filter(function (x) {
+                        return x.assignedTo.id == selectedRow;
+                    });
+
+                    var modal = $('#myModal_edit');
+                    modal.find('[name=assignedTo_modal]').val(j.lastName + ', ' + j.firstName);
+                    modal.find('[name=assignedTo_modal]').attr('data-value', j.id);
+                    modal.find('[name=govID_modal]').val(filtered[0].govtId);
+                    $.each(filtered, function (index, value) {
+                        
+                        switch (value.keyType) {
+                            case 'type10A1':
+                                modal.find('[name=modal_10A1]').val(value.id);
+                                break;
+                            case 'type10A6':
+                                modal.find('[name=modal_10A6]').val(value.id);
+                                break;
+                            case 'type10A7':
+                                modal.find('[name=modal_10A7]').val(value.id);
+                                break;
+                            case 'type10A8':
+                                modal.find('[name=modal_10A8]').val(value.id);
+                                break;
+                            case 'type10D1':
+                                modal.find('[name=modal_10D1]').val(value.id);
+                                break;
+                            case 'typeX3':
+                                modal.find('[name=modal_X3]').val(value.id);
+                                break;
+                            case 'typeFS':
+                                modal.find('[name=modal_FS]').val(value.id);
+                                break;
+
+                        }
+                    });
+                    $('#myModal_edit').modal('toggle');
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+            
+
+        });
+
+        $('#myModal_edit').on('click', '#edit_submit', function () {
+            var cardInfo;
+            $.ajax({
+                url: '/boss/cardOrKey',
+                type: 'GET',
+                cache: false,
+                async: false,
+                success: function (card) {
+                    cardInfo = card;
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+
+            $.ajax({
+                url: '/boss/employeeProfile/' + selectedRow,
+                type: 'GET',
+                cache: false,
+                success: function (j) {
+                    
+                    var filter = cardInfo.filter(function (x) {
+                        
+                        return x.assignedTo.id == j.id;
+                    });
+                    
+                    
+                    var modal = $('#myModal_edit');
+                    var _10A1 = modal.find('[name=modal_10A1]').val();
+                    var _10A6 = modal.find('[name=modal_10A6]').val();
+                    var _10A7 = modal.find('[name=modal_10A7]').val();
+                    var _10A8 = modal.find('[name=modal_10A8]').val();
+                    var _10D1 = modal.find('[name=modal_10D1]').val();
+                    var _X3 = modal.find('[name=modal_X3]').val();
+                    var _FS = modal.find('[name=modal_FS]').val();
+                    var govtID = modal.find('[name=govID_modal]').val();
+                    var assigned_id = modal.find('[name=assignedTo_modal]').attr('data-value');
+                    var key_success_check = [];
+                    $.ajax({
+                        url: '/boss/employeeProfile/' + assigned_id,
+                        type: 'GET',
+                        cache: false,
+                        success: function (emp) {
+                            var keyAlterCheck = [];
+                            $.each(filter, function (index, value) {
+                                switch (value.keyType) {
+                                    case 'type10A1':
+                                        $.ajax({
+                                            url: '/boss/cardOrKey/' + value.id,
+                                            type: 'DELETE',
+                                            cache: false,
+                                            async: false,
+                                            success: function (json) {
+                                                var cardData = {
+                                                    id: _10A1,
+                                                    keyType: 'type10A1',
+                                                    govtId: govtID,
+                                                    assignedTo: emp
+                                                };
+                                                
+                                                $.ajax({
+                                                    url: '/boss/cardOrKey',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    async: false,
+                                                    data: JSON.stringify(cardData),
+                                                    contentType: 'application/json',
+                                                    success: function (j) {
+                                                        var dat = {
+                                                            type: '10A1',
+                                                            success: true
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                        
+                                                    },
+                                                    error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                        var dat = {
+                                                            type: '10A1',
+                                                            success: false
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                        
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        break;
+                                    case 'type10A6':
+                                        $.ajax({
+                                            url: '/boss/cardOrKey/' + value.id,
+                                            type: 'DELETE',
+                                            cache: false,
+                                            async: false,
+                                            success: function (json) {
+                                                var cardData = {
+                                                    id: _10A6,
+                                                    keyType: 'type10A6',
+                                                    govtId: govtID,
+                                                    assignedTo: emp
+                                                };
+
+                                                $.ajax({
+                                                    url: '/boss/cardOrKey',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    async: false,
+                                                    data: JSON.stringify(cardData),
+                                                    contentType: 'application/json',
+                                                    success: function (j) {
+                                                        var dat = {
+                                                            type: '10A6',
+                                                            success: true
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    },
+                                                    error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                        var dat = {
+                                                            type: '10A6',
+                                                            success: false
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        break;
+                                    case 'type10A7':
+                                        $.ajax({
+                                            url: '/boss/cardOrKey/' + value.id,
+                                            type: 'DELETE',
+                                            cache: false,
+                                            async: false,
+                                            success: function (json) {
+                                                var cardData = {
+                                                    id: _10A1,
+                                                    keyType: 'type10A7',
+                                                    govtId: govtID,
+                                                    assignedTo: emp
+                                                };
+
+                                                $.ajax({
+                                                    url: '/boss/cardOrKey',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    async: false,
+                                                    data: JSON.stringify(cardData),
+                                                    contentType: 'application/json',
+                                                    success: function (j) {
+                                                        var dat = {
+                                                            type: '10A7',
+                                                            success: true
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    },
+                                                    error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                        var dat = {
+                                                            type: '10A7',
+                                                            success: false
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        break;
+                                    case 'type10A8':
+                                        $.ajax({
+                                            url: '/boss/cardOrKey/' + value.id,
+                                            type: 'DELETE',
+                                            cache: false,
+                                            async: false,
+                                            success: function (json) {
+                                                var cardData = {
+                                                    id: _10A8,
+                                                    keyType: 'type10A8',
+                                                    govtId: govtID,
+                                                    assignedTo: emp
+                                                };
+
+                                                $.ajax({
+                                                    url: '/boss/cardOrKey',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    async: false,
+                                                    data: JSON.stringify(cardData),
+                                                    contentType: 'application/json',
+                                                    success: function (j) {
+                                                        var dat = {
+                                                            type: '10A8',
+                                                            success: true
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    },
+                                                    error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                        var dat = {
+                                                            type: '10A8',
+                                                            success: false
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        break;
+                                    case 'type10D1':
+                                        $.ajax({
+                                            url: '/boss/cardOrKey/' + value.id,
+                                            type: 'DELETE',
+                                            cache: false,
+                                            async: false,
+                                            success: function (json) {
+                                                var cardData = {
+                                                    id: _10D1,
+                                                    keyType: 'type10D1',
+                                                    govtId: govtID,
+                                                    assignedTo: emp
+                                                };
+
+                                                $.ajax({
+                                                    url: '/boss/cardOrKey',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    async: false,
+                                                    data: JSON.stringify(cardData),
+                                                    contentType: 'application/json',
+                                                    success: function (j) {
+                                                        var dat = {
+                                                            type: '10D1',
+                                                            success: true
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    },
+                                                    error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                        var dat = {
+                                                            type: '10D1',
+                                                            success: false
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        break;
+                                    case 'typeX3':
+                                        $.ajax({
+                                            url: '/boss/cardOrKey/' + value.id,
+                                            type: 'DELETE',
+                                            cache: false,
+                                            async: false,
+                                            success: function (json) {
+                                                var cardData = {
+                                                    id: _X3,
+                                                    keyType: 'typeX3',
+                                                    govtId: govtID,
+                                                    assignedTo: emp
+                                                };
+
+                                                $.ajax({
+                                                    url: '/boss/cardOrKey',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    async: false,
+                                                    data: JSON.stringify(cardData),
+                                                    contentType: 'application/json',
+                                                    success: function (j) {
+                                                        var dat = {
+                                                            type: 'X3',
+                                                            success: true
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    },
+                                                    error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                        var dat = {
+                                                            type: 'X3',
+                                                            success: false
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        break;
+                                    case 'typeFS':
+                                        $.ajax({
+                                            url: '/boss/cardOrKey/' + value.id,
+                                            type: 'DELETE',
+                                            cache: false,
+                                            async: false,
+                                            success: function (json) {
+                                                var cardData = {
+                                                    id: _FS,
+                                                    keyType: 'typeFS',
+                                                    govtId: govtID,
+                                                    assignedTo: emp
+                                                };
+
+                                                $.ajax({
+                                                    url: '/boss/cardOrKey',
+                                                    type: 'POST',
+                                                    cache: false,
+                                                    async: false,
+                                                    data: JSON.stringify(cardData),
+                                                    contentType: 'application/json',
+                                                    success: function (j) {
+                                                        var dat = {
+                                                            type: 'FS',
+                                                            success: true
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    },
+                                                    error: function (a, b, c) {
+                                                        console.log(a.responseText);
+                                                        var dat = {
+                                                            type: 'FS',
+                                                            success: false
+
+                                                        };
+                                                        key_success_check.push(dat);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                        break;
+                                }
+                            });
+
+
+
+                            
+                        }, error: function (a, b, c) {
+                            console.log(a.responseText);
+                        }
+                    });
+                    var check = true;
+                    $.each(key_success_check, function (index, value) {
+                        if (value.success == false) {
+                            $('#myModal_error').modal('toggle');
+                            check = false;
+                        }
+                    });
+                    debugger;
+                    if (check == true) {
+                        $('#myModal_success').modal('toggle');
+                    }
+                }, error: function (a, b, c) {
+                    console.log(a.responseText);
+                }
+            });
+        });
+
+        $('#myModal_success').on('click', '.success_ok', function () {
+            location.reload();
+        });
+
+        $('#myModal_error').on('click', '.error_ok', function () {
+            location.reload();
+        });
+
+    }
 });
 
 
+var cards = {
+    "form_cards": [
+        [
+            {
+                'fieldName': 'assignedTo',
+                'type': 'select/text',
+                'title': 'Assigned Employee'
+            },
+
+            {
+                'fieldName': 'govID',
+                'type': 'input/text',
+                'title': 'Government ID'
+            }
+        ],
+        [
+            {
+                'fieldName': 'bool_10A1',
+                'type': 'input/text',
+                'title': 'KeyType 10A1'
+            },
+            {
+                'fieldName': 'bool_10A6',
+                'type': 'input/text',
+                'title': 'KeyType 10A6'
+            },
+            {
+                'fieldName': 'bool_10A7',
+                'type': 'input/text',
+                'title': 'KeyType 10A7'
+            },
+            {
+                'fieldName': 'bool_10A8',
+                'type': 'input/text',
+                'title': 'KeyType 10A8'
+            },
+            {
+                'fieldName': 'bool_10D1',
+                'type': 'input/text',
+                'title': 'KeyType 10D1'
+            },
+            {
+                'fieldName': 'bool_X3',
+                'type': 'input/text',
+                'title': 'KeyType X3'
+            }
+        ]
+    ],
+    "edit_form": [
+        [
+            {
+                'fieldName': 'assignedTo_modal',
+                'type': 'input/text',
+                'title': 'Assigned Employee',
+                'readonly': true
+            },
+
+            {
+                'fieldName': 'govID_modal',
+                'type': 'input/text',
+                'title': 'Government ID'
+            }
+        ],
+        [
+            {
+                'fieldName': 'modal_10A1',
+                'type': 'input/text',
+                'title': 'KeyType 10A1'
+            },
+            {
+                'fieldName': 'modal_10A6',
+                'type': 'input/text',
+                'title': 'KeyType 10A6'
+            },
+            {
+                'fieldName': 'modal_10A7',
+                'type': 'input/text',
+                'title': 'KeyType 10A7'
+            },
+            {
+                'fieldName': 'modal_10A8',
+                'type': 'input/text',
+                'title': 'KeyType 10A8'
+            },
+            {
+                'fieldName': 'modal_10D1',
+                'type': 'input/text',
+                'title': 'KeyType 10D1'
+            },
+            {
+                'fieldName': 'modal_X3',
+                'type': 'input/text',
+                'title': 'KeyType X3'
+            },
+            {
+                'fieldName': 'modal_FS',
+                'type': 'input/text',
+                'title': 'KeyType FS'
+            }
+        ]
+    ]
+};
+
+CustomFormFunctions.addBootstrapFields(cards);
 
 
 
 
-
-
-
-
-//var fakeData = [
-//    {
-//        "employeeId": 47,
-//        "category": "blah",
-//        "title": "blah",
-//        "yearsValid": 5,
-//        "dateOfTraining": "2018-09-26T14:03:16.183Z",
-//        "approvedBy": null
-//    }
-//];
-//var training_config = {
-//    "dueWithinDays": 180, // 6 months
-//};
-//var userId = 3; // Temporary Spoofing
-
-//$(document).ready(function() {
-//    $("#firstDropDown").on("change",
-//        function() {
-//            var second = $("#secondDropDown");
-//            var oldVal = second.val();
-//            var goodOptions = second.find("option[data-filter='" + this.value + "']");
-//            second.find("option").hide();
-//            goodOptions.show();
-//            if (goodOptions.filter("[value='" + oldVal + "']").length == 0) {
-//                second.val(goodOptions.val());
-//                //console.log(goodOptions.val());
-//            }
-//        });
-
-//    var p0 = makeAjaxCall("/training", "GET", null);
-//    var p1 = makeAjaxCall("/trainingCourse", "GET", null);
-//    var p2 = makeAjaxCall("/employeeProfile", "GET", null);
-//    Promise.all([p0, p1, p2]).then(function(results) {
-//        var trainings = results[0];
-//        var CourseRes = results[1];
-//        var employeeRes = results[2];
-//        var trainingCourses = [{ id: 0, title: "Unknown", description: "Something's not right..." }];
-//        var employees = [{ id: 0, lastName: "Unapproved", firstName: "" }];
-//        for (var i in CourseRes) {
-//            var c = CourseRes[i];
-//            trainingCourses[c.id] = c;
-//        }
-//        for (var i in employeeRes) {
-//            var c = employeeRes[i];
-//            employees[c.id] = c;
-//        }
-//        for (var i in trainings) {
-//            var tr = trainings[i];
-//            tr.course = trainingCourses[tr.trainingCourseId ? tr.trainingCourseId : 0];
-//            tr.employee = employees[tr.employee ? tr.employee.id : 0];
-//            tr.approvedBy = employees[tr.approvedBy ? tr.approvedBy.id : 0];
-//        }
-        
-//        populateDataTable(trainings);
-//    });
-
-
-//    function populateDataTable(jsonData) {
-//        console.log("populateDataTable");
-//        console.log(jsonData);
-
-        
-//        var latestTraining = {};
-//        for (k in jsonData) {
-//            var v = jsonData[k];
-//            var key = v.employee.id + "_" + v.trainingCourseId;
-//            var otherId = latestTraining[key];
-//            if (!otherId || jsonData[otherId].dateOfTraining < v.dateOfTraining) {
-//                latestTraining[key] = k;
-//            }
-//        }
-//        for (key in latestTraining) {
-//            jsonData[latestTraining[key]].isLatest = true;
-//        }
-//        debugger;
-//        //console.log(jsonData);
-//        var table = $("#tblTraining").DataTable({
-//            'order': [
-//                [4, "asc"]
-//            ],
-//            'bPaginate': false,
-//            'data': jsonData,
-//            'dom': "Bfti",
-//            'columns': [
-//                {
-//                    'data': "employee",
-//                    'render': function(data, type, row) {
-//                        return data.lastName + ", " + data.firstName;
-//                    }
-//                },
-//                // { 'data': 'supervisor' },
-//                {
-//                    'data': "course.title",
-//                    'render': function(data, type, row) {
-//                        return "<span data-toggle='tooltip' data-placement='top' title='" +
-//                            row.course.description +
-//                            "'>" +
-//                            data +
-//                            "</span>";
-//                    }
-//                },
-//                {
-//                    'data': "dateOfTraining",
-//                    "render": function(data, type, row) {
-//                        if (type == "sort") return data;
-//                        return CustomFormFunctions.formatDate(data, "bootstrap");
-//                    }
-//                },
-//                {
-//                    'data': "approvedBy",
-//                    'render': function(data, type, row) {
-//                        if (data != undefined) {
-//                            return data.lastName + ", " + data.firstName;
-//                        } else {
-//                            return "N/A";
-//                        }
-//                    }
-//                },
-//                {
-//                    'data': "validUntil",
-//                    "render": function(data, type, row) {
-//                        var dueDate = CustomFormFunctions.getDateFrom(data);
-//                        var trainingDate = CustomFormFunctions.getDateFrom(row.dateOfTraining);
-//                        if (type != "display") return dueDate.getTime();
-//                        var one_day = 1000 * 60 * 60 * 24;
-//                        var dateStr = CustomFormFunctions.formatDate(dueDate, "bootstrap");
-//                        var daysUntilDue = (dueDate - new Date()) / one_day;
-//                        var notRequired = (dueDate - trainingDate) < 0;
-//                        if (!row.isLatest) {
-//                            return "<span class='text-success'>Already Renewed</span>";
-//                        } else if (notRequired) {
-//                            return "<span class='text-muted'>No Longer Required</span>";
-//                        } else if (daysUntilDue < 1) {
-//                            return "<span class='bg-danger text-white'>" + dateStr + "</span><br>Overdue";
-//                        } else if (daysUntilDue < training_config.dueWithinDays) {
-//                            return "<span class='bg-warning'>" + dateStr + "</span><br>Up For Renewal";
-//                        } else {
-//                            return "<span>" + dateStr + "</span>";
-//                        }
-//                    }
-//                },
-                
-
-//                 {
-//                    'data': null,
-//                    "render": function(data, type, row) {
-//                        var buttonList = $("#templateButtonList").clone().attr("id", "");
-//                        buttonList.find("a").attr("data-training", JSON.stringify(row));
-//                        return buttonList.prop("outerHTML");
-//                    }
-//                }
-//            ],
-//            'buttons': [
-//                {
-//                    text: 'Add <i class="fa fa-lg fa-plus"></i>',
-//                    action: function() {
-//                        window.location.href = "/addTrainingEmployee";
-//                    },
-//                    className: "table-btns add-btn"
-//                },
-//                {
-//                    text: 'Refresh <i class="fa fa-lg fa-repeat"></i>',
-//                    action: function() {
-//                        window.location.reload();
-//                    },
-//                    className: "table-btns refresh-btn"
-//                },
-//                {
-//                    text:
-//                        '<label class="viewLabel" for="viewOld">View Old Entries <i class="fa fa-lg fa-eye"></i><input type="checkbox" id="viewOld"></label>',
-//                    // text: 'View Old <i class="fa fa-lg fa-eye" id="viewOld"></i>',
-//                    action: function() {
-//                        $("#viewOld").click();
-//                        var show = $("#viewOld")[0].checked;
-//                        console.log(show);
-//                        var eye = $('label[for="viewOld"] i');
-//                        if (show) {
-//                            table.columns(5).search("").draw();
-//                            eye.addClass("fa-eye");
-//                            eye.removeClass("fa-eye-slash");
-//                        } else {
-//                            table.columns(5).search("isLatest").draw();
-//                            eye.addClass("fa-eye-slash");
-//                            eye.removeClass("fa-eye");
-//                        }
-//                    },
-//                    className: "table-btns view-btn"
-//                }, {
-//                    text: 'Print <i class="fa fa-lg fa-print"></i>',
-//                    extend: "print",
-//                    exportOptions: {
-//                        columns: [0, 1, 2, 3, 4]
-//                    },
-//                    className: "table-btns print-btn"
-//                },
-//                {
-//                    text: 'Export to Excel <i class="fa fa-lg fa-file-excel-o"></i>',
-//                    extend: "excel",
-//                    exportOptions: {
-//                        columns: [0, 1, 2, 3, 4]
-//                    },
-//                    className: "table-btns excel-btn"
-//                }
-//            ],
-//        });
-//        table.button("2").trigger();
-//        table.button("2").trigger();
-
-//        $('[data-toggle="tooltip"]').tooltip();
-
-//        $(".btn-modal").on("click",
-//            function() {
-//                var info = $(this).data("training");
-//                $(".trainingId").val(info.id);
-//                $(".trainingCourse").text(info.course.title);
-//                $(".employeeName").text(info.employee.nameCode);
-//                populateCertificateList();
-//            });
-//        $(".btn-modal-renew").on("click",
-//            function() {
-//                populateRenewFields($(this).data("training"));
-//            });
-//        $("#btn_approve_training").on("click",
-//            function() {
-//                var id = $(this).closest("form").find(".trainingId").val();
-//                CustomFormFunctions.putPartialInfo("/training",
-//                    id,
-//                    { 'approvedBy': { 'id': userId } },
-//                    function() { window.location.reload() });
-//            });
-//        $("#form_training_upload_file").on("change update",
-//            function() {
-//                $("#form_training_upload_description").val(this.files[0].name);
-//            });
-//        $("#btn_add_training_docs").on("click",
-//            function() {
-//                var form = $("#form_training_upload");
-//                var data = new FormData(form[0]);
-//                var id = form.find(".trainingId").val();
-//                $.ajax({
-//                    url: "/boss/certificate?trainingId=" + id,
-//                    type: "POST",
-//                    enctype: "multipart/form-data",
-//                    data: data,
-//                    processData: false,
-//                    contentType: false,
-//                    cache: false,
-//                    timeout: 600000,
-//                    success: function(data) {
-//                        $("#form_training_upload_file, #form_training_upload_description").val("");
-//                        populateCertificateList();
-//                    },
-//                    error: function(e) {
-//                        console.log(e.responseJSON);
-//                    }
-//                });
-//            });
-//        $("#btn_remove_training").on("click",
-//            function() {
-//                var id = $(this).closest("form").find(".trainingId").val();
-//                $.ajax({
-//                    'url': "/training/" + id,
-//                    'type': "DELETE",
-//                    'success': function() { window.location.reload() },
-//                    'error': function(a, b, c) {
-//                        console.log(a.responseJSON);
-//                    }
-//                });
-//            });
-//        $("#btn_renew_training").on("click",
-//            function() {
-//                var data = {
-//                    'employee': {
-//                        'id': $("#form_training_renew [name='employee.id']").val(),
-//                    },
-//                    'trainingCourseId': $("#form_training_renew [name='trainingCourseId']").val(),
-//                    'validUntil': CustomFormFunctions.formatDate("#form_training_renew [name='validUntil']"),
-//                    'dateOfTraining': CustomFormFunctions.formatDate("#form_training_renew [name='dateOfTraining']"),
-//                };
-//                console.log(JSON.stringify(data));
-//                $.ajax({
-//                    'url': "/training",
-//                    'type': "POST",
-//                    'contentType': "application/json",
-//                    'data': JSON.stringify(data),
-//                    'success': function() {
-//                        window.location.reload();
-//                    },
-//                    'error': function(a, b, c) {
-//                        console.log(a.responseJSON);
-//                    }
-//                });
-//            });
-//        $("#btn_unrequire_training").on("click",
-//            function() {
-//                var id = $(this).closest("form").find(".trainingId").val();
-//                CustomFormFunctions.putPartialInfo("/training",
-//                    id,
-//                    { validUntil: new Date(0, 0) },
-//                    () => { window.location.reload(); },
-//                    () => console.log("Error!"));
-//            });
-//    }
-
-//    $("#form_training_renew [name='dateOfTraining']").change(function() {
-//        var date1 = CustomFormFunctions.getDateFrom(this.value);
-//        var date2 = new Date(date1);
-//        var yearsValid = $("#form_training_renew [name='yearsValid']").val();
-//        date2.setFullYear(parseInt(date1.getFullYear()) + parseInt(yearsValid));
-//        var date2str = CustomFormFunctions.formatDate(date2, "bootstrap");
-//        $("#form_training_renew [name='validUntil']").val(date2str);
-//    });
-
-//});
-
-//function populateCertificateList() {
-//    console.log("PopulatingList");
-//    $.ajax({
-//        url: "/boss/training/" + $(".trainingId").val(),
-//        type: "GET",
-//        success: function(data) {
-//            var cert = data.certificates;
-//            var list = cert.map(function(v) {
-//                var previewLink = "<a target='_blank' href='/certificate/" +
-//                    v.documentId +
-//                    "'>" +
-//                    v.description +
-//                    "</a>";
-//                var deleteLink = "<a href='#' onclick='showDeleteCertificate(" +
-//                    v.documentId +
-//                    ")' class='small text-danger'>Remove</a>";
-//                var confirmDeleteLink = "<a href='#' id='delete_certificate_" +
-//                    v.documentId +
-//                    "' onclick='deleteCertificate(" +
-//                    v.documentId +
-//                    ")' class='hide small text-danger'>Are you sure?  You can't get the file back once deleted.</a>";
-//                return deleteLink + " " + confirmDeleteLink + " " + previewLink;
-//            });
-//            $("#certificate_list").html(list.join("<br>"));
-//            for (var i in cert) {
-//                var id = cert[i].id;
-//            }
-//        },
-//        error: function(e) {
-//            console.log(e.responseJSON);
-//        }
-//    });
-//}
-
-//function showDeleteCertificate(id) {
-//    console.log(id);
-//    $("#delete_certificate_" + id).show();
-//}
-
-//function deleteCertificate(id) {
-//    $.ajax({
-//        url: "/boss/certificate/" + id,
-//        type: "DELETE",
-//        success: populateCertificateList
-//    });
-//}
-
-//function populateRenewFields(training) {
-//    var courseId = training.trainingCourseId;
-//    $.ajax({
-//        url: "/boss/trainingCourse/" + courseId,
-//        type: "GET",
-//        success: function(course) {
-//            var form = $("#form_training_renew");
-//            form.find(".category").text(course.category);
-//            form.find(".description").text(course.description);
-//            form.find("[name='employee.id']").val(training.employee.id);
-//            form.find("[name='trainingCourseId']").val(courseId);
-//            var date1 = new Date();
-//            var date2 = new Date();
-//            var yearsValid = (true || employee.isLeader) ? course.defaultYearsLeader : course.defaultYears;
-//            date2.setFullYear(date1.getFullYear() + yearsValid);
-//            form.find("[name='yearsValid']").val(yearsValid);
-//            form.find("[name='dateOfTraining']").val(CustomFormFunctions.formatDate(date1, "bootstrap"));
-//            form.find("[name='validUntil']").val(CustomFormFunctions.formatDate(date2, "bootstrap"));
-//        }
-//    });
-//}
-
-
-//var trainingRenewFields = {
-//    "form_training_renew": [
-//        [
-//            {
-//                "fieldName": "dateOfTraining",
-//                "title": "Training Completed On",
-//                "placeholder": "Date of Training",
-//                "type": "input/date",
-//                "colspan": 6,
-//            },
-//            {
-//                "fieldName": "validUntil",
-//                "title": "Valid Until",
-//                "placeholder": "Valid Until",
-//                "type": "input/date",
-//                "colspan": 6,
-//            },
-//            {
-//                "fieldName": "yearsValid",
-//                "hidden": true,
-//                "type": "input/number"
-//            },
-//        ]
-//    ]
-//};
-
-//CustomFormFunctions.addBootstrapFields(trainingRenewFields);

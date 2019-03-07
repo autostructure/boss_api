@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="css/pagesCSS/all.css">
     <link rel="stylesheet" href="css/pagesCSS/hrPages.css">
+	<link rel="stylesheet" href="css/pageCSS/operatorLic.css">
 </head>
 
 <body class="layout-demo">
@@ -55,31 +56,34 @@
 										<select id="employees" class="form-control"></select>
 									</div>
 								</div>
-							</div>
-							<table border="0">
+							</div><br/>
+						</form>
+					</div>
+							<!--<table id="mainTable">
 							<tr><td>
-							<table id="operatorLicTableOne" border="2">
+							<table id="operatorLicTableOne" style="border-style:solid;border-width:2px">
 								<tr>
-									<td colspan="3" style="background-color:#CCCCCC" border="2">
+									<td style="border-style:solid;border-width:2px" colspan="3" style="background-color:#CCCCCC" border="2">
 										<label ID="tableOneTitle" class=""> U.S. Governement Motor Vehicle Operator's Identification Card</label></br>
 									</td>
 
 								</tr>
 								<tr>
-									<td class="text text-center">
+									<td style="border-style:solid;border-width:2px" class="text text-center">
 										Name of Operator / not transferable<br/>
-										<label id="operator_
+										<label id="operator_name"></label>
+									</td>
 								</tr>
 								<tr>
-									<td border="2">
+									<td>
 										<label class="text" style="font-weight:bold">Agency & Duty Station</label><br/>
 										<label class="text address_one_location" id="address_one_location"></label><br/>
 										<label class="text address_two_street" id="address_two_street"><label<br/>
 										<label class="text address_three_state" id="text address_three_state"></label><br/>
 									</td>
-									<td border="2">
+									<td>
 										<label class="text">Defensive Driving</label><br/>
-										<table>
+										<table id="DefenseDrivingTable">
 											<tr>
 												<td>
 													<label class="text">Date of Class:</label>
@@ -105,7 +109,7 @@
 									</td>
 									<td>
 										<label class="text">ATV Rider Course</label><br/>
-										<table border="2">
+										<table id="ATVcourseTable">
 											<tr>
 												<td class="text-center">
 													<label class="text">Date of Class:</label>
@@ -135,7 +139,7 @@
 								</tr>
 							</table>
 							</td><td>
-							<table id="OperatorsLicTableTwo" border="2">
+							<table id="operatorLicTableTwo">
 								<tr>
 									<td class="text-center" style="background-color:#CCCCCC">
 										<label class="text">VOID UNLESS ACCOMPANIED BY A VAILD STATE LICENSE</label>
@@ -148,7 +152,7 @@
 								</tr>
 								<tr>
 									<td>
-										<table border="2">
+										<table id="voidUnlessAcc">
 											<tr>
 												<td class="text-center">
 													<label class="text">Type Of Vehicle and/or Equipment</label>
@@ -182,12 +186,142 @@
 								</tr>
 							</table>
 							</td></tr>
-							</table>
+							</table>-->
+							<br/>
+							<br/>
+
+						<div id="print">
+							<div style="width:800px;margin:auto;padding:10px;border-bottom:none; border-right:none" class="row">
+								<div class="col">
+									<div class="row" style="border-width:1px; border-style:solid;border-bottom: none">
+										<div class="col">
+											<p class="text text-center" style="font-weight:bold;">U.S. Government Motor Vehicle Operator's Identification Card</p>
+										</div>
+									</div>
+									<div class="row" style="border-width:1px; border-style:solid;border-bottom:none;border-right:none">
+										<div class="col" style="border-width:1px; border-style:solid">
+											<p class="text text-center">Name of Operator / not transferable</p><br/>
+											<label class="text text-center" id="operator_name">
+										</div>
+										<div class="col" style="border-width:1px; border-style:solid">
+											<p style="font-size:5px">Date Issued:</p>
+											<label id="date_issued" class="text"></label>
+										</div>
+									</div>
+									<div class="row" style="border-width:1px; border-style:solid;border-right:none;border-bottom:none">
+										<div class="col" style="border-width:1px; border-style:solid">
+											<p class="text">Agency & Duty Station</p><br/>
+											<label id="address_one_location"></label><br/>
+											<label id="address_two_street"></label><br/>
+											<label id="address_three_state"></label>
+										</div>
+										<div class="col" style="border-width:1px;height:20px;border-style:solid;border-right:none;border-bottom:none">
+											<p class="text">Defensive Driving</p>
+											<table>
+												<tr style="height:30px">
+													<td>
+														<p class="text" style="font-size:10px">Date of Class:</p>
+													</td>
+													<td>
+														<label id="defensive_date_class" class="text"></label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<p class="text">Expires:</p>
+													</td>
+													<td>
+														<label id="defensive_expire_class" class="text"></label>
+													</td>
+												</tr>
+											</table>
+
+										</div>
+									</div>
+									<div class="row" style="border-width:1px;border-style:solid;border-right:none;border-bottom:none">
+										<div class="col">
+											<p class="text" class="text">Issued by (signature):</p>
+										</div>
+										<div class="col">
+											
+											<div class="row">
+												<div class="col">
+													<p class="text">ATV Rider Course</p>
+												</div>
+												<div class="col">
+													<p class="text">Date of Class:</p>
+												</div>
+												<div class="col">
+													<label id="ATV_date_class"></label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<p class="text">Expires:</p><br/>
+												</div>
+												<div class="col">
+													<label id="ATV_expire" class="text"></label>
+												</div>
+											</div>
+										</div>				
+									</div>
+									<div class="row" style="height:40px;border-width:1px; border-style:solid;border-right:none;">
+										<div class="col">
+											<p class="text">Operator's signature:</p><br/>
+										</div>
+										<div class="col">
+											<p class="text">Restrictions:</p><br/>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row" style="border-width:1px; border-style:solid;border-bottom: none">
+										<div class="col">
+											<p class="text text-center">VOID UNLESS ACCOMPANIED BY A VALID STATE LICENSE</p>
+										</div>
+									</div>
+									<div class="row" style="border-width:1px; border-style:solid;border-bottom: none">
+										<div class="col" style="border-width:1px; border-style:solid">
+											<p class="text-center">QUALIFIED TO OPERATE</p>
+										</div>
+									</div>
+									<div class="row" style="height:200px;border-width:1px; border-style:solid;border-bottom: none">
+										<div class="col">
+											
+											<div class="row">
+												<div class="col">
+													<p class="text">Type Of Vehicle and/or Equipment</P>
+												</div>
+												<div class="col">
+													<p class="text">Capacity</P>
+												</div>
+												<div class="col">
+													<p class="text">Issued by:</p>
+												</div>
+											</div>
+											<div id="addItems">
+											</div>
+
+
+										</div>
+									</div>
+									<div class="row" style="border-width:1px; border-style:solid">
+										<div class="col" style="border-width:1px; border-style:solid">
+											<p class="text">
+											The holder of this card is qualified to operate a U.S. Government<br/>
+											vehicle(s) and/or equipment specified, subject to the restrictions set<br/>
+											forth on this card. Card must be carried at all times when operating<br/>
+											Government vehicles.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
 							<br/><br/>
 							<button id="print_lic" class="btn btn-info" style="text-align:center" value="Print">Print</button>
 							<button id="test" value="test">test</button>
-						</form>
-					 </div>         
+						</div>
+					        
                 </section>
             </section>
         </div>

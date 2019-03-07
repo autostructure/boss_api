@@ -48,12 +48,14 @@
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">Card & Key List</h2>
-                                <div id="showHide">
-                                    <div class="form-check" id="viewOldCheckbox">
-                                        <input type="checkbox" id="viewOld" class="form-check-input">
-                                        <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
-                                    </div>                                    
-                                    <table id="allEmployees" class="usa-table-borderless display" style="width:100%">
+                                <div>
+									<div id="addDiv" class="container trainBG">
+										<form id="form_cards">
+										</form><br/>
+										<button id="btn_submit" class="btn btn-submit" value="Submit"></button>
+										<br/>
+										<br/>
+										<table id="cardTable" class="usa-table-borderless display" style="width:100%">
 
                                         <thead>
                                             <tr>
@@ -61,14 +63,14 @@
                                                 <th>Employee Name</th>
                                                 <th>Linc Pass Expiration</th>
                                                 <th>Gov ID</th>
-                                                <th>Corporate Card</th>
                                                 <th>10A1</th>
                                                 <th>10A6</th>                                        
                                                 <th>10A7</th>
                                                 <th>10A8</th>
 												<th>10D1</th>
 												<th>X3</th>
-                                                <th id=""></th>
+                                                <th>keyFS</th>
+												<th></th>
 
 
                                             </tr>
@@ -84,9 +86,13 @@
 											<td col="key10D1"></td>
 											<td col="keyX3"></td>
 											<td col="keyFS"></td>
+											<td scope="col"></td>
 											
                                         </tbody>
                                     </table>
+									</div>
+									
+                                    
                                 </div>
                             </div>
                         </div> 
@@ -103,7 +109,7 @@
 
 
 
-            <div id="myModal_delete" class="modal fade" role="dialog">
+            <div id="myModal_edit" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -112,193 +118,52 @@
 
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this employee?</p>
-                            <p id="employeeName_deleteModal"></p>
+                            <form id="edit_form">
+							</form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">No</button>
-                            <button type="button" id="deleteModal_delete" data-dismiss="modal" class="btn btn_pers_remove">Yes</button>
+                            <button type="button" class="btn btn_pers_copy" data-dismiss="modal">Cancel</button>
+                            <button type="button" id="edit_submit" data-dismiss="modal" class="btn btn_sub">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-            <div id="myModal_contact" class="modal fade">
-                <div class="modal-dialog modal-lg" role="document">
+			<div id="myModal_error" class="modal fade" role="dialog">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Contact Info</h4>
+                            <h4 class="modal-title">Error</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
                         </div>
                         <div class="modal-body">
-                            <p class="contactClass">Employee Contact</p>
-                            <div class="row">
-
-                                <div class="col">
-
-                                    <div class="form-group">
-                                        <label class="control-label">Primay Phone: </label> <input class="form-control" type="text" id="PrimryPhone" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="SecondaryPhone" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Personal Email: </label> <input class="form-control" type="text" id="PersonalEmail" readonly></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="contactClass">Primary Emergency Contact</p>                            
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">First Name: </label> <input class="form-control" type="text" id="FirstNameOne" readonly></input>
-                                    </div>
-                                </div> 
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Last Name: </label> <input class="form-control" type="text" id="LastNameOne" readonly></input>
-                                    </div>
-                                </div> 
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Relationship: </label> <input class="form-control" type="text" id="FirstRelationship" readonly></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">                                
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="HomePhoneOne" readonly></input>
-                                    </div>
-                                </div>      
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="CellPhoneOne" readonly></input>
-                                    </div>
-                                </div>                                                          
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Work Phone: </label> <input class="form-control" type="text" id="WorkPhoneOne" readonly></input>
-                                    </div>
-                                </div>                                
-
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Address: </label> <input class="form-control" type="text" id="AddressOne" readonly></input>
-                                    </div>
-                                </div>                                                                                              
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">City: </label> <input class="form-control" type="text" id="CityOne" readonly></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">State: </label> <input class="form-control" type="text" id="StateOne" readonly></input>
-                                    </div>
-                                </div>                                
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Zip: </label> <input class="form-control" type="text" id="ZipOne" readonly></input>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <p class="contactClass">Secondary Emergency Contact</p> 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">First Name: </label> <input class="form-control" type="text" id="FirstNameTwo" readonly></input>
-                                    </div>
-                                </div>                                 
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Last Name: </label> <input class="form-control" type="text" id="LastNameTwo" readonly></input>
-                                    </div>
-                                </div>     
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Relationship: </label> <input class="form-control" type="text" id="SecondRelationship" readonly></input>
-                                    </div>
-                                </div>  
-                            </div>
-                            <div class="row">                                                          
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Primary Phone: </label> <input class="form-control" type="text" id="HomePhoneTwo" readonly></input>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Secondary Phone: </label> <input class="form-control" type="text" id="CellPhoneTwo" readonly></input>
-                                    </div>
-                                </div> 
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Work Phone: </label> <input class="form-control" type="text" id="WorkPhoneTwo" readonly></input>
-                                    </div>
-                                </div>   
-                            </div>
-                            <div class="row">                                                            
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Address: </label> <input class="form-control" type="text" id="AddressTwo" readonly></input>
-                                    </div>
-                                </div> 
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">City: </label> <input class="form-control" type="text" id="CityTwo" readonly></input>
-                                    </div>
-                                </div>                                                                                                                         
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">State: </label> <input class="form-control" type="text" id="StateTwo" readonly></input>
-                                    </div>
-                                </div>  
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Zip: </label> <input class="form-control" type="text" id="ZipTwo" readonly></input>
-                                    </div>
-                                </div>   
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default btn_pers_copy" data-dismiss="modal">Close</button>
-                            </div>
+							<p>An Error Happened Submitting Card Key Information</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn error_ok">Ok</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
+			<div id="myModal_success" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Success!</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-
-
-
+                        </div>
+                        <div class="modal-body">
+							<p>Success Submiting Card Key Information</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn success_ok">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </main>
 
@@ -307,6 +172,7 @@
         <script src="/boss/js/ead.min.js"></script>
 
         <script src="/boss/js/pagesJS/ApiCalls.js"></script>
+		<script src="/boss/js/pagesJS/CustomFormFunctions.js"></script>
         <script src="/boss/js/pagesJS/CardsAndKeysPropMgt.js"></script>
         <script src="/boss/js/pagesJS/personnelPages.js"></script>
 

@@ -48,7 +48,7 @@
                         <div class="usa-grid usa-buffer-top">
                             <div class="use-width-one-whole content-div">
                                 <h2 class="title2">Employee List</h2>
-                                <div id="showHide">
+                                <div>
                                     <div class="form-check" id="viewOldCheckbox">
                                         <input type="checkbox" id="viewOld" class="form-check-input">
                                         <!--label class="form-check-label" for="viewOld">View Old Training Entries</label-->
@@ -68,7 +68,6 @@
                                                 <th scope="col">FS Email</th>
                                                 <th scope="col">Personal Cell Phone</th>
                                                 <th id="stop"></th>
-
 
                                             </tr>
                                         </thead>

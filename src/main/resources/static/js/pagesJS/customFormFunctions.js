@@ -525,7 +525,7 @@ CustomFormFunctions.putPartialInfo = function (url, id, partial, resolved, rejec
                     timeout: 600000,
                     data: JSON.stringify(json),
                     success: resolved,
-                    error: rejected,
+                    error: rejected
                 });
             },
             error: rejected
