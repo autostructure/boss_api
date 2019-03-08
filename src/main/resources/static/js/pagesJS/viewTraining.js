@@ -383,7 +383,7 @@ $(document).ready(function () {
         });
         $("#btn_unrequire_training").on("click", function () {
             var id = $(this).closest("form").find(".trainingId").val();
-            CustomFormFunctions.putPartialInfo("/training", id, { validUntil: new Date(0, 0) }, () => { window.location.reload(); }, () => console.log("Error!"));
+            CustomFormFunctions.putPartialInfo("/boss/training", id, { validUntil: new Date(0, 0) }, () => { window.location.reload(); }, () => console.log("Error!"));
         });
     }
 

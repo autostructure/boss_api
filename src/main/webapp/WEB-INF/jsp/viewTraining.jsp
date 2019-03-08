@@ -67,7 +67,7 @@
                                     <a class="btn-modal btn-modal-remove" data-toggle="modal" data-target="#myModal_remove" href="#">Remove Training</a>
                                     <!-- <a class="btn-modal btn-modal-edit" data-toggle="modal" href="#">Edit Training</a> -->
                                     <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_renew" href="#">Renew Training</a>
-                                    <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_unrequire" href="#">Mark Training as Unrequired</a>
+                                    <a class="btn-modal btn-modal-renew" data-toggle="modal" data-target="#myModal_unrequire" href="#">No Longer Needed</a>
                                 </div>
                             </div>
                         </div>
