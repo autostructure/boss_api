@@ -1,5 +1,7 @@
 FROM autostructure/puppet_tomcat:latest as builder
 
+COPY target/*.war /usr/local/tomcat/webapps
+
 COPY manifests /manifests
 
 COPY hiera.yaml /hiera.yaml
