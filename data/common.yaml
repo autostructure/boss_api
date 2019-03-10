@@ -65,7 +65,4 @@ docker_tomcat_module::context_resources: {}
 
 docker_tomcat_module::context_resourcelinks: {}
 
-docker_tomcat_module::wars:
-  boss.war:
-    catalina_base: *catalina_home
-    war_source: https://artifactory.autostructure.io/artifactory/libs-snapshot-local/gov/usda/fs/ead/boss_api/snapshot_version/boss_api-snapshot_version.war
+docker_tomcat_module::wars: {}
