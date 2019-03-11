@@ -1,6 +1,6 @@
 FROM autostructure/puppet_tomcat:latest as builder
 
-COPY target/*.war /usr/local/tomcat/webapps
+COPY target/*.war /usr/local/tomcat/webapps/
 
 COPY manifests /manifests
 
