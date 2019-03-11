@@ -18,5 +18,4 @@ FROM tomcat:8.5-alpine
 
 COPY --from=builder /usr/local/tomcat/conf    /usr/local/tomcat/conf
 COPY --from=builder /usr/local/tomcat/webapps /usr/local/tomcat/webapps
-COPY --from=builder /usr/local/tomcat/ext_lib/* /usr/local/tomcat/lib/
 COPY --from=builder /usr/local/tomcat/bin/setenv.sh /usr/local/tomcat/bin/setenv.sh
